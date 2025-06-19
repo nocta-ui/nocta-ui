@@ -1,0 +1,405 @@
+---
+title: Input
+description: A versatile input component with multiple variants, sizes, icons, and dark mode support
+---
+
+import { Input } from '@/app/components/ui/input';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+The Input component is part of the nocta-ui component library. Import the component:
+
+```tsx
+import { Input } from '@/app/components/ui';
+```
+
+## Basic Usage
+
+### Default Input
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Input placeholder="Enter your email" />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input placeholder="Enter your email" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Input with Label
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Input 
+        label="Email Address" 
+        placeholder="Enter your email"
+        type="email"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Email Address" 
+      placeholder="Enter your email"
+      type="email"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Input with Helper Text
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Input 
+        label="Username" 
+        placeholder="Enter your username"
+        helperText="Choose a unique username between 3-20 characters"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Username" 
+      placeholder="Enter your username"
+      helperText="Choose a unique username between 3-20 characters"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Input component supports three variants: `default`, `error`, and `success`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Input 
+        label="Default Input"
+        placeholder="Default variant"
+        variant="default"
+      />
+      <Input 
+        label="Error Input"
+        placeholder="Error variant"
+        variant="error"
+        errorMessage="This field is required"
+      />
+      <Input 
+        label="Success Input"
+        placeholder="Success variant"
+        variant="success"
+        helperText="Valid input"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Default Input"
+      placeholder="Default variant"
+      variant="default"
+    />
+    
+    <Input 
+      label="Error Input"
+      placeholder="Error variant"
+      variant="error"
+      errorMessage="This field is required"
+    />
+    
+    <Input 
+      label="Success Input"
+      placeholder="Success variant"
+      variant="success"
+      helperText="Valid input"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Input 
+        label="Small Input"
+        placeholder="Small size"
+        size="sm"
+      />
+      <Input 
+        label="Medium Input"
+        placeholder="Medium size"
+        size="md"
+      />
+      <Input 
+        label="Large Input"
+        placeholder="Large size"
+        size="lg"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Small Input"
+      placeholder="Small size"
+      size="sm"
+    />
+    
+    <Input 
+      label="Medium Input"
+      placeholder="Medium size"
+      size="md"
+    />
+    
+    <Input 
+      label="Large Input"
+      placeholder="Large size"
+      size="lg"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Input with Icons
+
+### Left Icon
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Input 
+        label="Search"
+        placeholder="Search for anything..."
+        leftIcon={
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        }
+      />
+      <Input 
+        label="Email"
+        placeholder="Enter your email"
+        type="email"
+        leftIcon={
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+          </svg>
+        }
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Search"
+      placeholder="Search for anything..."
+      leftIcon={<SearchIcon />}
+    />
+    
+    <Input 
+      label="Email"
+      placeholder="Enter your email"
+      type="email"
+      leftIcon={<EmailIcon />}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Right Icon
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Input 
+        label="Password"
+        placeholder="Enter your password"
+        type="password"
+        rightIcon={
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+        }
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Password"
+      placeholder="Enter your password"
+      type="password"
+      rightIcon={<EyeIcon />}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Input States
+
+### Disabled State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Input 
+        label="Disabled Input"
+        placeholder="This input is disabled"
+        disabled
+      />
+      <Input 
+        label="Disabled with Icon"
+        placeholder="Disabled with icon"
+        disabled
+        leftIcon={
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+          </svg>
+        }
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Disabled Input"
+      placeholder="This input is disabled"
+      disabled
+    />
+    
+    <Input 
+      label="Disabled with Icon"
+      placeholder="Disabled with icon"
+      disabled
+      leftIcon={<EmailIcon />}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Read Only State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Input 
+        label="Read Only Input"
+        value="This value cannot be changed"
+        readOnly
+        helperText="This field is read-only"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      label="Read Only Input"
+      value="This value cannot be changed"
+      readOnly
+      helperText="This field is read-only"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Input component accepts `className` and `containerClassName` props for custom styling:
+
+```tsx
+<Input 
+  className="border-2 border-purple-300 focus:border-purple-500"
+  containerClassName="max-w-xs"
+  label="Custom Styled Input"
+  placeholder="Custom styling"
+/>
+
+<Input 
+  className="rounded-full"
+  label="Rounded Input"
+  placeholder="Fully rounded"
+/>
+```
+
+### Custom Container
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Input 
+        containerClassName="max-w-xs mx-auto"
+        className="text-center"
+        label="Centered Input"
+        placeholder="Centered text"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Input 
+      containerClassName="max-w-xs mx-auto"
+      className="text-center"
+      label="Centered Input"
+      placeholder="Centered text"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Input style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
+| `label` | `string` | — | Label text displayed above the input |
+| `helperText` | `string` | — | Helper text displayed below the input |
+| `errorMessage` | `string` | — | Error message (shown when variant is 'error') |
+| `leftIcon` | `React.ReactNode` | — | Icon displayed on the left side |
+| `rightIcon` | `React.ReactNode` | — | Icon displayed on the right side |
+| `className` | `string` | `''` | Additional CSS classes for the input |
+| `containerClassName` | `string` | `''` | Additional CSS classes for the container |
+| `disabled` | `boolean` | `false` | Disable the input |
+| `readOnly` | `boolean` | `false` | Make the input read-only |
+| `placeholder` | `string` | — | Placeholder text |
+| `type` | `string` | `'text'` | Input type (text, email, password, etc.) |
+
+The Input component also accepts all standard HTML input attributes.
+
+## TypeScript Support
+
+The Input component is built with TypeScript and exports the necessary types:
+
+```tsx
+import type { InputProps } from '@/app/components/ui';
+```
+
+## Accessibility
+
+- Built with semantic HTML `<input>` element
+- Full keyboard navigation support
+- Focus indicators with high contrast
+- Proper disabled and read-only state handling
+- Screen reader friendly labels and helper text
+- ARIA attributes support
+- Proper form association
+
+The Input component provides a comprehensive foundation for form inputs in your application with beautiful styling, excellent accessibility, and seamless user experience across all devices and interaction methods. 
