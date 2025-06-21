@@ -12,26 +12,12 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { Avatar } from '@/app/components/ui/avatar';
+import { Textarea } from '@/app/components/ui/textarea';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
-    // Custom paragraph component that doesn't create nested p tags
-    p: ({ children, className, ...props }) => {
-      // Check if we're in a context that might already contain p tags
-      const isSmallText = className?.includes('text-sm');
-      const isStringContent = typeof children === 'string';
-      const hasNeutralColor = className?.includes('text-neutral-600') || className?.includes('text-neutral-400');
-      const isInDialog = className?.includes('my-6') || className?.includes('px-6') || className?.includes('py-4');
-      
-      // If we're inside components that render p tags or in dialog context, render as span to avoid nested p tags  
-      if (isSmallText || isStringContent || hasNeutralColor || isInDialog) {
-        return <span className={className} {...props}>{children}</span>;
-      }
-      
-      return <p className={className} {...props}>{children}</p>;
-    },
     Card,
     CardHeader,
     CardTitle,
@@ -67,6 +53,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TooltipContent,
     Checkbox,
     Avatar,
+    Textarea,
     ...components,
   };
 }
