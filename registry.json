@@ -240,6 +240,54 @@
         "dark-mode"
       ]
     },
+    "popover": {
+      "name": "Popover",
+      "description": "Advanced popover component with positioning, collision detection, and animations",
+      "category": "overlay",
+      "files": [
+        {
+          "name": "popover.tsx",
+          "path": "app/components/ui/popover/popover.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Popover",
+        "PopoverTrigger", 
+        "PopoverContent",
+        "PopoverArrow"
+      ],
+      "props": {
+        "Popover": ["open", "defaultOpen", "onOpenChange"],
+        "PopoverTrigger": ["asChild", "className"],
+        "PopoverContent": [
+          "side", "align", "sideOffset", "alignOffset", 
+          "avoidCollisions", "className", "onEscapeKeyDown", "onPointerDownOutside"
+        ],
+        "PopoverArrow": ["width", "height", "className"]
+      },
+      "variants": [],
+      "sizes": [],
+      "features": [
+        "controlled-uncontrolled-state",
+        "positioning-system",
+        "collision-detection",
+        "keyboard-navigation",
+        "focus-management",
+        "click-outside-close",
+        "escape-key-close",
+        "smooth-animations",
+        "custom-triggers",
+        "rich-content-support",
+        "viewport-aware",
+        "accessible-aria-attributes",
+        "dark-mode-support",
+        "client-component"
+      ]
+    },
     "select": {
       "name": "Select",
       "description": "Custom select component with dropdown and animations",
@@ -548,7 +596,7 @@
     "overlay": {
       "name": "Overlay",
       "description": "Components that overlay content",
-      "components": ["dialog", "tooltip"]
+      "components": ["dialog", "popover", "tooltip"]
     },
     "navigation": {
       "name": "Navigation",

@@ -12,6 +12,7 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { Combobox } from '@/app/components/ui/combobox';
+import { Popover, PopoverTrigger, PopoverContent } from '@/app/components/ui/popover';
 import { Avatar } from '@/app/components/ui/avatar';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions } from '@/app/components/ui/form';
@@ -56,6 +57,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TooltipContent,
     Checkbox,
     Combobox,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
     Avatar,
     Textarea,
     Form,
