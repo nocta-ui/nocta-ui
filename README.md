@@ -1,4 +1,4 @@
-![Nocta UI](screen.jpeg)
+![Nocta UI](screen.jpg)
 
 # Nocta UI
 
