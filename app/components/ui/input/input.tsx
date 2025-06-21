@@ -5,6 +5,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   size?: 'sm' | 'md' | 'lg';
   label?: string;
   helperText?: string;
+  successMessage?: string;
   errorMessage?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -18,6 +19,7 @@ export const Input: React.FC<InputProps> = ({
   size = 'md',
   label,
   helperText,
+  successMessage,
   errorMessage,
   leftIcon,
   rightIcon,
@@ -128,8 +130,14 @@ export const Input: React.FC<InputProps> = ({
           {errorMessage}
         </p>
       )}
-      
-      {helperText && !displayErrorMessage && (
+
+      {!displayErrorMessage && (
+        <p className="mt-1.5 text-sm text-green-600 dark:text-green-400">
+          {successMessage}
+        </p>
+      )}
+
+      {helperText && (
         <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400">
           {helperText}
         </p>

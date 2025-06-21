@@ -13,6 +13,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/too
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { Avatar } from '@/app/components/ui/avatar';
 import { Textarea } from '@/app/components/ui/textarea';
+import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions } from '@/app/components/ui/form';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -54,6 +55,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Checkbox,
     Avatar,
     Textarea,
+    Form,
+    FormField,
+    FormLabel,
+    FormControl,
+    FormDescription,
+    FormMessage,
+    FormActions,
     ...components,
   };
 }

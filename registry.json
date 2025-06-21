@@ -344,6 +344,53 @@
         "dark-mode"
       ]
     },
+    "form": {
+      "name": "Form",
+      "description": "Composable form component with field validation, labels, and actions",
+      "category": "form",
+      "files": [
+        {
+          "name": "form.tsx",
+          "path": "app/components/ui/form/form.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Form",
+        "FormField",
+        "FormLabel",
+        "FormControl",
+        "FormDescription",
+        "FormMessage",
+        "FormActions"
+      ],
+      "props": {
+        "Form": ["children", "className", "onSubmit"],
+        "FormField": ["children", "name", "error", "description", "className"],
+        "FormLabel": ["children", "className", "required"],
+        "FormControl": ["children", "className"],
+        "FormDescription": ["children", "className"],
+        "FormMessage": ["children", "className", "type"],
+        "FormActions": ["children", "className", "align"]
+      },
+      "messageTypes": ["error", "success", "warning"],
+      "alignments": ["left", "center", "right"],
+      "features": [
+        "composable-architecture",
+        "context-based-field-state",
+        "accessibility-built-in",
+        "error-validation-support",
+        "field-descriptions",
+        "required-field-indicators",
+        "flexible-action-alignment",
+        "dark-mode",
+        "semantic-html",
+        "screen-reader-support"
+      ]
+    },
     "tooltip": {
       "name": "Tooltip",
       "description": "Tooltip component with positioning and animations",
@@ -393,7 +440,7 @@
     "form": {
       "name": "Form",
       "description": "Form input and control components",
-      "components": ["button", "checkbox", "input", "select", "switch", "textarea"]
+      "components": ["button", "checkbox", "form", "input", "select", "switch", "textarea"]
     },
     "data-display": {
       "name": "Data Display",

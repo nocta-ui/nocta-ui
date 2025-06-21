@@ -360,7 +360,6 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 }) => {
   const { value: selectedValue, onValueChange, options, setOptions, focusedIndex } = React.useContext(SelectContext);
   const isSelected = selectedValue === value;
-  const [itemIndex, setItemIndex] = useState(-1);
 
   // Register this item with the options list
   useEffect(() => {
@@ -370,10 +369,8 @@ export const SelectItem: React.FC<SelectItemProps> = ({
       
       if (existingIndex >= 0) {
         newOptions[existingIndex] = { value, disabled };
-        setItemIndex(existingIndex);
       } else {
         newOptions.push({ value, disabled });
-        setItemIndex(newOptions.length - 1);
       }
       
       return newOptions;
@@ -386,6 +383,8 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     };
   }, [value, disabled, setOptions]);
 
+  // Calculate item index dynamically
+  const itemIndex = options.findIndex(opt => opt.value === value);
   const isFocused = itemIndex === focusedIndex;
 
   return (

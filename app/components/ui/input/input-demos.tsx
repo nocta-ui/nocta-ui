@@ -53,7 +53,7 @@ export const VariantsDemo: React.FC = () => {
         label="Success Input"
         placeholder="Success variant"
         variant="success"
-        helperText="Valid input"
+        successMessage="Valid input"
       />
     </div>
   );

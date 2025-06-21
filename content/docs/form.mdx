@@ -1,0 +1,378 @@
+---
+title: Form
+description: A composable form component with field validation, labels, and actions for building accessible forms
+---
+
+import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions } from '@/app/components/ui/form';
+import { 
+  BasicFormDemo, 
+  FormWithErrorsDemo, 
+  ComplexFormDemo, 
+  FormActionsVariantsDemo,
+  FormMessageTypesDemo
+} from '@/app/components/ui/form/form-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Form component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui-cli add form
+```
+
+Then import the component:
+
+```tsx
+import { 
+  Form, 
+  FormField, 
+  FormLabel, 
+  FormControl, 
+  FormDescription, 
+  FormMessage, 
+  FormActions 
+} from '@/components/ui/form';
+```
+
+## Basic Usage
+
+The Form component follows a composable architecture where you build forms by combining smaller components together.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicFormDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Form onSubmit={handleSubmit}>
+      <FormField name="name">
+        <FormLabel required>Full Name</FormLabel>
+        <FormControl>
+          <Input placeholder="Enter your full name" />
+        </FormControl>
+        <FormDescription>This will be displayed on your profile.</FormDescription>
+      </FormField>
+
+      <FormField name="email">
+        <FormLabel required>Email</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="Enter your email" />
+        </FormControl>
+      </FormField>
+
+      <FormActions>
+        <Button type="submit">Submit</Button>
+      </FormActions>
+    </Form>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Form Architecture
+
+The Form component is built with a composable architecture:
+
+- **Form**: The main form container
+- **FormField**: Wraps individual form fields and provides context
+- **FormLabel**: Accessible labels with required field indicators
+- **FormControl**: Wrapper that connects inputs to the field context
+- **FormDescription**: Helper text for additional guidance
+- **FormMessage**: Error, success, and warning messages
+- **FormActions**: Container for form action buttons
+
+## Error Handling
+
+Handle form validation errors by passing an `error` prop to `FormField`. The error message will automatically be displayed using `FormMessage`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FormWithErrorsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [errors, setErrors] = useState({
+      username: 'Username is already taken',
+      password: ''
+    });
+
+    <Form>
+      <FormField name="username" error={errors.username}>
+        <FormLabel required>Username</FormLabel>
+        <FormControl>
+          <Input placeholder="Choose a username" />
+        </FormControl>
+        <FormMessage />
+      </FormField>
+
+      <FormField name="password" error={errors.password}>
+        <FormLabel required>Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Create a password" />
+        </FormControl>
+        <FormDescription>Must be at least 8 characters long.</FormDescription>
+        <FormMessage />
+      </FormField>
+    </Form>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Complex Forms
+
+Build complex forms with multiple field types, layouts, and validation.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ComplexFormDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Form>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <FormField name="firstName">
+          <FormLabel required>First Name</FormLabel>
+          <FormControl>
+            <Input placeholder="First name" />
+          </FormControl>
+        </FormField>
+
+        <FormField name="lastName">
+          <FormLabel required>Last Name</FormLabel>
+          <FormControl>
+            <Input placeholder="Last name" />
+          </FormControl>
+        </FormField>
+      </div>
+
+      <FormField name="email">
+        <FormLabel required>Email Address</FormLabel>
+        <FormControl>
+          <Input type="email" placeholder="your.email@example.com" />
+        </FormControl>
+        <FormDescription>We'll never share your email with anyone else.</FormDescription>
+      </FormField>
+
+      <FormField name="country">
+        <FormLabel>Country</FormLabel>
+        <FormControl>
+          <Select>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="us">United States</SelectItem>
+              <SelectItem value="uk">United Kingdom</SelectItem>
+              <SelectItem value="ca">Canada</SelectItem>
+            </SelectContent>
+          </Select>
+        </FormControl>
+      </FormField>
+
+      <FormField name="bio">
+        <FormLabel>Bio</FormLabel>
+        <FormControl>
+          <Textarea placeholder="Tell us about yourself..." />
+        </FormControl>
+        <FormDescription>Brief description for your profile. Maximum 500 characters.</FormDescription>
+      </FormField>
+
+      <FormField name="newsletter">
+        <div className="flex items-center space-x-2">
+          <FormControl>
+            <Checkbox />
+          </FormControl>
+          <FormLabel>Subscribe to newsletter</FormLabel>
+        </div>
+        <FormDescription>Get notified about new features and updates.</FormDescription>
+      </FormField>
+
+      <FormActions align="right">
+        <Button variant="ghost">Cancel</Button>
+        <Button variant="secondary">Save Draft</Button>
+        <Button type="submit">Save Profile</Button>
+      </FormActions>
+    </Form>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Form Actions
+
+The `FormActions` component supports different alignments for form buttons.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FormActionsVariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Left aligned */}
+    <FormActions align="left">
+      <Button>Left Aligned</Button>
+      <Button variant="secondary">Cancel</Button>
+    </FormActions>
+
+    {/* Center aligned */}
+    <FormActions align="center">
+      <Button variant="secondary">Cancel</Button>
+      <Button>Center Aligned</Button>
+    </FormActions>
+
+    {/* Right aligned (default) */}
+    <FormActions align="right">
+      <Button variant="ghost">Cancel</Button>
+      <Button>Right Aligned</Button>
+    </FormActions>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Message Types
+
+Form messages support different types for various validation states.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FormMessageTypesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <FormField name="success">
+      <FormLabel>Success Field</FormLabel>
+      <FormControl>
+        <Input defaultValue="valid@email.com" />
+      </FormControl>
+      <FormMessage type="success">Email is available!</FormMessage>
+    </FormField>
+
+    <FormField name="warning">
+      <FormLabel>Warning Field</FormLabel>
+      <FormControl>
+        <Input defaultValue="weak-password" />
+      </FormControl>
+      <FormMessage type="warning">Password strength is weak</FormMessage>
+    </FormField>
+
+    <FormField name="error" error="This field is required">
+      <FormLabel>Error Field</FormLabel>
+      <FormControl>
+        <Input />
+      </FormControl>
+      <FormMessage type="error" />
+    </FormField>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Accessibility Features
+
+The Form component is built with accessibility in mind:
+
+- **Semantic HTML**: Uses proper form elements and ARIA attributes
+- **Label Association**: Labels are automatically associated with their inputs
+- **Error Announcements**: Error messages are announced to screen readers
+- **Required Field Indicators**: Visual and accessible indicators for required fields
+- **Focus Management**: Proper focus order and visual focus indicators
+- **Descriptive Content**: Helper text is properly associated with form controls
+
+## Customization
+
+### Custom Styling
+
+All form components accept a `className` prop for custom styling:
+
+```tsx
+<Form className="max-w-2xl mx-auto">
+  <FormField name="custom" className="mb-8">
+    <FormLabel className="text-lg font-bold">Custom Label</FormLabel>
+    <FormControl className="mt-3">
+      <Input className="border-2 border-blue-500" />
+    </FormControl>
+    <FormDescription className="text-blue-600">
+      Custom helper text styling
+    </FormDescription>
+  </FormField>
+</Form>
+```
+
+### Integration with Form Libraries
+
+The Form component works well with form libraries like React Hook Form:
+
+```tsx
+import { useForm, Controller } from 'react-hook-form';
+
+function MyForm() {
+  const { control, handleSubmit, formState: { errors } } = useForm();
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="email"
+        control={control}
+        rules={{ required: 'Email is required' }}
+        render={({ field }) => (
+          <FormField name="email" error={errors.email?.message}>
+            <FormLabel required>Email</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormField>
+        )}
+      />
+      
+      <FormActions>
+        <Button type="submit">Submit</Button>
+      </FormActions>
+    </Form>
+  );
+}
+```
+
+## Props
+
+### Form
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Form content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `onSubmit` | `(event: React.FormEvent) => void` | — | Form submit handler |
+
+### FormField
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Field content |
+| `name` | `string` | — | Field name identifier |
+| `error` | `string` | — | Error message to display |
+| `description` | `string` | — | Description text |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### FormLabel
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Label content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `required` | `boolean` | `false` | Show required indicator |
+
+### FormMessage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Message content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `type` | `'error' \| 'success' \| 'warning'` | `'error'` | Message type |
+
+### FormActions
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Action buttons |
+| `className` | `string` | `''` | Additional CSS classes |
+| `align` | `'left' \| 'center' \| 'right'` | `'right'` | Button alignment |
+
+The Form components also accept all standard HTML attributes for their respective elements. 
