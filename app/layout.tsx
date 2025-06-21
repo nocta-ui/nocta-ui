@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'Nocta UI',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.jpeg',
         width: 1200,
         height: 630,
         alt: 'Nocta UI - Modern React Component Library',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Nocta UI - Modern React Component Library',
     description: 'A modern, accessible React component library built with simplicity, performance, and developer experience at its core.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.jpeg'],
     creator: '@nocta_ui',
   },
   robots: {
