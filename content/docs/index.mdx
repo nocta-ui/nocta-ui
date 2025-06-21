@@ -14,20 +14,31 @@ Get up and running in under 2 minutes.
 ### Installation
 
 ```bash
-npm install nocta-ui
+# Initialize your project
+npx nocta-ui-cli init
+
+# Add components you need
+npx nocta-ui-cli add button card badge
 ```
 
 ### Import Components
 
 ```tsx
-import { Button, Card, Badge } from 'nocta-ui';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export function App() {
   return (
     <Card>
-      <Button variant="primary">
-        Get Started
-      </Button>
+      <CardHeader>
+        <CardTitle>Welcome to Nocta UI</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button variant="primary">
+          Get Started
+        </Button>
+      </CardContent>
     </Card>
   );
 }

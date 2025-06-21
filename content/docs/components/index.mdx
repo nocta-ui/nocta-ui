@@ -35,12 +35,31 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/too
   </div>
 </div>
 
+## Installation
+
+Install components using the nocta-ui CLI:
+
+```bash
+# Initialize your project
+npx nocta-ui-cli init
+
+# Add individual components
+npx nocta-ui-cli add button
+npx nocta-ui-cli add card
+npx nocta-ui-cli add badge
+
+# Or add multiple at once
+npx nocta-ui-cli add button card badge
+```
+
 ## Usage
 
-All components follow the same import pattern:
+After installation, import components from their specific paths:
 
 ```tsx
-import { Button, Card, Badge } from '@/app/components/ui';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 ```
 
 Every component accepts standard HTML props plus additional customization options.

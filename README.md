@@ -128,7 +128,7 @@ All components follow accessibility best practices with keyboard navigation, ARI
 
 ## Documentation
 
-Visit our [documentation site](https://nocta-ui.dev) for:
+Visit our [documentation site](nocta-ui-beryl.vercel.app) for:
 
 -  Interactive component demos
 -  Detailed API documentation  
@@ -144,7 +144,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 <div align="center">
   <p>
-    <a href="https://nocta-ui.dev">Documentation</a> •
+    <a href="nocta-ui-beryl.vercel.app">Documentation</a> •
     <a href="https://github.com/66HEX/nocta-ui/issues">Report Bug</a> •
     <a href="https://github.com/66HEX/nocta-ui/issues">Request Feature</a>
   </p>
