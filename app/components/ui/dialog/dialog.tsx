@@ -334,7 +334,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
     <div 
       className={`
         px-6 py-4 
-        bg-neutral-50 dark:bg-neutral-800/50
+        bg-neutral-50 dark:bg-neutral-800/50 rounded-b-xl
         border-t border-neutral-100 dark:border-neutral-700/50 
         flex items-center justify-end 
         not-prose 

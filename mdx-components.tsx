@@ -9,6 +9,8 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@
 import { Badge } from '@/app/components/ui/badge';
 import { Switch } from '@/app/components/ui/switch';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
+import { Checkbox } from '@/app/components/ui/checkbox';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -59,6 +61,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     DialogFooter,
     DialogActions,
     DialogClose,
+    Tooltip,
+    TooltipTrigger,
+    TooltipContent,
+    Checkbox,
     ...components,
   };
 }

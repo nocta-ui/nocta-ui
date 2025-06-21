@@ -8,6 +8,7 @@ import { Badge } from '@/app/components/ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/components/ui/card';
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
 
 ## Foundation
 
@@ -70,6 +71,11 @@ Toggle component for binary choices.
 
 [View Switch docs →](/docs/components/switch)
 
+### Checkbox
+Versatile checkbox component for forms and selections.
+
+[View Checkbox docs →](/docs/components/checkbox)
+
 ## Feedback
 
 ### Alert
@@ -106,6 +112,22 @@ Modal dialogs and overlays.
 </Dialog>
 
 [View Dialog docs →](/docs/components/dialog)
+
+### Tooltip
+Contextual information on hover or focus.
+
+<div className="my-4">
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button variant="secondary" size="sm">Hover for info</Button>
+    </TooltipTrigger>
+    <TooltipContent>
+      This is a helpful tooltip with additional context information.
+    </TooltipContent>
+  </Tooltip>
+</div>
+
+[View Tooltip docs →](/docs/components/tooltip)
 
 ## Principles
 

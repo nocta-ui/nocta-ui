@@ -1,0 +1,266 @@
+---
+title: Checkbox
+description: A versatile checkbox component for forms and selections with multiple variants, sizes and dark mode support
+---
+
+import { Checkbox } from '@/app/components/ui/checkbox';
+import { 
+  BasicCheckboxDemo, 
+  VariantsDemo, 
+  SizesDemo, 
+  FormDemo,
+  LabeledCheckboxDemo,
+  CustomStylingDemo
+} from '@/app/components/ui/checkbox/checkbox-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+The Checkbox component is part of the nocta-ui component library. Import the component:
+
+```tsx
+import { Checkbox } from '@/app/components/ui';
+```
+
+## Basic Usage
+
+### Default Checkbox
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <BasicCheckboxDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [isChecked, setIsChecked] = useState(false);
+    
+    <Checkbox 
+      checked={isChecked} 
+      onCheckedChange={setIsChecked} 
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Checkbox component supports four variants: `default`, `success`, `warning`, and `destructive`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <VariantsDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Checkbox variant="default" checked={true} />
+    <Checkbox variant="success" checked={true} />
+    <Checkbox variant="warning" checked={true} />
+    <Checkbox variant="destructive" checked={true} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <SizesDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Checkbox size="sm" checked={true} />
+    <Checkbox size="md" checked={true} />
+    <Checkbox size="lg" checked={true} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Checkbox States
+
+### Disabled State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <Checkbox disabled={false} />
+        <span className="text-sm">Enabled (unchecked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox checked={true} disabled={false} />
+        <span className="text-sm">Enabled (checked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox disabled={true} />
+        <span className="text-sm">Disabled (unchecked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox checked={true} disabled={true} />
+        <span className="text-sm">Disabled (checked)</span>
+      </div>
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Checkbox disabled={false} />
+    <Checkbox checked={true} disabled={false} />
+    <Checkbox disabled={true} />
+    <Checkbox checked={true} disabled={true} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Form Usage
+
+### Settings Form Example
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <FormDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [formData, setFormData] = useState({
+      terms: false,
+      newsletter: true,
+      notifications: false,
+    });
+
+    const handleChange = (field: string) => (checked: boolean) => {
+      setFormData(prev => ({ ...prev, [field]: checked }));
+    };
+
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
+        <Checkbox 
+          checked={formData.terms} 
+          onCheckedChange={handleChange('terms')}
+          variant="default"
+        />
+        <label>I agree to the terms and conditions</label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox 
+          checked={formData.newsletter} 
+          onCheckedChange={handleChange('newsletter')}
+          variant="success"
+        />
+        <label>Subscribe to newsletter</label>
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Checkbox component accepts a `className` prop for custom styling:
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <CustomStylingDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Checkbox className="scale-125" checked={true} />
+    <Checkbox className="rounded-full" checked={true} />
+    <Checkbox className="shadow-lg" checked={false} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### With Labels
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <LabeledCheckboxDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [states, setStates] = useState({
+      notifications: false,
+      marketing: true,
+    });
+
+    const handleChange = (field: string) => (checked: boolean) => {
+      setStates(prev => ({ ...prev, [field]: checked }));
+    };
+
+    <div className="space-y-4">
+      <div className="flex items-start gap-3">
+        <Checkbox 
+          id="option1" 
+          checked={states.notifications}
+          onCheckedChange={handleChange('notifications')}
+        />
+        <div>
+          <label htmlFor="option1" className="text-sm font-medium cursor-pointer">
+            Enable notifications
+          </label>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+            Receive email notifications about your account activity
+          </p>
+        </div>
+      </div>
+      <div className="flex items-start gap-3">
+        <Checkbox 
+          id="option2" 
+          variant="success" 
+          checked={states.marketing}
+          onCheckedChange={handleChange('marketing')}
+        />
+        <div>
+          <label htmlFor="option2" className="text-sm font-medium cursor-pointer">
+            Marketing emails
+          </label>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+            Get updates about new features and special offers
+          </p>
+        </div>
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Checkbox Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Whether the checkbox is checked |
+| `onCheckedChange` | `(checked: boolean) => void` | - | Callback fired when the checkbox state changes |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the checkbox |
+| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | The visual style variant |
+| `disabled` | `boolean` | `false` | Whether the checkbox is disabled |
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `id` | `string` | - | The id attribute for the checkbox input |
+
+The Checkbox component also accepts all standard HTML input element props through the `...props` spread operator.
+
+## Accessibility
+
+The Checkbox component is built with accessibility in mind:
+
+- Uses semantic HTML with proper ARIA attributes
+- Supports keyboard navigation (Space to toggle)
+- Screen reader compatible
+- Focus management with visible focus indicators
+- Proper labeling support

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface DocsTabProps {
   children: React.ReactNode;
@@ -37,6 +37,10 @@ interface DocsTabsProps {
 
 const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
   const [activeTab, setActiveTab] = useState(defaultValue);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | 'auto'>('auto');
 
   // Filter and type the children properly
   const tabs = React.Children.toArray(children).filter(
@@ -45,6 +49,50 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
   );
 
   const activeContent = tabs.find(tab => tab.props.value === activeTab);
+
+  // Measure content height
+  const measureHeight = useCallback(() => {
+    if (wrapperRef.current) {
+      const naturalHeight = wrapperRef.current.scrollHeight;
+      setHeight(naturalHeight);
+    }
+  }, []);
+
+  // Update height when active tab changes
+  useEffect(() => {
+    // Small delay to ensure DOM has updated
+    const timer = setTimeout(measureHeight, 10);
+    return () => clearTimeout(timer);
+  }, [activeTab, measureHeight]);
+
+  // Observe content changes for dynamic height updates
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureHeight();
+    });
+
+    resizeObserver.observe(wrapperRef.current);
+    
+    return () => resizeObserver.disconnect();
+  }, [measureHeight]);
+
+  // Handle tab change with fade transition
+  const handleTabChange = (value: string) => {
+    if (value === activeTab) return;
+    
+    setIsTransitioning(true);
+    
+    // Start fade out animation
+    setTimeout(() => {
+      setActiveTab(value);
+      // End transition after content changes and fade in completes
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 150); // Half of the total transition time
+    }, 150); // Half of the total transition time
+  };
 
   return (
     <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg">
@@ -56,15 +104,30 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
             title={tab.props.title}
             value={tab.props.value}
             isActive={activeTab === tab.props.value}
-            onClick={setActiveTab}
+            onClick={handleTabChange}
             children={null}
           />
         ))}
       </div>
       
-      {/* Tab Content */}
-      <div className="p-4 flex justify-center items-center">
-        {activeContent?.props.children}
+      {/* Tab Content with animated height and opacity */}
+      <div 
+        ref={contentRef}
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ 
+          height: height === 'auto' ? 'auto' : `${height}px`
+        }}
+      >
+        <div 
+          ref={wrapperRef}
+          className={`p-4 flex justify-center items-center transition-opacity duration-150 ease-in-out ${
+            isTransitioning ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <div className="w-full flex justify-center items-center">
+            {activeContent?.props.children}
+          </div>
+        </div>
       </div>
     </div>
   );
