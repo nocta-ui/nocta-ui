@@ -28,10 +28,10 @@ Unlike traditional component libraries, Nocta UI follows the **copy-paste approa
 
 ```bash
 # Initialize your project with required dependencies
-npx nocta-ui-cli init
+npx nocta-ui init
 
 # Add components to your project
-npx nocta-ui-cli add button card badge
+npx nocta-ui add button card badge
 
 # Components are now in your /components/ui directory
 # You own the code and can modify it however you want
@@ -58,12 +58,12 @@ npx nocta-ui-cli add button card badge
 
 1. **Initialize your project:**
 ```bash
-npx nocta-ui-cli init
+npx nocta-ui init
 ```
 
 2. **Add your first components:**
 ```bash
-npx nocta-ui-cli add button card
+npx nocta-ui add button card
 ```
 
 3. **Start building:**

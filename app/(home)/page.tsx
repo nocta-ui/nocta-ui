@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="bg-neutral-50 dark:bg-neutral-800/30 backdrop-blur-sm rounded-xl p-4 max-w-md pointer-events-none">
           <div className="text-xs font-mono text-neutral-600 dark:text-neutral-400 space-y-1">
             <div># Get started in 30 seconds</div>
-            <div className="text-neutral-800 dark:text-neutral-200">npx nocta-ui-cli add button</div>
+            <div className="text-neutral-800 dark:text-neutral-200">npx nocta-ui add button</div>
           </div>
         </div>
 
