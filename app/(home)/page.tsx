@@ -5,7 +5,7 @@ import Background from './background';
 
 export default function HomePage() {
   return (
-    <main className="h-[94vh] lg:h-[93vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden relative">
+    <main className="h-[93vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden relative">
       <div className="absolute inset-0">
         <Background />
       </div>
@@ -17,7 +17,7 @@ export default function HomePage() {
           </Badge>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 leading-none pointer-events-none">
+        <h1 className="text-6xl sm:text-9xl font-semibold text-neutral-900 dark:text-neutral-100 leading-none pointer-events-none">
           NOCTA UI
         </h1>
         
