@@ -10,7 +10,7 @@
       "files": [
         {
           "name": "alert.tsx",
-          "path": "components/ui/alert.tsx",
+          "path": "app/components/ui/alert/alert.tsx",
           "type": "component"
         }
       ],
@@ -39,7 +39,7 @@
       "files": [
         {
           "name": "avatar.tsx",
-          "path": "components/ui/avatar.tsx", 
+          "path": "app/components/ui/avatar/avatar.tsx", 
           "type": "component"
         }
       ],
@@ -62,7 +62,7 @@
       "files": [
         {
           "name": "badge.tsx",
-          "path": "components/ui/badge.tsx",
+          "path": "app/components/ui/badge/badge.tsx",
           "type": "component"
         }
       ],
@@ -84,7 +84,7 @@
       "files": [
         {
           "name": "button.tsx", 
-          "path": "components/ui/button.tsx",
+          "path": "app/components/ui/button/button.tsx",
           "type": "component"
         }
       ],
@@ -106,7 +106,7 @@
       "files": [
         {
           "name": "card.tsx",
-          "path": "components/ui/card.tsx", 
+          "path": "app/components/ui/card/card.tsx", 
           "type": "component"
         }
       ],
@@ -140,7 +140,7 @@
       "files": [
         {
           "name": "checkbox.tsx",
-          "path": "components/ui/checkbox.tsx",
+          "path": "app/components/ui/checkbox/checkbox.tsx",
           "type": "component"
         }
       ],
@@ -162,7 +162,7 @@
       "files": [
         {
           "name": "dialog.tsx",
-          "path": "components/ui/dialog.tsx",
+          "path": "app/components/ui/dialog/dialog.tsx",
           "type": "component"
         }
       ],
@@ -214,7 +214,7 @@
       "files": [
         {
           "name": "input.tsx",
-          "path": "components/ui/input.tsx",
+          "path": "app/components/ui/input/input.tsx",
           "type": "component"
         }
       ],
@@ -247,7 +247,7 @@
       "files": [
         {
           "name": "select.tsx",
-          "path": "components/ui/select.tsx",
+          "path": "app/components/ui/select/select.tsx",
           "type": "component"
         }
       ],
@@ -288,7 +288,7 @@
       "files": [
         {
           "name": "switch.tsx",
-          "path": "components/ui/switch.tsx",
+          "path": "app/components/ui/switch/switch.tsx",
           "type": "component"
         }
       ],
@@ -317,7 +317,7 @@
       "files": [
         {
           "name": "textarea.tsx",
-          "path": "components/ui/textarea.tsx",
+          "path": "app/components/ui/textarea/textarea.tsx",
           "type": "component"
         }
       ],
@@ -351,7 +351,7 @@
       "files": [
         {
           "name": "tooltip.tsx",
-          "path": "components/ui/tooltip.tsx",
+          "path": "app/components/ui/tooltip/tooltip.tsx",
           "type": "component"
         }
       ],
