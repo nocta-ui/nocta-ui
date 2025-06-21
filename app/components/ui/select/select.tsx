@@ -35,6 +35,10 @@ export interface SelectValueProps {
   className?: string;
 }
 
+// Generate unique ID for accessibility
+let selectIdCounter = 0;
+const generateSelectId = () => `select-${++selectIdCounter}`;
+
 // Context for Select state management
 const SelectContext = React.createContext<{
   value?: string;
@@ -45,9 +49,11 @@ const SelectContext = React.createContext<{
   disabled?: boolean;
   size?: 'sm' | 'md' | 'lg';
   triggerRef?: React.RefObject<HTMLButtonElement | null>;
+  contentId: string;
 }>({
   open: false,
   setOpen: () => {},
+  contentId: '',
 });
 
 // Main Select Component
@@ -63,6 +69,7 @@ export const Select: React.FC<SelectProps> = ({
   const [displayValue, setDisplayValue] = useState<React.ReactNode>(null);
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const [contentId] = useState(() => generateSelectId());
   
   const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
@@ -86,6 +93,7 @@ export const Select: React.FC<SelectProps> = ({
         disabled,
         size,
         triggerRef,
+        contentId,
       }}
     >
       <div className="relative not-prose">
@@ -102,7 +110,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   size: propSize,
   ...props
 }) => {
-  const { open, setOpen, disabled, size: contextSize, triggerRef } = React.useContext(SelectContext);
+  const { open, setOpen, disabled, size: contextSize, triggerRef, contentId } = React.useContext(SelectContext);
   const size = propSize || contextSize || 'md';
 
   const baseStyles = `
@@ -132,6 +140,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
       type="button"
       role="combobox"
       aria-expanded={open}
+      aria-controls={contentId}
       aria-haspopup="listbox"
       disabled={disabled}
       className={`
@@ -163,7 +172,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
   className = '',
   position = 'bottom',
 }) => {
-  const { open, setOpen, triggerRef } = React.useContext(SelectContext);
+  const { open, setOpen, triggerRef, contentId } = React.useContext(SelectContext);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
@@ -237,6 +246,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
   return (
     <div
       ref={contentRef}
+      id={contentId}
       role="listbox"
       className={`
         absolute z-50 w-fit

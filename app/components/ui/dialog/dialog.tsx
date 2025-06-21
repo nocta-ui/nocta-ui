@@ -104,10 +104,13 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
   };
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
-      onClick: handleClick,
-      ...(children.props as any),
-    });
+    return React.cloneElement(
+      children as React.ReactElement<React.ButtonHTMLAttributes<HTMLButtonElement>>, 
+      {
+        onClick: handleClick,
+        ...(children.props || {}),
+      }
+    );
   }
 
   return (
@@ -383,10 +386,13 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
   };
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
-      onClick: handleClick,
-      ...(children.props as any),
-    });
+    return React.cloneElement(
+      children as React.ReactElement<React.ButtonHTMLAttributes<HTMLButtonElement>>, 
+      {
+        onClick: handleClick,
+        ...(children.props || {}),
+      }
+    );
   }
 
   return (

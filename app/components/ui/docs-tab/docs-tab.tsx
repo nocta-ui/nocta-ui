@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface DocsTabProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title: string;
   value: string;
   isActive?: boolean;
@@ -105,7 +105,6 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
             value={tab.props.value}
             isActive={activeTab === tab.props.value}
             onClick={handleTabChange}
-            children={null}
           />
         ))}
       </div>

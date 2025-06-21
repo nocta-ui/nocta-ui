@@ -152,7 +152,7 @@ export const SystemNotificationsDemo: React.FC = () => {
         </AlertIcon>
         <AlertTitle>Storage Almost Full</AlertTitle>
         <AlertDescription>
-          You're using 95% of your storage quota. Consider upgrading your plan or deleting old files.
+          You are using 95% of your storage quota. Consider upgrading your plan or deleting old files.
         </AlertDescription>
       </Alert>
 

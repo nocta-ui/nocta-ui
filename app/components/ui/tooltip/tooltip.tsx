@@ -23,7 +23,6 @@ export interface TooltipContentProps extends React.HTMLAttributes<HTMLDivElement
   align?: 'start' | 'center' | 'end';
   sideOffset?: number;
   alignOffset?: number;
-  arrowPadding?: number;
   showArrow?: boolean;
 }
 
@@ -127,18 +126,33 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
   }, []);
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
+    type ChildProps = React.HTMLAttributes<HTMLElement> & {
+      onMouseEnter?: React.MouseEventHandler<HTMLElement>;
+      onMouseLeave?: React.MouseEventHandler<HTMLElement>;
+      onFocus?: React.FocusEventHandler<HTMLElement>;
+      onBlur?: React.FocusEventHandler<HTMLElement>;
+    };
+    
+    const childElement = children as React.ReactElement<ChildProps>;
+    
+    // For ref handling, we need to type it more specifically
+    type ElementWithRef = React.ReactElement & { 
+      ref?: React.Ref<HTMLElement> | undefined;
+    };
+    
+    return React.cloneElement(childElement, {
       ref: (node: HTMLElement | null) => {
         // Set our ref
         if (triggerRef) {
           triggerRef.current = node;
         }
         // Forward to the child's ref if it exists
-        const childRef = (children as any).ref;
+        const childWithRef = children as ElementWithRef;
+        const childRef = childWithRef.ref;
         if (typeof childRef === 'function') {
           childRef(node);
-        } else if (childRef) {
-          childRef.current = node;
+        } else if (childRef && typeof childRef === 'object' && 'current' in childRef) {
+          (childRef as { current: HTMLElement | null }).current = node;
         }
       },
       onMouseEnter: handleMouseEnter,
@@ -146,8 +160,8 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
       onFocus: handleFocus,
       onBlur: handleBlur,
       'aria-describedby': 'tooltip',
-      ...(children.props as any),
-    });
+      ...childElement.props,
+    } as Partial<ChildProps> & { ref: React.Ref<HTMLElement> });
   }
 
   return (
@@ -178,7 +192,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
   align = 'center',
   sideOffset = 8,
   alignOffset = 0,
-  arrowPadding = 8,
   showArrow = true,
   onMouseEnter,
   onMouseLeave,
@@ -338,7 +351,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
     // Calculate position in next frame to ensure element is rendered
     requestAnimationFrame(calculatePosition);
     
-  }, [isMeasuring, side, align, sideOffset, alignOffset]);
+  }, [isMeasuring, side, align, sideOffset, alignOffset, triggerRef]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     // Keep tooltip open when hovering over it
