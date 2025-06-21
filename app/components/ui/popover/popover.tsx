@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useId } from 'react';
+import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
 
 // Popover interfaces
 export interface PopoverProps {
@@ -103,16 +103,16 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
   };
 
   if (asChild && React.isValidElement(children)) {
-    const childProps = children.props as any;
-    return React.cloneElement(children, {
+    const childProps = children.props as Record<string, unknown>;
+    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
       ref: triggerRef,
       'aria-expanded': open,
       'aria-controls': contentId,
       'aria-haspopup': 'dialog',
       onClick: handleClick,
       onKeyDown: handleKeyDown,
-      className: `${childProps.className || ''} ${className}`.trim(),
-    } as any);
+      className: `${(childProps.className as string) || ''} ${className}`.trim(),
+    });
   }
 
   return (
@@ -185,7 +185,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   }, [open]);
 
   // Shared position calculation function
-  const calculatePosition = () => {
+  const calculatePosition = useCallback(() => {
     if (!contentRef.current || !triggerRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -286,7 +286,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         setIsVisible(true);
       });
     }
-  };
+  }, [side, align, sideOffset, alignOffset, avoidCollisions, isMeasuring, triggerRef]);
 
   // Calculate position after measuring render
   useEffect(() => {
@@ -295,7 +295,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     // Calculate position in next frame to ensure element is rendered
     requestAnimationFrame(calculatePosition);
     
-  }, [isMeasuring, side, align, sideOffset, alignOffset, avoidCollisions]);
+  }, [isMeasuring, calculatePosition]);
 
   // Update position on scroll and resize
   useEffect(() => {
@@ -308,7 +308,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       window.removeEventListener('scroll', calculatePosition, true);
       window.removeEventListener('resize', calculatePosition);
     };
-  }, [open, isMeasuring, side, align, sideOffset, alignOffset, avoidCollisions]);
+  }, [open, isMeasuring, calculatePosition]);
 
   // Handle escape key and outside clicks
   useEffect(() => {
@@ -343,7 +343,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('pointerdown', handlePointerDown);
     };
-  }, [open, onEscapeKeyDown, onPointerDownOutside, setOpen]);
+  }, [open, onEscapeKeyDown, onPointerDownOutside, setOpen, triggerRef]);
 
   if (!shouldRender) return null;
 

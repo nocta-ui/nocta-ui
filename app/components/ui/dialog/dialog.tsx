@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface DialogProps {
@@ -162,7 +162,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     return Array.from(contentRef.current.querySelectorAll(focusableSelectors)) as HTMLElement[];
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       onOpenChange(false);
       return;
@@ -190,7 +190,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
         }
       }
     }
-  };
+  }, [onOpenChange]);
 
   // Handle animation states and focus management
   useEffect(() => {
@@ -244,7 +244,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = 'unset';
     };
-  }, [open, onOpenChange]);
+  }, [open, onOpenChange, handleKeyDown]);
 
   const sizes = {
     sm: 'max-w-sm',

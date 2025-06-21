@@ -157,11 +157,10 @@ export const FormControl: React.FC<FormControlProps> = ({
     <div className={`relative ${className}`}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
+          return React.cloneElement(child as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
             id,
             'aria-invalid': error ? 'true' : 'false',
             'aria-describedby': error ? `${id}-error` : undefined,
-            ...(child.props as any),
           });
         }
         return child;

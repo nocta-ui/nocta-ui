@@ -349,7 +349,7 @@ export const DisabledTabsDemo: React.FC = () => {
           <Card>
             <CardContent className="pt-6">
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                This content won't be shown as the tab is disabled.
+                This content won&apos;t be shown as the tab is disabled.
               </p>
             </CardContent>
           </Card>

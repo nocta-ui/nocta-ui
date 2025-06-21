@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from './popover';
+import { Popover, PopoverTrigger, PopoverContent } from './popover';
 import { Button } from '../button';
 
 export const BasicPopoverDemo: React.FC = () => {
@@ -180,7 +180,7 @@ export const ControlledDemo: React.FC = () => {
             <div className="space-y-2">
               <h4 className="font-medium text-sm">Controlled State</h4>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                This popover's state is controlled externally.
+                This popover&apos;s state is controlled externally.
               </p>
               <button
                 onClick={() => setOpen(false)}

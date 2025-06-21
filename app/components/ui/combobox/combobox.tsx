@@ -77,7 +77,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   };
 
   // Handle clear
-  const handleClear = (e: React.MouseEvent) => {
+  const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
     handleValueChange('');
   };
@@ -133,7 +133,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         setHighlightedIndex(-1);
         break;
     }
-  }, [open, highlightedIndex, filteredOptions, disabled]);
+  }, [open, highlightedIndex, filteredOptions, disabled, handleValueChange]);
 
   // Scroll highlighted option into view
   useEffect(() => {
@@ -168,10 +168,14 @@ export const Combobox: React.FC<ComboboxProps> = ({
     };
   }, [open]);
 
-  // Focus search input when opened
+  // Focus search input when opened - with delay to avoid ring flash
   useEffect(() => {
     if (open && searchable && searchInputRef.current) {
-      searchInputRef.current.focus();
+      // Small delay to avoid the ring flash effect
+      const timeoutId = setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 200);
+      return () => clearTimeout(timeoutId);
     }
   }, [open, searchable]);
 
@@ -254,7 +258,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  handleClear(e as any);
+                  handleClear(e);
                 }
               }}
               className="p-0.5 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-neutral-500"

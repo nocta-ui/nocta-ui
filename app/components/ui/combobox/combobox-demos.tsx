@@ -280,7 +280,7 @@ export const CustomMessagesDemo: React.FC = () => {
           emptyMessage="😔 No matching options found. Try different keywords."
         />
         <p className="text-xs text-neutral-600 dark:text-neutral-400">
-          Type something that doesn't match to see custom message
+          Type something that doesn&apos;t match to see custom message
         </p>
       </div>
     </div>

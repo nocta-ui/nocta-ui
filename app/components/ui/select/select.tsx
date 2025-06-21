@@ -277,7 +277,8 @@ export const SelectContent: React.FC<SelectContentProps> = ({
               const childrenArray = React.Children.toArray(children);
               const focusedChild = childrenArray[focusedIndex];
               if (React.isValidElement(focusedChild) && focusedChild.props && typeof focusedChild.props === 'object' && focusedChild.props !== null && 'children' in focusedChild.props) {
-                onValueChange?.(focusedOption.value, (focusedChild.props as any).children);
+                const childProps = focusedChild.props as Record<string, unknown>;
+                onValueChange?.(focusedOption.value, childProps.children as React.ReactNode);
               }
             }
           }
@@ -306,7 +307,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [open, setOpen, triggerRef, focusedIndex, options, onValueChange, children]);
+  }, [open, setOpen, triggerRef, focusedIndex, setFocusedIndex, options, onValueChange, children]);
 
   if (!shouldRender) return null;
 

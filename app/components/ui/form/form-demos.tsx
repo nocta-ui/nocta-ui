@@ -57,7 +57,7 @@ export const BasicFormDemo: React.FC = () => {
 };
 
 export const FormWithErrorsDemo: React.FC = () => {
-  const [errors, setErrors] = useState({
+  const [errors] = useState({
     username: 'Username is already taken',
     password: ''
   });
@@ -141,7 +141,7 @@ export const ComplexFormDemo: React.FC = () => {
               onChange={(e) => setFormData({...formData, email: e.target.value})}
             />
           </FormControl>
-          <FormDescription>We'll never share your email with anyone else.</FormDescription>
+          <FormDescription>We&apos;ll never share your email with anyone else.</FormDescription>
         </FormField>
 
         <FormField name="country">
