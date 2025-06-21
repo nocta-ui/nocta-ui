@@ -1,5 +1,97 @@
 ---
-title: Components
-description: A collection of reusable UI components for building modern interfaces
+title: Documentation
+description: Clean. Simple. Powerful. Everything you need to build with Nocta UI.
 ---
+
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/app/components/ui/card';
+
+## Quick Start
+
+Get up and running in under 2 minutes.
+
+### Installation
+
+```bash
+npm install nocta-ui
+```
+
+### Import Components
+
+```tsx
+import { Button, Card, Badge } from 'nocta-ui';
+
+export function App() {
+  return (
+    <Card>
+      <Button variant="primary">
+        Get Started
+      </Button>
+    </Card>
+  );
+}
+```
+
+## Philosophy
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+  <Card className="p-6">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <span className="font-medium">Minimal</span>
+    </div>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Clean components with no unnecessary complexity.
+    </p>
+  </Card>
+  
+  <Card className="p-6">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <span className="font-medium">Performant</span>
+    </div>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Tree-shakable. Only ship what you use.
+    </p>
+  </Card>
+  
+  <Card className="p-6">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <span className="font-medium">Accessible</span>
+    </div>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      WCAG compliant. Works for everyone.
+    </p>
+  </Card>
+  
+  <Card className="p-6">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <span className="font-medium">TypeScript</span>
+    </div>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Fully typed. Better developer experience.
+    </p>
+  </Card>
+</div>
+
+## What's Included
+
+- **Components** — Buttons, Cards, Forms, and more
+- **Dark Mode** — Built-in support for light and dark themes  
+- **TypeScript** — Full type safety and IntelliSense
+- **Documentation** — Comprehensive guides and examples
+
+## Next Steps
+
+<div className="flex gap-3 my-8">
+  <Button>
+    [Browse Components](/docs/components)
+  </Button>
+  <Button variant="ghost">
+    [View Examples](/docs/examples)
+  </Button>
+</div>
 

@@ -1,7 +1,144 @@
 ---
 title: Components
-description: A collection of reusable UI components for building modern interfaces
+description: Production-ready components. Copy, paste, customize.
 ---
 
-## Interactive Components
+import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/app/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/components/ui/card';
+import { Alert, AlertDescription } from '@/app/components/ui/alert';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
+
+## Foundation
+
+### Button
+Interactive elements for user actions.
+
+<div className="flex gap-2 my-4">
+  <Button>Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="ghost">Ghost</Button>
+</div>
+
+[View Button docs →](/docs/components/button)
+
+### Badge
+Status indicators and labels.
+
+<div className="flex gap-2 my-4">
+  <Badge>Default</Badge>
+  <Badge variant="success">Success</Badge>
+  <Badge variant="warning">Warning</Badge>
+  <Badge variant="destructive">Error</Badge>
+</div>
+
+[View Badge docs →](/docs/components/badge)
+
+## Layout
+
+### Card
+Flexible container for content.
+
+<Card className="max-w-sm my-4">
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>
+      A simple card component for organizing content.
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <Button size="sm">Action</Button>
+  </CardContent>
+</Card>
+
+[View Card docs →](/docs/components/card)
+
+## Forms
+
+### Input
+Text input with validation support.
+
+[View Input docs →](/docs/components/input)
+
+### Select
+Dropdown selection component.
+
+[View Select docs →](/docs/components/select)
+
+### Switch
+Toggle component for binary choices.
+
+[View Switch docs →](/docs/components/switch)
+
+## Feedback
+
+### Alert
+Important messages and notifications.
+
+<Alert className="my-4">
+  <AlertDescription>
+    This is an example alert message.
+  </AlertDescription>
+</Alert>
+
+[View Alert docs →](/docs/components/alert)
+
+### Dialog
+Modal dialogs and overlays.
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="secondary" size="sm">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Example Dialog</DialogTitle>
+      <DialogDescription>
+        This is a modal dialog component with backdrop and accessibility features.
+      </DialogDescription>
+    </DialogHeader>
+    <div className="px-6 py-4">
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        Dialog content goes here.
+      </p>
+    </div>
+  </DialogContent>
+</Dialog>
+
+[View Dialog docs →](/docs/components/dialog)
+
+## Principles
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-8">
+  <div className="p-4 border rounded-lg dark:border-neutral-700">
+    <h3 className="font-medium mb-2">Composable</h3>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Mix and match components to build complex interfaces.
+    </p>
+  </div>
+  
+  <div className="p-4 border rounded-lg dark:border-neutral-700">
+    <h3 className="font-medium mb-2">Customizable</h3>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Override styles with className or CSS variables.
+    </p>
+  </div>
+  
+  <div className="p-4 border rounded-lg dark:border-neutral-700">
+    <h3 className="font-medium mb-2">Consistent</h3>
+    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      Unified design tokens across all components.
+    </p>
+  </div>
+</div>
+
+## Usage
+
+All components follow the same import pattern:
+
+```tsx
+import { Button, Card, Badge } from '@/app/components/ui';
+```
+
+Every component accepts standard HTML props plus additional customization options.
 

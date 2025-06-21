@@ -74,7 +74,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
     <div 
       className={`
         px-6 py-5 
-        border-b border-neutral-100 dark:border-neutral-700/50 
+        border-b border-neutral-100 dark:border-neutral-700/50
         not-prose 
         ${className}
       `}
@@ -140,7 +140,7 @@ export const CardContent: React.FC<CardContentProps> = ({
     <div 
       className={`
         px-6 py-5 
-        not-prose 
+        not-prose text-sm
         ${className}
       `}
       {...props}
@@ -160,7 +160,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
     <div 
       className={`
         px-6 py-4 
-        bg-neutral-50 dark:bg-neutral-800 
+        bg-neutral-50 dark:bg-neutral-800/50
         border-t border-neutral-100 dark:border-neutral-700/50 
         flex items-center justify-end 
         not-prose 

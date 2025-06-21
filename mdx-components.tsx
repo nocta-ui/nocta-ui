@@ -4,6 +4,11 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, 
 import { Button } from '@/app/components/ui/button/';
 import { DocsTabs } from '@/app/components/ui/docs-tab';
 import { Input } from '@/app/components/ui/input';
+import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@/app/components/ui/alert';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
+import { Badge } from '@/app/components/ui/badge';
+import { Switch } from '@/app/components/ui/switch';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -11,10 +16,17 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...defaultMdxComponents,
     // Custom paragraph component that doesn't create nested p tags
     p: ({ children, className, ...props }) => {
-      // If we're inside a Card component context, render as div to avoid nested p tags
-      if (className?.includes('text-sm') || typeof children === 'string') {
+      // Check if we're in a context that might already contain p tags
+      const isSmallText = className?.includes('text-sm');
+      const isStringContent = typeof children === 'string';
+      const hasNeutralColor = className?.includes('text-neutral-600') || className?.includes('text-neutral-400');
+      const isInDialog = className?.includes('my-6') || className?.includes('px-6') || className?.includes('py-4');
+      
+      // If we're inside components that render p tags or in dialog context, render as span to avoid nested p tags  
+      if (isSmallText || isStringContent || hasNeutralColor || isInDialog) {
         return <span className={className} {...props}>{children}</span>;
       }
+      
       return <p className={className} {...props}>{children}</p>;
     },
     Card,
@@ -27,6 +39,26 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Button,
     DocsTabs,
     Input,
+    Alert,
+    AlertTitle,
+    AlertDescription,
+    AlertIcon,
+    Select,
+    SelectTrigger,
+    SelectContent,
+    SelectItem,
+    SelectValue,
+    Badge,
+    Switch,
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogActions,
+    DialogClose,
     ...components,
   };
 }

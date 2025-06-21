@@ -47,9 +47,9 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
   const activeContent = tabs.find(tab => tab.props.value === activeTab);
 
   return (
-    <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden">
+    <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg">
       {/* Tab Headers */}
-      <div className="flex items-center gap-1 px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="flex items-center gap-1 px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 rounded-t-lg">
         {tabs.map((tab) => (
           <DocsTab
             key={tab.props.value}
@@ -63,7 +63,7 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
       </div>
       
       {/* Tab Content */}
-      <div className="p-4">
+      <div className="p-4 flex justify-center items-center">
         {activeContent?.props.children}
       </div>
     </div>

@@ -1,0 +1,274 @@
+---
+title: Select
+description: A flexible select component for choosing from a list of options with multiple sizes and dark mode support
+---
+
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+The Select component is part of the nocta-ui component library. Import the components you need:
+
+```tsx
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+} from '@/app/components/ui';
+```
+
+## Basic Usage
+
+### Default Select
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="orange">Orange</SelectItem>
+          <SelectItem value="grape">Grape</SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="orange">Orange</SelectItem>
+        <SelectItem value="grape">Grape</SelectItem>
+        <SelectItem value="pineapple">Pineapple</SelectItem>
+      </SelectContent>
+    </Select>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+          Small
+        </label>
+        <Select size="sm">
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Small select" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="option1">Option 1</SelectItem>
+            <SelectItem value="option2">Option 2</SelectItem>
+            <SelectItem value="option3">Option 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+          Medium
+        </label>
+        <Select size="md">
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Medium select" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="option1">Option 1</SelectItem>
+            <SelectItem value="option2">Option 2</SelectItem>
+            <SelectItem value="option3">Option 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+          Large
+        </label>
+        <Select size="lg">
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Large select" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="option1">Option 1</SelectItem>
+            <SelectItem value="option2">Option 2</SelectItem>
+            <SelectItem value="option3">Option 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Select size="sm">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Small select" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <Select size="md">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Medium select" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <Select size="lg">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Large select" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 space-y-4">
+      <Select disabled>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Disabled select" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="option1">Option 1</SelectItem>
+          <SelectItem value="option2">Option 2</SelectItem>
+        </SelectContent>
+      </Select>
+
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Some disabled items" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="option1">Option 1</SelectItem>
+          <SelectItem value="option2" disabled>Option 2 (disabled)</SelectItem>
+          <SelectItem value="option3">Option 3</SelectItem>
+          <SelectItem value="option4" disabled>Option 4 (disabled)</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Select disabled>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Disabled select" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Some disabled items" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2" disabled>Option 2 (disabled)</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+        <SelectItem value="option4" disabled>Option 4 (disabled)</SelectItem>
+      </SelectContent>
+    </Select>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Select components accept `className` props for custom styling:
+
+```tsx
+<Select>
+  <SelectTrigger className="w-full border-2 border-purple-300 focus:border-purple-500">
+    <SelectValue placeholder="Custom styled select" />
+  </SelectTrigger>
+  <SelectContent className="border-purple-300">
+    <SelectItem value="option1">Option 1</SelectItem>
+    <SelectItem value="option2">Option 2</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Props
+
+### Select
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Default value for uncontrolled component |
+| `onValueChange` | `(value: string) => void` | — | Callback when value changes |
+| `disabled` | `boolean` | `false` | Disable the select |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Select size |
+| `children` | `React.ReactNode` | — | Select content |
+
+### SelectTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes |
+| `size` | `'sm' \| 'md' \| 'lg'` | — | Override size from context |
+| `children` | `React.ReactNode` | — | Trigger content |
+
+### SelectContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes |
+| `position` | `'bottom' \| 'top'` | `'bottom'` | Dropdown position |
+| `children` | `React.ReactNode` | — | Content (SelectItems) |
+
+### SelectItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Item value |
+| `disabled` | `boolean` | `false` | Disable the item |
+| `className` | `string` | `''` | Additional CSS classes |
+| `children` | `React.ReactNode` | — | Item content |
+
+### SelectValue
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placeholder` | `string` | `'Select an option...'` | Placeholder text |
+| `className` | `string` | `''` | Additional CSS classes |
+
+All components also accept their respective HTML element attributes.
