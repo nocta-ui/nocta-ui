@@ -3,21 +3,18 @@ export {
   DialogTrigger,
   DialogContent,
   DialogHeader,
+  DialogFooter,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
   DialogActions,
   DialogClose,
+  type DialogProps,
+  type DialogTriggerProps,
+  type DialogContentProps,
+  type DialogHeaderProps,
+  type DialogFooterProps,
+  type DialogTitleProps,
+  type DialogDescriptionProps,
+  type DialogActionsProps,
 } from './dialog';
-
-export type {
-  DialogProps,
-  DialogTriggerProps,
-  DialogContentProps,
-  DialogHeaderProps,
-  DialogTitleProps,
-  DialogDescriptionProps,
-  DialogFooterProps,
-  DialogActionsProps,
-  DialogCloseProps,
-} from './dialog'; 
+export * from './dialog-demos'; 

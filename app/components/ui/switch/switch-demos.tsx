@@ -104,6 +104,29 @@ export const SizesDemo: React.FC = () => {
   );
 };
 
+export const DisabledStateDemo: React.FC = () => {
+  return (
+    <div className="my-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <Switch disabled={false} />
+        <span className="text-sm">Enabled (off)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Switch checked={true} disabled={false} />
+        <span className="text-sm">Enabled (on)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Switch disabled={true} />
+        <span className="text-sm">Disabled (off)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Switch checked={true} disabled={true} />
+        <span className="text-sm">Disabled (on)</span>
+      </div>
+    </div>
+  );
+};
+
 export const CustomStylingDemo: React.FC = () => {
   const [states, setStates] = useState({
     scaled: true,

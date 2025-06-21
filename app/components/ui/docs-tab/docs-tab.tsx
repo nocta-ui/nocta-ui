@@ -113,7 +113,7 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
       {/* Tab Content with animated height and opacity */}
       <div 
         ref={contentRef}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
+        className="transition-all duration-300 ease-in-out"
         style={{ 
           height: height === 'auto' ? 'auto' : `${height}px`
         }}

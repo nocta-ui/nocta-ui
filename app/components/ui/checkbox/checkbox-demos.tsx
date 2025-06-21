@@ -197,6 +197,29 @@ export const LabeledCheckboxDemo: React.FC = () => {
   );
 };
 
+export const DisabledStateDemo: React.FC = () => {
+  return (
+    <div className="my-6 space-y-4">
+      <div className="flex items-center gap-3">
+        <Checkbox disabled={false} />
+        <span className="text-sm">Enabled (unchecked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox checked={true} disabled={false} />
+        <span className="text-sm">Enabled (checked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox disabled={true} />
+        <span className="text-sm">Disabled (unchecked)</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Checkbox checked={true} disabled={true} />
+        <span className="text-sm">Disabled (checked)</span>
+      </div>
+    </div>
+  );
+};
+
 export const CustomStylingDemo: React.FC = () => {
   const [states, setStates] = useState({
     scaled: true,

@@ -146,6 +146,27 @@ export const GroupDemo: React.FC = () => {
   );
 };
 
+export const CustomStylingDemo: React.FC = () => {
+  return (
+    <div className="my-6 flex items-center gap-4">
+      <Avatar 
+        src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
+        alt="John Doe" 
+        className="ring-4 ring-blue-500/50"
+      />
+      <Avatar 
+        fallback="JD" 
+        className="bg-gradient-to-br from-purple-500 to-pink-500 text-white"
+      />
+      <Avatar 
+        src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
+        alt="John Doe"
+        className="grayscale hover:grayscale-0 transition-all duration-300"
+      />
+    </div>
+  );
+};
+
 export const ClickHandlersDemo: React.FC = () => {
   const [message, setMessage] = useState<string>('');
 

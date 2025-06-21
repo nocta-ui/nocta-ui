@@ -4,6 +4,11 @@ description: A flexible select component for choosing from a list of options wit
 ---
 
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
+import { 
+  DefaultSelectDemo,
+  SizesDemo,
+  DisabledStateDemo
+} from '@/app/components/ui/select/select-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
@@ -26,20 +31,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" title="Preview">
-    <div className="my-6">
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select a fruit" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="orange">Orange</SelectItem>
-          <SelectItem value="grape">Grape</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+    <DefaultSelectDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
     ```tsx
@@ -65,55 +57,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" title="Preview">
-    <div className="my-6 space-y-4">
-      <div>
-        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-          Small
-        </label>
-        <Select size="sm">
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Small select" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="option1">Option 1</SelectItem>
-            <SelectItem value="option2">Option 2</SelectItem>
-            <SelectItem value="option3">Option 3</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-          Medium
-        </label>
-        <Select size="md">
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Medium select" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="option1">Option 1</SelectItem>
-            <SelectItem value="option2">Option 2</SelectItem>
-            <SelectItem value="option3">Option 3</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-          Large
-        </label>
-        <Select size="lg">
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Large select" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="option1">Option 1</SelectItem>
-            <SelectItem value="option2">Option 2</SelectItem>
-            <SelectItem value="option3">Option 3</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
+    <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
     ```tsx
@@ -157,29 +101,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" title="Preview">
-    <div className="my-6 space-y-4">
-      <Select disabled>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Disabled select" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="option1">Option 1</SelectItem>
-          <SelectItem value="option2">Option 2</SelectItem>
-        </SelectContent>
-      </Select>
-
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Some disabled items" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="option1">Option 1</SelectItem>
-          <SelectItem value="option2" disabled>Option 2 (disabled)</SelectItem>
-          <SelectItem value="option3">Option 3</SelectItem>
-          <SelectItem value="option4" disabled>Option 4 (disabled)</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+    <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
     ```tsx

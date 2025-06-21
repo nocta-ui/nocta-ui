@@ -14,3 +14,4 @@ export {
     type CardFooterProps,
     type CardActionsProps,
   } from './card';
+export * from './card-demos';

@@ -9,8 +9,7 @@ import {
   ControlledSwitchDemo, 
   VariantsDemo, 
   SizesDemo, 
-  SettingsDemo, 
-  FormDemo,
+  DisabledStateDemo,
   CustomStylingDemo
 } from '@/app/components/ui/switch/switch-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -90,24 +89,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" title="Preview">
-    <div className="my-6 space-y-4">
-      <div className="flex items-center gap-3">
-        <Switch disabled={false} />
-        <span className="text-sm">Enabled (off)</span>
-      </div>
-      <div className="flex items-center gap-3">
-        <Switch checked={true} disabled={false} />
-        <span className="text-sm">Enabled (on)</span>
-      </div>
-      <div className="flex items-center gap-3">
-        <Switch disabled={true} />
-        <span className="text-sm">Disabled (off)</span>
-      </div>
-      <div className="flex items-center gap-3">
-        <Switch checked={true} disabled={true} />
-        <span className="text-sm">Disabled (on)</span>
-      </div>
-    </div>
+    <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
     ```tsx

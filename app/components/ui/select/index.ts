@@ -1,3 +1,4 @@
+
 export {
   Select,
   SelectTrigger,
@@ -10,3 +11,5 @@ export {
   type SelectItemProps,
   type SelectValueProps,
 } from './select'; 
+
+export * from './select-demos';

@@ -7,4 +7,6 @@ export {
   type AlertTitleProps,
   type AlertDescriptionProps,
   type AlertIconProps,
-} from './alert'; 
+} from './alert';
+
+export * from './alert-demos'; 
