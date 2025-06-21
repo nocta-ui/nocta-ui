@@ -1,0 +1,295 @@
+---
+title: Avatar
+description: A versatile avatar component for displaying user profile images, initials, and status indicators with dark mode support
+---
+
+import { Avatar } from '@/app/components/ui/avatar';
+import { 
+  BasicAvatarDemo, 
+  SizesDemo, 
+  VariantsDemo, 
+  StatusDemo,
+  FallbackDemo,
+  GroupDemo,
+  ClickHandlersDemo,
+  InteractiveDemo
+} from '@/app/components/ui/avatar/avatar-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+The Avatar component is part of the nocta-ui component library. Import the component:
+
+```tsx
+import { Avatar } from '@/app/components/ui';
+```
+
+## Basic Usage
+
+### Default Avatar
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <BasicAvatarDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // With image
+    <Avatar 
+      src="https://example.com/avatar.jpg" 
+      alt="John Doe" 
+    />
+    
+    // With initials fallback
+    <Avatar fallback="JD" />
+    
+    // Default fallback (user icon)
+    <Avatar />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <SizesDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Avatar size="xs" src="..." alt="John Doe" />
+    <Avatar size="sm" src="..." alt="John Doe" />
+    <Avatar size="md" src="..." alt="John Doe" />
+    <Avatar size="lg" src="..." alt="John Doe" />
+    <Avatar size="xl" src="..." alt="John Doe" />
+    <Avatar size="2xl" src="..." alt="John Doe" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Avatar component supports two shape variants: `circle` (default) and `square`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <VariantsDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Avatar variant="circle" src="..." alt="John Doe" />
+    <Avatar variant="square" src="..." alt="John Doe" />
+    <Avatar variant="circle" fallback="JD" />
+    <Avatar variant="square" fallback="JD" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Status Indicators
+
+Add status indicators to show user presence: `online`, `offline`, `away`, or `busy`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <StatusDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Avatar src="..." alt="John Doe" status="online" />
+    <Avatar src="..." alt="Jane Smith" status="away" />
+    <Avatar src="..." alt="Mike Johnson" status="busy" />
+    <Avatar fallback="AB" status="offline" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Fallback Handling
+
+The Avatar component gracefully handles image loading failures with multiple fallback options.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <FallbackDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // Valid image
+    <Avatar src="valid-image.jpg" alt="John Doe" />
+    
+    // Invalid image with initials fallback
+    <Avatar src="invalid-image.jpg" fallback="JD" alt="John Doe" />
+    
+    // Initials from name (auto-generated)
+    <Avatar fallback="Sarah Connor" />
+    
+    // Simple initials
+    <Avatar fallback="AB" />
+    
+    // Default user icon fallback
+    <Avatar />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Avatar Groups
+
+Stack multiple avatars to show groups or teams.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <GroupDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="flex items-center">
+      <Avatar 
+        src="avatar1.jpg" 
+        alt="John Doe" 
+        className="ring-2 ring-white dark:ring-neutral-900"
+      />
+      <Avatar 
+        src="avatar2.jpg" 
+        alt="Jane Smith" 
+        className="-ml-2 ring-2 ring-white dark:ring-neutral-900"
+      />
+      <Avatar 
+        src="avatar3.jpg" 
+        alt="Mike Johnson" 
+        className="-ml-2 ring-2 ring-white dark:ring-neutral-900"
+      />
+      <Avatar 
+        fallback="AB" 
+        className="-ml-2 ring-2 ring-white dark:ring-neutral-900"
+      />
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 ring-2 ring-white dark:ring-neutral-900 text-xs font-medium text-neutral-600 dark:text-neutral-400">
+        +5
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Avatar component accepts a `className` prop for custom styling:
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6 flex items-center gap-4">
+      <Avatar 
+        src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
+        alt="John Doe" 
+        className="ring-4 ring-blue-500/50"
+      />
+      <Avatar 
+        fallback="JD" 
+        className="bg-gradient-to-br from-purple-500 to-pink-500 text-white"
+      />
+      <Avatar 
+        src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
+        alt="John Doe"
+        className="grayscale hover:grayscale-0 transition-all duration-300"
+      />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Avatar 
+      src="avatar.jpg" 
+      alt="John Doe" 
+      className="ring-4 ring-blue-500/50"
+    />
+    
+    <Avatar 
+      fallback="JD" 
+      className="bg-gradient-to-br from-purple-500 to-pink-500 text-white"
+    />
+    
+    <Avatar 
+      src="avatar.jpg" 
+      alt="John Doe"
+      className="grayscale hover:grayscale-0 transition-all duration-300"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### With Click Handlers
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <div className="my-6">
+      <ClickHandlersDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [message, setMessage] = useState('');
+
+    const handleAvatarClick = (name: string) => {
+      setMessage(`${name} avatar clicked!`);
+      setTimeout(() => setMessage(''), 2000);
+    };
+
+    <Avatar 
+      src="avatar.jpg" 
+      alt="John Doe" 
+      className="cursor-pointer hover:ring-2 hover:ring-neutral-300 dark:hover:ring-neutral-600 transition-all"
+      onClick={() => handleAvatarClick('John Doe')}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Avatar Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `src` | `string` | - | The image source URL |
+| `alt` | `string` | `''` | Alt text for the image |
+| `fallback` | `string` | - | Text to generate initials from, or custom initials |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'` | The size of the avatar |
+| `variant` | `'circle' \| 'square'` | `'circle'` | The shape variant |
+| `status` | `'online' \| 'offline' \| 'away' \| 'busy' \| null` | `null` | Status indicator |
+| `className` | `string` | `''` | Additional CSS classes to apply |
+
+The Avatar component also accepts all standard HTML div element props through the `...props` spread operator.
+
+## Accessibility
+
+The Avatar component is built with accessibility in mind:
+
+- Uses semantic HTML with proper alt attributes for images
+- Status indicators include aria-label for screen readers
+- Supports keyboard navigation when used with click handlers
+- Proper contrast ratios for text and status indicators
+- Fallback content for failed image loads
+
+## Size Reference
+
+| Size | Dimensions | Best Use Case |
+|------|------------|---------------|
+| `xs` | 24×24px | Dense lists, small UI elements |
+| `sm` | 32×32px | Compact interfaces, comments |
+| `md` | 40×40px | Default size, most common use |
+| `lg` | 48×48px | User cards, prominent displays |
+| `xl` | 64×64px | Profile headers, large cards |
+| `2xl` | 80×80px | Profile pages, hero sections | 
