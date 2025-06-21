@@ -391,6 +391,49 @@
         "screen-reader-support"
       ]
     },
+    "tabs": {
+      "name": "Tabs",
+      "description": "Accessible tabs component with multiple variants, orientations, and keyboard navigation",
+      "category": "navigation",
+      "files": [
+        {
+          "name": "tabs.tsx",
+          "path": "app/components/ui/tabs/tabs.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent"
+      ],
+      "props": {
+        "Tabs": ["children", "value", "defaultValue", "onValueChange", "orientation", "variant", "size", "className", "disabled"],
+        "TabsList": ["children", "className"],
+        "TabsTrigger": ["children", "value", "className", "disabled"],
+        "TabsContent": ["children", "value", "className"]
+      },
+      "variants": ["default", "pills", "underline"],
+      "sizes": ["sm", "md", "lg"],
+      "orientations": ["horizontal", "vertical"],
+      "features": [
+        "controlled-uncontrolled",
+        "keyboard-navigation",
+        "accessible-aria-attributes",
+        "multiple-variants",
+        "horizontal-vertical-orientation",
+        "disabled-state",
+        "smooth-transitions",
+        "focus-management",
+        "dark-mode",
+        "composable-architecture",
+        "client-component"
+      ]
+    },
     "tooltip": {
       "name": "Tooltip",
       "description": "Tooltip component with positioning and animations",
@@ -461,6 +504,11 @@
       "name": "Overlay",
       "description": "Components that overlay content",
       "components": ["dialog", "tooltip"]
+    },
+    "navigation": {
+      "name": "Navigation",
+      "description": "Components for navigation and routing",
+      "components": ["tabs"]
     }
   },
   "features": [

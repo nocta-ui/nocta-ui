@@ -1,0 +1,405 @@
+---
+title: Tabs
+description: Accessible tabs component with multiple variants, orientations, and keyboard navigation for organizing content
+---
+
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/app/components/ui/tabs';
+import { 
+  BasicTabsDemo, 
+  VariantsDemo, 
+  SizesDemo, 
+  VerticalTabsDemo,
+  DisabledTabsDemo
+} from '@/app/components/ui/tabs/tabs-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Tabs component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui-cli add tabs
+```
+
+Then import the component:
+
+```tsx
+import { 
+  Tabs, 
+  TabsList, 
+  TabsTrigger, 
+  TabsContent 
+} from '@/components/ui/tabs';
+```
+
+## Basic Usage
+
+The Tabs component follows a composable architecture where you build tabbed interfaces by combining smaller components together.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicTabsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Tabs defaultValue="overview">
+      <TabsList>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        <TabsTrigger value="reports">Reports</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview">
+        <Card>
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+            <CardDescription>
+              View your account overview and recent activity.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>This is the overview tab content.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="analytics">
+        <Card>
+          <CardHeader>
+            <CardTitle>Analytics</CardTitle>
+            <CardDescription>
+              Detailed analytics and performance metrics.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Analytics content goes here.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="reports">
+        <Card>
+          <CardHeader>
+            <CardTitle>Reports</CardTitle>
+            <CardDescription>
+              Generate and download detailed reports.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Reports content goes here.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+    </Tabs>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Tabs Architecture
+
+The Tabs component is built with a composable architecture:
+
+- **Tabs**: The main container that manages state and provides context
+- **TabsList**: Container for tab triggers with keyboard navigation
+- **TabsTrigger**: Individual tab buttons that can be clicked or navigated
+- **TabsContent**: Content panels that are shown/hidden based on selection
+
+## Variants
+
+The Tabs component supports three visual variants: `default`, `pills`, and `underline`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Default variant */}
+    <Tabs defaultValue="tab1" variant="default">
+      <TabsList>
+        <TabsTrigger value="tab1">Account</TabsTrigger>
+        <TabsTrigger value="tab2">Password</TabsTrigger>
+        <TabsTrigger value="tab3">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Account content</TabsContent>
+      <TabsContent value="tab2">Password content</TabsContent>
+      <TabsContent value="tab3">Settings content</TabsContent>
+    </Tabs>
+
+    {/* Pills variant */}
+    <Tabs defaultValue="tab1" variant="pills">
+      <TabsList>
+        <TabsTrigger value="tab1">Home</TabsTrigger>
+        <TabsTrigger value="tab2">Products</TabsTrigger>
+        <TabsTrigger value="tab3">About</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Home content</TabsContent>
+      <TabsContent value="tab2">Products content</TabsContent>
+      <TabsContent value="tab3">About content</TabsContent>
+    </Tabs>
+
+    {/* Underline variant */}
+    <Tabs defaultValue="tab1" variant="underline">
+      <TabsList>
+        <TabsTrigger value="tab1">Dashboard</TabsTrigger>
+        <TabsTrigger value="tab2">Team</TabsTrigger>
+        <TabsTrigger value="tab3">Projects</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Dashboard content</TabsContent>
+      <TabsContent value="tab2">Team content</TabsContent>
+      <TabsContent value="tab3">Projects content</TabsContent>
+    </Tabs>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Tabs defaultValue="tab1" size="sm">
+      <TabsList>
+        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Small tab content</TabsContent>
+    </Tabs>
+
+    <Tabs defaultValue="tab1" size="md">
+      <TabsList>
+        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Medium tab content</TabsContent>
+    </Tabs>
+
+    <Tabs defaultValue="tab1" size="lg">
+      <TabsList>
+        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+      </TabsList>
+      <TabsContent value="tab1">Large tab content</TabsContent>
+    </Tabs>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Vertical Orientation
+
+Tabs can be displayed vertically using the `orientation="vertical"` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VerticalTabsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Tabs defaultValue="general" orientation="vertical">
+      <TabsList>
+        <TabsTrigger value="general">General</TabsTrigger>
+        <TabsTrigger value="security">Security</TabsTrigger>
+        <TabsTrigger value="integrations">Integrations</TabsTrigger>
+        <TabsTrigger value="advanced">Advanced</TabsTrigger>
+      </TabsList>
+      <div className="flex-1">
+        <TabsContent value="general">
+          <Card>
+            <CardHeader>
+              <CardTitle>General Settings</CardTitle>
+              <CardDescription>
+                Manage your general account settings.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>General settings content.</p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        {/* Other TabsContent components */}
+      </div>
+    </Tabs>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled States
+
+Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DisabledTabsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Tabs defaultValue="available">
+      <TabsList>
+        <TabsTrigger value="available">Available</TabsTrigger>
+        <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
+        <TabsTrigger value="coming-soon" disabled>Coming Soon</TabsTrigger>
+      </TabsList>
+      <TabsContent value="available">
+        <Card>
+          <CardContent>
+            <p>This tab is available and can be accessed.</p>
+          </CardContent>
+        </Card>
+      </TabsContent>
+    </Tabs>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Keyboard Navigation
+
+The Tabs component includes comprehensive keyboard support:
+
+- **Arrow Keys**: Navigate between tabs (Left/Right for horizontal, Up/Down for vertical)
+- **Home**: Jump to the first tab
+- **End**: Jump to the last tab
+- **Tab**: Move focus to the active tab content
+- **Space/Enter**: Activate the focused tab
+
+## Accessibility Features
+
+The Tabs component is built with accessibility in mind:
+
+- **ARIA Attributes**: Proper `role`, `aria-selected`, `aria-controls`, and `aria-labelledby` attributes
+- **Keyboard Navigation**: Full keyboard support with arrow keys and shortcuts
+- **Focus Management**: Proper focus handling and visual focus indicators
+- **Screen Reader Support**: Announces tab state changes and content
+- **Semantic HTML**: Uses proper button and panel elements
+
+## Controlled vs Uncontrolled
+
+### Uncontrolled (Recommended)
+
+Use `defaultValue` for uncontrolled behavior:
+
+```tsx
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+</Tabs>
+```
+
+### Controlled
+
+Use `value` and `onValueChange` for controlled behavior:
+
+```tsx
+const [activeTab, setActiveTab] = useState("tab1");
+
+<Tabs value={activeTab} onValueChange={setActiveTab}>
+  <TabsList>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+</Tabs>
+```
+
+## Customization
+
+### Custom Styling
+
+All tabs components accept a `className` prop for custom styling:
+
+```tsx
+<Tabs defaultValue="tab1" className="w-full max-w-2xl">
+  <TabsList className="grid w-full grid-cols-3">
+    <TabsTrigger value="tab1" className="data-[state=active]:bg-blue-500">
+      Custom Tab 1
+    </TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+    <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1" className="border-t-2 border-blue-500 pt-4">
+    <p>Custom styled content</p>
+  </TabsContent>
+</Tabs>
+```
+
+### Dynamic Tabs
+
+Create tabs dynamically from data:
+
+```tsx
+const tabs = [
+  { id: 'overview', label: 'Overview', content: 'Overview content' },
+  { id: 'details', label: 'Details', content: 'Details content' },
+  { id: 'settings', label: 'Settings', content: 'Settings content' }
+];
+
+<Tabs defaultValue={tabs[0].id}>
+  <TabsList>
+    {tabs.map((tab) => (
+      <TabsTrigger key={tab.id} value={tab.id}>
+        {tab.label}
+      </TabsTrigger>
+    ))}
+  </TabsList>
+  {tabs.map((tab) => (
+    <TabsContent key={tab.id} value={tab.id}>
+      <Card>
+        <CardContent>
+          <p>{tab.content}</p>
+        </CardContent>
+      </Card>
+    </TabsContent>
+  ))}
+</Tabs>
+```
+
+## Props
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Tabs content |
+| `value` | `string` | — | Controlled active tab value |
+| `defaultValue` | `string` | — | Default active tab value |
+| `onValueChange` | `(value: string) => void` | — | Callback when tab changes |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tabs orientation |
+| `variant` | `'default' \| 'pills' \| 'underline'` | `'default'` | Visual variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
+| `className` | `string` | `''` | Additional CSS classes |
+| `disabled` | `boolean` | `false` | Disable all tabs |
+
+### TabsList
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Tab triggers |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Trigger content |
+| `value` | `string` | — | Unique tab identifier |
+| `className` | `string` | `''` | Additional CSS classes |
+| `disabled` | `boolean` | `false` | Disable this tab |
+
+### TabsContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Content to display |
+| `value` | `string` | — | Tab identifier this content belongs to |
+| `className` | `string` | `''` | Additional CSS classes |
+
+The Tabs components also accept all standard HTML attributes for their respective elements. 
