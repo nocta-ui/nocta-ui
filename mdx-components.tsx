@@ -11,6 +11,7 @@ import { Switch } from '@/app/components/ui/switch';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
 import { Checkbox } from '@/app/components/ui/checkbox';
+import { Combobox } from '@/app/components/ui/combobox';
 import { Avatar } from '@/app/components/ui/avatar';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions } from '@/app/components/ui/form';
@@ -54,6 +55,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TooltipTrigger,
     TooltipContent,
     Checkbox,
+    Combobox,
     Avatar,
     Textarea,
     Form,

@@ -1,0 +1,415 @@
+---
+title: Combobox
+description: Searchable combobox component with filtering, keyboard navigation, and accessibility for advanced option selection
+---
+
+import { Combobox } from '@/app/components/ui/combobox';
+import { 
+  BasicComboboxDemo, 
+  VariantsDemo, 
+  SizesDemo, 
+  SearchableDemo,
+  ClearableDemo,
+  DisabledOptionsDemo,
+  DisabledComboboxDemo,
+  CustomMessagesDemo,
+  ControlledDemo
+} from '@/app/components/ui/combobox/combobox-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Combobox component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui-cli add combobox
+```
+
+Then import the component:
+
+```tsx
+import { Combobox, ComboboxOption } from '@/components/ui/combobox';
+```
+
+## Basic Usage
+
+The Combobox component provides a searchable dropdown interface for selecting from a list of options.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicComboboxDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const frameworks = [
+      { value: 'next', label: 'Next.js' },
+      { value: 'react', label: 'React' },
+      { value: 'vue', label: 'Vue.js' },
+      { value: 'angular', label: 'Angular' },
+    ];
+
+    const [value, setValue] = useState('');
+
+    <Combobox
+      options={frameworks}
+      value={value}
+      onValueChange={setValue}
+      placeholder="Select a framework..."
+      searchPlaceholder="Search frameworks..."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Data Structure
+
+The Combobox component expects an array of options with the following structure:
+
+```tsx
+interface ComboboxOption {
+  value: string;        // Unique identifier
+  label: string;        // Display text
+  disabled?: boolean;   // Optional disabled state
+}
+```
+
+## Variants
+
+The Combobox component supports three visual variants: `default`, `error`, and `success`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Default variant */}
+    <Combobox
+      options={frameworks}
+      placeholder="Default variant"
+      variant="default"
+    />
+
+    {/* Error variant */}
+    <Combobox
+      options={frameworks}
+      placeholder="Error variant"
+      variant="error"
+    />
+
+    {/* Success variant */}
+    <Combobox
+      options={frameworks}
+      defaultValue="react"
+      variant="success"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Combobox
+      options={frameworks}
+      size="sm"
+      placeholder="Small combobox"
+    />
+
+    <Combobox
+      options={frameworks}
+      size="md"
+      placeholder="Medium combobox"
+    />
+
+    <Combobox
+      options={frameworks}
+      size="lg"
+      placeholder="Large combobox"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Searchable Options
+
+Control whether users can search through options by typing.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SearchableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Searchable (default) */}
+    <Combobox
+      options={countries}
+      placeholder="Search for a country..."
+      searchPlaceholder="Type to search..."
+      searchable={true}
+    />
+
+    {/* Non-searchable */}
+    <Combobox
+      options={countries}
+      placeholder="Select a country..."
+      searchable={false}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Clearable Selection
+
+Control whether users can clear their selection with an X button.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ClearableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Clearable (default) */}
+    <Combobox
+      options={frameworks}
+      defaultValue="react"
+      clearable={true}
+    />
+
+    {/* Non-clearable */}
+    <Combobox
+      options={frameworks}
+      defaultValue="vue"
+      clearable={false}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled Options
+
+Individual options can be disabled by setting the `disabled` property.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DisabledOptionsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const languages = [
+      { value: 'js', label: 'JavaScript' },
+      { value: 'ts', label: 'TypeScript' },
+      { value: 'py', label: 'Python' },
+      { value: 'php', label: 'PHP', disabled: true },
+      { value: 'ruby', label: 'Ruby' },
+    ];
+
+    <Combobox
+      options={languages}
+      placeholder="Select a language..."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled State
+
+The entire combobox can be disabled.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DisabledComboboxDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Combobox
+      options={frameworks}
+      defaultValue="react"
+      disabled={true}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Custom Messages
+
+Customize the empty state message when no options match the search.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomMessagesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Combobox
+      options={limitedOptions}
+      placeholder="Search for options..."
+      searchPlaceholder="Try typing 'test'..."
+      emptyMessage="😔 No matching options found. Try different keywords."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Controlled vs Uncontrolled
+
+### Uncontrolled (Recommended)
+
+Use `defaultValue` for uncontrolled behavior:
+
+```tsx
+<Combobox
+  options={options}
+  defaultValue="react"
+  onValueChange={(value) => console.log('Selected:', value)}
+/>
+```
+
+### Controlled
+
+Use `value` and `onValueChange` for controlled behavior:
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ControlledDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [selectedFramework, setSelectedFramework] = useState('react');
+
+    <Combobox
+      options={frameworks}
+      value={selectedFramework}
+      onValueChange={setSelectedFramework}
+      placeholder="Select framework..."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Keyboard Navigation
+
+The Combobox component includes comprehensive keyboard support:
+
+- **Arrow Down**: Open dropdown or move to next option
+- **Arrow Up**: Open dropdown or move to previous option
+- **Enter**: Select the highlighted option or open dropdown
+- **Escape**: Close dropdown and clear search
+- **Tab**: Close dropdown and move to next element
+- **Type to search**: Filter options when searchable is enabled
+
+## Accessibility Features
+
+The Combobox component is built with accessibility in mind:
+
+- **ARIA Attributes**: Proper `role`, `aria-expanded`, `aria-controls`, and `aria-haspopup` attributes
+- **Keyboard Navigation**: Full keyboard support with arrow keys and shortcuts
+- **Focus Management**: Proper focus handling and visual focus indicators
+- **Screen Reader Support**: Announces option selection and state changes
+- **Semantic HTML**: Uses proper button and listbox elements
+- **Option Highlighting**: Visual indication of focused options
+
+## Advanced Usage
+
+### Dynamic Options
+
+Create options dynamically from API data:
+
+```tsx
+const [options, setOptions] = useState<ComboboxOption[]>([]);
+
+useEffect(() => {
+  fetch('/api/users')
+    .then(res => res.json())
+    .then(users => {
+      const userOptions = users.map(user => ({
+        value: user.id,
+        label: `${user.name} (${user.email})`,
+        disabled: !user.active
+      }));
+      setOptions(userOptions);
+    });
+}, []);
+
+<Combobox
+  options={options}
+  placeholder="Select a user..."
+  emptyMessage="No users found"
+/>
+```
+
+### Form Integration
+
+Use with form libraries like React Hook Form:
+
+```tsx
+import { useForm, Controller } from 'react-hook-form';
+
+const { control, handleSubmit } = useForm();
+
+<Controller
+  name="framework"
+  control={control}
+  rules={{ required: 'Please select a framework' }}
+  render={({ field, fieldState }) => (
+    <Combobox
+      options={frameworks}
+      value={field.value}
+      onValueChange={field.onChange}
+      variant={fieldState.error ? 'error' : 'default'}
+      placeholder="Select framework..."
+    />
+  )}
+/>
+```
+
+### Custom Styling
+
+Customize the appearance with className props:
+
+```tsx
+<Combobox
+  options={options}
+  className="w-full max-w-xs"
+  popoverClassName="w-96 max-h-48"
+  placeholder="Custom styled combobox"
+/>
+```
+
+## Props
+
+### Combobox
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `ComboboxOption[]` | — | Array of selectable options |
+| `value` | `string` | — | Controlled selected value |
+| `defaultValue` | `string` | — | Default selected value |
+| `onValueChange` | `(value: string) => void` | — | Callback when selection changes |
+| `placeholder` | `string` | `'Select option...'` | Placeholder text |
+| `searchPlaceholder` | `string` | `'Search...'` | Search input placeholder |
+| `emptyMessage` | `string` | `'No options found'` | Message when no options match |
+| `disabled` | `boolean` | `false` | Disable the combobox |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
+| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant |
+| `className` | `string` | `''` | Additional CSS classes for trigger |
+| `popoverClassName` | `string` | `''` | Additional CSS classes for dropdown |
+| `searchable` | `boolean` | `true` | Enable search functionality |
+| `clearable` | `boolean` | `true` | Show clear button when value selected |
+
+### ComboboxOption
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Unique option identifier |
+| `label` | `string` | — | Display text for the option |
+| `disabled` | `boolean` | `false` | Disable this option |
+
+The Combobox component also accepts all standard HTML button attributes for the trigger element. 

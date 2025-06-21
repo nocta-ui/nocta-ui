@@ -344,6 +344,51 @@
         "dark-mode"
       ]
     },
+    "combobox": {
+      "name": "Combobox",
+      "description": "Searchable combobox component with filtering, keyboard navigation, and accessibility",
+      "category": "form",
+      "files": [
+        {
+          "name": "combobox.tsx",
+          "path": "app/components/ui/combobox/combobox.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Combobox",
+        "ComboboxOption"
+      ],
+      "props": {
+        "Combobox": [
+          "options", "value", "defaultValue", "onValueChange", 
+          "placeholder", "searchPlaceholder", "emptyMessage", 
+          "disabled", "size", "variant", "className", "popoverClassName",
+          "searchable", "clearable"
+        ],
+        "ComboboxOption": ["value", "label", "disabled"]
+      },
+      "variants": ["default", "error", "success"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "searchable-filtering",
+        "keyboard-navigation",
+        "accessible-aria-attributes",
+        "controlled-uncontrolled",
+        "clearable-selection",
+        "disabled-options",
+        "custom-messages",
+        "click-outside-close",
+        "auto-scroll-highlight",
+        "focus-management",
+        "dark-mode",
+        "smooth-transitions",
+        "client-component"
+      ]
+    },
     "form": {
       "name": "Form",
       "description": "Composable form component with field validation, labels, and actions",
@@ -483,7 +528,7 @@
     "form": {
       "name": "Form",
       "description": "Form input and control components",
-      "components": ["button", "checkbox", "form", "input", "select", "switch", "textarea"]
+      "components": ["button", "checkbox", "combobox", "form", "input", "select", "switch", "textarea"]
     },
     "data-display": {
       "name": "Data Display",
