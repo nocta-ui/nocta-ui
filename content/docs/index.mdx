@@ -1,108 +1,282 @@
 ---
-title: Documentation
-description: Clean. Simple. Powerful. Everything you need to build with Nocta UI.
+title: Introduction
+description: Nocta UI is a modern, accessible React component library built with simplicity, performance, and developer experience at its core. Every component is crafted to be beautiful, functional, and accessible by default.
+
 ---
 
 import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/app/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/components/ui/card';
+import { Alert, AlertDescription } from '@/app/components/ui/alert';
 
-## Quick Start
-
-Get up and running in under 2 minutes.
-
-### Installation
-
-```bash
-# Initialize your project
-npx nocta-ui-cli init
-
-# Add components you need
-npx nocta-ui-cli add button card badge
-```
-
-### Import Components
-
-```tsx
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-
-export function App() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Welcome to Nocta UI</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Button variant="primary">
-          Get Started
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
-```
 
 ## Philosophy
 
+Our design philosophy centers around four core principles that guide every decision:
+
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
   <Card className="p-6">
-    <div className="flex items-center gap-2 mb-3">
-      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
-      <span className="font-medium">Minimal</span>
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <h3 className="font-semibold text-lg">Minimal</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400">
-      Clean components with no unnecessary complexity.
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      Clean components with no unnecessary complexity. Every element serves a purpose, 
+      every interaction feels natural.
     </p>
   </Card>
   
   <Card className="p-6">
-    <div className="flex items-center gap-2 mb-3">
-      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
-      <span className="font-medium">Performant</span>
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <h3 className="font-semibold text-lg">Performant</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400">
-      Tree-shakable. Only ship what you use.
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      Copy-paste approach with CLI tooling. Components live in your codebase, 
+      giving you full control and customization power.
     </p>
   </Card>
   
   <Card className="p-6">
-    <div className="flex items-center gap-2 mb-3">
-      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
-      <span className="font-medium">Accessible</span>
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <h3 className="font-semibold text-lg">Accessible</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400">
-      WCAG compliant. Works for everyone.
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      WCAG compliant components with keyboard navigation, 
+      screen reader support, and semantic HTML.
     </p>
   </Card>
   
   <Card className="p-6">
-    <div className="flex items-center gap-2 mb-3">
-      <div className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-100" />
-      <span className="font-medium">TypeScript</span>
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+      <h3 className="font-semibold text-lg">Developer First</h3>
     </div>
-    <p className="text-sm text-neutral-600 dark:text-neutral-400">
-      Fully typed. Better developer experience.
+    <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      Full TypeScript support, intuitive APIs, and comprehensive documentation 
+      for the best developer experience.
     </p>
   </Card>
 </div>
 
-## What's Included
+## Design System
 
-- **Components** — Buttons, Cards, Forms, and more
-- **Dark Mode** — Built-in support for light and dark themes  
-- **TypeScript** — Full type safety and IntelliSense
-- **Documentation** — Comprehensive guides and examples
+### Color Palette
 
-## Next Steps
+Nocta UI uses a carefully curated neutral-first color palette that adapts beautifully to both light and dark themes:
 
-<div className="flex gap-3 my-8">
-  <Button>
-    [Browse Components](/docs/components)
-  </Button>
-  <Button variant="ghost">
-    [View Examples](/docs/examples)
-  </Button>
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6 not-prose">
+  <div className="space-y-2">
+    <div className="h-12 bg-neutral-50 dark:bg-neutral-950 rounded-lg border"></div>
+    <div className="text-xs font-mono">neutral-50</div>
+  </div>
+  <div className="space-y-2">
+    <div className="h-12 bg-neutral-200 dark:bg-neutral-800 rounded-lg"></div>
+    <div className="text-xs font-mono">neutral-200</div>
+  </div>
+  <div className="space-y-2">
+    <div className="h-12 bg-neutral-700 dark:bg-neutral-300 rounded-lg"></div>
+    <div className="text-xs font-mono">neutral-700</div>
+  </div>
+  <div className="space-y-2">
+    <div className="h-12 bg-neutral-900 dark:bg-neutral-100 rounded-lg"></div>
+    <div className="text-xs font-mono">neutral-900</div>
+  </div>
 </div>
 
+**Semantic Colors** are used sparingly and purposefully:
+- **Success**: Green tones for positive actions and states
+- **Warning**: Yellow/amber for caution and alerts  
+- **Destructive**: Red tones for errors and dangerous actions
+
+### Typography
+
+Typography follows a clear hierarchy with consistent spacing and readable line heights:
+
+<div className="space-y-4 my-6">
+  <div className="text-4xl font-semibold tracking-tight">Heading Large</div>
+  <div className="text-2xl font-semibold tracking-tight">Heading Medium</div>
+  <div className="text-lg font-semibold">Heading Small</div>
+  <div className="text-base">Body text with comfortable reading experience</div>
+  <div className="text-sm text-neutral-600 dark:text-neutral-400">Caption and helper text</div>
+</div>
+
+### Spacing & Layout
+
+Our spacing system is based on a **4px base unit** with consistent ratios:
+
+- **Micro**: 2px, 4px - For fine details and borders
+- **Small**: 8px, 12px - For compact spacing
+- **Medium**: 16px, 20px, 24px - For standard component spacing
+- **Large**: 32px, 48px, 64px - For section and layout spacing
+
+### Border Radius
+
+Consistent border radius creates visual harmony across all components:
+
+<div className="grid grid-cols-4 lg:flex gap-4 items-center my-6 not-prose">
+  <div className="w-12 h-12 bg-neutral-200 dark:bg-neutral-700 rounded-sm"></div>
+  <span className="text-sm">Small (4px)</span>
+  <div className="w-12 h-12 bg-neutral-200 dark:bg-neutral-700 rounded-lg"></div>
+  <span className="text-sm">Medium (8px)</span>
+  <div className="w-12 h-12 bg-neutral-200 dark:bg-neutral-700 rounded-xl"></div>
+  <span className="text-sm">Large (12px)</span>
+  <div className="w-12 h-12 bg-neutral-200 dark:bg-neutral-700 rounded-full"></div>
+  <span className="text-sm">Full (50%)</span>
+</div>
+
+## Architecture
+
+### Copy-Paste Philosophy
+
+Unlike traditional component libraries, Nocta UI follows the **copy-paste approach** pioneered by shadcn/ui. Instead of installing a package, you use our CLI to copy component source code directly into your project:
+
+```bash
+# Initialize your project with required dependencies
+npx nocta-ui-cli init
+
+# Add components to your project
+npx nocta-ui-cli add button card badge
+
+# Components are now in your /components/ui directory
+# You own the code and can modify it however you want
+```
+
+**Benefits of this approach:**
+- **Full control** - modify components to fit your exact needs
+- **No version conflicts** - components are copied, not installed
+- **Easy customization** - change styling, behavior, or structure
+- **Framework agnostic** - works with any React setup
+- **Zero dependencies** - only React itself as a peer dependency
+
+### Composable Design
+
+Components are designed to work together seamlessly. Complex interfaces are built by composing simple, focused components:
+
+<div className="my-6">
+  <Card className="max-w-md">
+    <CardHeader>
+      <CardTitle>User Profile</CardTitle>
+      <CardDescription>Compose multiple components together</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 rounded-full"></div>
+        <div className="space-y-1">
+          <div className="font-medium text-sm">John Doe</div>
+          <Badge variant="secondary" size="sm">Premium</Badge>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</div>
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>User Profile</CardTitle>
+    <CardDescription>Compose multiple components together</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <div className="flex items-center gap-3">
+      <Avatar src="/user.jpg" fallback="JD" />
+      <div>
+        <div className="font-medium">John Doe</div>
+        <Badge variant="secondary">Premium</Badge>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+```
+
+### TypeScript First
+
+Every component is built with TypeScript from the ground up:
+
+- **Full type safety** for all props and component APIs
+- **IntelliSense support** in modern IDEs
+- **Runtime safety** with comprehensive prop validation
+- **Extensible interfaces** for custom implementations
+
+### Styling Architecture
+
+Built on **Tailwind CSS** with a systematic approach:
+
+```tsx
+// Consistent class organization - you can modify this directly
+const baseStyles = `
+  inline-flex items-center justify-center rounded-lg
+  transition-all duration-200 ease-in-out
+  focus:outline-none focus:ring-2 focus:ring-offset-2
+`;
+
+// Add your own variants or modify existing ones
+const variants = {
+  primary: `bg-neutral-900 text-white hover:bg-neutral-800`,
+  secondary: `bg-neutral-100 text-neutral-900 hover:bg-neutral-200`,
+  // Add custom variant for your brand
+  custom: `bg-purple-600 text-white hover:bg-purple-700`
+};
+```
+
+## Accessibility Standards
+
+Every component meets **WCAG 2.1 AA** standards:
+
+### Keyboard Navigation
+- **Tab order** follows logical flow
+- **Focus indicators** are clearly visible
+- **Escape sequences** work consistently
+- **Arrow keys** navigate complex components
+
+### Screen Reader Support
+- **Semantic HTML** structure
+- **ARIA labels** and descriptions
+- **Live regions** for dynamic content
+- **Role definitions** for custom components
+
+### Motor Accessibility
+- **44px minimum** touch targets
+- **Generous click areas** for interactive elements
+- **No hover-only** interactions
+- **Reduced motion** support
+
+<Alert>
+  <AlertDescription>
+    All interactive components include focus management, keyboard navigation, 
+    and screen reader announcements by default.
+  </AlertDescription>
+</Alert>
+
+## Dark Mode
+
+Dark mode is a first-class citizen, not an afterthought:
+
+- **Automatic detection** of system preferences
+- **Manual override** support
+- **Consistent contrast ratios** across themes
+- **Smooth transitions** between modes
+
+<div className="flex gap-4 my-6">
+  <Button variant="primary">Light Theme</Button>
+  <Button variant="secondary">Works in Dark</Button>
+</div>
+
+## Performance Considerations
+
+### Development Approach
+- **Copy-paste methodology** - components live in your project
+- **Full source access** - modify components to fit your needs exactly
+- **Zero runtime dependencies** - only React as peer dependency
+- **CLI tooling** - seamless component installation and updates
+
+### Runtime Performance
+- **Minimal re-renders** with optimized component design
+- **Efficient animations** using CSS transforms
+- **Lazy loading** for complex components
+- **Memory management** for portal-based components
+
+## Getting Started
+
+Ready to start building with Nocta UI? Check out our [Quick Start Guide](/docs/quick-start)
