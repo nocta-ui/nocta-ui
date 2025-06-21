@@ -144,15 +144,72 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
+  const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
-  // Handle animation states
+  // Focus trap functionality
+  const getFocusableElements = () => {
+    if (!contentRef.current) return [];
+    
+    const focusableSelectors = [
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'textarea:not([disabled])',
+      'select:not([disabled])',
+      'a[href]',
+      '[tabindex]:not([tabindex="-1"])'
+    ].join(', ');
+    
+    return Array.from(contentRef.current.querySelectorAll(focusableSelectors)) as HTMLElement[];
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      onOpenChange(false);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement as HTMLElement;
+
+      if (e.shiftKey) {
+        // Shift + Tab (backward)
+        if (activeElement === firstElement || !contentRef.current?.contains(activeElement)) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab (forward)
+        if (activeElement === lastElement || !contentRef.current?.contains(activeElement)) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  };
+
+  // Handle animation states and focus management
   useEffect(() => {
     if (open) {
+      // Store the currently active element to restore focus later
+      previousActiveElementRef.current = document.activeElement as HTMLElement;
+      
       setShouldRender(true);
       // Force a reflow to ensure initial styles are applied, then animate
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsVisible(true);
+          // Focus the first focusable element after animation
+          setTimeout(() => {
+            const focusableElements = getFocusableElements();
+            if (focusableElements.length > 0) {
+              focusableElements[0].focus();
+            }
+          }, 100);
         });
       });
     } else {
@@ -160,18 +217,16 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       // Delay to allow animation before unmount
       const timer = setTimeout(() => {
         setShouldRender(false);
+        // Restore focus to the element that opened the dialog
+        if (previousActiveElementRef.current) {
+          previousActiveElementRef.current.focus();
+        }
       }, 300); // Match animation duration
       return () => clearTimeout(timer);
     }
   }, [open]);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onOpenChange(false);
-      }
-    };
-
     const handleClickOutside = (e: MouseEvent) => {
       if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
         onOpenChange(false);
@@ -179,13 +234,13 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     };
 
     if (open) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('keydown', handleKeyDown);
       document.addEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = 'unset';
     };
@@ -233,6 +288,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
         `}
         role="dialog"
         aria-modal="true"
+        aria-describedby="dialog-description"
         {...props}
       >
         {showClose && (
