@@ -50,10 +50,18 @@ const SelectContext = React.createContext<{
   size?: 'sm' | 'md' | 'lg';
   triggerRef?: React.RefObject<HTMLButtonElement | null>;
   contentId: string;
+  focusedIndex: number;
+  setFocusedIndex: (index: number) => void;
+  options: Array<{ value: string; disabled: boolean }>;
+  setOptions: React.Dispatch<React.SetStateAction<Array<{ value: string; disabled: boolean }>>>;
 }>({
   open: false,
   setOpen: () => {},
   contentId: '',
+  focusedIndex: -1,
+  setFocusedIndex: () => {},
+  options: [],
+  setOptions: () => {},
 });
 
 // Main Select Component
@@ -68,6 +76,8 @@ export const Select: React.FC<SelectProps> = ({
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
   const [displayValue, setDisplayValue] = useState<React.ReactNode>(null);
   const [open, setOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [options, setOptions] = useState<Array<{ value: string; disabled: boolean }>>([]);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [contentId] = useState(() => generateSelectId());
   
@@ -80,6 +90,7 @@ export const Select: React.FC<SelectProps> = ({
     setDisplayValue(newDisplayValue);
     onValueChange?.(newValue);
     setOpen(false);
+    setFocusedIndex(-1);
   };
 
   return (
@@ -94,6 +105,10 @@ export const Select: React.FC<SelectProps> = ({
         size,
         triggerRef,
         contentId,
+        focusedIndex,
+        setFocusedIndex,
+        options,
+        setOptions,
       }}
     >
       <div className="relative not-prose">
@@ -110,8 +125,29 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   size: propSize,
   ...props
 }) => {
-  const { open, setOpen, disabled, size: contextSize, triggerRef, contentId } = React.useContext(SelectContext);
+  const { open, setOpen, disabled, size: contextSize, triggerRef, contentId, options, setFocusedIndex } = React.useContext(SelectContext);
   const size = propSize || contextSize || 'md';
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        if (!open) {
+          setOpen(true);
+          setFocusedIndex(0);
+        }
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        if (!open) {
+          setOpen(true);
+          setFocusedIndex(Math.max(0, options.length - 1));
+        }
+        break;
+    }
+  };
 
   const baseStyles = `
     flex h-10 w-fit items-center justify-between
@@ -149,6 +185,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
         ${className}
       `}
       onClick={() => !disabled && setOpen(!open)}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {children}
@@ -172,7 +209,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
   className = '',
   position = 'bottom',
 }) => {
-  const { open, setOpen, triggerRef, contentId } = React.useContext(SelectContext);
+  const { open, setOpen, triggerRef, contentId, focusedIndex, setFocusedIndex, options, onValueChange } = React.useContext(SelectContext);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
@@ -207,22 +244,69 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       }
     };
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!open) return;
+
+      switch (event.key) {
+        case 'Escape':
+          event.preventDefault();
+          setOpen(false);
+          triggerRef?.current?.focus();
+          break;
+        case 'ArrowDown':
+          event.preventDefault();
+          if (options.length > 0) {
+            const nextIndex = focusedIndex < options.length - 1 ? focusedIndex + 1 : 0;
+            setFocusedIndex(nextIndex);
+          }
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          if (options.length > 0) {
+            const prevIndex = focusedIndex > 0 ? focusedIndex - 1 : options.length - 1;
+            setFocusedIndex(prevIndex);
+          }
+          break;
+        case 'Enter':
+        case ' ':
+          event.preventDefault();
+          if (focusedIndex >= 0 && focusedIndex < options.length) {
+            const focusedOption = options[focusedIndex];
+            if (!focusedOption.disabled) {
+              // Find the corresponding child element to get display value
+              const childrenArray = React.Children.toArray(children);
+              const focusedChild = childrenArray[focusedIndex];
+              if (React.isValidElement(focusedChild) && focusedChild.props && typeof focusedChild.props === 'object' && focusedChild.props !== null && 'children' in focusedChild.props) {
+                onValueChange?.(focusedOption.value, (focusedChild.props as any).children);
+              }
+            }
+          }
+          break;
+        case 'Home':
+          event.preventDefault();
+          if (options.length > 0) {
+            setFocusedIndex(0);
+          }
+          break;
+        case 'End':
+          event.preventDefault();
+          if (options.length > 0) {
+            setFocusedIndex(options.length - 1);
+          }
+          break;
       }
     };
 
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [open, setOpen, triggerRef]);
+  }, [open, setOpen, triggerRef, focusedIndex, options, onValueChange, children]);
 
   if (!shouldRender) return null;
 
@@ -274,8 +358,35 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   className = '',
   disabled = false,
 }) => {
-  const { value: selectedValue, onValueChange } = React.useContext(SelectContext);
+  const { value: selectedValue, onValueChange, options, setOptions, focusedIndex } = React.useContext(SelectContext);
   const isSelected = selectedValue === value;
+  const [itemIndex, setItemIndex] = useState(-1);
+
+  // Register this item with the options list
+  useEffect(() => {
+    setOptions(prevOptions => {
+      const newOptions = [...prevOptions];
+      const existingIndex = newOptions.findIndex(opt => opt.value === value);
+      
+      if (existingIndex >= 0) {
+        newOptions[existingIndex] = { value, disabled };
+        setItemIndex(existingIndex);
+      } else {
+        newOptions.push({ value, disabled });
+        setItemIndex(newOptions.length - 1);
+      }
+      
+      return newOptions;
+    });
+
+    return () => {
+      setOptions(prevOptions => 
+        prevOptions.filter(opt => opt.value !== value)
+      );
+    };
+  }, [value, disabled, setOptions]);
+
+  const isFocused = itemIndex === focusedIndex;
 
   return (
     <div
@@ -287,6 +398,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
         hover:bg-neutral-100 dark:hover:bg-neutral-800
         focus:bg-neutral-100 dark:focus:bg-neutral-800
         ${isSelected ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
+        ${isFocused ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
         ${disabled ? 'pointer-events-none opacity-50' : ''}
         transition-colors duration-150
         not-prose

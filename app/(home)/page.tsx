@@ -5,12 +5,12 @@ import Background from './background';
 
 export default function HomePage() {
   return (
-    <main className="h-[93vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden relative">
+    <main className="h-[93svh] flex flex-col justify-center items-center text-center px-6 overflow-hidden relative">
       <div className="absolute inset-0">
         <Background />
       </div>
       
-      <div className="max-w-6xl mx-auto w-full flex flex-col items-center justify-center space-y-8 z-10 relative pointer-events-none">
+      <div className="max-w-6xl mx-auto w-full flex flex-col items-center justify-center space-y-4 md:space-y-8 z-10 relative pointer-events-none">
         <div className="pointer-events-none">
           <Badge variant="secondary" className="text-xs font-medium">
             Your Code, Your Rules
