@@ -64,7 +64,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   const selectedOption = options.find(option => option.value === value);
 
   // Handle value change
-  const handleValueChange = (newValue: string) => {
+  const handleValueChange = useCallback((newValue: string) => {
     if (disabled) return;
     
     if (controlledValue === undefined) {
@@ -74,7 +74,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     setOpen(false);
     setSearchTerm('');
     setHighlightedIndex(-1);
-  };
+  }, [disabled, controlledValue, onValueChange]);
 
   // Handle clear
   const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
