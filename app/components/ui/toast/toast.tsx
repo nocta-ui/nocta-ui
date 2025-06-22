@@ -73,9 +73,9 @@ export const Toast: React.FC<ToastProps> = ({
     setTimeout(() => {
       setIsVisible(false);
       onClose?.();
-      // Restore focus to the previously active element
+      // Restore focus to the previously active element without scrolling
       if (previousActiveElementRef.current) {
-        previousActiveElementRef.current.focus();
+        previousActiveElementRef.current.focus({ preventScroll: true });
       }
     }, 200);
   }, [onClose]);
