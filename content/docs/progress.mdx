@@ -1,0 +1,241 @@
+---
+title: Progress
+description: A progress indicator component with multiple variants, sizes, and animation support
+---
+
+import { Progress } from '@/app/components/ui/progress';
+import { 
+  BasicProgressDemo,
+  VariantsDemo, 
+  SizesDemo, 
+  IndeterminateDemo,
+  AnimatedDemo,
+  CustomMaxDemo,
+  WithoutLabelDemo,
+  FileUploadDemo
+} from '@/app/components/ui/progress/progress-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Progress component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add progress
+```
+
+Then import the component:
+
+```tsx
+import { Progress } from '@/components/ui/progress';
+```
+
+## Basic Usage
+
+### Default Progress
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicProgressDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Progress value={65} showLabel aria-label="Basic progress" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Progress component supports four variants: `default`, `success`, `warning`, and `destructive`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Progress value={60} variant="default" showLabel />
+    <Progress value={75} variant="success" showLabel />
+    <Progress value={45} variant="warning" showLabel />
+    <Progress value={30} variant="destructive" showLabel />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Progress value={50} size="sm" />
+    <Progress value={65} size="md" />
+    <Progress value={80} size="lg" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Animated Progress
+
+Progress automatically animates when the value changes.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <AnimatedDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setProgress((prev) => prev >= 100 ? 0 : prev + 10);
+      }, 500);
+      return () => clearInterval(timer);
+    }, []);
+
+    return <Progress value={progress} variant="success" showLabel />;
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Custom Maximum Value
+
+Set a custom maximum value using the `max` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomMaxDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Progress value={15} max={20} showLabel />
+    <Progress value={250} max={500} variant="warning" showLabel />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Without Label
+
+Hide the label by omitting the `showLabel` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <WithoutLabelDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Progress value={40} />
+    <Progress value={70} variant="success" />
+    <Progress value={85} variant="warning" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Real-world Example
+
+### File Upload Progress
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FileUploadDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [isUploading, setIsUploading] = useState(false);
+
+    const simulateUpload = () => {
+      setIsUploading(true);
+      setUploadProgress(0);
+      
+      const timer = setInterval(() => {
+        setUploadProgress((prev) => {
+          if (prev >= 100) {
+            setIsUploading(false);
+            clearInterval(timer);
+            return 100;
+          }
+          return prev + Math.random() * 15;
+        });
+      }, 200);
+    };
+
+    return (
+      <div className="border rounded-lg p-4">
+        <div className="flex justify-between mb-3">
+          <span className="font-medium">document.pdf</span>
+          <span className="text-sm text-neutral-500">2.4 MB</span>
+        </div>
+        
+        <Progress 
+          value={uploadProgress} 
+          variant={uploadProgress === 100 ? "success" : "default"}
+          showLabel 
+        />
+        
+        <button onClick={simulateUpload} disabled={isUploading}>
+          {isUploading ? 'Uploading...' : 'Start Upload'}
+        </button>
+      </div>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Progress component accepts a `className` prop for custom styling:
+
+```tsx
+<Progress 
+  value={75} 
+  className="w-full max-w-md" 
+  showLabel 
+/>
+
+<Progress 
+  value={60} 
+  className="h-6 rounded-lg" 
+  variant="success" 
+/>
+```
+
+## Accessibility
+
+The Progress component includes proper ARIA attributes:
+
+- `role="progressbar"` for screen readers
+- `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` for progress values
+- `aria-label` for descriptive labels
+- Proper focus management
+
+```tsx
+<Progress 
+  value={50} 
+  aria-label="File download progress" 
+  showLabel 
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `0` | Current progress value |
+| `max` | `number` | `100` | Maximum progress value |
+| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Progress bar color variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Progress bar height |
+| `showLabel` | `boolean` | `false` | Show progress label and percentage |
+| `indeterminate` | `boolean` | `false` | Show indeterminate/loading state |
+| `className` | `string` | `''` | Additional CSS classes |
+| `aria-label` | `string` | — | Accessible label for screen readers |
+
+The Progress component also accepts all standard HTML div attributes. 

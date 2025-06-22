@@ -719,6 +719,43 @@
         "accessibility-compliant",
         "client-component"
       ]
+    },
+    "progress": {
+      "name": "Progress",
+      "description": "A progress indicator component with multiple variants, sizes, and animation support",
+      "category": "feedback",
+      "files": [
+        {
+          "name": "progress.tsx",
+          "path": "app/components/ui/progress/progress.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Progress"
+      ],
+      "props": {
+        "Progress": [
+          "value", "max", "variant", "size", "showLabel", 
+          "indeterminate", "className", "aria-label"
+        ]
+      },
+      "variants": ["default", "success", "warning", "destructive"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "animated-progress",
+        "accessibility-compliant",
+        "custom-max-value",
+        "percentage-display",
+        "keyboard-navigation",
+        "screen-reader-support",
+        "dark-mode",
+        "smooth-animations",
+        "responsive-design"
+      ]
     }
   },
   "categories": {
@@ -735,7 +772,7 @@
     "feedback": {
       "name": "Feedback", 
       "description": "Components for user feedback and notifications",
-      "components": ["alert"]
+      "components": ["alert", "progress"]
     },
     "layout": {
       "name": "Layout",

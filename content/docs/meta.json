@@ -9,6 +9,24 @@
       "quick-start",
       "---Components---",
       "accordion",
-      "..."
+      "alert",
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "checkbox",
+      "combobox",
+      "context-menu",
+      "dialog",
+      "form",
+      "input",
+      "popover",
+      "progress",
+      "select",
+      "sheet",
+      "switch",
+      "tabs",
+      "textarea",
+      "tooltip"
     ]
   }
