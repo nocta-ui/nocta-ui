@@ -6,7 +6,11 @@
     "build": "next build",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\""
   },
   "dependencies": {
     "@react-three/drei": "^10.3.0",
@@ -22,14 +26,20 @@
     "three": "^0.177.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/mdx": "^2.0.13",
     "@types/node": "22.15.28",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^8.57.1",
     "eslint-config-next": "15.3.3",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.0",
     "postcss": "^8.5.4",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3"
   }
