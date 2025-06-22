@@ -178,7 +178,7 @@ export function ControlledAccordionDemo() {
           </button>
           <button
             onClick={() => setOpenItems([])}
-            className="px-3 py-1 bg-red-500 dark:bg-red-600/50 rounded text-sm whitespace-nowrap"
+            className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-white rounded text-sm whitespace-nowrap"
           >
             Close All
           </button>

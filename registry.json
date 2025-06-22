@@ -756,6 +756,54 @@
         "smooth-animations",
         "responsive-design"
       ]
+    },
+    "toast": {
+      "name": "Toast",
+      "description": "A toast notification component with multiple variants, auto-close functionality, and composable structure",
+      "category": "feedback",
+      "files": [
+        {
+          "name": "toast.tsx",
+          "path": "app/components/ui/toast/toast.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Toast",
+        "ToastHeader", 
+        "ToastTitle",
+        "ToastDescription",
+        "ToastActions",
+        "ToastClose"
+      ],
+      "props": {
+        "Toast": [
+          "children", "duration", "visible", "onClose", "className"
+        ],
+        "ToastHeader": ["children", "className"],
+        "ToastTitle": ["children", "className", "as"],
+        "ToastDescription": ["children", "className"],
+        "ToastActions": ["children", "className"],
+        "ToastClose": ["onClose", "className"]
+      },
+      "features": [
+        "auto-close-functionality",
+        "compound-component-pattern",
+        "slide-out-animation",
+        "fixed-positioning",
+        "accessibility-compliant",
+        "keyboard-navigation",
+        "focus-management",
+        "screen-reader-support",
+        "dark-mode",
+        "customizable-duration",
+        "manual-close",
+        "composable-structure",
+        "client-component"
+      ]
     }
   },
   "categories": {
@@ -772,7 +820,7 @@
     "feedback": {
       "name": "Feedback", 
       "description": "Components for user feedback and notifications",
-      "components": ["alert", "progress"]
+      "components": ["alert", "progress", "toast"]
     },
     "layout": {
       "name": "Layout",

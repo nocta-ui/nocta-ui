@@ -1,0 +1,343 @@
+---
+title: Toast
+description: A toast notification component with multiple variants, auto-close functionality, and composable structure
+---
+
+import { Toast, ToastHeader, ToastTitle, ToastDescription, ToastActions, ToastClose } from '@/app/components/ui/toast';
+import { 
+  BasicToastDemo,
+  MultipleToastsDemo,
+  WithActionsDemo,
+  WithHeaderDemo,
+  AutoCloseDemo,
+  PersistentToastDemo
+} from '@/app/components/ui/toast/toast-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Toast component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add toast
+```
+
+Then import the component:
+
+```tsx
+import { Toast, ToastTitle, ToastDescription, ToastClose } from '@/components/ui/toast';
+```
+
+## Basic Usage
+
+### Default Toast
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicToastDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [showToast, setShowToast] = useState(false);
+
+    return (
+      <>
+        <Button onClick={() => setShowToast(true)}>
+          Show Toast
+        </Button>
+        
+        {showToast && (
+          <Toast onClose={() => setShowToast(false)}>
+            <div className="px-6 py-4">
+              <ToastTitle>Success!</ToastTitle>
+              <ToastDescription>Your changes have been saved.</ToastDescription>
+            </div>
+            <ToastClose onClose={() => setShowToast(false)} />
+          </Toast>
+        )}
+      </>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Multiple Toasts
+
+You can show multiple toasts at the same time. Each toast is independent and can have different content.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <MultipleToastsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [toasts, setToasts] = useState<{[key: string]: boolean}>({});
+
+    const showToast = (id: string) => {
+      setToasts(prev => ({ ...prev, [id]: true }));
+    };
+
+    const hideToast = (id: string) => {
+      setToasts(prev => ({ ...prev, [id]: false }));
+    };
+
+    return (
+      <>
+        <Button onClick={() => showToast('info')}>Info Toast</Button>
+        <Button onClick={() => showToast('success')}>Success Toast</Button>
+        
+        {toasts.info && (
+          <Toast onClose={() => hideToast('info')}>
+            <div className="px-6 py-4">
+              <ToastTitle>Information</ToastTitle>
+              <ToastDescription>This is an informational message.</ToastDescription>
+            </div>
+            <ToastClose onClose={() => hideToast('info')} />
+          </Toast>
+        )}
+        
+        {toasts.success && (
+          <Toast onClose={() => hideToast('success')}>
+            <div className="px-6 py-4">
+              <ToastTitle>Success!</ToastTitle>
+              <ToastDescription>Operation completed successfully.</ToastDescription>
+            </div>
+            <ToastClose onClose={() => hideToast('success')} />
+          </Toast>
+        )}
+      </>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## With Actions
+
+Add action buttons to your toast using the `ToastActions` component.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <WithActionsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Toast onClose={() => setShowToast(false)}>
+      <div className="px-6 py-4">
+        <ToastTitle>Confirmation Required</ToastTitle>
+        <ToastDescription>Are you sure you want to delete this item?</ToastDescription>
+      </div>
+      <ToastActions>
+        <Button variant="ghost" size="sm" onClick={() => setShowToast(false)}>
+          Cancel
+        </Button>
+        <Button variant="secondary" size="sm" onClick={() => setShowToast(false)}>
+          Delete
+        </Button>
+      </ToastActions>
+      <ToastClose onClose={() => setShowToast(false)} />
+    </Toast>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## With Header
+
+Use `ToastHeader` for more structured content layout.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <WithHeaderDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Toast variant="success" onClose={() => setShowToast(false)}>
+      <ToastHeader>
+        <ToastTitle>Upload Complete</ToastTitle>
+        <ToastDescription>3 files uploaded successfully</ToastDescription>
+      </ToastHeader>
+      <div className="px-6 py-4">
+        <div className="text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="flex justify-between mb-1">
+            <span>document.pdf</span>
+            <span>2.4 MB</span>
+          </div>
+          <div className="flex justify-between mb-1">
+            <span>image.jpg</span>
+            <span>1.2 MB</span>
+          </div>
+          <div className="flex justify-between">
+            <span>data.xlsx</span>
+            <span>3.1 MB</span>
+          </div>
+        </div>
+      </div>
+      <ToastClose onClose={() => setShowToast(false)} />
+    </Toast>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Auto-Close
+
+Control the auto-close behavior with the `duration` prop. Set to `0` to disable auto-close.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <AutoCloseDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+// Auto-close after 3 seconds
+<Toast 
+  duration={3000} 
+  onClose={() => setShowToast(false)}
+>
+  <div className="px-6 py-4">
+    <ToastTitle>Auto-Close Toast</ToastTitle>
+    <ToastDescription>This toast will close automatically in 3 seconds.</ToastDescription>
+  </div>
+</Toast>
+```
+  </DocsTab>
+</DocsTabs>
+
+## Persistent Toast
+
+Create persistent toasts that only close when manually dismissed.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <PersistentToastDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+// Persistent toast (duration = 0)
+<Toast 
+  duration={0} 
+  onClose={() => setShowToast(false)}
+>
+  <div className="px-6 py-4">
+    <ToastTitle>Important Notice</ToastTitle>
+    <ToastDescription>This toast will stay visible until manually closed.</ToastDescription>
+  </div>
+  <ToastClose onClose={() => setShowToast(false)} />
+</Toast>
+```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Styling
+
+The Toast component accepts a `className` prop for custom styling:
+
+```tsx
+<Toast 
+  className="max-w-md left-4 right-auto"
+>
+  <div className="px-6 py-4">
+    <ToastTitle>Custom Position</ToastTitle>
+    <ToastDescription>This toast appears on the left side.</ToastDescription>
+  </div>
+</Toast>
+
+<Toast className="border-2 border-blue-500">
+  <div className="px-6 py-4">
+    <ToastTitle>Custom Border</ToastTitle>
+    <ToastDescription>This toast has a custom blue border.</ToastDescription>
+  </div>
+</Toast>
+```
+
+### Custom Close Button
+
+Replace the default close button with your own:
+
+```tsx
+<Toast onClose={() => setShow(false)}>
+  <div className="px-6 py-4">
+    <ToastTitle>Custom Close</ToastTitle>
+    <ToastDescription>This toast has a custom close action.</ToastDescription>
+  </div>
+  <button 
+    onClick={() => setShow(false)}
+    className="absolute top-2 right-2 text-neutral-400 hover:text-neutral-600"
+  >
+    ✕
+  </button>
+</Toast>
+```
+
+## Accessibility
+
+The Toast component includes proper accessibility features:
+
+- `role="alert"` for screen reader announcements
+- Keyboard navigation support
+- Focus management
+- Semantic HTML structure
+
+```tsx
+<Toast 
+  onClose={() => setShow(false)}
+  aria-label="Success notification"
+>
+  <div className="px-6 py-4">
+    <ToastTitle>Accessible Toast</ToastTitle>
+    <ToastDescription>This toast is screen reader friendly.</ToastDescription>
+  </div>
+  <ToastClose onClose={() => setShow(false)} />
+</Toast>
+```
+
+## Component Props
+
+### Toast
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Toast content |
+
+| `duration` | `number` | `5000` | Auto-close duration in milliseconds (0 = no auto-close) |
+| `visible` | `boolean` | `true` | Controls toast visibility |
+| `onClose` | `() => void` | — | Callback when toast closes |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### ToastHeader
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Header content |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### ToastTitle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Title content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `as` | `React.ElementType` | `'h4'` | HTML element to render |
+
+### ToastDescription
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Description content |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### ToastActions
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Action buttons |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### ToastClose
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `onClose` | `() => void` | — | Close callback function |
+| `className` | `string` | `''` | Additional CSS classes |
+
+All components also accept their respective HTML element attributes. 
