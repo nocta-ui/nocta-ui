@@ -157,7 +157,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
       },
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,
-      onFocus: handleFocus,
+      onfocus: handleFocus,
       onBlur: handleBlur,
       'aria-describedby': 'tooltip',
       ...childElement.props,

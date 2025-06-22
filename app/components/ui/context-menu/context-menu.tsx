@@ -496,8 +496,8 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 
   const baseStyles = `
     w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus:bg-neutral-100 dark:focus:bg-neutral-800
-    focus:text-neutral-900 dark:focus:text-neutral-50 data-[disabled]:pointer-events-none
+    outline-none transition-colors focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
+    focus-visible:text-neutral-900 dark:focus-visible:text-neutral-50 data-[disabled]:pointer-events-none
     data-[disabled]:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-800
     hover:text-neutral-900 dark:hover:text-neutral-50
   `;
@@ -628,8 +628,8 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
 
   const baseStyles = `
     w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus:bg-neutral-100 dark:focus:bg-neutral-800
-    focus:text-neutral-900 dark:focus:text-neutral-50 data-[disabled]:pointer-events-none
+    outline-none transition-colors focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
+    focus-visible:text-neutral-900 dark:focus-visible:text-neutral-50 data-[disabled]:pointer-events-none
     data-[disabled]:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-800
     hover:text-neutral-900 dark:hover:text-neutral-50
   `;

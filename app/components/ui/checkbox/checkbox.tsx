@@ -32,8 +32,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const baseStyles = `
     relative inline-flex items-center justify-center rounded border-2
     transition-all duration-200 ease-in-out cursor-pointer
-    focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2
-    focus-within:ring-offset-white dark:focus-within:ring-offset-neutral-900
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+    focus-visible:ring-offset-white dark:focus-visible:ring-offset-neutral-900
     not-prose
   `;
 
@@ -41,17 +41,17 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   const variants = {
     default: checked
-      ? 'bg-neutral-900 dark:bg-neutral-100/50 border-neutral-900 dark:border-neutral-100/50 focus-within:ring-neutral-900/50 dark:focus-within:ring-neutral-100/50'
-      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-neutral-400 dark:hover:border-neutral-500 focus-within:ring-neutral-500/50',
+      ? 'bg-neutral-900 dark:bg-neutral-100/50 border-neutral-900 dark:border-neutral-100/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50'
+      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-neutral-400 dark:hover:border-neutral-500 focus-visible:ring-neutral-500/50',
     success: checked
-      ? 'bg-green-500 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-within:ring-green-500/50'
-      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-green-400 dark:hover:border-green-500 focus-within:ring-green-500/50',
+      ? 'bg-green-500 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50'
+      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-green-400 dark:hover:border-green-500 focus-visible:ring-green-500/50',
     warning: checked
-      ? 'bg-yellow-500 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-within:ring-yellow-500/50'
-      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-yellow-400 dark:hover:border-yellow-500 focus-within:ring-yellow-500/50',
+      ? 'bg-yellow-500 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-visible:ring-yellow-500/50'
+      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-yellow-400 dark:hover:border-yellow-500 focus-visible:ring-yellow-500/50',
     destructive: checked
-      ? 'bg-red-500 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-within:ring-red-500/50'
-      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-red-400 dark:hover:border-red-500 focus-within:ring-red-500/50'
+      ? 'bg-red-500 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-visible:ring-red-500/50'
+      : 'bg-neutral-200 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600 hover:border-red-400 dark:hover:border-red-500 focus-visible:ring-red-500/50'
   };
 
   const sizes = {

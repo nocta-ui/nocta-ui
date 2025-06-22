@@ -114,9 +114,9 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-200 ease-in-out 
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-offset-white/50 dark:focus:ring-offset-neutral-900/50
-        focus:ring-neutral-900/50 dark:focus:ring-neutral-100/50
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
         not-prose
         ${className}
       `}
@@ -341,7 +341,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
               text-neutral-500 dark:text-neutral-400
               hover:text-neutral-700 dark:hover:text-neutral-200
               hover:bg-neutral-100 dark:hover:bg-neutral-800
-              focus:outline-none focus:ring-2 focus:ring-neutral-500/50
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500/50
               transition-colors duration-200 ease-in-out
               z-10
             "
@@ -492,9 +492,9 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
         bg-neutral-100 dark:bg-neutral-800
         text-neutral-900 dark:text-neutral-100
         hover:bg-neutral-200 dark:hover:bg-neutral-700
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-offset-white/50 dark:focus:ring-offset-neutral-900/50
-        focus:ring-neutral-500/50 dark:focus:ring-neutral-400/50
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+        focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
         border border-neutral-200 dark:border-neutral-600
         transition-all duration-200 ease-in-out
         not-prose

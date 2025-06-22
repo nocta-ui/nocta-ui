@@ -118,9 +118,9 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
       className={`
         inline-flex items-center justify-center rounded-lg font-medium
         transition-all duration-200 ease-in-out 
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-offset-white/50 dark:focus:ring-offset-neutral-900/50
-        focus:ring-neutral-900/50 dark:focus:ring-neutral-100/50
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
         not-prose
         ${className}
       `}
@@ -460,9 +460,9 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
         hover:text-neutral-600 dark:hover:text-neutral-300
         hover:bg-neutral-100 dark:hover:bg-neutral-800
         transition-colors duration-200
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-offset-white/50 dark:focus:ring-offset-neutral-900/50
-        focus:ring-neutral-900/50 dark:focus:ring-neutral-100/50
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
         not-prose
         ${className}
       `}

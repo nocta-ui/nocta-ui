@@ -155,9 +155,9 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
     bg-white dark:bg-neutral-900
     px-3 py-2 text-sm
     placeholder:text-neutral-400 dark:placeholder:text-neutral-500
-    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white/50 dark:focus:ring-offset-neutral-900/50
-    focus:ring-neutral-900/50 dark:focus:ring-neutral-100/50
-    focus:border-neutral-900 dark:focus:border-neutral-100
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+    focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
+    focus-visible:border-neutral-900 dark:focus-visible:border-neutral-100
     disabled:cursor-not-allowed disabled:opacity-50
     hover:border-neutral-300 dark:hover:border-neutral-600
     transition-all duration-200 ease-out
@@ -396,7 +396,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
         relative flex cursor-pointer select-none items-center
         px-3 py-2 text-sm outline-none mx-1 rounded-md
         hover:bg-neutral-100 dark:hover:bg-neutral-800
-        focus:bg-neutral-100 dark:focus:bg-neutral-800
+        focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
         ${isSelected ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
         ${isFocused ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
         ${disabled ? 'pointer-events-none opacity-50' : ''}

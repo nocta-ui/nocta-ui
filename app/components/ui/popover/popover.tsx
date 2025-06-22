@@ -131,8 +131,9 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
         px-3 py-2 text-sm font-medium
         text-neutral-900 dark:text-neutral-100
         hover:bg-neutral-50 dark:hover:bg-neutral-800
-        focus:outline-none focus:ring-2 focus:ring-offset-2
-        focus:ring-neutral-900/50 dark:focus:ring-neutral-100/50
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
         transition-colors duration-200
         not-prose
         ${className}
