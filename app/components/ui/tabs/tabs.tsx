@@ -219,7 +219,7 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
   const variantStyles = {
     default: {
       base: `
-        rounded-md px-3 py-1.5
+        w-full rounded-md px-3 py-1.5
         text-neutral-700 dark:text-neutral-300
         hover:text-neutral-900 dark:hover:text-neutral-100
         data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900

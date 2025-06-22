@@ -237,7 +237,7 @@ export const VerticalTabsDemo: React.FC = () => {
   return (
     <div className="my-6 w-96 h-72">
       <Tabs defaultValue="general" orientation="vertical" className="max-w-2xl">
-        <TabsList className='h-64'>
+        <TabsList className='h-fit'>
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="integrations">Integrations</TabsTrigger>
