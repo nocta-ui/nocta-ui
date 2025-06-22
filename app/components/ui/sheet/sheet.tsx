@@ -253,28 +253,28 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 
   const sizes = {
     sm: {
-      'left': 'w-80',
-      'right': 'w-80', 
-      'top': 'h-80',
-      'bottom': 'h-80'
+      'left': 'w-[70vw] sm:w-80',
+      'right': 'w-[70vw] sm:w-80', 
+      'top': 'h-[40vh] sm:h-80',
+      'bottom': 'h-[40vh] sm:h-80'
     },
     md: {
-      'left': 'w-96',
-      'right': 'w-96',
-      'top': 'h-96', 
-      'bottom': 'h-96'
+      'left': 'w-[80vw] sm:w-96',
+      'right': 'w-[80vw] sm:w-96',
+      'top': 'h-[55vh] sm:h-96', 
+      'bottom': 'h-[55vh] sm:h-96'
     },
     lg: {
-      'left': 'w-[28rem]',
-      'right': 'w-[28rem]',
-      'top': 'h-[28rem]',
-      'bottom': 'h-[28rem]'
+      'left': 'w-[90vw] sm:w-[28rem]',
+      'right': 'w-[90vw] sm:w-[28rem]',
+      'top': 'h-[70vh] sm:h-[28rem]',
+      'bottom': 'h-[70vh] sm:h-[28rem]'
     },
     xl: {
-      'left': 'w-[32rem]',
-      'right': 'w-[32rem]',
-      'top': 'h-[32rem]',
-      'bottom': 'h-[32rem]'
+      'left': 'w-[95vw] sm:w-[32rem]',
+      'right': 'w-[95vw] sm:w-[32rem]',
+      'top': 'h-[85vh] sm:h-[32rem]',
+      'bottom': 'h-[85vh] sm:h-[32rem]'
     },
     full: {
       'left': 'w-full',
@@ -317,10 +317,12 @@ export const SheetContent: React.FC<SheetContentProps> = ({
           fixed flex flex-col
           bg-white dark:bg-neutral-900
           border-neutral-200 dark:border-neutral-700/50
-          shadow-xl dark:shadow-2xl
+          shadow-xl dark:shadow-2xl border
           ${positions[side]}
-          ${side === 'left' || side === 'right' ? 'border-r dark:border-r' : ''}
-          ${side === 'top' || side === 'bottom' ? 'border-b dark:border-b' : ''}
+          ${side === 'left' ? 'rounded-r-2xl' : ''}
+          ${side === 'right' ? 'rounded-l-2xl' : ''}
+          ${side === 'top' ? 'rounded-b-2xl' : ''}
+          ${side === 'bottom' ? 'rounded-t-2xl' : ''}
           ${sizes[size][side]}
           transform transition-transform duration-300 ease-in-out
           ${animations[side]}
