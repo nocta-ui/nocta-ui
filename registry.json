@@ -759,7 +759,7 @@
     },
     "toast": {
       "name": "Toast",
-      "description": "A toast notification component with multiple variants, auto-close functionality, and composable structure",
+      "description": "Sonner-inspired toast notification system with stacking, GSAP animations, and provider pattern",
       "category": "feedback",
       "files": [
         {
@@ -769,9 +769,13 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "gsap": "^3.13.0"
       },
       "exports": [
+        "useToast",
+        "ToastProvider",
+        "ToastData",
         "Toast",
         "ToastHeader", 
         "ToastTitle",
@@ -780,6 +784,9 @@
         "ToastClose"
       ],
       "props": {
+        "useToast": [],
+        "ToastProvider": ["children"],
+        "ToastData": ["id", "title", "description", "variant", "duration", "action", "onClose"],
         "Toast": [
           "children", "duration", "visible", "onClose", "className"
         ],
@@ -789,19 +796,24 @@
         "ToastActions": ["children", "className"],
         "ToastClose": ["onClose", "className"]
       },
+      "variants": ["default", "success", "warning", "destructive"],
       "features": [
+        "sonner-inspired-stacking",
+        "gsap-powered-animations",
+        "toast-provider-pattern",
+        "multiple-toast-queue",
+        "bottom-positioned",
+        "auto-stacking-max-3",
+        "scale-and-blur-effects",
         "auto-close-functionality",
-        "compound-component-pattern",
-        "slide-out-animation",
-        "fixed-positioning",
-        "accessibility-compliant",
+        "manual-dismiss",
         "keyboard-navigation",
-        "focus-management",
+        "accessibility-compliant",
         "screen-reader-support",
         "dark-mode",
         "customizable-duration",
-        "manual-close",
-        "composable-structure",
+        "action-buttons",
+        "legacy-component-support",
         "client-component"
       ]
     }

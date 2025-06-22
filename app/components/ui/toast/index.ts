@@ -1,16 +1,5 @@
 export { 
-  Toast, 
-  ToastHeader, 
-  ToastTitle, 
-  ToastDescription, 
-  ToastActions, 
-  ToastClose 
+  ToastProvider,
+  useToast,
 } from './toast';
-export type { 
-  ToastProps, 
-  ToastHeaderProps, 
-  ToastTitleProps, 
-  ToastDescriptionProps, 
-  ToastActionsProps, 
-  ToastCloseProps 
-} from './toast'; 
+export type { ToastData, ToastPosition } from './toast';

@@ -1,207 +1,324 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Toast, ToastHeader, ToastTitle, ToastDescription, ToastActions, ToastClose } from './toast';
+import React from 'react';
+import { useToast, ToastProvider, ToastPosition } from './toast';
 import { Button } from '../button';
 
+// Basic demo - single toast example
 export const BasicToastDemo: React.FC = () => {
-  const [showToast, setShowToast] = useState(false);
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <BasicToastExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const BasicToastExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const showToast = () => {
+    toast({
+      title: 'Success!',
+      description: 'Your changes have been saved.',
+    });
+  };
 
   return (
-    <div className="my-6">
-      <Button onClick={() => setShowToast(true)}>
-        Show Toast
+    <Button onClick={showToast}>
+      Show Toast
+    </Button>
+  );
+};
+
+// Toast variants demo
+export const ToastVariantsDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <ToastVariantsExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const ToastVariantsExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const showDefault = () => {
+    toast({
+      title: 'Information',
+      description: 'This is a default toast notification.',
+    });
+  };
+
+  const showSuccess = () => {
+    toast({
+      title: 'Success!',
+      description: 'Your operation completed successfully.',
+      variant: 'success',
+    });
+  };
+
+  const showWarning = () => {
+    toast({
+      title: 'Warning',
+      description: 'Please check your input before continuing.',
+      variant: 'warning',
+    });
+  };
+
+  const showError = () => {
+    toast({
+      title: 'Error',
+      description: 'Something went wrong. Please try again.',
+      variant: 'destructive',
+    });
+  };
+
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button onClick={showDefault} variant="ghost" size="sm">
+        Default
       </Button>
-      
-      {showToast && (
-        <Toast onClose={() => setShowToast(false)}>
-          <div className="px-6 py-4">
-            <ToastTitle>Success!</ToastTitle>
-            <ToastDescription>Your changes have been saved.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => setShowToast(false)} />
-        </Toast>
-      )}
+      <Button onClick={showSuccess} variant="ghost" size="sm">
+        Success
+      </Button>
+      <Button onClick={showWarning} variant="ghost" size="sm">
+        Warning
+      </Button>
+      <Button onClick={showError} variant="ghost" size="sm">
+        Error
+      </Button>
     </div>
   );
 };
 
-export const MultipleToastsDemo: React.FC = () => {
-  const [toasts, setToasts] = useState<{[key: string]: boolean}>({});
+// Toast with actions demo
+export const ToastWithActionsDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <ToastWithActionsExample />
+      </div>
+    </ToastProvider>
+  );
+};
 
-  const showToast = (id: string) => {
-    setToasts(prev => ({ ...prev, [id]: true }));
-  };
+const ToastWithActionsExample: React.FC = () => {
+  const { toast } = useToast();
 
-  const hideToast = (id: string) => {
-    setToasts(prev => ({ ...prev, [id]: false }));
+  const showToast = () => {
+    toast({
+      title: 'Update Available',
+      description: 'A new version of the app is ready to install.',
+      action: {
+        label: 'Update',
+        onClick: () => console.log('Update clicked!')
+      }
+    });
   };
 
   return (
-    <div className="my-6 space-y-3">
-      <div className="flex flex-wrap gap-3">
-        <Button onClick={() => showToast('info')}>Info Toast</Button>
-        <Button variant="secondary" onClick={() => showToast('success')}>Success Toast</Button>
-        <Button variant="secondary" onClick={() => showToast('warning')}>Warning Toast</Button>
-        <Button variant="secondary" onClick={() => showToast('error')}>Error Toast</Button>
+    <Button onClick={showToast}>
+      Show Toast with Action
+    </Button>
+  );
+};
+
+// Multiple stacked toasts demo
+export const StackedToastsDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <StackedToastsExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const StackedToastsExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const showMultiple = () => {
+    toast({
+      title: 'First Toast',
+      description: 'This is the first notification.',
+    });
+    
+    setTimeout(() => {
+      toast({
+        title: 'Second Toast',
+        description: 'This is the second notification.',
+        variant: 'success',
+      });
+    }, 500);
+    
+    setTimeout(() => {
+      toast({
+        title: 'Third Toast',
+        description: 'This is the third notification.',
+        variant: 'warning',
+      });
+    }, 1000);
+    
+    setTimeout(() => {
+      toast({
+        title: 'Fourth Toast',
+        description: 'This will push the first one out!',
+        variant: 'destructive',
+      });
+    }, 1500);
+  };
+
+  return (
+    <Button onClick={showMultiple} variant="secondary">
+      Show Multiple Toasts
+    </Button>
+  );
+};
+
+// Persistent toast demo
+export const PersistentToastDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <PersistentToastExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const PersistentToastExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const showToast = () => {
+    toast({
+      title: 'Important Notice',
+      description: 'This toast will remain visible until manually closed.',
+      duration: 0, // Persistent
+    });
+  };
+
+  return (
+    <Button onClick={showToast} variant="secondary">
+      Show Persistent Toast
+    </Button>
+  );
+};
+
+// Custom duration demo
+export const CustomDurationDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <CustomDurationExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const CustomDurationExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const showToast = () => {
+    toast({
+      title: 'Quick Toast',
+      description: 'This toast will close in 2 seconds.',
+      duration: 2000,
+    });
+  };
+
+  return (
+    <Button onClick={showToast} variant="ghost">
+      Show Quick Toast (2s)
+    </Button>
+  );
+};
+
+// Dismiss all demo
+export const DismissAllDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <DismissAllExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const DismissAllExample: React.FC = () => {
+  const { toast, dismissAll } = useToast();
+
+  const showMultiple = () => {
+    toast({ title: 'Toast 1', description: 'First notification' });
+    toast({ title: 'Toast 2', description: 'Second notification', variant: 'success' });
+    toast({ title: 'Toast 3', description: 'Third notification', variant: 'warning' });
+  };
+
+  return (
+    <div className="flex gap-3">
+      <Button onClick={showMultiple} variant="secondary" size="sm">
+        Show Multiple
+      </Button>
+      <Button onClick={dismissAll} variant="ghost" size="sm">
+        Dismiss All
+      </Button>
+    </div>
+  );
+};
+
+// Toast positions demo
+export const ToastPositionsDemo: React.FC = () => {
+  return (
+    <ToastProvider>
+      <div className="my-6">
+        <ToastPositionsExample />
+      </div>
+    </ToastProvider>
+  );
+};
+
+const ToastPositionsExample: React.FC = () => {
+  const { toast } = useToast();
+
+  const positions = [
+    { key: 'top-left', label: 'Top Left' },
+    { key: 'top-center', label: 'Top Center' },
+    { key: 'top-right', label: 'Top Right' },
+    { key: 'bottom-left', label: 'Bottom Left' },
+    { key: 'bottom-center', label: 'Bottom Center' },
+    { key: 'bottom-right', label: 'Bottom Right' }
+  ];
+
+  return (
+    <div className="space-y-4 flex flex-col items-center">
+      <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+        Click the buttons to see toasts appear in different positions:
       </div>
       
-      {toasts.info && (
-        <Toast onClose={() => hideToast('info')}>
-          <div className="px-6 py-4">
-            <ToastTitle>Information</ToastTitle>
-            <ToastDescription>This is an informational message.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => hideToast('info')} />
-        </Toast>
-      )}
-      
-      {toasts.success && (
-        <Toast onClose={() => hideToast('success')}>
-          <div className="px-6 py-4">
-            <ToastTitle>Success!</ToastTitle>
-            <ToastDescription>Operation completed successfully.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => hideToast('success')} />
-        </Toast>
-      )}
-      
-      {toasts.warning && (
-        <Toast onClose={() => hideToast('warning')}>
-          <div className="px-6 py-4">
-            <ToastTitle>Warning</ToastTitle>
-            <ToastDescription>Please check your input before proceeding.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => hideToast('warning')} />
-        </Toast>
-      )}
-      
-      {toasts.error && (
-        <Toast onClose={() => hideToast('error')}>
-          <div className="px-6 py-4">
-            <ToastTitle>Error</ToastTitle>
-            <ToastDescription>Something went wrong. Please try again.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => hideToast('error')} />
-        </Toast>
-      )}
-    </div>
-  );
-};
+      <div className="grid grid-cols-3 gap-2 max-w-md">
+        {positions.map((position) => (
+          <Button
+            key={position.key}
+            onClick={() => toast({
+              title: position.label,
+              description: `Toast positioned at ${position.key}`,
+              position: position.key as ToastPosition,
+              variant: 'default'
+            })}
+            variant="secondary"
+            size="sm"
+          >
+            {position.label}
+          </Button>
+        ))}
+      </div>
 
-export const WithActionsDemo: React.FC = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  return (
-    <div className="my-6">
-      <Button onClick={() => setShowToast(true)}>
-        Show Toast with Actions
-      </Button>
-      
-      {showToast && (
-        <Toast onClose={() => setShowToast(false)}>
-          <div className="px-6 py-4">
-            <ToastTitle>Confirmation Required</ToastTitle>
-            <ToastDescription>Are you sure you want to delete this item?</ToastDescription>
-          </div>
-          <ToastActions>
-            <Button variant="ghost" size="sm" onClick={() => setShowToast(false)}>
-              Cancel
-            </Button>
-            <Button variant="secondary" size="sm" onClick={() => setShowToast(false)}>
-              Delete
-            </Button>
-          </ToastActions>
-          <ToastClose onClose={() => setShowToast(false)} />
-        </Toast>
-      )}
-    </div>
-  );
-};
-
-export const WithHeaderDemo: React.FC = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  return (
-    <div className="my-6">
-      <Button onClick={() => setShowToast(true)}>
-        Show Toast with Header
-      </Button>
-      
-      {showToast && (
-        <Toast onClose={() => setShowToast(false)}>
-          <ToastHeader>
-            <ToastTitle>Upload Complete</ToastTitle>
-            <ToastDescription>3 files uploaded successfully</ToastDescription>
-          </ToastHeader>
-          <div className="px-6 py-4">
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
-              <div className="flex justify-between mb-1">
-                <span>document.pdf</span>
-                <span>2.4 MB</span>
-              </div>
-              <div className="flex justify-between mb-1">
-                <span>image.jpg</span>
-                <span>1.2 MB</span>
-              </div>
-              <div className="flex justify-between">
-                <span>data.xlsx</span>
-                <span>3.1 MB</span>
-              </div>
-            </div>
-          </div>
-          <ToastClose onClose={() => setShowToast(false)} />
-        </Toast>
-      )}
-    </div>
-  );
-};
-
-export const AutoCloseDemo: React.FC = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  return (
-    <div className="my-6">
-      <Button onClick={() => setShowToast(true)}>
-        Show Auto-Close Toast (3s)
-      </Button>
-      
-      {showToast && (
-        <Toast 
-          duration={3000} 
-          onClose={() => setShowToast(false)}
-        >
-          <div className="px-6 py-4">
-            <ToastTitle>Auto-Close Toast</ToastTitle>
-            <ToastDescription>This toast will close automatically in 3 seconds.</ToastDescription>
-          </div>
-        </Toast>
-      )}
-    </div>
-  );
-};
-
-export const PersistentToastDemo: React.FC = () => {
-  const [showToast, setShowToast] = useState(false);
-
-  return (
-    <div className="my-6">
-      <Button onClick={() => setShowToast(true)}>
-        Show Persistent Toast
-      </Button>
-      
-      {showToast && (
-        <Toast 
-          duration={0} 
-          onClose={() => setShowToast(false)}
-        >
-          <div className="px-6 py-4">
-            <ToastTitle>Important Notice</ToastTitle>
-            <ToastDescription>This toast will stay visible until manually closed.</ToastDescription>
-          </div>
-          <ToastClose onClose={() => setShowToast(false)} />
-        </Toast>
-      )}
+      <div className="mt-4 p-3 bg-neutral-100 dark:bg-neutral-800 rounded-lg text-sm">
+        <strong>Available positions:</strong> top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
+      </div>
     </div>
   );
 }; 

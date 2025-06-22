@@ -21,7 +21,7 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/app/components/ui/accordion';
 import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '@/app/components/ui/context-menu';
 import { Progress } from '@/app/components/ui/progress';
-import { Toast, ToastTitle, ToastDescription, ToastClose, ToastActions } from '@/app/components/ui/toast';
+import { ToastProvider, useToast } from '@/app/components/ui/toast';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -99,11 +99,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ContextMenuSubTrigger,
     ContextMenuSubContent,
     Progress,
-    Toast,
-    ToastTitle,
-    ToastDescription,
-    ToastClose,
-    ToastActions,
+    ToastProvider,
+    useToast,
     ...components,
   };
 }
