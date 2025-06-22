@@ -2,3 +2,13 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+@theme {
+    --font-haskoy: var(--font-haskoy);
+    --font-pp-neue-machina: var(--font-pp-neue-machina);
+}
+
+@layer base {
+    body {
+      @apply font-haskoy;
+    }
+  }

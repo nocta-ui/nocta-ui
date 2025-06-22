@@ -17,7 +17,7 @@ export default function HomePage() {
           </Badge>
         </div>
 
-        <h1 className="text-6xl sm:text-9xl font-semibold text-neutral-900 dark:text-neutral-100 leading-none pointer-events-none">
+        <h1 className="font-pp-neue-machina text-6xl sm:text-9xl font-semibold text-neutral-900 dark:text-neutral-100 leading-none pointer-events-none">
           NOCTA UI
         </h1>
         
