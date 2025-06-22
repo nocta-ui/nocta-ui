@@ -156,7 +156,7 @@ export const AsChildDemo: React.FC = () => {
 
       <Popover>
         <PopoverTrigger asChild>
-          <button className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+          <button className="px-3 py-2 bg-blue-500 dark:bg-blue-600/50 text-white rounded-md hover:bg-blue-600">
             Custom Element
           </button>
         </PopoverTrigger>
@@ -173,6 +173,23 @@ export const ControlledDemo: React.FC = () => {
 
   return (
     <div className="my-6 space-y-4">
+      <div className="flex gap-2 justify-center">
+        <button
+          onClick={() => setOpen(true)}
+          className="px-3 py-1 text-sm bg-green-500 dark:bg-green-600/50 text-white rounded hover:bg-green-600"
+        >
+          Open
+        </button>
+        <button
+          onClick={() => setOpen(false)}
+          className="px-3 py-1 text-sm bg-red-500 dark:bg-red-600/50 text-white rounded hover:bg-red-600"
+        >
+          Close
+        </button>
+        <span className="px-3 py-1 text-sm bg-neutral-100 dark:bg-neutral-800 rounded">
+          State: {open ? 'Open' : 'Closed'}
+        </span>
+      </div>
       <div className="flex gap-4 justify-center">
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger>Controlled Popover</PopoverTrigger>
@@ -191,24 +208,6 @@ export const ControlledDemo: React.FC = () => {
             </div>
           </PopoverContent>
         </Popover>
-      </div>
-
-      <div className="flex gap-2 justify-center">
-        <button
-          onClick={() => setOpen(true)}
-          className="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600"
-        >
-          Open
-        </button>
-        <button
-          onClick={() => setOpen(false)}
-          className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
-        >
-          Close
-        </button>
-        <span className="px-3 py-1 text-sm bg-neutral-100 dark:bg-neutral-800 rounded">
-          State: {open ? 'Open' : 'Closed'}
-        </span>
       </div>
     </div>
   );

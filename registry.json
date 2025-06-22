@@ -3,6 +3,45 @@
   "description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
   "version": "1.0.0",
   "components": {
+    "accordion": {
+      "name": "Accordion",
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content",
+      "category": "layout",
+      "files": [
+        {
+          "name": "accordion.tsx",
+          "path": "app/components/ui/accordion/accordion.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent"
+      ],
+      "props": {
+        "Accordion": ["children", "type", "variant", "size", "defaultValue", "value", "onValueChange", "className"],
+        "AccordionItem": ["children", "value", "disabled", "className"],
+        "AccordionTrigger": ["children", "className"],
+        "AccordionContent": ["children", "className"]
+      },
+      "types": ["single", "multiple"],
+      "variants": ["default", "card"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "keyboard-navigation",
+        "focus-management",
+        "controlled-uncontrolled",
+        "single-multiple-mode",
+        "dark-mode",
+        "accessibility",
+        "composable"
+      ]
+    },
     "alert": {
       "name": "Alert",
       "description": "Alert component with different variants and nested components",
