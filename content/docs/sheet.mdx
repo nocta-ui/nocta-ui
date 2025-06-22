@@ -1,0 +1,423 @@
+---
+title: Sheet
+description: A slide-out panel component that can be triggered from any side of the screen
+---
+
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from '@/app/components/ui/sheet';
+import { 
+  BasicSheetDemo, 
+  SheetSidesDemo, 
+  SheetSizesDemo, 
+  FormSheetDemo, 
+  NavigationSheetDemo, 
+  ControlledSheetDemo,
+  CustomSheetDemo 
+} from '@/app/components/ui/sheet/sheet-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Sheet component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add sheet
+```
+
+Then import the component:
+
+```tsx
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from '@/components/ui/sheet';
+```
+
+## Basic Usage
+
+The Sheet component provides a slide-out panel that can appear from any side of the screen.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicSheetDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button>Open Sheet</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Sheet Title</SheetTitle>
+          <SheetDescription>
+            This is a basic sheet panel that slides in from the right side of the screen.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Sheet content goes here. You can add any components or content you need.
+          </p>
+        </div>
+        <SheetFooter>
+          <SheetClose>Close</SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sides
+
+The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `bottom`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SheetSidesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Left Side */}
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="secondary">Left Side</Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Left Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the left side.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Content for left-side sheet.
+          </p>
+        </div>
+      </SheetContent>
+    </Sheet>
+
+    {/* Right Side */}
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="secondary">Right Side</Button>
+      </SheetTrigger>
+      <SheetContent side="right">
+        <SheetHeader>
+          <SheetTitle>Right Sheet</SheetTitle>
+          <SheetDescription>
+            This sheet slides in from the right side.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Content for right-side sheet.
+          </p>
+        </div>
+      </SheetContent>
+    </Sheet>
+
+    {/* Top & Bottom sides work similarly */}
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SheetSizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="sm">Small</Button>
+      </SheetTrigger>
+      <SheetContent size="sm">
+        <SheetHeader>
+          <SheetTitle>Small Sheet</SheetTitle>
+          <SheetDescription>
+            This is a small-sized sheet (320px width).
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            Compact content for small sheet.
+          </p>
+        </div>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Form Example
+
+Perfect for forms and data entry interfaces.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FormSheetDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button>Edit Profile</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit Profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you're done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1 space-y-4">
+          <Input
+            label="Name"
+            placeholder="Enter your name"
+            containerClassName="w-full"
+          />
+          <Input
+            label="Email"
+            type="email"
+            placeholder="Enter your email"
+            containerClassName="w-full"
+          />
+          <Input
+            label="Username"
+            placeholder="Enter your username"
+            containerClassName="w-full"
+          />
+        </div>
+        <SheetFooter>
+          <SheetClose>Cancel</SheetClose>
+          <Button>Save Changes</Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Navigation Example
+
+Great for mobile navigation menus and sidebar navigation.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <NavigationSheetDemo />
+  </DocsTab>
+     <DocsTab value="code" title="Code">
+     ```tsx
+     import { List, ChartBar, Folder, Check, Users, Gear, Question } from 'phosphor-react';
+
+     const menuItems = [
+       { name: 'Dashboard', icon: ChartBar, badge: null },
+       { name: 'Projects', icon: Folder, badge: '12' },
+       { name: 'Tasks', icon: Check, badge: '3' },
+       { name: 'Team', icon: Users, badge: null },
+       { name: 'Settings', icon: Gear, badge: null },
+       { name: 'Help', icon: Question, badge: null },
+     ];
+
+     <Sheet>
+       <SheetTrigger asChild>
+         <Button variant="ghost">
+           <List size={16} className="mr-2" />
+           Menu
+         </Button>
+       </SheetTrigger>
+      <SheetContent side="left" size="sm">
+        <SheetHeader>
+          <SheetTitle>Navigation</SheetTitle>
+          <SheetDescription>
+            Access all sections of the application.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-4 flex-1">
+          <nav className="space-y-2">
+            {menuItems.map((item, index) => (
+                <button
+                 key={index}
+                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
+               >
+                 <div className="flex items-center gap-3">
+                   <item.icon size={16} className="text-neutral-600 dark:text-neutral-400" />
+                   <span>{item.name}</span>
+                 </div>
+                 {item.badge && (
+                   <Badge variant="secondary" size="sm">
+                     {item.badge}
+                   </Badge>
+                 )}
+               </button>
+            ))}
+          </nav>
+        </div>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Controlled State
+
+You can control the Sheet's open state programmatically.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ControlledSheetDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <Button onClick={() => setOpen(true)}>
+            Open Sheet (Controlled)
+          </Button>
+          <Button variant="secondary" onClick={() => setOpen(false)}>
+            Close Sheet
+          </Button>
+          <Badge variant={open ? 'success' : 'secondary'}>
+            {open ? 'Open' : 'Closed'}
+          </Badge>
+        </div>
+        
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Controlled Sheet</SheetTitle>
+              <SheetDescription>
+                This sheet is controlled by external state.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="px-6 py-4 flex-1">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                This sheet's open state is managed by the parent component.
+              </p>
+            </div>
+            <SheetFooter>
+              <SheetClose>Close</SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+You can customize the Sheet's appearance and behavior extensively.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomSheetDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    import { Sliders } from 'phosphor-react';
+
+    <Sheet>
+       <SheetTrigger asChild>
+         <Button variant="primary">
+           <Sliders size={16} className="mr-2" />
+           Customization Panel
+         </Button>
+       </SheetTrigger>
+      <SheetContent 
+        showClose={false} 
+        className="bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800"
+      >
+        <SheetHeader className="border-b-2 border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
+          <SheetTitle className="text-xl">Customization</SheetTitle>
+          <SheetDescription>
+            This sheet has custom styling and no default close button.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="px-6 py-6 flex-1 space-y-6">
+          {/* Custom content */}
+        </div>
+        <SheetFooter className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
+          <Button variant="ghost" size="sm">Reset</Button>
+          <SheetClose asChild>
+            <Button size="sm">Apply Changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Props
+
+### Sheet
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Sheet content including trigger and content components |
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes |
+
+### SheetTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Trigger content |
+| `asChild` | `boolean` | `false` | Render as child element |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### SheetContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Sheet content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `side` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Side from which sheet slides in |
+| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'` | Sheet size |
+| `showClose` | `boolean` | `true` | Show default close button |
+
+### SheetHeader, SheetTitle, SheetDescription, SheetFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Content |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### SheetClose
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | `'Close'` | Button content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `asChild` | `boolean` | `false` | Render as child element |
+
+## Accessibility
+
+The Sheet component follows WAI-ARIA guidelines:
+
+- Uses proper `dialog` role and `aria-modal` attributes
+- Implements focus trapping within the sheet
+- Supports keyboard navigation (Tab, Shift+Tab, Escape)
+- Maintains focus management when opening/closing
+- Provides screen reader announcements
+- Supports click-outside-to-close functionality
+
+## Features
+
+- **Multi-directional sliding**: Can slide from left, right, top, or bottom
+- **Customizable sizes**: Five size presets from small to full screen
+- **Keyboard navigation**: Full keyboard support with focus trapping
+- **Controlled/Uncontrolled**: Works with both usage patterns
+- **Smooth animations**: Hardware-accelerated slide transitions
+- **Backdrop blur**: Modern backdrop-filter styling
+- **Body scroll lock**: Prevents background scrolling when open
+- **Dark mode support**: Native dark mode styling
+- **Composable**: Build complex layouts with header, content, and footer
+- **Accessibility**: WCAG 2.1 AA compliant 
