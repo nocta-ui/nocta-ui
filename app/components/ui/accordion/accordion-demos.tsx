@@ -82,7 +82,7 @@ export function CardAccordionDemo() {
 // Multiple open demo
 export function MultipleAccordionDemo() {
   return (
-    <div className="w-full max-w-md mx-auto h-72 relative">
+    <div className="w-full max-w-md mx-auto h-84 relative">
       <Accordion type="multiple" className='absolute left-1/2 -translate-x-1/2 top-10'>
         <AccordionItem value="react">
           <AccordionTrigger>React Basics</AccordionTrigger>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useCallback, useMemo } from 'react';
 
 export interface AccordionProps {
   children: React.ReactNode;
@@ -68,7 +68,7 @@ const useAccordionItem = () => {
 };
 
 // Main Accordion Component
-export const Accordion: React.FC<AccordionProps> = ({
+export const Accordion: React.FC<AccordionProps> = React.memo(({
   children,
   type = 'single',
   variant = 'default',
@@ -86,11 +86,13 @@ export const Accordion: React.FC<AccordionProps> = ({
     return [];
   });
 
-  const openItems = controlledValue 
-    ? (Array.isArray(controlledValue) ? controlledValue : [controlledValue])
-    : internalValue;
+  const openItems = useMemo(() => {
+    return controlledValue 
+      ? (Array.isArray(controlledValue) ? controlledValue : [controlledValue])
+      : internalValue;
+  }, [controlledValue, internalValue]);
 
-  const toggleItem = (itemValue: string) => {
+  const toggleItem = useCallback((itemValue: string) => {
     let newValue: string[];
 
     if (type === 'single') {
@@ -108,9 +110,18 @@ export const Accordion: React.FC<AccordionProps> = ({
     if (onValueChange) {
       onValueChange(type === 'single' ? newValue[0] || '' : newValue);
     }
-  };
+  }, [type, openItems, controlledValue, onValueChange]);
 
-  const isOpen = (itemValue: string) => openItems.includes(itemValue);
+  const isOpen = useCallback((itemValue: string) => openItems.includes(itemValue), [openItems]);
+
+  const contextValue = useMemo(() => ({
+    type,
+    variant,
+    size,
+    openItems,
+    toggleItem,
+    isOpen
+  }), [type, variant, size, openItems, toggleItem, isOpen]);
 
   const baseStyles = `
     w-full
@@ -123,16 +134,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   };
 
   return (
-    <AccordionContext.Provider
-      value={{
-        type,
-        variant,
-        size,
-        openItems,
-        toggleItem,
-        isOpen
-      }}
-    >
+    <AccordionContext.Provider value={contextValue}>
       <div
         className={`
           ${baseStyles}
@@ -145,10 +147,12 @@ export const Accordion: React.FC<AccordionProps> = ({
       </div>
     </AccordionContext.Provider>
   );
-};
+});
+
+Accordion.displayName = 'Accordion';
 
 // Accordion Item
-export const AccordionItem: React.FC<AccordionItemProps> = ({
+export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
   children,
   value,
   className = '',
@@ -157,6 +161,12 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 }) => {
   const { variant, isOpen } = useAccordion();
   const itemIsOpen = isOpen(value);
+
+  const contextValue = useMemo(() => ({
+    value,
+    isOpen: itemIsOpen,
+    disabled
+  }), [value, itemIsOpen, disabled]);
 
   const baseStyles = `
     transition-all duration-200 ease-in-out
@@ -178,13 +188,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   };
 
   return (
-    <AccordionItemContext.Provider
-      value={{
-        value,
-        isOpen: itemIsOpen,
-        disabled
-      }}
-    >
+    <AccordionItemContext.Provider value={contextValue}>
       <div
         className={`
           ${baseStyles}
@@ -197,10 +201,12 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
       </div>
     </AccordionItemContext.Provider>
   );
-};
+});
+
+AccordionItem.displayName = 'AccordionItem';
 
 // Accordion Trigger
-export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
+export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
   children,
   className = '',
   ...props
@@ -208,18 +214,18 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   const { variant, size, toggleItem } = useAccordion();
   const { value, isOpen, disabled } = useAccordionItem();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (!disabled) {
       toggleItem(value);
     }
-  };
+  }, [disabled, toggleItem, value]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleClick();
     }
-  };
+  }, [handleClick]);
 
   const baseStyles = `
     w-full flex items-center justify-between text-left
@@ -268,6 +274,10 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     lg: 'text-base'
   };
 
+  const iconSize = useMemo(() => {
+    return size === 'sm' ? 14 : size === 'md' ? 16 : 20;
+  }, [size]);
+
   return (
     <button
       className={`
@@ -284,8 +294,8 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
     >
       <span className="font-medium">{children}</span>
       <svg
-        width={size === 'sm' ? 14 : size === 'md' ? 16 : 20}
-        height={size === 'sm' ? 14 : size === 'md' ? 16 : 20}
+        width={iconSize}
+        height={iconSize}
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -295,52 +305,80 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
         className={`
           transition-transform duration-200 ease-in-out flex-shrink-0 ml-2
           text-neutral-500 dark:text-neutral-400
+          will-change-transform
           ${isOpen ? 'rotate-180' : 'rotate-0'}
         `}
+        style={{ transform: `rotate(${isOpen ? 180 : 0}deg)` }}
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
     </button>
   );
-};
+});
+
+AccordionTrigger.displayName = 'AccordionTrigger';
 
 // Accordion Content
-export const AccordionContent: React.FC<AccordionContentProps> = ({
+export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
   children,
   className = '',
   ...props
 }) => {
   const { variant, size } = useAccordion();
   const { isOpen } = useAccordionItem();
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const innerRef = React.useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>(0);
+  const rafRef = React.useRef<number | undefined>(undefined);
 
-  const baseStyles = `
-    overflow-hidden transition-all duration-200 ease-in-out
-    not-prose
-  `;
+  const updateHeight = useCallback(() => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
+    
+    rafRef.current = requestAnimationFrame(() => {
+      if (innerRef.current) {
+        const newHeight = innerRef.current.scrollHeight;
+        setHeight(newHeight);
+      }
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if (!innerRef.current) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeight();
+    });
+    
+    resizeObserver.observe(innerRef.current);
+    updateHeight();
+    
+    return () => {
+      resizeObserver.disconnect();
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [updateHeight]);
+
+  React.useEffect(() => {
+    updateHeight();
+  }, [children, updateHeight]);
 
   const sizeStyles = {
     sm: {
-      default: isOpen ? 'pb-2' : 'pb-0',
-      card: isOpen ? 'px-4 py-2' : 'px-4 pb-0'
+      default: 'pb-2',
+      card: 'px-4 py-2'
     },
     md: {
-      default: isOpen ? 'pb-3' : 'pb-0',
-      card: isOpen ? 'px-5 py-3' : 'px-5 pb-0'
+      default: 'pb-3',
+      card: 'px-5 py-3'
     },
     lg: {
-      default: isOpen ? 'pb-4' : 'pb-0',
-      card: isOpen ? 'px-6 py-4' : 'px-6 pb-0'
+      default: 'pb-4',
+      card: 'px-6 py-4'
     }
-  };
-
-  const variants = {
-    default: `
-      ${sizeStyles[size].default}
-    `,
-    card: `
-      ${sizeStyles[size].card}
-      border-t border-neutral-100 dark:border-neutral-700/50
-    `
   };
 
   const sizes = {
@@ -349,25 +387,36 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
     lg: 'text-base'
   };
 
+  const contentStyle = useMemo(() => ({
+    height: isOpen ? `${height}px` : '0px',
+    opacity: isOpen ? 1 : 0,
+  }), [isOpen, height]);
+
   return (
     <div
+      ref={contentRef}
       className={`
-        ${baseStyles}
-        ${variants[variant]}
+        overflow-hidden 
+        transition-all duration-200 ease-out
+        not-prose
         ${sizes[size]}
         ${className}
       `}
-      style={{
-        height: isOpen ? 'auto' : '0',
-        opacity: isOpen ? 1 : 0
-      }}
+      style={contentStyle}
       {...props}
     >
-      {isOpen && (
-        <div className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-          {children}
-        </div>
-      )}
+      <div
+        ref={innerRef}
+        className={`
+          ${sizeStyles[size][variant]}
+          ${variant === 'card' ? 'border-t border-neutral-100 dark:border-neutral-700/50' : ''}
+          text-neutral-600 dark:text-neutral-400 leading-relaxed
+        `}
+      >
+        {children}
+      </div>
     </div>
   );
-}; 
+});
+
+AccordionContent.displayName = 'AccordionContent'; 
