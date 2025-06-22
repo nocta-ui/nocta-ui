@@ -610,6 +610,61 @@
         "client-component"
       ]
     },
+    "context-menu": {
+      "name": "Context Menu",
+      "description": "A context menu component that appears on right-click with full keyboard navigation and submenu support",
+      "category": "overlay",
+      "files": [
+        {
+          "name": "context-menu.tsx",
+          "path": "app/components/ui/context-menu/context-menu.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+      },
+      "exports": [
+        "ContextMenu",
+        "ContextMenuTrigger",
+        "ContextMenuContent",
+        "ContextMenuItem",
+        "ContextMenuSeparator",
+        "ContextMenuSub",
+        "ContextMenuSubTrigger",
+        "ContextMenuSubContent"
+      ],
+      "props": {
+        "ContextMenu": ["children", "className"],
+        "ContextMenuTrigger": ["children", "disabled", "className"],
+        "ContextMenuContent": ["children", "side", "align", "sideOffset", "alignOffset", "avoidCollisions", "onEscapeKeyDown", "onPointerDownOutside", "className"],
+        "ContextMenuItem": ["children", "disabled", "inset", "className", "onClick"],
+        "ContextMenuSeparator": ["className"],
+        "ContextMenuSub": ["children", "open", "onOpenChange"],
+        "ContextMenuSubTrigger": ["children", "disabled", "inset", "className"],
+        "ContextMenuSubContent": ["children", "className"]
+      },
+      "features": [
+        "right-click-trigger",
+        "portal-rendering",
+        "smart-positioning",
+        "viewport-collision-detection",
+        "keyboard-navigation",
+        "focus-management",
+        "click-outside-close",
+        "escape-key-close",
+        "submenu-support",
+        "hover-submenu-trigger",
+        "smooth-animations",
+        "disabled-state",
+        "custom-positioning",
+        "accessibility-compliant",
+        "compound-component-pattern",
+        "dark-mode",
+        "client-component"
+      ]
+    },
     "sheet": {
       "name": "Sheet",
       "description": "Slide-out panel component that can be triggered from any side of the screen",
@@ -690,7 +745,7 @@
     "overlay": {
       "name": "Overlay",
       "description": "Components that overlay content",
-      "components": ["dialog", "popover", "sheet", "tooltip"]
+      "components": ["context-menu", "dialog", "popover", "sheet", "tooltip"]
     },
     "navigation": {
       "name": "Navigation",

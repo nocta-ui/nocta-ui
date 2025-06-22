@@ -19,6 +19,7 @@ import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/app/components/ui/tabs';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from '@/app/components/ui/sheet';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/app/components/ui/accordion';
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '@/app/components/ui/context-menu';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -87,6 +88,12 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AccordionItem,
     AccordionTrigger,
     AccordionContent,
+    ContextMenu,
+    ContextMenuTrigger,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuSeparator,
+    ContextMenuSub,
     ...components,
   };
 }
