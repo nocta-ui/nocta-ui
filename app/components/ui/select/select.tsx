@@ -83,6 +83,15 @@ export const Select: React.FC<SelectProps> = ({
   
   const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
+  // Reset focusedIndex when opening/closing to prevent highlighting issues
+  useEffect(() => {
+    if (open) {
+      setFocusedIndex(-1);
+    } else {
+      setFocusedIndex(-1);
+    }
+  }, [open]);
+
   const handleValueChange = (newValue: string, newDisplayValue: React.ReactNode) => {
     if (controlledValue === undefined) {
       setUncontrolledValue(newValue);
@@ -136,14 +145,16 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
         event.preventDefault();
         if (!open) {
           setOpen(true);
-          setFocusedIndex(0);
+          // Delay focusing to allow options to register
+          setTimeout(() => setFocusedIndex(0), 0);
         }
         break;
       case 'ArrowUp':
         event.preventDefault();
         if (!open) {
           setOpen(true);
-          setFocusedIndex(Math.max(0, options.length - 1));
+          // Delay focusing to allow options to register
+          setTimeout(() => setFocusedIndex(Math.max(0, options.length - 1)), 0);
         }
         break;
     }
@@ -334,7 +345,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       id={contentId}
       role="listbox"
       className={`
-        absolute z-50 w-fit
+        absolute z-50 w-full
         min-w-[8rem] overflow-hidden
         rounded-lg border border-neutral-200 dark:border-neutral-700/50
         bg-white dark:bg-neutral-900
@@ -384,9 +395,9 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     };
   }, [value, disabled, setOptions]);
 
-  // Calculate item index dynamically
+  // Calculate item index dynamically and ensure proper focus state
   const itemIndex = options.findIndex(opt => opt.value === value);
-  const isFocused = itemIndex === focusedIndex;
+  const isFocused = focusedIndex >= 0 && itemIndex >= 0 && itemIndex === focusedIndex;
 
   return (
     <div
