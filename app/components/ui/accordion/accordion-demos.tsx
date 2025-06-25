@@ -163,7 +163,7 @@ export function ControlledAccordionDemo() {
   return (
     <div className="w-full max-w-md mx-auto space-y-4 h-64 flex flex-col justify-center items-center relative">
       <div className="absolute left-1/2 -translate-x-1/2 top-10">
-        <div className="flex gap-2 w-96 mb-10">
+        <div className="flex gap-2 mb-10">
           <button
             onClick={() => setOpenItems(['controlled-1'])}
             className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-white rounded text-sm whitespace-nowrap"

@@ -308,7 +308,6 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
           will-change-transform
           ${isOpen ? 'rotate-180' : 'rotate-0'}
         `}
-        style={{ transform: `rotate(${isOpen ? 180 : 0}deg)` }}
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
