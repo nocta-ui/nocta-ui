@@ -233,7 +233,7 @@ export const RichContentDemo: React.FC = () => {
               </div>
             </div>
             
-            <div className="border-t border-neutral-200 dark:border-neutral-700 pt-3">
+            <div className="border-t border-neutral-300 dark:border-neutral-700 pt-3">
               <div className="space-y-2">
                 <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
                   View Profile
@@ -278,7 +278,7 @@ export const FormPopoverDemo: React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter item name"
-                className="w-full px-3 py-2 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400"
+                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400"
                 required
               />
             </div>
@@ -290,7 +290,7 @@ export const FormPopoverDemo: React.FC = () => {
               <textarea
                 placeholder="Enter description"
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400 resize-none"
               />
             </div>
 
@@ -304,7 +304,7 @@ export const FormPopoverDemo: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-3 py-2 text-sm border border-neutral-200 dark:border-neutral-700 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-800"
+                className="px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-800"
               >
                 Cancel
               </button>

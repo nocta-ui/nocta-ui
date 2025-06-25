@@ -191,7 +191,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
   const variants = {
     default: `
-      border-neutral-200 dark:border-neutral-700/50
+      border-neutral-300 dark:border-neutral-700/50
       bg-white dark:bg-neutral-900
       text-neutral-900 dark:text-neutral-100
       hover:border-neutral-300/50 dark:hover:border-neutral-600/50
@@ -288,7 +288,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         <div
           className={`
             absolute z-50 mt-1 w-full
-            rounded-lg border border-neutral-200 dark:border-neutral-700/50
+            rounded-lg border border-neutral-300 dark:border-neutral-700/50
             bg-white dark:bg-neutral-900
             shadow-lg dark:shadow-xl
             ${popoverClassName}
@@ -296,7 +296,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         >
           {/* Search input */}
           {searchable && (
-            <div className="p-1 border-b border-neutral-200 dark:border-neutral-700/50">
+            <div className="p-1 border-b border-neutral-300 dark:border-neutral-700/50">
               <input
                 ref={searchInputRef}
                 type="text"

@@ -47,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
     <div 
       className={`
         bg-white dark:bg-neutral-900 
-        border border-neutral-200 dark:border-neutral-700/50 
+        border border-neutral-300 dark:border-neutral-700/50 
         rounded-xl 
         shadow-sm dark:shadow-lg 
         hover:shadow-md dark:hover:shadow-xl 

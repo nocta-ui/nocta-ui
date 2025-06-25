@@ -162,7 +162,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 
   const baseStyles = `
     flex h-10 w-fit items-center justify-between
-    rounded-lg border border-neutral-200 dark:border-neutral-700/50
+    rounded-lg border border-neutral-300 dark:border-neutral-700/50
     bg-white dark:bg-neutral-900
     px-3 py-2 text-sm
     placeholder:text-neutral-400 dark:placeholder:text-neutral-500
@@ -347,7 +347,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       className={`
         absolute z-50 w-full
         min-w-[8rem] overflow-hidden
-        rounded-lg border border-neutral-200 dark:border-neutral-700/50
+        rounded-lg border border-neutral-300 dark:border-neutral-700/50
         bg-white dark:bg-neutral-900
         shadow-lg dark:shadow-xl
         ${positionStyles[position]}

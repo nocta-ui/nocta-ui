@@ -175,11 +175,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
 
   const variants = {
     default: `
-      border-b border-neutral-200 dark:border-neutral-700/50
+      border-b border-neutral-300 dark:border-neutral-700/50
       last:border-b-0
     `,
     card: `
-      border border-neutral-200 dark:border-neutral-700/50
+      border border-neutral-300 dark:border-neutral-700/50
       rounded-lg overflow-hidden
       bg-white dark:bg-neutral-900
       shadow-sm dark:shadow-lg

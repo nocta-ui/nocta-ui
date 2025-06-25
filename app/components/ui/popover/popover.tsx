@@ -126,7 +126,7 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       onKeyDown={handleKeyDown}
       className={`
         inline-flex items-center justify-center
-        rounded-lg border border-neutral-200 dark:border-neutral-700/50
+        rounded-lg border border-neutral-300 dark:border-neutral-700/50
         bg-white dark:bg-neutral-900
         px-3 py-2 text-sm font-medium
         text-neutral-900 dark:text-neutral-100
@@ -378,7 +378,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       }}
       className={`
         w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))]
-        rounded-lg border border-neutral-200 dark:border-neutral-700/50
+        rounded-lg border border-neutral-300 dark:border-neutral-700/50
         bg-white dark:bg-neutral-900
         p-4 shadow-lg dark:shadow-xl
         ${animationStyles}

@@ -105,7 +105,7 @@ export const FileUploadDemo: React.FC = () => {
 
   return (
     <div className="my-6 space-y-4 w-64">
-      <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+      <div className="border border-neutral-300 dark:border-neutral-700 rounded-lg p-4">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
             document.pdf

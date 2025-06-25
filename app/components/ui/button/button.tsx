@@ -34,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
       bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 
       hover:bg-neutral-200 dark:hover:bg-neutral-700 
       focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-      border border-neutral-200 dark:border-neutral-600
+      border border-neutral-300 dark:border-neutral-600
     `,
     ghost: `
       text-neutral-700 dark:text-neutral-300 

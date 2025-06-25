@@ -391,7 +391,7 @@ export const CustomSheetDemo: React.FC = () => {
           </Button>
         </SheetTrigger>
         <SheetContent showClose={false} className="bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800">
-          <SheetHeader className="border-b-2 border-neutral-200 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
+          <SheetHeader className="border-b-2 border-neutral-300 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
             <SheetTitle className="text-xl">Customization</SheetTitle>
             <SheetDescription>
               This sheet has custom styling and no default close button.
@@ -419,7 +419,7 @@ export const CustomSheetDemo: React.FC = () => {
             <div className="space-y-3">
               <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Layout</h3>
               <div className="space-y-2">
-                <button className="w-full p-3 text-left border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                <button className="w-full p-3 text-left border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
                   <div className="text-sm font-medium">Compact</div>
                   <div className="text-xs text-neutral-500">Minimal spacing</div>
                 </button>

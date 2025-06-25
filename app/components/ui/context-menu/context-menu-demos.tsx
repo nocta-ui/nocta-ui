@@ -195,7 +195,7 @@ export const DisabledContextMenuDemo: React.FC = () => {
       <div className="space-y-4">
         <ContextMenu>
           <ContextMenuTrigger disabled>
-            <div className="w-full h-24 border border-dashed border-neutral-200 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 opacity-50">
+            <div className="w-full h-24 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 opacity-50">
               <span className="text-neutral-500 dark:text-neutral-500">
                 Context menu disabled
               </span>
@@ -265,7 +265,7 @@ export const FileContextMenuDemo: React.FC = () => {
         {files.map((file, index) => (
           <ContextMenu key={index}>
             <ContextMenuTrigger>
-              <div className="flex items-center gap-3 p-3 border border-neutral-200 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
+              <div className="flex items-center gap-3 p-3 border border-neutral-300 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
                 <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {getFileIcon(file.type)}
                 </svg>

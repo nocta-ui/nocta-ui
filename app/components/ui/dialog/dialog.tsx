@@ -274,7 +274,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
         className={`
           relative z-50 w-full ${sizes[size]}
           bg-white dark:bg-neutral-900 
-          border border-neutral-200 dark:border-neutral-700/50 
+          border border-neutral-300 dark:border-neutral-700/50 
           rounded-xl 
           shadow-xl dark:shadow-2xl 
           backdrop-blur-sm 

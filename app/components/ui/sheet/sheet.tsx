@@ -316,7 +316,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
         className={`
           fixed flex flex-col
           bg-white dark:bg-neutral-900
-          border-neutral-200 dark:border-neutral-700/50
+          border-neutral-300 dark:border-neutral-700/50
           shadow-xl dark:shadow-2xl border
           ${positions[side]}
           ${side === 'left' ? 'rounded-r-2xl' : ''}
@@ -497,7 +497,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
         focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
         focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-        border border-neutral-200 dark:border-neutral-600
+        border border-neutral-300 dark:border-neutral-600
         transition-all duration-200 ease-in-out
         not-prose
         ${className}

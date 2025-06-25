@@ -95,9 +95,9 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
   };
 
   return (
-    <div className="border border-neutral-200 dark:border-neutral-800 rounded-lg">
+    <div className="border border-neutral-300 dark:border-neutral-800 rounded-lg">
       {/* Tab Headers */}
-      <div className="flex items-center gap-1 px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 rounded-t-lg">
+      <div className="flex items-center gap-1 px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-300 dark:border-neutral-800 rounded-t-lg">
         {tabs.map((tab) => (
           <DocsTab
             key={tab.props.value}

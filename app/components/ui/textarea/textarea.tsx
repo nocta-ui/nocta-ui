@@ -38,7 +38,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 
   const variants = {
     default: `
-      border-neutral-200 dark:border-neutral-700/50
+      border-neutral-300 dark:border-neutral-700/50
       bg-white dark:bg-neutral-900
       text-neutral-900 dark:text-neutral-100
       hover:border-neutral-300/50 dark:hover:border-neutral-600/50

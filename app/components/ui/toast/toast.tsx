@@ -71,11 +71,13 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const toastRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isExiting = useRef(false);
+  const hasAnimatedIn = useRef(false);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
 
   const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center' } = toast;
 
   const variants = {
-    default: 'bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700/50',
+    default: 'bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700/50',
     success: 'bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800/50 text-green-900 dark:text-green-100',
     warning: 'bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800/50 text-yellow-900 dark:text-yellow-100',
     destructive: 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/50 text-red-900 dark:text-red-100'
@@ -142,17 +144,18 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const handleClose = useCallback(() => {
     if (!toastRef.current || isExiting.current) return;
 
-    // Mark as exiting to prevent positioning conflicts
     isExiting.current = true;
 
-    // Clear timeout if closing manually
+    if (animationRef.current) {
+      animationRef.current.kill();
+    }
+
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
 
-    // Animate out using position-specific configuration
-    gsap.to(toastRef.current, {
+    animationRef.current = gsap.to(toastRef.current, {
       x: config.animateOut.x,
       y: config.animateOut.y,
       opacity: 0,
@@ -160,7 +163,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       duration: 0.3,
       ease: 'power2.in',
       onComplete: () => {
-        // Remove from provider's toast list
         onRemove(id);
       }
     });
@@ -173,68 +175,41 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     }
   }, [shouldClose, handleClose]);
 
-  // Track if this is the initial render to distinguish between new toasts and position updates
-  const isInitialRender = useRef(true);
-  
-  // Position and animation based on stack
   useEffect(() => {
     if (!toastRef.current || isExiting.current) return;
 
     const element = toastRef.current;
     const isLatest = index === 0;
     const isTopPosition = position.startsWith('top-');
-    
-    // Calculate offset based on position (top positions stack downward, bottom positions stack upward)
     const offset = isTopPosition ? index * 8 : -(index * 8);
-    const scale = Math.max(0.92, 1 - index * 0.04); // Slight scale reduction for stacked items
+    const scale = Math.max(0.92, 1 - index * 0.04);
 
-    if (isInitialRender.current && isLatest) {
-      // New toast - animate in using position-specific configuration
-      gsap.fromTo(element, 
-        { 
-          x: config.animateIn.x,
-          y: config.animateIn.y,
-          opacity: 0, 
-          scale: 0.9
-        },
-        { 
-          x: 0,
-          y: offset,
-          opacity: 1, 
-          scale: 1,
-          duration: 0.4, 
-          ease: 'power2.out',
-          zIndex: 50 - index,
-          onComplete: () => {
-            // Focus first focusable element when toast appears
-            if (isLatest) {
-              const focusableElements = getFocusableElements();
-              if (focusableElements.length > 0) {
-                focusableElements[0].focus();
-              } else {
-                element.focus();
-              }
-            }
-          }
-        }
-      );
-      isInitialRender.current = false;
-    } else {
-      // Existing toasts - animate to new position (whether stacked or promoted)
-      gsap.to(element, {
+    if (animationRef.current) {
+      animationRef.current.kill();
+    }
+
+    if (!hasAnimatedIn.current && isLatest) {
+      hasAnimatedIn.current = true;
+      
+      gsap.set(element, {
+        x: config.animateIn.x,
+        y: config.animateIn.y,
+        opacity: 0,
+        scale: 0.9,
+        zIndex: 50 - index
+      });
+
+      animationRef.current = gsap.to(element, {
         x: 0,
         y: offset,
-        scale: isLatest ? 1 : scale, // Full scale if promoted to latest, otherwise scaled
-        opacity: index >= 3 ? 0 : 1, // Hide if more than 3
-        duration: 0.3,
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
         ease: 'power2.out',
-        zIndex: 50 - index,
+        force3D: true,
+        delay: 0.01,
         onComplete: () => {
-          if (index >= 3) {
-            // Remove from provider's toast list after animation
-            onRemove(id);
-          } else if (isLatest) {
-            // If this toast was promoted to latest, focus it
+          if (isLatest) {
             const focusableElements = getFocusableElements();
             if (focusableElements.length > 0) {
               focusableElements[0].focus();
@@ -244,18 +219,36 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
           }
         }
       });
+    } else {
+      gsap.set(element, { zIndex: 50 - index });
       
-      // Mark as no longer initial render after first update
-      if (isInitialRender.current) {
-        isInitialRender.current = false;
-      }
+      animationRef.current = gsap.to(element, {
+        x: 0,
+        y: offset,
+        scale: isLatest ? 1 : scale,
+        opacity: index >= 3 ? 0 : 1,
+        duration: 0.3,
+        ease: 'power2.out',
+        force3D: true,
+        onComplete: () => {
+          if (index >= 3) {
+            onRemove(id);
+          } else if (isLatest && !hasAnimatedIn.current) {
+            hasAnimatedIn.current = true;
+            const focusableElements = getFocusableElements();
+            if (focusableElements.length > 0) {
+              focusableElements[0].focus();
+            } else {
+              element.focus();
+            }
+          }
+        }
+      });
     }
-     }, [index, id, onRemove, position, config.animateIn]);
+  }, [index, position]);
 
-  // Auto dismiss
   useEffect(() => {
-    // Don't auto-dismiss if toast is marked for programmatic closing
-    if (shouldClose) return;
+    if (shouldClose || !hasAnimatedIn.current) return;
     
     if (duration > 0) {
       timeoutRef.current = setTimeout(() => {
@@ -269,7 +262,18 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         timeoutRef.current = null;
       }
     };
-  }, [duration, handleClose, shouldClose]);
+  }, [duration, shouldClose]);
+
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   // Enhanced keyboard handling with focus trap
   useEffect(() => {
@@ -323,6 +327,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         border rounded-lg shadow-lg dark:shadow-xl
         backdrop-blur-sm overflow-hidden
         not-prose pointer-events-auto
+        will-change-transform
       `}
       style={{ 
         zIndex: 50 - index,
@@ -476,4 +481,4 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       <ToastManager toasts={toastsWithIndex} onRemove={dismiss} />
     </ToastContext.Provider>
   );
-}; 
+};

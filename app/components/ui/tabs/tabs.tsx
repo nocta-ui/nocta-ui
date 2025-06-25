@@ -131,7 +131,7 @@ export const TabsList: React.FC<TabsListProps> = ({
       gap-1
     `,
     underline: `
-      border-b border-neutral-200 dark:border-neutral-700
+      border-b border-neutral-300 dark:border-neutral-700
       gap-0
     `
   };

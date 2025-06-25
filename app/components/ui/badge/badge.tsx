@@ -34,7 +34,7 @@ export const Badge: React.FC<BadgeProps> = ({
       bg-neutral-100 dark:bg-neutral-800
       text-neutral-900 dark:text-neutral-100
       hover:bg-neutral-200 dark:hover:bg-neutral-700
-      border border-neutral-200 dark:border-neutral-600
+      border border-neutral-300 dark:border-neutral-600
     `,
     destructive: `
       bg-red-500 dark:bg-red-600/50
@@ -54,7 +54,7 @@ export const Badge: React.FC<BadgeProps> = ({
     outline: `
       bg-transparent
       text-neutral-900 dark:text-neutral-100
-      border border-neutral-200 dark:border-neutral-700/50
+      border border-neutral-300 dark:border-neutral-700/50
       hover:bg-neutral-50 dark:hover:bg-neutral-800
     `
   };
