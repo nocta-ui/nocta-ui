@@ -25,6 +25,7 @@
       "select",
       "sheet",
       "switch",
+      "table",
       "tabs",
       "textarea",
       "toast",

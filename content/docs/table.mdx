@@ -1,0 +1,391 @@
+---
+title: Table
+description: A powerful, highly customizable table component with sorting, filtering, pagination, and advanced features
+---
+
+import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
+import { 
+  BasicTableDemo,
+  SortableTableDemo,
+  FilterableTableDemo,
+  AdvancedTableDemo,
+  TableVariantsDemo,
+  TableSizesDemo,
+  PaginationTableDemo,
+  LoadingTableDemo,
+  EmptyTableDemo
+} from '@/app/components/ui/table/table-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Table component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add table
+```
+
+Then import the components you need:
+
+```tsx
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableFooter,
+  TableCaption,
+} from '@/components/ui/table';
+```
+
+## Basic Usage
+
+### Simple Table
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const columns = [
+      { key: 'name', title: 'Name' },
+      { key: 'email', title: 'Email' },
+      { key: 'role', title: 'Role' },
+      { key: 'joinDate', title: 'Join Date' }
+    ];
+
+    <Table 
+      columns={columns} 
+      data={users}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Sortable Table
+
+Enable sorting by setting the `sortable` prop and defining which columns are sortable.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SortableTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [data, setData] = useState(users);
+
+    const columns = [
+      { key: 'name', title: 'Name', sortable: true },
+      { key: 'email', title: 'Email', sortable: true },
+      { key: 'role', title: 'Role', sortable: true },
+      { key: 'joinDate', title: 'Join Date', sortable: true }
+    ];
+
+    const handleSort = (key, direction) => {
+      // Your sorting logic here
+      const sorted = [...data].sort((a, b) => {
+        if (direction === 'asc') return a[key] > b[key] ? 1 : -1;
+        return a[key] < b[key] ? 1 : -1;
+      });
+      setData(sorted);
+    };
+
+    <Table 
+      columns={columns} 
+      data={data}
+      sortable
+      onSort={handleSort}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Filterable Table
+
+Enable column filtering by setting the `filterable` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <FilterableTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [filteredData, setFilteredData] = useState(users);
+
+    const columns = [
+      { key: 'name', title: 'Name', filterable: true },
+      { key: 'email', title: 'Email', filterable: true },
+      { key: 'role', title: 'Role', filterable: true },
+      { key: 'status', title: 'Status', filterable: true }
+    ];
+
+    const handleFilter = (filters) => {
+      let result = users;
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value) {
+          result = result.filter(user => 
+            user[key]?.toString().toLowerCase().includes(value.toLowerCase())
+          );
+        }
+      });
+      setFilteredData(result);
+    };
+
+    <Table 
+      columns={columns} 
+      data={filteredData}
+      filterable
+      onFilter={handleFilter}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Advanced Features
+
+### Custom Rendering & Actions
+
+Use the `render` function in column definitions for custom cell content.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <AdvancedTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+         ```tsx
+     const columns = [
+       { 
+         key: 'name', 
+         title: 'User',
+         render: (value, record) => (
+           <div className="flex items-center gap-3">
+             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
+               {value.charAt(0)}
+             </div>
+             <div className="min-w-0">
+               <div className="font-medium truncate">{value}</div>
+               <div className="text-xs text-neutral-500 truncate">{record.email}</div>
+             </div>
+           </div>
+         )
+       },
+       { 
+         key: 'status', 
+         title: 'Status',
+         render: (value) => (
+           <Badge variant={getStatusVariant(value)}>
+             {value.charAt(0).toUpperCase() + value.slice(1)}
+           </Badge>
+         )
+       },
+       {
+         key: 'actions',
+         title: 'Actions',
+         align: 'right',
+         render: (_, record) => (
+           <div className="flex items-center gap-1">
+             <Button variant="ghost" size="sm">Edit</Button>
+             <Button variant="ghost" size="sm">Delete</Button>
+           </div>
+         )
+       }
+     ];
+
+     <Table 
+       columns={columns} 
+       data={users}
+       sortable
+       filterable
+       onRowClick={(record) => console.log('Clicked:', record)}
+     />
+     ```
+  </DocsTab>
+</DocsTabs>
+
+### Pagination
+
+Add pagination support with the `pagination` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <PaginationTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
+
+    const handlePageChange = (page, size) => {
+      setCurrentPage(page);
+    };
+
+    <Table 
+      columns={columns} 
+      data={paginatedData}
+      pagination={{
+        current: currentPage,
+        pageSize: pageSize,
+        total: totalRecords,
+        onChange: handlePageChange
+      }}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Table component supports different visual variants.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <TableVariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // Default variant
+    <Table columns={columns} data={data} />
+
+    // Striped variant
+    <Table columns={columns} data={data} variant="striped" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <TableSizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Table columns={columns} data={data} size="sm" />
+    <Table columns={columns} data={data} size="md" />
+    <Table columns={columns} data={data} size="lg" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## States
+
+### Loading State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <LoadingTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Table 
+      columns={columns} 
+      data={data}
+      loading={isLoading}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Empty State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <EmptyTableDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Table 
+      columns={columns} 
+      data={[]}
+      emptyText="No users found. Add some users to get started."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Composable Components
+
+For more control, you can use the individual table components:
+
+```tsx
+<Table>
+  <TableCaption>A list of your recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableCell header>Invoice</TableCell>
+      <TableCell header>Status</TableCell>
+      <TableCell header>Method</TableCell>
+      <TableCell header align="right">Amount</TableCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit Card</TableCell>
+      <TableCell align="right">$250.00</TableCell>
+    </TableRow>
+  </TableBody>
+  <TableFooter>
+    <TableRow>
+      <TableCell colSpan={3}>Total</TableCell>
+      <TableCell align="right">$2,500.00</TableCell>
+    </TableRow>
+  </TableFooter>
+</Table>
+```
+
+## Props
+
+### Table Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `columns` | `TableColumn[]` | — | Column definitions |
+| `data` | `T[]` | — | Table data |
+| `variant` | `'default' \| 'striped'` | `'default'` | Table style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Table size |
+| `loading` | `boolean` | `false` | Show loading state |
+| `emptyText` | `string` | `'No data available'` | Text shown when data is empty |
+| `sortable` | `boolean` | `false` | Enable sorting |
+| `filterable` | `boolean` | `false` | Enable filtering |
+| `pagination` | `PaginationConfig` | — | Pagination configuration |
+| `onSort` | `(key: string, direction: SortDirection) => void` | — | Sort callback |
+| `onFilter` | `(filters: Record<string, string>) => void` | — | Filter callback |
+| `onRowClick` | `(record: T, index: number) => void` | — | Row click handler |
+| `rowKey` | `string \| ((record: T) => string)` | `'id'` | Row key accessor |
+| `rowClassName` | `string \| ((record: T, index: number) => string)` | — | Row class name |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### TableColumn Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `key` | `string` | — | Data key |
+| `title` | `string` | — | Column header |
+| `sortable` | `boolean` | `true` | Enable sorting for this column |
+| `filterable` | `boolean` | `true` | Enable filtering for this column |
+| `render` | `(value: any, record: T, index: number) => ReactNode` | — | Custom render function |
+| `width` | `string \| number` | — | Column width |
+| `align` | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
+| `className` | `string` | — | Additional CSS classes |
+
+### Individual Component Props
+
+All individual components (`TableHeader`, `TableBody`, `TableRow`, `TableCell`, `TableFooter`, `TableCaption`) accept their respective HTML attributes plus:
+
+- `className` - Additional CSS classes
+- `children` - Component content
+
+`TableCell` additionally supports:
+- `header` - Whether this is a header cell
+- `align` - Text alignment
+- `colSpan` - Column span
+- `rowSpan` - Row span
+- `sortable` - Enable sorting (for header cells)
+- `sortDirection` - Current sort direction
+- `onSort` - Sort callback 

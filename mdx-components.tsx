@@ -22,6 +22,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent } from '@/app/components/ui/context-menu';
 import { Progress } from '@/app/components/ui/progress';
 import { ToastProvider, useToast } from '@/app/components/ui/toast';
+import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -101,6 +102,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Progress,
     ToastProvider,
     useToast,
+    Table,
+    TableHeader,
+    TableBody,
+    TableRow,
+    TableCell,
+    TableFooter,
+    TableCaption,
     ...components,
   };
 }

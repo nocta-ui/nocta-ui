@@ -397,6 +397,63 @@
         "client-component"
       ]
     },
+    "table": {
+      "name": "Table",
+      "description": "A powerful, highly customizable table component with sorting, filtering, pagination, and advanced features",
+      "category": "data-display",
+      "files": [
+        {
+          "name": "table.tsx",
+          "path": "app/components/ui/table/table.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": [
+        "Table",
+        "TableHeader",
+        "TableBody",
+        "TableRow", 
+        "TableCell",
+        "TableFooter",
+        "TableCaption"
+      ],
+      "props": {
+        "Table": [
+          "columns", "data", "variant", "size", "loading", "emptyText", 
+          "sortable", "filterable", "pagination", "onSort", "onFilter", 
+          "className", "rowKey", "onRowClick", "rowClassName"
+        ],
+        "TableHeader": ["children", "className"],
+        "TableBody": ["children", "className"],
+        "TableRow": ["children", "className", "clickable"],
+        "TableCell": ["children", "className", "align", "header", "sortable", "sortDirection", "onSort", "colSpan", "rowSpan"],
+        "TableFooter": ["children", "className"],
+        "TableCaption": ["children", "className"]
+      },
+      "variants": ["default", "striped"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "sorting",
+        "filtering", 
+        "pagination",
+        "custom-rendering",
+        "row-selection",
+        "column-alignment",
+        "responsive-design",
+        "loading-state",
+        "empty-state",
+        "hover-effects",
+        "click-handlers",
+        "type-safe",
+        "composable",
+        "accessibility",
+        "dark-mode",
+        "client-component"
+      ]
+    },
     "textarea": {
       "name": "Textarea",
       "description": "Textarea component with variants, labels, and helper text",
@@ -827,7 +884,7 @@
     "data-display": {
       "name": "Data Display",
       "description": "Components for displaying data and content",
-      "components": ["avatar", "badge"]
+      "components": ["avatar", "badge", "table"]
     },
     "feedback": {
       "name": "Feedback", 
@@ -837,7 +894,7 @@
     "layout": {
       "name": "Layout",
       "description": "Components for page and content layout",
-      "components": ["card"]
+      "components": ["accordion", "card"]
     },
     "overlay": {
       "name": "Overlay",
