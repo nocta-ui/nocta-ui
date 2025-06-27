@@ -245,7 +245,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         }
       });
     }
-  }, [index, position]);
+  }, [index, position, config.animateIn.x, config.animateIn.y, id, onRemove]);
 
   useEffect(() => {
     if (shouldClose || !hasAnimatedIn.current) return;
@@ -262,7 +262,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         timeoutRef.current = null;
       }
     };
-  }, [duration, shouldClose]);
+  }, [duration, shouldClose, handleClose]);
 
   useEffect(() => {
     return () => {
