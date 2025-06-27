@@ -6,7 +6,7 @@ import { Button } from '../button';
 import { Badge } from '../badge';
 
 // Sample data types
-interface User {
+interface User extends Record<string, unknown> {
   id: number;
   name: string;
   email: string;
@@ -16,7 +16,7 @@ interface User {
   lastSeen: string;
 }
 
-interface Product {
+interface Product extends Record<string, unknown> {
   id: number;
   name: string;
   category: string;
@@ -25,7 +25,7 @@ interface Product {
   rating: number;
 }
 
-interface Order {
+interface Order extends Record<string, unknown> {
   id: string;
   customer: string;
   product: string;
@@ -130,9 +130,12 @@ export const SortableTableDemo: React.FC = () => {
       const aVal = a[key as keyof User];
       const bVal = b[key as keyof User];
       
-      if (aVal < bVal) return direction === 'asc' ? -1 : 1;
-      if (aVal > bVal) return direction === 'asc' ? 1 : -1;
-      return 0;
+      const aStr = String(aVal ?? '');
+      const bStr = String(bVal ?? '');
+      
+      return direction === 'asc' 
+        ? aStr.localeCompare(bStr)
+        : bStr.localeCompare(aStr);
     });
     
     setData(sorted);
@@ -208,10 +211,10 @@ export const AdvancedTableDemo: React.FC = () => {
       render: (value, record) => (
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
-            {value.charAt(0)}
+            {String(value).charAt(0)}
           </div>
           <div className="min-w-0">
-            <div className="font-medium text-neutral-900 dark:text-neutral-100 truncate">{value}</div>
+            <div className="font-medium text-neutral-900 dark:text-neutral-100 truncate">{String(value)}</div>
             <div className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{record.email}</div>
           </div>
         </div>
@@ -223,8 +226,8 @@ export const AdvancedTableDemo: React.FC = () => {
       sortable: true,
       filterable: true,
       render: (value) => (
-        <Badge variant={getStatusBadgeVariant(value)} size="sm">
-          {value.charAt(0).toUpperCase() + value.slice(1)}
+        <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
+          {String(value).charAt(0).toUpperCase() + String(value).slice(1)}
         </Badge>
       )
     },
@@ -232,7 +235,7 @@ export const AdvancedTableDemo: React.FC = () => {
       key: 'actions',
       title: 'Actions',
       align: 'right',
-      render: (_, record) => (
+      render: (_) => (
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="sm">Edit</Button>
           <Button variant="ghost" size="sm">Delete</Button>
@@ -319,7 +322,7 @@ export const PaginationTableDemo: React.FC = () => {
       key: 'amount', 
       title: 'Amount', 
       align: 'right',
-      render: (value) => `$${value.toLocaleString()}`
+      render: (value) => `$${String(value).toLocaleString()}`
     },
     { 
       key: 'status', 
@@ -330,12 +333,12 @@ export const PaginationTableDemo: React.FC = () => {
           completed: 'success',
           cancelled: 'destructive'
         };
-        return <Badge variant={colors[value as keyof typeof colors] as any}>{value}</Badge>;
+        return <Badge variant={colors[value as keyof typeof colors] as 'warning' | 'success' | 'destructive'}>{String(value)}</Badge>;
       }
     }
   ];
 
-  const handlePageChange = (page: number, size: number) => {
+  const handlePageChange = (page: number, _size: number) => {
     setCurrentPage(page);
   };
 

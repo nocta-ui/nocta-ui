@@ -7,18 +7,18 @@ export type SortDirection = 'asc' | 'desc' | null;
 export type TableVariant = 'default' | 'striped';
 export type TableSize = 'sm' | 'md' | 'lg';
 
-export interface TableColumn<T = any> {
+export interface TableColumn<T = Record<string, unknown>> {
   key: string;
   title: string;
   sortable?: boolean;
   filterable?: boolean;
-  render?: (value: any, record: T, index: number) => React.ReactNode;
+  render?: (value: unknown, record: T, index: number) => React.ReactNode;
   width?: string | number;
   align?: 'left' | 'center' | 'right';
   className?: string;
 }
 
-export interface TableProps<T = any> extends Omit<React.TableHTMLAttributes<HTMLTableElement>, 'size'> {
+export interface TableProps<T = Record<string, unknown>> extends Omit<React.TableHTMLAttributes<HTMLTableElement>, 'size'> {
   columns: TableColumn<T>[];
   data: T[];
   variant?: TableVariant;
@@ -80,7 +80,7 @@ export interface TableCaptionProps extends React.HTMLAttributes<HTMLTableCaption
 }
 
 // Base Table Component
-export const Table = <T extends Record<string, any>>({
+export const Table = <T extends Record<string, unknown>>({
   columns,
   data,
   variant = 'default',
@@ -108,7 +108,7 @@ export const Table = <T extends Record<string, any>>({
     if (typeof rowKey === 'function') {
       return rowKey(record);
     }
-    return record[rowKey] || index.toString();
+    return String(record[rowKey] || index);
   }, [rowKey]);
 
   const handleSort = useCallback((key: string) => {
@@ -156,9 +156,13 @@ export const Table = <T extends Record<string, any>>({
         const aVal = a[sortState.key];
         const bVal = b[sortState.key];
         
-        if (aVal < bVal) return sortState.direction === 'asc' ? -1 : 1;
-        if (aVal > bVal) return sortState.direction === 'asc' ? 1 : -1;
-        return 0;
+        // Handle comparison for unknown types safely
+        const aStr = String(aVal ?? '');
+        const bStr = String(bVal ?? '');
+        
+        return sortState.direction === 'asc' 
+          ? aStr.localeCompare(bStr)
+          : bStr.localeCompare(aStr);
       });
     }
 
