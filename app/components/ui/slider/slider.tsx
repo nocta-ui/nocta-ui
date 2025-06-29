@@ -295,23 +295,24 @@ export const Slider: React.FC<SliderProps> = ({
           ${trackSizes[size]}
           ${trackClassName}
         `}>
-          {/* Fill */}
-          <div
-            className={`
-              absolute transition-all duration-200 ease-out rounded-full
-              ${fillVariants[variant]}
-              ${trackSizes[size]}
-              ${orientation === 'horizontal' ? 'left-0 top-0' : 'bottom-0 left-0'}
-            `}
-            style={fillStyle}
-          />
+                  {/* Fill */}
+        <div
+          className={`
+            absolute rounded-full
+            ${fillVariants[variant]}
+            ${trackSizes[size]}
+            ${orientation === 'horizontal' ? 'left-0 top-0' : 'bottom-0 left-0'}
+            ${!isDragging ? 'transition-all duration-200 ease-out' : ''}
+          `}
+          style={fillStyle}
+        />
         </div>
         
         {/* Thumb */}
         <div
           ref={thumbRef}
           className={`
-            absolute rounded-full shadow-lg transition-all duration-200 ease-out
+            absolute rounded-full shadow-lg
             transform hover:scale-110 active:scale-105
             ${thumbSizes[size]}
             ${thumbVariants[variant]}
@@ -319,6 +320,7 @@ export const Slider: React.FC<SliderProps> = ({
             ${disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'}
             ${thumbClassName}
             ${orientation === 'horizontal' ? 'top-1/2 -translate-y-1/2' : 'left-1/2 -translate-x-1/2'}
+            ${!isDragging ? 'transition-all duration-200 ease-out' : ''}
           `}
           style={thumbStyle}
         />
