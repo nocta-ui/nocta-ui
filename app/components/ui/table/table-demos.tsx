@@ -99,7 +99,7 @@ export const BasicTableDemo: React.FC = () => {
   ];
 
   return (
-    <div className="my-6">
+    <div className="my-6 overflow-x-auto">
       <Table 
         columns={columns} 
         data={sampleUsers}
@@ -142,7 +142,7 @@ export const SortableTableDemo: React.FC = () => {
   };
 
   return (
-    <div className="my-6">
+    <div className="my-6 overflow-x-auto">
       <Table 
         columns={columns} 
         data={data}
@@ -179,7 +179,7 @@ export const FilterableTableDemo: React.FC = () => {
   };
 
   return (
-    <div className="my-6 max-w-2xl">
+    <div className="my-6 max-w-2xl overflow-x-auto">
       <Table 
         columns={columns} 
         data={filteredData}
@@ -245,7 +245,7 @@ export const AdvancedTableDemo: React.FC = () => {
   ];
 
   return (
-    <div className="my-6">
+    <div className="my-6 overflow-x-auto">
       <Table 
         columns={columns} 
         data={sampleUsers}
@@ -267,7 +267,7 @@ export const TableVariantsDemo: React.FC = () => {
   ];
 
   return (
-    <div className="my-6 space-y-8">
+    <div className="my-6 space-y-8 overflow-x-auto">
       <div>
         <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Default</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 3)} />
@@ -290,7 +290,7 @@ export const TableSizesDemo: React.FC = () => {
   ];
 
   return (
-    <div className="my-6 space-y-8">
+    <div className="my-6 space-y-8 overflow-x-auto">
       <div>
         <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Small</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 2)} size="sm" />
@@ -380,7 +380,7 @@ export const LoadingTableDemo: React.FC = () => {
   }, []);
 
   return (
-    <div className="my-6">
+    <div className="my-6 overflow-x-auto">
       <div className="mb-4">
         <Button 
           onClick={() => setLoading(!loading)} 

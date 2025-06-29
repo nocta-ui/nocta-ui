@@ -207,8 +207,6 @@ export const Table = <T extends Record<string, unknown>>({
     return className.trim();
   }, [variant, onRowClick, rowClassName]);
 
-
-
   return (
     <div className="not-prose">
       <div className={`
@@ -221,6 +219,7 @@ export const Table = <T extends Record<string, unknown>>({
         ${getVariantStyles()}
         ${className}
       `}>
+
         <div className="overflow-x-auto">
           <table
             className={`
@@ -242,15 +241,15 @@ export const Table = <T extends Record<string, unknown>>({
                     className={column.className}
                     style={{ width: column.width }}
                   >
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-1">
                       <span>{column.title}</span>
                       {filterable && column.filterable !== false && (
                         <input
                           type="text"
-                          placeholder={`Filter ${column.title.toLowerCase()}...`}
+                          placeholder="Filter..."
                           value={filters[column.key] || ''}
                           onChange={(e) => handleFilter(column.key, e.target.value)}
-                          className="px-3 py-1.5 text-xs rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-500/50 dark:focus:ring-neutral-400/50 transition-colors"
+                          className="px-2 py-1 text-xs rounded border border-neutral-200/60 dark:border-neutral-600/60 bg-neutral-50/80 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500 focus:bg-white dark:focus:bg-neutral-800 transition-all duration-200 backdrop-blur-sm"
                           onClick={(e) => e.stopPropagation()}
                         />
                       )}
@@ -468,10 +467,12 @@ export const TableCell: React.FC<TableCellProps> = ({
       rowSpan,
       ...props
     },
-    <div className={`flex items-center ${align === 'center' ? 'justify-center' : align === 'right' ? 'justify-end' : 'justify-start'}`}>
-      {children}
-      {getSortIcon()}
-    </div>
+    sortable || header ? (
+      <div className={`flex items-center ${align === 'center' ? 'justify-center' : align === 'right' ? 'justify-end' : 'justify-start'}`}>
+        {children}
+        {getSortIcon()}
+      </div>
+    ) : children
   );
 };
 
