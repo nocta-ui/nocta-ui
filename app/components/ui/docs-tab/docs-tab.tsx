@@ -124,7 +124,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <div className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto`}>
+          <div className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-visible`}>
             {activeContent?.props.children}
           </div>
         </div>

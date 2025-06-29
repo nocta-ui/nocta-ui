@@ -17,8 +17,6 @@ export const BasicCalendarDemo: React.FC = () => {
   );
 };
 
-
-
 export const VariantsDemo: React.FC = () => {
   const [defaultDate, setDefaultDate] = useState<Date | undefined>();
   const [compactDate, setCompactDate] = useState<Date | undefined>();
