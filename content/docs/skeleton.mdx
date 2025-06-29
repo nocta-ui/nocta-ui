@@ -1,0 +1,293 @@
+---
+title: Skeleton
+description: Loading skeleton component with variants, shapes, and animations for creating content placeholders during loading states
+---
+
+import { Skeleton } from '@/app/components/ui/skeleton';
+import { 
+  BasicSkeletonDemo,
+  PulseSkeletonDemo,
+  WaveSkeletonDemo,
+  VariantsDemo,
+  SizesDemo,
+  ShapesDemo,
+  TextLinesDemo,
+  CustomSizeDemo,
+  CardSkeletonDemo,
+  ArticleSkeletonDemo,
+  TableSkeletonDemo
+} from '@/app/components/ui/skeleton/skeleton-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Skeleton component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add skeleton
+```
+
+Then import the component:
+
+```tsx
+import { Skeleton } from '@/components/ui/skeleton';
+```
+
+## Basic Usage
+
+### Default Skeleton
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicSkeletonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Skeleton />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Pulse Animation
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <PulseSkeletonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Skeleton variant="pulse" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Skeleton size="sm" />
+    <Skeleton size="md" />
+    <Skeleton size="lg" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Shapes
+
+The Skeleton component supports different shapes: `rectangle`, `circle`, and `text`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ShapesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Rectangle */}
+    <Skeleton shape="rectangle" width="12rem" height="3rem" />
+
+    {/* Circle */}
+    <Skeleton shape="circle" size="lg" />
+
+    {/* Text (Single Line) */}
+    <Skeleton shape="text" width="10rem" />
+
+    {/* Text (Multiple Lines) */}
+    <Skeleton shape="text" lines={3} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Text Lines
+
+For text content placeholders, you can specify multiple lines with the `lines` prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <TextLinesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Skeleton shape="text" lines={2} />
+    <Skeleton shape="text" lines={4} />
+    <Skeleton shape="text" lines={6} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Custom Dimensions
+
+You can customize the width and height of skeleton elements using the `width` and `height` props.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomSizeDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    {/* Custom Rectangle */}
+    <Skeleton width="200px" height="60px" />
+
+    {/* Custom Circle */}
+    <Skeleton shape="circle" width="80px" height="80px" />
+
+    {/* Custom Text */}
+    <Skeleton shape="text" width="150px" height="20px" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Real-world Examples
+
+### Card Skeleton
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CardSkeletonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="max-w-sm p-4 border rounded-lg">
+      <div className="space-y-4">
+        <div className="flex items-center space-x-3">
+          <Skeleton shape="circle" size="md" />
+          <div className="flex-1">
+            <Skeleton shape="text" width="60%" className="mb-2" />
+            <Skeleton shape="text" width="40%" size="sm" />
+          </div>
+        </div>
+        <Skeleton width="100%" height="160px" />
+        <Skeleton shape="text" lines={3} />
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Article Skeleton
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <ArticleSkeletonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="max-w-md space-y-4">
+      <Skeleton width="100%" height="200px" />
+      <Skeleton shape="text" width="80%" size="lg" />
+      <Skeleton shape="text" lines={4} />
+      <div className="flex items-center space-x-3 pt-4">
+        <Skeleton shape="circle" size="sm" />
+        <Skeleton shape="text" width="120px" size="sm" />
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Table Skeleton
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <TableSkeletonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="space-y-3">
+      {Array.from({ length: 5 }, (_, index) => (
+        <div key={index} className="flex items-center space-x-4">
+          <Skeleton shape="circle" size="sm" />
+          <Skeleton width="120px" height="16px" />
+          <Skeleton width="80px" height="16px" />
+          <Skeleton width="100px" height="16px" />
+        </div>
+      ))}
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Usage Patterns
+
+### Loading States
+
+```tsx
+const [loading, setLoading] = useState(true);
+
+return (
+  <div>
+    {loading ? (
+      <Skeleton shape="text" lines={3} />
+    ) : (
+      <div>
+        <p>Actual content here...</p>
+      </div>
+    )}
+  </div>
+);
+```
+
+### Conditional Rendering
+
+```tsx
+return (
+  <div className="space-y-4">
+    {posts.length > 0 ? (
+      posts.map(post => <PostCard key={post.id} post={post} />)
+    ) : (
+      Array.from({ length: 3 }, (_, i) => (
+        <CardSkeletonDemo key={i} />
+      ))
+    )}
+  </div>
+);
+```
+
+## Customization
+
+### Custom Classes
+
+```tsx
+<Skeleton 
+  className="rounded-xl border border-neutral-200" 
+  width="300px" 
+  height="200px" 
+/>
+```
+
+### Responsive Dimensions
+
+```tsx
+<Skeleton 
+  className="w-full md:w-1/2 lg:w-1/3" 
+  height="200px" 
+/>
+```
+
+## Accessibility
+
+The Skeleton component is designed with accessibility in mind:
+
+- Uses semantic HTML structure
+- Provides visual loading feedback
+- Works well with screen readers
+- Maintains proper contrast ratios
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'pulse' \| 'wave'` | `'default'` | Animation variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Predefined size |
+| `shape` | `'rectangle' \| 'circle' \| 'text'` | `'rectangle'` | Shape of the skeleton |
+| `width` | `string \| number` | — | Custom width |
+| `height` | `string \| number` | — | Custom height |
+| `lines` | `number` | `1` | Number of text lines (only for text shape) |
+| `className` | `string` | `''` | Additional CSS classes |
+
+The Skeleton component also accepts all standard HTML div attributes. 

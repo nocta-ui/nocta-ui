@@ -368,6 +368,41 @@
         "client-component"
       ]
     },
+    "skeleton": {
+      "name": "Skeleton",
+      "description": "Loading skeleton component with variants, shapes, and animations for content placeholders",
+      "category": "feedback",
+      "files": [
+        {
+          "name": "skeleton.tsx",
+          "path": "app/components/ui/skeleton/skeleton.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": ["Skeleton"],
+      "props": {
+        "Skeleton": [
+          "variant", "size", "shape", "width", "height", "lines", "className"
+        ]
+      },
+      "variants": ["default", "pulse", "wave"],
+      "sizes": ["sm", "md", "lg"],
+      "shapes": ["rectangle", "circle", "text"],
+      "features": [
+        "multiple-variants",
+        "custom-dimensions",
+        "shape-options",
+        "text-lines-support",
+        "smooth-animations",
+        "dark-mode",
+        "loading-placeholders",
+        "accessibility",
+        "responsive-design"
+      ]
+    },
     "spinner": {
       "name": "Spinner",
       "description": "Loading spinner component with variants, sizes and smooth animations",
@@ -960,7 +995,7 @@
     "feedback": {
       "name": "Feedback", 
       "description": "Components for user feedback and notifications",
-      "components": ["alert", "progress", "toast", "spinner"]
+      "components": ["alert", "progress", "skeleton", "spinner", "toast"]
     },
     "layout": {
       "name": "Layout",
