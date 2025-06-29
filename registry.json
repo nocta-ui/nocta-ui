@@ -368,6 +368,35 @@
         "client-component"
       ]
     },
+    "spinner": {
+      "name": "Spinner",
+      "description": "Loading spinner component with variants, sizes and smooth animations",
+      "category": "feedback",
+      "files": [
+        {
+          "name": "spinner.tsx",
+          "path": "app/components/ui/spinner/spinner.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": ["Spinner"],
+      "props": {
+        "Spinner": ["size", "variant", "className"]
+      },
+      "sizes": ["sm", "md", "lg"],
+      "variants": ["default", "primary", "secondary"],
+      "features": [
+        "smooth-animations",
+        "dark-mode",
+        "accessible",
+        "custom-colors",
+        "inline-usage",
+        "loading-states"
+      ]
+    },
     "switch": {
       "name": "Switch",
       "description": "Toggle switch component with variants and animations", 
@@ -411,6 +440,7 @@
       "dependencies": {
         "react": "^18.0.0"
       },
+      "internalDependencies": ["spinner"],
       "exports": [
         "Table",
         "TableHeader",
@@ -889,7 +919,7 @@
     "feedback": {
       "name": "Feedback", 
       "description": "Components for user feedback and notifications",
-      "components": ["alert", "progress", "toast"]
+      "components": ["alert", "progress", "toast", "spinner"]
     },
     "layout": {
       "name": "Layout",

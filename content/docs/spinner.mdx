@@ -1,0 +1,218 @@
+---
+title: Spinner
+description: Loading spinner component with variants, sizes and smooth animations for indicating loading states
+---
+
+import { Spinner } from '@/app/components/ui/spinner';
+import { 
+  BasicSpinnerDemo,
+  PrimarySpinnerDemo,
+  SecondarySpinnerDemo,
+  VariantsDemo,
+  SizesDemo,
+  LoadingButtonDemo,
+  InlineSpinnerDemo,
+  CenteredSpinnerDemo,
+  CustomColorDemo
+} from '@/app/components/ui/spinner/spinner-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Spinner component using the nocta-ui CLI:
+
+```bash
+npx nocta-ui add spinner
+```
+
+Then import the component:
+
+```tsx
+import { Spinner } from '@/components/ui/spinner';
+```
+
+## Basic Usage
+
+### Default Spinner
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicSpinnerDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Primary Spinner
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <PrimarySpinnerDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner variant="primary" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Secondary Spinner
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SecondarySpinnerDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner variant="secondary" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+The Spinner component supports three variants: `default`, `primary`, and `secondary`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner variant="default" />
+    <Spinner variant="primary" />
+    <Spinner variant="secondary" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner size="sm" />
+    <Spinner size="md" />
+    <Spinner size="lg" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Usage Examples
+
+### Loading Button
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <LoadingButtonDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [isLoading, setIsLoading] = useState(false);
+
+    return (
+      <Button onClick={handleClick} disabled={isLoading}>
+        {isLoading ? (
+          <div className="flex items-center gap-2">
+            <Spinner size="sm" variant="primary" className="text-white" />
+            <span>Loading...</span>
+          </div>
+        ) : (
+          'Click me'
+        )}
+      </Button>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Inline Spinner
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <InlineSpinnerDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="flex items-center gap-2">
+      <Spinner size="sm" />
+      <span>Processing your request...</span>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Centered Loading
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CenteredSpinnerDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <div className="flex items-center justify-center h-32">
+      <div className="flex flex-col items-center gap-3">
+        <Spinner size="lg" variant="primary" />
+        <p className="text-sm text-neutral-600">Loading content...</p>
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Customization
+
+### Custom Colors
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomColorDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Spinner className="text-blue-500" />
+    <Spinner className="text-green-500" />
+    <Spinner className="text-red-500" />
+    <Spinner className="text-purple-500" />
+    <Spinner className="text-orange-500" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Custom Styling
+
+The Spinner component accepts a `className` prop for custom styling:
+
+```tsx
+<Spinner className="w-10 h-10 border-4" />
+
+<Spinner className="text-indigo-600 animate-pulse" />
+
+<Spinner className="border-gradient-to-r from-purple-400 to-pink-400" />
+```
+
+## Accessibility
+
+The Spinner component includes proper accessibility attributes:
+
+- `role="status"` for screen readers
+- `aria-label="Loading"` to describe the loading state  
+- Hidden "Loading..." text for screen readers via `sr-only`
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Spinner size |
+| `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Spinner style variant |
+| `className` | `string` | `''` | Additional CSS classes |
+
+The Spinner component also accepts all standard HTML div attributes. 

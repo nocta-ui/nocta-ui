@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useCallback } from 'react';
+import { Spinner } from '../spinner';
 
 // Types
 export type SortDirection = 'asc' | 'desc' | null;
@@ -267,7 +268,7 @@ export const Table = <T extends Record<string, unknown>>({
                     className="py-12"
                   >
                     <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-neutral-900 dark:border-neutral-100"></div>
+                      <Spinner size="lg" variant="primary" />
                     </div>
                   </TableCell>
                 </TableRow>
