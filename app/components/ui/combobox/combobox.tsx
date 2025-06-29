@@ -286,6 +286,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
       {/* Dropdown */}
       {open && (
         <div
+          ref={listRef}
           className={`
             absolute z-50 mt-1 w-full
             rounded-lg border border-neutral-300 dark:border-neutral-700/50
@@ -314,7 +315,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
           {/* Options list */}
             <div
-             ref={listRef}
              role="listbox"
              id={`${comboboxId}-listbox`}
              className="max-h-60 overflow-auto py-1 flex flex-col gap-1"
