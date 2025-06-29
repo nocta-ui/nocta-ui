@@ -24,6 +24,7 @@ import { Progress } from '@/app/components/ui/progress';
 import { ToastProvider, useToast } from '@/app/components/ui/toast';
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
 import { Spinner } from '@/app/components/ui/spinner';
+import { Slider } from '@/app/components/ui/slider';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -111,6 +112,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TableFooter,
     TableCaption,
     Spinner,
+    Slider,
     ...components,
   };
 }

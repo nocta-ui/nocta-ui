@@ -807,6 +807,47 @@
         "client-component"
       ]
     },
+    "slider": {
+      "name": "Slider",
+      "description": "A customizable range slider component with variants, orientations, and accessibility support",
+      "category": "form",
+      "files": [
+        {
+          "name": "slider.tsx",
+          "path": "app/components/ui/slider/slider.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": ["Slider"],
+      "props": {
+        "Slider": [
+          "value", "defaultValue", "min", "max", "step", "disabled", "size", "variant", 
+          "orientation", "showValue", "formatValue", "onChange", "onValueCommit", 
+          "className", "trackClassName", "thumbClassName", "aria-label", "aria-labelledby"
+        ]
+      },
+      "variants": ["default", "primary", "secondary"],
+      "sizes": ["sm", "md", "lg"],
+      "orientations": ["horizontal", "vertical"],
+      "features": [
+        "controlled-uncontrolled",
+        "keyboard-navigation",
+        "mouse-touch-support",
+        "custom-step-values",
+        "value-formatting",
+        "range-customization",
+        "orientation-support",
+        "smooth-animations",
+        "focus-management",
+        "accessibility",
+        "dark-mode",
+        "disabled-state",
+        "client-component"
+      ]
+    },
     "progress": {
       "name": "Progress",
       "description": "A progress indicator component with multiple variants, sizes, and animation support",
@@ -909,7 +950,7 @@
     "form": {
       "name": "Form",
       "description": "Form input and control components",
-      "components": ["button", "checkbox", "combobox", "form", "input", "select", "switch", "textarea"]
+      "components": ["button", "checkbox", "combobox", "form", "input", "select", "slider", "switch", "textarea"]
     },
     "data-display": {
       "name": "Data Display",
