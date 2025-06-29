@@ -148,7 +148,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 <div align="center">
   <p>
-    <a href="https://nocta-ui-beryl.vercel.app">Documentation</a> •
+    <a href="https://nocta-ui.com">Documentation</a> •
     <a href="https://github.com/66HEX/nocta-ui/issues">Report Bug</a> •
     <a href="https://github.com/66HEX/nocta-ui/issues">Request Feature</a>
   </p>  
