@@ -172,6 +172,39 @@
       },
       "features": ["composable", "hover-shadow", "dark-mode", "backdrop-blur"]
     },
+    "calendar": {
+      "name": "Calendar",
+      "description": "A fully featured date picker with keyboard navigation, accessibility support, and customizable styling",
+      "category": "form",
+      "files": [
+        {
+          "name": "calendar.tsx",
+          "path": "app/components/ui/calendar/calendar.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0"
+      },
+      "exports": ["Calendar"],
+      "props": {
+        "Calendar": ["value", "defaultValue", "onChange", "variant", "size", "disabled", "disabledDates", "minDate", "maxDate", "showWeekNumbers", "showOutsideDays", "weekStartsOn", "formatMonth", "formatWeekday", "className", "aria-label"]
+      },
+      "variants": ["default", "compact"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "keyboard-navigation",
+        "date-selection",
+        "controlled-uncontrolled",
+        "disabled-dates",
+        "date-range-restrictions",
+        "custom-formatting",
+        "week-numbers",
+        "accessibility",
+        "dark-mode",
+        "client-component"
+      ]
+    },
     "checkbox": {
       "name": "Checkbox",
       "description": "Checkbox component with variants and custom styling",

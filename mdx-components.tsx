@@ -26,6 +26,7 @@ import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableC
 import { Spinner } from '@/app/components/ui/spinner';
 import { Slider } from '@/app/components/ui/slider';
 import { Skeleton } from '@/app/components/ui/skeleton';
+import { Calendar } from '@/app/components/ui/calendar';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -115,6 +116,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Spinner,
     Slider,
     Skeleton,
+    Calendar,
     ...components,
   };
 }

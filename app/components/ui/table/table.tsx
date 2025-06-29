@@ -213,7 +213,7 @@ export const Table = <T extends Record<string, unknown>>({
         bg-white dark:bg-neutral-900 
         border border-neutral-300 dark:border-neutral-700/50 
         rounded-xl 
-        shadow-lg dark:shadow-xl 
+        shadow-md dark:shadow-lg 
         backdrop-blur-sm 
         overflow-hidden 
         ${getVariantStyles()}

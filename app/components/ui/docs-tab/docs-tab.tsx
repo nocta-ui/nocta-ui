@@ -33,9 +33,10 @@ const DocsTab = ({ children, title, value, isActive = false, onClick }: DocsTabP
 interface DocsTabsProps {
   children: React.ReactNode;
   defaultValue?: string;
+  justify?: 'center' | 'start';
 }
 
-const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
+const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: DocsTabsProps) => {
   const [activeTab, setActiveTab] = useState(defaultValue);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -112,7 +113,7 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
       {/* Tab Content with animated height and opacity */}
       <div 
         ref={contentRef}
-        className="transition-all duration-300 ease-in-out overflow-x-auto"
+        className="transition-all duration-300 ease-in-out"
         style={{ 
           height: height === 'auto' ? 'auto' : `${height}px`
         }}
@@ -123,7 +124,7 @@ const DocsTabs = ({ children, defaultValue = 'preview' }: DocsTabsProps) => {
             isTransitioning ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <div className="w-full flex justify-center items-center">
+          <div className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto`}>
             {activeContent?.props.children}
           </div>
         </div>

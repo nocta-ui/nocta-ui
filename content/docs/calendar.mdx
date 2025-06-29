@@ -1,0 +1,328 @@
+---
+title: Calendar
+description: A fully featured date picker with keyboard navigation, accessibility support, and customizable styling.
+---
+
+import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+
+import {
+  BasicCalendarDemo,
+  CompactCalendarDemo,
+  VariantsDemo,
+  SizesDemo,
+  WeekStartsOnMondayDemo,
+  WithWeekNumbersDemo,
+  DisabledDatesDemo,
+  DateRangeDemo,
+  CustomFormattingDemo,
+  DisabledCalendarDemo,
+  EventCalendarDemo
+} from '@/app/components/ui/calendar/calendar-demos';
+
+## Installation
+
+```bash
+npx nocta-ui add calendar
+```
+
+## Usage
+
+### Basic Calendar
+
+A simple calendar with date selection functionality.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <BasicCalendarDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    import { Calendar } from '@/components/ui/calendar';
+    import { useState } from 'react';
+
+    export default function BasicCalendarDemo() {
+      const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+      return (
+        <Calendar 
+          value={selectedDate}
+          onChange={setSelectedDate}
+        />
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Variants
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    import { Calendar } from '@/components/ui/calendar';
+    import { useState } from 'react';
+
+    export const VariantsDemo: React.FC = () => {
+  const [defaultDate, setDefaultDate] = useState<Date | undefined>();
+  const [compactDate, setCompactDate] = useState<Date | undefined>();
+
+  return (
+    <div className="my-6 space-y-8">
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Default</label>
+        <Calendar 
+          variant="default"
+          value={defaultDate}
+          onChange={setDefaultDate}
+        />
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Compact</label>
+        <Calendar 
+          variant="compact"
+          value={compactDate}
+          onChange={setCompactDate}
+        />
+      </div>
+    </div>
+  );
+};
+    ```
+  </DocsTab>
+</DocsTabs>
+
+
+### Sizes
+
+Control the calendar size with the size prop.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // Small calendar
+    <Calendar size="sm" />
+
+    // Medium calendar (default)
+    <Calendar size="md" />
+
+    // Large calendar
+    <Calendar size="lg" />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Week Configuration
+
+Customize the first day of the week and show week numbers.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <WeekStartsOnMondayDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // Week starts on Monday
+    <Calendar weekStartsOn={1} />
+
+    // Show week numbers
+    <Calendar showWeekNumbers />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Week Numbers
+
+Display week numbers alongside the calendar.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <WithWeekNumbersDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Calendar showWeekNumbers />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Disabled Dates
+
+Restrict date selection with various disability patterns.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DisabledDatesDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    // Disable weekends
+    const isWeekend = (date: Date) => {
+      const day = date.getDay();
+      return day === 0 || day === 6;
+    };
+
+    <Calendar disabledDates={isWeekend} />
+
+    // Disable specific dates
+    const holidays = [
+      new Date(2024, 11, 25), // Christmas
+      new Date(2024, 0, 1),   // New Year
+    ];
+
+    <Calendar disabledDates={holidays} />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Date Range Restrictions
+
+Set minimum and maximum selectable dates.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DateRangeDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const today = new Date();
+    const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+
+    <Calendar 
+      minDate={minDate}
+      maxDate={maxDate}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Custom Formatting
+
+Customize how months and weekdays are displayed.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <CustomFormattingDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const formatMonth = (date: Date) => {
+      const month = date.toLocaleDateString('en-US', { month: 'long' });
+      const year = date.getFullYear();
+      return `${month} ${year}`;
+    };
+
+    const formatWeekday = (date: Date) => {
+      return date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+    };
+
+    <Calendar 
+      formatMonth={formatMonth}
+      formatWeekday={formatWeekday}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Disabled State
+
+Disable the entire calendar.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <DisabledCalendarDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    <Calendar disabled />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Event Handling
+
+Handle date selection with custom logic.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" title="Preview">
+    <EventCalendarDemo />
+  </DocsTab>
+  <DocsTab value="code" title="Code">
+    ```tsx
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+    const handleDateSelect = (date: Date | undefined) => {
+      setSelectedDate(date);
+      if (date) {
+        console.log('Selected date:', date.toLocaleDateString());
+      }
+    };
+
+    return (
+      <div>
+        <Calendar 
+          variant="bordered"
+          value={selectedDate}
+          onChange={handleDateSelect}
+        />
+        {selectedDate && (
+          <div className="mt-4 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
+            <p className="text-sm">
+              Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
+            </p>
+          </div>
+        )}
+      </div>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Keyboard Navigation
+
+The Calendar component supports full keyboard navigation:
+
+- **Arrow Keys**: Navigate between dates
+- **Home**: Go to first day of month
+- **End**: Go to last day of month
+- **Enter/Space**: Select the focused date
+- **Tab**: Move focus to navigation buttons
+
+## Accessibility
+
+- Full ARIA support with proper labels and roles
+- Screen reader announcements for date selection
+- Keyboard navigation support
+- Focus management
+- High contrast mode support
+
+## API Reference
+
+### Calendar Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `Date \| undefined` | - | The selected date (controlled) |
+| `defaultValue` | `Date \| undefined` | - | The default selected date (uncontrolled) |
+| `onChange` | `(date: Date \| undefined) => void` | - | Callback when date is selected |
+| `variant` | `'default' \| 'compact' \| 'bordered'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the calendar |
+| `disabled` | `boolean` | `false` | Whether the calendar is disabled |
+| `disabledDates` | `Date[] \| ((date: Date) => boolean)` | - | Dates to disable |
+| `minDate` | `Date` | - | Minimum selectable date |
+| `maxDate` | `Date` | - | Maximum selectable date |
+| `showWeekNumbers` | `boolean` | `false` | Whether to show week numbers |
+| `showOutsideDays` | `boolean` | `true` | Whether to show days from other months |
+| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | `0` | First day of week (0 = Sunday) |
+| `formatMonth` | `(date: Date) => string` | - | Custom month formatting function |
+| `formatWeekday` | `(date: Date) => string` | - | Custom weekday formatting function |
+| `className` | `string` | - | Additional CSS classes |
+| `aria-label` | `string` | `'Calendar'` | Accessibility label |
+
+The Calendar component also accepts all standard HTML `div` attributes. 
