@@ -1018,7 +1018,7 @@
     "form": {
       "name": "Form",
       "description": "Form input and control components",
-      "components": ["button", "checkbox", "combobox", "form", "input", "select", "slider", "switch", "textarea"]
+      "components": ["button", "checkbox", "combobox", "form", "input", "select", "slider", "switch", "textarea", "calendar"]
     },
     "data-display": {
       "name": "Data Display",
