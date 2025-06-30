@@ -20,13 +20,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Dialog component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add dialog
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Dialog,
   DialogTrigger,
@@ -45,11 +45,11 @@ import {
 ### Simple Dialog
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SimpleDialogDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Dialog"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Dialog"
     <Dialog>
       <DialogTrigger asChild>
         <Button>Open Dialog</Button>
@@ -73,11 +73,11 @@ import {
 ### Dialog with Actions
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DialogWithActionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Dialog with Actions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dialog with Actions"
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">Delete Item</Button>
@@ -113,11 +113,11 @@ import {
 The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Dialog Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dialog Sizes"
     <Dialog>
       <DialogTrigger asChild>
         <Button size="sm">Small</Button>
@@ -139,11 +139,11 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
 ## Form Dialog
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormDialogDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form Dialog"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form Dialog"
     <Dialog>
       <DialogTrigger asChild>
         <Button>Add New User</Button>
@@ -204,7 +204,7 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
 
 The Dialog components accept a `className` prop for custom styling:
 
-```tsx title="Custom Dialog Styling"
+```tsx lineNumbers title="Custom Dialog Styling"
 <DialogContent className="border-2 border-blue-200 dark:border-blue-800">
   <DialogHeader className="bg-blue-50 dark:bg-blue-900/20">
     <DialogTitle className="text-blue-900 dark:text-blue-100">
@@ -217,11 +217,11 @@ The Dialog components accept a `className` prop for custom styling:
 ### Without Close Button
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithoutCloseButtonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Dialog Without Close Button"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dialog Without Close Button"
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">Processing...</Button>
@@ -246,7 +246,7 @@ The Dialog components accept a `className` prop for custom styling:
 
 For programmatic control, you can use the `open` and `onOpenChange` props:
 
-```tsx title="Controlled Dialog"
+```tsx lineNumbers title="Controlled Dialog"
 const [open, setOpen] = useState(false);
 
 return (

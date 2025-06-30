@@ -22,13 +22,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Input component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add input
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Input } from '@/components/ui/input';
 ```
 
@@ -37,11 +37,11 @@ import { Input } from '@/components/ui/input';
 ### Default Input
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DefaultInputDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Input"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Input"
     <Input placeholder="Enter your email" />
     ```
   </DocsTab>
@@ -50,11 +50,11 @@ import { Input } from '@/components/ui/input';
 ### Input with Label
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <InputWithLabelDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input with Label"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input with Label"
     <Input 
       label="Email Address" 
       placeholder="Enter your email"
@@ -67,11 +67,11 @@ import { Input } from '@/components/ui/input';
 ### Input with Helper Text
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <InputWithHelperTextDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input with Helper Text"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input with Helper Text"
     <Input 
       label="Username" 
       placeholder="Choose a unique username between 3-20 characters"
@@ -86,11 +86,11 @@ import { Input } from '@/components/ui/input';
 The Input component supports three variants: `default`, `error`, and `success`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input Variants"
     <Input 
       label="Default Input"
       placeholder="Default variant"
@@ -119,11 +119,11 @@ The Input component supports three variants: `default`, `error`, and `success`.
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input Sizes"
     <Input 
       label="Small Input"
       placeholder="Small size"
@@ -150,11 +150,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Left Icon
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <LeftIconDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input with Left Icon"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input with Left Icon"
     <Input 
       label="Search"
       placeholder="Search for anything..."
@@ -174,11 +174,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Right Icon
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <RightIconDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Input with Right Icon"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Input with Right Icon"
     <Input 
       label="Password"
       placeholder="Enter your password"
@@ -194,11 +194,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Input"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Input"
     <Input 
       label="Disabled Input"
       placeholder="This input is disabled"
@@ -218,11 +218,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Read Only State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ReadOnlyStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Read Only Input"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Read Only Input"
     <Input 
       label="Read Only Input"
       value="This value cannot be changed"
@@ -239,7 +239,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Input component accepts `className` and `containerClassName` props for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <Input 
   className="border-2 border-purple-300 focus-visible:border-purple-500"
   containerClassName="max-w-xs"
@@ -257,10 +257,10 @@ The Input component accepts `className` and `containerClassName` props for custo
 ### Custom Container
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomContainerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
+  <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     <Input 
       containerClassName="max-w-xs mx-auto"

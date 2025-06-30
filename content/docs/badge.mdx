@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Badge component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add badge
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Badge } from '@/components/ui/badge';
 ```
 
@@ -32,11 +32,11 @@ import { Badge } from '@/components/ui/badge';
 ### Default Badge
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DefaultBadgeDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Badge"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Badge"
     <Badge>Default</Badge>
     ```
   </DocsTab>
@@ -45,11 +45,11 @@ import { Badge } from '@/components/ui/badge';
 ### Secondary Badge
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SecondaryBadgeDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Secondary Badge"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Secondary Badge"
     <Badge variant="secondary">Secondary</Badge>
     ```
   </DocsTab>
@@ -60,11 +60,11 @@ import { Badge } from '@/components/ui/badge';
 The Badge component supports six variants: `default`, `secondary`, `destructive`, `success`, `warning`, and `outline`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Badge Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Badge Variants"
     <Badge variant="default">Default</Badge>
     <Badge variant="secondary">Secondary</Badge>
     <Badge variant="destructive">Destructive</Badge>
@@ -80,11 +80,11 @@ The Badge component supports six variants: `default`, `secondary`, `destructive`
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Badge Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Badge Sizes"
     <Badge size="sm">Small</Badge>
     <Badge size="md">Medium</Badge>
     <Badge size="lg">Large</Badge>
@@ -99,11 +99,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 The Badge component accepts a `className` prop for custom styling:
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomStylingDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Styling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Styling"
     <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:text-white">
       Gradient
     </Badge>

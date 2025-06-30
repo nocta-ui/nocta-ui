@@ -19,13 +19,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Checkbox component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add checkbox
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Checkbox } from '@/components/ui/checkbox';
 ```
 
@@ -34,13 +34,13 @@ import { Checkbox } from '@/components/ui/checkbox';
 ### Default Checkbox
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <BasicCheckboxDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Checkbox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Checkbox"
     const [isChecked, setIsChecked] = useState(false);
     
     <Checkbox 
@@ -56,13 +56,13 @@ import { Checkbox } from '@/components/ui/checkbox';
 The Checkbox component supports four variants: `default`, `success`, `warning`, and `destructive`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <VariantsDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Checkbox Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Checkbox Variants"
     <Checkbox variant="default" checked={true} />
     <Checkbox variant="success" checked={true} />
     <Checkbox variant="warning" checked={true} />
@@ -76,13 +76,13 @@ The Checkbox component supports four variants: `default`, `success`, `warning`, 
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <SizesDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Checkbox Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Checkbox Sizes"
     <Checkbox size="sm" checked={true} />
     <Checkbox size="md" checked={true} />
     <Checkbox size="lg" checked={true} />
@@ -95,11 +95,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Checkbox State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Checkbox State"
     <Checkbox disabled={false} />
     <Checkbox checked={true} disabled={false} />
     <Checkbox disabled={true} />
@@ -113,13 +113,13 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Settings Form Example
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <FormDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Checkbox Form Example"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Checkbox Form Example"
     const [formData, setFormData] = useState({
       terms: false,
       newsletter: true,
@@ -159,13 +159,13 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 The Checkbox component accepts a `className` prop for custom styling:
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <CustomStylingDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Checkbox Styling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Checkbox Styling"
     <Checkbox className="scale-125" checked={true} />
     <Checkbox className="rounded-full" checked={true} />
     <Checkbox className="shadow-lg" checked={false} />
@@ -176,13 +176,13 @@ The Checkbox component accepts a `className` prop for custom styling:
 ### With Labels
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <LabeledCheckboxDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Checkbox with Labels"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Checkbox with Labels"
     const [states, setStates] = useState({
       notifications: false,
       marketing: true,

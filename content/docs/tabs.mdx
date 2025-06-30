@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Tabs component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add tabs
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { 
   Tabs, 
   TabsList, 
@@ -37,11 +37,11 @@ import {
 The Tabs component follows a composable architecture where you build tabbed interfaces by combining smaller components together.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicTabsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Tabs"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Tabs"
     <Tabs defaultValue="overview">
       <TabsList>
         <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -106,11 +106,11 @@ The Tabs component is built with a composable architecture:
 The Tabs component supports three visual variants: `default`, `pills`, and `underline`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tabs Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tabs Variants"
     {/* Default variant */}
     <Tabs defaultValue="tab1" variant="default">
       <TabsList>
@@ -155,11 +155,11 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tabs Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tabs Sizes"
     <Tabs defaultValue="tab1" size="sm">
       <TabsList>
         <TabsTrigger value="tab1">Tab 1</TabsTrigger>
@@ -195,11 +195,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 Tabs can be displayed vertically using the `orientation="vertical"` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VerticalTabsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Vertical Tabs"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Vertical Tabs"
     <Tabs defaultValue="general" orientation="vertical">
       <TabsList>
         <TabsTrigger value="general">General</TabsTrigger>
@@ -233,11 +233,11 @@ Tabs can be displayed vertically using the `orientation="vertical"` prop.
 Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledTabsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Tabs"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Tabs"
     <Tabs defaultValue="available">
       <TabsList>
         <TabsTrigger value="available">Available</TabsTrigger>

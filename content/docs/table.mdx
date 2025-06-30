@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Table component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add table
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Table,
   TableHeader,
@@ -44,11 +44,11 @@ import {
 ### Simple Table
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Table"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Table"
     const columns = [
       { key: 'name', title: 'Name' },
       { key: 'email', title: 'Email' },
@@ -69,11 +69,11 @@ import {
 Enable sorting by setting the `sortable` prop and defining which columns are sortable.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SortableTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Sortable Table"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Sortable Table"
     const [data, setData] = useState(users);
 
     const columns = [
@@ -107,11 +107,11 @@ Enable sorting by setting the `sortable` prop and defining which columns are sor
 Enable column filtering by setting the `filterable` prop.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FilterableTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Filterable Table"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Filterable Table"
     const [filteredData, setFilteredData] = useState(users);
 
     const columns = [
@@ -150,11 +150,11 @@ Enable column filtering by setting the `filterable` prop.
 Use the `render` function in column definitions for custom cell content.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <AdvancedTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Rendering & Actions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Rendering & Actions"
     const columns = [
       { 
         key: 'name', 
@@ -209,11 +209,11 @@ Use the `render` function in column definitions for custom cell content.
 Add pagination support with the `pagination` prop.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PaginationTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Pagination Table"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Pagination Table"
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 10;
 
@@ -240,11 +240,11 @@ Add pagination support with the `pagination` prop.
 The Table component supports different visual variants.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TableVariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Table Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Table Variants"
     // Default variant
     <Table columns={columns} data={data} />
 
@@ -259,11 +259,11 @@ The Table component supports different visual variants.
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TableSizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Table Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Table Sizes"
     <Table columns={columns} data={data} size="sm" />
     <Table columns={columns} data={data} size="md" />
     <Table columns={columns} data={data} size="lg" />
@@ -276,11 +276,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Loading State
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <LoadingTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Loading Table State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Loading Table State"
     <Table 
       columns={columns} 
       data={data}
@@ -293,11 +293,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Empty State
 
 <DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <EmptyTableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Empty Table State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Empty Table State"
     <Table 
       columns={columns} 
       data={[]}
@@ -311,7 +311,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 For more control, you can use the individual table components:
 
-```tsx title="Composable Table Components"
+```tsx lineNumbers title="Composable Table Components"
 <Table>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader>

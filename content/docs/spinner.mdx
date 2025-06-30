@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Spinner component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add spinner
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Spinner } from '@/components/ui/spinner';
 ```
 
@@ -36,11 +36,11 @@ import { Spinner } from '@/components/ui/spinner';
 ### Default Spinner
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicSpinnerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Spinner"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Spinner"
     <Spinner />
     ```
   </DocsTab>
@@ -49,11 +49,11 @@ import { Spinner } from '@/components/ui/spinner';
 ### Primary Spinner
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PrimarySpinnerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Primary Spinner"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Primary Spinner"
     <Spinner variant="primary" />
     ```
   </DocsTab>
@@ -62,11 +62,11 @@ import { Spinner } from '@/components/ui/spinner';
 ### Secondary Spinner
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SecondarySpinnerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Secondary Spinner"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Secondary Spinner"
     <Spinner variant="secondary" />
     ```
   </DocsTab>
@@ -77,11 +77,11 @@ import { Spinner } from '@/components/ui/spinner';
 The Spinner component supports three variants: `default`, `primary`, and `secondary`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Spinner Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Spinner Variants"
     <Spinner variant="default" />
     <Spinner variant="primary" />
     <Spinner variant="secondary" />
@@ -94,11 +94,11 @@ The Spinner component supports three variants: `default`, `primary`, and `second
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Spinner Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Spinner Sizes"
     <Spinner size="sm" />
     <Spinner size="md" />
     <Spinner size="lg" />
@@ -111,11 +111,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Loading Button
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <LoadingButtonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Loading Button"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Loading Button"
     const [isLoading, setIsLoading] = useState(false);
 
     return (
@@ -137,11 +137,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Inline Spinner
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <InlineSpinnerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Inline Spinner"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Inline Spinner"
     <div className="flex items-center gap-2">
       <Spinner size="sm" />
       <span>Processing your request...</span>
@@ -155,11 +155,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Custom Colors
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomColorDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Colors"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Colors"
     <Spinner className="text-blue-500 dark:text-blue-500/50" />
     <Spinner className="text-green-500 dark:text-green-500/50" />
     <Spinner className="text-red-500 dark:text-red-500/50" />
@@ -173,7 +173,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Spinner component accepts a `className` prop for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <Spinner className="w-10 h-10 border-4" />
 
 <Spinner className="text-indigo-600 animate-pulse" />

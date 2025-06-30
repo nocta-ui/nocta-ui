@@ -15,13 +15,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Select component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add select
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Select,
   SelectTrigger,
@@ -36,11 +36,11 @@ import {
 ### Default Select
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DefaultSelectDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Select"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Select"
     <Select>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a fruit" />
@@ -62,11 +62,11 @@ import {
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Select Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Select Sizes"
     <Select size="sm">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Small select" />
@@ -106,11 +106,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ## Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled State"
     <Select disabled>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Disabled select" />
@@ -142,7 +142,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Select components accept `className` props for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <Select>
   <SelectTrigger className="w-full border-2 border-purple-300 focus-visible:border-purple-500">
     <SelectValue placeholder="Custom styled select" />

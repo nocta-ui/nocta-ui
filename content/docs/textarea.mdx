@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Textarea component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add textarea
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Textarea } from '@/components/ui/textarea';
 ```
 
@@ -38,11 +38,11 @@ import { Textarea } from '@/components/ui/textarea';
 ### Default Textarea
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DefaultTextareaDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Textarea"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Textarea"
     <Textarea placeholder="Enter your message..." />
     ```
   </DocsTab>
@@ -51,11 +51,11 @@ import { Textarea } from '@/components/ui/textarea';
 ### Textarea with Label
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TextareaWithLabelDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea with Label"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea with Label"
     <Textarea 
       label="Message" 
       placeholder="Type your message here..."
@@ -67,11 +67,11 @@ import { Textarea } from '@/components/ui/textarea';
 ### Textarea with Helper Text
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TextareaWithHelperTextDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea with Helper Text"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea with Helper Text"
     <Textarea 
       label="Description" 
       placeholder="Describe your project..."
@@ -86,11 +86,11 @@ import { Textarea } from '@/components/ui/textarea';
 The Textarea component supports three variants: `default`, `error`, and `success`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea Variants"
     <Textarea 
       label="Default Textarea"
       placeholder="Default variant"
@@ -119,11 +119,11 @@ The Textarea component supports three variants: `default`, `error`, and `success
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea Sizes"
     <Textarea 
       label="Small Textarea"
       placeholder="Small size"
@@ -153,11 +153,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 Control how the textarea can be resized with the `resize` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ResizeOptionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea Resize Options"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea Resize Options"
     <Textarea 
       label="No Resize"
       placeholder="This textarea cannot be resized"
@@ -190,11 +190,11 @@ Control how the textarea can be resized with the `resize` prop.
 Adjust the initial height of the textarea using the `rows` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <RowsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Textarea Row Configuration"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Textarea Row Configuration"
     <Textarea 
       label="2 Rows"
       placeholder="Compact textarea with 2 rows"
@@ -221,11 +221,11 @@ Adjust the initial height of the textarea using the `rows` prop.
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Textarea State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Textarea State"
     <Textarea 
       label="Disabled Textarea"
       placeholder="This textarea is disabled"
@@ -245,10 +245,10 @@ Adjust the initial height of the textarea using the `rows` prop.
 ### Read-only State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ReadOnlyStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
+  <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     <Textarea 
       label="Read Only Textarea"
@@ -263,10 +263,10 @@ Adjust the initial height of the textarea using the `rows` prop.
 ### Character Limit
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <MaxLengthDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
+  <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     <Textarea 
       label="Limited Character Count"
@@ -283,10 +283,10 @@ Adjust the initial height of the textarea using the `rows` prop.
 ### Custom Container
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomContainerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
+  <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     <Textarea 
       containerClassName="max-w-md max-w-md flex flex-col items-center"

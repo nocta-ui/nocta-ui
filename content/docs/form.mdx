@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Form component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add form
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { 
   Form, 
   FormField, 
@@ -40,11 +40,11 @@ import {
 The Form component follows a composable architecture where you build forms by combining smaller components together.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicFormDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Form"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Form"
     <Form onSubmit={handleSubmit}>
       <FormField name="name">
         <FormLabel required>Full Name</FormLabel>
@@ -86,11 +86,11 @@ The Form component is built with a composable architecture:
 Handle form validation errors by passing an `error` prop to `FormField`. The error message will automatically be displayed using `FormMessage`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormWithErrorsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form with Errors"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form with Errors"
     const [errors, setErrors] = useState({
       username: 'Username is already taken',
       password: ''
@@ -123,11 +123,11 @@ Handle form validation errors by passing an `error` prop to `FormField`. The err
 Build complex forms with multiple field types, layouts, and validation.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ComplexFormDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Complex Form"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Complex Form"
     <Form>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField name="firstName">
@@ -202,11 +202,11 @@ Build complex forms with multiple field types, layouts, and validation.
 The `FormActions` component supports different alignments for form buttons.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormActionsVariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form Actions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form Actions"
     {/* Left aligned */}
     <FormActions align="left">
       <Button>Left Aligned</Button>
@@ -233,11 +233,11 @@ The `FormActions` component supports different alignments for form buttons.
 Form messages support different types for various validation states.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormMessageTypesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form Message Types"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form Message Types"
     <FormField name="success">
       <FormLabel>Success Field</FormLabel>
       <FormControl>

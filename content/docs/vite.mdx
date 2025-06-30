@@ -7,7 +7,7 @@ description: Step-by-step guide to install and configure Nocta UI with Vite and 
 
 First, create a new Vite project with React and TypeScript:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npm create vite@latest my-app -- --template react-ts
 cd my-app
 npm install
@@ -17,7 +17,7 @@ npm install
 
 Install and configure Tailwind CSS:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
@@ -28,7 +28,7 @@ npx tailwindcss init -p
 
 The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the baseUrl and paths properties to the compilerOptions section of the `tsconfig.json` file:
 
-```json title="tsconfig.json"
+```json lineNumbers title="tsconfig.json"
 {
   "files": [],
   "references": [
@@ -52,7 +52,7 @@ The current version of Vite splits TypeScript configuration into three files, tw
 
 Add the following code to the `tsconfig.app.json` file to resolve paths, for your IDE:
 
-```json title="tsconfig.app.json"
+```json lineNumbers title="tsconfig.app.json"
 {
   "compilerOptions": {
     // ...
@@ -71,11 +71,11 @@ Add the following code to the `tsconfig.app.json` file to resolve paths, for you
 
 Add the following code to the `vite.config.ts` so your app can resolve paths without error:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npm install -D @types/node
 ```
 
-```ts title="vite.config.ts"
+```ts lineNumbers title="vite.config.ts"
 import path from "path" // [!code highlight]
 import tailwindcss from "@tailwindcss/vite" // [!code highlight]
 import react from "@vitejs/plugin-react"
@@ -96,7 +96,7 @@ export default defineConfig({
 
 Initialize Nocta UI in your project. This will automatically install all required dependencies:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui init
 ```
 
@@ -108,7 +108,7 @@ The init command will:
 
 Now you can add specific components that you need:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add button
 npx nocta-ui add card
 npx nocta-ui add badge
@@ -118,7 +118,7 @@ npx nocta-ui add badge
 
 Now you can import and use Nocta UI components in your Vite React application:
 
-```tsx title="src/App.tsx"
+```tsx lineNumbers title="src/App.tsx"
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Tooltip component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add tooltip
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Tooltip,
   TooltipTrigger,
@@ -40,11 +40,11 @@ import {
 ### Simple Tooltip
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SimpleTooltipDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Tooltip"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Tooltip"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="secondary">Hover me</Button>
@@ -60,11 +60,11 @@ import {
 ### With Text Trigger
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithTextTriggerDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tooltip with Text Trigger"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tooltip with Text Trigger"
     <span>
       This text has a 
       <Tooltip>
@@ -86,11 +86,11 @@ import {
 The Tooltip component supports different positioning sides: `top`, `bottom`, `left`, and `right`. The default position is `top`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PositioningDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tooltip Positioning"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tooltip Positioning"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="sm" variant="ghost">Top</Button>
@@ -117,11 +117,11 @@ The Tooltip component supports different positioning sides: `top`, `bottom`, `le
 Control the alignment of the tooltip relative to the trigger element using the `align` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <AlignmentDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tooltip Alignment"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tooltip Alignment"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="sm" variant="secondary">Start</Button>
@@ -139,11 +139,11 @@ Control the alignment of the tooltip relative to the trigger element using the `
 Tooltips can contain rich content including multiple lines and formatted text.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <RichContentDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Rich Tooltip Content"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Rich Tooltip Content"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="primary">Features</Button>
@@ -168,11 +168,11 @@ Tooltips can contain rich content including multiple lines and formatted text.
 Control how long the user must hover before the tooltip appears using the `delayDuration` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DelayDurationDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tooltip Delay Duration"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tooltip Delay Duration"
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Button size="sm" variant="ghost">Instant</Button>
@@ -200,7 +200,7 @@ Control how long the user must hover before the tooltip appears using the `delay
 
 The Tooltip components accept a `className` prop for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <TooltipContent className="bg-blue-900 text-blue-100 border-blue-700">
   Custom styled tooltip
 </TooltipContent>
@@ -209,11 +209,11 @@ The Tooltip components accept a `className` prop for custom styling:
 ### Without Arrow
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithoutArrowDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Tooltip Without Arrow"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Tooltip Without Arrow"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="secondary">No Arrow</Button>
@@ -230,7 +230,7 @@ The Tooltip components accept a `className` prop for custom styling:
 
 For programmatic control, you can use the `open` and `onOpenChange` props:
 
-```tsx title="Controlled Tooltip"
+```tsx lineNumbers title="Controlled Tooltip"
 const [open, setOpen] = useState(false);
 
 return (

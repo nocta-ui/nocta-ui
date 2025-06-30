@@ -1,8 +1,11 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
+
+import { FrameworkSelector } from '@/app/components/ui/framework-selector';
+import { DocsTabs } from '@/app/components/ui/docs-tab';
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardActions } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button/';
-import { DocsTabs } from '@/app/components/ui/docs-tab';
 import { Input } from '@/app/components/ui/input';
 import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@/app/components/ui/alert';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
@@ -27,7 +30,7 @@ import { Spinner } from '@/app/components/ui/spinner';
 import { Slider } from '@/app/components/ui/slider';
 import { Skeleton } from '@/app/components/ui/skeleton';
 import { Calendar } from '@/app/components/ui/calendar';
-import { FrameworkSelector } from '@/app/components/ui/framework-selector';
+import { CodeBlock as YourCustomCodeBlock, Pre } from '@/app/components/ui/codeblock/codeblock';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -119,6 +122,12 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Skeleton,
     Calendar,
     FrameworkSelector,
+
+    pre: ({ ref: _ref, ...props }) => (
+      <YourCustomCodeBlock {...props}>
+        <Pre>{props.children}</Pre>
+      </YourCustomCodeBlock>
+    ),
     ...components,
   };
 }

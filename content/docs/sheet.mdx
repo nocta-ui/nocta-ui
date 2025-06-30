@@ -19,13 +19,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Sheet component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add sheet
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Sheet,
   SheetTrigger,
@@ -43,11 +43,11 @@ import {
 The Sheet component provides a slide-out panel that can appear from any side of the screen.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicSheetDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Sheet"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Sheet"
     <Sheet>
       <SheetTrigger asChild>
         <Button>Open Sheet</Button>
@@ -78,11 +78,11 @@ The Sheet component provides a slide-out panel that can appear from any side of 
 The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `bottom`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SheetSidesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Sheet Sides"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Sheet Sides"
     {/* Left Side */}
     <Sheet>
       <SheetTrigger asChild>
@@ -133,11 +133,11 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
 Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SheetSizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Sheet Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Sheet Sizes"
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="sm">Small</Button>
@@ -165,11 +165,11 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
 Perfect for forms and data entry interfaces.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormSheetDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form Sheet Example"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form Sheet Example"
     <Sheet>
       <SheetTrigger asChild>
         <Button>Edit Profile</Button>
@@ -214,11 +214,11 @@ Perfect for forms and data entry interfaces.
 Great for mobile navigation menus and sidebar navigation.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <NavigationSheetDemo />
   </DocsTab>
-     <DocsTab value="code" title="Code">
-     ```tsx title="Navigation Sheet Example"
+     <DocsTab value="code" lineNumbers title="Code">
+     ```tsx lineNumbers title="Navigation Sheet Example"
      import { List, ChartBar, Folder, Check, Users, Gear, Question } from 'phosphor-react';
 
      const menuItems = [
@@ -275,11 +275,11 @@ Great for mobile navigation menus and sidebar navigation.
 You can control the Sheet's open state programmatically.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ControlledSheetDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Controlled Sheet"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Controlled Sheet"
     const [open, setOpen] = React.useState(false);
 
     return (
@@ -325,11 +325,11 @@ You can control the Sheet's open state programmatically.
 You can customize the Sheet's appearance and behavior extensively.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomSheetDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Sheet Styling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Sheet Styling"
     import { Sliders } from 'phosphor-react';
 
     <Sheet>

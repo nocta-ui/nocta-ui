@@ -17,13 +17,13 @@ import {
 
 Install the Alert component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add accordion
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { 
   Accordion,
   AccordionItem,
@@ -39,11 +39,11 @@ import {
 A simple accordion with collapsible content sections.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicAccordionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Accordion"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function BasicAccordionDemo() {
@@ -83,11 +83,11 @@ A simple accordion with collapsible content sections.
 Use the card variant for a more elevated appearance with individual cards for each item.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CardAccordionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Card Accordion"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Card Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
     import { User, Shield, Gear } from 'phosphor-react';
 
@@ -143,11 +143,11 @@ Use the card variant for a more elevated appearance with individual cards for ea
 Allow multiple accordion items to be open simultaneously by setting `type="multiple"`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <MultipleAccordionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Multiple Open Accordion"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Multiple Open Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function MultipleAccordionDemo() {
@@ -187,11 +187,11 @@ Allow multiple accordion items to be open simultaneously by setting `type="multi
 The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizeAccordionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Accordion Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Accordion Sizes"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function SizeAccordionDemo() {
@@ -241,11 +241,11 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 Control the accordion state externally using the `value` and `onValueChange` props.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ControlledAccordionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Controlled Accordion"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Controlled Accordion"
     import React from 'react';
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 

@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Avatar component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add avatar
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Avatar } from '@/components/ui/avatar';
 ```
 
@@ -36,13 +36,13 @@ import { Avatar } from '@/components/ui/avatar';
 ### Default Avatar
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <BasicAvatarDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Avatar"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Avatar"
     // With image
     <Avatar 
       src="https://example.com/avatar.jpg" 
@@ -63,13 +63,13 @@ import { Avatar } from '@/components/ui/avatar';
 Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <SizesDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Avatar Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Avatar Sizes"
     <Avatar size="xs" src="..." alt="John Doe" />
     <Avatar size="sm" src="..." alt="John Doe" />
     <Avatar size="md" src="..." alt="John Doe" />
@@ -85,13 +85,13 @@ Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The def
 The Avatar component supports two shape variants: `circle` (default) and `square`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <VariantsDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Avatar Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Avatar Variants"
     <Avatar variant="circle" src="..." alt="John Doe" />
     <Avatar variant="square" src="..." alt="John Doe" />
     <Avatar variant="circle" fallback="JD" />
@@ -105,13 +105,13 @@ The Avatar component supports two shape variants: `circle` (default) and `square
 Add status indicators to show user presence: `online`, `offline`, `away`, or `busy`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <StatusDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Status Indicators"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Status Indicators"
     <Avatar src="..." alt="John Doe" status="online" />
     <Avatar src="..." alt="Jane Smith" status="away" />
     <Avatar src="..." alt="Mike Johnson" status="busy" />
@@ -125,13 +125,13 @@ Add status indicators to show user presence: `online`, `offline`, `away`, or `bu
 The Avatar component gracefully handles image loading failures with multiple fallback options.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <FallbackDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Fallback Handling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Fallback Handling"
     // Valid image
     <Avatar src="valid-image.jpg" alt="John Doe" />
     
@@ -155,13 +155,13 @@ The Avatar component gracefully handles image loading failures with multiple fal
 Stack multiple avatars to show groups or teams.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <GroupDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Avatar Groups"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Avatar Groups"
     <div className="flex items-center">
       <Avatar 
         src="avatar1.jpg" 
@@ -197,11 +197,11 @@ Stack multiple avatars to show groups or teams.
 The Avatar component accepts a `className` prop for custom styling:
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomStylingDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Styling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Styling"
     <Avatar 
       src="avatar.jpg" 
       alt="John Doe" 
@@ -225,13 +225,13 @@ The Avatar component accepts a `className` prop for custom styling:
 ### With Click Handlers
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <ClickHandlersDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Click Handlers"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Click Handlers"
     const [message, setMessage] = useState('');
 
     const handleAvatarClick = (name: string) => {

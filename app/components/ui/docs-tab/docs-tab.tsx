@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { cn } from 'fumadocs-ui/utils/cn';
 
 interface DocsTabProps {
   children?: React.ReactNode;
@@ -15,11 +16,12 @@ const DocsTab = ({ children, title, value, isActive = false, onClick }: DocsTabP
     return (
       <button
         onClick={() => onClick(value)}
-        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+        className={cn(
+          'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
           isActive
-            ? 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
-            : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
-        }`}
+            ? 'bg-fd-secondary text-fd-foreground'
+            : 'text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50'
+        )}
       >
         {title}
       </button>
@@ -53,9 +55,10 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
 
   // Measure content height
   const measureHeight = useCallback(() => {
-    if (wrapperRef.current) {
+    if (wrapperRef.current && contentRef.current) {
       const naturalHeight = wrapperRef.current.scrollHeight;
-      setHeight(naturalHeight);
+      const containerPadding = 12; // p-1 = 4px padding top + 4px padding bottom
+      setHeight(naturalHeight + containerPadding);
     }
   }, []);
 
@@ -96,9 +99,9 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   };
 
   return (
-    <div className="border border-neutral-300 dark:border-neutral-800 rounded-lg">
+    <div className="not-prose group relative my-4 overflow-hidden rounded-lg border bg-fd-card text-sm outline-none">
       {/* Tab Headers */}
-      <div className="flex items-center gap-1 px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-300 dark:border-neutral-800 rounded-t-lg">
+      <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
           <DocsTab
             key={tab.props.value}
@@ -113,16 +116,18 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
       {/* Tab Content with animated height and opacity */}
       <div 
         ref={contentRef}
-        className="transition-all duration-300 ease-in-out"
+        className="transition-all duration-300 ease-in-out p-1 relative"
         style={{ 
           height: height === 'auto' ? 'auto' : `${height}px`
         }}
       >
+      <div className="absolute inset-1 border rounded-md bg-fd-secondary z-0"></div>
         <div 
           ref={wrapperRef}
-          className={`p-4 flex justify-center items-center transition-opacity duration-150 ease-in-out ${
+          className={cn(
+            'p-4 overflow-auto bg-fd-secondary rounded-md border max-h-[600px] fd-scroll-container transition-opacity duration-150 ease-in-out relative z-10',
             isTransitioning ? 'opacity-0' : 'opacity-100'
-          }`}
+          )}
         >
           <div className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-visible`}>
             {activeContent?.props.children}

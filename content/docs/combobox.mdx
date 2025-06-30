@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Combobox component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add combobox
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Combobox, ComboboxOption } from '@/components/ui/combobox';
 ```
 
@@ -36,11 +36,11 @@ import { Combobox, ComboboxOption } from '@/components/ui/combobox';
 The Combobox component provides a searchable dropdown interface for selecting from a list of options.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicComboboxDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Combobox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Combobox"
     const frameworks = [
       { value: 'next', label: 'Next.js' },
       { value: 'react', label: 'React' },
@@ -65,7 +65,7 @@ The Combobox component provides a searchable dropdown interface for selecting fr
 
 The Combobox component expects an array of options with the following structure:
 
-```tsx title="Combobox Option Interface"
+```tsx lineNumbers title="Combobox Option Interface"
 interface ComboboxOption {
   value: string;        // Unique identifier
   label: string;        // Display text
@@ -78,11 +78,11 @@ interface ComboboxOption {
 The Combobox component supports three visual variants: `default`, `error`, and `success`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Combobox Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Combobox Variants"
     {/* Default variant */}
     <Combobox
       options={frameworks}
@@ -112,11 +112,11 @@ The Combobox component supports three visual variants: `default`, `error`, and `
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Combobox Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Combobox Sizes"
     <Combobox
       options={frameworks}
       size="sm"
@@ -143,11 +143,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 Control whether users can search through options by typing.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SearchableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Searchable Combobox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Searchable Combobox"
     {/* Searchable (default) */}
     <Combobox
       options={countries}
@@ -171,11 +171,11 @@ Control whether users can search through options by typing.
 Control whether users can clear their selection with an X button.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ClearableDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Clearable Combobox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Clearable Combobox"
     {/* Clearable (default) */}
     <Combobox
       options={frameworks}
@@ -198,11 +198,11 @@ Control whether users can clear their selection with an X button.
 Individual options can be disabled by setting the `disabled` property.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledOptionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Combobox with Disabled Options"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Combobox with Disabled Options"
     const languages = [
       { value: 'js', label: 'JavaScript' },
       { value: 'ts', label: 'TypeScript' },
@@ -224,11 +224,11 @@ Individual options can be disabled by setting the `disabled` property.
 The entire combobox can be disabled.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledComboboxDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Combobox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Combobox"
     <Combobox
       options={frameworks}
       defaultValue="react"
@@ -243,11 +243,11 @@ The entire combobox can be disabled.
 Customize the empty state message when no options match the search.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomMessagesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Empty State Message"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Empty State Message"
     <Combobox
       options={limitedOptions}
       placeholder="Search for options..."
@@ -264,7 +264,7 @@ Customize the empty state message when no options match the search.
 
 Use `defaultValue` for uncontrolled behavior:
 
-```tsx title="Uncontrolled Combobox"
+```tsx lineNumbers title="Uncontrolled Combobox"
 <Combobox
   options={options}
   defaultValue="react"
@@ -277,11 +277,11 @@ Use `defaultValue` for uncontrolled behavior:
 Use `value` and `onValueChange` for controlled behavior:
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ControlledDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Controlled Combobox"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Controlled Combobox"
     const [selectedFramework, setSelectedFramework] = useState('react');
 
     <Combobox
@@ -322,7 +322,7 @@ The Combobox component is built with accessibility in mind:
 
 Create options dynamically from API data:
 
-```tsx title="Dynamic Options Example"
+```tsx lineNumbers title="Dynamic Options Example"
 const [options, setOptions] = useState<ComboboxOption[]>([]);
 
 useEffect(() => {
@@ -349,7 +349,7 @@ useEffect(() => {
 
 Use with form libraries like React Hook Form:
 
-```tsx title="Form Integration Example"
+```tsx lineNumbers title="Form Integration Example"
 import { useForm, Controller } from 'react-hook-form';
 
 const { control, handleSubmit } = useForm();
@@ -374,7 +374,7 @@ const { control, handleSubmit } = useForm();
 
 Customize the appearance with className props:
 
-```tsx title="Custom Styling Example"
+```tsx lineNumbers title="Custom Styling Example"
 <Combobox
   options={options}
   className="w-full max-w-xs"

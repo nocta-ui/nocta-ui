@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Skeleton component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add skeleton
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Skeleton } from '@/components/ui/skeleton';
 ```
 
@@ -38,11 +38,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 ### Default Skeleton
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicSkeletonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Skeleton"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Skeleton"
     <Skeleton />
     ```
   </DocsTab>
@@ -51,11 +51,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 ### Pulse Animation
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PulseSkeletonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Pulse Animation"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Pulse Animation"
     <Skeleton variant="pulse" />
     ```
   </DocsTab>
@@ -66,11 +66,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Skeleton Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Skeleton Sizes"
     <Skeleton size="sm" />
     <Skeleton size="md" />
     <Skeleton size="lg" />
@@ -83,11 +83,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 The Skeleton component supports different shapes: `rectangle`, `circle`, and `text`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ShapesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Skeleton Shapes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Skeleton Shapes"
     {/* Rectangle */}
     <Skeleton shape="rectangle" width="12rem" height="3rem" />
 
@@ -108,11 +108,11 @@ The Skeleton component supports different shapes: `rectangle`, `circle`, and `te
 For text content placeholders, you can specify multiple lines with the `lines` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TextLinesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Text Lines"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Text Lines"
     <Skeleton shape="text" lines={2} />
     <Skeleton shape="text" lines={4} />
     <Skeleton shape="text" lines={6} />
@@ -125,11 +125,11 @@ For text content placeholders, you can specify multiple lines with the `lines` p
 You can customize the width and height of skeleton elements using the `width` and `height` props.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomSizeDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Dimensions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Dimensions"
     {/* Custom Rectangle */}
     <Skeleton width="200px" height="60px" />
 
@@ -147,11 +147,11 @@ You can customize the width and height of skeleton elements using the `width` an
 ### Card Skeleton
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CardSkeletonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Card Skeleton"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Card Skeleton"
     <div className="max-w-sm p-4 border rounded-lg">
       <div className="space-y-4">
         <div className="flex items-center space-x-3">
@@ -172,11 +172,11 @@ You can customize the width and height of skeleton elements using the `width` an
 ### Article Skeleton
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ArticleSkeletonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Article Skeleton"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Article Skeleton"
     <div className="max-w-md space-y-4">
       <Skeleton width="100%" height="200px" />
       <Skeleton shape="text" width="80%" size="lg" />
@@ -193,11 +193,11 @@ You can customize the width and height of skeleton elements using the `width` an
 ### Table Skeleton
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <TableSkeletonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Table Skeleton"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Table Skeleton"
     <div className="space-y-3">
       {Array.from({ length: 5 }, (_, index) => (
         <div key={index} className="flex items-center space-x-4">
@@ -216,7 +216,7 @@ You can customize the width and height of skeleton elements using the `width` an
 
 ### Loading States
 
-```tsx title="Loading States"
+```tsx lineNumbers title="Loading States"
 const [loading, setLoading] = useState(true);
 
 return (
@@ -234,7 +234,7 @@ return (
 
 ### Conditional Rendering
 
-```tsx title="Conditional Rendering"
+```tsx lineNumbers title="Conditional Rendering"
 return (
   <div className="space-y-4">
     {posts.length > 0 ? (

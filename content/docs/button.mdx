@@ -20,13 +20,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Button component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add button
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Button } from '@/components/ui/button';
 ```
 
@@ -35,11 +35,11 @@ import { Button } from '@/components/ui/button';
 ### Primary Button
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PrimaryButtonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Primary Button"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Primary Button"
     <Button>Get Started</Button>
     ```
   </DocsTab>
@@ -48,11 +48,11 @@ import { Button } from '@/components/ui/button';
 ### Secondary Button
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SecondaryButtonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Secondary Button"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Secondary Button"
     <Button variant="secondary">Learn More</Button>
     ```
   </DocsTab>
@@ -61,11 +61,11 @@ import { Button } from '@/components/ui/button';
 ### Ghost Button
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <GhostButtonDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Ghost Button"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Ghost Button"
     <Button variant="ghost">Cancel</Button>
     ```
   </DocsTab>
@@ -76,11 +76,11 @@ import { Button } from '@/components/ui/button';
 The Button component supports three variants: `primary`, `secondary`, and `ghost`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Button Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Button Variants"
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="ghost">Ghost</Button>
@@ -93,11 +93,11 @@ The Button component supports three variants: `primary`, `secondary`, and `ghost
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Button Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Button Sizes"
     <Button size="sm">Small</Button>
     <Button size="md">Medium</Button>
     <Button size="lg">Large</Button>
@@ -108,11 +108,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Action Button Group
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ActionButtonGroupDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Action Button Group"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Action Button Group"
     <div className="flex gap-2">
       <Button variant="ghost" size="sm">Cancel</Button>
       <Button variant="secondary" size="sm">Save Draft</Button>
@@ -127,11 +127,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled State"
     <Button disabled>Disabled Primary</Button>
     <Button variant="secondary" disabled>Disabled Secondary</Button>
     <Button variant="ghost" disabled>Disabled Ghost</Button>
@@ -145,7 +145,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Button component accepts a `className` prop for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <Button className="w-full shadow-lg">
   Full Width Button
 </Button>
@@ -162,11 +162,11 @@ The Button component accepts a `className` prop for custom styling:
 ### With Icons
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithIconsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Buttons with Icons"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Buttons with Icons"
     <Button>
       <PlusIcon className="w-4 h-4 mr-2" />
       Add Item

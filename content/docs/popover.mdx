@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Popover component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add popover
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { 
   Popover, 
   PopoverTrigger, 
@@ -40,11 +40,11 @@ import {
 The Popover component provides a floating panel that appears on demand, perfect for displaying additional information or controls.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicPopoverDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Popover"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Popover"
     <Popover>
       <PopoverTrigger>
         Open Popover
@@ -67,11 +67,11 @@ The Popover component provides a floating panel that appears on demand, perfect 
 Control where the popover appears relative to the trigger with the `side` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SidesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Popover Positioning"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Popover Positioning"
     <Popover>
       <PopoverTrigger>Top</PopoverTrigger>
       <PopoverContent side="top">
@@ -108,11 +108,11 @@ Control where the popover appears relative to the trigger with the `side` prop.
 Fine-tune the alignment of the popover relative to the trigger using the `align` prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <AlignmentDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Popover Alignment"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Popover Alignment"
     {/* Horizontal alignment (for top/bottom sides) */}
     <Popover>
       <PopoverTrigger>Start</PopoverTrigger>
@@ -151,11 +151,11 @@ Fine-tune the alignment of the popover relative to the trigger using the `align`
 Adjust the distance and alignment offset of the popover from the trigger.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <OffsetsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Popover Offsets"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Popover Offsets"
     {/* Default offset */}
     <Popover>
       <PopoverTrigger>Default Offset</PopoverTrigger>
@@ -188,11 +188,11 @@ Adjust the distance and alignment offset of the popover from the trigger.
 Use the `asChild` prop to render custom trigger elements while maintaining popover functionality.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <AsChildDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Triggers"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Triggers"
     {/* Using with Button component */}
     <Popover>
       <PopoverTrigger asChild>
@@ -228,11 +228,11 @@ Use the `asChild` prop to render custom trigger elements while maintaining popov
 Control the popover's open state programmatically using the `open` and `onOpenChange` props.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ControlledDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Controlled State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Controlled State"
     const [open, setOpen] = useState(false);
 
     <Popover open={open} onOpenChange={setOpen}>
@@ -265,11 +265,11 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
 Popovers can contain complex content including forms, menus, and interactive elements.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <RichContentDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Rich Popover Content"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Rich Popover Content"
     <Popover>
       <PopoverTrigger>Rich Content</PopoverTrigger>
       <PopoverContent className="w-80">
@@ -312,11 +312,11 @@ Popovers can contain complex content including forms, menus, and interactive ele
 Popovers work great for inline forms and quick actions.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FormPopoverDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Form Popover"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Form Popover"
     const [open, setOpen] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -375,11 +375,11 @@ Popovers work great for inline forms and quick actions.
 The popover automatically detects viewport edges and flips position to stay visible.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CollisionDetectionDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Collision Detection"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Collision Detection"
     {/* These will automatically flip if they would go outside viewport */}
     <Popover>
       <PopoverTrigger>Left Edge</PopoverTrigger>
@@ -431,7 +431,7 @@ The Popover component is built with accessibility in mind:
 
 Handle specific events for custom behavior:
 
-```tsx title="Event Handling Example"
+```tsx lineNumbers title="Event Handling Example"
 <Popover>
   <PopoverTrigger>Custom Events</PopoverTrigger>
   <PopoverContent
@@ -453,7 +453,7 @@ Handle specific events for custom behavior:
 
 Customize the appearance with className props:
 
-```tsx title="Custom Styling Example"
+```tsx lineNumbers title="Custom Styling Example"
 <Popover>
   <PopoverTrigger className="custom-trigger-styles">
     Custom Styled Trigger
@@ -468,7 +468,7 @@ Customize the appearance with className props:
 
 Show different content based on state:
 
-```tsx title="Conditional Rendering Example"
+```tsx lineNumbers title="Conditional Rendering Example"
 const [user, setUser] = useState(null);
 
 <Popover>

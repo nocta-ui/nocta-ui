@@ -21,7 +21,7 @@ import {
 
 ## Installation
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add calendar
 ```
 
@@ -32,11 +32,11 @@ npx nocta-ui add calendar
 A simple calendar with date selection functionality.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicCalendarDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Calendar"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Calendar"
     import { Calendar } from '@/components/ui/calendar';
     import { useState } from 'react';
 
@@ -57,11 +57,11 @@ A simple calendar with date selection functionality.
 ### Variants
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Calendar Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Calendar Variants"
     import { Calendar } from '@/components/ui/calendar';
     import { useState } from 'react';
 
@@ -100,11 +100,11 @@ A simple calendar with date selection functionality.
 Control the calendar size with the size prop.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Calendar Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Calendar Sizes"
     // Small calendar
     <Calendar size="sm" />
 
@@ -122,11 +122,11 @@ Control the calendar size with the size prop.
 Customize the first day of the week and show week numbers.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WeekStartsOnMondayDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Week Configuration"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Week Configuration"
     // Week starts on Monday
     <Calendar weekStartsOn={1} />
 
@@ -141,11 +141,11 @@ Customize the first day of the week and show week numbers.
 Display week numbers alongside the calendar.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithWeekNumbersDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Week Numbers"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Week Numbers"
     <Calendar showWeekNumbers />
     ```
   </DocsTab>
@@ -156,11 +156,11 @@ Display week numbers alongside the calendar.
 Restrict date selection with various disability patterns.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledDatesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Dates"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Dates"
     // Disable weekends
     const isWeekend = (date: Date) => {
       const day = date.getDay();
@@ -185,11 +185,11 @@ Restrict date selection with various disability patterns.
 Set minimum and maximum selectable dates.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DateRangeDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Date Range Restrictions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Date Range Restrictions"
     const today = new Date();
     const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
@@ -207,11 +207,11 @@ Set minimum and maximum selectable dates.
 Customize how months and weekdays are displayed.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomFormattingDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Formatting"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Formatting"
     const formatMonth = (date: Date) => {
       const month = date.toLocaleDateString('en-US', { month: 'long' });
       const year = date.getFullYear();
@@ -235,11 +235,11 @@ Customize how months and weekdays are displayed.
 Disable the entire calendar.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledCalendarDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Calendar"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Calendar"
     <Calendar disabled />
     ```
   </DocsTab>
@@ -250,10 +250,10 @@ Disable the entire calendar.
 Handle date selection with custom logic.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <EventCalendarDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
+  <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 

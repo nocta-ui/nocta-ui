@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Slider component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add slider
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Slider } from '@/components/ui/slider';
 ```
 
@@ -38,11 +38,11 @@ import { Slider } from '@/components/ui/slider';
 ### Default Slider
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicSliderDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Default Slider"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Slider"
     const [value, setValue] = useState(50);
 
     return (
@@ -59,11 +59,11 @@ import { Slider } from '@/components/ui/slider';
 ### Primary Slider
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PrimarySliderDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Primary Slider"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Primary Slider"
     <Slider 
       variant="primary"
       value={value} 
@@ -76,11 +76,11 @@ import { Slider } from '@/components/ui/slider';
 ### Secondary Slider
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SecondarySliderDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Secondary Slider"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Secondary Slider"
     <Slider 
       variant="secondary"
       value={value} 
@@ -95,11 +95,11 @@ import { Slider } from '@/components/ui/slider';
 The Slider component supports three variants: `default`, `primary`, and `secondary`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Slider Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Slider Variants"
     <Slider variant="default" value={value} onChange={setValue} />
     <Slider variant="primary" value={value} onChange={setValue} />
     <Slider variant="secondary" value={value} onChange={setValue} />
@@ -112,11 +112,11 @@ The Slider component supports three variants: `default`, `primary`, and `seconda
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SizesDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Slider Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Slider Sizes"
     <Slider size="sm" value={value} onChange={setValue} />
     <Slider size="md" value={value} onChange={setValue} />
     <Slider size="lg" value={value} onChange={setValue} />
@@ -129,11 +129,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Show Value
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <WithValueDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Show Value"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Show Value"
     <Slider 
       value={value} 
       onChange={setValue}
@@ -147,11 +147,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Custom Range & Formatting
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomRangeDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Range & Formatting"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Range & Formatting"
     // Temperature slider
     <Slider 
       min={16}
@@ -180,11 +180,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Step Values
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <StepDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Step Values"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Step Values"
     <Slider 
       min={0}
       max={100}
@@ -201,11 +201,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Vertical Orientation
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <VerticalDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Vertical Orientation"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Vertical Orientation"
     <Slider 
       orientation="vertical"
       value={value} 
@@ -222,11 +222,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled State"
     <Slider 
       value={60}
       disabled

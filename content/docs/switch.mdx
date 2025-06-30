@@ -18,13 +18,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Switch component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add switch
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { Switch } from '@/components/ui/switch';
 ```
 
@@ -33,13 +33,13 @@ import { Switch } from '@/components/ui/switch';
 ### Default Switch
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <BasicSwitchDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Basic Switch"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Switch"
     const [isChecked, setIsChecked] = useState(false);
     
     <Switch 
@@ -55,13 +55,13 @@ import { Switch } from '@/components/ui/switch';
 The Switch component supports four variants: `default`, `success`, `warning`, and `destructive`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <VariantsDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Switch Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Switch Variants"
     <Switch variant="default" checked={true} />
     <Switch variant="success" checked={true} />
     <Switch variant="warning" checked={true} />
@@ -75,13 +75,13 @@ The Switch component supports four variants: `default`, `success`, `warning`, an
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <SizesDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Switch Sizes"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Switch Sizes"
     <Switch size="sm" checked={true} />
     <Switch size="md" checked={true} />
     <Switch size="lg" checked={true} />
@@ -94,11 +94,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledStateDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Switch State"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Switch State"
     <Switch disabled={false} />
     <Switch checked={true} disabled={false} />
     <Switch disabled={true} />
@@ -114,13 +114,13 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 The Switch component accepts a `className` prop for custom styling:
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
       <CustomStylingDemo />
     </div>
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Switch Styling"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Switch Styling"
     <Switch className="scale-125" checked={true} />
     <Switch className="opacity-75" checked={true} />
     <Switch className="rounded-sm" checked={false} />

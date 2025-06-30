@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Card component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add card
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import {
   Card,
   CardHeader,
@@ -40,11 +40,11 @@ import {
 ### Simple Card
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <SimpleCardDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Card"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Card"
     <Card>
       <CardHeader>
         <CardTitle>Getting Started</CardTitle>
@@ -63,11 +63,11 @@ import {
 ### Card with Actions
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CardWithActionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Card with Actions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Card with Actions"
     <Card>
       <CardHeader>
         <CardTitle>Project Settings</CardTitle>
@@ -99,11 +99,11 @@ import {
 ### Notification Card
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <NotificationCardDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Notification Card"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Notification Card"
     <Card className="max-w-md">
         <CardHeader>
           <div className="flex items-start space-x-3">
@@ -130,11 +130,11 @@ import {
 ### Stats Card
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <StatsCardDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Stats Card"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Stats Card"
       <Card className="w-md">
         <CardHeader>
           <CardTitle>Analytics Overview</CardTitle>
@@ -165,7 +165,7 @@ import {
 
 All components accept a `className` prop for custom styling:
 
-```tsx title="Custom Styling"
+```tsx lineNumbers title="Custom Styling"
 <Card className="max-w-lg border-2 border-purple-200">
   <CardHeader className="bg-purple-50">
     <CardTitle className="text-purple-900">Custom Card</CardTitle>
@@ -177,7 +177,7 @@ All components accept a `className` prop for custom styling:
 
 Use the `as` prop on CardTitle to change the heading level:
 
-```tsx title="Dynamic Title Element"
+```tsx lineNumbers title="Dynamic Title Element"
 <CardTitle as="h1">Main Title</CardTitle>
 <CardTitle as="h2">Section Title</CardTitle>
 <CardTitle as="div">Custom Element</CardTitle>

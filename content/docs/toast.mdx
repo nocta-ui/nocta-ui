@@ -21,19 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Toast component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add toast
-```
-
-The toast component requires GSAP for animations:
-
-```bash title="Terminal"
-npm install gsap
 ```
 
 Then import the components you need:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { useToast, ToastProvider } from '@/components/ui/toast';
 ```
 
@@ -41,7 +35,7 @@ import { useToast, ToastProvider } from '@/components/ui/toast';
 
 Wrap your app with the ToastProvider to enable toast notifications:
 
-```tsx title="Toast Provider Setup"
+```tsx lineNumbers title="Toast Provider Setup"
 import { ToastProvider } from '@/components/ui/toast';
 
 function App() {
@@ -58,11 +52,11 @@ function App() {
 ### Simple Toast
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicToastDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Toast"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Toast"
     import { useToast } from '@/components/ui/toast';
 
     function MyComponent() {
@@ -90,11 +84,11 @@ function App() {
 The Toast component supports multiple variants: `default`, `success`, `warning`, and `destructive`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ToastVariantsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Toast Variants"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Toast Variants"
     const showDefault = () => {
       toast({
         title: 'Information',
@@ -134,11 +128,11 @@ The Toast component supports multiple variants: `default`, `success`, `warning`,
 Toasts can be positioned in 6 different locations on the screen. Each position manages its own stack of toasts independently.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ToastPositionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Toast Positions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Toast Positions"
     // Available positions
     const positions = [
       'top-left',
@@ -175,11 +169,11 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
 Add action buttons to your toast notifications for user interaction.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ToastWithActionsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Toast with Actions"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Toast with Actions"
     const showToast = () => {
       toast({
         title: 'Update Available',
@@ -199,11 +193,11 @@ Add action buttons to your toast notifications for user interaction.
 The toast system supports smart stacking with a maximum of 3 visible toasts. New toasts push older ones up with scale and blur effects.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <StackedToastsDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Stacked Toasts"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Stacked Toasts"
     const showMultiple = () => {
       toast({ title: 'First Toast', description: 'This is the first notification.' });
       
@@ -240,11 +234,11 @@ The toast system supports smart stacking with a maximum of 3 visible toasts. New
 Create persistent toasts that don't auto-close by setting `duration` to `0`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <PersistentToastDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Persistent Toast"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Persistent Toast"
     const showToast = () => {
       toast({
         title: 'Important Notice',
@@ -261,11 +255,11 @@ Create persistent toasts that don't auto-close by setting `duration` to `0`.
 Customize how long toasts remain visible by setting a custom duration in milliseconds.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <CustomDurationDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Custom Toast Duration"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Toast Duration"
     const showToast = () => {
       toast({
         title: 'Quick Toast',
@@ -282,11 +276,11 @@ Customize how long toasts remain visible by setting a custom duration in millise
 You can dismiss all active toasts programmatically using the `dismissAll` function.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DismissAllDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Dismiss All Toasts"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dismiss All Toasts"
     const { toast, dismissAll } = useToast();
 
     const showMultiple = () => {
@@ -310,7 +304,7 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
 
 All toast components accept className props for custom styling:
 
-```tsx title="Custom Toast Styling"
+```tsx lineNumbers title="Custom Toast Styling"
 toast({
   title: 'Custom Toast',
   description: 'This toast has custom styling.',

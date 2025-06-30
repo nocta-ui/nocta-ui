@@ -7,7 +7,7 @@ description: Step-by-step guide to install and configure Nocta UI with Next.js
 
 First, create a new Next.js project:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx create-next-app@latest my-app \
   --typescript \
   --tailwind \
@@ -22,7 +22,7 @@ cd my-app
 
 Initialize Nocta UI in your project. This will automatically install all required dependencies:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui init
 ```
 
@@ -34,7 +34,7 @@ The init command will:
 
 Now you can add specific components that you need:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add button
 npx nocta-ui add card
 npx nocta-ui add badge
@@ -44,7 +44,7 @@ npx nocta-ui add badge
 
 Now you can import and use Nocta UI components in your Next.js application:
 
-```tsx title="src/app/page.tsx"
+```tsx lineNumbers title="src/app/page.tsx"
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

@@ -26,13 +26,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Context Menu component using the nocta-ui CLI:
 
-```bash title="Terminal"
+```bash lineNumbers title="Terminal"
 npx nocta-ui add context-menu
 ```
 
 Then import the component:
 
-```tsx title="Import"
+```tsx lineNumbers title="Import"
 import { 
   ContextMenu, 
   ContextMenuTrigger, 
@@ -47,11 +47,11 @@ import {
 ### Simple Context Menu
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <BasicContextMenuDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Simple Context Menu"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Context Menu"
     const [lastAction, setLastAction] = useState('');
 
     return (
@@ -86,11 +86,11 @@ import {
 Use `ContextMenuSeparator` to group related menu items.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ContextMenuWithSeparatorDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Context Menu with Separators"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Context Menu with Separators"
     <ContextMenu>
       <ContextMenuTrigger>
         <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
@@ -135,11 +135,11 @@ Use `ContextMenuSeparator` to group related menu items.
 Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `ContextMenuSubContent`.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <ContextMenuWithSubmenuDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Context Menu with Submenu"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Context Menu with Submenu"
     <ContextMenu>
       <ContextMenuTrigger>
         <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
@@ -190,11 +190,11 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
 Both the entire context menu and individual items can be disabled.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledContextMenuDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="Disabled Context Menu"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Context Menu"
     {/* Disabled context menu */}
     <ContextMenu>
       <ContextMenuTrigger disabled>
@@ -231,11 +231,11 @@ Both the entire context menu and individual items can be disabled.
 A real-world example showing a file manager with context menus.
 
 <DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
     <FileContextMenuDemo />
   </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx title="File Manager Context Menu"
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="File Manager Context Menu"
     const files = [
       { name: 'document.pdf', type: 'pdf', size: '2.4 MB' },
       { name: 'image.jpg', type: 'image', size: '1.8 MB' },
