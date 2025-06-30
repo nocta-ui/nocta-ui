@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   value?: number;
@@ -262,9 +263,9 @@ export const Slider: React.FC<SliderProps> = ({
     : { bottom: `${percentage}%`, transform: 'translateY(50%)' };
 
   return (
-    <div className={`${orientationStyles[orientation]} ${className}`} {...props}>
+    <div className={cn(orientationStyles[orientation], className)} {...props}>
       {showValue && (
-        <div className={`mb-2 text-sm text-neutral-700 dark:text-neutral-300 ${orientation === 'vertical' ? 'mb-0 mr-2' : ''}`}>
+        <div className={cn('mb-2 text-sm text-neutral-700 dark:text-neutral-300', orientation === 'vertical' ? 'mb-0 mr-2' : '')}>
           {formatValue(currentValue)}
         </div>
       )}
@@ -280,11 +281,7 @@ export const Slider: React.FC<SliderProps> = ({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         aria-disabled={disabled}
-        className={`
-          ${baseStyles}
-          ${orientationStyles[orientation]}
-          focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-        `}
+        className={cn(baseStyles, orientationStyles[orientation], 'focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50')}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         onKeyDown={handleKeyDown}
@@ -295,15 +292,16 @@ export const Slider: React.FC<SliderProps> = ({
           ${trackSizes[size]}
           ${trackClassName}
         `}>
-                  {/* Fill */}
+          
+        {/* Fill */}
         <div
-          className={`
-            absolute rounded-full
-            ${fillVariants[variant]}
-            ${trackSizes[size]}
-            ${orientation === 'horizontal' ? 'left-0 top-0' : 'bottom-0 left-0'}
-            ${!isDragging ? 'transition-all duration-200 ease-out' : ''}
-          `}
+          className={cn(
+            'absolute rounded-full',
+            fillVariants[variant],
+            trackSizes[size],
+            orientation === 'horizontal' ? 'left-0 top-0' : 'bottom-0 left-0',
+            !isDragging ? 'transition-all duration-200 ease-out' : ''
+          )}
           style={fillStyle}
         />
         </div>
@@ -311,17 +309,16 @@ export const Slider: React.FC<SliderProps> = ({
         {/* Thumb */}
         <div
           ref={thumbRef}
-          className={`
-            absolute rounded-full shadow-lg
-            transform hover:scale-110 active:scale-105
-            ${thumbSizes[size]}
-            ${thumbVariants[variant]}
-            ${isDragging ? 'scale-105' : ''}
-            ${disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'}
-            ${thumbClassName}
-            ${orientation === 'horizontal' ? 'top-1/2 -translate-y-1/2' : 'left-1/2 -translate-x-1/2'}
-            ${!isDragging ? 'transition-all duration-200 ease-out' : ''}
-          `}
+          className={cn(
+            'absolute rounded-full shadow-lg transform origin-center hover:scale-110 active:scale-105',
+            thumbSizes[size],
+            thumbVariants[variant],
+            isDragging ? 'scale-105' : '',
+            disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing',
+            thumbClassName,
+            orientation === 'horizontal' ? 'top-1/2 -translate-y-1/2' : 'left-1/2 -translate-x-1/2',
+            !isDragging ? 'transition-all duration-200 ease-out' : ''
+          )}
           style={thumbStyle}
         />
       </div>

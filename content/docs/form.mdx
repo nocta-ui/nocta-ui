@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Form component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add form
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { 
   Form, 
   FormField, 
@@ -44,7 +44,7 @@ The Form component follows a composable architecture where you build forms by co
     <BasicFormDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Form"
     <Form onSubmit={handleSubmit}>
       <FormField name="name">
         <FormLabel required>Full Name</FormLabel>
@@ -90,7 +90,7 @@ Handle form validation errors by passing an `error` prop to `FormField`. The err
     <FormWithErrorsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form with Errors"
     const [errors, setErrors] = useState({
       username: 'Username is already taken',
       password: ''
@@ -127,7 +127,7 @@ Build complex forms with multiple field types, layouts, and validation.
     <ComplexFormDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Complex Form"
     <Form>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField name="firstName">
@@ -206,7 +206,7 @@ The `FormActions` component supports different alignments for form buttons.
     <FormActionsVariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form Actions"
     {/* Left aligned */}
     <FormActions align="left">
       <Button>Left Aligned</Button>
@@ -237,7 +237,7 @@ Form messages support different types for various validation states.
     <FormMessageTypesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form Message Types"
     <FormField name="success">
       <FormLabel>Success Field</FormLabel>
       <FormControl>

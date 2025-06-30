@@ -26,13 +26,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Context Menu component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add context-menu
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { 
   ContextMenu, 
   ContextMenuTrigger, 
@@ -51,7 +51,7 @@ import {
     <BasicContextMenuDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Context Menu"
     const [lastAction, setLastAction] = useState('');
 
     return (
@@ -90,7 +90,7 @@ Use `ContextMenuSeparator` to group related menu items.
     <ContextMenuWithSeparatorDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Context Menu with Separators"
     <ContextMenu>
       <ContextMenuTrigger>
         <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
@@ -139,7 +139,7 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
     <ContextMenuWithSubmenuDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Context Menu with Submenu"
     <ContextMenu>
       <ContextMenuTrigger>
         <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
@@ -194,7 +194,7 @@ Both the entire context menu and individual items can be disabled.
     <DisabledContextMenuDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Context Menu"
     {/* Disabled context menu */}
     <ContextMenu>
       <ContextMenuTrigger disabled>
@@ -235,7 +235,7 @@ A real-world example showing a file manager with context menus.
     <FileContextMenuDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="File Manager Context Menu"
     const files = [
       { name: 'document.pdf', type: 'pdf', size: '2.4 MB' },
       { name: 'image.jpg', type: 'image', size: '1.8 MB' },
@@ -356,47 +356,4 @@ The Context Menu component is built with accessibility in mind:
 | `alignOffset` | `number` | `0` | Offset for alignment |
 | `avoidCollisions` | `boolean` | `true` | Prevent viewport overflow |
 | `onEscapeKeyDown` | `(event: KeyboardEvent) => void` | — | Escape key handler |
-| `onPointerDownOutside` | `(event: PointerEvent) => void` | — | Click outside handler |
-| `className` | `string` | — | Additional CSS classes |
-
-### ContextMenuItem
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Item content |
-| `disabled` | `boolean` | `false` | Disable the menu item |
-| `inset` | `boolean` | `false` | Add left padding for alignment |
-| `className` | `string` | — | Additional CSS classes |
-| `onClick` | `() => void` | — | Click handler |
-
-### ContextMenuSeparator
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | Additional CSS classes |
-
-### ContextMenuSub
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Sub trigger and content |
-| `open` | `boolean` | — | Controlled open state |
-| `onOpenChange` | `(open: boolean) => void` | — | Open state change handler |
-
-### ContextMenuSubTrigger
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Trigger content (shows arrow automatically) |
-| `disabled` | `boolean` | `false` | Disable the sub trigger |
-| `inset` | `boolean` | `false` | Add left padding for alignment |
-| `className` | `string` | — | Additional CSS classes |
-
-### ContextMenuSubContent
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Sub menu items |
-| `className` | `string` | — | Additional CSS classes |
-
-All components also accept their respective HTML element props. 
+| `

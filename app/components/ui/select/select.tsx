@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 export interface SelectProps {
   value?: string;
@@ -190,11 +191,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
       aria-controls={contentId}
       aria-haspopup="listbox"
       disabled={disabled}
-      className={`
-        ${baseStyles}
-        ${sizes[size]}
-        ${className}
-      `}
+      className={cn(baseStyles, sizes[size], className)}
       onClick={() => !disabled && setOpen(!open)}
       onKeyDown={handleKeyDown}
       {...props}
@@ -344,17 +341,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       ref={contentRef}
       id={contentId}
       role="listbox"
-      className={`
-        absolute z-50 w-full
-        min-w-[8rem] overflow-hidden
-        rounded-lg border border-neutral-300 dark:border-neutral-700/50
-        bg-white dark:bg-neutral-900
-        shadow-lg dark:shadow-xl
-        ${positionStyles[position]}
-        ${animationStyles}
-        not-prose
-        ${className}
-      `}
+      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-white dark:bg-neutral-900 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
     >
       <div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
         {children}
@@ -403,19 +390,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     <div
       role="option"
       aria-selected={isSelected}
-      className={`
-        relative flex cursor-pointer select-none items-center
-        px-3 py-2 text-sm outline-none mx-1 rounded-md
-        hover:bg-neutral-100 dark:hover:bg-neutral-800
-        focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
-        ${isSelected ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
-        ${isFocused ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
-        ${disabled ? 'pointer-events-none opacity-50' : ''}
-        transition-colors duration-150
-        not-prose
-        ${className}
-      `}
-      onClick={() => !disabled && onValueChange?.(value, children)}
+      className={cn('relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800', isSelected ? 'bg-neutral-100 dark:bg-neutral-800' : '', isFocused ? 'bg-neutral-100 dark:bg-neutral-800' : '', disabled ? 'pointer-events-none opacity-50' : 'transition-colors duration-150 not-prose', className)}      onClick={() => !disabled && onValueChange?.(value, children)}
     >
       <span className={`flex-1 ${isSelected ? 'font-medium' : ''}`}>
         {children}

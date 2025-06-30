@@ -15,13 +15,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Select component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add select
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import {
   Select,
   SelectTrigger,
@@ -40,7 +40,7 @@ import {
     <DefaultSelectDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Select"
     <Select>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a fruit" />
@@ -66,7 +66,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Select Sizes"
     <Select size="sm">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Small select" />
@@ -110,7 +110,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled State"
     <Select disabled>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Disabled select" />
@@ -142,7 +142,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Select components accept `className` props for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Select>
   <SelectTrigger className="w-full border-2 border-purple-300 focus-visible:border-purple-500">
     <SelectValue placeholder="Custom styled select" />

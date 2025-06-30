@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback, useId } from 'react';
+import { cn } from '@/lib/utils';
 
 // Combobox interfaces
 export interface ComboboxOption {
@@ -233,18 +234,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
         aria-controls={`${comboboxId}-listbox`}
         aria-haspopup="listbox"
         disabled={disabled}
-        className={`
-          ${baseStyles}
-          ${variants[variant]}
-          ${sizes[size]}
-          ${className}
-        `}
+        className={cn(baseStyles, variants[variant], sizes[size], className)}
         onClick={() => !disabled && setOpen(!open)}
         onKeyDown={handleKeyDown}
       >
-        <span className={`flex-1 text-left truncate ${
-          selectedOption ? '' : 'text-neutral-400 dark:text-neutral-500'
-        }`}>
+        <span className={cn('flex-1 text-left truncate', selectedOption ? '' : 'text-neutral-400 dark:text-neutral-500')}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         
@@ -287,13 +281,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
       {open && (
         <div
           ref={listRef}
-          className={`
-            absolute z-50 mt-1 w-full
-            rounded-lg border border-neutral-300 dark:border-neutral-700/50
-            bg-white dark:bg-neutral-900
-            shadow-lg dark:shadow-xl
-            ${popoverClassName}
-          `}
+          className={cn('absolute z-50 mt-1 w-full rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-white dark:bg-neutral-900 shadow-lg dark:shadow-xl', popoverClassName)}
         >
           {/* Search input */}
           {searchable && (
@@ -330,15 +318,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
                    ref={(el) => { optionRefs.current[index] = el; }}
                    role="option"
                    aria-selected={option.value === value}
-                   className={`
-                     relative flex cursor-pointer select-none items-center justify-between
-                     px-3 py-2 text-sm outline-none mx-1 rounded-md
-                     hover:bg-neutral-100 dark:hover:bg-neutral-800
-                     ${highlightedIndex === index ? 'bg-neutral-100 dark:bg-neutral-800' : ''}
-                     ${option.value === value ? 'bg-neutral-100 dark:bg-neutral-800 font-medium' : ''}
-                     ${option.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}
-                     transition-colors duration-150
-                   `}
+                   className={cn('relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800', highlightedIndex === index ? 'bg-neutral-100 dark:bg-neutral-800' : '', option.value === value ? 'bg-neutral-100 dark:bg-neutral-800 font-medium' : '', option.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '', 'transition-colors duration-150')}
                    onClick={() => !option.disabled && handleValueChange(option.value)}
                  >
                   <span className="flex-1">{option.label}</span>

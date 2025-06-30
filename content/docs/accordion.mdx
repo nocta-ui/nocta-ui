@@ -17,13 +17,13 @@ import {
 
 Install the Alert component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add accordion
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import { 
   Accordion,
   AccordionItem,
@@ -43,7 +43,7 @@ A simple accordion with collapsible content sections.
     <BasicAccordionDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function BasicAccordionDemo() {
@@ -87,7 +87,7 @@ Use the card variant for a more elevated appearance with individual cards for ea
     <CardAccordionDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Card Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
     import { User, Shield, Gear } from 'phosphor-react';
 
@@ -147,7 +147,7 @@ Allow multiple accordion items to be open simultaneously by setting `type="multi
     <MultipleAccordionDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Multiple Open Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function MultipleAccordionDemo() {
@@ -191,7 +191,7 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
     <SizeAccordionDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Accordion Sizes"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
     export function SizeAccordionDemo() {
@@ -245,7 +245,7 @@ Control the accordion state externally using the `value` and `onValueChange` pro
     <ControlledAccordionDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Controlled Accordion"
     import React from 'react';
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { Spinner } from '../spinner';
+import { cn } from '@/lib/utils';
 
 // Types
 export type SortDirection = 'asc' | 'desc' | null;
@@ -209,23 +210,11 @@ export const Table = <T extends Record<string, unknown>>({
 
   return (
     <div className="not-prose">
-      <div className={`
-        bg-white dark:bg-neutral-900 
-        border border-neutral-300 dark:border-neutral-700/50 
-        rounded-xl 
-        shadow-md dark:shadow-lg 
-        backdrop-blur-sm 
-        overflow-hidden 
-        ${getVariantStyles()}
-        ${className}
-      `}>
+      <div className={cn('bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700/50 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table
-            className={`
-              w-full border-collapse
-              ${getSizeStyles()}
-            `}
+            className={cn('w-full border-collapse', getSizeStyles())}
             {...props}
           >
             <TableHeader>
@@ -352,10 +341,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={`
-        bg-neutral-50 dark:bg-neutral-800/50
-        ${className}
-      `}
+      className={cn('bg-neutral-50 dark:bg-neutral-800/50', className)}
       {...props}
     >
       {children}
@@ -371,10 +357,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 }) => {
   return (
     <tbody 
-      className={`
-        divide-y divide-neutral-100 dark:divide-neutral-700/50
-        ${className}
-      `}
+      className={cn('divide-y divide-neutral-100 dark:divide-neutral-700/50', className)}
       {...props}
     >
       {children}
@@ -391,10 +374,7 @@ export const TableRow: React.FC<TableRowProps> = ({
 }) => {
   return (
     <tr 
-      className={`
-        ${clickable ? 'cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out' : ''}
-        ${className}
-      `}
+      className={cn(clickable ? 'cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out' : '', className)}
       {...props}
     >
       {children}
@@ -432,14 +412,14 @@ export const TableCell: React.FC<TableCellProps> = ({
     return (
       <span className="ml-2 inline-flex flex-col">
         <svg 
-          className={`w-3 h-3 ${sortDirection === 'asc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500'}`}
+          className={cn('w-3 h-3', sortDirection === 'asc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500')}
           fill="currentColor" 
           viewBox="0 0 20 20"
         >
           <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
         </svg>
         <svg 
-          className={`w-3 h-3 ${sortDirection === 'desc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500'}`}
+          className={cn('w-3 h-3', sortDirection === 'desc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500')}
           fill="currentColor" 
           viewBox="0 0 20 20"
         >
@@ -452,16 +432,7 @@ export const TableCell: React.FC<TableCellProps> = ({
   return React.createElement(
     Component,
     {
-      className: `
-        px-6 py-4
-        ${getAlignmentClass()}
-        ${header 
-          ? 'font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight' 
-          : 'text-neutral-700 dark:text-neutral-300'
-        }
-        ${sortable ? 'cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700/50 select-none transition-colors duration-200 ease-in-out' : ''}
-        ${className}
-      `,
+      className: cn('px-6 py-4', getAlignmentClass(), header ? 'font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight' : 'text-neutral-700 dark:text-neutral-300', sortable ? 'cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700/50 select-none transition-colors duration-200 ease-in-out' : '', className),
       onClick: sortable ? onSort : undefined,
       colSpan,
       rowSpan,
@@ -484,12 +455,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={`
-        bg-neutral-50 dark:bg-neutral-800/50
-        border-t border-neutral-100 dark:border-neutral-700/50
-        font-semibold
-        ${className}
-      `}
+      className={cn('bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 font-semibold', className)}
       {...props}
     >
       {children}
@@ -505,10 +471,7 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
 }) => {
   return (
     <caption 
-      className={`
-        py-3 text-sm text-neutral-600 dark:text-neutral-400
-        ${className}
-      `}
+      className={cn('py-3 text-sm text-neutral-600 dark:text-neutral-400', className)}
       {...props}
     >
       {children}

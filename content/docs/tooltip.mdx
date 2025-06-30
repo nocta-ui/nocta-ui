@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Tooltip component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add tooltip
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import {
   Tooltip,
   TooltipTrigger,
@@ -44,7 +44,7 @@ import {
     <SimpleTooltipDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Tooltip"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="secondary">Hover me</Button>
@@ -64,7 +64,7 @@ import {
     <WithTextTriggerDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tooltip with Text Trigger"
     <span>
       This text has a 
       <Tooltip>
@@ -90,7 +90,7 @@ The Tooltip component supports different positioning sides: `top`, `bottom`, `le
     <PositioningDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tooltip Positioning"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="sm" variant="ghost">Top</Button>
@@ -121,7 +121,7 @@ Control the alignment of the tooltip relative to the trigger element using the `
     <AlignmentDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tooltip Alignment"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="sm" variant="secondary">Start</Button>
@@ -143,7 +143,7 @@ Tooltips can contain rich content including multiple lines and formatted text.
     <RichContentDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Rich Tooltip Content"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="primary">Features</Button>
@@ -172,7 +172,7 @@ Control how long the user must hover before the tooltip appears using the `delay
     <DelayDurationDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tooltip Delay Duration"
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Button size="sm" variant="ghost">Instant</Button>
@@ -200,7 +200,7 @@ Control how long the user must hover before the tooltip appears using the `delay
 
 The Tooltip components accept a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <TooltipContent className="bg-blue-900 text-blue-100 border-blue-700">
   Custom styled tooltip
 </TooltipContent>
@@ -213,7 +213,7 @@ The Tooltip components accept a `className` prop for custom styling:
     <WithoutArrowDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tooltip Without Arrow"
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="secondary">No Arrow</Button>
@@ -230,7 +230,7 @@ The Tooltip components accept a `className` prop for custom styling:
 
 For programmatic control, you can use the `open` and `onOpenChange` props:
 
-```tsx
+```tsx title="Controlled Tooltip"
 const [open, setOpen] = useState(false);
 
 return (

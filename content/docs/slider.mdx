@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Slider component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add slider
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Slider } from '@/components/ui/slider';
 ```
 
@@ -42,7 +42,7 @@ import { Slider } from '@/components/ui/slider';
     <BasicSliderDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Slider"
     const [value, setValue] = useState(50);
 
     return (
@@ -63,7 +63,7 @@ import { Slider } from '@/components/ui/slider';
     <PrimarySliderDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Primary Slider"
     <Slider 
       variant="primary"
       value={value} 
@@ -80,7 +80,7 @@ import { Slider } from '@/components/ui/slider';
     <SecondarySliderDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Secondary Slider"
     <Slider 
       variant="secondary"
       value={value} 
@@ -99,7 +99,7 @@ The Slider component supports three variants: `default`, `primary`, and `seconda
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Slider Variants"
     <Slider variant="default" value={value} onChange={setValue} />
     <Slider variant="primary" value={value} onChange={setValue} />
     <Slider variant="secondary" value={value} onChange={setValue} />
@@ -116,7 +116,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Slider Sizes"
     <Slider size="sm" value={value} onChange={setValue} />
     <Slider size="md" value={value} onChange={setValue} />
     <Slider size="lg" value={value} onChange={setValue} />
@@ -133,7 +133,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <WithValueDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Show Value"
     <Slider 
       value={value} 
       onChange={setValue}
@@ -151,7 +151,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <CustomRangeDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Range & Formatting"
     // Temperature slider
     <Slider 
       min={16}
@@ -184,7 +184,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <StepDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Step Values"
     <Slider 
       min={0}
       max={100}
@@ -205,7 +205,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <VerticalDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Vertical Orientation"
     <Slider 
       orientation="vertical"
       value={value} 
@@ -226,52 +226,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled State"
     <Slider 
       value={60}
       disabled
     />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Advanced Examples
-
-### Price Range Selector
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
-    <PriceRangeDemo />
-  </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx
-    const [budget, setBudget] = useState(2500);
-
-    return (
-      <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold">Budget Range</h3>
-            <span className="text-sm font-medium">
-              ${budget.toLocaleString()}
-            </span>
-          </div>
-          <Slider 
-            min={500}
-            max={10000}
-            step={100}
-            value={budget} 
-            onChange={setBudget}
-            variant="primary"
-            size="lg"
-          />
-          <div className="flex justify-between text-xs text-neutral-500">
-            <span>$500</span>
-            <span>$10,000</span>
-          </div>
-        </div>
-      </div>
-    );
     ```
   </DocsTab>
 </DocsTabs>

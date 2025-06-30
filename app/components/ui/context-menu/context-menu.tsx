@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback, useContext, createContext } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -118,7 +119,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
         setPosition,
       }}
     >
-      <div className={`not-prose ${className}`} {...props}>
+      <div className={cn('not-prose', className)} {...props}>
         {children}
       </div>
     </ContextMenuContext.Provider>
@@ -146,7 +147,7 @@ export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
   return (
     <div
       ref={triggerRef}
-      className={`${className} ${disabled ? 'pointer-events-none opacity-50' : ''}`}
+      className={cn(className, disabled ? 'pointer-events-none opacity-50' : '')}
       onContextMenu={handleContextMenu}
       {...props}
     >
@@ -457,7 +458,7 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   return createPortal(
     <div
       ref={contentRef}
-      className={`${baseStyles} ${className}`}
+      className={cn(baseStyles, className)}
       style={{
         position: 'fixed',
         top: calculatedPosition ? `${calculatedPosition.top}px` : '0px',
@@ -504,7 +505,7 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 
   return (
     <button
-      className={`${baseStyles} ${inset ? 'pl-8' : ''} ${className}`}
+      className={cn(baseStyles, inset ? 'pl-8' : '', className)}
       role="menuitem"
       disabled={disabled}
       data-disabled={disabled ? '' : undefined}
@@ -637,7 +638,7 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
   return (
     <button
       ref={triggerRef}
-      className={`${baseStyles} ${inset ? 'pl-8' : ''} ${className}`}
+      className={cn(baseStyles, inset ? 'pl-8' : '', className)}
       role="menuitem"
       aria-haspopup="menu"
       aria-expanded={open}
@@ -828,7 +829,7 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
   return createPortal(
     <div
       ref={contentRef}
-      className={`${baseStyles} ${className}`}
+      className={cn(baseStyles, className)}
       style={{
         position: 'fixed',
         left: `${position.x}px`,

@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Spinner component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add spinner
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Spinner } from '@/components/ui/spinner';
 ```
 
@@ -40,7 +40,7 @@ import { Spinner } from '@/components/ui/spinner';
     <BasicSpinnerDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Spinner"
     <Spinner />
     ```
   </DocsTab>
@@ -53,7 +53,7 @@ import { Spinner } from '@/components/ui/spinner';
     <PrimarySpinnerDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Primary Spinner"
     <Spinner variant="primary" />
     ```
   </DocsTab>
@@ -66,7 +66,7 @@ import { Spinner } from '@/components/ui/spinner';
     <SecondarySpinnerDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Secondary Spinner"
     <Spinner variant="secondary" />
     ```
   </DocsTab>
@@ -81,7 +81,7 @@ The Spinner component supports three variants: `default`, `primary`, and `second
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Spinner Variants"
     <Spinner variant="default" />
     <Spinner variant="primary" />
     <Spinner variant="secondary" />
@@ -98,7 +98,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Spinner Sizes"
     <Spinner size="sm" />
     <Spinner size="md" />
     <Spinner size="lg" />
@@ -115,7 +115,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <LoadingButtonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Loading Button"
     const [isLoading, setIsLoading] = useState(false);
 
     return (
@@ -141,28 +141,10 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <InlineSpinnerDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Inline Spinner"
     <div className="flex items-center gap-2">
       <Spinner size="sm" />
       <span>Processing your request...</span>
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Centered Loading
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" title="Preview">
-    <CenteredSpinnerDemo />
-  </DocsTab>
-  <DocsTab value="code" title="Code">
-    ```tsx
-    <div className="flex items-center justify-center h-32">
-      <div className="flex flex-col items-center gap-3">
-        <Spinner size="lg" variant="primary" />
-        <p className="text-sm text-neutral-600">Loading content...</p>
-      </div>
     </div>
     ```
   </DocsTab>
@@ -177,12 +159,12 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <CustomColorDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
-    <Spinner className="text-blue-500" />
-    <Spinner className="text-green-500" />
-    <Spinner className="text-red-500" />
-    <Spinner className="text-purple-500" />
-    <Spinner className="text-orange-500" />
+    ```tsx title="Custom Colors"
+    <Spinner className="text-blue-500 dark:text-blue-500/50" />
+    <Spinner className="text-green-500 dark:text-green-500/50" />
+    <Spinner className="text-red-500 dark:text-red-500/50" />
+    <Spinner className="text-purple-500 dark:text-purple-500/50" />
+    <Spinner className="text-orange-500 dark:text-orange-500/50" />
     ```
   </DocsTab>
 </DocsTabs>
@@ -191,7 +173,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Spinner component accepts a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Spinner className="w-10 h-10 border-4" />
 
 <Spinner className="text-indigo-600 animate-pulse" />

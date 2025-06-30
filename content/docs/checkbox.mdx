@@ -19,13 +19,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Checkbox component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add checkbox
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Checkbox } from '@/components/ui/checkbox';
 ```
 
@@ -40,7 +40,7 @@ import { Checkbox } from '@/components/ui/checkbox';
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Checkbox"
     const [isChecked, setIsChecked] = useState(false);
     
     <Checkbox 
@@ -62,7 +62,7 @@ The Checkbox component supports four variants: `default`, `success`, `warning`, 
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Checkbox Variants"
     <Checkbox variant="default" checked={true} />
     <Checkbox variant="success" checked={true} />
     <Checkbox variant="warning" checked={true} />
@@ -82,7 +82,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Checkbox Sizes"
     <Checkbox size="sm" checked={true} />
     <Checkbox size="md" checked={true} />
     <Checkbox size="lg" checked={true} />
@@ -99,7 +99,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Checkbox State"
     <Checkbox disabled={false} />
     <Checkbox checked={true} disabled={false} />
     <Checkbox disabled={true} />
@@ -119,7 +119,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Checkbox Form Example"
     const [formData, setFormData] = useState({
       terms: false,
       newsletter: true,
@@ -165,7 +165,7 @@ The Checkbox component accepts a `className` prop for custom styling:
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Checkbox Styling"
     <Checkbox className="scale-125" checked={true} />
     <Checkbox className="rounded-full" checked={true} />
     <Checkbox className="shadow-lg" checked={false} />
@@ -182,7 +182,7 @@ The Checkbox component accepts a `className` prop for custom styling:
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Checkbox with Labels"
     const [states, setStates] = useState({
       notifications: false,
       marketing: true,

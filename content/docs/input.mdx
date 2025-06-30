@@ -22,13 +22,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Input component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add input
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Input } from '@/components/ui/input';
 ```
 
@@ -41,7 +41,7 @@ import { Input } from '@/components/ui/input';
     <DefaultInputDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Input"
     <Input placeholder="Enter your email" />
     ```
   </DocsTab>
@@ -54,7 +54,7 @@ import { Input } from '@/components/ui/input';
     <InputWithLabelDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input with Label"
     <Input 
       label="Email Address" 
       placeholder="Enter your email"
@@ -71,10 +71,10 @@ import { Input } from '@/components/ui/input';
     <InputWithHelperTextDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input with Helper Text"
     <Input 
       label="Username" 
-      placeholder="Enter your username"
+      placeholder="Choose a unique username between 3-20 characters"
       helperText="Choose a unique username between 3-20 characters"
     />
     ```
@@ -90,7 +90,7 @@ The Input component supports three variants: `default`, `error`, and `success`.
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input Variants"
     <Input 
       label="Default Input"
       placeholder="Default variant"
@@ -123,7 +123,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input Sizes"
     <Input 
       label="Small Input"
       placeholder="Small size"
@@ -154,7 +154,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <LeftIconDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input with Left Icon"
     <Input 
       label="Search"
       placeholder="Search for anything..."
@@ -178,7 +178,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <RightIconDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Input with Right Icon"
     <Input 
       label="Password"
       placeholder="Enter your password"
@@ -198,7 +198,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Input"
     <Input 
       label="Disabled Input"
       placeholder="This input is disabled"
@@ -222,7 +222,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <ReadOnlyStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Read Only Input"
     <Input 
       label="Read Only Input"
       value="This value cannot be changed"
@@ -239,7 +239,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Input component accepts `className` and `containerClassName` props for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Input 
   className="border-2 border-purple-300 focus-visible:border-purple-500"
   containerClassName="max-w-xs"

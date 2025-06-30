@@ -18,13 +18,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Alert component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add alert
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import {
   Alert,
   AlertTitle,
@@ -42,7 +42,7 @@ import {
     <DefaultAlertDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Alert"
     <Alert>
       <AlertIcon>
         <InfoIcon />
@@ -63,7 +63,7 @@ import {
     <SimpleAlertDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Alert"
     <Alert>
       <AlertDescription>
         A simple alert without title or icon.
@@ -82,7 +82,7 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Alert Variants"
     <Alert variant="default">
       <AlertIcon><InfoIcon /></AlertIcon>
       <AlertTitle>Default Alert</AlertTitle>
@@ -125,7 +125,7 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     <AlertWithoutIconsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Alert Without Icons"
     <Alert variant="default">
       <AlertTitle>System Maintenance</AlertTitle>
       <AlertDescription>
@@ -152,7 +152,7 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     <FormValidationDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form Validation"
     <Alert variant="destructive">
       <AlertIcon><XCircleIcon /></AlertIcon>
       <AlertTitle>Validation Error</AlertTitle>
@@ -183,7 +183,7 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     <SystemNotificationsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="System Notifications"
     <Alert variant="warning">
       <AlertIcon><ExclamationTriangleIcon /></AlertIcon>
       <AlertTitle>Storage Almost Full</AlertTitle>
@@ -209,7 +209,7 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
 
 The Alert component accepts a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Alert className="border-2 shadow-lg">
   <AlertDescription>
     Custom styled alert with enhanced border and shadow.

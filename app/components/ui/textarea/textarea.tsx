@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   variant?: 'default' | 'error' | 'success';
@@ -88,7 +89,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   const displaySuccessMessage = variant === 'success' && successMessage;
 
   return (
-    <div className={`not-prose ${containerClassName}`}>
+    <div className={cn('not-prose', containerClassName)}>
       {label && (
         <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
           {label}

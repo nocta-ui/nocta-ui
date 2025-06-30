@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Badge component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add badge
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Badge } from '@/components/ui/badge';
 ```
 
@@ -36,7 +36,7 @@ import { Badge } from '@/components/ui/badge';
     <DefaultBadgeDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Badge"
     <Badge>Default</Badge>
     ```
   </DocsTab>
@@ -49,7 +49,7 @@ import { Badge } from '@/components/ui/badge';
     <SecondaryBadgeDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Secondary Badge"
     <Badge variant="secondary">Secondary</Badge>
     ```
   </DocsTab>
@@ -64,7 +64,7 @@ The Badge component supports six variants: `default`, `secondary`, `destructive`
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Badge Variants"
     <Badge variant="default">Default</Badge>
     <Badge variant="secondary">Secondary</Badge>
     <Badge variant="destructive">Destructive</Badge>
@@ -84,7 +84,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Badge Sizes"
     <Badge size="sm">Small</Badge>
     <Badge size="md">Medium</Badge>
     <Badge size="lg">Large</Badge>
@@ -103,11 +103,11 @@ The Badge component accepts a `className` prop for custom styling:
     <CustomStylingDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
-    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+    ```tsx title="Custom Styling"
+    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:text-white">
       Gradient
     </Badge>
-    <Badge className="bg-blue-500 text-white shadow-lg">
+    <Badge className="bg-blue-500 dark:bg-blue-500/50 text-white dark:text-white shadow-lg">
       Custom Color
     </Badge>
     <Badge className="rounded-sm">

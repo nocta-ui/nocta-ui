@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 export interface SheetProps {
   children: React.ReactNode;
@@ -111,15 +112,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 
   return (
     <button
-      className={`
-        inline-flex items-center justify-center rounded-lg font-medium
-        transition-all duration-200 ease-in-out 
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-        not-prose
-        ${className}
-      `}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >
@@ -302,33 +295,16 @@ export const SheetContent: React.FC<SheetContentProps> = ({
     <div className="fixed inset-0 z-50">
       {/* Overlay */}
       <div 
-        className={`
-          fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm
-          transition-opacity duration-300 ease-in-out
-          ${isVisible ? 'opacity-100' : 'opacity-0'}
-        `}
+        className={cn('fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out', isVisible ? 'opacity-100' : 'opacity-0')}
         aria-hidden="true"
       />
       
       {/* Sheet Content */}
       <div
         ref={contentRef}
-        className={`
-          fixed flex flex-col
-          bg-white dark:bg-neutral-900
-          border-neutral-300 dark:border-neutral-700/50
-          shadow-xl dark:shadow-2xl border
-          ${positions[side]}
-          ${side === 'left' ? 'rounded-r-2xl' : ''}
-          ${side === 'right' ? 'rounded-l-2xl' : ''}
-          ${side === 'top' ? 'rounded-b-2xl' : ''}
-          ${side === 'bottom' ? 'rounded-t-2xl' : ''}
-          ${sizes[size][side]}
-          transform transition-transform duration-300 ease-in-out
-          ${animations[side]}
-          not-prose
-          ${className}
-        `}
+        className={cn(`
+          fixed flex flex-col bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} transform transition-transform duration-300 ease-in
+        `)}
         role="dialog"
         aria-modal="true"
         tabIndex={-1}
@@ -380,12 +356,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-5 
-        border-b border-neutral-100 dark:border-neutral-700/50
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -403,13 +374,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: `
-        text-lg font-semibold 
-        text-neutral-900 dark:text-neutral-100 
-        tracking-tight leading-tight 
-        not-prose 
-        ${className}
-      `,
+      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -424,13 +389,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={`
-        text-sm 
-        text-neutral-600 dark:text-neutral-400 
-        leading-relaxed mt-1 
-        not-prose 
-        ${className}
-      `}
+      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -446,14 +405,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-4 mt-auto
-        bg-neutral-50 dark:bg-neutral-800/50
-        border-t border-neutral-100 dark:border-neutral-700/50 
-        flex items-center justify-end gap-3
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-4 mt-auto bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}
@@ -488,20 +440,9 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 
   return (
     <button
-      className={`
-        inline-flex items-center justify-center rounded-lg font-medium
-        px-4 py-2 text-sm
-        bg-neutral-100 dark:bg-neutral-800
-        text-neutral-900 dark:text-neutral-100
-        hover:bg-neutral-200 dark:hover:bg-neutral-700
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-        focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-        border border-neutral-300 dark:border-neutral-600
-        transition-all duration-200 ease-in-out
-        not-prose
-        ${className}
-      `}
+      className={cn(`
+        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset
+      `)}
       onClick={handleClick}
       {...props}
     >

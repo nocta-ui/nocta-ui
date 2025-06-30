@@ -20,13 +20,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Dialog component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add dialog
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import {
   Dialog,
   DialogTrigger,
@@ -49,7 +49,7 @@ import {
     <SimpleDialogDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Dialog"
     <Dialog>
       <DialogTrigger asChild>
         <Button>Open Dialog</Button>
@@ -77,7 +77,7 @@ import {
     <DialogWithActionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Dialog with Actions"
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">Delete Item</Button>
@@ -117,7 +117,7 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Dialog Sizes"
     <Dialog>
       <DialogTrigger asChild>
         <Button size="sm">Small</Button>
@@ -143,7 +143,7 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
     <FormDialogDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form Dialog"
     <Dialog>
       <DialogTrigger asChild>
         <Button>Add New User</Button>
@@ -204,7 +204,7 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
 
 The Dialog components accept a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Dialog Styling"
 <DialogContent className="border-2 border-blue-200 dark:border-blue-800">
   <DialogHeader className="bg-blue-50 dark:bg-blue-900/20">
     <DialogTitle className="text-blue-900 dark:text-blue-100">
@@ -221,7 +221,7 @@ The Dialog components accept a `className` prop for custom styling:
     <WithoutCloseButtonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Dialog Without Close Button"
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">Processing...</Button>
@@ -246,7 +246,7 @@ The Dialog components accept a `className` prop for custom styling:
 
 For programmatic control, you can use the `open` and `onOpenChange` props:
 
-```tsx
+```tsx title="Controlled Dialog"
 const [open, setOpen] = useState(false);
 
 return (

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 export interface TooltipProps {
   children: React.ReactNode;
@@ -167,11 +168,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
   return (
     <span
       ref={triggerRef}
-      className={`
-        inline-block cursor-default
-        not-prose
-        ${className}
-      `}
+      className={cn('inline-block cursor-default not-prose', className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}
@@ -371,7 +368,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       ref={contentRef}
       id="tooltip"
       role="tooltip"
-      className={`
+      className={cn(`
         fixed z-50 px-3 py-2 text-sm
         bg-neutral-900 dark:bg-neutral-100
         text-neutral-100 dark:text-neutral-900
@@ -387,7 +384,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
             ? 'opacity-100 scale-100' 
             : 'opacity-0 scale-95'
         }
-      `}
+      `)}
       style={{
         left: position ? `${position.x}px` : '0px',
         top: position ? `${position.y}px` : '0px',
@@ -400,7 +397,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       
       {showArrow && !isMeasuring && (
         <div
-          className={`
+          className={cn(`
             absolute w-2 h-2
             bg-neutral-900 dark:bg-neutral-100
             border border-neutral-700 dark:border-neutral-300
@@ -409,7 +406,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
             ${actualSide === 'bottom' ? 'top-[-5px] left-1/2 -translate-x-1/2 border-b-0 border-r-0' : ''}
             ${actualSide === 'left' ? 'right-[-5px] top-1/2 -translate-y-1/2 border-l-0 border-b-0' : ''}
             ${actualSide === 'right' ? 'left-[-5px] top-1/2 -translate-y-1/2 border-r-0 border-t-0' : ''}
-          `}
+          `)}
         />
       )}
     </div>

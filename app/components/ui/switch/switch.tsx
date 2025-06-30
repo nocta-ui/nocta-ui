@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   checked?: boolean;
@@ -86,13 +87,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   return (
     <label
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size].switch}
-        ${disabledStyles}
-        ${className}
-      `}
+      className={cn(baseStyles, variants[variant], sizes[size].switch, disabledStyles, className)}
       htmlFor={id}
     >
       <input

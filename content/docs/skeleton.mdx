@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Skeleton component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add skeleton
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Skeleton } from '@/components/ui/skeleton';
 ```
 
@@ -42,7 +42,7 @@ import { Skeleton } from '@/components/ui/skeleton';
     <BasicSkeletonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Skeleton"
     <Skeleton />
     ```
   </DocsTab>
@@ -55,7 +55,7 @@ import { Skeleton } from '@/components/ui/skeleton';
     <PulseSkeletonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Pulse Animation"
     <Skeleton variant="pulse" />
     ```
   </DocsTab>
@@ -70,7 +70,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Skeleton Sizes"
     <Skeleton size="sm" />
     <Skeleton size="md" />
     <Skeleton size="lg" />
@@ -87,7 +87,7 @@ The Skeleton component supports different shapes: `rectangle`, `circle`, and `te
     <ShapesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Skeleton Shapes"
     {/* Rectangle */}
     <Skeleton shape="rectangle" width="12rem" height="3rem" />
 
@@ -112,7 +112,7 @@ For text content placeholders, you can specify multiple lines with the `lines` p
     <TextLinesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Text Lines"
     <Skeleton shape="text" lines={2} />
     <Skeleton shape="text" lines={4} />
     <Skeleton shape="text" lines={6} />
@@ -129,7 +129,7 @@ You can customize the width and height of skeleton elements using the `width` an
     <CustomSizeDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Dimensions"
     {/* Custom Rectangle */}
     <Skeleton width="200px" height="60px" />
 
@@ -151,7 +151,7 @@ You can customize the width and height of skeleton elements using the `width` an
     <CardSkeletonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Card Skeleton"
     <div className="max-w-sm p-4 border rounded-lg">
       <div className="space-y-4">
         <div className="flex items-center space-x-3">
@@ -176,7 +176,7 @@ You can customize the width and height of skeleton elements using the `width` an
     <ArticleSkeletonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Article Skeleton"
     <div className="max-w-md space-y-4">
       <Skeleton width="100%" height="200px" />
       <Skeleton shape="text" width="80%" size="lg" />
@@ -197,7 +197,7 @@ You can customize the width and height of skeleton elements using the `width` an
     <TableSkeletonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Table Skeleton"
     <div className="space-y-3">
       {Array.from({ length: 5 }, (_, index) => (
         <div key={index} className="flex items-center space-x-4">
@@ -216,7 +216,7 @@ You can customize the width and height of skeleton elements using the `width` an
 
 ### Loading States
 
-```tsx
+```tsx title="Loading States"
 const [loading, setLoading] = useState(true);
 
 return (
@@ -234,7 +234,7 @@ return (
 
 ### Conditional Rendering
 
-```tsx
+```tsx title="Conditional Rendering"
 return (
   <div className="space-y-4">
     {posts.length > 0 ? (

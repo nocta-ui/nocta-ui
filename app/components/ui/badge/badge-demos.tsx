@@ -45,8 +45,8 @@ export const SizesDemo: React.FC = () => {
 export const CustomStylingDemo: React.FC = () => {
   return (
     <div className="my-6 flex flex-wrap gap-3">
-      <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">Gradient</Badge>
-      <Badge className="bg-blue-500 text-white shadow-lg">Custom Color</Badge>
+      <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:text-white">Gradient</Badge>
+      <Badge className="bg-blue-500 dark:bg-blue-500/50 text-white dark:text-white shadow-lg">Custom Color</Badge>
       <Badge className="rounded-sm">Square</Badge>
     </div>
   );

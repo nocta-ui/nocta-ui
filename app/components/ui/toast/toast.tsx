@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { cn } from '@/lib/utils';
 
 // Toast types
 export type ToastPosition = 
@@ -320,15 +321,9 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   return (
     <div
       ref={toastRef}
-      className={`
-        fixed ${config.containerClass}
-        ${config.widthClass}
-        ${variants[variant]}
-        border rounded-lg shadow-lg dark:shadow-xl
-        backdrop-blur-sm overflow-hidden
-        not-prose pointer-events-auto
-        will-change-transform
-      `}
+      className={cn(
+        `fixed ${config.containerClass} ${config.widthClass} ${variants[variant]} border rounded-lg shadow-lg dark:shadow-xl backdrop-blur-sm overflow-hidden not-prose pointer-events-auto will-change-transform`
+      )}
       style={{ 
         zIndex: 50 - index,
         transformOrigin: position.startsWith('top-') ? 'center top' : 'center bottom'

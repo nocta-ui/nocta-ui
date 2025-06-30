@@ -18,13 +18,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Switch component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add switch
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Switch } from '@/components/ui/switch';
 ```
 
@@ -39,7 +39,7 @@ import { Switch } from '@/components/ui/switch';
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Switch"
     const [isChecked, setIsChecked] = useState(false);
     
     <Switch 
@@ -61,7 +61,7 @@ The Switch component supports four variants: `default`, `success`, `warning`, an
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Switch Variants"
     <Switch variant="default" checked={true} />
     <Switch variant="success" checked={true} />
     <Switch variant="warning" checked={true} />
@@ -81,7 +81,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Switch Sizes"
     <Switch size="sm" checked={true} />
     <Switch size="md" checked={true} />
     <Switch size="lg" checked={true} />
@@ -98,7 +98,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Switch State"
     <Switch disabled={false} />
     <Switch checked={true} disabled={false} />
     <Switch disabled={true} />
@@ -120,7 +120,7 @@ The Switch component accepts a `className` prop for custom styling:
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Switch Styling"
     <Switch className="scale-125" checked={true} />
     <Switch className="opacity-75" checked={true} />
     <Switch className="rounded-sm" checked={false} />

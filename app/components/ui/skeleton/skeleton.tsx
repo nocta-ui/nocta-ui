@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'pulse';
@@ -49,13 +50,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
         {Array.from({ length: lines }, (_, index) => (
           <div
             key={index}
-            className={`
-              ${getBaseStyles()}
-              ${variants[variant]}
-              ${shapes[shape]}
-              ${sizes[size]}
-              ${index === lines - 1 ? 'w-3/4' : 'w-full'}
-            `}
+            className={cn(getBaseStyles(), variants[variant], shapes[shape], sizes[size], index === lines - 1 ? 'w-3/4' : 'w-full', className)}
             style={{
               width: width && index === 0 ? width : undefined,
               height: height ? height : undefined
@@ -73,14 +68,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <div
-      className={`
-        ${getBaseStyles()}
-        ${variants[variant]}
-        ${shapes[shape]}
-        ${sizes[size]}
-        ${shape === 'circle' ? '' : 'w-full'}
-        ${className}
-      `}
+      className={cn(getBaseStyles(), variants[variant], shapes[shape], sizes[size], shape === 'circle' ? '' : 'w-full', className)}
       style={inlineStyles}
       {...props}
     />

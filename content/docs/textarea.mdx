@@ -23,13 +23,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Textarea component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add textarea
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Textarea } from '@/components/ui/textarea';
 ```
 
@@ -42,7 +42,7 @@ import { Textarea } from '@/components/ui/textarea';
     <DefaultTextareaDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Textarea"
     <Textarea placeholder="Enter your message..." />
     ```
   </DocsTab>
@@ -55,7 +55,7 @@ import { Textarea } from '@/components/ui/textarea';
     <TextareaWithLabelDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea with Label"
     <Textarea 
       label="Message" 
       placeholder="Type your message here..."
@@ -71,7 +71,7 @@ import { Textarea } from '@/components/ui/textarea';
     <TextareaWithHelperTextDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea with Helper Text"
     <Textarea 
       label="Description" 
       placeholder="Describe your project..."
@@ -90,7 +90,7 @@ The Textarea component supports three variants: `default`, `error`, and `success
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea Variants"
     <Textarea 
       label="Default Textarea"
       placeholder="Default variant"
@@ -123,7 +123,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea Sizes"
     <Textarea 
       label="Small Textarea"
       placeholder="Small size"
@@ -157,7 +157,7 @@ Control how the textarea can be resized with the `resize` prop.
     <ResizeOptionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea Resize Options"
     <Textarea 
       label="No Resize"
       placeholder="This textarea cannot be resized"
@@ -194,7 +194,7 @@ Adjust the initial height of the textarea using the `rows` prop.
     <RowsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Textarea Row Configuration"
     <Textarea 
       label="2 Rows"
       placeholder="Compact textarea with 2 rows"
@@ -225,7 +225,7 @@ Adjust the initial height of the textarea using the `rows` prop.
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Textarea State"
     <Textarea 
       label="Disabled Textarea"
       placeholder="This textarea is disabled"

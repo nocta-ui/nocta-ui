@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Avatar component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add avatar
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Avatar } from '@/components/ui/avatar';
 ```
 
@@ -42,7 +42,7 @@ import { Avatar } from '@/components/ui/avatar';
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Avatar"
     // With image
     <Avatar 
       src="https://example.com/avatar.jpg" 
@@ -69,7 +69,7 @@ Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The def
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Avatar Sizes"
     <Avatar size="xs" src="..." alt="John Doe" />
     <Avatar size="sm" src="..." alt="John Doe" />
     <Avatar size="md" src="..." alt="John Doe" />
@@ -91,7 +91,7 @@ The Avatar component supports two shape variants: `circle` (default) and `square
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Avatar Variants"
     <Avatar variant="circle" src="..." alt="John Doe" />
     <Avatar variant="square" src="..." alt="John Doe" />
     <Avatar variant="circle" fallback="JD" />
@@ -111,7 +111,7 @@ Add status indicators to show user presence: `online`, `offline`, `away`, or `bu
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Status Indicators"
     <Avatar src="..." alt="John Doe" status="online" />
     <Avatar src="..." alt="Jane Smith" status="away" />
     <Avatar src="..." alt="Mike Johnson" status="busy" />
@@ -131,7 +131,7 @@ The Avatar component gracefully handles image loading failures with multiple fal
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Fallback Handling"
     // Valid image
     <Avatar src="valid-image.jpg" alt="John Doe" />
     
@@ -161,7 +161,7 @@ Stack multiple avatars to show groups or teams.
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Avatar Groups"
     <div className="flex items-center">
       <Avatar 
         src="avatar1.jpg" 
@@ -201,7 +201,7 @@ The Avatar component accepts a `className` prop for custom styling:
     <CustomStylingDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Styling"
     <Avatar 
       src="avatar.jpg" 
       alt="John Doe" 
@@ -231,7 +231,7 @@ The Avatar component accepts a `className` prop for custom styling:
     </div>
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Click Handlers"
     const [message, setMessage] = useState('');
 
     const handleAvatarClick = (name: string) => {

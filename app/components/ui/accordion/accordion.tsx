@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, createContext, useContext, useCallback, useMemo } from 'react';
+import { cn } from '@/lib/utils';
 
 export interface AccordionProps {
   children: React.ReactNode;
@@ -136,11 +137,7 @@ export const Accordion: React.FC<AccordionProps> = React.memo(({
   return (
     <AccordionContext.Provider value={contextValue}>
       <div
-        className={`
-          ${baseStyles}
-          ${variants[variant]}
-          ${className}
-        `}
+        className={cn(baseStyles, variants[variant], className)}
         {...props}
       >
         {children}
@@ -190,11 +187,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
   return (
     <AccordionItemContext.Provider value={contextValue}>
       <div
-        className={`
-          ${baseStyles}
-          ${variants[variant]}
-          ${className}
-        `}
+        className={cn(baseStyles, variants[variant], className)}
         {...props}
       >
         {children}
@@ -394,23 +387,13 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
   return (
     <div
       ref={contentRef}
-      className={`
-        overflow-hidden 
-        transition-all duration-200 ease-out
-        not-prose
-        ${sizes[size]}
-        ${className}
-      `}
+      className={cn("overflow-hidden transition-all duration-200 ease-out not-prose", sizes[size], className)}
       style={contentStyle}
       {...props}
     >
       <div
         ref={innerRef}
-        className={`
-          ${sizeStyles[size][variant]}
-          ${variant === 'card' ? 'border-t border-neutral-100 dark:border-neutral-700/50' : ''}
-          text-neutral-600 dark:text-neutral-400 leading-relaxed
-        `}
+        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-neutral-100 dark:border-neutral-700/50' : '', 'text-neutral-600 dark:text-neutral-400 leading-relaxed')}
       >
         {children}
       </div>

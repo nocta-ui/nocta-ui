@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Card component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add card
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import {
   Card,
   CardHeader,
@@ -44,7 +44,7 @@ import {
     <SimpleCardDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Card"
     <Card>
       <CardHeader>
         <CardTitle>Getting Started</CardTitle>
@@ -67,7 +67,7 @@ import {
     <CardWithActionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Card with Actions"
     <Card>
       <CardHeader>
         <CardTitle>Project Settings</CardTitle>
@@ -103,7 +103,7 @@ import {
     <NotificationCardDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Notification Card"
     <Card className="max-w-md">
         <CardHeader>
           <div className="flex items-start space-x-3">
@@ -134,7 +134,7 @@ import {
     <StatsCardDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Stats Card"
       <Card className="w-md">
         <CardHeader>
           <CardTitle>Analytics Overview</CardTitle>
@@ -165,7 +165,7 @@ import {
 
 All components accept a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Card className="max-w-lg border-2 border-purple-200">
   <CardHeader className="bg-purple-50">
     <CardTitle className="text-purple-900">Custom Card</CardTitle>
@@ -177,7 +177,7 @@ All components accept a `className` prop for custom styling:
 
 Use the `as` prop on CardTitle to change the heading level:
 
-```tsx
+```tsx title="Dynamic Title Element"
 <CardTitle as="h1">Main Title</CardTitle>
 <CardTitle as="h2">Section Title</CardTitle>
 <CardTitle as="div">Custom Element</CardTitle>

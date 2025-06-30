@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useId } from 'react';
+import { cn } from '@/lib/utils';
 
 // Context for form field state
 interface FormFieldContextValue {
@@ -80,7 +81,7 @@ export const Form: React.FC<FormProps> = ({
 
   return (
     <form 
-      className={`space-y-6 not-prose ${className}`}
+      className={cn('space-y-6 not-prose', className)}
       onSubmit={handleSubmit}
       {...props}
     >
@@ -108,7 +109,7 @@ export const FormField: React.FC<FormFieldProps> = ({
 
   return (
     <FormFieldContext.Provider value={contextValue}>
-      <div className={`space-y-2 ${className}`}>
+      <div className={cn('space-y-2', className)}>
         {children}
       </div>
     </FormFieldContext.Provider>
@@ -127,13 +128,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
   return (
     <label 
       htmlFor={id}
-      className={`
-        block text-sm font-medium 
-        text-neutral-700 dark:text-neutral-300
-        leading-none peer-disabled:cursor-not-allowed 
-        peer-disabled:opacity-70
-        ${className}
-      `}
+      className={cn('block text-sm font-medium text-neutral-700 dark:text-neutral-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', className)}
       {...props}
     >
       {children}
@@ -154,7 +149,7 @@ export const FormControl: React.FC<FormControlProps> = ({
   const { id, error } = useFormField();
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={cn('relative', className)}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
@@ -180,11 +175,7 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
   return (
     <p 
       id={`${id}-description`}
-      className={`
-        text-sm text-neutral-600 dark:text-neutral-400
-        leading-relaxed
-        ${className}
-      `}
+      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed', className)}
       {...props}
     >
       {children}
@@ -213,11 +204,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
   return (
     <p 
       id={`${id}-${type}`}
-      className={`
-        text-sm leading-none
-        ${variants[type]}
-        ${className}
-      `}
+      className={cn('text-sm leading-none', variants[type], className)}
       role={type === 'error' ? 'alert' : undefined}
       {...props}
     >
@@ -241,11 +228,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
 
   return (
     <div 
-      className={`
-        flex items-center gap-3 pt-4
-        ${alignments[align]}
-        ${className}
-      `}
+      className={cn('flex items-center gap-3 pt-4', alignments[align], className)}
       {...props}
     >
       {children}

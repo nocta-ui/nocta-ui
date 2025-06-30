@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg';
@@ -40,12 +41,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
     <div
       role="status"
       aria-label="Loading"
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size]}
-        ${className}
-      `}
+      className={cn(baseStyles, variants[variant], sizes[size], className)}
       {...props}
     >
       <span className="sr-only">Loading...</span>

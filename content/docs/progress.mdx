@@ -20,13 +20,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Progress component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add progress
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Progress } from '@/components/ui/progress';
 ```
 
@@ -39,7 +39,7 @@ import { Progress } from '@/components/ui/progress';
     <BasicProgressDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Default Progress"
     <Progress value={65} showLabel aria-label="Basic progress" />
     ```
   </DocsTab>
@@ -54,7 +54,7 @@ The Progress component supports four variants: `default`, `success`, `warning`, 
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Progress Variants"
     <Progress value={60} variant="default" showLabel />
     <Progress value={75} variant="success" showLabel />
     <Progress value={45} variant="warning" showLabel />
@@ -72,7 +72,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Progress Sizes"
     <Progress value={50} size="sm" />
     <Progress value={65} size="md" />
     <Progress value={80} size="lg" />
@@ -89,7 +89,7 @@ Progress automatically animates when the value changes.
     <AnimatedDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Animated Progress"
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -113,7 +113,7 @@ Set a custom maximum value using the `max` prop.
     <CustomMaxDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Maximum Value"
     <Progress value={15} max={20} showLabel />
     <Progress value={250} max={500} variant="warning" showLabel />
     ```
@@ -129,7 +129,7 @@ Hide the label by omitting the `showLabel` prop.
     <WithoutLabelDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Progress Without Label"
     <Progress value={40} />
     <Progress value={70} variant="success" />
     <Progress value={85} variant="warning" />
@@ -146,7 +146,7 @@ Hide the label by omitting the `showLabel` prop.
     <FileUploadDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="File Upload Progress"
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
 
@@ -194,7 +194,7 @@ Hide the label by omitting the `showLabel` prop.
 
 The Progress component accepts a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Progress 
   value={75} 
   className="w-full max-w-md" 
@@ -217,7 +217,7 @@ The Progress component includes proper ARIA attributes:
 - `aria-label` for descriptive labels
 - Proper focus management
 
-```tsx
+```tsx title="Accessibility Example"
 <Progress 
   value={50} 
   aria-label="File download progress" 

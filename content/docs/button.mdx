@@ -20,13 +20,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Button component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add button
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Button } from '@/components/ui/button';
 ```
 
@@ -39,7 +39,7 @@ import { Button } from '@/components/ui/button';
     <PrimaryButtonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Primary Button"
     <Button>Get Started</Button>
     ```
   </DocsTab>
@@ -52,7 +52,7 @@ import { Button } from '@/components/ui/button';
     <SecondaryButtonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Secondary Button"
     <Button variant="secondary">Learn More</Button>
     ```
   </DocsTab>
@@ -65,7 +65,7 @@ import { Button } from '@/components/ui/button';
     <GhostButtonDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Ghost Button"
     <Button variant="ghost">Cancel</Button>
     ```
   </DocsTab>
@@ -80,7 +80,7 @@ The Button component supports three variants: `primary`, `secondary`, and `ghost
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Button Variants"
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="ghost">Ghost</Button>
@@ -97,7 +97,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Button Sizes"
     <Button size="sm">Small</Button>
     <Button size="md">Medium</Button>
     <Button size="lg">Large</Button>
@@ -112,7 +112,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <ActionButtonGroupDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Action Button Group"
     <div className="flex gap-2">
       <Button variant="ghost" size="sm">Cancel</Button>
       <Button variant="secondary" size="sm">Save Draft</Button>
@@ -131,7 +131,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <DisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled State"
     <Button disabled>Disabled Primary</Button>
     <Button variant="secondary" disabled>Disabled Secondary</Button>
     <Button variant="ghost" disabled>Disabled Ghost</Button>
@@ -145,7 +145,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 The Button component accepts a `className` prop for custom styling:
 
-```tsx
+```tsx title="Custom Styling"
 <Button className="w-full shadow-lg">
   Full Width Button
 </Button>
@@ -166,7 +166,7 @@ The Button component accepts a `className` prop for custom styling:
     <WithIconsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Buttons with Icons"
     <Button>
       <PlusIcon className="w-4 h-4 mr-2" />
       Add Item

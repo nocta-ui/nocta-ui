@@ -101,27 +101,14 @@ export const InlineSpinnerDemo: React.FC = () => {
   );
 };
 
-export const CenteredSpinnerDemo: React.FC = () => {
-  return (
-    <div className="my-6">
-      <div className="flex items-center justify-center h-32 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-300 dark:border-neutral-700">
-        <div className="flex flex-col items-center gap-3">
-          <Spinner size="lg" variant="primary" />
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">Loading content...</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export const CustomColorDemo: React.FC = () => {
   return (
     <div className="my-6 flex flex-wrap items-center gap-4">
-      <Spinner className="text-blue-500" />
-      <Spinner className="text-green-500" />
-      <Spinner className="text-red-500" />
-      <Spinner className="text-purple-500" />
-      <Spinner className="text-orange-500" />
+      <Spinner className="text-blue-500 dark:text-blue-500/50" />
+      <Spinner className="text-green-500 dark:text-green-500/50" />
+      <Spinner className="text-red-500 dark:text-red-500/50" />
+      <Spinner className="text-purple-500 dark:text-purple-500/50" />
+      <Spinner className="text-orange-500 dark:text-orange-500/50" />
     </div>
   );
 }; 

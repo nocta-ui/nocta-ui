@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -45,18 +46,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        bg-white dark:bg-neutral-900 
-        border border-neutral-200 dark:border-neutral-700/50 
-        rounded-xl 
-        shadow-sm dark:shadow-lg 
-        hover:shadow-md dark:hover:shadow-xl 
-        transition-all duration-300 ease-out 
-        backdrop-blur-sm 
-        overflow-hidden 
-        not-prose 
-        ${className}
-      `}
+      className={cn('bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700/50 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
       {...props}
     >
       {children}
@@ -72,12 +62,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-5 
-        border-b border-neutral-100 dark:border-neutral-700/50
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -95,13 +80,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: `
-        text-lg font-semibold 
-        text-neutral-900 dark:text-neutral-100 
-        tracking-tight leading-tight 
-        not-prose 
-        ${className}
-      `,
+      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -116,13 +95,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={`
-        text-sm 
-        text-neutral-600 dark:text-neutral-400 
-        leading-relaxed mt-1 
-        not-prose 
-        ${className}
-      `}
+      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -138,11 +111,7 @@ export const CardContent: React.FC<CardContentProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-5 
-        not-prose text-sm
-        ${className}
-      `}
+      className={cn('px-6 py-5 not-prose text-sm', className)}
       {...props}
     >
       {children}
@@ -158,14 +127,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-4 
-        bg-neutral-50 dark:bg-neutral-800/50
-        border-t border-neutral-100 dark:border-neutral-700/50 
-        flex items-center justify-end 
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}
@@ -181,11 +143,7 @@ export const CardActions: React.FC<CardActionsProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        flex items-center gap-2 
-        not-prose 
-        ${className}
-      `}
+      className={cn('flex items-center gap-2 not-prose', className)}
       {...props}
     >
       {children}

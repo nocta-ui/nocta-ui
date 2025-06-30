@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
+import { cn } from '@/lib/utils';
 
 export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   value?: Date;
@@ -239,14 +240,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <div
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size]}
-        ${compactStyles}
-        ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
-        ${className}
-      `}
+      className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
       role="application"
       aria-label={ariaLabel || 'Calendar'}
       {...props}
@@ -279,9 +273,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={goToToday}
             disabled={disabled}
-            className={`rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${
-              variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs'
-            }`}
+            className={cn('rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
           >
             Today
           </button>
@@ -291,9 +283,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToNextMonth}
           disabled={disabled}
-          className={`rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${
-            variant === 'compact' ? 'p-0.5' : 'p-1'
-          }`}
+          className={cn('rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
           aria-label="Next month"
         >
           <svg className={variant === 'compact' ? 'w-3 h-3' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,26 +295,16 @@ export const Calendar: React.FC<CalendarProps> = ({
       {/* Calendar Grid */}
       <div className={variant === 'compact' ? 'px-2 py-2' : 'px-6 py-5'}>
         {/* Weekday Headers */}
-        <div className={`grid ${showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7'} ${
-          variant === 'compact' ? 'gap-0.5 mb-1' : 'gap-1 mb-2'
-        }`}>
+        <div className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5 mb-1' : 'gap-1 mb-2')}>
           {showWeekNumbers && (
-            <div className={`font-medium text-neutral-500 dark:text-neutral-400 text-center ${
-              variant === 'compact' 
-                ? 'text-xs w-6 h-6 flex items-center justify-center' 
-                : 'text-xs p-2'
-            }`}>
+            <div className={cn('font-medium text-neutral-500 dark:text-neutral-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
               Wk
             </div>
           )}
           {weekdays.map((day, index) => (
             <div
               key={index}
-              className={`font-medium text-neutral-500 dark:text-neutral-400 text-center ${
-                variant === 'compact' 
-                  ? 'text-xs w-6 h-6 flex items-center justify-center' 
-                  : 'text-xs p-2'
-              }`}
+              className={cn('font-medium text-neutral-500 dark:text-neutral-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}
             >
               {day}
             </div>
@@ -334,15 +314,9 @@ export const Calendar: React.FC<CalendarProps> = ({
         {/* Calendar Days */}
         <div className={variant === 'compact' ? 'space-y-0.5' : 'space-y-1'}>
           {Array.from({ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) }, (_, weekIndex) => (
-            <div key={weekIndex} className={`grid ${showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7'} ${
-              variant === 'compact' ? 'gap-0.5' : 'gap-1'
-            }`}>
+            <div key={weekIndex} className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5' : 'gap-1')}>
               {showWeekNumbers && (
-                <div className={`text-neutral-400 dark:text-neutral-500 text-center ${
-                  variant === 'compact' 
-                    ? 'text-xs w-6 h-6 flex items-center justify-center' 
-                    : 'text-xs p-2'
-                }`}>
+                <div className={cn('text-neutral-400 dark:text-neutral-500 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
                   {getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
                 </div>
               )}
@@ -365,21 +339,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={`
-                      text-center rounded transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500/50
-                      ${variant === 'compact' 
-                        ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' 
-                        : 'p-2'
-                      }
-                      ${isSelected 
-                        ? 'bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900' 
-                        : isToday
-                        ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100'
-                        : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300'
-                      }
-                      ${!isCurrentMonth ? 'text-neutral-400 dark:text-neutral-600' : ''}
-                      ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-                    `}
+                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900' : isToday ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100' : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300', !isCurrentMonth ? 'text-neutral-400 dark:text-neutral-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

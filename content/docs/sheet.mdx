@@ -19,13 +19,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Sheet component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add sheet
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import {
   Sheet,
   SheetTrigger,
@@ -47,7 +47,7 @@ The Sheet component provides a slide-out panel that can appear from any side of 
     <BasicSheetDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Sheet"
     <Sheet>
       <SheetTrigger asChild>
         <Button>Open Sheet</Button>
@@ -82,7 +82,7 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
     <SheetSidesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Sheet Sides"
     {/* Left Side */}
     <Sheet>
       <SheetTrigger asChild>
@@ -137,7 +137,7 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
     <SheetSizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Sheet Sizes"
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="sm">Small</Button>
@@ -169,7 +169,7 @@ Perfect for forms and data entry interfaces.
     <FormSheetDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Form Sheet Example"
     <Sheet>
       <SheetTrigger asChild>
         <Button>Edit Profile</Button>
@@ -218,7 +218,7 @@ Great for mobile navigation menus and sidebar navigation.
     <NavigationSheetDemo />
   </DocsTab>
      <DocsTab value="code" title="Code">
-     ```tsx
+     ```tsx title="Navigation Sheet Example"
      import { List, ChartBar, Folder, Check, Users, Gear, Question } from 'phosphor-react';
 
      const menuItems = [
@@ -279,7 +279,7 @@ You can control the Sheet's open state programmatically.
     <ControlledSheetDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Controlled Sheet"
     const [open, setOpen] = React.useState(false);
 
     return (
@@ -329,7 +329,7 @@ You can customize the Sheet's appearance and behavior extensively.
     <CustomSheetDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Sheet Styling"
     import { Sliders } from 'phosphor-react';
 
     <Sheet>

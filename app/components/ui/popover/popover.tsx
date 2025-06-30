@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
+import { cn } from '@/lib/utils';
 
 // Popover interfaces
 export interface PopoverProps {
@@ -376,15 +377,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left: position ? `${position.left}px` : '0px',
         zIndex: 50,
       }}
-      className={`
-        w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))]
-        rounded-lg border border-neutral-300 dark:border-neutral-700/50
-        bg-white dark:bg-neutral-900
-        p-4 shadow-lg dark:shadow-xl
-        ${animationStyles}
-        not-prose
-        ${className}
-      `}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-white dark:bg-neutral-900 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
     >
       {children}
     </div>
@@ -402,11 +395,7 @@ export const PopoverArrow: React.FC<PopoverArrowProps> = ({
       width={width}
       height={height}
       viewBox="0 0 12 6"
-      className={`
-        fill-white dark:fill-neutral-900
-        stroke-neutral-200 dark:stroke-neutral-700/50
-        ${className}
-      `}
+      className={cn('fill-white dark:fill-neutral-900 stroke-neutral-200 dark:stroke-neutral-700/50', className)}
     >
       <path d="M0 6L6 0L12 6" strokeWidth={1} />
     </svg>

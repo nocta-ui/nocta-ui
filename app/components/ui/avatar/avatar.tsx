@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
@@ -142,10 +143,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         <img
           src={src}
           alt=""
-          className={`
-            h-full w-full object-cover
-            ${variants[variant]}
-          `}
+          className={cn('h-full w-full object-cover', variants[variant])}
           onError={handleImageError}
           loading="eager"
           style={{
@@ -165,7 +163,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {/* Default fallback icon */}
       {!showImage && !showInitials && (
         <svg
-          className={`${sizes[size].icon} text-neutral-400 dark:text-neutral-500`}
+          className={cn(sizes[size].icon, 'text-neutral-400 dark:text-neutral-500')}
           fill="currentColor"
           viewBox="0 0 256 256"
         >
@@ -176,13 +174,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {/* Status indicator */}
       {status && (
         <span
-          className={`
-            absolute rounded-full
-            ${statusStyles[status]}
-            ${sizes[size].status}
-            ${statusPositions[size]}
-            ring-white dark:ring-neutral-900
-          `}
+          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-white dark:ring-neutral-900')}
           aria-label={`Status: ${status}`}
         />
       )}

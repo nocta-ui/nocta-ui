@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   variant?: 'default' | 'error' | 'success';
@@ -76,14 +77,7 @@ export const Input: React.FC<InputProps> = ({
     lg: 'w-5 h-5'
   };
 
-  const inputClasses = `
-    ${baseStyles}
-    ${variants[variant]}
-    ${sizes[size]}
-    ${leftIcon ? 'pl-10' : ''}
-    ${rightIcon ? 'pr-10' : ''}
-    ${className}
-  `;
+  const inputClasses = cn(baseStyles, variants[variant], sizes[size], leftIcon ? 'pl-10' : '', rightIcon ? 'pr-10' : '', className);
 
   const displayErrorMessage = variant === 'error' && errorMessage;
 
@@ -97,12 +91,7 @@ export const Input: React.FC<InputProps> = ({
       
       <div className="relative">
         {leftIcon && (
-          <div className={`
-            absolute left-3 top-1/2 transform -translate-y-1/2
-            text-neutral-400 dark:text-neutral-500
-            ${iconSizes[size]}
-            ${disabled ? 'opacity-50' : ''}
-          `}>
+          <div className={cn('absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 dark:text-neutral-500', iconSizes[size], disabled ? 'opacity-50' : '')}>
             {leftIcon}
           </div>
         )}
@@ -114,12 +103,7 @@ export const Input: React.FC<InputProps> = ({
         />
         
         {rightIcon && (
-          <div className={`
-            absolute right-3 top-1/2 transform -translate-y-1/2
-            text-neutral-400 dark:text-neutral-500
-            ${iconSizes[size]}
-            ${disabled ? 'opacity-50' : ''}
-          `}>
+          <div className={cn('absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 dark:text-neutral-500', iconSizes[size], disabled ? 'opacity-50' : '')}>
             {rightIcon}
           </div>
         )}

@@ -21,19 +21,19 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Toast component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add toast
 ```
 
 The toast component requires GSAP for animations:
 
-```bash
+```bash title="Terminal"
 npm install gsap
 ```
 
 Then import the components you need:
 
-```tsx
+```tsx title="Import"
 import { useToast, ToastProvider } from '@/components/ui/toast';
 ```
 
@@ -41,7 +41,7 @@ import { useToast, ToastProvider } from '@/components/ui/toast';
 
 Wrap your app with the ToastProvider to enable toast notifications:
 
-```tsx
+```tsx title="Toast Provider Setup"
 import { ToastProvider } from '@/components/ui/toast';
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
     <BasicToastDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Simple Toast"
     import { useToast } from '@/components/ui/toast';
 
     function MyComponent() {
@@ -94,7 +94,7 @@ The Toast component supports multiple variants: `default`, `success`, `warning`,
     <ToastVariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Toast Variants"
     const showDefault = () => {
       toast({
         title: 'Information',
@@ -138,7 +138,7 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
     <ToastPositionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Toast Positions"
     // Available positions
     const positions = [
       'top-left',
@@ -179,7 +179,7 @@ Add action buttons to your toast notifications for user interaction.
     <ToastWithActionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Toast with Actions"
     const showToast = () => {
       toast({
         title: 'Update Available',
@@ -203,7 +203,7 @@ The toast system supports smart stacking with a maximum of 3 visible toasts. New
     <StackedToastsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Stacked Toasts"
     const showMultiple = () => {
       toast({ title: 'First Toast', description: 'This is the first notification.' });
       
@@ -244,7 +244,7 @@ Create persistent toasts that don't auto-close by setting `duration` to `0`.
     <PersistentToastDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Persistent Toast"
     const showToast = () => {
       toast({
         title: 'Important Notice',
@@ -265,7 +265,7 @@ Customize how long toasts remain visible by setting a custom duration in millise
     <CustomDurationDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Toast Duration"
     const showToast = () => {
       toast({
         title: 'Quick Toast',
@@ -286,7 +286,7 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
     <DismissAllDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Dismiss All Toasts"
     const { toast, dismissAll } = useToast();
 
     const showMultiple = () => {
@@ -310,7 +310,7 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
 
 All toast components accept className props for custom styling:
 
-```tsx
+```tsx title="Custom Toast Styling"
 toast({
   title: 'Custom Toast',
   description: 'This toast has custom styling.',

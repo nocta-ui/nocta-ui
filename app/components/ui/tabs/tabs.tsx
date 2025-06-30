@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 // Context for tabs state
 interface TabsContextValue {
@@ -91,9 +92,7 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <TabsContext.Provider value={contextValue}>
       <div 
-        className={`not-prose ${
-          orientation === 'vertical' ? 'flex gap-4' : ''
-        } ${className}`}
+        className={cn('not-prose', orientation === 'vertical' ? 'flex gap-4' : '', className)}
         data-orientation={orientation}
       >
         {children}
@@ -181,13 +180,7 @@ export const TabsList: React.FC<TabsListProps> = ({
       ref={listRef}
       role="tablist"
       aria-orientation={orientation}
-      className={`
-        ${baseStyles}
-        ${orientationStyles[orientation]}
-        ${variantStyles[variant]}
-        ${sizeStyles[size]}
-        ${className}
-      `}
+      className={cn(baseStyles, orientationStyles[orientation], variantStyles[variant], sizeStyles[size], className)}
       onKeyDown={handleKeyDown}
     >
       {children}
@@ -276,12 +269,7 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
       aria-controls={`tab-content-${value}`}
       data-state={isSelected ? 'active' : 'inactive'}
       disabled={isDisabled}
-      className={`
-        ${baseStyles}
-        ${variantStyles[variant].base}
-        ${sizeStyles[size][variant]}
-        ${className}
-      `}
+      className={cn(baseStyles, variantStyles[variant].base, sizeStyles[size][variant], className)}
       onClick={() => onValueChange(value)}
     >
       {children}
@@ -315,14 +303,7 @@ export const TabsContent: React.FC<TabsContentProps> = ({
       id={`tab-content-${value}`}
       aria-labelledby={`tab-trigger-${value}`}
       data-state={isSelected ? 'active' : 'inactive'}
-      className={`
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-        not-prose
-        ${isSelected ? 'block' : 'hidden'}
-        ${className}
-      `}
+      className={cn('focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', isSelected ? 'block' : 'hidden', className)}
       tabIndex={0}
     >
       {children}

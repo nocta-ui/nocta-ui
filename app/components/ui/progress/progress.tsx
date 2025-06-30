@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: number;
@@ -65,12 +66,7 @@ export const Progress: React.FC<ProgressProps> = ({
       )}
       
       <div
-        className={`
-          ${baseStyles}
-          ${sizes[size]}
-          ${variants[variant]}
-          ${className}
-        `}
+        className={cn(baseStyles, sizes[size], variants[variant], className)}
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={max}

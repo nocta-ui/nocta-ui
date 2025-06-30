@@ -17,13 +17,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Tabs component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add tabs
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { 
   Tabs, 
   TabsList, 
@@ -41,7 +41,7 @@ The Tabs component follows a composable architecture where you build tabbed inte
     <BasicTabsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Tabs"
     <Tabs defaultValue="overview">
       <TabsList>
         <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -110,7 +110,7 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tabs Variants"
     {/* Default variant */}
     <Tabs defaultValue="tab1" variant="default">
       <TabsList>
@@ -159,7 +159,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Tabs Sizes"
     <Tabs defaultValue="tab1" size="sm">
       <TabsList>
         <TabsTrigger value="tab1">Tab 1</TabsTrigger>
@@ -199,7 +199,7 @@ Tabs can be displayed vertically using the `orientation="vertical"` prop.
     <VerticalTabsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Vertical Tabs"
     <Tabs defaultValue="general" orientation="vertical">
       <TabsList>
         <TabsTrigger value="general">General</TabsTrigger>
@@ -237,7 +237,7 @@ Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
     <DisabledTabsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Tabs"
     <Tabs defaultValue="available">
       <TabsList>
         <TabsTrigger value="available">Available</TabsTrigger>

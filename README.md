@@ -129,7 +129,7 @@ const variants = {
 
 ## Documentation
 
-Visit our [documentation site](https://nocta-ui-beryl.vercel.app) for:
+Visit our [documentation site](https://nocta-ui.com) for:
 
 - **Interactive demos** - See components in action
 - **Complete API reference** - All props and customization options

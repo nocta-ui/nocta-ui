@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'destructive' | 'warning' | 'success';
@@ -66,11 +67,7 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <div
       role="alert"
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${className}
-      `}
+      className={cn(baseStyles, variants[variant], className)}
       {...props}
     >
       {React.Children.map(children, (child, index) => {
@@ -104,11 +101,7 @@ export const AlertTitle: React.FC<AlertTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: `
-        mb-1 text-sm font-medium leading-none tracking-tight
-        not-prose
-        ${className}
-      `,
+      className: cn('mb-1 text-sm font-medium leading-none tracking-tight not-prose', className),
       ...props
     },
     children
@@ -123,12 +116,7 @@ export const AlertDescription: React.FC<AlertDescriptionProps> = ({
 }) => {
   return (
     <div
-      className={`
-        text-xs [&_p]:leading-relaxed
-        opacity-90
-        not-prose
-        ${className}
-      `}
+      className={cn('text-xs [&_p]:leading-relaxed opacity-90 not-prose', className)}
       {...props}
     >
       {children}
@@ -142,7 +130,7 @@ export const AlertIcon: React.FC<AlertIconProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`w-4 h-4 flex-shrink-0 mt-0.5 ${className}`}>
+    <div className={cn('w-4 h-4 flex-shrink-0 mt-0.5', className)}>
       {children}
     </div>
   );

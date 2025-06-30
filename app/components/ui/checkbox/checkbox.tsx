@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   checked?: boolean;
@@ -68,9 +69,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   const CheckIcon = () => (
     <svg
-      className={`${iconSizes[size]} text-white dark:text-white stroke-[3] transition-opacity duration-200 ${
-        checked ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={cn(iconSizes[size], 'text-white dark:text-white stroke-[3] transition-opacity duration-200', checked ? 'opacity-100' : 'opacity-0')}
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -83,13 +82,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <label
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size]}
-        ${disabledStyles}
-        ${className}
-      `}
+      className={cn(baseStyles, variants[variant], sizes[size], disabledStyles, className)}
       htmlFor={id}
     >
       <input

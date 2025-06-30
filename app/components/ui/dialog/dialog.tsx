@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 export interface DialogProps {
   children: React.ReactNode;
@@ -115,15 +116,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 
   return (
     <button
-      className={`
-        inline-flex items-center justify-center rounded-lg font-medium
-        transition-all duration-200 ease-in-out 
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-        not-prose
-        ${className}
-      `}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >
@@ -260,32 +253,14 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className={`
-          fixed inset-0 bg-black/50 backdrop-blur-sm 
-          transition-opacity duration-300 ease-out
-          ${isVisible ? 'opacity-100' : 'opacity-0'}
-        `}
+        className={cn('fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out', isVisible ? 'opacity-100' : 'opacity-0')}
         aria-hidden="true"
       />
       
       {/* Dialog */}
       <div
         ref={contentRef}
-        className={`
-          relative z-50 w-full ${sizes[size]}
-          bg-white dark:bg-neutral-900 
-          border border-neutral-300 dark:border-neutral-700/50 
-          rounded-xl 
-          shadow-xl dark:shadow-2xl 
-          backdrop-blur-sm 
-          not-prose
-          transition-all duration-300 ease-out
-          ${isVisible 
-            ? 'opacity-100 scale-100 translate-y-0' 
-            : 'opacity-0 scale-95 translate-y-4'
-          }
-          ${className}
-        `}
+        className={cn('relative z-50 w-full', sizes[size], 'bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700/50 rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', className)}
         role="dialog"
         aria-modal="true"
         aria-describedby="dialog-description"
@@ -325,12 +300,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-5 
-        border-b border-neutral-100 dark:border-neutral-700/50
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -348,13 +318,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: `
-        text-lg font-semibold 
-        text-neutral-900 dark:text-neutral-100 
-        tracking-tight leading-tight 
-        not-prose 
-        ${className}
-      `,
+      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -369,13 +333,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={`
-        text-sm 
-        text-neutral-600 dark:text-neutral-400 
-        leading-relaxed mt-1 
-        not-prose 
-        ${className}
-      `}
+      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -391,14 +349,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        px-6 py-4 
-        bg-neutral-50 dark:bg-neutral-800/50 rounded-b-xl
-        border-t border-neutral-100 dark:border-neutral-700/50 
-        flex items-center justify-end 
-        not-prose 
-        ${className}
-      `}
+      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-b-xl border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}
@@ -414,11 +365,7 @@ export const DialogActions: React.FC<DialogActionsProps> = ({
 }) => {
   return (
     <div 
-      className={`
-        flex items-center gap-2 
-        not-prose 
-        ${className}
-      `}
+      className={cn('flex items-center gap-2 not-prose', className)}
       {...props}
     >
       {children}
@@ -453,19 +400,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 
   return (
     <button
-      className={`
-        inline-flex items-center justify-center
-        w-8 h-8 rounded-md
-        text-neutral-400 dark:text-neutral-500
-        hover:text-neutral-600 dark:hover:text-neutral-300
-        hover:bg-neutral-100 dark:hover:bg-neutral-800
-        transition-colors duration-200
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-        focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-        not-prose
-        ${className}
-      `}
+      className={cn('inline-flex items-center justify-center w-8 h-8 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >

@@ -21,13 +21,13 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 Install the Combobox component using the nocta-ui CLI:
 
-```bash
+```bash title="Terminal"
 npx nocta-ui add combobox
 ```
 
 Then import the component:
 
-```tsx
+```tsx title="Import"
 import { Combobox, ComboboxOption } from '@/components/ui/combobox';
 ```
 
@@ -40,7 +40,7 @@ The Combobox component provides a searchable dropdown interface for selecting fr
     <BasicComboboxDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Basic Combobox"
     const frameworks = [
       { value: 'next', label: 'Next.js' },
       { value: 'react', label: 'React' },
@@ -65,7 +65,7 @@ The Combobox component provides a searchable dropdown interface for selecting fr
 
 The Combobox component expects an array of options with the following structure:
 
-```tsx
+```tsx title="Combobox Option Interface"
 interface ComboboxOption {
   value: string;        // Unique identifier
   label: string;        // Display text
@@ -82,7 +82,7 @@ The Combobox component supports three visual variants: `default`, `error`, and `
     <VariantsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Combobox Variants"
     {/* Default variant */}
     <Combobox
       options={frameworks}
@@ -116,7 +116,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <SizesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Combobox Sizes"
     <Combobox
       options={frameworks}
       size="sm"
@@ -147,7 +147,7 @@ Control whether users can search through options by typing.
     <SearchableDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Searchable Combobox"
     {/* Searchable (default) */}
     <Combobox
       options={countries}
@@ -175,7 +175,7 @@ Control whether users can clear their selection with an X button.
     <ClearableDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Clearable Combobox"
     {/* Clearable (default) */}
     <Combobox
       options={frameworks}
@@ -202,7 +202,7 @@ Individual options can be disabled by setting the `disabled` property.
     <DisabledOptionsDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Combobox with Disabled Options"
     const languages = [
       { value: 'js', label: 'JavaScript' },
       { value: 'ts', label: 'TypeScript' },
@@ -228,7 +228,7 @@ The entire combobox can be disabled.
     <DisabledComboboxDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Disabled Combobox"
     <Combobox
       options={frameworks}
       defaultValue="react"
@@ -247,7 +247,7 @@ Customize the empty state message when no options match the search.
     <CustomMessagesDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Custom Empty State Message"
     <Combobox
       options={limitedOptions}
       placeholder="Search for options..."
@@ -264,7 +264,7 @@ Customize the empty state message when no options match the search.
 
 Use `defaultValue` for uncontrolled behavior:
 
-```tsx
+```tsx title="Uncontrolled Combobox"
 <Combobox
   options={options}
   defaultValue="react"
@@ -281,7 +281,7 @@ Use `value` and `onValueChange` for controlled behavior:
     <ControlledDemo />
   </DocsTab>
   <DocsTab value="code" title="Code">
-    ```tsx
+    ```tsx title="Controlled Combobox"
     const [selectedFramework, setSelectedFramework] = useState('react');
 
     <Combobox
@@ -322,7 +322,7 @@ The Combobox component is built with accessibility in mind:
 
 Create options dynamically from API data:
 
-```tsx
+```tsx title="Dynamic Options Example"
 const [options, setOptions] = useState<ComboboxOption[]>([]);
 
 useEffect(() => {
@@ -349,7 +349,7 @@ useEffect(() => {
 
 Use with form libraries like React Hook Form:
 
-```tsx
+```tsx title="Form Integration Example"
 import { useForm, Controller } from 'react-hook-form';
 
 const { control, handleSubmit } = useForm();
@@ -374,7 +374,7 @@ const { control, handleSubmit } = useForm();
 
 Customize the appearance with className props:
 
-```tsx
+```tsx title="Custom Styling Example"
 <Combobox
   options={options}
   className="w-full max-w-xs"
