@@ -45,9 +45,9 @@ const FrameworkSelector = ({
     <div>
       
       {/* Framework Options */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {frameworks.map((framework) => (
-          <Link href={`/docs/${framework.id}`} key={framework.id}>
+          <Link href={`/docs/${framework.id}`} key={framework.id} className="no-underline">
             <button
               key={framework.id}
               className={`relative w-full p-4 rounded-lg border text-center flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-300`}

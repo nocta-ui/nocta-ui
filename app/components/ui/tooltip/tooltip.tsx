@@ -158,7 +158,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
       },
       onMouseEnter: handleMouseEnter,
       onMouseLeave: handleMouseLeave,
-      onfocus: handleFocus,
+      onFocus: handleFocus,
       onBlur: handleBlur,
       'aria-describedby': 'tooltip',
       ...childElement.props,
@@ -261,11 +261,11 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 
         // Apply alignment offset
         if (targetSide === 'top' || targetSide === 'bottom') {
-          if (align === 'start') x = triggerRect.left + alignOffset;
-          if (align === 'end') x = triggerRect.right - contentRect.width + alignOffset;
+          if (align === 'start') x = triggerRect.right - contentRect.width + alignOffset;
+          if (align === 'end') x = triggerRect.left + alignOffset;
         } else {
-          if (align === 'start') y = triggerRect.top + alignOffset;
-          if (align === 'end') y = triggerRect.bottom - contentRect.height + alignOffset;
+          if (align === 'start') y = triggerRect.bottom - contentRect.height + alignOffset;
+          if (align === 'end') y = triggerRect.top + alignOffset;
         }
 
         return { x, y };
