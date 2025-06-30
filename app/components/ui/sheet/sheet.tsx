@@ -303,7 +303,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       <div
         ref={contentRef}
         className={cn(`
-          fixed flex flex-col bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} transform transition-transform duration-300 ease-in
+          fixed flex flex-col bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
         `)}
         role="dialog"
         aria-modal="true"
@@ -442,7 +442,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
     <button
       className={cn(`
         inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset
-      `)}
+      `, className)}
       onClick={handleClick}
       {...props}
     >
