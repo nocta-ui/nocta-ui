@@ -128,11 +128,11 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       className={`
         inline-flex items-center justify-center
         rounded-lg border border-neutral-300 dark:border-neutral-700/50
-        bg-white dark:bg-neutral-900
+        bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
         px-3 py-2 text-sm font-medium
         text-neutral-900 dark:text-neutral-100
         hover:bg-neutral-50 dark:hover:bg-neutral-800
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+        focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
         focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
         focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
         transition-colors duration-200
@@ -366,7 +366,8 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   `;
 
   return (
-    <div
+    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl'>
+      <div
       ref={contentRef}
       id={contentId}
       role="dialog"
@@ -377,9 +378,10 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left: position ? `${position.left}px` : '0px',
         zIndex: 50,
       }}
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-white dark:bg-neutral-900 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
     >
       {children}
+    </div>
     </div>
   );
 };

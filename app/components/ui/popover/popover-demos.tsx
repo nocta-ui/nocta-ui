@@ -278,7 +278,7 @@ export const FormPopoverDemo: React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter item name"
-                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400"
+                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400"
                 required
               />
             </div>
@@ -290,14 +290,14 @@ export const FormPopoverDemo: React.FC = () => {
               <textarea
                 placeholder="Enter description"
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400 resize-none"
               />
             </div>
 
             <div className="flex gap-2 pt-2">
               <button
                 type="submit"
-                className="flex-1 px-3 py-2 text-sm bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 font-medium"
+                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 font-medium"
               >
                 Create
               </button>

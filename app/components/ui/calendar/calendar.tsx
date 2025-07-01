@@ -202,8 +202,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    bg-white dark:bg-neutral-900 
-    border border-neutral-200 dark:border-neutral-700/50 
+    bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800    border border-neutral-200 dark:border-neutral-700/50 
     rounded-xl 
     shadow-sm dark:shadow-lg 
     hover:shadow-md dark:hover:shadow-xl 
@@ -339,7 +338,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900' : isToday ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100' : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300', !isCurrentMonth ? 'text-neutral-400 dark:text-neutral-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
+                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-neutral-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900' : isToday ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100' : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300', !isCurrentMonth ? 'text-neutral-400 dark:text-neutral-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

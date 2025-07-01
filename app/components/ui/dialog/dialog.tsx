@@ -116,7 +116,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >
@@ -259,32 +259,35 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       
       {/* Dialog */}
       <div
-        ref={contentRef}
-        className={cn('relative z-50 w-full', sizes[size], 'bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700/50 rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', className)}
-        role="dialog"
-        aria-modal="true"
-        aria-describedby="dialog-description"
-        {...props}
-      >
-        {showClose && (
-          <DialogClose className="absolute right-4 top-4 z-10">
-            <svg 
-              className="h-4 w-4" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M6 18L18 6M6 6l12 12" 
-              />
-            </svg>
-            <span className="sr-only">Close</span>
-          </DialogClose>
-        )}
-        {children}
+      ref={contentRef}
+      className={cn('relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
+        <div
+          className='relative z-50 w-full bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl'
+          role="dialog"
+          aria-modal="true"
+          aria-describedby="dialog-description"
+          {...props}
+        >
+          {showClose && (
+            <DialogClose className="absolute right-4 top-4 z-10">
+              <svg 
+                className="h-4 w-4" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M6 18L18 6M6 6l12 12" 
+                />
+              </svg>
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          )}
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -400,7 +403,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center w-8 h-8 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center w-8 h-8 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >

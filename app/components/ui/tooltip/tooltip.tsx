@@ -370,7 +370,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       role="tooltip"
       className={cn(`
         fixed z-50 px-3 py-2 text-sm
-        bg-neutral-900 dark:bg-neutral-100
+        bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300
         text-neutral-100 dark:text-neutral-900
         border border-neutral-700 dark:border-neutral-300
         rounded-lg shadow-lg
@@ -399,7 +399,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
         <div
           className={cn(`
             absolute w-2 h-2
-            bg-neutral-900 dark:bg-neutral-100
+            bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300
             border border-neutral-700 dark:border-neutral-300
             rotate-45
             ${actualSide === 'top' ? 'bottom-[-5px] left-1/2 -translate-x-1/2 border-t-0 border-l-0' : ''}

@@ -209,8 +209,8 @@ export const Table = <T extends Record<string, unknown>>({
   }, [variant, onRowClick, rowClassName]);
 
   return (
-    <div className="not-prose">
-      <div className={cn('bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700/50 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
+    <div className="not-prose relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl">
+      <div className={cn('bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table
@@ -302,7 +302,7 @@ export const Table = <T extends Record<string, unknown>>({
         </div>
         
         {pagination && (
-          <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-between">
+          <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-200 dark:border-neutral-700/50 flex items-center justify-between">
             <div className="text-sm text-neutral-600 dark:text-neutral-400">
               Showing {Math.min((pagination.current - 1) * pagination.pageSize + 1, pagination.total)} to{' '}
               {Math.min(pagination.current * pagination.pageSize, pagination.total)} of {pagination.total} entries
@@ -341,7 +341,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={cn('bg-neutral-50 dark:bg-neutral-800/50', className)}
+      className={cn('bg-neutral-50 dark:bg-neutral-800/50 border-b border-neutral-200 dark:border-neutral-700/50', className)}
       {...props}
     >
       {children}
@@ -357,7 +357,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 }) => {
   return (
     <tbody 
-      className={cn('divide-y divide-neutral-100 dark:divide-neutral-700/50', className)}
+      className={cn('divide-y divide-neutral-200 dark:divide-neutral-700/50', className)}
       {...props}
     >
       {children}

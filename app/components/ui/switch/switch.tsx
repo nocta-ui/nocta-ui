@@ -33,7 +33,7 @@ export const Switch: React.FC<SwitchProps> = ({
   const baseStyles = `
     relative inline-flex items-center rounded-full border-2 border-transparent
     transition-all duration-200 ease-out cursor-pointer
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
     focus-visible:ring-offset-white dark:focus-visible:ring-offset-neutral-900
     not-prose
   `;
@@ -42,7 +42,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const variants = {
     default: checked
-      ? 'bg-neutral-900 dark:bg-neutral-100/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50'
+      ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50'
       : 'bg-neutral-200 dark:bg-neutral-700 focus-visible:ring-neutral-500/50',
     success: checked
       ? 'bg-green-500 dark:bg-green-600/50 focus-visible:ring-green-500/50'

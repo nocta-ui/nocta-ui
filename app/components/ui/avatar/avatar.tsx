@@ -87,25 +87,25 @@ export const Avatar: React.FC<AvatarProps> = ({
       container: 'h-10 w-10',
       text: 'text-sm',
       icon: 'h-5 w-5',
-      status: 'h-2.5 w-2.5 ring-2'
+      status: 'h-2.5 w-2.5 ring-1'
     },
     lg: {
       container: 'h-12 w-12',
       text: 'text-base',
       icon: 'h-6 w-6',
-      status: 'h-3 w-3 ring-2'
+      status: 'h-3 w-3 ring-1'
     },
     xl: {
       container: 'h-16 w-16',
       text: 'text-lg',
       icon: 'h-8 w-8',
-      status: 'h-3.5 w-3.5 ring-2'
+      status: 'h-3.5 w-3.5 ring-1'
     },
     '2xl': {
       container: 'h-20 w-20',
       text: 'text-xl',
       icon: 'h-10 w-10',
-      status: 'h-4 w-4 ring-2'
+      status: 'h-4 w-4 ring-1'
     }
   };
 

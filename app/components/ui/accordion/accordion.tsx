@@ -178,7 +178,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
     card: `
       border border-neutral-300 dark:border-neutral-700/50
       rounded-lg overflow-hidden
-      bg-white dark:bg-neutral-900
+      bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
       shadow-sm dark:shadow-lg
       ${itemIsOpen ? 'shadow-md dark:shadow-xl' : ''}
     `
@@ -223,7 +223,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
   const baseStyles = `
     w-full flex items-center justify-between text-left
     transition-all duration-200 ease-in-out
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
     focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
     focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
     not-prose
@@ -254,7 +254,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
     card: `
       ${sizeStyles[size].card}
       text-neutral-900 dark:text-neutral-100
-      bg-white dark:bg-neutral-900
+      bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
       hover:bg-neutral-50 dark:hover:bg-neutral-800/50
       ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
       ${isOpen ? 'bg-neutral-50 dark:bg-neutral-800/50' : ''}

@@ -29,17 +29,17 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-3xl pointer-events-none">
           <div className="flex flex-col items-center space-y-2">
-            <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100"></div>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
             <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Copy-Paste</span>
             <span className="text-xs text-neutral-500 dark:text-neutral-400">Own your code</span>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100"></div>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
             <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">TypeScript</span>
             <span className="text-xs text-neutral-500 dark:text-neutral-400">Fully typed</span>
           </div>
           <div className="flex flex-col items-center space-y-2 col-span-2 sm:col-span-1">
-            <div className="w-3 h-3 rounded-full bg-neutral-900 dark:bg-neutral-100"></div>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
             <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Accessible</span>
             <span className="text-xs text-neutral-500 dark:text-neutral-400">WCAG compliant</span>
           </div>

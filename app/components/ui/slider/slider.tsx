@@ -214,7 +214,7 @@ export const Slider: React.FC<SliderProps> = ({
   }, [isDragging, handleMouseMove, handleTouchMove, handleMouseUp, handleTouchEnd]);
 
   const baseStyles = `
-    relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-2 
+    relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 
     focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
     disabled:opacity-50 disabled:cursor-not-allowed not-prose
   `;
@@ -236,7 +236,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const fillVariants = {
     default: 'bg-neutral-600 dark:bg-neutral-400',
-    primary: 'bg-neutral-900 dark:bg-neutral-100',
+    primary: 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300',
     secondary: 'bg-neutral-500 dark:bg-neutral-500'
   };
 
@@ -248,7 +248,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const thumbVariants = {
     default: 'bg-white dark:bg-neutral-200 border-2 border-neutral-600 dark:border-neutral-400',
-    primary: 'bg-white dark:bg-neutral-900 border-2 border-neutral-900 dark:border-neutral-100',
+    primary: 'bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 border-2 border-neutral-900 dark:border-neutral-100',
     secondary: 'bg-white dark:bg-neutral-200 border-2 border-neutral-500 dark:border-neutral-500'
   };
 

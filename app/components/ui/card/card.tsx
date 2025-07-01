@@ -45,11 +45,13 @@ export const Card: React.FC<CardProps> = ({
   ...props 
 }) => {
   return (
-    <div 
-      className={cn('bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700/50 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
+    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl'>
+      <div 
+      className={cn('bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
       {...props}
-    >
-      {children}
+      >
+        {children}
+      </div>
     </div>
   );
 };
@@ -62,7 +64,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-neutral-200 dark:border-neutral-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -127,7 +129,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-200 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

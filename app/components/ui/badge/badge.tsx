@@ -27,7 +27,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const variants = {
     default: `
-      bg-neutral-900 dark:bg-neutral-100
+      bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300
       text-white dark:text-neutral-900
       hover:bg-neutral-800 dark:hover:bg-neutral-200
     `,
