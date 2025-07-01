@@ -17,13 +17,19 @@ const DocsTab = ({ children, title, value, isActive = false, onClick }: DocsTabP
       <button
         onClick={() => onClick(value)}
         className={cn(
-          'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+          'relative px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ease-out group',
           isActive
-            ? 'bg-fd-secondary text-fd-foreground'
-            : 'text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50'
+            ? 'bg-fd-secondary text-fd-foreground shadow-sm ring-1 ring-fd-border/20'
+            : 'text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50 hover:shadow-sm',
+          'hover:scale-[1.02] active:scale-[0.98]'
         )}
       >
-        {title}
+        <span className="relative z-10">
+          {title}
+        </span>
+        {isActive && (
+          <div className="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-fd-primary/60 transition-all duration-300" />
+        )}
       </button>
     );
   }
@@ -125,7 +131,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 overflow-auto bg-fd-secondary rounded-md border max-h-[600px] fd-scroll-container transition-opacity duration-150 ease-in-out relative z-10',
+            'p-4 overflow-auto bg-fd-secondary rounded-md border fd-scroll-container transition-opacity duration-150 ease-in-out relative z-10',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >
