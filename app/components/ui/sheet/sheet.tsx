@@ -322,6 +322,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500/50
               transition-colors duration-200 ease-in-out
               z-10
+              cursor-pointer
             "
             aria-label="Close sheet"
           >
@@ -441,7 +442,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
   return (
     <button
       className={cn(`
-        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset
+        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
       `, className)}
       onClick={handleClick}
       {...props}

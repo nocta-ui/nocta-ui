@@ -131,7 +131,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 bg-fd-secondary rounded-md border transition-opacity duration-150 ease-in-out relative z-10',
+            'p-4 bg-fd-secondary rounded-md border transition-opacity duration-150 ease-in-out relative',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >

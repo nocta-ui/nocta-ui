@@ -205,7 +205,7 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
     focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
     focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-    disabled:pointer-events-none disabled:opacity-50
+    disabled:pointer-events-none disabled:opacity-50 cursor-pointer
     not-prose
   `;
 

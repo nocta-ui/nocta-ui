@@ -311,7 +311,7 @@ export const Table = <T extends Record<string, unknown>>({
               <button
                 onClick={() => pagination.onChange(pagination.current - 1, pagination.pageSize)}
                 disabled={pagination.current <= 1}
-                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out"
+                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Previous
               </button>
@@ -321,7 +321,7 @@ export const Table = <T extends Record<string, unknown>>({
               <button
                 onClick={() => pagination.onChange(pagination.current + 1, pagination.pageSize)}
                 disabled={pagination.current >= Math.ceil(pagination.total / pagination.pageSize)}
-                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out"
+                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Next
               </button>

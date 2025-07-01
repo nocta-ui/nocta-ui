@@ -253,7 +253,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToPreviousMonth}
           disabled={disabled}
-          className={`rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${
+          className={`rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
             variant === 'compact' ? 'p-0.5' : 'p-1'
           }`}
           aria-label="Previous month"
@@ -273,7 +273,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={goToToday}
             disabled={disabled}
-            className={cn('rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
+            className={cn('rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
           >
             Today
           </button>
@@ -283,7 +283,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToNextMonth}
           disabled={disabled}
-          className={cn('rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
+          className={cn('rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
           aria-label="Next month"
         >
           <svg className={variant === 'compact' ? 'w-3 h-3' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">

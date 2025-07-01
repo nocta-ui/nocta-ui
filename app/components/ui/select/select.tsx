@@ -170,8 +170,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
     focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
     focus-visible:border-neutral-900 dark:focus-visible:border-neutral-100
-    disabled:cursor-not-allowed disabled:opacity-50
-    hover:border-neutral-300 dark:hover:border-neutral-600
+    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
     transition-all duration-200 ease-out
     not-prose
   `;
