@@ -105,7 +105,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   };
 
   return (
-    <div className="not-prose group relative my-4 overflow-hidden rounded-lg border bg-fd-card text-sm outline-none">
+    <div className="not-prose group relative my-4 rounded-lg border bg-fd-card text-sm outline-none">
       {/* Tab Headers */}
       <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
@@ -131,7 +131,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 overflow-auto bg-fd-secondary rounded-md border fd-scroll-container transition-opacity duration-150 ease-in-out relative z-10',
+            'p-4 bg-fd-secondary rounded-md border transition-opacity duration-150 ease-in-out relative z-10',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >
