@@ -202,7 +202,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800    border border-neutral-200 dark:border-neutral-700/50 
+    bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 
     rounded-xl 
     shadow-sm dark:shadow-lg 
     hover:shadow-md dark:hover:shadow-xl 
@@ -238,7 +238,8 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [weekStartsOn, formatWeekday, variant]);
 
   return (
-    <div
+    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl w-fit'>
+      <div
       className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
       role="application"
       aria-label={ariaLabel || 'Calendar'}
@@ -351,6 +352,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 }; 
