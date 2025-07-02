@@ -45,7 +45,7 @@ export const Card: React.FC<CardProps> = ({
   ...props 
 }) => {
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl'>
+    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl w-fit'>
       <div 
       className={cn('bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
       {...props}
