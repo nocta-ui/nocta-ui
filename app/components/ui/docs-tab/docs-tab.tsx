@@ -105,7 +105,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   };
 
   return (
-    <div className="not-prose group relative my-4 rounded-lg border bg-fd-card text-sm outline-none">
+    <div className="not-prose group relative my-4 rounded-lg border bg-neutral-100 dark:bg-neutral-900 text-sm outline-none">
       {/* Tab Headers */}
       <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
@@ -127,11 +127,11 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
           height: height === 'auto' ? 'auto' : `${height}px`
         }}
       >
-      <div className="absolute inset-1 border rounded-md bg-fd-secondary z-0"></div>
+      <div className="absolute inset-1 border rounded-md bg-neutral-200 dark:bg-neutral-900 z-0"></div>
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 bg-fd-secondary rounded-md border transition-opacity duration-150 ease-in-out relative',
+            'p-4 bg-neutral-200 dark:bg-neutral-900 rounded-md border transition-opacity duration-150 ease-in-out relative',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >

@@ -5,6 +5,7 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, Dialog
 import { Button } from '../button';
 import { Input } from '../input';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '../select';
+import { Spinner } from '../spinner';
 
 export const SimpleDialogDemo: React.FC = () => {
   return (
@@ -207,7 +208,7 @@ export const WithoutCloseButtonDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-8 text-center">
-            <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-neutral-900 dark:border-neutral-100"></div>
+            <Spinner />
           </div>
         </DialogContent>
       </Dialog>
