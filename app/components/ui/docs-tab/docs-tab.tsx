@@ -105,7 +105,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   };
 
   return (
-    <div className="not-prose group relative my-4 rounded-lg border bg-neutral-100 dark:bg-neutral-900 text-sm outline-none">
+    <div className="not-prose group relative my-4 rounded-lg border bg-fd-card text-sm outline-none">
       {/* Tab Headers */}
       <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
