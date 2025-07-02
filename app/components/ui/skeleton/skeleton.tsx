@@ -23,7 +23,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   ...props
 }) => {
   const getBaseStyles = () => {
-    return 'bg-nocta-200 dark:bg-nocta-700 rounded not-prose';
+    return 'bg-nocta-200 dark:bg-nocta-800 rounded not-prose';
   };
 
   const variants = {

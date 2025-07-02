@@ -305,20 +305,20 @@ export const ControlledDemo: React.FC = () => {
           />
         </div>
 
-        <div className="p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+        <div className="p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
           <p className="text-sm font-medium text-nocta-900 dark:text-nocta-100">
             Current value: {selectedFramework || 'None'}
           </p>
           <div className="mt-2 space-x-2">
             <button
               onClick={() => setSelectedFramework('vue')}
-              className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-700 rounded hover:bg-nocta-300 dark:hover:bg-nocta-600"
+              className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-800 rounded hover:bg-nocta-300 dark:hover:bg-nocta-700"
             >
               Set Vue.js
             </button>
             <button
               onClick={() => setSelectedFramework('')}
-              className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-700 rounded hover:bg-nocta-300 dark:hover:bg-nocta-600"
+              className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-800 rounded hover:bg-nocta-300 dark:hover:bg-nocta-700"
             >
               Clear
             </button>

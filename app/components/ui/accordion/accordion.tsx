@@ -178,7 +178,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
     card: `
       border border-nocta-300 dark:border-nocta-700/50
       rounded-lg overflow-hidden
-      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
+      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
       shadow-sm dark:shadow-lg
       ${itemIsOpen ? 'shadow-md dark:shadow-xl' : ''}
     `
@@ -254,10 +254,10 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
     card: `
       ${sizeStyles[size].card}
       text-nocta-900 dark:text-nocta-100
-      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
-      hover:bg-nocta-50 dark:hover:bg-nocta-800/50
+      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
+      hover:bg-nocta-50 dark:hover:bg-nocta-900/50
       ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      ${isOpen ? 'bg-nocta-50 dark:bg-nocta-800/50' : ''}
+      ${isOpen ? 'bg-nocta-50 dark:bg-nocta-900/50' : ''}
     `
   };
 

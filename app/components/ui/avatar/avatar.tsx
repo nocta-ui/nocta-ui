@@ -58,7 +58,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const baseStyles = `
     relative inline-flex items-center justify-center
-    bg-nocta-200 dark:bg-nocta-700
+    bg-nocta-200 dark:bg-nocta-800
     text-nocta-700 dark:text-nocta-300
     font-medium select-none
     transition-all duration-200 ease-in-out
@@ -111,7 +111,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const statusStyles = {
     online: 'bg-green-500 dark:bg-green-600',
-    offline: 'bg-nocta-400 dark:bg-nocta-500',
+    offline: 'bg-nocta-400 dark:bg-nocta-600',
     away: 'bg-yellow-500 dark:bg-yellow-600',
     busy: 'bg-red-500 dark:bg-red-600'
   };

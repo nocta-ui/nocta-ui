@@ -43,16 +43,16 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const variants = {
     default: checked
       ? 'bg-nocta-900 dark:bg-nocta-100/50 border-nocta-900 dark:border-nocta-100/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 border-nocta-300 dark:border-nocta-600 hover:border-nocta-400 dark:hover:border-nocta-500 focus-visible:ring-nocta-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-nocta-400 dark:hover:border-nocta-500 focus-visible:ring-nocta-500/50',
     success: checked
       ? 'bg-green-500 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 border-nocta-300 dark:border-nocta-600 hover:border-green-400 dark:hover:border-green-500 focus-visible:ring-green-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-green-400 dark:hover:border-green-500 focus-visible:ring-green-500/50',
     warning: checked
       ? 'bg-yellow-500 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-visible:ring-yellow-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 border-nocta-300 dark:border-nocta-600 hover:border-yellow-400 dark:hover:border-yellow-500 focus-visible:ring-yellow-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-yellow-400 dark:hover:border-yellow-500 focus-visible:ring-yellow-500/50',
     destructive: checked
       ? 'bg-red-500 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-visible:ring-red-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 border-nocta-300 dark:border-nocta-600 hover:border-red-400 dark:hover:border-red-500 focus-visible:ring-red-500/50'
+      : 'bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-red-400 dark:hover:border-red-500 focus-visible:ring-red-500/50'
   };
 
   const sizes = {

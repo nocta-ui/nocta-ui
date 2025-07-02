@@ -202,7 +202,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 
+    bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 
     rounded-xl 
     shadow-sm dark:shadow-lg 
     hover:shadow-md dark:hover:shadow-xl 
@@ -253,7 +253,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToPreviousMonth}
           disabled={disabled}
-          className={`rounded hover:bg-nocta-100 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
+          className={`rounded hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
             variant === 'compact' ? 'p-0.5' : 'p-1'
           }`}
           aria-label="Previous month"
@@ -273,7 +273,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={goToToday}
             disabled={disabled}
-            className={cn('rounded bg-nocta-100 dark:bg-nocta-800 hover:bg-nocta-200 dark:hover:bg-nocta-700 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
+            className={cn('rounded bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
           >
             Today
           </button>
@@ -283,7 +283,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToNextMonth}
           disabled={disabled}
-          className={cn('rounded hover:bg-nocta-100 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
+          className={cn('rounded hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
           aria-label="Next month"
         >
           <svg className={variant === 'compact' ? 'w-3 h-3' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,7 +339,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-700 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-100 dark:hover:bg-nocta-800 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
+                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-100 dark:hover:bg-nocta-900 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

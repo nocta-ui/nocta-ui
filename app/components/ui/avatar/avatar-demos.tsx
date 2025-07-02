@@ -139,7 +139,7 @@ export const GroupDemo: React.FC = () => {
         fallback="AB" 
         className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-800 ring-1 ring-white dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-900 ring-1 ring-white dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
         +5
       </div>
     </div>
@@ -227,7 +227,7 @@ export const InteractiveDemo: React.FC = () => {
                 className={`px-3 py-1 rounded-md text-sm ${
                   selectedSize === size
                     ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
-                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
+                    : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {size}
@@ -246,7 +246,7 @@ export const InteractiveDemo: React.FC = () => {
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedVariant === variant
                     ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
-                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
+                    : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {variant}
@@ -265,7 +265,7 @@ export const InteractiveDemo: React.FC = () => {
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedStatus === status
                     ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
-                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
+                    : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {status || 'none'}

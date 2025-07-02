@@ -43,16 +43,16 @@ export const Switch: React.FC<SwitchProps> = ({
   const variants = {
     default: checked
       ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 focus-visible:ring-nocta-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-nocta-500/50',
     success: checked
       ? 'bg-green-500 dark:bg-green-600/50 focus-visible:ring-green-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 focus-visible:ring-green-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-green-500/50',
     warning: checked
       ? 'bg-yellow-500 dark:bg-yellow-600/50 focus-visible:ring-yellow-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 focus-visible:ring-yellow-500/50',
+      : 'bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-yellow-500/50',
     destructive: checked
       ? 'bg-red-500 dark:bg-red-600/50 focus-visible:ring-red-500/50'
-      : 'bg-nocta-200 dark:bg-nocta-700 focus-visible:ring-red-500/50'
+      : 'bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-red-500/50'
   };
 
   const sizes = {

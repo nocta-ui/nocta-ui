@@ -128,10 +128,10 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       className={`
         inline-flex items-center justify-center
         rounded-lg border border-nocta-300 dark:border-nocta-700/50
-        bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
+        bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
         px-3 py-2 text-sm font-medium
         text-nocta-900 dark:text-nocta-100
-        hover:bg-nocta-50 dark:hover:bg-nocta-800
+        hover:bg-nocta-50 dark:hover:bg-nocta-900
         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
         focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
         focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
@@ -378,7 +378,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left: position ? `${position.left}px` : '0px',
         zIndex: 50,
       }}
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
     >
       {children}
     </div>

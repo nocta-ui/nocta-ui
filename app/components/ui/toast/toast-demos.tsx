@@ -316,7 +316,7 @@ const ToastPositionsExample: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-4 p-3 bg-nocta-100 dark:bg-nocta-800 rounded-lg text-sm">
+      <div className="mt-4 p-3 bg-nocta-100 dark:bg-nocta-900 rounded-lg text-sm">
         <strong>Available positions:</strong> top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
       </div>
     </div>

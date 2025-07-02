@@ -23,7 +23,7 @@ export const BasicContextMenuDemo: React.FC = () => {
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-950 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors cursor-context-menu">
             <span className="text-nocta-600 dark:text-nocta-400">
               Right-click here
             </span>
@@ -69,7 +69,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-950 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors cursor-context-menu">
             <span className="text-nocta-600 dark:text-nocta-400">
               Right-click for menu with separators
             </span>
@@ -127,7 +127,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-950 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors cursor-context-menu">
             <span className="text-nocta-600 dark:text-nocta-400">
               Right-click for submenu example
             </span>
@@ -195,7 +195,7 @@ export const DisabledContextMenuDemo: React.FC = () => {
       <div className="space-y-4">
         <ContextMenu>
           <ContextMenuTrigger disabled>
-            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-100 dark:bg-nocta-800 opacity-50">
+            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-100 dark:bg-nocta-900 opacity-50">
               <span className="text-nocta-500 dark:text-nocta-500">
                 Context menu disabled
               </span>
@@ -208,7 +208,7 @@ export const DisabledContextMenuDemo: React.FC = () => {
 
         <ContextMenu>
           <ContextMenuTrigger>
-            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-950 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors cursor-context-menu">
               <span className="text-nocta-600 dark:text-nocta-400">
                 Some items disabled
               </span>
@@ -265,7 +265,7 @@ export const FileContextMenuDemo: React.FC = () => {
         {files.map((file, index) => (
           <ContextMenu key={index}>
             <ContextMenuTrigger>
-              <div className="flex items-center gap-3 p-3 border border-nocta-300 dark:border-nocta-800 rounded-lg bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 hover:bg-nocta-50 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+              <div className="flex items-center gap-3 p-3 border border-nocta-300 dark:border-nocta-800 rounded-lg bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 hover:bg-nocta-50 dark:hover:bg-nocta-900 transition-colors cursor-context-menu">
                 <svg className="w-5 h-5 text-nocta-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {getFileIcon(file.type)}
                 </svg>

@@ -19,7 +19,7 @@ const DocsTab = ({ children, title, value, isActive = false, onClick }: DocsTabP
         className={cn(
           'relative px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ease-out group',
           isActive
-            ? 'bg-nocta-100 dark:bg-nocta-900 text-fd-foreground shadow-sm ring-1 ring-fd-border/20'
+            ? 'bg-nocta-100 dark:bg-nocta-950 text-fd-foreground shadow-sm ring-1 ring-fd-border/20'
             : 'text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50 hover:shadow-sm',
           'hover:scale-[1.02] active:scale-[0.98]'
         )}
@@ -105,7 +105,7 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   };
 
   return (
-    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-800 text-sm outline-none">
+    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-900 text-sm outline-none">
       {/* Tab Headers */}
       <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
@@ -127,11 +127,11 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
           height: height === 'auto' ? 'auto' : `${height}px`
         }}
       >
-      <div className="absolute inset-1 border rounded-md bg-nocta-50 dark:bg-nocta-900 z-0"></div>
+      <div className="absolute inset-1 border rounded-md bg-nocta-50 dark:bg-nocta-950 z-0"></div>
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 bg-nocta-50 dark:bg-nocta-900 rounded-md border transition-opacity duration-150 ease-in-out relative',
+            'p-4 bg-nocta-50 dark:bg-nocta-950 rounded-md border transition-opacity duration-150 ease-in-out relative',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >

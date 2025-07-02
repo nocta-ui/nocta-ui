@@ -39,22 +39,24 @@ export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 // Base Card Component
-export const Card: React.FC<CardProps> = ({ 
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(({ 
   children, 
   className = '', 
   ...props 
-}) => {
+}, ref) => {
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
+    <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div 
-      className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
+      className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
       {...props}
       >
         {children}
       </div>
     </div>
   );
-};
+});
+
+Card.displayName = 'Card';
 
 // Card Header
 export const CardHeader: React.FC<CardHeaderProps> = ({ 
@@ -129,7 +131,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

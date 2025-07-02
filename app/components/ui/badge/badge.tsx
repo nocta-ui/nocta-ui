@@ -29,12 +29,12 @@ export const Badge: React.FC<BadgeProps> = ({
     default: `
       bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
       text-white dark:text-nocta-900
-      hover:bg-nocta-800 dark:hover:bg-nocta-200
+      hover:bg-nocta-900 dark:hover:bg-nocta-200
     `,
     secondary: `
-      bg-nocta-100 dark:bg-nocta-800
+      bg-nocta-100 dark:bg-nocta-900
       text-nocta-900 dark:text-nocta-100
-      hover:bg-nocta-200 dark:hover:bg-nocta-700
+      hover:bg-nocta-200 dark:hover:bg-nocta-800
       border border-nocta-300 dark:border-nocta-600
     `,
     destructive: `
@@ -56,7 +56,7 @@ export const Badge: React.FC<BadgeProps> = ({
       bg-transparent
       text-nocta-900 dark:text-nocta-100
       border border-nocta-300 dark:border-nocta-700/50
-      hover:bg-nocta-50 dark:hover:bg-nocta-800
+      hover:bg-nocta-50 dark:hover:bg-nocta-900
     `
   };
 

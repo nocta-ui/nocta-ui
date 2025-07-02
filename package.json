@@ -23,6 +23,7 @@
     "gsap": "^3.13.0",
     "next": "^15.3.3",
     "phosphor-react": "^1.4.1",
+    "r3f-perf": "^7.2.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^3.3.1",

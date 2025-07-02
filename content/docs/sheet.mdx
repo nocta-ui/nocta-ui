@@ -249,7 +249,7 @@ Great for mobile navigation menus and sidebar navigation.
             {menuItems.map((item, index) => (
                 <button
                  key={index}
-                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-nocta-700 dark:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200"
+                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-nocta-700 dark:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors duration-200"
                >
                  <div className="flex items-center gap-3">
                    <item.icon size={16} className="text-nocta-600 dark:text-nocta-400" />
@@ -341,9 +341,9 @@ You can customize the Sheet's appearance and behavior extensively.
        </SheetTrigger>
       <SheetContent 
         showClose={false} 
-        className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-900 dark:to-nocta-800"
+        className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-950 dark:to-nocta-900"
       >
-        <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-900/50 backdrop-blur-sm">
+        <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-950/50 backdrop-blur-sm">
           <SheetTitle className="text-xl">Customization</SheetTitle>
           <SheetDescription>
             This sheet has custom styling and no default close button.
@@ -352,7 +352,7 @@ You can customize the Sheet's appearance and behavior extensively.
         <div className="px-6 py-6 flex-1 space-y-6">
           {/* Custom content */}
         </div>
-        <SheetFooter className="bg-white/80 dark:bg-nocta-900/80 backdrop-blur-sm">
+        <SheetFooter className="bg-white/80 dark:bg-nocta-950/80 backdrop-blur-sm">
           <Button variant="ghost" size="sm">Reset</Button>
           <SheetClose asChild>
             <Button size="sm">Apply Changes</Button>

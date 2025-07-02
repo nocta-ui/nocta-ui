@@ -253,7 +253,7 @@ export const EventCalendarDemo: React.FC = () => {
           />
         </div>
         {selectedDate && (
-          <div className="p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+          <div className="p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
             <p className="text-sm text-nocta-700 dark:text-nocta-300">
               Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
             </p>

@@ -164,7 +164,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   const baseStyles = `
     flex h-10 w-fit items-center justify-between
     rounded-lg border border-nocta-300 dark:border-nocta-700/50
-    bg-white dark:bg-nocta-900
+    bg-white dark:bg-nocta-950
     px-3 py-2 text-sm
     placeholder:text-nocta-400 dark:placeholder:text-nocta-500
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
@@ -340,7 +340,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       ref={contentRef}
       id={contentId}
       role="listbox"
-      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-900 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
+      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
     >
       <div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
         {children}
@@ -389,7 +389,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     <div
       role="option"
       aria-selected={isSelected}
-      className={cn('relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800', isSelected ? 'bg-nocta-100 dark:bg-nocta-800' : '', isFocused ? 'bg-nocta-100 dark:bg-nocta-800' : '', disabled ? 'pointer-events-none opacity-50' : 'transition-colors duration-150 not-prose', className)}      onClick={() => !disabled && onValueChange?.(value, children)}
+      className={cn('relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800', isSelected ? 'bg-nocta-100 dark:bg-nocta-900' : '', isFocused ? 'bg-nocta-100 dark:bg-nocta-900' : '', disabled ? 'pointer-events-none opacity-50' : 'transition-colors duration-150 not-prose', className)}      onClick={() => !disabled && onValueChange?.(value, children)}
     >
       <span className={`flex-1 ${isSelected ? 'font-medium' : ''}`}>
         {children}

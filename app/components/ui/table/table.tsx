@@ -192,11 +192,11 @@ export const Table = <T extends Record<string, unknown>>({
     let className = '';
     
     if (variant === 'striped' && index % 2 === 1) {
-      className += ' bg-nocta-50 dark:bg-nocta-800/30';
+      className += ' bg-nocta-50 dark:bg-nocta-900/30';
     }
     
     if (onRowClick) {
-      className += ' cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-800/50 transition-colors duration-200 ease-in-out';
+      className += ' cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out';
     }
     
     if (typeof rowClassName === 'function') {
@@ -210,7 +210,7 @@ export const Table = <T extends Record<string, unknown>>({
 
   return (
     <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl">
-      <div className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
+      <div className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table
@@ -238,7 +238,7 @@ export const Table = <T extends Record<string, unknown>>({
                           placeholder="Filter..."
                           value={filters[column.key] || ''}
                           onChange={(e) => handleFilter(column.key, e.target.value)}
-                          className="px-2 py-1 text-xs rounded border border-nocta-200/60 dark:border-nocta-600/60 bg-nocta-50/80 dark:bg-nocta-800/80 text-nocta-900 dark:text-nocta-100 placeholder:text-nocta-400 dark:placeholder:text-nocta-500 focus:outline-none focus:border-nocta-400 dark:focus:border-nocta-500 focus:bg-white dark:focus:bg-nocta-800 transition-all duration-200 backdrop-blur-sm"
+                          className="px-2 py-1 text-xs rounded border border-nocta-200/60 dark:border-nocta-600/60 bg-nocta-50/80 dark:bg-nocta-900/80 text-nocta-900 dark:text-nocta-100 placeholder:text-nocta-400 dark:placeholder:text-nocta-500 focus:outline-none focus:border-nocta-400 dark:focus:border-nocta-500 focus:bg-white dark:focus:bg-nocta-800 transition-all duration-200 backdrop-blur-sm"
                           onClick={(e) => e.stopPropagation()}
                         />
                       )}
@@ -302,7 +302,7 @@ export const Table = <T extends Record<string, unknown>>({
         </div>
         
         {pagination && (
-          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-between">
+          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-between">
             <div className="text-sm text-nocta-600 dark:text-nocta-400">
               Showing {Math.min((pagination.current - 1) * pagination.pageSize + 1, pagination.total)} to{' '}
               {Math.min(pagination.current * pagination.pageSize, pagination.total)} of {pagination.total} entries
@@ -311,7 +311,7 @@ export const Table = <T extends Record<string, unknown>>({
               <button
                 onClick={() => pagination.onChange(pagination.current - 1, pagination.pageSize)}
                 disabled={pagination.current <= 1}
-                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-800 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-700 transition-colors duration-200 ease-in-out cursor-pointer"
+                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Previous
               </button>
@@ -321,7 +321,7 @@ export const Table = <T extends Record<string, unknown>>({
               <button
                 onClick={() => pagination.onChange(pagination.current + 1, pagination.pageSize)}
                 disabled={pagination.current >= Math.ceil(pagination.total / pagination.pageSize)}
-                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-800 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-700 transition-colors duration-200 ease-in-out cursor-pointer"
+                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Next
               </button>
@@ -341,7 +341,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={cn('bg-nocta-50 dark:bg-nocta-800/50 border-b border-nocta-200 dark:border-nocta-700/50', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-b border-nocta-200 dark:border-nocta-700/50', className)}
       {...props}
     >
       {children}
@@ -374,7 +374,7 @@ export const TableRow: React.FC<TableRowProps> = ({
 }) => {
   return (
     <tr 
-      className={cn(clickable ? 'cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-800/50 transition-colors duration-200 ease-in-out' : '', className)}
+      className={cn(clickable ? 'cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out' : '', className)}
       {...props}
     >
       {children}
@@ -432,7 +432,7 @@ export const TableCell: React.FC<TableCellProps> = ({
   return React.createElement(
     Component,
     {
-      className: cn('px-6 py-4', getAlignmentClass(), header ? 'font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight' : 'text-nocta-700 dark:text-nocta-300', sortable ? 'cursor-pointer hover:bg-nocta-100 dark:hover:bg-nocta-700/50 select-none transition-colors duration-200 ease-in-out' : '', className),
+      className: cn('px-6 py-4', getAlignmentClass(), header ? 'font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight' : 'text-nocta-700 dark:text-nocta-300', sortable ? 'cursor-pointer hover:bg-nocta-100 dark:hover:bg-nocta-800/50 select-none transition-colors duration-200 ease-in-out' : '', className),
       onClick: sortable ? onSort : undefined,
       colSpan,
       rowSpan,
@@ -455,7 +455,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={cn('bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-100 dark:border-nocta-700/50 font-semibold', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-700/50 font-semibold', className)}
       {...props}
     >
       {children}

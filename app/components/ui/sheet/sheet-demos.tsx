@@ -297,7 +297,7 @@ export const NavigationSheetDemo: React.FC = () => {
                     w-full flex items-center justify-between px-3 py-2 rounded-lg
                     text-sm font-medium text-left
                     text-nocta-700 dark:text-nocta-300
-                    hover:bg-nocta-100 dark:hover:bg-nocta-800
+                    hover:bg-nocta-100 dark:hover:bg-nocta-900
                     transition-colors duration-200
                   "
                 >
@@ -316,8 +316,8 @@ export const NavigationSheetDemo: React.FC = () => {
           </div>
           <SheetFooter>
             <div className="w-full">
-              <div className="flex items-center gap-3 px-3 py-2 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
-                <div className="w-8 h-8 bg-nocta-300 dark:bg-nocta-600 rounded-full"></div>
+              <div className="flex items-center gap-3 px-3 py-2 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
+                <div className="w-8 h-8 bg-nocta-300 dark:bg-nocta-700 rounded-full"></div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-nocta-900 dark:text-nocta-100 truncate">
                     John Doe
@@ -365,7 +365,7 @@ export const ControlledSheetDemo: React.FC = () => {
               This sheet's open state is managed by the parent component. 
               You can control when it opens and closes from outside the Sheet component.
             </p>
-            <div className="mt-4 p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+            <div className="mt-4 p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
               <p className="text-xs font-mono text-nocta-700 dark:text-nocta-300">
                 Current state: {open ? 'open' : 'closed'}
               </p>
@@ -390,8 +390,8 @@ export const CustomSheetDemo: React.FC = () => {
             Customization Panel
           </Button>
         </SheetTrigger>
-        <SheetContent showClose={false} className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-900 dark:to-nocta-800">
-          <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-900/50 backdrop-blur-sm">
+        <SheetContent showClose={false} className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-950 dark:to-nocta-900">
+          <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-950/50 backdrop-blur-sm">
             <SheetTitle className="text-xl">Customization</SheetTitle>
             <SheetDescription>
               This sheet has custom styling and no default close button.
@@ -419,18 +419,18 @@ export const CustomSheetDemo: React.FC = () => {
             <div className="space-y-3">
               <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Layout</h3>
               <div className="space-y-2">
-                <button className="w-full p-3 text-left border border-nocta-300 dark:border-nocta-700 rounded-lg hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors">
+                <button className="w-full p-3 text-left border border-nocta-300 dark:border-nocta-700 rounded-lg hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors">
                   <div className="text-sm font-medium">Compact</div>
                   <div className="text-xs text-nocta-500">Minimal spacing</div>
                 </button>
-                <button className="w-full p-3 text-left border-2 border-nocta-900 dark:border-nocta-100 rounded-lg bg-nocta-50 dark:bg-nocta-800">
+                <button className="w-full p-3 text-left border-2 border-nocta-900 dark:border-nocta-100 rounded-lg bg-nocta-50 dark:bg-nocta-900">
                   <div className="text-sm font-medium">Comfortable</div>
                   <div className="text-xs text-nocta-500">Standard spacing</div>
                 </button>
               </div>
             </div>
           </div>
-          <SheetFooter className="bg-white/80 dark:bg-nocta-900/80 backdrop-blur-sm">
+          <SheetFooter className="bg-white/80 dark:bg-nocta-950/80 backdrop-blur-sm">
             <Button variant="ghost" size="sm">Reset</Button>
             <SheetClose asChild>
               <Button size="sm">Apply Changes</Button>

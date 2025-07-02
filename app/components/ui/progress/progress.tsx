@@ -26,7 +26,7 @@ export const Progress: React.FC<ProgressProps> = ({
   
   const baseStyles = `
     relative w-full overflow-hidden rounded-full
-    bg-nocta-200 dark:bg-nocta-700
+    bg-nocta-200 dark:bg-nocta-800
     transition-all duration-200 ease-in-out
     not-prose
   `;

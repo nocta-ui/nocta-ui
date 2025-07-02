@@ -225,7 +225,7 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   const trackBaseStyles = `
-    relative bg-nocta-200 dark:bg-nocta-700 rounded-full overflow-hidden
+    relative bg-nocta-200 dark:bg-nocta-800 rounded-full overflow-hidden
   `;
 
   const trackSizes = {
@@ -237,7 +237,7 @@ export const Slider: React.FC<SliderProps> = ({
   const fillVariants = {
     default: 'bg-nocta-600 dark:bg-nocta-400',
     primary: 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300',
-    secondary: 'bg-nocta-500 dark:bg-nocta-500'
+    secondary: 'bg-nocta-500 dark:bg-nocta-600'
   };
 
   const thumbSizes = {
@@ -248,7 +248,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const thumbVariants = {
     default: 'bg-white dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400',
-    primary: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 border-2 border-nocta-900 dark:border-nocta-100',
+    primary: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-2 border-nocta-900 dark:border-nocta-100',
     secondary: 'bg-white dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500'
   };
 

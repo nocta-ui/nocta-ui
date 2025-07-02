@@ -123,7 +123,7 @@ export const TabsList: React.FC<TabsListProps> = ({
   const variantStyles = {
     default: `
       rounded-lg
-      bg-nocta-100 dark:bg-nocta-800
+      bg-nocta-100 dark:bg-nocta-900
       p-1
     `,
     pills: `
@@ -224,7 +224,7 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
       base: `
         rounded-lg px-4 py-2
         text-nocta-700 dark:text-nocta-300
-        hover:bg-nocta-100 dark:hover:bg-nocta-800
+        hover:bg-nocta-100 dark:hover:bg-nocta-900
         hover:text-nocta-900 dark:hover:text-nocta-100
         data-[state=active]:bg-nocta-900 dark:data-[state=active]:bg-nocta-100
         data-[state=active]:text-white dark:data-[state=active]:text-nocta-900

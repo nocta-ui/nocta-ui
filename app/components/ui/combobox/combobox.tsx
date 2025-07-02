@@ -193,7 +193,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   const variants = {
     default: `
       border-nocta-300 dark:border-nocta-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-nocta-300/50 dark:hover:border-nocta-600/50
       focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
@@ -201,7 +201,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     `,
     error: `
       border-red-300 dark:border-red-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-red-400/50 dark:hover:border-red-600/50
       focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
@@ -209,7 +209,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     `,
     success: `
       border-green-300 dark:border-green-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-green-400/50 dark:hover:border-green-600/50
       focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
@@ -255,7 +255,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
                   handleClear(e);
                 }
               }}
-              className="p-0.5 hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500"
+              className="p-0.5 hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500"
               aria-label="Clear selection"
             >
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,7 +281,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
       {open && (
         <div
           ref={listRef}
-          className={cn('absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-900 shadow-lg dark:shadow-xl', popoverClassName)}
+          className={cn('absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', popoverClassName)}
         >
           {/* Search input */}
           {searchable && (
@@ -318,7 +318,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
                    ref={(el) => { optionRefs.current[index] = el; }}
                    role="option"
                    aria-selected={option.value === value}
-                   className={cn('relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-800', highlightedIndex === index ? 'bg-nocta-100 dark:bg-nocta-800' : '', option.value === value ? 'bg-nocta-100 dark:bg-nocta-800 font-medium' : '', option.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '', 'transition-colors duration-150')}
+                   className={cn('relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900', highlightedIndex === index ? 'bg-nocta-100 dark:bg-nocta-900' : '', option.value === value ? 'bg-nocta-100 dark:bg-nocta-900 font-medium' : '', option.disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '', 'transition-colors duration-150')}
                    onClick={() => !option.disabled && handleValueChange(option.value)}
                  >
                   <span className="flex-1">{option.label}</span>

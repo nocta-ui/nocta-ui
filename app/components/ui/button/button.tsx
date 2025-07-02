@@ -27,19 +27,19 @@ export const Button: React.FC<ButtonProps> = ({
   const variants = {
     primary: `
       bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 
-      hover:bg-nocta-800 dark:hover:bg-nocta-200 
+      hover:bg-nocta-900 dark:hover:bg-nocta-200 
       focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
       shadow-sm hover:shadow-md
     `,
     secondary: `
-      bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 
-      hover:bg-nocta-200 dark:hover:bg-nocta-700 
+      bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 
+      hover:bg-nocta-200 dark:hover:bg-nocta-800 
       focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
       border border-nocta-300 dark:border-nocta-600
     `,
     ghost: `
       text-nocta-700 dark:text-nocta-300 
-      hover:bg-nocta-200 dark:hover:bg-nocta-800 
+      hover:bg-nocta-200 dark:hover:bg-nocta-900 
       focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
     `
   };

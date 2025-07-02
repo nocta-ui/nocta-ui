@@ -40,7 +40,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   const variants = {
     default: `
       border-nocta-300 dark:border-nocta-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-nocta-300/50 dark:hover:border-nocta-600/50
       focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
@@ -48,7 +48,7 @@ export const Textarea: React.FC<TextareaProps> = ({
     `,
     error: `
       border-red-300 dark:border-red-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-red-400/50 dark:hover:border-red-600/50
       focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
@@ -56,7 +56,7 @@ export const Textarea: React.FC<TextareaProps> = ({
     `,
     success: `
       border-green-300 dark:border-green-700/50
-      bg-white dark:bg-nocta-900
+      bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-green-400/50 dark:hover:border-green-600/50
       focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50

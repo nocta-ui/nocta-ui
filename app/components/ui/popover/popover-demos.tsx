@@ -186,7 +186,7 @@ export const ControlledDemo: React.FC = () => {
         >
           Close
         </button>
-        <span className="px-3 py-1 text-sm bg-nocta-100 dark:bg-nocta-800 rounded">
+        <span className="px-3 py-1 text-sm bg-nocta-100 dark:bg-nocta-900 rounded">
           State: {open ? 'Open' : 'Closed'}
         </span>
       </div>
@@ -201,7 +201,7 @@ export const ControlledDemo: React.FC = () => {
               </p>
               <button
                 onClick={() => setOpen(false)}
-                className="px-2 py-1 text-xs bg-nocta-100 dark:bg-nocta-800 rounded hover:bg-nocta-200 dark:hover:bg-nocta-700"
+                className="px-2 py-1 text-xs bg-nocta-100 dark:bg-nocta-900 rounded hover:bg-nocta-200 dark:hover:bg-nocta-800"
               >
                 Close from inside
               </button>
@@ -235,13 +235,13 @@ export const RichContentDemo: React.FC = () => {
             
             <div className="border-t border-nocta-300 dark:border-nocta-700 pt-3">
               <div className="space-y-2">
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded">
                   View Profile
                 </button>
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded">
                   Settings
                 </button>
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded text-red-600 dark:text-red-400">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded text-red-600 dark:text-red-400">
                   Sign Out
                 </button>
               </div>
@@ -278,7 +278,7 @@ export const FormPopoverDemo: React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter item name"
-                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400"
                 required
               />
             </div>
@@ -290,21 +290,21 @@ export const FormPopoverDemo: React.FC = () => {
               <textarea
                 placeholder="Enter description"
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400 resize-none"
               />
             </div>
 
             <div className="flex gap-2 pt-2">
               <button
                 type="submit"
-                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 rounded-md hover:bg-nocta-800 dark:hover:bg-nocta-200 font-medium"
+                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 font-medium"
               >
                 Create
               </button>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md hover:bg-nocta-50 dark:hover:bg-nocta-800"
+                className="px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md hover:bg-nocta-50 dark:hover:bg-nocta-900"
               >
                 Cancel
               </button>

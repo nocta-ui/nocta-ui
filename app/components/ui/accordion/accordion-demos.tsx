@@ -252,7 +252,7 @@ export function FAQAccordionDemo() {
           <AccordionContent>
             <div className="space-y-3 pt-2">
               <p>You can install components in several ways:</p>
-              <div className="bg-nocta-100 dark:bg-nocta-800 p-3 rounded font-mono text-sm">
+              <div className="bg-nocta-100 dark:bg-nocta-900 p-3 rounded font-mono text-sm">
                 <div># Install single component</div>
                 <div>npx nocta-ui add button</div>
                 <br />
@@ -274,13 +274,13 @@ export function FAQAccordionDemo() {
             <div className="space-y-3 pt-2">
               <p>Nocta UI uses design tokens for easy customization:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="bg-nocta-50 dark:bg-nocta-800 p-3 rounded">
+                <div className="bg-nocta-50 dark:bg-nocta-900 p-3 rounded">
                   <h4 className="font-medium mb-2">CSS Variables</h4>
                   <p className="text-sm text-nocta-600 dark:text-nocta-400">
                     Change colors through CSS custom properties
                   </p>
                 </div>
-                <div className="bg-nocta-50 dark:bg-nocta-800 p-3 rounded">
+                <div className="bg-nocta-50 dark:bg-nocta-900 p-3 rounded">
                   <h4 className="font-medium mb-2">Tailwind Config</h4>
                   <p className="text-sm text-nocta-600 dark:text-nocta-400">
                     Extend Tailwind CSS configuration
