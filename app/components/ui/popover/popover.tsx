@@ -127,14 +127,14 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       onKeyDown={handleKeyDown}
       className={`
         inline-flex items-center justify-center
-        rounded-lg border border-neutral-300 dark:border-neutral-700/50
-        bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
+        rounded-lg border border-nocta-300 dark:border-nocta-700/50
+        bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
         px-3 py-2 text-sm font-medium
-        text-neutral-900 dark:text-neutral-100
-        hover:bg-neutral-50 dark:hover:bg-neutral-800
+        text-nocta-900 dark:text-nocta-100
+        hover:bg-nocta-50 dark:hover:bg-nocta-800
         focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-        focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+        focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
+        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
         transition-colors duration-200
         not-prose
         ${className}
@@ -366,7 +366,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   `;
 
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl'>
+    <div className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl'>
       <div
       ref={contentRef}
       id={contentId}
@@ -378,7 +378,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left: position ? `${position.left}px` : '0px',
         zIndex: 50,
       }}
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
     >
       {children}
     </div>
@@ -397,7 +397,7 @@ export const PopoverArrow: React.FC<PopoverArrowProps> = ({
       width={width}
       height={height}
       viewBox="0 0 12 6"
-      className={cn('fill-white dark:fill-neutral-900 stroke-neutral-200 dark:stroke-neutral-700/50', className)}
+      className={cn('fill-white dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50', className)}
     >
       <path d="M0 6L6 0L12 6" strokeWidth={1} />
     </svg>

@@ -37,14 +37,14 @@ export const CardWithActionsDemo: React.FC = () => {
         <CardContent>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Status</span>
+              <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Status</span>
               <span className="px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full">
                 Active
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Members</span>
-              <span className="text-sm text-neutral-600 dark:text-neutral-400">12</span>
+              <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Members</span>
+              <span className="text-sm text-nocta-600 dark:text-nocta-400">12</span>
             </div>
           </div>
         </CardContent>
@@ -98,12 +98,12 @@ export const StatsCardDemo: React.FC = () => {
         <CardContent>
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">2.4k</div>
-              <div className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Users</div>
+              <div className="text-2xl font-bold text-nocta-900 dark:text-nocta-100">2.4k</div>
+              <div className="text-xs text-nocta-600 dark:text-nocta-400 uppercase tracking-wide">Users</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">98%</div>
-              <div className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">Uptime</div>
+              <div className="text-2xl font-bold text-nocta-900 dark:text-nocta-100">98%</div>
+              <div className="text-xs text-nocta-600 dark:text-nocta-400 uppercase tracking-wide">Uptime</div>
             </div>
           </div>
         </CardContent>

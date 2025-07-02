@@ -116,7 +116,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >
@@ -260,9 +260,9 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       {/* Dialog */}
       <div
       ref={contentRef}
-      className={cn('relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
+      className={cn('relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
         <div
-          className='relative z-50 w-full bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl'
+          className='relative z-50 w-full bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 rounded-xl'
           role="dialog"
           aria-modal="true"
           aria-describedby="dialog-description"
@@ -303,7 +303,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-100 dark:border-nocta-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -321,7 +321,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
+      className: cn('text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -336,7 +336,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
+      className={cn('text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -352,7 +352,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-b-xl border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-800/50 rounded-b-xl border-t border-nocta-100 dark:border-nocta-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}
@@ -403,7 +403,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center w-8 h-8 rounded-md text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center w-8 h-8 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >

@@ -128,7 +128,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
   return (
     <label 
       htmlFor={id}
-      className={cn('block text-sm font-medium text-neutral-700 dark:text-neutral-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', className)}
+      className={cn('block text-sm font-medium text-nocta-700 dark:text-nocta-300 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70', className)}
       {...props}
     >
       {children}
@@ -175,7 +175,7 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
   return (
     <p 
       id={`${id}-description`}
-      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed', className)}
+      className={cn('text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed', className)}
       {...props}
     >
       {children}

@@ -215,7 +215,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const baseStyles = `
     relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 
-    focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+    focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
     disabled:opacity-50 disabled:cursor-not-allowed not-prose
   `;
 
@@ -225,7 +225,7 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   const trackBaseStyles = `
-    relative bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden
+    relative bg-nocta-200 dark:bg-nocta-700 rounded-full overflow-hidden
   `;
 
   const trackSizes = {
@@ -235,9 +235,9 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   const fillVariants = {
-    default: 'bg-neutral-600 dark:bg-neutral-400',
-    primary: 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300',
-    secondary: 'bg-neutral-500 dark:bg-neutral-500'
+    default: 'bg-nocta-600 dark:bg-nocta-400',
+    primary: 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300',
+    secondary: 'bg-nocta-500 dark:bg-nocta-500'
   };
 
   const thumbSizes = {
@@ -247,9 +247,9 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   const thumbVariants = {
-    default: 'bg-white dark:bg-neutral-200 border-2 border-neutral-600 dark:border-neutral-400',
-    primary: 'bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 border-2 border-neutral-900 dark:border-neutral-100',
-    secondary: 'bg-white dark:bg-neutral-200 border-2 border-neutral-500 dark:border-neutral-500'
+    default: 'bg-white dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400',
+    primary: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 border-2 border-nocta-900 dark:border-nocta-100',
+    secondary: 'bg-white dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500'
   };
 
   const percentage = getPercentage(currentValue);
@@ -265,7 +265,7 @@ export const Slider: React.FC<SliderProps> = ({
   return (
     <div className={cn(orientationStyles[orientation], className)} {...props}>
       {showValue && (
-        <div className={cn('mb-2 text-sm text-neutral-700 dark:text-neutral-300', orientation === 'vertical' ? 'mb-0 mr-2' : '')}>
+        <div className={cn('mb-2 text-sm text-nocta-700 dark:text-nocta-300', orientation === 'vertical' ? 'mb-0 mr-2' : '')}>
           {formatValue(currentValue)}
         </div>
       )}
@@ -281,7 +281,7 @@ export const Slider: React.FC<SliderProps> = ({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         aria-disabled={disabled}
-        className={cn(baseStyles, orientationStyles[orientation], 'focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50')}
+        className={cn(baseStyles, orientationStyles[orientation], 'focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50')}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         onKeyDown={handleKeyDown}

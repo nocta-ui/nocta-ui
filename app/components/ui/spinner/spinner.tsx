@@ -21,13 +21,13 @@ export const Spinner: React.FC<SpinnerProps> = ({
   
   const variants = {
     default: `
-      text-neutral-600 dark:text-neutral-400
+      text-nocta-600 dark:text-nocta-400
     `,
     primary: `
-      text-neutral-900 dark:text-neutral-100
+      text-nocta-900 dark:text-nocta-100
     `,
     secondary: `
-      text-neutral-500 dark:text-neutral-500
+      text-nocta-500 dark:text-nocta-500
     `
   };
   

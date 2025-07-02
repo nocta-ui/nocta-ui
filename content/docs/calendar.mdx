@@ -72,7 +72,7 @@ A simple calendar with date selection functionality.
   return (
     <div className="my-6 space-y-8">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Default</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Default</label>
         <Calendar 
           variant="default"
           value={defaultDate}
@@ -80,7 +80,7 @@ A simple calendar with date selection functionality.
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Compact</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Compact</label>
         <Calendar 
           variant="compact"
           value={compactDate}
@@ -272,7 +272,7 @@ Handle date selection with custom logic.
           onChange={handleDateSelect}
         />
         {selectedDate && (
-          <div className="mt-4 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
+          <div className="mt-4 p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
             <p className="text-sm">
               Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
             </p>

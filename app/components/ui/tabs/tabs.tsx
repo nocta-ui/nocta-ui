@@ -123,14 +123,14 @@ export const TabsList: React.FC<TabsListProps> = ({
   const variantStyles = {
     default: `
       rounded-lg
-      bg-neutral-100 dark:bg-neutral-800
+      bg-nocta-100 dark:bg-nocta-800
       p-1
     `,
     pills: `
       gap-1
     `,
     underline: `
-      border-b border-neutral-300 dark:border-neutral-700
+      border-b border-nocta-300 dark:border-nocta-700
       gap-0
     `
   };
@@ -203,8 +203,8 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
     inline-flex items-center justify-center whitespace-nowrap
     font-medium transition-all duration-200 ease-in-out
     focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-    focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
+    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
     disabled:pointer-events-none disabled:opacity-50 cursor-pointer
     not-prose
   `;
@@ -213,32 +213,32 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
     default: {
       base: `
         w-full rounded-md px-3 py-1.5
-        text-neutral-700 dark:text-neutral-300
-        hover:text-neutral-900 dark:hover:text-neutral-100
-        data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-900
-        data-[state=active]:text-neutral-900 dark:data-[state=active]:text-neutral-100
+        text-nocta-700 dark:text-nocta-300
+        hover:text-nocta-900 dark:hover:text-nocta-100
+        data-[state=active]:bg-white dark:data-[state=active]:bg-nocta-900
+        data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
         data-[state=active]:shadow-sm
       `,
     },
     pills: {
       base: `
         rounded-lg px-4 py-2
-        text-neutral-700 dark:text-neutral-300
-        hover:bg-neutral-100 dark:hover:bg-neutral-800
-        hover:text-neutral-900 dark:hover:text-neutral-100
-        data-[state=active]:bg-neutral-900 dark:data-[state=active]:bg-neutral-100
-        data-[state=active]:text-white dark:data-[state=active]:text-neutral-900
+        text-nocta-700 dark:text-nocta-300
+        hover:bg-nocta-100 dark:hover:bg-nocta-800
+        hover:text-nocta-900 dark:hover:text-nocta-100
+        data-[state=active]:bg-nocta-900 dark:data-[state=active]:bg-nocta-100
+        data-[state=active]:text-white dark:data-[state=active]:text-nocta-900
         data-[state=active]:shadow-sm
       `,
     },
     underline: {
       base: `
         px-4 py-3 border-b-2 border-transparent
-        text-neutral-700 dark:text-neutral-300
-        hover:text-neutral-900 dark:hover:text-neutral-100
-        hover:border-neutral-300 dark:hover:border-neutral-600
-        data-[state=active]:border-neutral-900 dark:data-[state=active]:border-neutral-100
-        data-[state=active]:text-neutral-900 dark:data-[state=active]:text-neutral-100
+        text-nocta-700 dark:text-nocta-300
+        hover:text-nocta-900 dark:hover:text-nocta-100
+        hover:border-nocta-300 dark:hover:border-nocta-600
+        data-[state=active]:border-nocta-900 dark:data-[state=active]:border-nocta-100
+        data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
       `,
     },
   };
@@ -303,7 +303,7 @@ export const TabsContent: React.FC<TabsContentProps> = ({
       id={`tab-content-${value}`}
       aria-labelledby={`tab-trigger-${value}`}
       data-state={isSelected ? 'active' : 'inactive'}
-      className={cn('focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', isSelected ? 'block' : 'hidden', className)}
+      className={cn('focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose', isSelected ? 'block' : 'hidden', className)}
       tabIndex={0}
     >
       {children}

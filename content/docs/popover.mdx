@@ -52,7 +52,7 @@ The Popover component provides a floating panel that appears on demand, perfect 
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             This is a popover component that can contain any content you want.
           </p>
         </div>
@@ -201,7 +201,7 @@ Use the `asChild` prop to render custom trigger elements while maintaining popov
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Custom Trigger</h4>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             Using asChild prop to render a custom button component.
           </p>
         </div>
@@ -240,12 +240,12 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             This popover's state is controlled externally.
           </p>
           <button
             onClick={() => setOpen(false)}
-            className="px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 rounded"
+            className="px-2 py-1 text-xs bg-nocta-100 dark:bg-nocta-800 rounded"
           >
             Close from inside
           </button>
@@ -282,20 +282,20 @@ Popovers can contain complex content including forms, menus, and interactive ele
               </div>
               <div>
                 <p className="font-medium text-sm">John Doe</p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400">john@example.com</p>
+                <p className="text-xs text-nocta-600 dark:text-nocta-400">john@example.com</p>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-neutral-300 dark:border-neutral-700 pt-3">
+          <div className="border-t border-nocta-300 dark:border-nocta-700 pt-3">
             <div className="space-y-2">
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
                 View Profile
               </button>
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
                 Settings
               </button>
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded text-red-600 dark:text-red-400">
+              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded text-red-600 dark:text-red-400">
                 Sign Out
               </button>
             </div>
@@ -333,30 +333,30 @@ Popovers work great for inline forms and quick actions.
           </div>
           
           <div className="space-y-2">
-            <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+            <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
               Name
             </label>
             <input
               type="text"
               placeholder="Enter item name"
-              className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md"
+              className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+            <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
               Description
             </label>
             <textarea
               placeholder="Enter description"
               rows={3}
-              className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md"
+              className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md"
             />
           </div>
 
           <div className="flex gap-2 pt-2">
-            <button type="submit" className="flex-1 px-3 py-2 text-sm bg-neutral-900 text-white rounded-md">
+            <button type="submit" className="flex-1 px-3 py-2 text-sm bg-nocta-900 text-white rounded-md">
               Create
             </button>
             <button type="button" onClick={() => setOpen(false)} className="px-3 py-2 text-sm border rounded-md">

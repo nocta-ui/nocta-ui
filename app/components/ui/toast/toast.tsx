@@ -78,7 +78,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center' } = toast;
 
   const variants = {
-    default: 'bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 border-neutral-300 dark:border-neutral-700/50',
+    default: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 border-nocta-300 dark:border-nocta-700/50',
     success: 'bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800/50 text-green-900 dark:text-green-100',
     warning: 'bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800/50 text-yellow-900 dark:text-yellow-100',
     destructive: 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/50 text-red-900 dark:text-red-100'
@@ -337,11 +337,11 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         onClick={handleClose}
         className="
           absolute top-2 right-2 p-1 rounded-md
-          text-neutral-400 dark:text-neutral-500
-          hover:text-neutral-600 dark:hover:text-neutral-300
-          hover:bg-neutral-100/50 dark:hover:bg-neutral-700/50
+          text-nocta-400 dark:text-nocta-500
+          hover:text-nocta-600 dark:hover:text-nocta-300
+          hover:bg-nocta-100/50 dark:hover:bg-nocta-700/50
           transition-colors duration-200
-          focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500/50
+          focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
         "
         aria-label="Close toast"
       >
@@ -371,10 +371,10 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
               className="
                 inline-flex items-center justify-center rounded-md
                 px-3 py-1.5 text-sm font-medium
-                bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300
-                text-white dark:text-neutral-900
-                hover:bg-neutral-800 dark:hover:bg-neutral-200
-                focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500/50
+                bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
+                text-white dark:text-nocta-900
+                hover:bg-nocta-800 dark:hover:bg-nocta-200
+                focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
                 transition-colors duration-200 cursor-pointer
               "
             >

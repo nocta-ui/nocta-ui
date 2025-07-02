@@ -60,7 +60,7 @@ The Sheet component provides a slide-out panel that can appear from any side of 
           </SheetDescription>
         </SheetHeader>
         <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             Sheet content goes here. You can add any components or content you need.
           </p>
         </div>
@@ -96,7 +96,7 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
           </SheetDescription>
         </SheetHeader>
         <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             Content for left-side sheet.
           </p>
         </div>
@@ -116,7 +116,7 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
           </SheetDescription>
         </SheetHeader>
         <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             Content for right-side sheet.
           </p>
         </div>
@@ -150,7 +150,7 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
           </SheetDescription>
         </SheetHeader>
         <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-sm text-nocta-600 dark:text-nocta-400">
             Compact content for small sheet.
           </p>
         </div>
@@ -249,10 +249,10 @@ Great for mobile navigation menus and sidebar navigation.
             {menuItems.map((item, index) => (
                 <button
                  key={index}
-                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
+                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-nocta-700 dark:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200"
                >
                  <div className="flex items-center gap-3">
-                   <item.icon size={16} className="text-neutral-600 dark:text-neutral-400" />
+                   <item.icon size={16} className="text-nocta-600 dark:text-nocta-400" />
                    <span>{item.name}</span>
                  </div>
                  {item.badge && (
@@ -305,7 +305,7 @@ You can control the Sheet's open state programmatically.
               </SheetDescription>
             </SheetHeader>
             <div className="px-6 py-4 flex-1">
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-nocta-600 dark:text-nocta-400">
                 This sheet's open state is managed by the parent component.
               </p>
             </div>
@@ -341,9 +341,9 @@ You can customize the Sheet's appearance and behavior extensively.
        </SheetTrigger>
       <SheetContent 
         showClose={false} 
-        className="bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800"
+        className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-900 dark:to-nocta-800"
       >
-        <SheetHeader className="border-b-2 border-neutral-300 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
+        <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-900/50 backdrop-blur-sm">
           <SheetTitle className="text-xl">Customization</SheetTitle>
           <SheetDescription>
             This sheet has custom styling and no default close button.
@@ -352,7 +352,7 @@ You can customize the Sheet's appearance and behavior extensively.
         <div className="px-6 py-6 flex-1 space-y-6">
           {/* Custom content */}
         </div>
-        <SheetFooter className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
+        <SheetFooter className="bg-white/80 dark:bg-nocta-900/80 backdrop-blur-sm">
           <Button variant="ghost" size="sm">Reset</Button>
           <SheetClose asChild>
             <Button size="sm">Apply Changes</Button>

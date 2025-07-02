@@ -127,11 +127,11 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
           height: height === 'auto' ? 'auto' : `${height}px`
         }}
       >
-      <div className="absolute inset-1 border rounded-md bg-neutral-200 dark:bg-neutral-900 z-0"></div>
+      <div className="absolute inset-1 border rounded-md bg-nocta-200 dark:bg-nocta-900 z-0"></div>
         <div 
           ref={wrapperRef}
           className={cn(
-            'p-4 bg-neutral-200 dark:bg-neutral-900 rounded-md border transition-opacity duration-150 ease-in-out relative',
+            'p-4 bg-nocta-200 dark:bg-nocta-900 rounded-md border transition-opacity duration-150 ease-in-out relative',
             isTransitioning ? 'opacity-0' : 'opacity-100'
           )}
         >

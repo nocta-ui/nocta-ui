@@ -163,13 +163,13 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 
   const baseStyles = `
     flex h-10 w-fit items-center justify-between
-    rounded-lg border border-neutral-300 dark:border-neutral-700/50
-    bg-white dark:bg-neutral-900
+    rounded-lg border border-nocta-300 dark:border-nocta-700/50
+    bg-white dark:bg-nocta-900
     px-3 py-2 text-sm
-    placeholder:text-neutral-400 dark:placeholder:text-neutral-500
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-    focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
-    focus-visible:border-neutral-900 dark:focus-visible:border-neutral-100
+    placeholder:text-nocta-400 dark:placeholder:text-nocta-500
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+    focus-visible:border-nocta-900 dark:focus-visible:border-nocta-100
     disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
     transition-all duration-200 ease-out
     not-prose
@@ -340,7 +340,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       ref={contentRef}
       id={contentId}
       role="listbox"
-      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-700/50 bg-white dark:bg-neutral-900 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
+      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-900 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
     >
       <div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
         {children}
@@ -389,14 +389,14 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     <div
       role="option"
       aria-selected={isSelected}
-      className={cn('relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800', isSelected ? 'bg-neutral-100 dark:bg-neutral-800' : '', isFocused ? 'bg-neutral-100 dark:bg-neutral-800' : '', disabled ? 'pointer-events-none opacity-50' : 'transition-colors duration-150 not-prose', className)}      onClick={() => !disabled && onValueChange?.(value, children)}
+      className={cn('relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800', isSelected ? 'bg-nocta-100 dark:bg-nocta-800' : '', isFocused ? 'bg-nocta-100 dark:bg-nocta-800' : '', disabled ? 'pointer-events-none opacity-50' : 'transition-colors duration-150 not-prose', className)}      onClick={() => !disabled && onValueChange?.(value, children)}
     >
       <span className={`flex-1 ${isSelected ? 'font-medium' : ''}`}>
         {children}
       </span>
       {isSelected && (
         <svg
-          className="ml-2 h-4 w-4 text-neutral-600 dark:text-neutral-400"
+          className="ml-2 h-4 w-4 text-nocta-600 dark:text-nocta-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -420,7 +420,7 @@ export const SelectValue: React.FC<SelectValueProps> = ({
       {value ? (
         <span>{displayValue}</span>
       ) : (
-        <span className="text-neutral-400 dark:text-neutral-500">
+        <span className="text-nocta-400 dark:text-nocta-500">
           {placeholder}
         </span>
       )}

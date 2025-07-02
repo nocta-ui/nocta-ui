@@ -55,7 +55,7 @@ export const VariantsDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-6 w-48">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Default</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Default</label>
         <Slider 
           variant="default"
           value={defaultValue} 
@@ -64,7 +64,7 @@ export const VariantsDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Primary</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Primary</label>
         <Slider 
           variant="primary"
           value={primaryValue} 
@@ -73,7 +73,7 @@ export const VariantsDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Secondary</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Secondary</label>
         <Slider 
           variant="secondary"
           value={secondaryValue} 
@@ -93,7 +93,7 @@ export const SizesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-6 w-48">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Small</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Small</label>
         <Slider 
           size="sm"
           value={smallValue} 
@@ -102,7 +102,7 @@ export const SizesDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Medium</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Medium</label>
         <Slider 
           size="md"
           value={mediumValue} 
@@ -111,7 +111,7 @@ export const SizesDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Large</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Large</label>
         <Slider 
           size="lg"
           value={largeValue} 
@@ -146,7 +146,7 @@ export const CustomRangeDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-6 w-48">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Temperature (16°C - 30°C)
         </label>
         <Slider 
@@ -162,7 +162,7 @@ export const CustomRangeDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Volume (0 - 10)
         </label>
         <Slider 
@@ -183,7 +183,7 @@ export const DisabledDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-48">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-500 dark:text-neutral-500">Disabled Slider</label>
+        <label className="text-sm font-medium text-nocta-500 dark:text-nocta-500">Disabled Slider</label>
         <Slider 
           value={60}
           disabled
@@ -200,7 +200,7 @@ export const StepDemo: React.FC = () => {
   return (
     <div className="my-6 w-48">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Step = 5 (Snaps to: 0, 5, 10, ...)
         </label>
         <Slider 
@@ -234,7 +234,7 @@ export const VerticalDemo: React.FC = () => {
             className="h-full"
             aria-label="Vertical slider 1"
           />
-          <span className="text-xs text-neutral-600 dark:text-neutral-400">Primary</span>
+          <span className="text-xs text-nocta-600 dark:text-nocta-400">Primary</span>
         </div>
         <div className="flex flex-col items-center gap-2 h-48">
           <Slider 
@@ -246,7 +246,7 @@ export const VerticalDemo: React.FC = () => {
             className="h-full"
             aria-label="Vertical slider 2"
           />
-          <span className="text-xs text-neutral-600 dark:text-neutral-400">Secondary Large</span>
+          <span className="text-xs text-nocta-600 dark:text-nocta-400">Secondary Large</span>
         </div>
       </div>
     </div>
@@ -258,11 +258,11 @@ export const PriceRangeDemo: React.FC = () => {
 
   return (
     <div className="my-6 w-48">
-      <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
+      <div className="p-4 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Budget Range</h3>
-            <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <h3 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100">Budget Range</h3>
+            <span className="text-sm font-medium text-nocta-600 dark:text-nocta-400">
               ${budget.toLocaleString()}
             </span>
           </div>
@@ -276,7 +276,7 @@ export const PriceRangeDemo: React.FC = () => {
             size="lg"
             aria-label="Budget range slider"
           />
-          <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-500">
+          <div className="flex justify-between text-xs text-nocta-500 dark:text-nocta-500">
             <span>$500</span>
             <span>$10,000</span>
           </div>

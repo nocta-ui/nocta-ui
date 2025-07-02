@@ -31,7 +31,7 @@ export const BasicSheetDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Sheet content goes here. You can add any components or content you need.
             </p>
           </div>
@@ -59,7 +59,7 @@ export const SheetSidesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Content for left-side sheet.
             </p>
           </div>
@@ -78,7 +78,7 @@ export const SheetSidesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Content for right-side sheet.
             </p>
           </div>
@@ -97,7 +97,7 @@ export const SheetSidesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Content for top sheet.
             </p>
           </div>
@@ -116,7 +116,7 @@ export const SheetSidesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Content for bottom sheet.
             </p>
           </div>
@@ -141,7 +141,7 @@ export const SheetSizesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Compact content for small sheet.
             </p>
           </div>
@@ -160,7 +160,7 @@ export const SheetSizesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Standard content for medium sheet.
             </p>
           </div>
@@ -179,7 +179,7 @@ export const SheetSizesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Expanded content for large sheet.
             </p>
           </div>
@@ -198,7 +198,7 @@ export const SheetSizesDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Wide content for extra large sheet.
             </p>
           </div>
@@ -243,7 +243,7 @@ export const FormSheetDemo: React.FC = () => {
               className="w-full"
             />
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300">
+              <label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300">
                 Status
               </label>
               <div className="flex gap-2">
@@ -296,13 +296,13 @@ export const NavigationSheetDemo: React.FC = () => {
                   className="
                     w-full flex items-center justify-between px-3 py-2 rounded-lg
                     text-sm font-medium text-left
-                    text-neutral-700 dark:text-neutral-300
-                    hover:bg-neutral-100 dark:hover:bg-neutral-800
+                    text-nocta-700 dark:text-nocta-300
+                    hover:bg-nocta-100 dark:hover:bg-nocta-800
                     transition-colors duration-200
                   "
                 >
                                    <div className="flex items-center gap-3">
-                   <item.icon size={16} className="text-neutral-600 dark:text-neutral-400" />
+                   <item.icon size={16} className="text-nocta-600 dark:text-nocta-400" />
                    <span>{item.name}</span>
                  </div>
                   {item.badge && (
@@ -316,13 +316,13 @@ export const NavigationSheetDemo: React.FC = () => {
           </div>
           <SheetFooter>
             <div className="w-full">
-              <div className="flex items-center gap-3 px-3 py-2 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                <div className="w-8 h-8 bg-neutral-300 dark:bg-neutral-600 rounded-full"></div>
+              <div className="flex items-center gap-3 px-3 py-2 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+                <div className="w-8 h-8 bg-nocta-300 dark:bg-nocta-600 rounded-full"></div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
+                  <p className="text-sm font-medium text-nocta-900 dark:text-nocta-100 truncate">
                     John Doe
                   </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
+                  <p className="text-xs text-nocta-500 dark:text-nocta-400 truncate">
                     john@example.com
                   </p>
                 </div>
@@ -361,12 +361,12 @@ export const ControlledSheetDemo: React.FC = () => {
             </SheetDescription>
           </SheetHeader>
           <div className="px-6 py-4 flex-1">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               This sheet's open state is managed by the parent component. 
               You can control when it opens and closes from outside the Sheet component.
             </p>
-            <div className="mt-4 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-              <p className="text-xs font-mono text-neutral-700 dark:text-neutral-300">
+            <div className="mt-4 p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+              <p className="text-xs font-mono text-nocta-700 dark:text-nocta-300">
                 Current state: {open ? 'open' : 'closed'}
               </p>
             </div>
@@ -390,8 +390,8 @@ export const CustomSheetDemo: React.FC = () => {
             Customization Panel
           </Button>
         </SheetTrigger>
-        <SheetContent showClose={false} className="bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800">
-          <SheetHeader className="border-b-2 border-neutral-300 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
+        <SheetContent showClose={false} className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-900 dark:to-nocta-800">
+          <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-900/50 backdrop-blur-sm">
             <SheetTitle className="text-xl">Customization</SheetTitle>
             <SheetDescription>
               This sheet has custom styling and no default close button.
@@ -399,7 +399,7 @@ export const CustomSheetDemo: React.FC = () => {
           </SheetHeader>
           <div className="px-6 py-6 flex-1 space-y-6">
             <div className="space-y-3">
-              <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Theme Options</h3>
+              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Theme Options</h3>
               <div className="grid grid-cols-3 gap-2">
                 <button className="h-16 bg-blue-500 rounded-lg"></button>
                 <button className="h-16 bg-green-500 rounded-lg"></button>
@@ -408,7 +408,7 @@ export const CustomSheetDemo: React.FC = () => {
             </div>
             
             <div className="space-y-3">
-              <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Font Size</h3>
+              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Font Size</h3>
               <div className="flex gap-2">
                 <Badge variant="outline">Small</Badge>
                 <Badge variant="default">Default</Badge>
@@ -417,20 +417,20 @@ export const CustomSheetDemo: React.FC = () => {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Layout</h3>
+              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Layout</h3>
               <div className="space-y-2">
-                <button className="w-full p-3 text-left border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                <button className="w-full p-3 text-left border border-nocta-300 dark:border-nocta-700 rounded-lg hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors">
                   <div className="text-sm font-medium">Compact</div>
-                  <div className="text-xs text-neutral-500">Minimal spacing</div>
+                  <div className="text-xs text-nocta-500">Minimal spacing</div>
                 </button>
-                <button className="w-full p-3 text-left border-2 border-neutral-900 dark:border-neutral-100 rounded-lg bg-neutral-50 dark:bg-neutral-800">
+                <button className="w-full p-3 text-left border-2 border-nocta-900 dark:border-nocta-100 rounded-lg bg-nocta-50 dark:bg-nocta-800">
                   <div className="text-sm font-medium">Comfortable</div>
-                  <div className="text-xs text-neutral-500">Standard spacing</div>
+                  <div className="text-xs text-nocta-500">Standard spacing</div>
                 </button>
               </div>
             </div>
           </div>
-          <SheetFooter className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
+          <SheetFooter className="bg-white/80 dark:bg-nocta-900/80 backdrop-blur-sm">
             <Button variant="ghost" size="sm">Reset</Button>
             <SheetClose asChild>
               <Button size="sm">Apply Changes</Button>

@@ -17,11 +17,11 @@ export default function HomePage() {
           </Badge>
         </div>
 
-        <h1 className="font-pp-neue-machina text-5xl sm:text-9xl font-semibold text-neutral-900 dark:text-neutral-100 leading-none pointer-events-none">
+        <h1 className="font-pp-neue-machina text-5xl sm:text-9xl font-semibold text-nocta-900 dark:text-nocta-100 leading-none pointer-events-none">
           NOCTA UI
         </h1>
         
-        <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 font-light max-w-2xl pointer-events-none">
+        <p className="text-lg sm:text-xl text-nocta-600 dark:text-nocta-400 font-light max-w-2xl pointer-events-none">
           Modern React components built with TypeScript & Tailwind CSS.
           <br />
           Copy, paste, customize.
@@ -29,26 +29,26 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-3xl pointer-events-none">
           <div className="flex flex-col items-center space-y-2">
-            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Copy-Paste</span>
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">Own your code</span>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300"></div>
+            <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Copy-Paste</span>
+            <span className="text-xs text-nocta-500 dark:text-nocta-400">Own your code</span>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">TypeScript</span>
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">Fully typed</span>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300"></div>
+            <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">TypeScript</span>
+            <span className="text-xs text-nocta-500 dark:text-nocta-400">Fully typed</span>
           </div>
           <div className="flex flex-col items-center space-y-2 col-span-2 sm:col-span-1">
-            <div className="w-3 h-3 rounded-full bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300"></div>
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Accessible</span>
-            <span className="text-xs text-neutral-500 dark:text-neutral-400">WCAG compliant</span>
+            <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300"></div>
+            <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Accessible</span>
+            <span className="text-xs text-nocta-500 dark:text-nocta-400">WCAG compliant</span>
           </div>
         </div>
 
-        <div className="bg-neutral-50 dark:bg-neutral-800/30 backdrop-blur-sm rounded-xl p-4 max-w-md pointer-events-none">
-          <div className="text-xs font-mono text-neutral-600 dark:text-neutral-400 space-y-1">
+        <div className="bg-nocta-50 dark:bg-nocta-800/30 backdrop-blur-sm rounded-xl p-4 max-w-md pointer-events-none">
+          <div className="text-xs font-mono text-nocta-600 dark:text-nocta-400 space-y-1">
             <div># Get started in 30 seconds</div>
-            <div className="text-neutral-800 dark:text-neutral-200">npx nocta-ui add button</div>
+            <div className="text-nocta-800 dark:text-nocta-200">npx nocta-ui add button</div>
           </div>
         </div>
 

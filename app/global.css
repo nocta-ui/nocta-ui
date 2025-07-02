@@ -7,6 +7,20 @@
     --font-pp-neue-machina: var(--font-pp-neue-machina);
 }
 
+@theme {
+  --color-nocta-950: oklch(.145 0 0);
+  --color-nocta-900: oklch(.205 0 0);
+  --color-nocta-800: oklch(.269 0 0);
+  --color-nocta-700: oklch(.371 0 0);
+  --color-nocta-600: oklch(.444 .011 73.639);
+  --color-nocta-500: oklch(.556 0 0);
+  --color-nocta-400: oklch(.708 0 0);
+  --color-nocta-300: oklch(.87 0 0);
+  --color-nocta-200: oklch(.922 0 0);
+  --color-nocta-100: oklch(.97 0 0);
+  --color-nocta-50: oklch(.985 0 0);
+}
+
 @layer base {
     body {
       @apply font-haskoy;

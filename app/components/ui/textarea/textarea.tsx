@@ -31,33 +31,33 @@ export const Textarea: React.FC<TextareaProps> = ({
   const baseStyles = `
     w-full rounded-lg border transition-all duration-200 ease-in-out
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2     
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
     disabled:opacity-50 disabled:cursor-not-allowed
-    placeholder:text-neutral-400 dark:placeholder:text-neutral-500
+    placeholder:text-nocta-400 dark:placeholder:text-nocta-500
     not-prose
   `;
 
   const variants = {
     default: `
-      border-neutral-300 dark:border-neutral-700/50
-      bg-white dark:bg-neutral-900
-      text-neutral-900 dark:text-neutral-100
-      hover:border-neutral-300/50 dark:hover:border-neutral-600/50
-      focus-visible:border-neutral-900/50 dark:focus-visible:border-neutral-100/50
-      focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
+      border-nocta-300 dark:border-nocta-700/50
+      bg-white dark:bg-nocta-900
+      text-nocta-900 dark:text-nocta-100
+      hover:border-nocta-300/50 dark:hover:border-nocta-600/50
+      focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
+      focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
     `,
     error: `
       border-red-300 dark:border-red-700/50
-      bg-white dark:bg-neutral-900
-      text-neutral-900 dark:text-neutral-100
+      bg-white dark:bg-nocta-900
+      text-nocta-900 dark:text-nocta-100
       hover:border-red-400/50 dark:hover:border-red-600/50
       focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
       focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50
     `,
     success: `
       border-green-300 dark:border-green-700/50
-      bg-white dark:bg-neutral-900
-      text-neutral-900 dark:text-neutral-100
+      bg-white dark:bg-nocta-900
+      text-nocta-900 dark:text-nocta-100
       hover:border-green-400/50 dark:hover:border-green-600/50
       focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
       focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50
@@ -91,7 +91,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   return (
     <div className={cn('not-prose', containerClassName)}>
       {label && (
-        <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
+        <label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300 mb-1.5">
           {label}
         </label>
       )}
@@ -116,7 +116,7 @@ export const Textarea: React.FC<TextareaProps> = ({
       )}
       
       {helperText && !displayErrorMessage && !displaySuccessMessage && (
-        <p className="mt-1.5 text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="mt-1.5 text-sm text-nocta-600 dark:text-nocta-400">
           {helperText}
         </p>
       )}

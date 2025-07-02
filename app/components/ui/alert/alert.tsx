@@ -39,10 +39,10 @@ export const Alert: React.FC<AlertProps> = ({
 
   const variants = {
     default: `
-      border-neutral-300 dark:border-neutral-700/50
-      bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
-      text-neutral-900 dark:text-neutral-100
-      [&>svg]:text-neutral-600 dark:[&>svg]:text-neutral-400
+      border-nocta-300 dark:border-nocta-700/50
+      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
+      text-nocta-900 dark:text-nocta-100
+      [&>svg]:text-nocta-600 dark:[&>svg]:text-nocta-400
     `,
     destructive: `
       border-red-200 dark:border-red-800/50

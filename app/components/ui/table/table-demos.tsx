@@ -214,8 +214,8 @@ export const AdvancedTableDemo: React.FC = () => {
             {String(value).charAt(0)}
           </div>
           <div className="min-w-0">
-            <div className="font-medium text-neutral-900 dark:text-neutral-100 truncate">{String(value)}</div>
-            <div className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{record.email}</div>
+            <div className="font-medium text-nocta-900 dark:text-nocta-100 truncate">{String(value)}</div>
+            <div className="text-xs text-nocta-500 dark:text-nocta-400 truncate">{record.email}</div>
           </div>
         </div>
       )
@@ -269,12 +269,12 @@ export const TableVariantsDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-8">
       <div>
-        <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Default</h4>
+        <h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">Default</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 3)} />
       </div>
       
       <div>
-        <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Striped</h4>
+        <h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">Striped</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 3)} variant="striped" />
       </div>
     </div>
@@ -292,17 +292,17 @@ export const TableSizesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-8">
       <div>
-        <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Small</h4>
+        <h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">Small</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 2)} size="sm" />
       </div>
       
       <div>
-        <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Medium</h4>
+        <h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">Medium</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 2)} size="md" />
       </div>
       
       <div>
-        <h4 className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 mb-3">Large</h4>
+        <h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">Large</h4>
         <Table columns={columns} data={sampleProducts.slice(0, 2)} size="lg" />
       </div>
     </div>

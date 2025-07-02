@@ -17,14 +17,14 @@ export const BasicContextMenuDemo: React.FC = () => {
 
   return (
     <div className="my-6 w-full max-w-md mx-auto space-y-4">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
         Right-click on the area below to open the context menu
       </div>
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
-            <span className="text-neutral-600 dark:text-neutral-400">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+            <span className="text-nocta-600 dark:text-nocta-400">
               Right-click here
             </span>
           </div>
@@ -52,7 +52,7 @@ export const BasicContextMenuDemo: React.FC = () => {
       </ContextMenu>
 
       {lastAction && (
-        <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+        <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
           Last action: <span className="font-medium">{lastAction}</span>
         </div>
       )}
@@ -63,14 +63,14 @@ export const BasicContextMenuDemo: React.FC = () => {
 export const ContextMenuWithSeparatorDemo: React.FC = () => {
   return (
     <div className="my-6 w-full max-w-md mx-auto space-y-4">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
         Context menu with separators
       </div>
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
-            <span className="text-neutral-600 dark:text-neutral-400">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+            <span className="text-nocta-600 dark:text-nocta-400">
               Right-click for menu with separators
             </span>
           </div>
@@ -121,14 +121,14 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 export const ContextMenuWithSubmenuDemo: React.FC = () => {
   return (
     <div className="my-6 w-full max-w-md mx-auto space-y-4">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
         Context menu with submenu
       </div>
       
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
-            <span className="text-neutral-600 dark:text-neutral-400">
+          <div className="w-full h-32 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+            <span className="text-nocta-600 dark:text-nocta-400">
               Right-click for submenu example
             </span>
           </div>
@@ -188,15 +188,15 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 export const DisabledContextMenuDemo: React.FC = () => {
   return (
     <div className="my-6 w-full max-w-md mx-auto space-y-4">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
         Disabled context menu and items
       </div>
       
       <div className="space-y-4">
         <ContextMenu>
           <ContextMenuTrigger disabled>
-            <div className="w-full h-24 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 opacity-50">
-              <span className="text-neutral-500 dark:text-neutral-500">
+            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-100 dark:bg-nocta-800 opacity-50">
+              <span className="text-nocta-500 dark:text-nocta-500">
                 Context menu disabled
               </span>
             </div>
@@ -208,8 +208,8 @@ export const DisabledContextMenuDemo: React.FC = () => {
 
         <ContextMenu>
           <ContextMenuTrigger>
-            <div className="w-full h-24 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
-              <span className="text-neutral-600 dark:text-neutral-400">
+            <div className="w-full h-24 border border-dashed border-nocta-300 dark:border-nocta-700 rounded-lg flex items-center justify-center bg-nocta-50 dark:bg-nocta-900 hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+              <span className="text-nocta-600 dark:text-nocta-400">
                 Some items disabled
               </span>
             </div>
@@ -257,7 +257,7 @@ export const FileContextMenuDemo: React.FC = () => {
 
   return (
     <div className="my-6 w-full max-w-md mx-auto space-y-4">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 text-center">
         File manager context menu example
       </div>
       
@@ -265,15 +265,15 @@ export const FileContextMenuDemo: React.FC = () => {
         {files.map((file, index) => (
           <ContextMenu key={index}>
             <ContextMenuTrigger>
-              <div className="flex items-center gap-3 p-3 border border-neutral-300 dark:border-neutral-800 rounded-lg bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-context-menu">
-                <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 p-3 border border-nocta-300 dark:border-nocta-800 rounded-lg bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 hover:bg-nocta-50 dark:hover:bg-nocta-800 transition-colors cursor-context-menu">
+                <svg className="w-5 h-5 text-nocta-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {getFileIcon(file.type)}
                 </svg>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">
+                  <div className="text-sm font-medium text-nocta-900 dark:text-nocta-100 truncate">
                     {file.name}
                   </div>
-                  <div className="text-xs text-neutral-500 dark:text-neutral-400">
+                  <div className="text-xs text-nocta-500 dark:text-nocta-400">
                     {file.size}
                   </div>
                 </div>

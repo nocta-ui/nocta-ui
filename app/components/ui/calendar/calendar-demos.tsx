@@ -24,7 +24,7 @@ export const VariantsDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-8">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Default</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Default</label>
         <Calendar 
           variant="default"
           value={defaultDate}
@@ -32,7 +32,7 @@ export const VariantsDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Compact</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Compact</label>
         <Calendar 
           variant="compact"
           value={compactDate}
@@ -51,7 +51,7 @@ export const SizesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-8">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Small</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Small</label>
         <Calendar 
           size="sm"
           value={smallDate}
@@ -59,7 +59,7 @@ export const SizesDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Medium</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Medium</label>
         <Calendar 
           size="md"
           value={mediumDate}
@@ -67,7 +67,7 @@ export const SizesDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Large</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Large</label>
         <Calendar 
           size="lg"
           value={largeDate}
@@ -84,7 +84,7 @@ export const WeekStartsOnMondayDemo: React.FC = () => {
   return (
     <div className="my-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Week Starts on Monday
         </label>
         <Calendar 
@@ -103,7 +103,7 @@ export const WithWeekNumbersDemo: React.FC = () => {
   return (
     <div className="my-6 w-120">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           With Week Numbers
         </label>
         <Calendar 
@@ -134,7 +134,7 @@ export const DisabledDatesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-8">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Disabled Weekends
         </label>
         <Calendar 
@@ -144,7 +144,7 @@ export const DisabledDatesDemo: React.FC = () => {
         />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Disabled Specific Dates
         </label>
         <Calendar 
@@ -167,7 +167,7 @@ export const DateRangeDemo: React.FC = () => {
   return (
     <div className="my-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Date Range (Today to +2 months)
         </label>
         <Calendar 
@@ -197,7 +197,7 @@ export const CustomFormattingDemo: React.FC = () => {
   return (
     <div className="my-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
           Custom Formatting
         </label>
         <Calendar 
@@ -217,7 +217,7 @@ export const DisabledCalendarDemo: React.FC = () => {
   return (
     <div className="my-6">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-500 dark:text-neutral-500">
+        <label className="text-sm font-medium text-nocta-500 dark:text-nocta-500">
           Disabled Calendar
         </label>
         <Calendar 
@@ -244,7 +244,7 @@ export const EventCalendarDemo: React.FC = () => {
     <div className="my-6">
       <div className="space-y-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
             Event Calendar
           </label>
           <Calendar 
@@ -253,8 +253,8 @@ export const EventCalendarDemo: React.FC = () => {
           />
         </div>
         {selectedDate && (
-          <div className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+          <div className="p-3 bg-nocta-50 dark:bg-nocta-800 rounded-lg">
+            <p className="text-sm text-nocta-700 dark:text-nocta-300">
               Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
             </p>
           </div>

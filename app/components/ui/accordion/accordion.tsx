@@ -172,13 +172,13 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
 
   const variants = {
     default: `
-      border-b border-neutral-300 dark:border-neutral-700/50
+      border-b border-nocta-300 dark:border-nocta-700/50
       last:border-b-0
     `,
     card: `
-      border border-neutral-300 dark:border-neutral-700/50
+      border border-nocta-300 dark:border-nocta-700/50
       rounded-lg overflow-hidden
-      bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
+      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
       shadow-sm dark:shadow-lg
       ${itemIsOpen ? 'shadow-md dark:shadow-xl' : ''}
     `
@@ -224,8 +224,8 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
     w-full flex items-center justify-between text-left
     transition-all duration-200 ease-in-out
     focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
-    focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
+    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
     not-prose
   `;
 
@@ -247,17 +247,17 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
   const variants = {
     default: `
       ${sizeStyles[size].default}
-      text-neutral-900 dark:text-neutral-100
-      hover:text-neutral-700 dark:hover:text-neutral-300
+      text-nocta-900 dark:text-nocta-100
+      hover:text-nocta-700 dark:hover:text-nocta-300
       ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
     `,
     card: `
       ${sizeStyles[size].card}
-      text-neutral-900 dark:text-neutral-100
-      bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800
-      hover:bg-neutral-50 dark:hover:bg-neutral-800/50
+      text-nocta-900 dark:text-nocta-100
+      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800
+      hover:bg-nocta-50 dark:hover:bg-nocta-800/50
       ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      ${isOpen ? 'bg-neutral-50 dark:bg-neutral-800/50' : ''}
+      ${isOpen ? 'bg-nocta-50 dark:bg-nocta-800/50' : ''}
     `
   };
 
@@ -297,7 +297,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
         strokeLinejoin="round"
         className={`
           transition-transform duration-200 ease-in-out flex-shrink-0 ml-2
-          text-neutral-500 dark:text-neutral-400
+          text-nocta-500 dark:text-nocta-400
           will-change-transform
           ${isOpen ? 'rotate-180' : 'rotate-0'}
         `}
@@ -393,7 +393,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
     >
       <div
         ref={innerRef}
-        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-neutral-100 dark:border-neutral-700/50' : '', 'text-neutral-600 dark:text-neutral-400 leading-relaxed')}
+        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-nocta-100 dark:border-nocta-700/50' : '', 'text-nocta-600 dark:text-nocta-400 leading-relaxed')}
       >
         {children}
       </div>

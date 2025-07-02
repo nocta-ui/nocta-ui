@@ -45,9 +45,9 @@ export const Card: React.FC<CardProps> = ({
   ...props 
 }) => {
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl w-fit'>
+    <div className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div 
-      className={cn('bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
+      className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 rounded-xl shadow-sm dark:shadow-lg hover:shadow-md dark:hover:shadow-xl transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
       {...props}
       >
         {children}
@@ -64,7 +64,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-neutral-200 dark:border-neutral-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-200 dark:border-nocta-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -82,7 +82,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
+      className: cn('text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -97,7 +97,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
+      className={cn('text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -129,7 +129,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-200 dark:border-neutral-700/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

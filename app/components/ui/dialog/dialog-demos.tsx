@@ -22,7 +22,7 @@ export const SimpleDialogDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Dialog content goes here. You can add any components or content you need.
             </p>
           </div>
@@ -47,7 +47,7 @@ export const DialogWithActionsDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               This will permanently remove <strong>Project Alpha</strong> and all associated data.
             </p>
           </div>
@@ -80,7 +80,7 @@ export const SizesDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Compact dialog for simple interactions.
             </p>
           </div>
@@ -99,7 +99,7 @@ export const SizesDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Standard dialog size for most use cases.
             </p>
           </div>
@@ -118,7 +118,7 @@ export const SizesDemo: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Larger dialog for complex forms or detailed content.
             </p>
           </div>
@@ -145,26 +145,26 @@ export const FormDialogDemo: React.FC = () => {
           <div className="px-6 py-4 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+                <label className="block text-sm font-medium mb-2 text-nocta-700 dark:text-nocta-300">
                   First Name
                 </label>
                 <Input placeholder="John" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+                <label className="block text-sm font-medium mb-2 text-nocta-700 dark:text-nocta-300">
                   Last Name
                 </label>
                 <Input placeholder="Doe" />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+              <label className="block text-sm font-medium mb-2 text-nocta-700 dark:text-nocta-300">
                 Email Address
               </label>
               <Input type="email" placeholder="john.doe@example.com" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2 text-neutral-700 dark:text-neutral-300">
+              <label className="block text-sm font-medium mb-2 text-nocta-700 dark:text-nocta-300">
                 Role
               </label>
               <Select defaultValue="viewer">

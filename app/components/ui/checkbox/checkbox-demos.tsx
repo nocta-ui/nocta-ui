@@ -112,7 +112,7 @@ export const FormDemo: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4 p-4 border rounded-lg dark:border-neutral-700">
+    <div className="space-y-4 p-4 border rounded-lg dark:border-nocta-700">
       <h3 className="font-medium not-prose">Account Settings</h3>
       <div className="space-y-3">
         <div className="flex items-center gap-3">
@@ -172,7 +172,7 @@ export const LabeledCheckboxDemo: React.FC = () => {
           <label htmlFor="option1" className="text-sm font-medium cursor-pointer">
             Enable notifications
           </label>
-          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+          <p className="text-xs text-nocta-600 dark:text-nocta-400 mt-1">
             Receive email notifications about your account activity
           </p>
         </div>
@@ -188,7 +188,7 @@ export const LabeledCheckboxDemo: React.FC = () => {
           <label htmlFor="option2" className="text-sm font-medium cursor-pointer">
             Marketing emails
           </label>
-          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+          <p className="text-xs text-nocta-600 dark:text-nocta-400 mt-1">
             Get updates about new features and special offers
           </p>
         </div>

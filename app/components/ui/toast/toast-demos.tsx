@@ -294,7 +294,7 @@ const ToastPositionsExample: React.FC = () => {
 
   return (
     <div className="space-y-4 flex flex-col items-center">
-      <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
+      <div className="text-sm text-nocta-600 dark:text-nocta-400 mb-4">
         Click the buttons to see toasts appear in different positions:
       </div>
       
@@ -316,7 +316,7 @@ const ToastPositionsExample: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-4 p-3 bg-neutral-100 dark:bg-neutral-800 rounded-lg text-sm">
+      <div className="mt-4 p-3 bg-nocta-100 dark:bg-nocta-800 rounded-lg text-sm">
         <strong>Available positions:</strong> top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
       </div>
     </div>

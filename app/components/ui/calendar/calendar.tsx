@@ -202,7 +202,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 
+    bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 
     rounded-xl 
     shadow-sm dark:shadow-lg 
     hover:shadow-md dark:hover:shadow-xl 
@@ -238,7 +238,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [weekStartsOn, formatWeekday, variant]);
 
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl w-fit'>
+    <div className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div
       className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
       role="application"
@@ -246,14 +246,14 @@ export const Calendar: React.FC<CalendarProps> = ({
       {...props}
     >
       {/* Header */}
-      <div className={`flex items-center justify-between border-b border-neutral-100 dark:border-neutral-700/50 ${
+      <div className={`flex items-center justify-between border-b border-nocta-100 dark:border-nocta-700/50 ${
         variant === 'compact' ? 'px-3 py-2' : 'px-6 py-5'
       }`}>
         <button
           type="button"
           onClick={goToPreviousMonth}
           disabled={disabled}
-          className={`rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
+          className={`rounded hover:bg-nocta-100 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
             variant === 'compact' ? 'p-0.5' : 'p-1'
           }`}
           aria-label="Previous month"
@@ -264,7 +264,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         </button>
         
         <div className={variant === 'compact' ? 'flex items-center space-x-1' : 'flex items-center space-x-2'}>
-          <h2 className={`font-semibold text-neutral-900 dark:text-neutral-100 ${
+          <h2 className={`font-semibold text-nocta-900 dark:text-nocta-100 ${
             variant === 'compact' ? 'text-xs' : ''
           }`}>
             {formatMonth(currentMonth)}
@@ -273,7 +273,7 @@ export const Calendar: React.FC<CalendarProps> = ({
             type="button"
             onClick={goToToday}
             disabled={disabled}
-            className={cn('rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
+            className={cn('rounded bg-nocta-100 dark:bg-nocta-800 hover:bg-nocta-200 dark:hover:bg-nocta-700 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-xs')}
           >
             Today
           </button>
@@ -283,7 +283,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           type="button"
           onClick={goToNextMonth}
           disabled={disabled}
-          className={cn('rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
+          className={cn('rounded hover:bg-nocta-100 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors', variant === 'compact' ? 'p-0.5' : 'p-1')}
           aria-label="Next month"
         >
           <svg className={variant === 'compact' ? 'w-3 h-3' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,14 +297,14 @@ export const Calendar: React.FC<CalendarProps> = ({
         {/* Weekday Headers */}
         <div className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5 mb-1' : 'gap-1 mb-2')}>
           {showWeekNumbers && (
-            <div className={cn('font-medium text-neutral-500 dark:text-neutral-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
+            <div className={cn('font-medium text-nocta-500 dark:text-nocta-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
               Wk
             </div>
           )}
           {weekdays.map((day, index) => (
             <div
               key={index}
-              className={cn('font-medium text-neutral-500 dark:text-neutral-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}
+              className={cn('font-medium text-nocta-500 dark:text-nocta-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}
             >
               {day}
             </div>
@@ -316,7 +316,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           {Array.from({ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) }, (_, weekIndex) => (
             <div key={weekIndex} className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5' : 'gap-1')}>
               {showWeekNumbers && (
-                <div className={cn('text-neutral-400 dark:text-neutral-500 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
+                <div className={cn('text-nocta-400 dark:text-nocta-500 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
                   {getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
                 </div>
               )}
@@ -339,7 +339,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-neutral-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900' : isToday ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100' : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300', !isCurrentMonth ? 'text-neutral-400 dark:text-neutral-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
+                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-700 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-100 dark:hover:bg-nocta-800 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

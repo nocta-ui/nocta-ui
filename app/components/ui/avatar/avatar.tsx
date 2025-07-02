@@ -58,8 +58,8 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const baseStyles = `
     relative inline-flex items-center justify-center
-    bg-neutral-200 dark:bg-neutral-700
-    text-neutral-700 dark:text-neutral-300
+    bg-nocta-200 dark:bg-nocta-700
+    text-nocta-700 dark:text-nocta-300
     font-medium select-none
     transition-all duration-200 ease-in-out
     not-prose
@@ -111,7 +111,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const statusStyles = {
     online: 'bg-green-500 dark:bg-green-600',
-    offline: 'bg-neutral-400 dark:bg-neutral-500',
+    offline: 'bg-nocta-400 dark:bg-nocta-500',
     away: 'bg-yellow-500 dark:bg-yellow-600',
     busy: 'bg-red-500 dark:bg-red-600'
   };
@@ -163,7 +163,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {/* Default fallback icon */}
       {!showImage && !showInitials && (
         <svg
-          className={cn(sizes[size].icon, 'text-neutral-400 dark:text-neutral-500')}
+          className={cn(sizes[size].icon, 'text-nocta-400 dark:text-nocta-500')}
           fill="currentColor"
           viewBox="0 0 256 256"
         >
@@ -174,7 +174,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {/* Status indicator */}
       {status && (
         <span
-          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-white dark:ring-neutral-900')}
+          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-white dark:ring-nocta-900')}
           aria-label={`Status: ${status}`}
         />
       )}

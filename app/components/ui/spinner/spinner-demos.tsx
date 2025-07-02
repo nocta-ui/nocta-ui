@@ -33,15 +33,15 @@ export const VariantsDemo: React.FC = () => {
     <div className="my-6 flex flex-wrap items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <Spinner variant="default" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Default</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Default</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner variant="primary" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Primary</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Primary</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner variant="secondary" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Secondary</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Secondary</span>
       </div>
     </div>
   );
@@ -52,15 +52,15 @@ export const SizesDemo: React.FC = () => {
     <div className="my-6 flex flex-wrap items-center gap-6">
       <div className="flex flex-col items-center gap-2">
         <Spinner size="sm" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Small</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Small</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner size="md" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Medium</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Medium</span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <Spinner size="lg" />
-        <span className="text-xs text-neutral-600 dark:text-neutral-400">Large</span>
+        <span className="text-xs text-nocta-600 dark:text-nocta-400">Large</span>
       </div>
     </div>
   );
@@ -79,7 +79,7 @@ export const LoadingButtonDemo: React.FC = () => {
       <Button onClick={handleClick} disabled={isLoading} className="min-w-[120px]">
         {isLoading ? (
           <div className="flex items-center gap-2">
-            <Spinner size="sm" variant="primary" className="text-white dark:text-neutral-900" />
+            <Spinner size="sm" variant="primary" className="text-white dark:text-nocta-900" />
             <span>Loading...</span>
           </div>
         ) : (
@@ -93,7 +93,7 @@ export const LoadingButtonDemo: React.FC = () => {
 export const InlineSpinnerDemo: React.FC = () => {
   return (
     <div className="my-6">
-      <div className="flex items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+      <div className="flex items-center gap-2 text-sm text-nocta-700 dark:text-nocta-300">
         <Spinner size="sm" />
         <span>Processing your request...</span>
       </div>

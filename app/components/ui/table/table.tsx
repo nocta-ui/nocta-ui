@@ -192,11 +192,11 @@ export const Table = <T extends Record<string, unknown>>({
     let className = '';
     
     if (variant === 'striped' && index % 2 === 1) {
-      className += ' bg-neutral-50 dark:bg-neutral-800/30';
+      className += ' bg-nocta-50 dark:bg-nocta-800/30';
     }
     
     if (onRowClick) {
-      className += ' cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out';
+      className += ' cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-800/50 transition-colors duration-200 ease-in-out';
     }
     
     if (typeof rowClassName === 'function') {
@@ -209,8 +209,8 @@ export const Table = <T extends Record<string, unknown>>({
   }, [variant, onRowClick, rowClassName]);
 
   return (
-    <div className="not-prose relative p-[1px] bg-linear-to-b from-neutral-500/20 to-transparent rounded-xl">
-      <div className={cn('bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
+    <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl">
+      <div className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table
@@ -238,7 +238,7 @@ export const Table = <T extends Record<string, unknown>>({
                           placeholder="Filter..."
                           value={filters[column.key] || ''}
                           onChange={(e) => handleFilter(column.key, e.target.value)}
-                          className="px-2 py-1 text-xs rounded border border-neutral-200/60 dark:border-neutral-600/60 bg-neutral-50/80 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-400 dark:focus:border-neutral-500 focus:bg-white dark:focus:bg-neutral-800 transition-all duration-200 backdrop-blur-sm"
+                          className="px-2 py-1 text-xs rounded border border-nocta-200/60 dark:border-nocta-600/60 bg-nocta-50/80 dark:bg-nocta-800/80 text-nocta-900 dark:text-nocta-100 placeholder:text-nocta-400 dark:placeholder:text-nocta-500 focus:outline-none focus:border-nocta-400 dark:focus:border-nocta-500 focus:bg-white dark:focus:bg-nocta-800 transition-all duration-200 backdrop-blur-sm"
                           onClick={(e) => e.stopPropagation()}
                         />
                       )}
@@ -265,7 +265,7 @@ export const Table = <T extends Record<string, unknown>>({
                   <TableCell 
                     colSpan={columns.length}
                     align="center"
-                    className="py-12 text-neutral-500 dark:text-neutral-400"
+                    className="py-12 text-nocta-500 dark:text-nocta-400"
                   >
                     {emptyText}
                   </TableCell>
@@ -302,8 +302,8 @@ export const Table = <T extends Record<string, unknown>>({
         </div>
         
         {pagination && (
-          <div className="px-6 py-4 bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-200 dark:border-neutral-700/50 flex items-center justify-between">
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-between">
+            <div className="text-sm text-nocta-600 dark:text-nocta-400">
               Showing {Math.min((pagination.current - 1) * pagination.pageSize + 1, pagination.total)} to{' '}
               {Math.min(pagination.current * pagination.pageSize, pagination.total)} of {pagination.total} entries
             </div>
@@ -311,17 +311,17 @@ export const Table = <T extends Record<string, unknown>>({
               <button
                 onClick={() => pagination.onChange(pagination.current - 1, pagination.pageSize)}
                 disabled={pagination.current <= 1}
-                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out cursor-pointer"
+                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-800 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-700 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Previous
               </button>
-              <span className="px-3 py-1.5 text-sm text-neutral-600 dark:text-neutral-400">
+              <span className="px-3 py-1.5 text-sm text-nocta-600 dark:text-nocta-400">
                 Page {pagination.current} of {Math.ceil(pagination.total / pagination.pageSize)}
               </span>
               <button
                 onClick={() => pagination.onChange(pagination.current + 1, pagination.pageSize)}
                 disabled={pagination.current >= Math.ceil(pagination.total / pagination.pageSize)}
-                className="px-3 py-1.5 text-sm rounded-lg border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors duration-200 ease-in-out cursor-pointer"
+                className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-white dark:bg-nocta-800 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-700 transition-colors duration-200 ease-in-out cursor-pointer"
               >
                 Next
               </button>
@@ -341,7 +341,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={cn('bg-neutral-50 dark:bg-neutral-800/50 border-b border-neutral-200 dark:border-neutral-700/50', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-800/50 border-b border-nocta-200 dark:border-nocta-700/50', className)}
       {...props}
     >
       {children}
@@ -357,7 +357,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 }) => {
   return (
     <tbody 
-      className={cn('divide-y divide-neutral-200 dark:divide-neutral-700/50', className)}
+      className={cn('divide-y divide-nocta-200 dark:divide-nocta-700/50', className)}
       {...props}
     >
       {children}
@@ -374,7 +374,7 @@ export const TableRow: React.FC<TableRowProps> = ({
 }) => {
   return (
     <tr 
-      className={cn(clickable ? 'cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out' : '', className)}
+      className={cn(clickable ? 'cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-800/50 transition-colors duration-200 ease-in-out' : '', className)}
       {...props}
     >
       {children}
@@ -412,14 +412,14 @@ export const TableCell: React.FC<TableCellProps> = ({
     return (
       <span className="ml-2 inline-flex flex-col">
         <svg 
-          className={cn('w-3 h-3', sortDirection === 'asc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500')}
+          className={cn('w-3 h-3', sortDirection === 'asc' ? 'text-nocta-900 dark:text-nocta-100' : 'text-nocta-400 dark:text-nocta-500')}
           fill="currentColor" 
           viewBox="0 0 20 20"
         >
           <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
         </svg>
         <svg 
-          className={cn('w-3 h-3', sortDirection === 'desc' ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-500')}
+          className={cn('w-3 h-3', sortDirection === 'desc' ? 'text-nocta-900 dark:text-nocta-100' : 'text-nocta-400 dark:text-nocta-500')}
           fill="currentColor" 
           viewBox="0 0 20 20"
         >
@@ -432,7 +432,7 @@ export const TableCell: React.FC<TableCellProps> = ({
   return React.createElement(
     Component,
     {
-      className: cn('px-6 py-4', getAlignmentClass(), header ? 'font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight' : 'text-neutral-700 dark:text-neutral-300', sortable ? 'cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700/50 select-none transition-colors duration-200 ease-in-out' : '', className),
+      className: cn('px-6 py-4', getAlignmentClass(), header ? 'font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight' : 'text-nocta-700 dark:text-nocta-300', sortable ? 'cursor-pointer hover:bg-nocta-100 dark:hover:bg-nocta-700/50 select-none transition-colors duration-200 ease-in-out' : '', className),
       onClick: sortable ? onSort : undefined,
       colSpan,
       rowSpan,
@@ -455,7 +455,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={cn('bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 font-semibold', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-100 dark:border-nocta-700/50 font-semibold', className)}
       {...props}
     >
       {children}
@@ -471,7 +471,7 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
 }) => {
   return (
     <caption 
-      className={cn('py-3 text-sm text-neutral-600 dark:text-neutral-400', className)}
+      className={cn('py-3 text-sm text-nocta-600 dark:text-nocta-400', className)}
       {...props}
     >
       {children}

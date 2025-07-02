@@ -14,7 +14,7 @@ export const BasicPopoverDemo: React.FC = () => {
         <PopoverContent>
           <div className="space-y-2">
             <h4 className="font-medium text-sm">About this feature</h4>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               This is a popover component that can contain any content you want.
             </p>
           </div>
@@ -147,7 +147,7 @@ export const AsChildDemo: React.FC = () => {
         <PopoverContent>
           <div className="space-y-2">
             <h4 className="font-medium text-sm">Custom Trigger</h4>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            <p className="text-sm text-nocta-600 dark:text-nocta-400">
               Using asChild prop to render a custom button component.
             </p>
           </div>
@@ -186,7 +186,7 @@ export const ControlledDemo: React.FC = () => {
         >
           Close
         </button>
-        <span className="px-3 py-1 text-sm bg-neutral-100 dark:bg-neutral-800 rounded">
+        <span className="px-3 py-1 text-sm bg-nocta-100 dark:bg-nocta-800 rounded">
           State: {open ? 'Open' : 'Closed'}
         </span>
       </div>
@@ -196,12 +196,12 @@ export const ControlledDemo: React.FC = () => {
           <PopoverContent>
             <div className="space-y-2">
               <h4 className="font-medium text-sm">Controlled State</h4>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-nocta-600 dark:text-nocta-400">
                 This popover&apos;s state is controlled externally.
               </p>
               <button
                 onClick={() => setOpen(false)}
-                className="px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                className="px-2 py-1 text-xs bg-nocta-100 dark:bg-nocta-800 rounded hover:bg-nocta-200 dark:hover:bg-nocta-700"
               >
                 Close from inside
               </button>
@@ -228,20 +228,20 @@ export const RichContentDemo: React.FC = () => {
                 </div>
                 <div>
                   <p className="font-medium text-sm">John Doe</p>
-                  <p className="text-xs text-neutral-600 dark:text-neutral-400">john@example.com</p>
+                  <p className="text-xs text-nocta-600 dark:text-nocta-400">john@example.com</p>
                 </div>
               </div>
             </div>
             
-            <div className="border-t border-neutral-300 dark:border-neutral-700 pt-3">
+            <div className="border-t border-nocta-300 dark:border-nocta-700 pt-3">
               <div className="space-y-2">
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
                   View Profile
                 </button>
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded">
                   Settings
                 </button>
-                <button className="w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded text-red-600 dark:text-red-400">
+                <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-800 rounded text-red-600 dark:text-red-400">
                   Sign Out
                 </button>
               </div>
@@ -272,39 +272,39 @@ export const FormPopoverDemo: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+              <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
                 Name
               </label>
               <input
                 type="text"
                 placeholder="Enter item name"
-                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
+              <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
                 Description
               </label>
               <textarea
                 placeholder="Enter description"
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500 dark:focus-visible:ring-neutral-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400 resize-none"
               />
             </div>
 
             <div className="flex gap-2 pt-2">
               <button
                 type="submit"
-                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 font-medium"
+                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 rounded-md hover:bg-nocta-800 dark:hover:bg-nocta-200 font-medium"
               >
                 Create
               </button>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-800"
+                className="px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md hover:bg-nocta-50 dark:hover:bg-nocta-800"
               >
                 Cancel
               </button>
@@ -319,7 +319,7 @@ export const FormPopoverDemo: React.FC = () => {
 export const CollisionDetectionDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4">
-      <p className="text-sm text-center text-neutral-600 dark:text-neutral-400">
+      <p className="text-sm text-center text-nocta-600 dark:text-nocta-400">
         Try these popovers near the edges of the viewport
       </p>
       

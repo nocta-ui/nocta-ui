@@ -112,7 +112,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50 focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose', className)}
       onClick={handleClick}
       {...props}
     >
@@ -303,7 +303,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       <div
         ref={contentRef}
         className={cn(`
-          fixed flex flex-col bg-linear-to-b from-white to-neutral-200 dark:from-neutral-900 dark:to-neutral-800 border-neutral-300 dark:border-neutral-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
+          fixed flex flex-col bg-linear-to-b from-white to-nocta-200 dark:from-nocta-900 dark:to-nocta-800 border-nocta-300 dark:border-nocta-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
         `)}
         role="dialog"
         aria-modal="true"
@@ -316,10 +316,10 @@ export const SheetContent: React.FC<SheetContentProps> = ({
             onClick={() => onOpenChange(false)}
             className="
               absolute top-4 right-4 p-1 rounded-md
-              text-neutral-500 dark:text-neutral-400
-              hover:text-neutral-700 dark:hover:text-neutral-200
-              hover:bg-neutral-100 dark:hover:bg-neutral-800
-              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-500/50
+              text-nocta-500 dark:text-nocta-400
+              hover:text-nocta-700 dark:hover:text-nocta-200
+              hover:bg-nocta-100 dark:hover:bg-nocta-800
+              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
               transition-colors duration-200 ease-in-out
               z-10
               cursor-pointer
@@ -357,7 +357,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-neutral-100 dark:border-neutral-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-100 dark:border-nocta-700/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -375,7 +375,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
   return React.createElement(
     Component,
     {
-      className: cn('text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight leading-tight not-prose', className),
+      className: cn('text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose', className),
       ...props
     },
     children
@@ -390,7 +390,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 }) => {
   return (
     <p 
-      className={cn('text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mt-1 not-prose', className)}
+      className={cn('text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose', className)}
       {...props}
     >
       {children}
@@ -406,7 +406,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 mt-auto bg-neutral-50 dark:bg-neutral-800/50 border-t border-neutral-100 dark:border-neutral-700/50 flex items-center justify-end gap-3 not-prose', className)}
+      className={cn('px-6 py-4 mt-auto bg-nocta-50 dark:bg-nocta-800/50 border-t border-nocta-100 dark:border-nocta-700/50 flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}
@@ -442,7 +442,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
   return (
     <button
       className={cn(`
-        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
+        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
       `, className)}
       onClick={handleClick}
       {...props}

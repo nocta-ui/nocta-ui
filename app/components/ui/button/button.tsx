@@ -20,27 +20,27 @@ export const Button: React.FC<ButtonProps> = ({
     inline-flex items-center justify-center rounded-lg font-medium
     transition-all duration-200 ease-in-out 
     focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-neutral-900/50
+    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
     disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer
   `;
   
   const variants = {
     primary: `
-      bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900 
-      hover:bg-neutral-800 dark:hover:bg-neutral-200 
-      focus-visible:ring-neutral-900/50 dark:focus-visible:ring-neutral-100/50
+      bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 
+      hover:bg-nocta-800 dark:hover:bg-nocta-200 
+      focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
       shadow-sm hover:shadow-md
     `,
     secondary: `
-      bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 
-      hover:bg-neutral-200 dark:hover:bg-neutral-700 
-      focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
-      border border-neutral-300 dark:border-neutral-600
+      bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 
+      hover:bg-nocta-200 dark:hover:bg-nocta-700 
+      focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
+      border border-nocta-300 dark:border-nocta-600
     `,
     ghost: `
-      text-neutral-700 dark:text-neutral-300 
-      hover:bg-neutral-200 dark:hover:bg-neutral-800 
-      focus-visible:ring-neutral-500/50 dark:focus-visible:ring-neutral-400/50
+      text-nocta-700 dark:text-nocta-300 
+      hover:bg-nocta-200 dark:hover:bg-nocta-800 
+      focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
     `
   };
   

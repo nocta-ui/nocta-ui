@@ -26,15 +26,15 @@ export const SizesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-64">
       <div>
-        <span className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 block">Small</span>
+        <span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">Small</span>
         <Progress value={50} size="sm" />
       </div>
       <div>
-        <span className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 block">Medium</span>
+        <span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">Medium</span>
         <Progress value={65} size="md" />
       </div>
       <div>
-        <span className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 block">Large</span>
+        <span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">Large</span>
         <Progress value={80} size="lg" />
       </div>
     </div>
@@ -105,12 +105,12 @@ export const FileUploadDemo: React.FC = () => {
 
   return (
     <div className="my-6 space-y-4 w-64">
-      <div className="border border-neutral-300 dark:border-neutral-700 rounded-lg p-4">
+      <div className="border border-nocta-300 dark:border-nocta-700 rounded-lg p-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+          <span className="text-sm font-medium text-nocta-900 dark:text-nocta-100">
             document.pdf
           </span>
-          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+          <span className="text-xs text-nocta-500 dark:text-nocta-400">
             2.4 MB
           </span>
         </div>
@@ -125,7 +125,7 @@ export const FileUploadDemo: React.FC = () => {
         <button
           onClick={simulateUpload}
           disabled={isUploading}
-          className="mt-3 px-3 py-1.5 text-sm bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="mt-3 px-3 py-1.5 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 rounded-md hover:bg-nocta-800 dark:hover:bg-nocta-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isUploading ? 'Uploading...' : uploadProgress === 100 ? 'Upload Complete' : 'Start Upload'}
         </button>

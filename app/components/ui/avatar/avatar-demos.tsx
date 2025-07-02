@@ -123,23 +123,23 @@ export const GroupDemo: React.FC = () => {
       <Avatar 
         src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
         alt="John Doe" 
-        className="ring-1 ring-white dark:ring-neutral-900"
+        className="ring-1 ring-white dark:ring-nocta-900"
       />
       <Avatar 
         src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
         alt="Jane Smith" 
-        className="-ml-2 ring-1 ring-white dark:ring-neutral-900"
+        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
       />
       <Avatar 
         src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
         alt="Mike Johnson" 
-        className="-ml-2 ring-1 ring-white dark:ring-neutral-900"
+        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
       />
       <Avatar 
         fallback="AB" 
-        className="-ml-2 ring-1 ring-white dark:ring-neutral-900"
+        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800 ring-1 ring-white dark:ring-neutral-900 text-xs font-medium text-neutral-600 dark:text-neutral-400">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-800 ring-1 ring-white dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
         +5
       </div>
     </div>
@@ -181,7 +181,7 @@ export const ClickHandlersDemo: React.FC = () => {
         <Avatar 
           src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
           alt="John Doe" 
-          className="cursor-pointer hover:ring-1 hover:ring-neutral-300 dark:hover:ring-neutral-600 transition-all"
+          className="cursor-pointer hover:ring-1 hover:ring-nocta-300 dark:hover:ring-nocta-600 transition-all"
           onClick={() => handleAvatarClick('John Doe')}
         />
         <Avatar 
@@ -226,8 +226,8 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedSize(size)}
                 className={`px-3 py-1 rounded-md text-sm ${
                   selectedSize === size
-                    ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900'
-                    : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {size}
@@ -245,8 +245,8 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedVariant(variant)}
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedVariant === variant
-                    ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900'
-                    : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {variant}
@@ -264,8 +264,8 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedStatus(status)}
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedStatus === status
-                    ? 'bg-linear-to-b from-neutral-900 to-neutral-700 dark:from-white dark:to-neutral-300 text-white dark:text-neutral-900'
-                    : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    : 'bg-nocta-100 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
                 {status || 'none'}

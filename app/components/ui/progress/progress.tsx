@@ -26,7 +26,7 @@ export const Progress: React.FC<ProgressProps> = ({
   
   const baseStyles = `
     relative w-full overflow-hidden rounded-full
-    bg-neutral-200 dark:bg-neutral-700
+    bg-nocta-200 dark:bg-nocta-700
     transition-all duration-200 ease-in-out
     not-prose
   `;
@@ -39,7 +39,7 @@ export const Progress: React.FC<ProgressProps> = ({
 
   const variants = {
     default: `
-      [&>div]:bg-neutral-900 dark:[&>div]:bg-neutral-100/50
+      [&>div]:bg-nocta-900 dark:[&>div]:bg-nocta-100/50
     `,
     success: `
       [&>div]:bg-green-500 dark:[&>div]:bg-green-600/50
@@ -56,10 +56,10 @@ export const Progress: React.FC<ProgressProps> = ({
     <div className="w-full">
       {showLabel && (
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
             {ariaLabel || 'Progress'}
           </span>
-          <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-2">
+          <span className="text-sm text-nocta-500 dark:text-nocta-400 ml-2">
             {Math.round(percentage)}%
           </span>
         </div>

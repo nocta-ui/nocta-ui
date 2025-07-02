@@ -23,15 +23,15 @@ export const SizesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-96">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Small</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Small</label>
         <Skeleton size="sm" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Medium</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Medium</label>
         <Skeleton size="md" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Large</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Large</label>
         <Skeleton size="lg" />
       </div>
     </div>
@@ -42,19 +42,19 @@ export const ShapesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-96">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Rectangle</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Rectangle</label>
         <Skeleton shape="rectangle" width="12rem" height="3rem" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Circle</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Circle</label>
         <Skeleton shape="circle" size="lg" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Text (Single Line)</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Text (Single Line)</label>
         <Skeleton shape="text" width="10rem" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Text (Multiple Lines)</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Text (Multiple Lines)</label>
         <Skeleton shape="text" lines={3} />
       </div>
     </div>
@@ -65,15 +65,15 @@ export const TextLinesDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-96">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">2 Lines</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">2 Lines</label>
         <Skeleton shape="text" lines={2} />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">4 Lines</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">4 Lines</label>
         <Skeleton shape="text" lines={4} />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">6 Lines</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">6 Lines</label>
         <Skeleton shape="text" lines={6} />
       </div>
     </div>
@@ -84,15 +84,15 @@ export const CustomSizeDemo: React.FC = () => {
   return (
     <div className="my-6 space-y-4 w-96">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Custom Rectangle</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Custom Rectangle</label>
         <Skeleton width="200px" height="60px" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Custom Circle</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Custom Circle</label>
         <Skeleton shape="circle" width="80px" height="80px" />
       </div>
       <div className="space-y-2">
-        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Custom Text</label>
+        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Custom Text</label>
         <Skeleton shape="text" width="150px" height="20px" />
       </div>
     </div>
@@ -102,7 +102,7 @@ export const CustomSizeDemo: React.FC = () => {
 export const CardSkeletonDemo: React.FC = () => {
   return (
     <div className="my-6 w-96">
-      <div className="max-w-sm p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+      <div className="max-w-sm p-4 border border-nocta-200 dark:border-nocta-700 rounded-lg">
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
             <Skeleton shape="circle" size="md" />

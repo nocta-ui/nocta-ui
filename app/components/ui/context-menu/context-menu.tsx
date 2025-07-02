@@ -449,8 +449,8 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 
   const baseStyles = `
     z-50 min-w-[10rem] overflow-hidden rounded-md border
-    bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-800
-    p-1 text-neutral-950 dark:text-neutral-50 shadow-lg
+    bg-white dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800
+    p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
     ${animationStyles}
     not-prose
   `;
@@ -497,10 +497,10 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 
   const baseStyles = `
     w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
-    focus-visible:text-neutral-900 dark:focus-visible:text-neutral-50 data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-800
-    hover:text-neutral-900 dark:hover:text-neutral-50
+    outline-none transition-colors focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800
+    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-50 data-[disabled]:pointer-events-none
+    data-[disabled]:opacity-50 hover:bg-nocta-100 dark:hover:bg-nocta-800
+    hover:text-nocta-900 dark:hover:text-nocta-50
   `;
 
   return (
@@ -524,7 +524,7 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
 }) => {
   return (
     <div
-      className={`-mx-1 my-1 h-px bg-neutral-200 dark:bg-neutral-800 ${className}`}
+      className={`-mx-1 my-1 h-px bg-nocta-200 dark:bg-nocta-800 ${className}`}
       role="separator"
       {...props}
     />
@@ -629,10 +629,10 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
 
   const baseStyles = `
     w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800
-    focus-visible:text-neutral-900 dark:focus-visible:text-neutral-50 data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-800
-    hover:text-neutral-900 dark:hover:text-neutral-50
+    outline-none transition-colors focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800
+    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-50 data-[disabled]:pointer-events-none
+    data-[disabled]:opacity-50 hover:bg-nocta-100 dark:hover:bg-nocta-800
+    hover:text-nocta-900 dark:hover:text-nocta-50
   `;
 
   return (
@@ -820,8 +820,8 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
 
   const baseStyles = `
     z-50 min-w-[8rem] overflow-hidden rounded-md border
-    bg-white dark:bg-neutral-900 border-neutral-300 dark:border-neutral-800
-    p-1 text-neutral-950 dark:text-neutral-50 shadow-lg
+    bg-white dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800
+    p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
     transition-opacity transition-transform duration-200 not-prose
     ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
   `;
