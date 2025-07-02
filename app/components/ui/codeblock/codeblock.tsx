@@ -137,7 +137,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
         dir="ltr"
         {...props}
         className={cn(
-          'not-prose group relative my-4 overflow-hidden rounded-lg border bg-fd-card text-sm outline-none',
+          'not-prose group relative my-4 overflow-hidden rounded-lg border bg-nocta-200 dark:bg-nocta-800 text-sm outline-none',
           keepBackground && 'bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)',
           props.className
         )}
@@ -177,7 +177,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
           ref={areaRef}
           {...viewportProps}
           className={cn(
-            'text-[13px] py-3.5 overflow-auto bg-nocta-200 dark:bg-nocta-900 m-1 rounded-md border [&_.line]:px-4 max-h-[600px] fd-scroll-container',
+            'text-[13px] py-3.5 overflow-auto bg-nocta-50 dark:bg-nocta-900 m-1 rounded-md border [&_.line]:px-4 max-h-[600px] fd-scroll-container',
             props['data-line-numbers'] && '[&_.line]:pl-3',
             viewportProps?.className
           )}

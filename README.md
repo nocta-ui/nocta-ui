@@ -41,8 +41,8 @@ npx nocta-ui add button card badge
 - **Full control** - modify components to fit your exact needs
 - **No version conflicts** - components are copied, not installed
 - **Easy customization** - change styling, behavior, or structure
-- **Minimal to zero dependencies** - only React with a little bit of GSAP
-- **Framework agnostic** - works with any React setup
+- **Minimal dependencies** - lightweight with minimal external dependencies
+- **React focused** - optimized for Next.js and Vite React projects
 
 ### Design System
 
