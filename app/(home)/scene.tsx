@@ -8,8 +8,7 @@ import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 import { gsap } from 'gsap'
 import { useMediaQuery } from 'fumadocs-core/utils/use-media-query'
 import WebGPUCanvas from './webGPUCanvas'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
+import { useGLTF } from '@react-three/drei'
 
 const cubicInOut = (t: number): number => {
   return t < 0.5
@@ -68,37 +67,26 @@ function Logo3D() {
   const isDarkMode = useDarkMode()
   const isMobile = useMediaQuery('(max-width: 768px)')
 
-  const gltf = useLoader(GLTFLoader, '/models/nocta-logo-extruded-compressed.glb', (loader) => {
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/draco/')
-    loader.setDRACOLoader(dracoLoader)
-  })
+  const { nodes, materials } = useGLTF('/models/nocta-logo-extruded-compressed.glb')
 
-  const logoModel = gltf.scene
+  // Create custom materials for different nodes
+  const customMaterials = useMemo(() => {
+    const outerColor = isDarkMode ? "#ff0000" : "#00ff00"
+    const innerColor = isDarkMode ? "#0000ff" : "#0000ff"
 
-  const clonedModel = useMemo(() => {
-    if (logoModel) {
-      const cloned = logoModel.clone()
-      
-      cloned.traverse((child: THREE.Object3D) => {
-        if (child instanceof THREE.Mesh) {
-          child.castShadow = true
-          child.receiveShadow = true
-          
-          if (child.material) {
-            const material = child.material as THREE.MeshPhysicalMaterial
-            const logoColor = isDarkMode ? "#f9f9f9" : "#000000"
-            material.color.set(logoColor)
-            material.metalness = 1
-            material.roughness = 0.5
-          }
-        }
+    return {
+      Outer: new THREE.MeshPhysicalMaterial({
+        color: outerColor,
+        metalness: 1,
+        roughness: 0.5,
+      }),
+      Inner: new THREE.MeshPhysicalMaterial({
+        color: innerColor,
+        metalness: 1,
+        roughness: 0.5,
       })
-      
-      return cloned
     }
-    return null
-  }, [logoModel, isDarkMode])
+  }, [isDarkMode])
 
   useEffect(() => {
     if (groupRef.current) {
@@ -136,37 +124,45 @@ function Logo3D() {
     }
   })
 
+  // Update material colors when dark mode changes
   useEffect(() => {
-    if (clonedModel) {
-      const logoColor = isDarkMode ? "#f9f9f9" : "#232323"
-      clonedModel.traverse((child: THREE.Object3D) => {
-        if (child instanceof THREE.Mesh && child.material) {
-          const material = child.material as THREE.MeshPhysicalMaterial
-          material.color.set(logoColor)
-        }
-      })
-    }
-  }, [isDarkMode, clonedModel])
+    const outerColor = isDarkMode ? "#232323" : "#f9f9f9"
+    const innerColor = isDarkMode ? "#f9f9f9" : "#232323"
 
-  if (!clonedModel) {
-    return null
-  }
+    customMaterials.Outer.color.set(outerColor)
+    customMaterials.Inner.color.set(innerColor)
+  }, [isDarkMode, customMaterials])
 
   return (
     <group 
       ref={groupRef}
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
+      position={isMobile ? [0, 0.5, 0] : [0, 0, 0]} 
+      rotation={[0, Math.PI, 0]}
+      scale={isMobile ? [0.5, 0.5, 0.5] : [1, 1, 1]}
+      dispose={null}
     >
-      <primitive 
-        object={clonedModel}
-        position={isMobile ? [0, 0.5, 0] : [0, 0, 0]} 
-        rotation={[0, Math.PI, 0]}
-        scale={isMobile ? [0.5, 0.5, 0.5] : [1, 1, 1]}
-      />
+      <group rotation={[0, 0, Math.PI]} scale={0.08}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={(nodes.Mesh_0_1 as THREE.Mesh).geometry}
+          material={customMaterials.Inner}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={(nodes.Mesh_0_2 as THREE.Mesh).geometry}
+          material={customMaterials.Outer}
+        />
+      </group>
     </group>
   )
 }
+
+// Preload the model
+useGLTF.preload('/models/nocta-logo-extruded-compressed.glb')
 
 const Scene = forwardRef<HTMLDivElement>((props, ref) => {
   const pointLightRef = useRef<THREE.PointLight>(null)
@@ -235,11 +231,11 @@ function exportExtrudedSVGToGLTF() {
       const extrudeSettings = {
         depth: 5,
         bevelEnabled: true,
-        bevelSegments: 16,
+        bevelSegments: 32,
         bevelSize: 0.1,
         bevelThickness: 0.1,
         curveSegments: 32,
-        steps: 1,
+        steps: 30,
       }
 
       const geometry = new THREE.ExtrudeGeometry(shapes, extrudeSettings)
