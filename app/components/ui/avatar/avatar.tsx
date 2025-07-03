@@ -174,7 +174,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       {/* Status indicator */}
       {status && (
         <span
-          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-white dark:ring-nocta-900')}
+          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-nocta-50 dark:ring-nocta-900')}
           aria-label={`Status: ${status}`}
         />
       )}

@@ -11,10 +11,10 @@ export default function HomePage() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
-
+  const titleRef = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set([textRef.current, buttonsRef.current], {
+      gsap.set([textRef.current, buttonsRef.current, titleRef.current], {
         opacity: 0,
         y: 20
       });
@@ -32,14 +32,19 @@ export default function HomePage() {
         duration: 1,
         ease: 'power4.out'
       })
-      
-      .to(textRef.current, {
+      .to(titleRef.current, {
         opacity: 1,
         y: 0,
         duration: 1,
         delay: 0.5,
         ease: 'power1.out'
       })
+      .to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power1.out'
+      }, '-=0.6')
       .to(buttonsRef.current, {
         opacity: 1,
         y: 0,
@@ -53,13 +58,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main ref={containerRef} className="h-[93svh] flex flex-col justify-center items-center text-center px-6 overflow-hidden relative bg-nocta-50 dark:bg-black">
+    <main ref={containerRef} className="h-[93svh] flex flex-col justify-center items-center text-center px-6 relative bg-nocta-50 dark:bg-nocta-950">
       <div ref={sceneRef} className="absolute inset-0">
         <Scene />
       </div>
       
-      <div className="max-w-2xl mx-auto w-full flex flex-col items-center justify-center space-y-8 z-10 relative mt-140">
-        <p ref={textRef} className="text-sm text-nocta-600 dark:text-nocta-400 font-normal tracking-wide">
+      <div className="max-w-2xl mx-auto w-full flex flex-col items-center justify-center space-y-2 z-10 relative mt-100 md:mt-140">
+        <h1 ref={titleRef} className="text-xl font-semibold">Nocta UI</h1>
+        <p ref={textRef} className="text-sm text-nocta-600 dark:text-nocta-400 font-normal tracking-wide mb-6">
           Production-ready React components
         </p>
 

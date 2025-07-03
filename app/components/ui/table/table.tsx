@@ -302,7 +302,7 @@ export const Table = <T extends Record<string, unknown>>({
         </div>
         
         {pagination && (
-          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-between">
+          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
             <div className="text-sm text-nocta-600 dark:text-nocta-400">
               Showing {Math.min((pagination.current - 1) * pagination.pageSize + 1, pagination.total)} to{' '}
               {Math.min(pagination.current * pagination.pageSize, pagination.total)} of {pagination.total} entries
@@ -341,7 +341,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-b border-nocta-200 dark:border-nocta-700/50', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-b border-nocta-200 dark:border-nocta-800/50', className)}
       {...props}
     >
       {children}
@@ -455,7 +455,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-700/50 font-semibold', className)}
+      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-800/50 font-semibold', className)}
       {...props}
     >
       {children}

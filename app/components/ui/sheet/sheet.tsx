@@ -303,7 +303,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       <div
         ref={contentRef}
         className={cn(`
-          fixed flex flex-col bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-700/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
+          fixed flex flex-col bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-800/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
         `)}
         role="dialog"
         aria-modal="true"
@@ -357,7 +357,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-nocta-100 dark:border-nocta-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-100 dark:border-nocta-800/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -406,7 +406,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 mt-auto bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-700/50 flex items-center justify-end gap-3 not-prose', className)}
+      className={cn('px-6 py-4 mt-auto bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}

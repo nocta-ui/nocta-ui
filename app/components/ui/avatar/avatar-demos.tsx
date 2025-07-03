@@ -123,23 +123,23 @@ export const GroupDemo: React.FC = () => {
       <Avatar 
         src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
         alt="John Doe" 
-        className="ring-1 ring-white dark:ring-nocta-900"
+        className="ring-1 ring-nocta-50 dark:ring-nocta-900"
       />
       <Avatar 
         src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
         alt="Jane Smith" 
-        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
       />
       <Avatar 
         src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" 
         alt="Mike Johnson" 
-        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
       />
       <Avatar 
         fallback="AB" 
-        className="-ml-2 ring-1 ring-white dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-900 ring-1 ring-white dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-900 ring-1 ring-nocta-50 dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
         +5
       </div>
     </div>
@@ -156,7 +156,7 @@ export const CustomStylingDemo: React.FC = () => {
       />
       <Avatar 
         fallback="JD" 
-        className="bg-gradient-to-br from-purple-500 to-pink-500 text-white"
+        className="bg-gradient-to-br from-purple-500 to-pink-500 text-nocta-50"
       />
       <Avatar 
         src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png" 
@@ -226,7 +226,7 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedSize(size)}
                 className={`px-3 py-1 rounded-md text-sm ${
                   selectedSize === size
-                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900'
                     : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
@@ -245,7 +245,7 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedVariant(variant)}
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedVariant === variant
-                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900'
                     : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >
@@ -264,7 +264,7 @@ export const InteractiveDemo: React.FC = () => {
                 onClick={() => setSelectedStatus(status)}
                 className={`px-3 py-1 rounded-md text-sm capitalize ${
                   selectedStatus === status
-                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+                    ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900'
                     : 'bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100'
                 }`}
               >

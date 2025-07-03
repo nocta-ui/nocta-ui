@@ -210,7 +210,7 @@ export const AdvancedTableDemo: React.FC = () => {
       filterable: true,
       render: (value, record) => (
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-medium">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
             {String(value).charAt(0)}
           </div>
           <div className="min-w-0">

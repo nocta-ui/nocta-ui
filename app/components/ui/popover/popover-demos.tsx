@@ -156,7 +156,7 @@ export const AsChildDemo: React.FC = () => {
 
       <Popover>
         <PopoverTrigger asChild>
-          <button className="px-3 py-2 bg-blue-500 dark:bg-blue-600/50 text-white rounded-md hover:bg-blue-600">
+          <button className="px-3 py-2 bg-blue-500 dark:bg-blue-600/50 text-nocta-50 rounded-md hover:bg-blue-600">
             Custom Element
           </button>
         </PopoverTrigger>
@@ -176,13 +176,13 @@ export const ControlledDemo: React.FC = () => {
       <div className="flex gap-2 justify-center">
         <button
           onClick={() => setOpen(true)}
-          className="px-3 py-1 text-sm bg-green-500 dark:bg-green-600/50 text-white rounded hover:bg-green-600"
+          className="px-3 py-1 text-sm bg-green-500 dark:bg-green-600/50 text-nocta-50 rounded hover:bg-green-600"
         >
           Open
         </button>
         <button
           onClick={() => setOpen(false)}
-          className="px-3 py-1 text-sm bg-red-500 dark:bg-red-600/50 text-white rounded hover:bg-red-600"
+          className="px-3 py-1 text-sm bg-red-500 dark:bg-red-600/50 text-nocta-50 rounded hover:bg-red-600"
         >
           Close
         </button>
@@ -223,7 +223,7 @@ export const RichContentDemo: React.FC = () => {
             <div>
               <h3 className="font-semibold text-base mb-2">User Profile</h3>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-medium">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-nocta-50 font-medium">
                   JD
                 </div>
                 <div>
@@ -297,7 +297,7 @@ export const FormPopoverDemo: React.FC = () => {
             <div className="flex gap-2 pt-2">
               <button
                 type="submit"
-                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 font-medium"
+                className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 font-medium"
               >
                 Create
               </button>

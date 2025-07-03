@@ -9,11 +9,6 @@ const haskoy = localFont({
   variable: '--font-haskoy',
 })
 
-const ppNeueMachina = localFont({
-  src: './assets/fonts/PPNeueMachina-InktrapSemibold.woff',
-  variable: '--font-pp-neue-machina',
-})
-
 export const metadata: Metadata = {
   title: {
     template: '%s | Nocta UI',
@@ -102,7 +97,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${haskoy.variable} ${ppNeueMachina.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${haskoy.variable}`} suppressHydrationWarning>
       <body className="flex flex-col">
         <RootProvider>{children}</RootProvider>
       </body>

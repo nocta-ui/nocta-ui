@@ -66,7 +66,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-nocta-200 dark:border-nocta-700/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-200 dark:border-nocta-800/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -131,7 +131,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-700/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

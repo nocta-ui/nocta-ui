@@ -1,10 +1,16 @@
 'use client'
 
-import { Canvas, useFrame } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { useRef, useMemo, useState, forwardRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js'
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 import { gsap } from 'gsap'
+import { useMediaQuery } from 'fumadocs-core/utils/use-media-query'
+import WebGPUCanvas from './webGPUCanvas'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
+
 
 const cubicInOut = (t: number): number => {
   return t < 0.5
@@ -58,9 +64,42 @@ function Logo3D() {
   const [isHovered, setIsHovered] = useState(false)
   const rotationSpeedRef = useRef(0.5)
   const transitionProgressRef = useRef(0)
-  const normalSpeed = -0.5
-  const hoverSpeed = -0.15
+  const normalSpeed = 0.65
+  const hoverSpeed = 0.2
   const isDarkMode = useDarkMode()
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
+  const gltf = useLoader(GLTFLoader, '/models/nocta-logo-extruded-compressed.glb', (loader) => {
+    const dracoLoader = new DRACOLoader()
+    dracoLoader.setDecoderPath('/draco/')
+    loader.setDRACOLoader(dracoLoader)
+  })
+
+  const logoModel = gltf.scene
+
+  const clonedModel = useMemo(() => {
+    if (logoModel) {
+      const cloned = logoModel.clone()
+      
+      cloned.traverse((child: THREE.Object3D) => {
+        if (child instanceof THREE.Mesh) {
+          child.castShadow = true
+          child.receiveShadow = true
+          
+          if (child.material) {
+            const material = child.material as THREE.MeshPhysicalMaterial
+            const logoColor = isDarkMode ? "#f9f9f9" : "#000000"
+            material.color.set(logoColor)
+            material.metalness = 1
+            material.roughness = 0.5
+          }
+        }
+      })
+      
+      return cloned
+    }
+    return null
+  }, [logoModel, isDarkMode])
 
   useEffect(() => {
     if (groupRef.current) {
@@ -97,52 +136,22 @@ function Logo3D() {
       groupRef.current.rotation.y += rotationSpeedRef.current * delta
     }
   })
-  
-  const svgPath = "M18 0C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.6863 24 8.24673e-06 21.3137 0 18V6C0 2.68629 2.68629 0 6 0H18ZM5 10C4.44772 10 4 10.4477 4 11V17C4 17.5523 4.44772 18 5 18H7C7.55228 18 8 17.5523 8 17V10H5ZM9 6C8.44772 6 8 6.44772 8 7V10H13.7139C13.979 9.99996 14.2334 9.89453 14.4209 9.70703C14.8114 9.3166 15.4444 9.31667 15.835 9.70703L16.6143 10.4854C17.0046 10.8758 17.0045 11.5089 16.6143 11.8994L16.293 12.2207C16.1055 12.4082 16 12.6626 16 12.9277V17C16 17.5523 16.4477 18 17 18H19C19.5523 18 20 17.5523 20 17V10.542C20 10.2768 19.8945 10.0225 19.707 9.83496L16.165 6.29297C15.9775 6.10547 15.7232 6.00004 15.458 6H9Z"
 
-  const extrudedGeometry = useMemo(() => {
-    try {
-      const svgString = `
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="${svgPath}" />
-        </svg>
-      `
-      
-      const loader = new SVGLoader()
-      const svgData = loader.parse(svgString)
-      
-      const shapes: THREE.Shape[] = []
-      svgData.paths.forEach((path) => {
-        const pathShapes = SVGLoader.createShapes(path)
-        shapes.push(...pathShapes)
+  useEffect(() => {
+    if (clonedModel) {
+      const logoColor = isDarkMode ? "#f9f9f9" : "#232323"
+      clonedModel.traverse((child: THREE.Object3D) => {
+        if (child instanceof THREE.Mesh && child.material) {
+          const material = child.material as THREE.MeshPhysicalMaterial
+          material.color.set(logoColor)
+        }
       })
-
-      if (shapes.length > 0) {
-                  const extrudeSettings = {
-            depth: 5,
-            bevelEnabled: true,
-            bevelSegments: 32,
-            bevelSize: 0.1,
-            bevelThickness: 0.1,
-            curveSegments: 32,
-            steps: 30,
-          }
-
-        const geometry = new THREE.ExtrudeGeometry(shapes, extrudeSettings)
-        
-        geometry.computeBoundingBox()
-        geometry.center()
-        
-        return geometry
-      }
-    } catch (error) {
-      console.error('Error parsing SVG:', error)
     }
-    
-    return new THREE.BoxGeometry(1, 1, 0.5)
-  }, [svgPath])
+  }, [isDarkMode, clonedModel])
 
-  const logoColor = isDarkMode ? "#f9f9f9" : "#000000"
+  if (!clonedModel) {
+    return null
+  }
 
   return (
     <group 
@@ -150,20 +159,12 @@ function Logo3D() {
       onPointerOver={() => setIsHovered(true)}
       onPointerOut={() => setIsHovered(false)}
     >
-      <mesh 
-        position={[0, 0, 0]} 
-        rotation={[Math.PI, Math.PI, 0]}
-        castShadow 
-        receiveShadow
-        scale={[0.08, 0.08, 0.08]}
-      >
-        <primitive object={extrudedGeometry} />
-        <meshPhysicalMaterial 
-          color={logoColor}
-          metalness={1}
-          roughness={0.5}
-        />
-      </mesh>
+      <primitive 
+        object={clonedModel}
+        position={isMobile ? [0, 0.5, 0] : [0, 0, 0]} 
+        rotation={[0, Math.PI, 0]}
+        scale={isMobile ? [0.5, 0.5, 0.5] : [1, 1, 1]}
+      />
     </group>
   )
 }
@@ -185,7 +186,7 @@ const Scene = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div ref={ref} className="w-full h-full">
-      <Canvas
+      <WebGPUCanvas
         camera={{ position: [0, 0, 5], fov: 50 }}
         shadows
       >
@@ -205,11 +206,96 @@ const Scene = forwardRef<HTMLDivElement>((props, ref) => {
 
         <Logo3D />
 
-      </Canvas>
+      </WebGPUCanvas>
     </div>
   )
 })
 
 Scene.displayName = 'Scene'
 
+function exportExtrudedSVGToGLTF() {
+  const svgPath = "M18 0C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.6863 24 8.24673e-06 21.3137 0 18V6C0 2.68629 2.68629 0 6 0H18ZM5 10C4.44772 10 4 10.4477 4 11V17C4 17.5523 4.44772 18 5 18H7C7.55228 18 8 17.5523 8 17V10H5ZM9 6C8.44772 6 8 6.44772 8 7V10H13.7139C13.979 9.99996 14.2334 9.89453 14.4209 9.70703C14.8114 9.3166 15.4444 9.31667 15.835 9.70703L16.6143 10.4854C17.0046 10.8758 17.0045 11.5089 16.6143 11.8994L16.293 12.2207C16.1055 12.4082 16 12.6626 16 12.9277V17C16 17.5523 16.4477 18 17 18H19C19.5523 18 20 17.5523 20 17V10.542C20 10.2768 19.8945 10.0225 19.707 9.83496L16.165 6.29297C15.9775 6.10547 15.7232 6.00004 15.458 6H9Z"
+
+  try {
+    const svgString = `
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="${svgPath}" />
+      </svg>
+    `
+    
+    const loader = new SVGLoader()
+    const svgData = loader.parse(svgString)
+    
+    const shapes: THREE.Shape[] = []
+    svgData.paths.forEach((path) => {
+      const pathShapes = SVGLoader.createShapes(path)
+      shapes.push(...pathShapes)
+    })
+
+    if (shapes.length > 0) {
+      const extrudeSettings = {
+        depth: 5,
+        bevelEnabled: true,
+        bevelSegments: 16,
+        bevelSize: 0.1,
+        bevelThickness: 0.1,
+        curveSegments: 32,
+        steps: 1,
+      }
+
+      const geometry = new THREE.ExtrudeGeometry(shapes, extrudeSettings)
+      geometry.computeBoundingBox()
+      geometry.center()
+
+      const material = new THREE.MeshPhysicalMaterial({
+        color: "#000000",
+        metalness: 1,
+        roughness: 0.5,
+      })
+
+      const mesh = new THREE.Mesh(geometry, material)
+      mesh.scale.set(0.08, 0.08, 0.08)
+      mesh.rotation.set(Math.PI, Math.PI, 0)
+
+      const scene = new THREE.Scene()
+      scene.add(mesh)
+
+      const exporter = new GLTFExporter()
+      
+      exporter.parse(
+        scene,
+        (gltf) => {
+          const blob = new Blob([gltf as ArrayBuffer], { type: 'application/octet-stream' })
+          const url = URL.createObjectURL(blob)
+          
+          const link = document.createElement('a')
+          link.href = url
+          link.download = 'nocta-logo-extruded.glb'
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          
+          URL.revokeObjectURL(url)
+          console.log('Model has been exported as nocta-logo-extruded.glb')
+        },
+        (error) => {
+          console.error('Error during export:', error)
+        },
+        {
+          binary: true,
+        }
+      )
+    }
+  } catch (error) {
+    console.error('Error creating geometry:', error)
+  }
+}
+
+declare global {
+  interface Window {
+    exportExtrudedSVGToGLTF?: typeof exportExtrudedSVGToGLTF
+  }
+}
+
+window.exportExtrudedSVGToGLTF = exportExtrudedSVGToGLTF
 export default Scene

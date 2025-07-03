@@ -163,7 +163,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 
   const baseStyles = `
     flex h-10 w-fit items-center justify-between
-    rounded-lg border border-nocta-300 dark:border-nocta-700/50
+    rounded-lg border border-nocta-300 dark:border-nocta-800/50
     bg-white dark:bg-nocta-950
     px-3 py-2 text-sm
     placeholder:text-nocta-400 dark:placeholder:text-nocta-500
@@ -340,7 +340,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       ref={contentRef}
       id={contentId}
       role="listbox"
-      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
+      className={cn('absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', positionStyles[position], animationStyles, 'not-prose', className)}
     >
       <div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
         {children}

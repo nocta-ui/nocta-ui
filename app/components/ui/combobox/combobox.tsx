@@ -192,7 +192,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
   const variants = {
     default: `
-      border-nocta-300 dark:border-nocta-700/50
+      border-nocta-300 dark:border-nocta-800/50
       bg-white dark:bg-nocta-950
       text-nocta-900 dark:text-nocta-100
       hover:border-nocta-300/50 dark:hover:border-nocta-600/50
@@ -281,11 +281,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
       {open && (
         <div
           ref={listRef}
-          className={cn('absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-700/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', popoverClassName)}
+          className={cn('absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', popoverClassName)}
         >
           {/* Search input */}
           {searchable && (
-            <div className="p-1 border-b border-nocta-300 dark:border-nocta-700/50">
+            <div className="p-1 border-b border-nocta-300 dark:border-nocta-800/50">
               <input
                 ref={searchInputRef}
                 type="text"

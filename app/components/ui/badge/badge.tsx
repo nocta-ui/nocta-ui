@@ -28,7 +28,7 @@ export const Badge: React.FC<BadgeProps> = ({
   const variants = {
     default: `
       bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
-      text-white dark:text-nocta-900
+      text-nocta-50 dark:text-nocta-900
       hover:bg-nocta-900 dark:hover:bg-nocta-200
     `,
     secondary: `
@@ -39,23 +39,23 @@ export const Badge: React.FC<BadgeProps> = ({
     `,
     destructive: `
       bg-red-500 dark:bg-red-600/50
-      text-white dark:text-white
+      text-nocta-50 dark:text-nocta-50
       hover:bg-red-600 dark:hover:bg-red-700
     `,
     success: `
       bg-green-500 dark:bg-green-600/50
-      text-white dark:text-white
+      text-nocta-50 dark:text-nocta-50
       hover:bg-green-600 dark:hover:bg-green-700
     `,
     warning: `
       bg-yellow-500 dark:bg-yellow-600/50
-      text-white dark:text-white
+      text-nocta-50 dark:text-nocta-50
       hover:bg-yellow-600 dark:hover:bg-yellow-700
     `,
     outline: `
       bg-transparent
       text-nocta-900 dark:text-nocta-100
-      border border-nocta-300 dark:border-nocta-700/50
+      border border-nocta-300 dark:border-nocta-800/50
       hover:bg-nocta-50 dark:hover:bg-nocta-900
     `
   };

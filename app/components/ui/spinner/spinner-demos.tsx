@@ -79,7 +79,7 @@ export const LoadingButtonDemo: React.FC = () => {
       <Button onClick={handleClick} disabled={isLoading} className="min-w-[120px]">
         {isLoading ? (
           <div className="flex items-center gap-2">
-            <Spinner size="sm" variant="primary" className="text-white dark:text-nocta-900" />
+            <Spinner size="sm" variant="primary" className="text-nocta-50 dark:text-nocta-900" />
             <span>Loading...</span>
           </div>
         ) : (

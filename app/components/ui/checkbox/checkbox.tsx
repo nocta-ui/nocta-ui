@@ -42,7 +42,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   const variants = {
     default: checked
-      ? 'bg-nocta-900 dark:bg-nocta-100/50 border-nocta-900 dark:border-nocta-100/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50'
+      ? 'bg-nocta-900 dark:bg-nocta-600 border-nocta-900 dark:border-nocta-100/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50'
       : 'bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-nocta-400 dark:hover:border-nocta-500 focus-visible:ring-nocta-500/50',
     success: checked
       ? 'bg-green-500 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50'
@@ -69,7 +69,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   const CheckIcon = () => (
     <svg
-      className={cn(iconSizes[size], 'text-white dark:text-white stroke-[3] transition-opacity duration-200', checked ? 'opacity-100' : 'opacity-0')}
+      className={cn(iconSizes[size], 'text-nocta-50 dark:text-nocta-50 stroke-[3] transition-opacity duration-200', checked ? 'opacity-100' : 'opacity-0')}
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"

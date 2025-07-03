@@ -172,11 +172,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
 
   const variants = {
     default: `
-      border-b border-nocta-300 dark:border-nocta-700/50
+      border-b border-nocta-300 dark:border-nocta-800/50
       last:border-b-0
     `,
     card: `
-      border border-nocta-300 dark:border-nocta-700/50
+      border border-nocta-300 dark:border-nocta-800/50
       rounded-lg overflow-hidden
       bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
       shadow-sm dark:shadow-lg
@@ -393,7 +393,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
     >
       <div
         ref={innerRef}
-        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-nocta-100 dark:border-nocta-700/50' : '', 'text-nocta-600 dark:text-nocta-400 leading-relaxed')}
+        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-nocta-100 dark:border-nocta-800/50' : '', 'text-nocta-600 dark:text-nocta-400 leading-relaxed')}
       >
         {children}
       </div>
