@@ -204,8 +204,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   const baseStyles = `
     bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 
     rounded-xl 
-    shadow-sm dark:shadow-lg 
-    hover:shadow-md dark:hover:shadow-xl 
+    shadow-sm dark:shadow-lg
     transition-all duration-300 ease-out 
     backdrop-blur-sm 
     overflow-hidden 

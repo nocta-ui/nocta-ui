@@ -62,3 +62,15 @@
     }
 }
 
+@layer utilities {
+  /* Light mode */
+  .bg-custom-radial {
+    background-image: radial-gradient(125% 125% at 50% 0%, oklch(.985 0 0) 50%, oklch(.708 0 0));
+  }
+
+  /* Dark mode */
+  .dark .bg-custom-radial {
+    background-image: radial-gradient(125% 125% at 50% 0%, oklch(.145 0 0) 50%, oklch(.205 0 0));
+  }
+}
+

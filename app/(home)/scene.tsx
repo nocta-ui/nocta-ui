@@ -1,6 +1,6 @@
 'use client'
 
-import { useFrame, useLoader } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { useRef, useMemo, useState, forwardRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js'
@@ -67,7 +67,7 @@ function Logo3D() {
   const isDarkMode = useDarkMode()
   const isMobile = useMediaQuery('(max-width: 768px)')
 
-  const { nodes, materials } = useGLTF('/models/nocta-logo-extruded-compressed.glb')
+  const { nodes } = useGLTF('/models/nocta-logo-extruded-compressed.glb')
 
   // Create custom materials for different nodes
   const customMaterials = useMemo(() => {

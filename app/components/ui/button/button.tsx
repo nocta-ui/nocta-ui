@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
       bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900 
       hover:bg-nocta-900 dark:hover:bg-nocta-200 
       focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-      shadow-sm hover:shadow-md
+      shadow-sm
     `,
     secondary: `
       bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 
