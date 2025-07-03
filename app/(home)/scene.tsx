@@ -11,7 +11,6 @@ import WebGPUCanvas from './webGPUCanvas'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js'
 
-
 const cubicInOut = (t: number): number => {
   return t < 0.5
     ? 4 * t * t * t
@@ -297,5 +296,9 @@ declare global {
   }
 }
 
-window.exportExtrudedSVGToGLTF = exportExtrudedSVGToGLTF
+// Add the function to window only on client side
+if (typeof window !== 'undefined') {
+  window.exportExtrudedSVGToGLTF = exportExtrudedSVGToGLTF
+}
+
 export default Scene
