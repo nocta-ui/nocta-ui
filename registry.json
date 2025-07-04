@@ -1,7 +1,7 @@
 {
   "name": "nocta-ui",
   "description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "components": {
     "accordion": {
       "name": "Accordion",
