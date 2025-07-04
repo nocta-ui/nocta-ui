@@ -18,6 +18,7 @@ export const baseOptions: BaseLayoutProps = {
       </>
     ),
   },
+  githubUrl: 'https://github.com/nocta-ui/nocta-ui',
   // see https://fumadocs.dev/docs/ui/navigation/links
   links: [],
 };
