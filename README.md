@@ -46,7 +46,7 @@ npx nocta-ui add button card badge
 
 ### Design System
 
-**Color Palette**: Neutral-first approach that adapts beautifully to both light and dark themes, with semantic colors used sparingly and purposefully.
+**Color Palette**: Choose from 4 carefully crafted themes (Charcoal, Jade, Copper, Cobalt) that adapt beautifully to both light and dark modes, with colors used sparingly and purposefully.
 
 **Typography**: Clear hierarchy with consistent spacing and readable line heights, optimized for accessibility and reading comfort.
 
@@ -102,6 +102,7 @@ The CLI automatically detects your framework and configures everything for you!
 - **Accessible by Default** - WCAG compliant with comprehensive accessibility features
 - **Customizable** - Full source code access means unlimited customization
 - **Modern Styling** - Built on Tailwind CSS with systematic design tokens
+- **Multiple Themes** - Choose from Charcoal, Jade, Copper, or Cobalt themes during initialization
 
 ## Customization
 

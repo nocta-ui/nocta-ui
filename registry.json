@@ -1,7 +1,7 @@
 {
   "name": "nocta-ui",
   "description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "components": {
     "accordion": {
       "name": "Accordion",
@@ -1063,22 +1063,5 @@
     "react-dom": "^18.0.0",
     "@types/react": "^18.0.0",
     "tailwindcss": "^3.0.0"
-  },
-  "tailwindConfig": {
-    "darkMode": "class",
-    "content": [
-      "./app/**/*.{js,ts,jsx,tsx,mdx}",
-      "./registry/**/*.{js,ts,jsx,tsx,mdx}"
-    ],
-    "theme": {
-      "extend": {
-        "colors": {
-          "neutral": "Colors from neutral palette"
-        },
-        "animation": {
-          "Custom animations for components": ""
-        }
-      }
-    }
   }
 } 

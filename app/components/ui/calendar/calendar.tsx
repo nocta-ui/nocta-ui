@@ -338,7 +338,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-100 dark:hover:bg-nocta-900 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
+                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-nocta-950 dark:bg-nocta-50 text-nocta-50 dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-300 dark:hover:bg-nocta-700 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

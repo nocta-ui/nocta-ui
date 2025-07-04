@@ -1,0 +1,21 @@
+flowchart TD
+    A[npx nocta-ui init] --> B[Check Tailwind CSS]
+    B --> C[Detect Framework]
+    C --> D[Theme Selection]
+    D --> E{User selects theme}
+    E --> F[Charcoal - Gray]
+    E --> G[Jade - Green]
+    E --> H[Copper - Orange]
+    E --> I[Cobalt - Blue]
+    F --> J[Create Config]
+    G --> J
+    H --> J
+    I --> J
+    J --> K[Install Dependencies]
+    K --> L[Create Utils]
+    L --> M{Tailwind Version?}
+    M -->|v4| N[Add tokens to CSS]
+    M -->|v3| O[Add tokens to tailwind.config]
+    N --> P[Success Message]
+    O --> P
+    P --> Q[Show selected theme info]
