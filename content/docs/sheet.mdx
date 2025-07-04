@@ -11,7 +11,6 @@ import {
   FormSheetDemo, 
   NavigationSheetDemo, 
   ControlledSheetDemo,
-  CustomSheetDemo 
 } from '@/app/components/ui/sheet/sheet-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
@@ -316,50 +315,6 @@ You can control the Sheet's open state programmatically.
         </Sheet>
       </div>
     );
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Customization
-
-You can customize the Sheet's appearance and behavior extensively.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomSheetDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Sheet Styling"
-    import { Sliders } from 'phosphor-react';
-
-    <Sheet>
-       <SheetTrigger asChild>
-         <Button variant="primary">
-           <Sliders size={16} className="mr-2" />
-           Customization Panel
-         </Button>
-       </SheetTrigger>
-      <SheetContent 
-        showClose={false} 
-        className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-950 dark:to-nocta-900"
-      >
-        <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-950/50 backdrop-blur-sm">
-          <SheetTitle className="text-xl">Customization</SheetTitle>
-          <SheetDescription>
-            This sheet has custom styling and no default close button.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="px-6 py-6 flex-1 space-y-6">
-          {/* Custom content */}
-        </div>
-        <SheetFooter className="bg-white/80 dark:bg-nocta-950/80 backdrop-blur-sm">
-          <Button variant="ghost" size="sm">Reset</Button>
-          <SheetClose asChild>
-            <Button size="sm">Apply Changes</Button>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
     ```
   </DocsTab>
 </DocsTabs>

@@ -3,6 +3,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode;
   variant?: 'default' | 'secondary' | 'destructive' | 'success' | 'warning' | 'outline';
@@ -18,6 +22,8 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
   ...props
 }) => {
+  const shouldRemoveGradient = hasBackgroundColor(className);
+  
   const baseStyles = `
     inline-flex items-center justify-center rounded-full font-medium
     transition-all duration-200 ease-in-out
@@ -27,8 +33,10 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const variants = {
     default: `
-      bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
-      text-nocta-50 dark:text-nocta-900
+      ${shouldRemoveGradient 
+        ? 'bg-none text-nocta-50 dark:text-nocta-900' 
+        : 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900'
+      }
       hover:bg-nocta-900 dark:hover:bg-nocta-200
     `,
     secondary: `

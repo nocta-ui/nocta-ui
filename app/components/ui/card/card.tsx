@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -38,16 +37,28 @@ export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 // Base Card Component
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(({ 
   children, 
   className = '', 
   ...props 
 }, ref) => {
+  const shouldRemoveGradient = hasBackgroundColor(className);
+  
   return (
     <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div 
-      className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose', className)}
+      className={cn(
+        'rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose',
+        shouldRemoveGradient 
+          ? 'bg-none' 
+          : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900',
+        className
+      )}
       {...props}
       >
         {children}

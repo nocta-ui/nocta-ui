@@ -4,6 +4,10 @@ import React, { createContext, useContext, useState, useCallback, useEffect, use
 import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 // Toast types
 export type ToastPosition = 
   | 'top-left' 
@@ -18,6 +22,7 @@ export interface ToastData {
   title?: string;
   description?: string;
   variant?: 'default' | 'success' | 'warning' | 'destructive';
+  className?: string;
   duration?: number;
   position?: ToastPosition; // Position of the toast on screen
   action?: {
@@ -75,10 +80,14 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const hasAnimatedIn = useRef(false);
   const animationRef = useRef<gsap.core.Tween | null>(null);
 
-  const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center' } = toast;
+  const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center', className = '' } = toast;
+  
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
   const variants = {
-    default: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-800/50',
+    default: shouldRemoveGradient 
+      ? 'bg-none border-nocta-300 dark:border-nocta-800/50' 
+      : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-800/50',
     success: 'bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800/50 text-green-900 dark:text-green-100',
     warning: 'bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800/50 text-yellow-900 dark:text-yellow-100',
     destructive: 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/50 text-red-900 dark:text-red-100'
@@ -322,7 +331,8 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     <div
       ref={toastRef}
       className={cn(
-        `fixed ${config.containerClass} ${config.widthClass} ${variants[variant]} border rounded-lg shadow-lg dark:shadow-xl backdrop-blur-sm overflow-hidden not-prose pointer-events-auto will-change-transform`
+        `fixed ${config.containerClass} ${config.widthClass} ${variants[variant]} border rounded-lg shadow-lg dark:shadow-xl backdrop-blur-sm overflow-hidden not-prose pointer-events-auto will-change-transform`,
+        className
       )}
       style={{ 
         zIndex: 50 - index,

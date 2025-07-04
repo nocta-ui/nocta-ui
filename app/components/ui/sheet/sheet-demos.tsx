@@ -13,7 +13,6 @@ import {
   Gear, 
   Question,
   List,
-  Sliders
 } from 'phosphor-react';
 
 export const BasicSheetDemo: React.FC = () => {
@@ -379,65 +378,3 @@ export const ControlledSheetDemo: React.FC = () => {
     </div>
   );
 };
-
-export const CustomSheetDemo: React.FC = () => {
-  return (
-    <div className="my-6">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="primary">
-            <Sliders size={16} className="mr-2" />
-            Customization Panel
-          </Button>
-        </SheetTrigger>
-        <SheetContent showClose={false} className="bg-gradient-to-b from-nocta-50 to-white dark:from-nocta-950 dark:to-nocta-900">
-          <SheetHeader className="border-b-2 border-nocta-300 dark:border-nocta-700 bg-white/50 dark:bg-nocta-950/50 backdrop-blur-sm">
-            <SheetTitle className="text-xl">Customization</SheetTitle>
-            <SheetDescription>
-              This sheet has custom styling and no default close button.
-            </SheetDescription>
-          </SheetHeader>
-          <div className="px-6 py-6 flex-1 space-y-6">
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Theme Options</h3>
-              <div className="grid grid-cols-3 gap-2">
-                <button className="h-16 bg-blue-500 rounded-lg"></button>
-                <button className="h-16 bg-green-500 rounded-lg"></button>
-                <button className="h-16 bg-purple-500 rounded-lg"></button>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Font Size</h3>
-              <div className="flex gap-2">
-                <Badge variant="outline">Small</Badge>
-                <Badge variant="default">Default</Badge>
-                <Badge variant="outline">Large</Badge>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">Layout</h3>
-              <div className="space-y-2">
-                <button className="w-full p-3 text-left border border-nocta-300 dark:border-nocta-700 rounded-lg hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors">
-                  <div className="text-sm font-medium">Compact</div>
-                  <div className="text-xs text-nocta-500">Minimal spacing</div>
-                </button>
-                <button className="w-full p-3 text-left border-2 border-nocta-900 dark:border-nocta-100 rounded-lg bg-nocta-50 dark:bg-nocta-900">
-                  <div className="text-sm font-medium">Comfortable</div>
-                  <div className="text-xs text-nocta-500">Standard spacing</div>
-                </button>
-              </div>
-            </div>
-          </div>
-          <SheetFooter className="bg-nocta-100 dark:bg-nocta-950/50 backdrop-blur-sm">
-            <Button variant="ghost" size="sm">Reset</Button>
-            <SheetClose asChild>
-              <Button size="sm">Apply Changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
-    </div>
-  );
-}; 

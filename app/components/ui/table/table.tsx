@@ -4,6 +4,10 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { Spinner } from '../spinner';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 // Types
 export type SortDirection = 'asc' | 'desc' | null;
 export type TableVariant = 'default' | 'striped';
@@ -105,6 +109,7 @@ export const Table = <T extends Record<string, unknown>>({
     direction: null
   });
   const [filters, setFilters] = useState<Record<string, string>>({});
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
   const getRowKey = useCallback((record: T, index: number): string => {
     if (typeof rowKey === 'function') {
@@ -210,7 +215,7 @@ export const Table = <T extends Record<string, unknown>>({
 
   return (
     <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl">
-      <div className={cn('bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', getVariantStyles(), className)}>
+      <div className={cn('rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table

@@ -1,6 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'destructive' | 'warning' | 'success';
   className?: string;
@@ -30,6 +34,8 @@ export const Alert: React.FC<AlertProps> = ({
   children,
   ...props
 }) => {
+  const shouldRemoveGradient = hasBackgroundColor(className);
+  
   const baseStyles = `
     relative rounded-lg border px-4 py-3
     flex items-start gap-3
@@ -40,7 +46,10 @@ export const Alert: React.FC<AlertProps> = ({
   const variants = {
     default: `
       border-nocta-300 dark:border-nocta-800/50
-      bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
+      ${shouldRemoveGradient 
+        ? 'bg-none' 
+        : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'
+      }
       text-nocta-900 dark:text-nocta-100
       [&>svg]:text-nocta-600 dark:[&>svg]:text-nocta-400
     `,

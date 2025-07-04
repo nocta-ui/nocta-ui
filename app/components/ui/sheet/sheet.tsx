@@ -4,6 +4,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 export interface SheetProps {
   children: React.ReactNode;
   open?: boolean;
@@ -135,6 +139,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
   // Focus trap functionality
   const getFocusableElements = () => {
@@ -303,7 +308,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       <div
         ref={contentRef}
         className={cn(`
-          fixed flex flex-col bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-800/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
+          fixed flex flex-col ${shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'} border-nocta-300 dark:border-nocta-800/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
         `)}
         role="dialog"
         aria-modal="true"

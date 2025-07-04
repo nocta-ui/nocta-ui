@@ -3,6 +3,10 @@
 import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 // Popover interfaces
 export interface PopoverProps {
   children: React.ReactNode;
@@ -91,6 +95,7 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
   className = '',
 }) => {
   const { open, setOpen, triggerRef, contentId } = React.useContext(PopoverContext);
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
   const handleClick = () => {
     setOpen(!open);
@@ -128,7 +133,10 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       className={`
         inline-flex items-center justify-center
         rounded-lg border border-nocta-300 dark:border-nocta-800/50
-        bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900
+        ${shouldRemoveGradient 
+          ? 'bg-none' 
+          : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'
+        }
         px-3 py-2 text-sm font-medium
         text-nocta-900 dark:text-nocta-100
         hover:bg-nocta-50 dark:hover:bg-nocta-900
@@ -164,6 +172,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [isMeasuring, setIsMeasuring] = useState(false);
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
 
 
@@ -378,7 +387,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left: position ? `${position.left}px` : '0px',
         zIndex: 50,
       }}
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg border border-nocta-300 dark:border-nocta-800/50', shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900', 'p-4 shadow-lg dark:shadow-xl', animationStyles, 'not-prose', className)}
     >
       {children}
     </div>

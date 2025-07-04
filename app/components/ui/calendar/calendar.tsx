@@ -3,6 +3,10 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 
+const hasBackgroundColor = (className: string = '') => {
+  return /bg-(?!linear|gradient|none)\w+/.test(className);
+};
+
 export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   value?: Date;
   defaultValue?: Date;
@@ -56,6 +60,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const isControlled = controlledValue !== undefined;
   const selectedDate = isControlled ? controlledValue : internalValue;
+  const shouldRemoveGradient = hasBackgroundColor(className);
 
   // Date utilities
   const isSameDay = useCallback((date1: Date, date2: Date) => {
@@ -202,7 +207,10 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 
+    ${shouldRemoveGradient 
+      ? 'bg-none' 
+      : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'
+    }
     rounded-xl 
     shadow-sm dark:shadow-lg
     transition-all duration-300 ease-out 
