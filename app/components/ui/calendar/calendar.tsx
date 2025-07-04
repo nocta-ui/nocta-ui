@@ -245,7 +245,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [weekStartsOn, formatWeekday, variant]);
 
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
+    <div className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div
       className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
       role="application"

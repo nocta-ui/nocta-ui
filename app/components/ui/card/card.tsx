@@ -50,7 +50,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(({
   const shouldRemoveGradient = hasBackgroundColor(className);
   
   return (
-    <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl w-fit'>
+    <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl w-fit'>
       <div 
       className={cn(
         'rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose',

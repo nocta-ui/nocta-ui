@@ -214,7 +214,7 @@ export const Table = <T extends Record<string, unknown>>({
   }, [variant, onRowClick, rowClassName]);
 
   return (
-    <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-500/20 to-transparent rounded-xl">
+    <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl">
       <div className={cn('rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
