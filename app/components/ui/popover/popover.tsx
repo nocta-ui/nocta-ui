@@ -95,7 +95,6 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
   className = '',
 }) => {
   const { open, setOpen, triggerRef, contentId } = React.useContext(PopoverContext);
-  const shouldRemoveGradient = hasBackgroundColor(className);
 
   const handleClick = () => {
     setOpen(!open);
