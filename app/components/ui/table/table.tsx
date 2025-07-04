@@ -455,7 +455,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-800/50 font-semibold', className)}
+      className={cn('bg-nocta-100 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 font-semibold', className)}
       {...props}
     >
       {children}

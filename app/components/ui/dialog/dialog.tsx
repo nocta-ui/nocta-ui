@@ -352,7 +352,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 rounded-b-xl border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-100 dark:bg-nocta-900/50 rounded-b-xl border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

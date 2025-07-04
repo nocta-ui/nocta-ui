@@ -430,7 +430,7 @@ export const CustomSheetDemo: React.FC = () => {
               </div>
             </div>
           </div>
-          <SheetFooter className="bg-white/80 dark:bg-nocta-950/80 backdrop-blur-sm">
+          <SheetFooter className="bg-nocta-100 dark:bg-nocta-950/50 backdrop-blur-sm">
             <Button variant="ghost" size="sm">Reset</Button>
             <SheetClose asChild>
               <Button size="sm">Apply Changes</Button>

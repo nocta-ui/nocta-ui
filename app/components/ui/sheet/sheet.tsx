@@ -357,7 +357,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-5 border-b border-nocta-100 dark:border-nocta-800/50 not-prose', className)}
+      className={cn('px-6 py-5 border-b border-nocta-200 dark:border-nocta-800/50 not-prose', className)}
       {...props}
     >
       {children}
@@ -406,7 +406,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 mt-auto bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-100 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose', className)}
+      className={cn('px-6 py-4 mt-auto bg-nocta-100 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}
@@ -442,7 +442,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
   return (
     <button
       className={cn(`
-        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
+        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
       `, className)}
       onClick={handleClick}
       {...props}
