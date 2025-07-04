@@ -12,6 +12,8 @@ export default function HomePage() {
   const buttonsRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const sceneRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const buttonsContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.set([textRef.current, ...buttonsRef.current, titleRef.current], {
@@ -21,6 +23,9 @@ export default function HomePage() {
 
       gsap.set(sceneRef.current, {
         filter: 'blur(24px)',
+      });
+      gsap.set(buttonsContainerRef.current, {
+        opacity: 1,
       });
 
       const tl = gsap.timeline({ delay: 1 });
@@ -65,12 +70,12 @@ export default function HomePage() {
       </div>
       
       <div className="max-w-2xl mx-auto w-full flex flex-col items-center justify-center space-y-2 z-10 relative mt-100 md:mt-140">
-        <h1 ref={titleRef} className="text-xl font-semibold">Nocta UI</h1>
-        <p ref={textRef} className="text-sm text-nocta-600 dark:text-nocta-400 font-normal tracking-wide mb-6">
+        <h1 ref={titleRef} style={{opacity: 0}} className="text-xl font-semibold">Nocta UI</h1>
+        <p ref={textRef} style={{opacity: 0}} className="text-sm text-nocta-600 dark:text-nocta-400 font-normal tracking-wide mb-6">
           Production-ready React components
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div ref={buttonsContainerRef} style={{opacity: 0}} className="flex flex-col sm:flex-row gap-4">
           <Link href="/docs" ref={(el) => { buttonsRef.current[0] = el; }}>
             <Button className="px-6 py-2.5 font-medium text-sm bg-nocta-900 hover:bg-nocta-900 dark:bg-nocta-100 dark:hover:bg-nocta-200 dark:text-nocta-900 transition-colors">
               Get Started
