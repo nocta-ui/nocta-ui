@@ -125,12 +125,6 @@ export const DisabledDatesDemo: React.FC = () => {
     return day === 0 || day === 6;
   };
 
-  // Disable specific dates
-  const disabledDates = [
-    new Date(2024, 11, 25), // Christmas
-    new Date(2024, 0, 1),   // New Year
-  ];
-
   return (
     <div className="my-6 space-y-8">
       <div className="space-y-2">
@@ -139,16 +133,6 @@ export const DisabledDatesDemo: React.FC = () => {
         </label>
         <Calendar 
           disabledDates={isWeekend}
-          value={selectedDate}
-          onChange={setSelectedDate}
-        />
-      </div>
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-          Disabled Specific Dates
-        </label>
-        <Calendar 
-          disabledDates={disabledDates}
           value={selectedDate}
           onChange={setSelectedDate}
         />

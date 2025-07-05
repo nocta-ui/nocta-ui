@@ -8,7 +8,6 @@ const hasBackgroundColor = (className: string = '') => {
   return /bg-(?!linear|gradient|none)\w+/.test(className);
 };
 
-// CVA for calendar container
 const calendarVariants = cva(
   [
     'rounded-xl',
@@ -47,7 +46,6 @@ const calendarVariants = cva(
   }
 );
 
-// CVA for day buttons
 const dayButtonVariants = cva(
   [
     'text-center',
@@ -90,7 +88,7 @@ const MONTHS = [
 ];
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
+export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'>, Omit<VariantProps<typeof calendarVariants>, 'disabled'> {
   value?: Date;
   defaultValue?: Date;
   onChange?: (date: Date | undefined) => void;
@@ -105,7 +103,6 @@ export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0 = Sunday, 1 = Monday, etc.
   formatMonth?: (date: Date) => string;
   formatWeekday?: (date: Date) => string;
-  className?: string;
   'aria-label'?: string;
 }
 
@@ -412,4 +409,4 @@ export const Calendar: React.FC<CalendarProps> = ({
     </div>
     </div>
   );
-}; 
+};

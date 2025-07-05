@@ -155,7 +155,6 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
@@ -213,14 +212,12 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 
     if (open) {
       previousActiveElementRef.current = document.activeElement as HTMLElement;
-      setIsAnimating(true);
       
       setShouldRender(true);
       
       animationFrameRef.current = requestAnimationFrame(() => {
         timeoutRef.current = window.setTimeout(() => {
           setIsVisible(true);
-          setIsAnimating(false);
           
           timeoutRef.current = window.setTimeout(() => {
             const focusableElements = getFocusableElements();
@@ -231,12 +228,10 @@ export const DialogContent: React.FC<DialogContentProps> = ({
         }, 16);
       });
     } else {
-      setIsAnimating(true);
       setIsVisible(false);
       
       timeoutRef.current = window.setTimeout(() => {
         setShouldRender(false);
-        setIsAnimating(false);
         if (previousActiveElementRef.current) {
           previousActiveElementRef.current.focus();
         }
