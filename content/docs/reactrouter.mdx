@@ -1,20 +1,14 @@
 ---
-title: Next.js Installation
-description: Step-by-step guide to install and configure Nocta UI with Next.js
+title: React Router Installation
+description: Step-by-step guide to install and configure Nocta UI with React Router 7
 ---
 
-## Create Next.js Project
+## Create React Router Project
 
-First, create a new Next.js project:
+First, create a new React Router project:
 
 ```bash lineNumbers title="Terminal"
-npx create-next-app@latest my-app 
-  --typescript 
-  --eslint 
-  --tailwind 
-  --app
-  --turbopack	 
-  --import-alias "@/*"
+npx create-react-router@latest my-app
 cd my-app
 ```
 
@@ -27,12 +21,12 @@ npx nocta-ui init
 ```
 
 The init command will:
-- **Framework Detection**: Automatically detect that you're using Next.js and determine if you're using App Router or Pages Router
+- **Framework Detection**: Automatically detect that you're using React Router 7 and check the framework mode
 - **Tailwind CSS Check**: Verify your Tailwind CSS installation and version
 - **Theme Selection**: Present you with theme options (Charcoal, Jade, Copper, Cobalt) to choose your preferred color palette
 - **Dependencies Installation**: Install all required dependencies (tailwind-merge, clsx, class-variance-authority)
-- **Project Structure**: Create the `components/ui/` directory structure for components
-- **Utils Setup**: Generate `lib/utils.ts` with the necessary utility functions
+- **Project Structure**: Create the `app/components/ui/` directory structure for components
+- **Utils Setup**: Generate `app/lib/utils.ts` with the necessary utility functions
 - **Theme Configuration**: Add your selected theme tokens to either your CSS file (Tailwind v4) or tailwind.config (Tailwind v3)
 
 ## Add Components
@@ -47,12 +41,12 @@ npx nocta-ui add badge
 
 ## Usage
 
-Now you can import and use Nocta UI components in your Next.js application:
+Now you can import and use Nocta UI components in your React Router application:
 
-```tsx lineNumbers title="src/app/page.tsx"
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+```tsx lineNumbers title="app/routes/home.tsx"
+import { Button } from '~/components/ui/button';
+import { Card, CardHeader, CardContent, CardTitle } from '~/components/ui/card';
+import { Badge } from '~/components/ui/badge';
 
 export default function Home() {
   return (
@@ -67,7 +61,7 @@ export default function Home() {
               Get Started
             </Button>
             <Badge variant="secondary">
-              Next.js Ready
+              React Router Ready
             </Badge>
           </div>
         </CardContent>
@@ -77,4 +71,4 @@ export default function Home() {
 }
 ```
 
-You're all set! You can now copy component code from the documentation and use it in your Next.js application.
+You're all set! You can now copy component code from the documentation and use it in your React Router application.

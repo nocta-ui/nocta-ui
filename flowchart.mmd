@@ -1,21 +1,32 @@
 flowchart TD
     A[npx nocta-ui init] --> B[Check Tailwind CSS]
     B --> C[Detect Framework]
-    C --> D[Theme Selection]
-    D --> E{User selects theme}
-    E --> F[Charcoal - Gray]
-    E --> G[Jade - Green]
-    E --> H[Copper - Orange]
-    E --> I[Cobalt - Blue]
-    F --> J[Create Config]
-    G --> J
-    H --> J
-    I --> J
-    J --> K[Install Dependencies]
-    K --> L[Create Utils]
-    L --> M{Tailwind Version?}
-    M -->|v4| N[Add tokens to CSS]
-    M -->|v3| O[Add tokens to tailwind.config]
-    N --> P[Success Message]
-    O --> P
-    P --> Q[Show selected theme info]
+    C --> D{Framework Type?}
+    D -->|Next.js| E1[App/Pages Router Detection]
+    D -->|Vite + React| E2[Vite Structure Check]
+    D -->|React Router 7| E3[Framework Mode Check]
+    E1 --> F[Theme Selection]
+    E2 --> F
+    E3 --> F
+    F --> G{User selects theme}
+    G --> H[Charcoal - Gray]
+    G --> I[Jade - Green]
+    G --> J[Copper - Orange]
+    G --> K[Cobalt - Blue]
+    H --> L[Create Framework Config]
+    I --> L
+    J --> L
+    K --> L
+    L --> M[Install Dependencies]
+    M --> N{Framework?}
+    N -->|Next.js| O1[Create lib/utils.ts]
+    N -->|Vite| O2[Create src/lib/utils.ts]
+    N -->|React Router 7| O3[Create app/lib/utils.ts]
+    O1 --> P{Tailwind Version?}
+    O2 --> P
+    O3 --> P
+    P -->|v4| Q[Add tokens to CSS file]
+    P -->|v3| R[Add tokens to tailwind.config]
+    Q --> S[Success Message]
+    R --> S
+    S --> T[Show framework & theme info]
