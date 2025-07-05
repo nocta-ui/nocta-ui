@@ -155,7 +155,10 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const getFocusableElements = () => {
     if (!contentRef.current) return [];
@@ -201,31 +204,54 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   }, [onOpenChange]);
 
   useEffect(() => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+    }
+
     if (open) {
       previousActiveElementRef.current = document.activeElement as HTMLElement;
+      setIsAnimating(true);
       
+      // Set should render first
       setShouldRender(true);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
+      
+      animationFrameRef.current = requestAnimationFrame(() => {
+        timeoutRef.current = window.setTimeout(() => {
           setIsVisible(true);
-          setTimeout(() => {
+          setIsAnimating(false);
+          
+          timeoutRef.current = window.setTimeout(() => {
             const focusableElements = getFocusableElements();
             if (focusableElements.length > 0) {
               focusableElements[0].focus();
             }
-          }, 100);
-        });
+          }, 150);
+        }, 16); // ~1 frame delay
       });
     } else {
+      setIsAnimating(true);
       setIsVisible(false);
-      const timer = setTimeout(() => {
+      
+      timeoutRef.current = window.setTimeout(() => {
         setShouldRender(false);
+        setIsAnimating(false);
         if (previousActiveElementRef.current) {
           previousActiveElementRef.current.focus();
         }
       }, 300);
-      return () => clearTimeout(timer);
     }
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
   }, [open]);
 
   useEffect(() => {
@@ -259,7 +285,12 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       
       <div
       ref={contentRef}
-      className={cn(dialogContentVariants({ size }), isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', className)}>
+      className={cn(
+        dialogContentVariants({ size }), 
+        isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4',
+        'transform transition-all duration-300 ease-out',
+        className
+      )}>
         <div
           className='relative z-50 w-full bg-nocta-100 dark:bg-nocta-900 rounded-xl'
           role="dialog"
