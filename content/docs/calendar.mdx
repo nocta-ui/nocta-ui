@@ -267,7 +267,7 @@ Handle date selection with custom logic.
     return (
       <div>
         <Calendar 
-          variant="bordered"
+          variant="compact"
           value={selectedDate}
           onChange={handleDateSelect}
         />
@@ -311,7 +311,7 @@ The Calendar component supports full keyboard navigation:
 | `value` | `Date \| undefined` | - | The selected date (controlled) |
 | `defaultValue` | `Date \| undefined` | - | The default selected date (uncontrolled) |
 | `onChange` | `(date: Date \| undefined) => void` | - | Callback when date is selected |
-| `variant` | `'default' \| 'compact' \| 'bordered'` | `'default'` | Visual style variant |
+| `variant` | `'default' \| 'compact'` | `'default'` | Visual style variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the calendar |
 | `disabled` | `boolean` | `false` | Whether the calendar is disabled |
 | `disabledDates` | `Date[] \| ((date: Date) => boolean)` | - | Dates to disable |

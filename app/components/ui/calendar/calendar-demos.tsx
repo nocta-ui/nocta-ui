@@ -248,6 +248,7 @@ export const EventCalendarDemo: React.FC = () => {
             Event Calendar
           </label>
           <Calendar 
+            variant="compact"
             value={selectedDate}
             onChange={handleDateSelect}
           />
