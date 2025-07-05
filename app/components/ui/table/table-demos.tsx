@@ -207,7 +207,7 @@ export const AdvancedTableDemo: React.FC = () => {
       key: 'name', 
       title: 'User',
       sortable: true,
-      filterable: true,
+      filterable: false,
       render: (value, record) => (
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
@@ -223,20 +223,24 @@ export const AdvancedTableDemo: React.FC = () => {
     { 
       key: 'status', 
       title: 'Status',
+      align: 'left',
       sortable: true,
-      filterable: true,
+      filterable: false,
       render: (value) => (
-        <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
+        <div className="flex items-center justify-center">
+          <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
           {String(value).charAt(0).toUpperCase() + String(value).slice(1)}
         </Badge>
+        </div>
       )
     },
     {
       key: 'actions',
       title: 'Actions',
       align: 'right',
+      filterable: false,
       render: (_) => (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center justify-end gap-1">
           <Button variant="ghost" size="sm">Edit</Button>
           <Button variant="ghost" size="sm">Delete</Button>
         </div>

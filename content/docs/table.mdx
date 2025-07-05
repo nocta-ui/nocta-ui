@@ -155,18 +155,20 @@ Use the `render` function in column definitions for custom cell content.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Custom Rendering & Actions"
-    const columns = [
+    const columns: TableColumn<User>[] = [
       { 
         key: 'name', 
         title: 'User',
+        sortable: true,
+        filterable: false,
         render: (value, record) => (
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
-              {value.charAt(0)}
+              {String(value).charAt(0)}
             </div>
             <div className="min-w-0">
-              <div className="font-medium truncate">{value}</div>
-              <div className="text-xs text-nocta-500 truncate">{record.email}</div>
+              <div className="font-medium text-nocta-900 dark:text-nocta-100 truncate">{String(value)}</div>
+              <div className="text-xs text-nocta-500 dark:text-nocta-400 truncate">{record.email}</div>
             </div>
           </div>
         )
@@ -174,18 +176,24 @@ Use the `render` function in column definitions for custom cell content.
       { 
         key: 'status', 
         title: 'Status',
+        align: 'left',
+        sortable: true,
+        filterable: false,
         render: (value) => (
-          <Badge variant={getStatusVariant(value)}>
-            {value.charAt(0).toUpperCase() + value.slice(1)}
+          <div className="flex items-center justify-center">
+            <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
+            {String(value).charAt(0).toUpperCase() + String(value).slice(1)}
           </Badge>
+          </div>
         )
       },
       {
         key: 'actions',
         title: 'Actions',
         align: 'right',
-        render: (_, record) => (
-          <div className="flex items-center gap-1">
+        filterable: false,
+        render: (_) => (
+          <div className="flex items-center justify-end gap-1">
             <Button variant="ghost" size="sm">Edit</Button>
             <Button variant="ghost" size="sm">Delete</Button>
           </div>
