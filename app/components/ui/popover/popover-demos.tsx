@@ -278,7 +278,7 @@ export const FormPopoverDemo: React.FC = () => {
               <input
                 type="text"
                 placeholder="Enter item name"
-                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-nocta-100 dark:bg-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400"
                 required
               />
             </div>
@@ -290,7 +290,7 @@ export const FormPopoverDemo: React.FC = () => {
               <textarea
                 placeholder="Enter description"
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400 resize-none"
+                className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md bg-nocta-100 dark:bg-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500 dark:focus-visible:ring-nocta-400 resize-none"
               />
             </div>
 

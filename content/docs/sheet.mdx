@@ -9,7 +9,6 @@ import {
   SheetSidesDemo, 
   SheetSizesDemo, 
   FormSheetDemo, 
-  NavigationSheetDemo, 
   ControlledSheetDemo,
 } from '@/app/components/ui/sheet/sheet-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -202,67 +201,6 @@ Perfect for forms and data entry interfaces.
           <SheetClose>Cancel</SheetClose>
           <Button>Save Changes</Button>
         </SheetFooter>
-      </SheetContent>
-    </Sheet>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Navigation Example
-
-Great for mobile navigation menus and sidebar navigation.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <NavigationSheetDemo />
-  </DocsTab>
-     <DocsTab value="code" lineNumbers title="Code">
-     ```tsx lineNumbers title="Navigation Sheet Example"
-     import { List, ChartBar, Folder, Check, Users, Gear, Question } from 'phosphor-react';
-
-     const menuItems = [
-       { name: 'Dashboard', icon: ChartBar, badge: null },
-       { name: 'Projects', icon: Folder, badge: '12' },
-       { name: 'Tasks', icon: Check, badge: '3' },
-       { name: 'Team', icon: Users, badge: null },
-       { name: 'Settings', icon: Gear, badge: null },
-       { name: 'Help', icon: Question, badge: null },
-     ];
-
-     <Sheet>
-       <SheetTrigger asChild>
-         <Button variant="ghost">
-           <List size={16} className="mr-2" />
-           Menu
-         </Button>
-       </SheetTrigger>
-      <SheetContent side="left" size="sm">
-        <SheetHeader>
-          <SheetTitle>Navigation</SheetTitle>
-          <SheetDescription>
-            Access all sections of the application.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="px-6 py-4 flex-1">
-          <nav className="space-y-2">
-            {menuItems.map((item, index) => (
-                <button
-                 key={index}
-                 className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-left text-nocta-700 dark:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors duration-200"
-               >
-                 <div className="flex items-center gap-3">
-                   <item.icon size={16} className="text-nocta-600 dark:text-nocta-400" />
-                   <span>{item.name}</span>
-                 </div>
-                 {item.badge && (
-                   <Badge variant="secondary" size="sm">
-                     {item.badge}
-                   </Badge>
-                 )}
-               </button>
-            ))}
-          </nav>
-        </div>
       </SheetContent>
     </Sheet>
     ```

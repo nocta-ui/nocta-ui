@@ -22,7 +22,7 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
   ...props
 }) => {
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
   
   const baseStyles = `
     inline-flex items-center justify-center rounded-full font-medium
@@ -33,11 +33,11 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const variants = {
     default: `
-      ${shouldRemoveGradient 
-        ? 'bg-none text-nocta-50 dark:text-nocta-900' 
-        : 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900'
+      ${shouldOverrrideBackground 
+        ? '' 
+        : 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300'
       }
-      hover:bg-nocta-900 dark:hover:bg-nocta-200
+      hover:bg-nocta-900 dark:hover:bg-nocta-200 text-nocta-50 dark:text-nocta-900
     `,
     secondary: `
       bg-nocta-100 dark:bg-nocta-900

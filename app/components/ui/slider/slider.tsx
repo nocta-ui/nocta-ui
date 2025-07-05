@@ -248,7 +248,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   const thumbVariants = {
     default: 'bg-white dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400',
-    primary: 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-2 border-nocta-900 dark:border-nocta-100',
+    primary: 'bg-nocta-100 dark:bg-nocta-900 border-2 border-nocta-900 dark:border-nocta-100',
     secondary: 'bg-white dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500'
   };
 

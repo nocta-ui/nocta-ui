@@ -168,7 +168,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [isMeasuring, setIsMeasuring] = useState(false);
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
 
 
 
@@ -382,10 +382,10 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       left: position ? `${position.left}px` : '0px',
       zIndex: 50,
     }}
-    className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-lg', animationStyles)}>
+    className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-lg', animationStyles)}>
     <div
       
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg ', shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900', 'p-4 shadow-lg dark:shadow-xl', 'not-prose', className)}
+      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg ', shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900', 'p-4 shadow-lg dark:shadow-xl', 'not-prose', className)}
     >
       {children}
     </div>

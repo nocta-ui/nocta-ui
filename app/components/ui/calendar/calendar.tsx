@@ -60,7 +60,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const isControlled = controlledValue !== undefined;
   const selectedDate = isControlled ? controlledValue : internalValue;
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
 
   // Date utilities
   const isSameDay = useCallback((date1: Date, date2: Date) => {
@@ -207,9 +207,9 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
   const baseStyles = `
-    ${shouldRemoveGradient 
-      ? 'bg-none' 
-      : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'
+    ${shouldOverrrideBackground 
+      ? '' 
+      : 'bg-nocta-100 dark:bg-nocta-900'
     }
     rounded-xl 
     shadow-sm dark:shadow-lg
@@ -245,7 +245,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   }, [weekStartsOn, formatWeekday, variant]);
 
   return (
-    <div className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl w-fit'>
+    <div className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl w-fit'>
       <div
       className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
       role="application"

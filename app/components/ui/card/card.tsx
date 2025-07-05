@@ -47,16 +47,16 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(({
   className = '', 
   ...props 
 }, ref) => {
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
   
   return (
-    <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl w-fit'>
+    <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl w-fit'>
       <div 
       className={cn(
         'rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose',
-        shouldRemoveGradient 
-          ? 'bg-none' 
-          : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900',
+        shouldOverrrideBackground 
+          ? '' 
+          : 'bg-nocta-100 dark:bg-nocta-900',
         className
       )}
       {...props}
@@ -142,7 +142,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-nocta-100 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

@@ -20,7 +20,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '', 
   ...props 
 }) => {
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
   
   const baseStyles = `
     inline-flex items-center justify-center rounded-lg font-medium
@@ -32,11 +32,12 @@ export const Button: React.FC<ButtonProps> = ({
   
   const variants = {
     primary: `
-      ${shouldRemoveGradient 
-        ? 'bg-none text-white dark:text-nocta-900' 
-        : 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-white dark:text-nocta-900'
+      ${shouldOverrrideBackground 
+        ? '' 
+        : 'bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300'
       }
       hover:bg-nocta-900 dark:hover:bg-nocta-200 
+      text-white dark:text-nocta-900
       focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
       shadow-sm
     `,

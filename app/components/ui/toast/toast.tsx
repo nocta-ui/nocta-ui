@@ -82,15 +82,22 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 
   const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center', className = '' } = toast;
   
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
 
   const variants = {
-    default: shouldRemoveGradient 
-      ? 'bg-none border-nocta-300 dark:border-nocta-800/50' 
-      : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900 border-nocta-300 dark:border-nocta-800/50',
-    success: 'bg-green-50 dark:bg-green-950/50 border-green-200 dark:border-green-800/50 text-green-900 dark:text-green-100',
-    warning: 'bg-yellow-50 dark:bg-yellow-950/50 border-yellow-200 dark:border-yellow-800/50 text-yellow-900 dark:text-yellow-100',
-    destructive: 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/50 text-red-900 dark:text-red-100'
+    default: shouldOverrrideBackground 
+      ? '' 
+      : 'bg-nocta-100 dark:bg-nocta-900',
+    success: 'bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100',
+    warning: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100',
+    destructive: 'bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100'
+  };
+
+  const borderVariants = {
+    default: 'bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent',
+    success: 'bg-linear-to-b from-green-200 dark:from-green-600/50 to-transparent',
+    warning: 'bg-linear-to-b from-yellow-200 dark:from-yellow-600/50 to-transparent',
+    destructive: 'bg-linear-to-b from-red-200 dark:from-red-600/50 to-transparent'
   };
 
   // Position styles and animation configurations
@@ -331,7 +338,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     <div
       ref={toastRef}
       className={cn(
-        `fixed ${config.containerClass} ${config.widthClass} ${variants[variant]} border rounded-lg shadow-lg dark:shadow-xl backdrop-blur-sm overflow-hidden not-prose pointer-events-auto will-change-transform`,
+        `fixed ${config.containerClass} ${config.widthClass} p-[1px] ${borderVariants[variant]} rounded-lg shadow-lg dark:shadow-xl not-prose pointer-events-auto will-change-transform`,
         className
       )}
       style={{ 
@@ -342,6 +349,10 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       aria-live="polite"
       tabIndex={-1}
     >
+      <div className={cn(
+        'rounded-lg backdrop-blur-sm overflow-hidden',
+        variants[variant]
+      )}>
       {/* Close button */}
       <button
         onClick={handleClose}
@@ -392,6 +403,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
             </button>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

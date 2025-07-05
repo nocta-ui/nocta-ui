@@ -109,7 +109,7 @@ export const Table = <T extends Record<string, unknown>>({
     direction: null
   });
   const [filters, setFilters] = useState<Record<string, string>>({});
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
 
   const getRowKey = useCallback((record: T, index: number): string => {
     if (typeof rowKey === 'function') {
@@ -197,7 +197,7 @@ export const Table = <T extends Record<string, unknown>>({
     let className = '';
     
     if (variant === 'striped' && index % 2 === 1) {
-      className += ' bg-nocta-50 dark:bg-nocta-900/30';
+      className += ' bg-nocta-200/50 dark:bg-nocta-800/30';
     }
     
     if (onRowClick) {
@@ -214,8 +214,8 @@ export const Table = <T extends Record<string, unknown>>({
   }, [variant, onRowClick, rowClassName]);
 
   return (
-    <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl">
-      <div className={cn('rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900', getVariantStyles(), className)}>
+    <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl">
+      <div className={cn('rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900', getVariantStyles(), className)}>
 
         <div className="overflow-x-auto">
           <table
@@ -307,7 +307,7 @@ export const Table = <T extends Record<string, unknown>>({
         </div>
         
         {pagination && (
-          <div className="px-6 py-4 bg-nocta-50 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
+          <div className="px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
             <div className="text-sm text-nocta-600 dark:text-nocta-400">
               Showing {Math.min((pagination.current - 1) * pagination.pageSize + 1, pagination.total)} to{' '}
               {Math.min(pagination.current * pagination.pageSize, pagination.total)} of {pagination.total} entries
@@ -346,7 +346,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 }) => {
   return (
     <thead 
-      className={cn('bg-nocta-50 dark:bg-nocta-900/50 border-b border-nocta-200 dark:border-nocta-800/50', className)}
+      className={cn('bg-nocta-200/50 dark:bg-nocta-800/50 border-b border-nocta-200 dark:border-nocta-800/50', className)}
       {...props}
     >
       {children}
@@ -460,7 +460,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 }) => {
   return (
     <tfoot 
-      className={cn('bg-nocta-100 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 font-semibold', className)}
+      className={cn('bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 font-semibold', className)}
       {...props}
     >
       {children}

@@ -260,9 +260,9 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       {/* Dialog */}
       <div
       ref={contentRef}
-      className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-500/20 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
+      className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
         <div
-          className='relative z-50 w-full bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900nocta-200 dark:from-nocta-950 dark:to-nocta-900 rounded-xl'
+          className='relative z-50 w-full bg-nocta-100 dark:bg-nocta-900 rounded-xl'
           role="dialog"
           aria-modal="true"
           aria-describedby="dialog-description"
@@ -352,7 +352,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 bg-nocta-100 dark:bg-nocta-900/50 rounded-b-xl border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose', className)}
+      className={cn('px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 rounded-b-xl border-t flex items-center justify-end not-prose', className)}
       {...props}
     >
       {children}

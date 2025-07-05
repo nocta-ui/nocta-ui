@@ -139,7 +139,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
-  const shouldRemoveGradient = hasBackgroundColor(className);
+  const shouldOverrrideBackground = hasBackgroundColor(className);
 
   // Focus trap functionality
   const getFocusableElements = () => {
@@ -308,7 +308,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       <div
         ref={contentRef}
         className={cn(`
-          fixed flex flex-col ${shouldRemoveGradient ? 'bg-none' : 'bg-linear-to-b from-white to-nocta-200 dark:from-nocta-950 dark:to-nocta-900'} border-nocta-300 dark:border-nocta-800/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
+          fixed flex flex-col ${shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900'} border-nocta-300 dark:border-nocta-800/50 shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
         `)}
         role="dialog"
         aria-modal="true"
@@ -411,7 +411,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 mt-auto bg-nocta-100 dark:bg-nocta-900/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose', className)}
+      className={cn('px-6 py-4 mt-auto bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 border-t flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}
