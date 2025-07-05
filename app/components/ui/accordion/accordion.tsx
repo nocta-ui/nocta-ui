@@ -1,12 +1,193 @@
 'use client';
 
 import React, { useState, createContext, useContext, useCallback, useMemo } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export interface AccordionProps {
+const accordionVariants = cva(
+  "w-full not-prose",
+  {
+    variants: {
+      variant: {
+        default: "",
+        card: "space-y-2"
+      }
+    },
+    defaultVariants: {
+      variant: "default"
+    }
+  }
+);
+
+const accordionItemVariants = cva(
+  "transition-all duration-200 ease-in-out not-prose",
+  {
+    variants: {
+      variant: {
+        default: "border-b border-nocta-300 dark:border-nocta-800/50 last:border-b-0",
+        card: "border border-nocta-300 dark:border-nocta-800/50 rounded-lg overflow-hidden bg-nocta-100 dark:bg-nocta-900 shadow-sm dark:shadow-lg"
+      },
+      isOpen: {
+        true: "",
+        false: ""
+      }
+    },
+    compoundVariants: [
+      {
+        variant: "card",
+        isOpen: true,
+        class: "shadow-md dark:shadow-xl"
+      }
+    ],
+    defaultVariants: {
+      variant: "default",
+      isOpen: false
+    }
+  }
+);
+
+const accordionTriggerVariants = cva(
+  "w-full flex items-center justify-between text-left transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+  {
+    variants: {
+      variant: {
+        default: "text-nocta-900 dark:text-nocta-100 hover:text-nocta-700 dark:hover:text-nocta-300",
+        card: "text-nocta-900 dark:text-nocta-100 bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-50 dark:hover:bg-nocta-900/50"
+      },
+      size: {
+        sm: "text-xs",
+        md: "text-sm",
+        lg: "text-base"
+      },
+      disabled: {
+        true: "opacity-50 cursor-not-allowed",
+        false: "cursor-pointer"
+      },
+      isOpen: {
+        true: "",
+        false: ""
+      }
+    },
+    compoundVariants: [
+      {
+        variant: "default",
+        size: "sm",
+        class: "py-2 px-0"
+      },
+      {
+        variant: "default",
+        size: "md",
+        class: "py-3 px-0"
+      },
+      {
+        variant: "default",
+        size: "lg",
+        class: "py-4 px-0"
+      },
+      {
+        variant: "card",
+        size: "sm",
+        class: "px-4 py-2"
+      },
+      {
+        variant: "card",
+        size: "md",
+        class: "px-5 py-3"
+      },
+      {
+        variant: "card",
+        size: "lg",
+        class: "px-6 py-4"
+      },
+      {
+        variant: "card",
+        isOpen: true,
+        class: "bg-nocta-50 dark:bg-nocta-900/50"
+      }
+    ],
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+      disabled: false,
+      isOpen: false
+    }
+  }
+);
+
+const accordionContentVariants = cva(
+  "overflow-hidden transition-all duration-200 ease-out not-prose",
+  {
+    variants: {
+      size: {
+        sm: "text-xs",
+        md: "text-sm",
+        lg: "text-base"
+      }
+    },
+    defaultVariants: {
+      size: "md"
+    }
+  }
+);
+
+const accordionContentInnerVariants = cva(
+  "text-nocta-600 dark:text-nocta-400 leading-relaxed",
+  {
+    variants: {
+      variant: {
+        default: "",
+        card: "border-t border-nocta-100 dark:border-nocta-800/50"
+      },
+      size: {
+        sm: "",
+        md: "",
+        lg: ""
+      }
+    },
+    compoundVariants: [
+      {
+        variant: "default",
+        size: "sm",
+        class: "pb-2"
+      },
+      {
+        variant: "default",
+        size: "md",
+        class: "pb-3"
+      },
+      {
+        variant: "default",
+        size: "lg",
+        class: "pb-4"
+      },
+      {
+        variant: "card",
+        size: "sm",
+        class: "px-4 py-2"
+      },
+      {
+        variant: "card",
+        size: "md",
+        class: "px-5 py-3"
+      },
+      {
+        variant: "card",
+        size: "lg",
+        class: "px-6 py-4"
+      }
+    ],
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+
+export interface AccordionProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof accordionVariants> {
   children: React.ReactNode;
   type?: 'single' | 'multiple';
-  variant?: 'default' | 'card';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   defaultValue?: string | string[];
@@ -14,24 +195,30 @@ export interface AccordionProps {
   onValueChange?: (value: string | string[]) => void;
 }
 
-export interface AccordionItemProps {
+export interface AccordionItemProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof accordionItemVariants> {
   children: React.ReactNode;
   value: string;
   className?: string;
   disabled?: boolean;
 }
 
-export interface AccordionTriggerProps {
+export interface AccordionTriggerProps
+  extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'disabled'>,
+    VariantProps<typeof accordionTriggerVariants> {
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+}
+
+export interface AccordionContentProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof accordionContentVariants> {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface AccordionContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-// Accordion Context
 interface AccordionContextType {
   type: 'single' | 'multiple';
   variant: 'default' | 'card';
@@ -51,7 +238,6 @@ const useAccordion = () => {
   return context;
 };
 
-// Item Context
 interface AccordionItemContextType {
   value: string;
   isOpen: boolean;
@@ -68,13 +254,12 @@ const useAccordionItem = () => {
   return context;
 };
 
-// Main Accordion Component
 export const Accordion: React.FC<AccordionProps> = React.memo(({
   children,
   type = 'single',
   variant = 'default',
   size = 'md',
-  className = '',
+  className,
   defaultValue,
   value: controlledValue,
   onValueChange,
@@ -117,27 +302,17 @@ export const Accordion: React.FC<AccordionProps> = React.memo(({
 
   const contextValue = useMemo(() => ({
     type,
-    variant,
-    size,
+    variant: variant!,
+    size: size!,
     openItems,
     toggleItem,
     isOpen
   }), [type, variant, size, openItems, toggleItem, isOpen]);
 
-  const baseStyles = `
-    w-full
-    not-prose
-  `;
-
-  const variants = {
-    default: '',
-    card: 'space-y-2'
-  };
-
   return (
     <AccordionContext.Provider value={contextValue}>
       <div
-        className={cn(baseStyles, variants[variant], className)}
+        className={cn(accordionVariants({ variant }), className)}
         {...props}
       >
         {children}
@@ -148,11 +323,10 @@ export const Accordion: React.FC<AccordionProps> = React.memo(({
 
 Accordion.displayName = 'Accordion';
 
-// Accordion Item
 export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
   children,
   value,
-  className = '',
+  className,
   disabled = false,
   ...props
 }) => {
@@ -165,29 +339,10 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
     disabled
   }), [value, itemIsOpen, disabled]);
 
-  const baseStyles = `
-    transition-all duration-200 ease-in-out
-    not-prose
-  `;
-
-  const variants = {
-    default: `
-      border-b border-nocta-300 dark:border-nocta-800/50
-      last:border-b-0
-    `,
-    card: `
-      border border-nocta-300 dark:border-nocta-800/50
-      rounded-lg overflow-hidden
-      bg-nocta-100 dark:bg-nocta-900
-      shadow-sm dark:shadow-lg
-      ${itemIsOpen ? 'shadow-md dark:shadow-xl' : ''}
-    `
-  };
-
   return (
     <AccordionItemContext.Provider value={contextValue}>
       <div
-        className={cn(baseStyles, variants[variant], className)}
+        className={cn(accordionItemVariants({ variant, isOpen: itemIsOpen }), className)}
         {...props}
       >
         {children}
@@ -198,10 +353,9 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(({
 
 AccordionItem.displayName = 'AccordionItem';
 
-// Accordion Trigger
 export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
   children,
-  className = '',
+  className,
   ...props
 }) => {
   const { variant, size, toggleItem } = useAccordion();
@@ -220,65 +374,13 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
     }
   }, [handleClick]);
 
-  const baseStyles = `
-    w-full flex items-center justify-between text-left
-    transition-all duration-200 ease-in-out
-    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
-    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-    not-prose
-  `;
-
-  const sizeStyles = {
-    sm: {
-      default: 'py-2 px-0',
-      card: 'px-4 py-2'
-    },
-    md: {
-      default: 'py-3 px-0',
-      card: 'px-5 py-3'
-    },
-    lg: {
-      default: 'py-4 px-0',
-      card: 'px-6 py-4'
-    }
-  };
-
-  const variants = {
-    default: `
-      ${sizeStyles[size].default}
-      text-nocta-900 dark:text-nocta-100
-      hover:text-nocta-700 dark:hover:text-nocta-300
-      ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-    `,
-    card: `
-      ${sizeStyles[size].card}
-      text-nocta-900 dark:text-nocta-100
-      bg-nocta-100 dark:bg-nocta-900
-      hover:bg-nocta-50 dark:hover:bg-nocta-900/50
-      ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      ${isOpen ? 'bg-nocta-50 dark:bg-nocta-900/50' : ''}
-    `
-  };
-
-  const sizes = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  };
-
   const iconSize = useMemo(() => {
     return size === 'sm' ? 14 : size === 'md' ? 16 : 20;
   }, [size]);
 
   return (
     <button
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size]}
-        ${className}
-      `}
+      className={cn(accordionTriggerVariants({ variant, size, disabled: disabled || false, isOpen }), className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       aria-expanded={isOpen}
@@ -295,12 +397,10 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`
-          transition-transform duration-200 ease-in-out flex-shrink-0 ml-2
-          text-nocta-500 dark:text-nocta-400
-          will-change-transform
-          ${isOpen ? 'rotate-180' : 'rotate-0'}
-        `}
+        className={cn(
+          "transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-nocta-500 dark:text-nocta-400 will-change-transform",
+          isOpen ? "rotate-180" : "rotate-0"
+        )}
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
@@ -310,10 +410,9 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(({
 
 AccordionTrigger.displayName = 'AccordionTrigger';
 
-// Accordion Content
 export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
   children,
-  className = '',
+  className,
   ...props
 }) => {
   const { variant, size } = useAccordion();
@@ -358,27 +457,6 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
     updateHeight();
   }, [children, updateHeight]);
 
-  const sizeStyles = {
-    sm: {
-      default: 'pb-2',
-      card: 'px-4 py-2'
-    },
-    md: {
-      default: 'pb-3',
-      card: 'px-5 py-3'
-    },
-    lg: {
-      default: 'pb-4',
-      card: 'px-6 py-4'
-    }
-  };
-
-  const sizes = {
-    sm: 'text-xs',
-    md: 'text-sm', 
-    lg: 'text-base'
-  };
-
   const contentStyle = useMemo(() => ({
     height: isOpen ? `${height}px` : '0px',
     opacity: isOpen ? 1 : 0,
@@ -387,13 +465,13 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
   return (
     <div
       ref={contentRef}
-      className={cn("overflow-hidden transition-all duration-200 ease-out not-prose", sizes[size], className)}
+      className={cn(accordionContentVariants({ size }), className)}
       style={contentStyle}
       {...props}
     >
       <div
         ref={innerRef}
-        className={cn(sizeStyles[size][variant], variant === 'card' ? 'border-t border-nocta-100 dark:border-nocta-800/50' : '', 'text-nocta-600 dark:text-nocta-400 leading-relaxed')}
+        className={cn(accordionContentInnerVariants({ variant, size }))}
       >
         {children}
       </div>
@@ -401,4 +479,4 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(({
   );
 });
 
-AccordionContent.displayName = 'AccordionContent'; 
+AccordionContent.displayName = 'AccordionContent';

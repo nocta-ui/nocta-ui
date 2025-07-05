@@ -8,7 +8,7 @@ export const BasicSliderDemo: React.FC = () => {
 
   return (
     <div className="my-6 w-48">
-      <Slider 
+      <Slider
         value={value} 
         onChange={setValue}
         aria-label="Basic slider"

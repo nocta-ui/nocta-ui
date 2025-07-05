@@ -2,7 +2,28 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+
+const dialogContentVariants = cva(
+  `relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent 
+   rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose 
+   transition-all duration-300 ease-out`,
+  {
+    variants: {
+      size: {
+        sm: 'max-w-sm',
+        md: 'max-w-md',
+        lg: 'max-w-lg',
+        xl: 'max-w-xl',
+        full: 'max-w-full mx-4'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
 
 export interface DialogProps {
   children: React.ReactNode;
@@ -16,10 +37,11 @@ export interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButto
   className?: string;
 }
 
-export interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DialogContentProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof dialogContentVariants> {
   children: React.ReactNode;
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   showClose?: boolean;
 }
 
@@ -55,7 +77,6 @@ export interface DialogCloseProps extends React.ButtonHTMLAttributes<HTMLButtonE
   asChild?: boolean;
 }
 
-// Dialog Context
 interface DialogContextType {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -71,7 +92,6 @@ const useDialog = () => {
   return context;
 };
 
-// Main Dialog Component
 export const Dialog: React.FC<DialogProps> = ({ 
   children, 
   open: controlledOpen, 
@@ -89,7 +109,6 @@ export const Dialog: React.FC<DialogProps> = ({
   );
 };
 
-// Dialog Trigger
 export const DialogTrigger: React.FC<DialogTriggerProps> = ({ 
   children, 
   className = '', 
@@ -125,7 +144,6 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
   );
 };
 
-// Dialog Content
 export const DialogContent: React.FC<DialogContentProps> = ({ 
   children, 
   className = '', 
@@ -139,7 +157,6 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   const [shouldRender, setShouldRender] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
-  // Focus trap functionality
   const getFocusableElements = () => {
     if (!contentRef.current) return [];
     
@@ -170,13 +187,11 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       const activeElement = document.activeElement as HTMLElement;
 
       if (e.shiftKey) {
-        // Shift + Tab (backward)
         if (activeElement === firstElement || !contentRef.current?.contains(activeElement)) {
           e.preventDefault();
           lastElement.focus();
         }
       } else {
-        // Tab (forward)
         if (activeElement === lastElement || !contentRef.current?.contains(activeElement)) {
           e.preventDefault();
           firstElement.focus();
@@ -185,18 +200,14 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     }
   }, [onOpenChange]);
 
-  // Handle animation states and focus management
   useEffect(() => {
     if (open) {
-      // Store the currently active element to restore focus later
       previousActiveElementRef.current = document.activeElement as HTMLElement;
       
       setShouldRender(true);
-      // Force a reflow to ensure initial styles are applied, then animate
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsVisible(true);
-          // Focus the first focusable element after animation
           setTimeout(() => {
             const focusableElements = getFocusableElements();
             if (focusableElements.length > 0) {
@@ -207,14 +218,12 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       });
     } else {
       setIsVisible(false);
-      // Delay to allow animation before unmount
       const timer = setTimeout(() => {
         setShouldRender(false);
-        // Restore focus to the element that opened the dialog
         if (previousActiveElementRef.current) {
           previousActiveElementRef.current.focus();
         }
-      }, 300); // Match animation duration
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [open]);
@@ -239,28 +248,18 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     };
   }, [open, onOpenChange, handleKeyDown]);
 
-  const sizes = {
-    sm: 'max-w-sm',
-    md: 'max-w-md',
-    lg: 'max-w-lg',
-    xl: 'max-w-xl',
-    full: 'max-w-full mx-4'
-  };
-
   if (!shouldRender) return null;
 
   const dialogContent = (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div 
         className={cn('fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out', isVisible ? 'opacity-100' : 'opacity-0')}
         aria-hidden="true"
       />
       
-      {/* Dialog */}
       <div
       ref={contentRef}
-      className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose transition-all duration-300 ease-out', isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', sizes[size], className)}>
+      className={cn(dialogContentVariants({ size }), isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4', className)}>
         <div
           className='relative z-50 w-full bg-nocta-100 dark:bg-nocta-900 rounded-xl'
           role="dialog"
@@ -295,7 +294,6 @@ export const DialogContent: React.FC<DialogContentProps> = ({
   return createPortal(dialogContent, document.body);
 };
 
-// Dialog Header
 export const DialogHeader: React.FC<DialogHeaderProps> = ({ 
   children, 
   className = '', 
@@ -311,7 +309,6 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
   );
 };
 
-// Dialog Title
 export const DialogTitle: React.FC<DialogTitleProps> = ({ 
   children, 
   className = '', 
@@ -328,7 +325,6 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
   );
 };
 
-// Dialog Description
 export const DialogDescription: React.FC<DialogDescriptionProps> = ({ 
   children, 
   className = '', 
@@ -344,7 +340,6 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
   );
 };
 
-// Dialog Footer
 export const DialogFooter: React.FC<DialogFooterProps> = ({ 
   children, 
   className = '', 
@@ -360,7 +355,6 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
   );
 };
 
-// Dialog Actions
 export const DialogActions: React.FC<DialogActionsProps> = ({ 
   children, 
   className = '', 
@@ -376,7 +370,6 @@ export const DialogActions: React.FC<DialogActionsProps> = ({
   );
 };
 
-// Dialog Close
 export const DialogClose: React.FC<DialogCloseProps> = ({ 
   children, 
   className = '', 
@@ -410,4 +403,4 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
       {children}
     </button>
   );
-}; 
+};

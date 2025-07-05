@@ -34,7 +34,6 @@ const DocsTab = ({ children, title, value, isActive = false, onClick }: DocsTabP
     );
   }
 
-  // When used as content container
   return <>{children}</>;
 };
 
@@ -51,7 +50,6 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | 'auto'>('auto');
 
-  // Filter and type the children properly
   const tabs = React.Children.toArray(children).filter(
     (child): child is React.ReactElement<DocsTabProps> => 
       React.isValidElement(child) && typeof child.type !== 'string'
@@ -59,23 +57,19 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
 
   const activeContent = tabs.find(tab => tab.props.value === activeTab);
 
-  // Measure content height
   const measureHeight = useCallback(() => {
     if (wrapperRef.current && contentRef.current) {
       const naturalHeight = wrapperRef.current.scrollHeight;
-      const containerPadding = 12; // p-1 = 4px padding top + 4px padding bottom
+      const containerPadding = 12;
       setHeight(naturalHeight + containerPadding);
     }
   }, []);
 
-  // Update height when active tab changes
   useEffect(() => {
-    // Small delay to ensure DOM has updated
     const timer = setTimeout(measureHeight, 10);
     return () => clearTimeout(timer);
   }, [activeTab, measureHeight]);
 
-  // Observe content changes for dynamic height updates
   useEffect(() => {
     if (!wrapperRef.current) return;
 
@@ -88,25 +82,21 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
     return () => resizeObserver.disconnect();
   }, [measureHeight]);
 
-  // Handle tab change with fade transition
   const handleTabChange = (value: string) => {
     if (value === activeTab) return;
     
     setIsTransitioning(true);
     
-    // Start fade out animation
     setTimeout(() => {
       setActiveTab(value);
-      // End transition after content changes and fade in completes
       setTimeout(() => {
         setIsTransitioning(false);
-      }, 150); // Half of the total transition time
-    }, 150); // Half of the total transition time
+      }, 150);
+    }, 150);
   };
 
   return (
     <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-900 text-sm outline-none">
-      {/* Tab Headers */}
       <div className="flex items-center gap-2 px-4 py-1.5">
         {tabs.map((tab) => (
           <DocsTab
@@ -119,7 +109,6 @@ const DocsTabs = ({ children, defaultValue = 'preview', justify = 'center' }: Do
         ))}
       </div>
       
-      {/* Tab Content with animated height and opacity */}
       <div 
         ref={contentRef}
         className="transition-all duration-300 ease-in-out p-1 relative"

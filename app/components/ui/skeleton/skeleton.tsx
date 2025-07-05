@@ -1,17 +1,105 @@
 import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'pulse';
-  size?: 'sm' | 'md' | 'lg';
-  shape?: 'rectangle' | 'circle' | 'text';
+const skeletonVariants = cva(
+  'bg-nocta-200 dark:bg-nocta-800 not-prose',
+  {
+    variants: {
+      variant: {
+        default: '',
+        pulse: 'animate-pulse',
+      },
+      shape: {
+        rectangle: 'rounded',
+        circle: 'rounded-full',
+        text: 'rounded'
+      },
+      size: {
+        sm: '',
+        md: '',
+        lg: ''
+      }
+    },
+    compoundVariants: [
+      {
+        shape: 'text',
+        size: 'sm',
+        class: 'h-3'
+      },
+      {
+        shape: 'text',
+        size: 'md',
+        class: 'h-4'
+      },
+      {
+        shape: 'text',
+        size: 'lg',
+        class: 'h-5'
+      },
+      {
+        shape: 'circle',
+        size: 'sm',
+        class: 'w-8 h-8'
+      },
+      {
+        shape: 'circle',
+        size: 'md',
+        class: 'w-12 h-12'
+      },
+      {
+        shape: 'circle',
+        size: 'lg',
+        class: 'w-16 h-16'
+      },
+      {
+        shape: 'rectangle',
+        size: 'sm',
+        class: 'h-8'
+      },
+      {
+        shape: 'rectangle',
+        size: 'md',
+        class: 'h-12'
+      },
+      {
+        shape: 'rectangle',
+        size: 'lg',
+        class: 'h-16'
+      }
+    ],
+    defaultVariants: {
+      variant: 'default',
+      shape: 'rectangle',
+      size: 'md'
+    }
+  }
+);
+
+const lastTextLineVariants = cva(
+  '',
+  {
+    variants: {
+      isLast: {
+        true: 'w-3/4',
+        false: 'w-full'
+      }
+    },
+    defaultVariants: {
+      isLast: false
+    }
+  }
+);
+
+export interface SkeletonProps 
+  extends React.HTMLAttributes<HTMLDivElement>, 
+    VariantProps<typeof skeletonVariants> {
   width?: string | number;
   height?: string | number;
   lines?: number;
   className?: string;
 }
 
-// Skeleton Component
 export const Skeleton: React.FC<SkeletonProps> = ({
   variant = 'default',
   size = 'md',
@@ -22,35 +110,16 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   className = '',
   ...props
 }) => {
-  const getBaseStyles = () => {
-    return 'bg-nocta-200 dark:bg-nocta-800 rounded not-prose';
-  };
-
-  const variants = {
-    default: '', // No animation, static skeleton
-    pulse: 'animate-pulse',
-  };
-
-  const shapes = {
-    rectangle: 'rounded',
-    circle: 'rounded-full',
-    text: 'rounded'
-  };
-
-  const sizes = {
-    sm: shape === 'text' ? 'h-3' : shape === 'circle' ? 'w-8 h-8' : 'h-8',
-    md: shape === 'text' ? 'h-4' : shape === 'circle' ? 'w-12 h-12' : 'h-12',
-    lg: shape === 'text' ? 'h-5' : shape === 'circle' ? 'w-16 h-16' : 'h-16'
-  };
-
-  // Handle multiple text lines
   if (shape === 'text' && lines > 1) {
     return (
-      <div className={`space-y-2 ${className}`} {...props}>
+      <div className={cn('space-y-2', className)} {...props}>
         {Array.from({ length: lines }, (_, index) => (
           <div
             key={index}
-            className={cn(getBaseStyles(), variants[variant], shapes[shape], sizes[size], index === lines - 1 ? 'w-3/4' : 'w-full', className)}
+            className={cn(
+              skeletonVariants({ variant, shape, size }),
+              lastTextLineVariants({ isLast: index === lines - 1 })
+            )}
             style={{
               width: width && index === 0 ? width : undefined,
               height: height ? height : undefined
@@ -61,16 +130,19 @@ export const Skeleton: React.FC<SkeletonProps> = ({
     );
   }
 
-  // Single skeleton element
   const inlineStyles: React.CSSProperties = {};
   if (width) inlineStyles.width = width;
   if (height) inlineStyles.height = height;
 
   return (
     <div
-      className={cn(getBaseStyles(), variants[variant], shapes[shape], sizes[size], shape === 'circle' ? '' : 'w-full', className)}
+      className={cn(
+        skeletonVariants({ variant, shape, size }),
+        shape === 'circle' ? '' : 'w-full',
+        className
+      )}
       style={inlineStyles}
       {...props}
     />
   );
-}; 
+};

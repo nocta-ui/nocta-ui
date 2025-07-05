@@ -2,11 +2,199 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-const hasBackgroundColor = (className: string = '') => {
-  return /bg-(?!linear|gradient|none)\w+/.test(className);
-};
+const sheetContentVariants = cva(
+  "fixed flex flex-col bg-nocta-100 dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800/50 overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-300 ease-in-out",
+  {
+    variants: {
+      side: {
+        left: "left-0 top-0 h-full rounded-r-2xl",
+        right: "right-0 top-0 h-full rounded-l-2xl",
+        top: "top-0 left-0 w-full rounded-b-2xl",
+        bottom: "bottom-0 left-0 w-full rounded-t-2xl"
+      },
+      size: {
+        sm: "",
+        md: "",
+        lg: "",
+        xl: "",
+        full: ""
+      }
+    },
+    compoundVariants: [
+      {
+        side: "left",
+        size: "sm",
+        class: "w-[70vw] sm:w-80"
+      },
+      {
+        side: "left",
+        size: "md",
+        class: "w-[80vw] sm:w-96"
+      },
+      {
+        side: "left",
+        size: "lg",
+        class: "w-[90vw] sm:w-[28rem]"
+      },
+      {
+        side: "left",
+        size: "xl",
+        class: "w-[95vw] sm:w-[32rem]"
+      },
+      {
+        side: "left",
+        size: "full",
+        class: "w-full"
+      },
+      {
+        side: "right",
+        size: "sm",
+        class: "w-[70vw] sm:w-80"
+      },
+      {
+        side: "right",
+        size: "md",
+        class: "w-[80vw] sm:w-96"
+      },
+      {
+        side: "right",
+        size: "lg",
+        class: "w-[90vw] sm:w-[28rem]"
+      },
+      {
+        side: "right",
+        size: "xl",
+        class: "w-[95vw] sm:w-[32rem]"
+      },
+      {
+        side: "right",
+        size: "full",
+        class: "w-full"
+      },
+      {
+        side: "top",
+        size: "sm",
+        class: "h-[40vh] sm:h-80"
+      },
+      {
+        side: "top",
+        size: "md",
+        class: "h-[55vh] sm:h-96"
+      },
+      {
+        side: "top",
+        size: "lg",
+        class: "h-[70vh] sm:h-[28rem]"
+      },
+      {
+        side: "top",
+        size: "xl",
+        class: "h-[85vh] sm:h-[32rem]"
+      },
+      {
+        side: "top",
+        size: "full",
+        class: "h-full"
+      },
+      {
+        side: "bottom",
+        size: "sm",
+        class: "h-[40vh] sm:h-80"
+      },
+      {
+        side: "bottom",
+        size: "md",
+        class: "h-[55vh] sm:h-96"
+      },
+      {
+        side: "bottom",
+        size: "lg",
+        class: "h-[70vh] sm:h-[28rem]"
+      },
+      {
+        side: "bottom",
+        size: "xl",
+        class: "h-[85vh] sm:h-[32rem]"
+      },
+      {
+        side: "bottom",
+        size: "full",
+        class: "h-full"
+      }
+    ],
+    defaultVariants: {
+      side: "right",
+      size: "md"
+    }
+  }
+);
+
+const sheetAnimationVariants = cva(
+  "",
+  {
+    variants: {
+      side: {
+        left: "",
+        right: "",
+        top: "",
+        bottom: ""
+      },
+      isVisible: {
+        true: "",
+        false: ""
+      }
+    },
+    compoundVariants: [
+      {
+        side: "left",
+        isVisible: true,
+        class: "translate-x-0"
+      },
+      {
+        side: "left",
+        isVisible: false,
+        class: "-translate-x-full"
+      },
+      {
+        side: "right",
+        isVisible: true,
+        class: "translate-x-0"
+      },
+      {
+        side: "right",
+        isVisible: false,
+        class: "translate-x-full"
+      },
+      {
+        side: "top",
+        isVisible: true,
+        class: "translate-y-0"
+      },
+      {
+        side: "top",
+        isVisible: false,
+        class: "-translate-y-full"
+      },
+      {
+        side: "bottom",
+        isVisible: true,
+        class: "translate-y-0"
+      },
+      {
+        side: "bottom",
+        isVisible: false,
+        class: "translate-y-full"
+      }
+    ],
+    defaultVariants: {
+      side: "right",
+      isVisible: false
+    }
+  }
+);
 
 export interface SheetProps {
   children: React.ReactNode;
@@ -20,11 +208,11 @@ export interface SheetTriggerProps extends React.ButtonHTMLAttributes<HTMLButton
   className?: string;
 }
 
-export interface SheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SheetContentProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof sheetContentVariants> {
   children: React.ReactNode;
   className?: string;
-  side?: 'left' | 'right' | 'top' | 'bottom';
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   showClose?: boolean;
 }
 
@@ -55,7 +243,6 @@ export interface SheetCloseProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   asChild?: boolean;
 }
 
-// Sheet Context
 interface SheetContextType {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -71,7 +258,6 @@ const useSheet = () => {
   return context;
 };
 
-// Main Sheet Component
 export const Sheet: React.FC<SheetProps> = ({ 
   children, 
   open: controlledOpen, 
@@ -89,7 +275,6 @@ export const Sheet: React.FC<SheetProps> = ({
   );
 };
 
-// Sheet Trigger
 export const SheetTrigger: React.FC<SheetTriggerProps> = ({ 
   children, 
   className = '', 
@@ -116,7 +301,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 
   return (
     <button
-      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose', className)}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose cursor-pointer', className)}
       onClick={handleClick}
       {...props}
     >
@@ -125,7 +310,6 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
   );
 };
 
-// Sheet Content
 export const SheetContent: React.FC<SheetContentProps> = ({ 
   children, 
   className = '', 
@@ -139,9 +323,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
-  const shouldOverrrideBackground = hasBackgroundColor(className);
 
-  // Focus trap functionality
   const getFocusableElements = () => {
     if (!contentRef.current) return [];
     
@@ -172,13 +354,11 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       const activeElement = document.activeElement as HTMLElement;
 
       if (e.shiftKey) {
-        // Shift + Tab (backward)
         if (activeElement === firstElement || !contentRef.current?.contains(activeElement)) {
           e.preventDefault();
           lastElement.focus();
         }
       } else {
-        // Tab (forward)
         if (activeElement === lastElement || !contentRef.current?.contains(activeElement)) {
           e.preventDefault();
           firstElement.focus();
@@ -187,17 +367,13 @@ export const SheetContent: React.FC<SheetContentProps> = ({
     }
   }, [onOpenChange]);
 
-  // Handle animation states and focus management
   useEffect(() => {
     if (open) {
-      // Store the currently active element to restore focus later
       previousActiveElementRef.current = document.activeElement as HTMLElement;
       
       setShouldRender(true);
-      // Small delay to ensure DOM is ready
       const timer = setTimeout(() => {
         setIsVisible(true);
-        // Focus first focusable element or the content itself
         const focusableElements = getFocusableElements();
         if (focusableElements.length > 0) {
           focusableElements[0].focus();
@@ -209,20 +385,17 @@ export const SheetContent: React.FC<SheetContentProps> = ({
       return () => clearTimeout(timer);
     } else {
       setIsVisible(false);
-      // Delay removing from DOM to allow exit animation
       const timer = setTimeout(() => {
         setShouldRender(false);
-        // Restore focus to the previously active element
         if (previousActiveElementRef.current) {
           previousActiveElementRef.current.focus();
         }
-      }, 300); // Match the animation duration
+      }, 300);
 
       return () => clearTimeout(timer);
     }
   }, [open]);
 
-  // Add event listeners for keyboard and click outside
   useEffect(() => {
     if (!open) return;
 
@@ -235,7 +408,6 @@ export const SheetContent: React.FC<SheetContentProps> = ({
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('mousedown', handleClickOutside);
     
-    // Prevent body scroll when sheet is open
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -249,86 +421,29 @@ export const SheetContent: React.FC<SheetContentProps> = ({
     return null;
   }
 
-  const sizes = {
-    sm: {
-      'left': 'w-[70vw] sm:w-80',
-      'right': 'w-[70vw] sm:w-80', 
-      'top': 'h-[40vh] sm:h-80',
-      'bottom': 'h-[40vh] sm:h-80'
-    },
-    md: {
-      'left': 'w-[80vw] sm:w-96',
-      'right': 'w-[80vw] sm:w-96',
-      'top': 'h-[55vh] sm:h-96', 
-      'bottom': 'h-[55vh] sm:h-96'
-    },
-    lg: {
-      'left': 'w-[90vw] sm:w-[28rem]',
-      'right': 'w-[90vw] sm:w-[28rem]',
-      'top': 'h-[70vh] sm:h-[28rem]',
-      'bottom': 'h-[70vh] sm:h-[28rem]'
-    },
-    xl: {
-      'left': 'w-[95vw] sm:w-[32rem]',
-      'right': 'w-[95vw] sm:w-[32rem]',
-      'top': 'h-[85vh] sm:h-[32rem]',
-      'bottom': 'h-[85vh] sm:h-[32rem]'
-    },
-    full: {
-      'left': 'w-full',
-      'right': 'w-full',
-      'top': 'h-full',
-      'bottom': 'h-full'
-    }
-  };
-
-  const positions = {
-    left: 'left-0 top-0 h-full',
-    right: 'right-0 top-0 h-full',
-    top: 'top-0 left-0 w-full',
-    bottom: 'bottom-0 left-0 w-full'
-  };
-
-  const animations = {
-    left: isVisible ? 'translate-x-0' : '-translate-x-full',
-    right: isVisible ? 'translate-x-0' : 'translate-x-full',
-    top: isVisible ? 'translate-y-0' : '-translate-y-full',
-    bottom: isVisible ? 'translate-y-0' : 'translate-y-full'
-  };
-
   return createPortal(
     <div className="fixed inset-0 z-50">
-      {/* Overlay */}
       <div 
         className={cn('fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out', isVisible ? 'opacity-100' : 'opacity-0')}
         aria-hidden="true"
       />
       
-      {/* Sheet Content */}
       <div
         ref={contentRef}
-        className={cn(`
-          fixed flex flex-col ${shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900'} border-nocta-300 dark:border-nocta-800/50 overflow-hidden shadow-xl dark:shadow-2xl border ${positions[side]} ${side === 'left' ? 'rounded-r-2xl' : ''} ${side === 'right' ? 'rounded-l-2xl' : ''} ${side === 'top' ? 'rounded-b-2xl' : ''} ${side === 'bottom' ? 'rounded-t-2xl' : ''} ${sizes[size][side]} ${className}  ${animations[side]} transform transition-transform duration-300 ease-in-out
-        `)}
+        className={cn(
+          sheetContentVariants({ side, size }),
+          sheetAnimationVariants({ side, isVisible }),
+          className
+        )}
         role="dialog"
         aria-modal="true"
         tabIndex={-1}
         {...props}
       >
-        {/* Close Button */}
         {showClose && (
           <button
             onClick={() => onOpenChange(false)}
-            className="
-              absolute top-4 right-4 p-1 rounded-md
-              text-nocta-500 dark:text-nocta-400
-              hover:text-nocta-700 dark:hover:text-nocta-200
-              hover:bg-nocta-100 dark:hover:bg-nocta-900
-              focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
-              transition-colors duration-200 ease-in-out
-              z-10
-              cursor-pointer
-            "
+            className="absolute top-4 right-4 p-1 rounded-md text-nocta-500 dark:text-nocta-400 hover:text-nocta-700 dark:hover:text-nocta-200 hover:bg-nocta-100 dark:hover:bg-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50 transition-colors duration-200 ease-in-out z-10 cursor-pointer"
             aria-label="Close sheet"
           >
             <svg 
@@ -354,7 +469,6 @@ export const SheetContent: React.FC<SheetContentProps> = ({
   );
 };
 
-// Sheet Header
 export const SheetHeader: React.FC<SheetHeaderProps> = ({ 
   children, 
   className = '', 
@@ -370,7 +484,6 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
   );
 };
 
-// Sheet Title
 export const SheetTitle: React.FC<SheetTitleProps> = ({ 
   children, 
   className = '', 
@@ -387,7 +500,6 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
   );
 };
 
-// Sheet Description
 export const SheetDescription: React.FC<SheetDescriptionProps> = ({ 
   children, 
   className = '', 
@@ -403,7 +515,6 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
   );
 };
 
-// Sheet Footer
 export const SheetFooter: React.FC<SheetFooterProps> = ({ 
   children, 
   className = '', 
@@ -411,7 +522,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 }) => {
   return (
     <div 
-      className={cn('px-6 py-4 mt-auto bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 border-t flex items-center justify-end gap-3 not-prose', className)}
+      className={cn('px-6 py-4 mt-auto bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose', className)}
       {...props}
     >
       {children}
@@ -419,7 +530,6 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
   );
 };
 
-// Sheet Close
 export const SheetClose: React.FC<SheetCloseProps> = ({ 
   children, 
   className = '', 
@@ -446,9 +556,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 
   return (
     <button
-      className={cn(`
-        inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset cursor-pointer
-      `, className)}
+      className={cn('inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 cursor-pointer', className)}
       onClick={handleClick}
       {...props}
     >

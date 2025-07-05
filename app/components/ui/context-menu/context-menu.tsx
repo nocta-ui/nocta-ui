@@ -2,7 +2,34 @@
 
 import React, { useState, useRef, useEffect, useCallback, useContext, createContext } from 'react';
 import { createPortal } from 'react-dom';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+
+const contextMenuContentVariants = cva(
+  `z-50 min-w-[10rem] overflow-hidden rounded-md border
+   bg-white dark:bg-nocta-950 border-nocta-300 dark:border-nocta-800
+   p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
+   not-prose`,
+  {
+    variants: {
+      side: {
+        top: '',
+        right: '',
+        bottom: '',
+        left: ''
+      },
+      align: {
+        start: '',
+        center: '',
+        end: ''
+      }
+    },
+    defaultVariants: {
+      side: 'bottom',
+      align: 'start'
+    }
+  }
+);
 
 export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -15,11 +42,11 @@ export interface ContextMenuTriggerProps extends React.HTMLAttributes<HTMLDivEle
   disabled?: boolean;
 }
 
-export interface ContextMenuContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ContextMenuContentProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof contextMenuContentVariants> {
   children: React.ReactNode;
   className?: string;
-  align?: 'start' | 'center' | 'end';
-  side?: 'top' | 'right' | 'bottom' | 'left';
   sideOffset?: number;
   alignOffset?: number;
   avoidCollisions?: boolean;
@@ -56,7 +83,6 @@ export interface ContextMenuSubContentProps extends React.HTMLAttributes<HTMLDiv
   className?: string;
 }
 
-// Context Menu Context
 interface ContextMenuContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -76,7 +102,6 @@ const useContextMenu = () => {
   return context;
 };
 
-// Submenu Context
 interface ContextMenuSubContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -95,9 +120,6 @@ const useContextMenuSub = () => {
   return context;
 };
 
-
-
-// Main ContextMenu Component
 export const ContextMenu: React.FC<ContextMenuProps> = ({
   children,
   className = '',
@@ -126,7 +148,6 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   );
 };
 
-// ContextMenu Trigger
 export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
   children,
   className = '',
@@ -156,12 +177,11 @@ export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
   );
 };
 
-// ContextMenu Content
 export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   children,
   className = '',
-  align = 'start',
   side = 'bottom',
+  align = 'start',
   sideOffset = 4,
   alignOffset = 0,
   avoidCollisions = true,
@@ -176,12 +196,10 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   const [isMeasuring, setIsMeasuring] = useState(false);
   const positionRef = useRef(position);
 
-  // Update position ref when position changes
   useEffect(() => {
     positionRef.current = position;
   }, [position]);
 
-  // Handle open/close animations
   useEffect(() => {
     if (open) {
       setShouldRender(true);
@@ -199,13 +217,11 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     }
   }, [open]);
 
-  // Calculate position function - only depends on measuring state, not position changes
   const calculateMenuPosition = useCallback(() => {
     if (!contentRef.current || !open || !isMeasuring) return;
 
     const contentRect = contentRef.current.getBoundingClientRect();
     
-    // If content has no dimensions yet, try again
     if (contentRect.width === 0 || contentRect.height === 0) {
       requestAnimationFrame(calculateMenuPosition);
       return;
@@ -220,7 +236,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     let top = currentPosition.y;
     let left = currentPosition.x;
 
-    // Calculate base position from cursor
     switch (side) {
       case 'top':
         top = currentPosition.y - contentRect.height - sideOffset;
@@ -236,7 +251,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
         break;
     }
 
-    // Apply alignment
     if (side === 'top' || side === 'bottom') {
       switch (align) {
         case 'center':
@@ -245,7 +259,7 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
         case 'end':
           left = currentPosition.x - contentRect.width + alignOffset;
           break;
-        default: // start
+        default:
           left = currentPosition.x + alignOffset;
       }
     } else {
@@ -256,14 +270,12 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
         case 'end':
           top = currentPosition.y - contentRect.height + alignOffset;
           break;
-        default: // start
+        default:
           top = currentPosition.y + alignOffset;
       }
     }
 
-    // Collision detection
     if (avoidCollisions) {
-      // Keep content within viewport bounds
       if (left + contentRect.width > viewport.width) {
         left = viewport.width - contentRect.width - 8;
       }
@@ -281,13 +293,11 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     setCalculatedPosition({ top, left });
     setIsMeasuring(false);
     
-    // Show menu in next frame for smooth animation
     requestAnimationFrame(() => {
       setIsVisible(true);
     });
   }, [open, isMeasuring, side, align, sideOffset, alignOffset, avoidCollisions, contentRef]);
 
-  // Calculate position after measuring render
   useEffect(() => {
     if (!isMeasuring) return;
     
@@ -295,7 +305,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   }, [isMeasuring, calculateMenuPosition]);
   
 
-  // Focus trap functionality
   const getFocusableElements = useCallback(() => {
     if (!contentRef.current) return [];
     
@@ -314,7 +323,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     return Array.from(contentRef.current.querySelectorAll(focusableSelectors)) as HTMLElement[];
   }, [contentRef]);
 
-  // Handle keyboard events
   useEffect(() => {
     if (!open) return;
 
@@ -332,20 +340,17 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 
       if (focusableElements.length === 0) return;
 
-      // Focus trap for Tab key
       if (e.key === 'Tab') {
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
         const activeElement = document.activeElement as HTMLElement;
 
         if (e.shiftKey) {
-          // Shift + Tab (backward)
           if (activeElement === firstElement || !contentRef.current?.contains(activeElement)) {
             e.preventDefault();
             lastElement.focus({ preventScroll: true });
           }
         } else {
-          // Tab (forward)
           if (activeElement === lastElement || !contentRef.current?.contains(activeElement)) {
             e.preventDefault();
             firstElement.focus({ preventScroll: true });
@@ -354,11 +359,9 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
         return;
       }
 
-      // Check if focus is currently in a submenu
       const activeElement = document.activeElement as HTMLElement;
       const isInSubmenu = activeElement?.closest('[data-submenu="true"]');
       
-      // If focus is in submenu, don't handle navigation in main menu
       if (isInSubmenu) return;
 
       const currentIndex = focusableElements.indexOf(activeElement);
@@ -376,9 +379,7 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
           break;
         case 'ArrowRight':
           e.preventDefault();
-          // Check if current focused element has a submenu
           if (activeElement?.getAttribute('aria-haspopup') === 'menu') {
-            // Trigger submenu open
             activeElement.click();
           }
           break;
@@ -397,7 +398,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open, onEscapeKeyDown, setOpen, getFocusableElements, contentRef]);
 
-  // Handle click outside and prevent body scroll
   useEffect(() => {
     if (!open) return;
 
@@ -411,7 +411,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 
     document.addEventListener('pointerdown', handlePointerDown);
     
-    // Prevent body scroll when context menu is open
     document.body.style.overflow = 'hidden';
 
     return () => {
@@ -420,14 +419,12 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     };
   }, [open, onPointerDownOutside, setOpen, contentRef]);
 
-  // Focus management
   useEffect(() => {
     if (open && isVisible && contentRef.current) {
       const firstFocusable = contentRef.current.querySelector(
         '[role="menuitem"]:not([disabled])'
       ) as HTMLElement;
       if (firstFocusable) {
-        // Use preventScroll to avoid page jumping
         firstFocusable.focus({ preventScroll: true });
       }
     }
@@ -447,18 +444,10 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
     }
   `;
 
-  const baseStyles = `
-    z-50 min-w-[10rem] overflow-hidden rounded-md border
-    bg-white dark:bg-nocta-950 border-nocta-300 dark:border-nocta-800
-    p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
-    ${animationStyles}
-    not-prose
-  `;
-
   return createPortal(
     <div
       ref={contentRef}
-      className={cn(baseStyles, className)}
+      className={cn(contextMenuContentVariants({ side, align }), animationStyles, className)}
       style={{
         position: 'fixed',
         top: calculatedPosition ? `${calculatedPosition.top}px` : '0px',
@@ -478,7 +467,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   );
 };
 
-// ContextMenu Item
 export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   children,
   className = '',
@@ -517,7 +505,6 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   );
 };
 
-// ContextMenu Separator
 export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
   className = '',
   ...props
@@ -531,7 +518,6 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
   );
 };
 
-// ContextMenu Sub
 export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({
   children,
   open: controlledOpen,
@@ -546,7 +532,6 @@ export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({
   const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
   const setOpen = onOpenChange || setInternalOpen;
 
-  // Clean up timeout on unmount
   useEffect(() => {
     const timeoutRef = hoverTimeoutRef.current;
     return () => {
@@ -571,7 +556,6 @@ export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({
   );
 };
 
-// ContextMenu Sub Trigger
 export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
   children,
   className = '',
@@ -585,7 +569,6 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
   const handleMouseEnter = () => {
     if (disabled) return;
     
-    // Clear any pending close timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -596,7 +579,6 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
   const handleMouseLeave = () => {
     if (disabled) return;
     
-    // Delay closing to allow moving to submenu
     hoverTimeoutRef.current = setTimeout(() => {
       setOpen(false);
     }, 150);
@@ -618,7 +600,6 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
       e.preventDefault();
       setOpen(true);
       
-      // Focus first item in submenu after it opens
       setTimeout(() => {
         const submenu = document.querySelector('[role="menu"][data-submenu="true"]');
         const firstItem = submenu?.querySelector('[role="menuitem"]:not([disabled])') as HTMLElement;
@@ -669,7 +650,6 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
   );
 };
 
-// ContextMenu Sub Content
 export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
   children,
   className = '',
@@ -679,24 +659,21 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
-  // Calculate position relative to trigger
   useEffect(() => {
     if (open && triggerRef.current && contentRef.current) {
       const triggerRect = triggerRef.current.getBoundingClientRect();
       const contentRect = contentRef.current.getBoundingClientRect();
       
-      // Position submenu to the right of trigger
-      let left = triggerRect.right + 4; // 4px offset
+      let left = triggerRect.right + 4;
       let top = triggerRect.top;
       
-      // Simple collision detection
       const viewport = {
         width: window.innerWidth,
         height: window.innerHeight,
       };
       
       if (left + contentRect.width > viewport.width) {
-        left = triggerRect.left - contentRect.width - 4; // Position to the left instead
+        left = triggerRect.left - contentRect.width - 4;
       }
       if (top + contentRect.height > viewport.height) {
         top = viewport.height - contentRect.height - 8;
@@ -713,7 +690,6 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
   }, [open, contentRef, triggerRef]);
 
   const handleMouseEnter = () => {
-    // Clear any pending close timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -722,13 +698,11 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
   };
 
   const handleMouseLeave = () => {
-    // Delay closing to allow moving back to trigger
     hoverTimeoutRef.current = setTimeout(() => {
       setOpen(false);
     }, 150);
   };
 
-  // Handle keyboard navigation for submenu
   useEffect(() => {
     if (!open || !contentRef.current) return;
 
@@ -772,7 +746,6 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
           break;
         case 'ArrowLeft':
           e.preventDefault();
-          // Go back to parent menu
           setOpen(false);
           triggerRef.current?.focus({ preventScroll: true });
           break;
@@ -794,13 +767,11 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
           const lastElement = focusableElements[focusableElements.length - 1];
 
           if (e.shiftKey) {
-            // Shift + Tab (backward)
             if (activeElement === firstElement || !contentRef.current?.contains(activeElement)) {
               e.preventDefault();
               lastElement.focus({ preventScroll: true });
             }
           } else {
-            // Tab (forward)
             if (activeElement === lastElement || !contentRef.current?.contains(activeElement)) {
               e.preventDefault();
               firstElement.focus({ preventScroll: true });
@@ -848,4 +819,4 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
     </div>,
     document.body
   );
-}; 
+};

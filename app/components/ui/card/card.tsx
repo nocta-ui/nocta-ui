@@ -37,26 +37,17 @@ export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-const hasBackgroundColor = (className: string = '') => {
-  return /bg-(?!linear|gradient|none)\w+/.test(className);
-};
-
-// Base Card Component
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(({ 
   children, 
   className = '', 
   ...props 
 }, ref) => {
-  const shouldOverrrideBackground = hasBackgroundColor(className);
   
   return (
     <div ref={ref} className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl w-fit'>
       <div 
       className={cn(
-        'rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose',
-        shouldOverrrideBackground 
-          ? '' 
-          : 'bg-nocta-100 dark:bg-nocta-900',
+        'bg-nocta-100 dark:bg-nocta-900 rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose',
         className
       )}
       {...props}
@@ -69,7 +60,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(({
 
 Card.displayName = 'Card';
 
-// Card Header
 export const CardHeader: React.FC<CardHeaderProps> = ({ 
   children, 
   className = '', 
@@ -85,7 +75,6 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
   );
 };
 
-// Card Title
 export const CardTitle: React.FC<CardTitleProps> = ({ 
   children, 
   className = '', 
@@ -102,7 +91,6 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   );
 };
 
-// Card Description
 export const CardDescription: React.FC<CardDescriptionProps> = ({ 
   children, 
   className = '', 
@@ -118,7 +106,6 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
   );
 };
 
-// Card Content
 export const CardContent: React.FC<CardContentProps> = ({ 
   children, 
   className = '', 
@@ -134,7 +121,6 @@ export const CardContent: React.FC<CardContentProps> = ({
   );
 };
 
-// Card Footer
 export const CardFooter: React.FC<CardFooterProps> = ({ 
   children, 
   className = '', 
@@ -150,7 +136,6 @@ export const CardFooter: React.FC<CardFooterProps> = ({
   );
 };
 
-// Card Actions
 export const CardActions: React.FC<CardActionsProps> = ({ 
   children, 
   className = '', 

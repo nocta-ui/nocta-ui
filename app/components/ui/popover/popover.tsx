@@ -1,13 +1,108 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useId, useCallback } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-const hasBackgroundColor = (className: string = '') => {
-  return /bg-(?!linear|gradient|none)\w+/.test(className);
-};
+const popoverTriggerVariants = cva(
+  'inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 transition-colors duration-200 not-prose cursor-pointer',
+  {
+    variants: {
+      variant: {
+        default: 'border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-neutral-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900',
+        outline: 'border-nocta-300 dark:border-nocta-700 bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-800',
+        ghost: 'border-transparent bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-800'
+      },
+      size: {
+        sm: 'px-2 py-1 text-xs',
+        md: 'px-3 py-2 text-sm',
+        lg: 'px-4 py-3 text-base'
+      }
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md'
+    }
+  }
+);
 
-// Popover interfaces
+const popoverContentVariants = cva(
+  'w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-nocta-100 dark:bg-nocta-900 p-4 shadow-lg dark:shadow-xl not-prose',
+  {
+    variants: {
+      size: {
+        sm: 'p-2 text-sm',
+        md: 'p-4 text-sm',
+        lg: 'p-6 text-base'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
+
+const popoverAnimationVariants = cva(
+  'transform transition-opacity transition-scale transition-transform duration-200 ease-out',
+  {
+    variants: {
+      side: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      state: {
+        measuring: 'opacity-0 pointer-events-none',
+        visible: 'translate-y-0 opacity-100 scale-100',
+        hidden: 'opacity-0 scale-95'
+      }
+    },
+    compoundVariants: [
+      {
+        side: 'top',
+        state: 'hidden',
+        class: 'translate-y-1'
+      },
+      {
+        side: 'bottom',
+        state: 'hidden',
+        class: '-translate-y-1'
+      },
+      {
+        side: 'left',
+        state: 'hidden',
+        class: 'translate-x-1'
+      },
+      {
+        side: 'right',
+        state: 'hidden',
+        class: '-translate-x-1'
+      }
+    ],
+    defaultVariants: {
+      side: 'bottom',
+      state: 'hidden'
+    }
+  }
+);
+
+const popoverArrowVariants = cva(
+  'fill-white dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50',
+  {
+    variants: {
+      size: {
+        sm: 'w-2 h-1',
+        md: 'w-3 h-1.5',
+        lg: 'w-4 h-2'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
+
 export interface PopoverProps {
   children: React.ReactNode;
   open?: boolean;
@@ -15,13 +110,13 @@ export interface PopoverProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-export interface PopoverTriggerProps {
+export interface PopoverTriggerProps extends VariantProps<typeof popoverTriggerVariants> {
   children: React.ReactNode;
   asChild?: boolean;
   className?: string;
 }
 
-export interface PopoverContentProps {
+export interface PopoverContentProps extends VariantProps<typeof popoverContentVariants> {
   children: React.ReactNode;
   className?: string;
   side?: 'top' | 'right' | 'bottom' | 'left';
@@ -33,13 +128,12 @@ export interface PopoverContentProps {
   onPointerDownOutside?: (event: PointerEvent) => void;
 }
 
-export interface PopoverArrowProps {
+export interface PopoverArrowProps extends VariantProps<typeof popoverArrowVariants> {
   className?: string;
   width?: number;
   height?: number;
 }
 
-// Context for Popover state management
 const PopoverContext = React.createContext<{
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -52,7 +146,6 @@ const PopoverContext = React.createContext<{
   contentId: '',
 });
 
-// Main Popover Component
 export const Popover: React.FC<PopoverProps> = ({
   children,
   open: controlledOpen,
@@ -88,11 +181,12 @@ export const Popover: React.FC<PopoverProps> = ({
   );
 };
 
-// Popover Trigger
 export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
   children,
   asChild = false,
   className = '',
+  variant = 'default',
+  size = 'md',
 }) => {
   const { open, setOpen, triggerRef, contentId } = React.useContext(PopoverContext);
 
@@ -129,27 +223,17 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
       aria-haspopup="dialog"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className={`
-        inline-flex items-center justify-center
-        rounded-lg border border-nocta-300 dark:border-nocta-800/50
-        bg-white dark:bg-neutral-900
-        px-3 py-2 text-sm font-medium
-        text-nocta-900 dark:text-nocta-100
-        hover:bg-nocta-50 dark:hover:bg-nocta-900
-        focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-        focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
-        focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
-        transition-colors duration-200
-        not-prose cursor-pointer
-        ${className}
-      `}
+      className={cn(
+        popoverTriggerVariants({ variant, size }),
+        'font-medium',
+        className
+      )}
     >
       {children}
     </button>
   );
 };
 
-// Popover Content
 export const PopoverContent: React.FC<PopoverContentProps> = ({
   children,
   className = '',
@@ -160,6 +244,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   avoidCollisions = true,
   onEscapeKeyDown,
   onPointerDownOutside,
+  size = 'md',
 }) => {
   const { open, setOpen, triggerRef, contentId } = React.useContext(PopoverContext);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -168,11 +253,9 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
   const [isMeasuring, setIsMeasuring] = useState(false);
-  const shouldOverrrideBackground = hasBackgroundColor(className);
 
 
 
-  // Handle open/close animations
   useEffect(() => {
     if (open) {
       setShouldRender(true);
@@ -182,23 +265,20 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     } else {
       setIsVisible(false);
       setIsMeasuring(false);
-      // Don't reset position immediately - keep it for smooth close animation
       const timer = setTimeout(() => {
         setShouldRender(false);
-        setPosition(null); // Reset position only after animation completes
+        setPosition(null);
       }, 200);
       return () => clearTimeout(timer);
     }
   }, [open]);
 
-  // Shared position calculation function
   const calculatePosition = useCallback(() => {
     if (!contentRef.current || !triggerRef.current) return;
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const contentRect = contentRef.current.getBoundingClientRect();
     
-    // If content has no dimensions yet, try again
     if (contentRect.width === 0 || contentRect.height === 0) {
       if (isMeasuring) {
         requestAnimationFrame(calculatePosition);
@@ -215,7 +295,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     let top = 0;
     let left = 0;
 
-    // Calculate base position
     switch (side) {
       case 'top':
         top = triggerRect.top - contentRect.height - sideOffset;
@@ -231,7 +310,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         break;
     }
 
-    // Calculate alignment
     if (side === 'top' || side === 'bottom') {
       switch (align) {
         case 'start':
@@ -258,9 +336,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       }
     }
 
-    // Collision detection
     if (avoidCollisions) {
-      // Check if content goes outside viewport and flip if needed
       if (side === 'top' && top < 0) {
         finalSide = 'bottom';
         top = triggerRect.bottom + sideOffset;
@@ -275,7 +351,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
         left = triggerRect.left - contentRect.width - sideOffset;
       }
 
-      // Keep content within viewport bounds
       if (side === 'top' || side === 'bottom') {
         left = Math.max(8, Math.min(left, viewport.width - contentRect.width - 8));
       } else {
@@ -286,7 +361,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     setPosition({ top, left });
     setActualSide(finalSide);
     
-    // Show popover in next frame for smooth animation (only during initial measuring)
     if (isMeasuring) {
       setIsMeasuring(false);
       requestAnimationFrame(() => {
@@ -295,20 +369,17 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     }
   }, [side, align, sideOffset, alignOffset, avoidCollisions, isMeasuring, triggerRef]);
 
-  // Calculate position after measuring render
   useEffect(() => {
     if (!isMeasuring) return;
     
-    // Calculate position in next frame to ensure element is rendered
     requestAnimationFrame(calculatePosition);
     
   }, [isMeasuring, calculatePosition]);
 
-  // Update position on scroll and resize
   useEffect(() => {
     if (!open || isMeasuring) return;
 
-    window.addEventListener('scroll', calculatePosition, true); // Use capture for all scroll events
+    window.addEventListener('scroll', calculatePosition, true);
     window.addEventListener('resize', calculatePosition);
 
     return () => {
@@ -317,7 +388,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
     };
   }, [open, isMeasuring, calculatePosition]);
 
-  // Handle escape key and outside clicks
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -354,21 +424,11 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 
   if (!shouldRender) return null;
 
-  const animationStyles = `
-    transform transition-opacity transition-scale transition-transform duration-200 ease-out
-    ${isMeasuring 
-      ? 'opacity-0 pointer-events-none' 
-      : isVisible && position
-        ? 'translate-y-0 opacity-100 scale-100' 
-        : actualSide === 'top' 
-          ? 'translate-y-1 opacity-0 scale-95'
-          : actualSide === 'bottom'
-          ? '-translate-y-1 opacity-0 scale-95'
-          : actualSide === 'left'
-          ? 'translate-x-1 opacity-0 scale-95'
-          : '-translate-x-1 opacity-0 scale-95'
-    }
-  `;
+  const animationState = isMeasuring
+    ? 'measuring'
+    : isVisible && position
+    ? 'visible'
+    : 'hidden';
 
   return (
     <div
@@ -382,10 +442,15 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
       left: position ? `${position.left}px` : '0px',
       zIndex: 50,
     }}
-    className={cn('relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-lg', animationStyles)}>
+    className={cn(
+      'relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-lg',
+      popoverAnimationVariants({ side: actualSide, state: animationState })
+    )}>
     <div
-      
-      className={cn('w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg ', shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900', 'p-4 shadow-lg dark:shadow-xl', 'not-prose', className)}
+      className={cn(
+        popoverContentVariants({ size }),
+        className
+      )}
     >
       {children}
     </div>
@@ -393,18 +458,31 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
   );
 };
 
-// Popover Arrow
 export const PopoverArrow: React.FC<PopoverArrowProps> = ({
   className = '',
   width = 12,
   height = 6,
+  size = 'md',
 }) => {
+  const sizes = {
+    sm: { width: 8, height: 4 },
+    md: { width: 12, height: 6 },
+    lg: { width: 16, height: 8 }
+  };
+
+  const currentSize = sizes[size || 'md'];
+  const actualWidth = width ?? currentSize.width;
+  const actualHeight = height ?? currentSize.height;
+
   return (
     <svg
-      width={width}
-      height={height}
+      width={actualWidth}
+      height={actualHeight}
       viewBox="0 0 12 6"
-      className={cn('fill-white dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50', className)}
+      className={cn(
+        popoverArrowVariants({ size }),
+        className
+      )}
     >
       <path d="M0 6L6 0L12 6" strokeWidth={1} />
     </svg>

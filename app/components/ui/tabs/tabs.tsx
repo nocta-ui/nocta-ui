@@ -1,9 +1,150 @@
 'use client';
 
 import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-// Context for tabs state
+const tabsListVariants = cva(
+  'inline-flex items-center justify-center transition-all duration-200 ease-in-out not-prose',
+  {
+    variants: {
+      orientation: {
+        horizontal: 'flex-row',
+        vertical: 'flex-col w-fit'
+      },
+      variant: {
+        default: 'rounded-lg bg-nocta-200 dark:bg-nocta-900',
+        pills: 'gap-1',
+        underline: 'border-b border-nocta-300 dark:border-nocta-700 gap-0'
+      },
+      size: {
+        sm: '',
+        md: '',
+        lg: ''
+      }
+    },
+    compoundVariants: [
+      {
+        variant: 'default',
+        size: 'sm',
+        class: 'p-0.5'
+      },
+      {
+        variant: 'default',
+        size: 'md',
+        class: 'p-1'
+      },
+      {
+        variant: 'default',
+        size: 'lg',
+        class: 'p-1.5'
+      }
+    ],
+    defaultVariants: {
+      orientation: 'horizontal',
+      variant: 'default',
+      size: 'md'
+    }
+  }
+);
+
+const tabsTriggerVariants = cva(
+  `inline-flex items-center justify-center whitespace-nowrap
+   font-medium transition-all duration-200 ease-in-out
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
+   focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+   focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+   disabled:pointer-events-none disabled:opacity-50 cursor-pointer
+   not-prose`,
+  {
+    variants: {
+      variant: {
+        default: `
+          w-full rounded-md
+          text-nocta-700 dark:text-nocta-300
+          hover:text-nocta-900 dark:hover:text-nocta-100
+          data-[state=active]:bg-white dark:data-[state=active]:bg-nocta-800
+          data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
+          data-[state=active]:shadow-sm
+        `,
+        pills: `
+          rounded-lg
+          text-nocta-700 dark:text-nocta-300
+          hover:bg-nocta-100 dark:hover:bg-nocta-900
+          hover:text-nocta-900 dark:hover:text-nocta-100
+          data-[state=active]:bg-nocta-900 dark:data-[state=active]:bg-nocta-100
+          data-[state=active]:text-nocta-50 dark:data-[state=active]:text-nocta-900
+          data-[state=active]:shadow-sm
+        `,
+        underline: `
+          border-b-2 border-transparent
+          text-nocta-700 dark:text-nocta-300
+          hover:text-nocta-900 dark:hover:text-nocta-100
+          hover:border-nocta-300 dark:hover:border-nocta-600
+          data-[state=active]:border-nocta-900 dark:data-[state=active]:border-nocta-100
+          data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
+        `
+      },
+      size: {
+        sm: '',
+        md: '',
+        lg: ''
+      }
+    },
+    compoundVariants: [
+      {
+        variant: 'default',
+        size: 'sm',
+        class: 'px-2 py-1 text-xs'
+      },
+      {
+        variant: 'default',
+        size: 'md',
+        class: 'px-3 py-1.5 text-sm'
+      },
+      {
+        variant: 'default',
+        size: 'lg',
+        class: 'px-4 py-2 text-base'
+      },
+      {
+        variant: 'pills',
+        size: 'sm',
+        class: 'px-3 py-1.5 text-xs'
+      },
+      {
+        variant: 'pills',
+        size: 'md',
+        class: 'px-4 py-2 text-sm'
+      },
+      {
+        variant: 'pills',
+        size: 'lg',
+        class: 'px-6 py-2.5 text-base'
+      },
+      {
+        variant: 'underline',
+        size: 'sm',
+        class: 'px-3 py-2 text-xs'
+      },
+      {
+        variant: 'underline',
+        size: 'md',
+        class: 'px-4 py-3 text-sm'
+      },
+      {
+        variant: 'underline',
+        size: 'lg',
+        class: 'px-6 py-4 text-base'
+      }
+    ],
+    defaultVariants: {
+      variant: 'default',
+      size: 'md'
+    }
+  }
+);
+
 interface TabsContextValue {
   value: string;
   onValueChange: (value: string) => void;
@@ -15,7 +156,6 @@ interface TabsContextValue {
 
 const TabsContext = createContext<TabsContextValue | null>(null);
 
-// Hook to access tabs context
 const useTabsContext = () => {
   const context = useContext(TabsContext);
   if (!context) {
@@ -24,7 +164,6 @@ const useTabsContext = () => {
   return context;
 };
 
-// Tabs interfaces
 export interface TabsProps {
   children: React.ReactNode;
   value?: string;
@@ -37,12 +176,16 @@ export interface TabsProps {
   disabled?: boolean;
 }
 
-export interface TabsListProps {
+export interface TabsListProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tabsListVariants> {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface TabsTriggerProps {
+export interface TabsTriggerProps 
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof tabsTriggerVariants> {
   children: React.ReactNode;
   value: string;
   className?: string;
@@ -55,7 +198,6 @@ export interface TabsContentProps {
   className?: string;
 }
 
-// Main Tabs Component
 export const Tabs: React.FC<TabsProps> = ({
   children,
   value: controlledValue,
@@ -101,47 +243,21 @@ export const Tabs: React.FC<TabsProps> = ({
   );
 };
 
-// Tabs List
 export const TabsList: React.FC<TabsListProps> = ({
   children,
   className = '',
+  orientation: propOrientation,
+  variant: propVariant,
+  size: propSize,
+  ...props
 }) => {
-  const { orientation, variant, size } = useTabsContext();
+  const { orientation: contextOrientation, variant: contextVariant, size: contextSize } = useTabsContext();
   const listRef = useRef<HTMLDivElement>(null);
 
-  const baseStyles = `
-    inline-flex items-center justify-center
-    transition-all duration-200 ease-in-out
-    not-prose
-  `;
+  const orientation = propOrientation || contextOrientation;
+  const variant = propVariant || contextVariant;
+  const size = propSize || contextSize;
 
-  const orientationStyles = {
-    horizontal: 'flex-row',
-    vertical: 'flex-col w-fit'
-  };
-
-  const variantStyles = {
-    default: `
-      rounded-lg
-      bg-nocta-200 dark:bg-nocta-900
-      p-1
-    `,
-    pills: `
-      gap-1
-    `,
-    underline: `
-      border-b border-nocta-300 dark:border-nocta-700
-      gap-0
-    `
-  };
-
-  const sizeStyles = {
-    sm: variant === 'default' ? 'p-0.5' : '',
-    md: variant === 'default' ? 'p-1' : '',
-    lg: variant === 'default' ? 'p-1.5' : ''
-  };
-
-  // Handle keyboard navigation
   const handleKeyDown = (event: React.KeyboardEvent) => {
     const triggers = listRef.current?.querySelectorAll('[role="tab"]:not([disabled])') as NodeListOf<HTMLButtonElement>;
     if (!triggers || triggers.length === 0) return;
@@ -180,86 +296,30 @@ export const TabsList: React.FC<TabsListProps> = ({
       ref={listRef}
       role="tablist"
       aria-orientation={orientation}
-      className={cn(baseStyles, orientationStyles[orientation], variantStyles[variant], sizeStyles[size], className)}
+      className={cn(tabsListVariants({ orientation, variant, size }), className)}
       onKeyDown={handleKeyDown}
+      {...props}
     >
       {children}
     </div>
   );
 };
 
-// Tabs Trigger
 export const TabsTrigger: React.FC<TabsTriggerProps> = ({
   children,
   value,
   className = '',
   disabled = false,
+  variant: propVariant,
+  size: propSize,
+  ...props
 }) => {
-  const { value: selectedValue, onValueChange, variant, size, disabled: contextDisabled } = useTabsContext();
+  const { value: selectedValue, onValueChange, variant: contextVariant, size: contextSize, disabled: contextDisabled } = useTabsContext();
   const isSelected = selectedValue === value;
   const isDisabled = disabled || contextDisabled;
 
-  const baseStyles = `
-    inline-flex items-center justify-center whitespace-nowrap
-    font-medium transition-all duration-200 ease-in-out
-    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
-    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-    disabled:pointer-events-none disabled:opacity-50 cursor-pointer
-    not-prose
-  `;
-
-  const variantStyles = {
-    default: {
-      base: `
-        w-full rounded-md px-3 py-1.5
-        text-nocta-700 dark:text-nocta-300
-        hover:text-nocta-900 dark:hover:text-nocta-100
-        data-[state=active]:bg-white dark:data-[state=active]:bg-nocta-800
-        data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
-        data-[state=active]:shadow-sm
-      `,
-    },
-    pills: {
-      base: `
-        rounded-lg px-4 py-2
-        text-nocta-700 dark:text-nocta-300
-        hover:bg-nocta-100 dark:hover:bg-nocta-900
-        hover:text-nocta-900 dark:hover:text-nocta-100
-        data-[state=active]:bg-nocta-900 dark:data-[state=active]:bg-nocta-100
-        data-[state=active]:text-nocta-50 dark:data-[state=active]:text-nocta-900
-        data-[state=active]:shadow-sm
-      `,
-    },
-    underline: {
-      base: `
-        px-4 py-3 border-b-2 border-transparent
-        text-nocta-700 dark:text-nocta-300
-        hover:text-nocta-900 dark:hover:text-nocta-100
-        hover:border-nocta-300 dark:hover:border-nocta-600
-        data-[state=active]:border-nocta-900 dark:data-[state=active]:border-nocta-100
-        data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
-      `,
-    },
-  };
-
-  const sizeStyles = {
-    sm: {
-      default: 'px-2 py-1 text-xs',
-      pills: 'px-3 py-1.5 text-xs',
-      underline: 'px-3 py-2 text-xs'
-    },
-    md: {
-      default: 'px-3 py-1.5 text-sm',
-      pills: 'px-4 py-2 text-sm',
-      underline: 'px-4 py-3 text-sm'
-    },
-    lg: {
-      default: 'px-4 py-2 text-base',
-      pills: 'px-6 py-2.5 text-base',
-      underline: 'px-6 py-4 text-base'
-    }
-  };
+  const variant = propVariant || contextVariant;
+  const size = propSize || contextSize;
 
   return (
     <button
@@ -269,15 +329,15 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({
       aria-controls={`tab-content-${value}`}
       data-state={isSelected ? 'active' : 'inactive'}
       disabled={isDisabled}
-      className={cn(baseStyles, variantStyles[variant].base, sizeStyles[size][variant], className)}
+      className={cn(tabsTriggerVariants({ variant, size }), className)}
       onClick={() => onValueChange(value)}
+      {...props}
     >
       {children}
     </button>
   );
 };
 
-// Tabs Content
 export const TabsContent: React.FC<TabsContentProps> = ({
   children,
   value,
@@ -309,4 +369,4 @@ export const TabsContent: React.FC<TabsContentProps> = ({
       {children}
     </div>
   );
-}; 
+};

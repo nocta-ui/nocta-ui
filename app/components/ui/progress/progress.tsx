@@ -1,17 +1,47 @@
 import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
+const progressVariants = cva(
+  [
+    'relative w-full overflow-hidden rounded-full',
+    'bg-nocta-200 dark:bg-nocta-800',
+    'transition-all duration-200 ease-in-out',
+    'not-prose'
+  ],
+  {
+    variants: {
+      variant: {
+        default: '[&>div]:bg-nocta-900 dark:[&>div]:bg-nocta-100/50',
+        success: '[&>div]:bg-green-500 dark:[&>div]:bg-green-600/50',
+        warning: '[&>div]:bg-yellow-500 dark:[&>div]:bg-yellow-600/50',
+        destructive: '[&>div]:bg-red-500 dark:[&>div]:bg-red-600/50'
+      },
+      size: {
+        sm: 'h-2',
+        md: 'h-3',
+        lg: 'h-4'
+      }
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md'
+    }
+  }
+);
+
+
+
+export interface ProgressProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof progressVariants> {
   value?: number;
   max?: number;
-  variant?: 'default' | 'success' | 'warning' | 'destructive';
-  size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
   className?: string;
   'aria-label'?: string;
 }
 
-// Progress Component
 export const Progress: React.FC<ProgressProps> = ({
   value = 0,
   max = 100,
@@ -23,34 +53,6 @@ export const Progress: React.FC<ProgressProps> = ({
   ...props
 }) => {
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
-  
-  const baseStyles = `
-    relative w-full overflow-hidden rounded-full
-    bg-nocta-200 dark:bg-nocta-800
-    transition-all duration-200 ease-in-out
-    not-prose
-  `;
-
-  const sizes = {
-    sm: 'h-2',
-    md: 'h-3', 
-    lg: 'h-4'
-  };
-
-  const variants = {
-    default: `
-      [&>div]:bg-nocta-900 dark:[&>div]:bg-nocta-100/50
-    `,
-    success: `
-      [&>div]:bg-green-500 dark:[&>div]:bg-green-600/50
-    `,
-    warning: `
-      [&>div]:bg-yellow-500 dark:[&>div]:bg-yellow-600/50
-    `,
-    destructive: `
-      [&>div]:bg-red-500 dark:[&>div]:bg-red-600/50
-    `
-  };
 
   return (
     <div className="w-full">
@@ -66,7 +68,7 @@ export const Progress: React.FC<ProgressProps> = ({
       )}
       
       <div
-        className={cn(baseStyles, sizes[size], variants[variant], className)}
+        className={cn(progressVariants({ variant, size }), className)}
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={max}
@@ -81,4 +83,4 @@ export const Progress: React.FC<ProgressProps> = ({
       </div>
     </div>
   );
-}; 
+};

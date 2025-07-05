@@ -1,19 +1,107 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+const avatarVariants = cva(
+  [
+    'relative inline-flex items-center justify-center',
+    'bg-nocta-200 dark:bg-nocta-800',
+    'text-nocta-700 dark:text-nocta-300',
+    'font-medium select-none',
+    'transition-all duration-200 ease-in-out',
+    'not-prose'
+  ],
+  {
+    variants: {
+      variant: {
+        circle: 'rounded-full',
+        square: 'rounded-lg'
+      },
+      size: {
+        xs: 'h-6 w-6',
+        sm: 'h-8 w-8',
+        md: 'h-10 w-10',
+        lg: 'h-12 w-12',
+        xl: 'h-16 w-16',
+        '2xl': 'h-20 w-20'
+      }
+    },
+    defaultVariants: {
+      variant: 'circle',
+      size: 'md'
+    }
+  }
+);
+
+const textVariants = cva('font-medium', {
+  variants: {
+    size: {
+      xs: 'text-xs',
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base',
+      xl: 'text-lg',
+      '2xl': 'text-xl'
+    }
+  },
+  defaultVariants: {
+    size: 'md'
+  }
+});
+
+const iconVariants = cva('text-nocta-400 dark:text-nocta-500', {
+  variants: {
+    size: {
+      xs: 'h-3 w-3',
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
+      xl: 'h-8 w-8',
+      '2xl': 'h-10 w-10'
+    }
+  },
+  defaultVariants: {
+    size: 'md'
+  }
+});
+
+const statusVariants = cva(
+  'absolute rounded-full ring-nocta-50 dark:ring-nocta-900',
+  {
+    variants: {
+      status: {
+        online: 'bg-green-500 dark:bg-green-600',
+        offline: 'bg-nocta-400 dark:bg-nocta-600',
+        away: 'bg-yellow-500 dark:bg-yellow-600',
+        busy: 'bg-red-500 dark:bg-red-600'
+      },
+      size: {
+        xs: 'h-1.5 w-1.5 ring-1 bottom-0 right-0',
+        sm: 'h-2 w-2 ring-1 bottom-0 right-0',
+        md: 'h-2.5 w-2.5 ring-1 bottom-0.5 right-0.5',
+        lg: 'h-3 w-3 ring-1 bottom-0.5 right-0.5',
+        xl: 'h-3.5 w-3.5 ring-1 bottom-1 right-1',
+        '2xl': 'h-4 w-4 ring-1 bottom-1 right-1'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
+
+export interface AvatarProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof avatarVariants> {
   src?: string;
   alt?: string;
   fallback?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-  variant?: 'circle' | 'square';
   status?: 'online' | 'offline' | 'away' | 'busy' | null;
   className?: string;
 }
 
-// Avatar Component
 export const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = '',
@@ -26,7 +114,6 @@ export const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const [imageError, setImageError] = useState(false);
 
-  // Reset error state when src changes
   useEffect(() => {
     if (src) {
       setImageError(false);
@@ -37,17 +124,14 @@ export const Avatar: React.FC<AvatarProps> = ({
     setImageError(true);
   };
 
-  // Generate initials from fallback or alt text
   const getInitials = () => {
     const text = fallback || alt || '';
     if (!text) return '';
     
-    // If text is 2 characters or less and has no spaces, treat as ready initials
     if (text.length <= 2 && !text.includes(' ')) {
       return text.toUpperCase();
     }
     
-    // Otherwise, generate initials from words
     return text
       .split(' ')
       .map(word => word.charAt(0))
@@ -56,94 +140,19 @@ export const Avatar: React.FC<AvatarProps> = ({
       .slice(0, 2);
   };
 
-  const baseStyles = `
-    relative inline-flex items-center justify-center
-    bg-nocta-200 dark:bg-nocta-800
-    text-nocta-700 dark:text-nocta-300
-    font-medium select-none
-    transition-all duration-200 ease-in-out
-    not-prose
-  `;
-
-  const variants = {
-    circle: 'rounded-full',
-    square: 'rounded-lg'
-  };
-
-  const sizes = {
-    xs: {
-      container: 'h-6 w-6',
-      text: 'text-xs',
-      icon: 'h-3 w-3',
-      status: 'h-1.5 w-1.5 ring-1'
-    },
-    sm: {
-      container: 'h-8 w-8',
-      text: 'text-xs',
-      icon: 'h-4 w-4',
-      status: 'h-2 w-2 ring-1'
-    },
-    md: {
-      container: 'h-10 w-10',
-      text: 'text-sm',
-      icon: 'h-5 w-5',
-      status: 'h-2.5 w-2.5 ring-1'
-    },
-    lg: {
-      container: 'h-12 w-12',
-      text: 'text-base',
-      icon: 'h-6 w-6',
-      status: 'h-3 w-3 ring-1'
-    },
-    xl: {
-      container: 'h-16 w-16',
-      text: 'text-lg',
-      icon: 'h-8 w-8',
-      status: 'h-3.5 w-3.5 ring-1'
-    },
-    '2xl': {
-      container: 'h-20 w-20',
-      text: 'text-xl',
-      icon: 'h-10 w-10',
-      status: 'h-4 w-4 ring-1'
-    }
-  };
-
-  const statusStyles = {
-    online: 'bg-green-500 dark:bg-green-600',
-    offline: 'bg-nocta-400 dark:bg-nocta-600',
-    away: 'bg-yellow-500 dark:bg-yellow-600',
-    busy: 'bg-red-500 dark:bg-red-600'
-  };
-
-  const statusPositions = {
-    xs: 'bottom-0 right-0',
-    sm: 'bottom-0 right-0',
-    md: 'bottom-0.5 right-0.5',
-    lg: 'bottom-0.5 right-0.5',
-    xl: 'bottom-1 right-1',
-    '2xl': 'bottom-1 right-1'
-  };
-
   const showImage = src && !imageError;
   const showInitials = !showImage && getInitials();
 
   return (
     <div
-      className={`
-        ${baseStyles}
-        ${variants[variant]}
-        ${sizes[size].container}
-        ${className}
-      `}
+      className={cn(avatarVariants({ variant, size }), className)}
       {...props}
     >
-      {/* Image */}
       {showImage && (
         <img
           src={src}
           alt=""
-          className={cn('h-full w-full object-cover', variants[variant])}
+          className={cn('h-full w-full object-cover', variant === 'circle' ? 'rounded-full' : 'rounded-lg')}
           onError={handleImageError}
           loading="eager"
           style={{
@@ -153,17 +162,15 @@ export const Avatar: React.FC<AvatarProps> = ({
         />
       )}
 
-      {/* Initials fallback */}
       {showInitials && (
-        <span className={`${sizes[size].text} font-medium`}>
+        <span className={textVariants({ size })}>
           {getInitials()}
         </span>
       )}
 
-      {/* Default fallback icon */}
       {!showImage && !showInitials && (
         <svg
-          className={cn(sizes[size].icon, 'text-nocta-400 dark:text-nocta-500')}
+          className={iconVariants({ size })}
           fill="currentColor"
           viewBox="0 0 256 256"
         >
@@ -171,13 +178,12 @@ export const Avatar: React.FC<AvatarProps> = ({
         </svg>
       )}
 
-      {/* Status indicator */}
       {status && (
         <span
-          className={cn('absolute rounded-full', statusStyles[status], sizes[size].status, statusPositions[size], 'ring-nocta-50 dark:ring-nocta-900')}
+          className={statusVariants({ status, size })}
           aria-label={`Status: ${status}`}
         />
       )}
     </div>
   );
-}; 
+};

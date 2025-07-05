@@ -5,7 +5,6 @@ import { cn } from 'fumadocs-ui/utils/cn';
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 
-// Pre component types
 interface PreProps extends HTMLAttributes<HTMLPreElement> {
   className?: string;
 }
@@ -87,7 +86,6 @@ export const Pre = forwardRef<HTMLPreElement, PreProps>(
 
 Pre.displayName = 'Pre';
 
-// CodeBlock component types
 interface ViewportProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
   style?: CSSProperties;
@@ -197,7 +195,6 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 
 CodeBlock.displayName = 'CodeBlock';
 
-// CopyButton component types
 interface CopyButtonProps extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
   onCopy: () => void;

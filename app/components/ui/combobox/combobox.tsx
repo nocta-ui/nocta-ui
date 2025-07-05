@@ -1,16 +1,64 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback, useId } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-// Combobox interfaces
+const comboboxVariants = cva(
+  `relative w-fit inline-flex items-center justify-between
+   rounded-lg border transition-all duration-200 ease-in-out
+   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+   focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+   disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
+   not-prose`,
+  {
+    variants: {
+      variant: {
+        default: `
+          border-nocta-300 dark:border-nocta-800/50
+          bg-white dark:bg-nocta-950
+          text-nocta-900 dark:text-nocta-100
+          hover:border-nocta-300/50 dark:hover:border-nocta-600/50
+          focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
+          focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+        `,
+        error: `
+          border-red-300 dark:border-red-700/50
+          bg-white dark:bg-nocta-950
+          text-nocta-900 dark:text-nocta-100
+          hover:border-red-400/50 dark:hover:border-red-600/50
+          focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
+          focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50
+        `,
+        success: `
+          border-green-300 dark:border-green-700/50
+          bg-white dark:bg-nocta-950
+          text-nocta-900 dark:text-nocta-100
+          hover:border-green-400/50 dark:hover:border-green-600/50
+          focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
+          focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50
+        `
+      },
+      size: {
+        sm: 'h-8 px-3 text-xs',
+        md: 'h-10 px-3 text-sm',
+        lg: 'h-12 px-4 text-base'
+      }
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md'
+    }
+  }
+);
+
 export interface ComboboxOption {
   value: string;
   label: string;
   disabled?: boolean;
 }
 
-export interface ComboboxProps {
+export interface ComboboxProps extends VariantProps<typeof comboboxVariants> {
   options: ComboboxOption[];
   value?: string;
   defaultValue?: string;
@@ -19,8 +67,6 @@ export interface ComboboxProps {
   searchPlaceholder?: string;
   emptyMessage?: string;
   disabled?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'error' | 'success';
   className?: string;
   popoverClassName?: string;
   searchable?: boolean;
@@ -56,15 +102,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
   const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
   
-  // Filter options based on search term
   const filteredOptions = options.filter(option =>
     option.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Get current selected option
   const selectedOption = options.find(option => option.value === value);
 
-  // Handle value change
   const handleValueChange = useCallback((newValue: string) => {
     if (disabled) return;
     
@@ -77,13 +120,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
     setHighlightedIndex(-1);
   }, [disabled, controlledValue, onValueChange]);
 
-  // Handle clear
   const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
     handleValueChange('');
   };
 
-  // Handle keyboard navigation
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (disabled) return;
 
@@ -136,7 +177,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
   }, [open, highlightedIndex, filteredOptions, disabled, handleValueChange]);
 
-  // Scroll highlighted option into view
   useEffect(() => {
     if (highlightedIndex >= 0 && optionRefs.current[highlightedIndex]) {
       optionRefs.current[highlightedIndex]?.scrollIntoView({
@@ -146,7 +186,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
   }, [highlightedIndex]);
 
-  // Close on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -169,10 +208,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
     };
   }, [open]);
 
-  // Focus search input when opened - with delay to avoid ring flash
   useEffect(() => {
     if (open && searchable && searchInputRef.current) {
-      // Small delay to avoid the ring flash effect
       const timeoutId = setTimeout(() => {
         searchInputRef.current?.focus();
       }, 200);
@@ -180,52 +217,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
   }, [open, searchable]);
 
-  // Base styles
-  const baseStyles = `
-    relative w-fit inline-flex items-center justify-between
-    rounded-lg border transition-all duration-200 ease-in-out
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-    focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
-    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-    not-prose
-  `;
-
-  const variants = {
-    default: `
-      border-nocta-300 dark:border-nocta-800/50
-      bg-white dark:bg-nocta-950
-      text-nocta-900 dark:text-nocta-100
-      hover:border-nocta-300/50 dark:hover:border-nocta-600/50
-      focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
-      focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-    `,
-    error: `
-      border-red-300 dark:border-red-700/50
-      bg-white dark:bg-nocta-950
-      text-nocta-900 dark:text-nocta-100
-      hover:border-red-400/50 dark:hover:border-red-600/50
-      focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
-      focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50
-    `,
-    success: `
-      border-green-300 dark:border-green-700/50
-      bg-white dark:bg-nocta-950
-      text-nocta-900 dark:text-nocta-100
-      hover:border-green-400/50 dark:hover:border-green-600/50
-      focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
-      focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50
-    `
-  };
-
-  const sizes = {
-    sm: 'h-8 px-3 text-xs',
-    md: 'h-10 px-3 text-sm',
-    lg: 'h-12 px-4 text-base'
-  };
-
   return (
     <div className="relative not-prose">
-      {/* Trigger Button */}
       <button
         ref={triggerRef}
         type="button"
@@ -234,7 +227,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         aria-controls={`${comboboxId}-listbox`}
         aria-haspopup="listbox"
         disabled={disabled}
-        className={cn(baseStyles, variants[variant], sizes[size], className)}
+        className={cn(comboboxVariants({ variant, size }), className)}
         onClick={() => !disabled && setOpen(!open)}
         onKeyDown={handleKeyDown}
       >
@@ -243,7 +236,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
         </span>
         
         <div className="flex items-center gap-1 ml-2">
-          {/* Clear button */}
           {clearable && selectedOption && !disabled && (
             <div
               role="button"
@@ -264,7 +256,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
             </div>
           )}
           
-          {/* Chevrons Up Down */}
           <svg
             className="w-4 h-4 text-nocta-400 dark:text-nocta-500"
             fill="none"
@@ -277,13 +268,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
         </div>
       </button>
 
-      {/* Dropdown */}
       {open && (
         <div
           ref={listRef}
           className={cn('absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl', popoverClassName)}
         >
-          {/* Search input */}
           {searchable && (
             <div className="p-1 border-b border-nocta-300 dark:border-nocta-800/50">
               <input
@@ -301,7 +290,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
             </div>
           )}
 
-          {/* Options list */}
             <div
              role="listbox"
              id={`${comboboxId}-listbox`}
@@ -335,4 +323,4 @@ export const Combobox: React.FC<ComboboxProps> = ({
       )}
     </div>
   );
-}; 
+};

@@ -29,7 +29,7 @@ export const VariantsDemo: React.FC = () => {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <Switch 
-          variant="default" 
+          variant="default"
           checked={states.default} 
           onCheckedChange={handleChange('default')}
         />

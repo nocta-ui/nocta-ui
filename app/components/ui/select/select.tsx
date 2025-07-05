@@ -1,7 +1,34 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+
+const selectTriggerVariants = cva(
+  `flex w-fit items-center justify-between
+   rounded-lg border border-nocta-300 dark:border-nocta-800/50
+   bg-white dark:bg-nocta-950
+   hover:border-nocta-300/50 dark:hover:border-nocta-600/50
+   placeholder:text-nocta-400 dark:placeholder:text-nocta-500
+   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+   focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+   focus-visible:border-nocta-900 dark:focus-visible:border-nocta-100
+   disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
+   transition-all duration-200 ease-out
+   not-prose`,
+  {
+    variants: {
+      size: {
+        sm: 'h-8 px-2 text-xs',
+        md: 'h-10 px-3 text-sm',
+        lg: 'h-12 px-4 text-base'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
 
 export interface SelectProps {
   value?: string;
@@ -12,10 +39,11 @@ export interface SelectProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export interface SelectTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SelectTriggerProps 
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof selectTriggerVariants> {
   children: React.ReactNode;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
 }
 
 export interface SelectContentProps {
@@ -36,11 +64,9 @@ export interface SelectValueProps {
   className?: string;
 }
 
-// Generate unique ID for accessibility
 let selectIdCounter = 0;
 const generateSelectId = () => `select-${++selectIdCounter}`;
 
-// Context for Select state management
 const SelectContext = React.createContext<{
   value?: string;
   displayValue?: React.ReactNode;
@@ -65,7 +91,6 @@ const SelectContext = React.createContext<{
   setOptions: () => {},
 });
 
-// Main Select Component
 export const Select: React.FC<SelectProps> = ({
   value: controlledValue,
   defaultValue,
@@ -84,7 +109,6 @@ export const Select: React.FC<SelectProps> = ({
   
   const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
-  // Reset focusedIndex when opening/closing to prevent highlighting issues
   useEffect(() => {
     if (open) {
       setFocusedIndex(-1);
@@ -128,7 +152,6 @@ export const Select: React.FC<SelectProps> = ({
   );
 };
 
-// Select Trigger
 export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   children,
   className = '',
@@ -146,7 +169,6 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
         event.preventDefault();
         if (!open) {
           setOpen(true);
-          // Delay focusing to allow options to register
           setTimeout(() => setFocusedIndex(0), 0);
         }
         break;
@@ -154,31 +176,10 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
         event.preventDefault();
         if (!open) {
           setOpen(true);
-          // Delay focusing to allow options to register
           setTimeout(() => setFocusedIndex(Math.max(0, options.length - 1)), 0);
         }
         break;
     }
-  };
-
-  const baseStyles = `
-    flex h-10 w-fit items-center justify-between
-    rounded-lg border border-nocta-300 dark:border-nocta-800/50
-    bg-white dark:bg-nocta-950
-    px-3 py-2 text-sm
-    placeholder:text-nocta-400 dark:placeholder:text-nocta-500
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
-    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-    focus-visible:border-nocta-900 dark:focus-visible:border-nocta-100
-    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
-    transition-all duration-200 ease-out
-    not-prose
-  `;
-
-  const sizes = {
-    sm: 'h-8 px-2 text-xs',
-    md: 'h-10 px-3 text-sm',
-    lg: 'h-12 px-4 text-base'
   };
 
   return (
@@ -190,7 +191,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
       aria-controls={contentId}
       aria-haspopup="listbox"
       disabled={disabled}
-      className={cn(baseStyles, sizes[size], className)}
+      className={cn(selectTriggerVariants({ size }), className)}
       onClick={() => !disabled && setOpen(!open)}
       onKeyDown={handleKeyDown}
       {...props}
@@ -210,7 +211,6 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
   );
 };
 
-// Select Content
 export const SelectContent: React.FC<SelectContentProps> = ({
   children,
   className = '',
@@ -224,7 +224,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({
   useEffect(() => {
     if (open) {
       setShouldRender(true);
-      // Force a reflow to ensure initial styles are applied, then animate
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setIsVisible(true);
@@ -232,10 +231,9 @@ export const SelectContent: React.FC<SelectContentProps> = ({
       });
     } else {
       setIsVisible(false);
-      // Delay to allow animation before unmount
       const timer = setTimeout(() => {
         setShouldRender(false);
-      }, 200); // Match animation duration
+      }, 200);
       return () => clearTimeout(timer);
     }
   }, [open]);
@@ -280,7 +278,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({
           if (focusedIndex >= 0 && focusedIndex < options.length) {
             const focusedOption = options[focusedIndex];
             if (!focusedOption.disabled) {
-              // Find the corresponding child element to get display value
               const childrenArray = React.Children.toArray(children);
               const focusedChild = childrenArray[focusedIndex];
               if (React.isValidElement(focusedChild) && focusedChild.props && typeof focusedChild.props === 'object' && focusedChild.props !== null && 'children' in focusedChild.props) {
@@ -349,7 +346,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({
   );
 };
 
-// Select Item
 export const SelectItem: React.FC<SelectItemProps> = ({
   value,
   children,
@@ -359,7 +355,6 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   const { value: selectedValue, onValueChange, options, setOptions, focusedIndex } = React.useContext(SelectContext);
   const isSelected = selectedValue === value;
 
-  // Register this item with the options list
   useEffect(() => {
     setOptions(prevOptions => {
       const newOptions = [...prevOptions];
@@ -381,7 +376,6 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     };
   }, [value, disabled, setOptions]);
 
-  // Calculate item index dynamically and ensure proper focus state
   const itemIndex = options.findIndex(opt => opt.value === value);
   const isFocused = focusedIndex >= 0 && itemIndex >= 0 && itemIndex === focusedIndex;
 
@@ -408,7 +402,6 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   );
 };
 
-// Select Value
 export const SelectValue: React.FC<SelectValueProps> = ({
   placeholder = 'Select an option...',
   className = '',
