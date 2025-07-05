@@ -5,15 +5,6 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
 import { Button } from '../button';
 import { Input } from '../input';
 import { Badge } from '../badge';
-import { 
-  ChartBar, 
-  Folder, 
-  Check, 
-  Users, 
-  Gear, 
-  Question,
-  List,
-} from 'phosphor-react';
 
 export const BasicSheetDemo: React.FC = () => {
   return (
