@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
@@ -51,13 +51,18 @@ export const Button: React.FC<ButtonProps> = ({
       text-nocta-700 dark:text-nocta-300 
       hover:bg-nocta-200 dark:hover:bg-nocta-900 
       focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
+    `,
+    icon: `
+      text-nocta-700 dark:text-nocta-300 
+      hover:bg-nocta-200 dark:hover:bg-nocta-900 
+      focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50
     `
   };
   
   const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base'
+    sm: variant === 'icon' ? 'w-8 h-8 p-0 text-sm' : 'px-3 py-1.5 text-sm',
+    md: variant === 'icon' ? 'w-10 h-10 p-0 text-sm' : 'px-4 py-2 text-sm',
+    lg: variant === 'icon' ? 'w-12 h-12 p-0 text-base' : 'px-6 py-3 text-base'
   };
   
   return (

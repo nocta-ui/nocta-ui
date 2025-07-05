@@ -8,6 +8,7 @@ import {
   PrimaryButtonDemo, 
   SecondaryButtonDemo, 
   GhostButtonDemo, 
+  IconButtonDemo,
   VariantsDemo, 
   SizesDemo, 
   ActionButtonGroupDemo, 
@@ -71,9 +72,30 @@ import { Button } from '@/components/ui/button';
   </DocsTab>
 </DocsTabs>
 
+### Icon Button
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <IconButtonDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Icon Button"
+    <Button variant="icon" size="sm">
+      <PlusIcon className="w-4 h-4" />
+    </Button>
+    <Button variant="icon" size="md">
+      <DownloadIcon className="w-5 h-5" />
+    </Button>
+    <Button variant="icon" size="lg">
+      <SettingsIcon className="w-6 h-6" />
+    </Button>
+    ```
+  </DocsTab>
+</DocsTabs>
+
 ## Variants
 
-The Button component supports three variants: `primary`, `secondary`, and `ghost`.
+The Button component supports four variants: `primary`, `secondary`, `ghost`, and `icon`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -84,6 +106,9 @@ The Button component supports three variants: `primary`, `secondary`, and `ghost
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="ghost">Ghost</Button>
+    <Button variant="icon">
+      <PlusIcon className="w-5 h-5" />
+    </Button>
     ```
   </DocsTab>
 </DocsTabs>
@@ -190,7 +215,7 @@ The Button component accepts a `className` prop for custom styling:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `React.ReactNode` | — | Button content |
-| `variant` | `'primary' \| 'secondary' \| 'ghost'` | `'primary'` | Button style variant |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'icon'` | `'primary'` | Button style variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
 | `className` | `string` | `''` | Additional CSS classes |
 | `disabled` | `boolean` | `false` | Disable the button |
