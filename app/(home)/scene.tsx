@@ -69,7 +69,6 @@ function Logo3D() {
 
   const { nodes } = useGLTF('/models/nocta-logo-extruded-compressed.glb')
 
-  // Create custom materials for different nodes
   const customMaterials = useMemo(() => {
     const outerColor = isDarkMode ? "#ff0000" : "#00ff00"
     const innerColor = isDarkMode ? "#0000ff" : "#0000ff"
@@ -124,7 +123,6 @@ function Logo3D() {
     }
   })
 
-  // Update material colors when dark mode changes
   useEffect(() => {
     const outerColor = isDarkMode ? "#232323" : "#f9f9f9"
     const innerColor = isDarkMode ? "#f9f9f9" : "#232323"
@@ -161,7 +159,6 @@ function Logo3D() {
   )
 }
 
-// Preload the model
 useGLTF.preload('/models/nocta-logo-extruded-compressed.glb')
 
 const Scene = forwardRef<HTMLDivElement>((props, ref) => {
@@ -292,7 +289,6 @@ declare global {
   }
 }
 
-// Add the function to window only on client side
 if (typeof window !== 'undefined') {
   window.exportExtrudedSVGToGLTF = exportExtrudedSVGToGLTF
 }

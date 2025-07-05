@@ -1,11 +1,94 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const hasBackgroundColor = (className: string = '') => {
   return /bg-(?!linear|gradient|none)\w+/.test(className);
 };
+
+// CVA for calendar container
+const calendarVariants = cva(
+  [
+    'rounded-xl',
+    'shadow-sm dark:shadow-lg',
+    'transition-all duration-300 ease-out',
+    'backdrop-blur-sm',
+    'overflow-hidden',
+    'not-prose'
+  ],
+  {
+    variants: {
+      variant: {
+        default: '',
+        compact: 'w-fit max-w-sm'
+      },
+      size: {
+        sm: 'text-xs',
+        md: 'text-sm',
+        lg: 'text-base'
+      },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed',
+        false: ''
+      },
+      hasCustomBackground: {
+        true: '',
+        false: 'bg-nocta-100 dark:bg-nocta-900'
+      }
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+      disabled: false,
+      hasCustomBackground: false
+    }
+  }
+);
+
+// CVA for day buttons
+const dayButtonVariants = cva(
+  [
+    'text-center',
+    'rounded',
+    'transition-colors',
+    'focus:outline-none',
+    'focus:ring-1',
+    'focus:ring-nocta-500/50'
+  ],
+  {
+    variants: {
+      variant: {
+        default: 'p-2',
+        compact: 'w-6 h-6 p-0 text-xs flex items-center justify-center'
+      },
+      state: {
+        default: 'hover:bg-nocta-300 dark:hover:bg-nocta-700 text-nocta-700 dark:text-nocta-300',
+        selected: 'bg-nocta-950 dark:bg-nocta-50 text-nocta-50 dark:text-nocta-900',
+        today: 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100',
+        disabled: 'opacity-50 cursor-not-allowed',
+        outsideMonth: 'text-nocta-400 dark:text-nocta-600'
+      },
+      interaction: {
+        enabled: 'cursor-pointer',
+        disabled: 'cursor-not-allowed'
+      }
+    },
+    defaultVariants: {
+      variant: 'default',
+      state: 'default',
+      interaction: 'enabled'
+    }
+  }
+);
+
+const DAYS_IN_WEEK = 7;
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   value?: Date;
@@ -26,14 +109,6 @@ export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   'aria-label'?: string;
 }
 
-const DAYS_IN_WEEK = 7;
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-// Calendar Component
 export const Calendar: React.FC<CalendarProps> = ({
   value: controlledValue,
   defaultValue,
@@ -60,9 +135,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 
   const isControlled = controlledValue !== undefined;
   const selectedDate = isControlled ? controlledValue : internalValue;
-  const shouldOverrrideBackground = hasBackgroundColor(className);
+  const shouldOverrideBackground = hasBackgroundColor(className);
 
-  // Date utilities
   const isSameDay = useCallback((date1: Date, date2: Date) => {
     return date1.getDate() === date2.getDate() &&
            date1.getMonth() === date2.getMonth() &&
@@ -90,7 +164,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     return false;
   }, [disabled, minDate, maxDate, disabledDates, isSameDay]);
 
-  // Generate calendar days
   const calendarDays = useMemo(() => {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
@@ -116,7 +189,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     return days;
   }, [currentMonth, weekStartsOn]);
 
-  // Navigation handlers
   const goToPreviousMonth = useCallback(() => {
     setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
   }, []);
@@ -130,7 +202,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     setCurrentMonth(today);
   }, []);
 
-  // ISO week number calculation
   const getISOWeekNumber = useCallback((date: Date) => {
     const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
     const dayNum = d.getUTCDay() || 7;
@@ -139,7 +210,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   }, []);
 
-  // Date selection handler
   const handleDateSelect = useCallback((date: Date) => {
     if (isDateDisabled(date)) return;
     
@@ -150,7 +220,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     onChange?.(date);
   }, [isDateDisabled, isControlled, onChange]);
 
-  // Keyboard navigation
   const handleKeyDown = useCallback((event: React.KeyboardEvent, date: Date) => {
     if (disabled) return;
 
@@ -193,7 +262,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     
     if (newDate && !isDateDisabled(newDate)) {
-      // If navigating to different month, update current month
       if (!isSameMonth(newDate, currentMonth)) {
         setCurrentMonth(newDate);
       }
@@ -206,31 +274,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   }, [disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth]);
 
-  const baseStyles = `
-    ${shouldOverrrideBackground 
-      ? '' 
-      : 'bg-nocta-100 dark:bg-nocta-900'
-    }
-    rounded-xl 
-    shadow-sm dark:shadow-lg
-    transition-all duration-300 ease-out 
-    backdrop-blur-sm 
-    overflow-hidden 
-    not-prose
-  `;
-
-  const compactStyles = variant === 'compact' ? 'w-fit max-w-sm' : '';
-
-  const variants = {
-    default: '',
-    compact: ''
-  };
-
-  const sizes = {
-    sm: 'text-xs',
-    md: 'text-sm', 
-    lg: 'text-base'
-  };
 
   const weekdays = useMemo(() => {
     const days = [];
@@ -238,7 +281,6 @@ export const Calendar: React.FC<CalendarProps> = ({
       const dayIndex = (weekStartsOn + i) % DAYS_IN_WEEK;
       const date = new Date(2023, 0, dayIndex + 1); // Use a known Sunday (Jan 1, 2023)
       const dayName = formatWeekday(date);
-      // In compact mode, show only first 2 letters
       days.push(variant === 'compact' ? dayName.slice(0, 2) : dayName);
     }
     return days;
@@ -247,12 +289,16 @@ export const Calendar: React.FC<CalendarProps> = ({
   return (
     <div className='relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl w-fit'>
       <div
-      className={cn(baseStyles, variants[variant], sizes[size], compactStyles, disabled ? 'opacity-50 cursor-not-allowed' : '', className)}
+      className={cn(calendarVariants({
+        variant,
+        size,
+        disabled,
+        hasCustomBackground: shouldOverrideBackground
+      }), className)}
       role="application"
       aria-label={ariaLabel || 'Calendar'}
       {...props}
     >
-      {/* Header */}
       <div className={`flex items-center justify-between border-b border-nocta-100 dark:border-nocta-800/50 ${
         variant === 'compact' ? 'px-3 py-2' : 'px-6 py-5'
       }`}>
@@ -299,9 +345,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         </button>
       </div>
 
-      {/* Calendar Grid */}
       <div className={variant === 'compact' ? 'px-2 py-2' : 'px-6 py-5'}>
-        {/* Weekday Headers */}
         <div className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5 mb-1' : 'gap-1 mb-2')}>
           {showWeekNumbers && (
             <div className={cn('font-medium text-nocta-500 dark:text-nocta-400 text-center', variant === 'compact' ? 'text-xs w-6 h-6 flex items-center justify-center' : 'text-xs p-2')}>
@@ -318,7 +362,6 @@ export const Calendar: React.FC<CalendarProps> = ({
           ))}
         </div>
 
-        {/* Calendar Days */}
         <div className={variant === 'compact' ? 'space-y-0.5' : 'space-y-1'}>
           {Array.from({ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) }, (_, weekIndex) => (
             <div key={weekIndex} className={cn('grid', showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7', variant === 'compact' ? 'gap-0.5' : 'gap-1')}>
@@ -346,7 +389,14 @@ export const Calendar: React.FC<CalendarProps> = ({
                     onKeyDown={(e) => handleKeyDown(e, date)}
                     disabled={isDisabled}
                     data-date={date.toISOString().split('T')[0]}
-                    className={cn('text-center rounded transition-colors focus:outline-none focus:ring-1 focus:ring-nocta-500/50', variant === 'compact' ? 'w-6 h-6 p-0 text-xs flex items-center justify-center' : 'p-2', isSelected ? 'bg-nocta-950 dark:bg-nocta-50 text-nocta-50 dark:text-nocta-900' : isToday ? 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100' : 'hover:bg-nocta-300 dark:hover:bg-nocta-700 text-nocta-700 dark:text-nocta-300', !isCurrentMonth ? 'text-nocta-400 dark:text-nocta-600' : '', isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer')}
+                    className={cn(dayButtonVariants({
+                      variant,
+                      state: isSelected ? 'selected' : 
+                             isToday ? 'today' : 
+                             isDisabled ? 'disabled' : 
+                             !isCurrentMonth ? 'outsideMonth' : 'default',
+                      interaction: isDisabled ? 'disabled' : 'enabled'
+                    }))}
                     aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
                     aria-pressed={isSelected}
                     aria-current={isToday ? 'date' : undefined}

@@ -215,7 +215,6 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       previousActiveElementRef.current = document.activeElement as HTMLElement;
       setIsAnimating(true);
       
-      // Set should render first
       setShouldRender(true);
       
       animationFrameRef.current = requestAnimationFrame(() => {
@@ -229,7 +228,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
               focusableElements[0].focus();
             }
           }, 150);
-        }, 16); // ~1 frame delay
+        }, 16);
       });
     } else {
       setIsAnimating(true);

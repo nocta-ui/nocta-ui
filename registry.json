@@ -15,7 +15,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": [
         "Accordion",
@@ -54,7 +57,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": [
         "Alert",
@@ -83,7 +89,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": ["Avatar"],
       "props": {
@@ -106,7 +115,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": ["Badge"],
       "props": {
@@ -128,7 +140,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": ["Button"],
       "props": {
@@ -150,7 +165,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": [
         "Card",
@@ -184,7 +202,9 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1"
       },
       "exports": ["Calendar"],
       "props": {
@@ -217,7 +237,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": ["Checkbox"],
       "props": {
@@ -240,7 +263,10 @@
       ],
       "dependencies": {
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "Dialog",
@@ -291,7 +317,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": ["Input"],
       "props": {
@@ -324,7 +353,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "Popover",
@@ -372,7 +404,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": [
         "Select",
@@ -413,7 +448,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": ["Skeleton"],
       "props": {
@@ -448,7 +486,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": ["Spinner"],
       "props": {
@@ -477,7 +518,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": ["Switch"],
       "props": {
@@ -506,7 +550,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "internalDependencies": ["spinner"],
       "exports": [
@@ -564,7 +611,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": ["Textarea"],
       "props": {
@@ -598,7 +648,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"        
       },
       "exports": [
         "Combobox",
@@ -690,7 +743,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "Tabs",
@@ -734,7 +790,10 @@
       ],
       "dependencies": {
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "Tooltip",
@@ -778,7 +837,10 @@
       ],
       "dependencies": {
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "ContextMenu",
@@ -833,7 +895,10 @@
       ],
       "dependencies": {
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "Sheet",
@@ -887,7 +952,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": ["Slider"],
       "props": {
@@ -928,7 +996,10 @@
         }
       ],
       "dependencies": {
-        "react": "^18.0.0"
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
       },
       "exports": [
         "Progress"
@@ -966,7 +1037,10 @@
       ],
       "dependencies": {
         "react": "^18.0.0",
-        "gsap": "^3.13.0"
+        "gsap": "^3.13.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1" 
       },
       "exports": [
         "useToast",

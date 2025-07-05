@@ -2,7 +2,85 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
+
+const tooltipContentVariants = cva(
+  `fixed z-50 px-3 py-2 text-sm
+   border rounded-lg shadow-lg
+   pointer-events-auto
+   transition-opacity duration-200 ease-in-out
+   not-prose`,
+  {
+    variants: {
+      side: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      align: {
+        start: '',
+        center: '',
+        end: ''
+      },
+      variant: {
+        default: `
+          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
+          text-nocta-100 dark:text-nocta-900
+          border-nocta-700 dark:border-nocta-300
+        `,
+        dark: `
+          bg-linear-to-b from-gray-900 to-gray-800
+          text-gray-100
+          border-gray-700
+        `,
+        light: `
+          bg-linear-to-b from-white to-gray-100
+          text-gray-900
+          border-gray-300
+        `
+      }
+    },
+    defaultVariants: {
+      side: 'top',
+      align: 'center',
+      variant: 'default'
+    }
+  }
+);
+
+const tooltipArrowVariants = cva(
+  'absolute w-2 h-2 rotate-45 border',
+  {
+    variants: {
+      side: {
+        top: 'bottom-[-5px] left-1/2 -translate-x-1/2 border-t-0 border-l-0',
+        bottom: 'top-[-5px] left-1/2 -translate-x-1/2 border-b-0 border-r-0',
+        left: 'right-[-5px] top-1/2 -translate-y-1/2 border-l-0 border-b-0',
+        right: 'left-[-5px] top-1/2 -translate-y-1/2 border-r-0 border-t-0'
+      },
+      variant: {
+        default: `
+          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
+          border-nocta-700 dark:border-nocta-300
+        `,
+        dark: `
+          bg-linear-to-b from-gray-900 to-gray-800
+          border-gray-700
+        `,
+        light: `
+          bg-linear-to-b from-white to-gray-100
+          border-gray-300
+        `
+      }
+    },
+    defaultVariants: {
+      side: 'top',
+      variant: 'default'
+    }
+  }
+);
 
 export interface TooltipProps {
   children: React.ReactNode;
@@ -17,17 +95,16 @@ export interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-export interface TooltipContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TooltipContentProps 
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tooltipContentVariants> {
   children: React.ReactNode;
   className?: string;
-  side?: 'top' | 'bottom' | 'left' | 'right';
-  align?: 'start' | 'center' | 'end';
   sideOffset?: number;
   alignOffset?: number;
   showArrow?: boolean;
 }
 
-// Tooltip Context
 interface TooltipContextType {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -45,7 +122,6 @@ const useTooltip = () => {
   return context;
 };
 
-// Main Tooltip Component
 export const Tooltip: React.FC<TooltipProps> = ({ 
   children, 
   open: controlledOpen, 
@@ -70,7 +146,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
-// Tooltip Trigger
 export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({ 
   children, 
   className = '', 
@@ -101,7 +176,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
     }
     leaveTimeoutRef.current = setTimeout(() => {
       onOpenChange(false);
-    }, 100); // Short delay to allow moving to tooltip
+    }, 100);
     onMouseLeave?.(e);
   };
 
@@ -136,18 +211,15 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
     
     const childElement = children as React.ReactElement<ChildProps>;
     
-    // For ref handling, we need to type it more specifically
     type ElementWithRef = React.ReactElement & { 
       ref?: React.Ref<HTMLElement> | undefined;
     };
     
     return React.cloneElement(childElement, {
       ref: (node: HTMLElement | null) => {
-        // Set our ref
         if (triggerRef) {
           triggerRef.current = node;
         }
-        // Forward to the child's ref if it exists
         const childWithRef = children as ElementWithRef;
         const childRef = childWithRef.ref;
         if (typeof childRef === 'function') {
@@ -181,12 +253,12 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
   );
 };
 
-// Tooltip Content
 export const TooltipContent: React.FC<TooltipContentProps> = ({ 
   children, 
   className = '', 
   side = 'top',
   align = 'center',
+  variant = 'default',
   sideOffset = 8,
   alignOffset = 0,
   showArrow = true,
@@ -199,25 +271,22 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isMeasuring, setIsMeasuring] = useState(false);
-  const [actualSide, setActualSide] = useState<'top' | 'bottom' | 'left' | 'right'>(side);
+  const [actualSide, setActualSide] = useState<'top' | 'bottom' | 'left' | 'right'>(side || 'top');
 
-  // Calculate position when tooltip should open
   useEffect(() => {
     if (!open) {
       setPosition(null);
       setIsVisible(false);
       setIsMeasuring(false);
-      setActualSide(side);
+      setActualSide(side || 'top');
       return;
     }
 
-    // Start measuring phase
     setIsMeasuring(true);
     setIsVisible(false);
     
   }, [open, side]);
 
-  // Calculate position after measuring render
   useEffect(() => {
     if (!isMeasuring || !contentRef.current || !triggerRef.current) return;
 
@@ -225,7 +294,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       const triggerRect = triggerRef.current!.getBoundingClientRect();
       const contentRect = contentRef.current!.getBoundingClientRect();
       
-      // If content has no dimensions yet, try again
       if (contentRect.width === 0 || contentRect.height === 0) {
         requestAnimationFrame(calculatePosition);
         return;
@@ -233,9 +301,8 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      const margin = 8; // Minimum margin from viewport edge
+      const margin = 8;
 
-      // Helper function to calculate position for a given side
       const getPositionForSide = (targetSide: 'top' | 'bottom' | 'left' | 'right') => {
         let x = 0;
         let y = 0;
@@ -259,7 +326,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
             break;
         }
 
-        // Apply alignment offset
         if (targetSide === 'top' || targetSide === 'bottom') {
           if (align === 'start') x = triggerRect.right - contentRect.width + alignOffset;
           if (align === 'end') x = triggerRect.left + alignOffset;
@@ -271,7 +337,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
         return { x, y };
       };
 
-      // Helper function to check if position fits in viewport
       const fitsInViewport = (x: number, y: number) => {
         return x >= margin && 
                x + contentRect.width <= viewportWidth - margin && 
@@ -279,15 +344,14 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
                y + contentRect.height <= viewportHeight - margin;
       };
 
-      // Try preferred side first
-      let bestSide = side;
-      let { x, y } = getPositionForSide(side);
+      const currentSide = side || 'top';
+      let bestSide = currentSide;
+      let { x, y } = getPositionForSide(currentSide);
 
-      // If preferred side doesn't fit, try the opposite side
       if (!fitsInViewport(x, y)) {
         let oppositeSide: 'top' | 'bottom' | 'left' | 'right';
         
-        switch (side) {
+        switch (currentSide) {
           case 'top':
             oppositeSide = 'bottom';
             break;
@@ -304,17 +368,15 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 
         const oppositePosition = getPositionForSide(oppositeSide);
         
-        // If opposite side fits, use it
         if (fitsInViewport(oppositePosition.x, oppositePosition.y)) {
           bestSide = oppositeSide;
           x = oppositePosition.x;
           y = oppositePosition.y;
         } else {
-          // If neither fits perfectly, choose the one with more space
           const preferredSpaceAvailable = 
-            side === 'top' ? triggerRect.top : 
-            side === 'bottom' ? viewportHeight - triggerRect.bottom :
-            side === 'left' ? triggerRect.left :
+            currentSide === 'top' ? triggerRect.top : 
+            currentSide === 'bottom' ? viewportHeight - triggerRect.bottom :
+            currentSide === 'left' ? triggerRect.left :
             viewportWidth - triggerRect.right;
           
           const oppositeSpaceAvailable = 
@@ -331,7 +393,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
         }
       }
 
-      // Constrain to viewport boundaries as fallback
       x = Math.max(margin, Math.min(x, viewportWidth - contentRect.width - margin));
       y = Math.max(margin, Math.min(y, viewportHeight - contentRect.height - margin));
 
@@ -339,19 +400,16 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       setPosition({ x, y });
       setIsMeasuring(false);
       
-      // Show tooltip in next frame for smooth animation
       requestAnimationFrame(() => {
         setIsVisible(true);
       });
     };
 
-    // Calculate position in next frame to ensure element is rendered
     requestAnimationFrame(calculatePosition);
     
   }, [isMeasuring, side, align, sideOffset, alignOffset, triggerRef]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Keep tooltip open when hovering over it
     onMouseEnter?.(e);
   };
 
@@ -360,7 +418,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
     onMouseLeave?.(e);
   };
 
-  // Don't render anything if not open
   if (!open) return null;
 
   const tooltipContent = (
@@ -368,23 +425,15 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       ref={contentRef}
       id="tooltip"
       role="tooltip"
-      className={cn(`
-        fixed z-50 px-3 py-2 text-sm
-        bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
-        text-nocta-100 dark:text-nocta-900
-        border border-nocta-700 dark:border-nocta-300
-        rounded-lg shadow-lg
-        pointer-events-auto
-        transition-opacity duration-200 ease-in-out
-        not-prose
-        ${className}
-        ${isMeasuring 
+      className={cn(
+        tooltipContentVariants({ side: actualSide, align, variant }),
+        isMeasuring 
           ? 'opacity-0 pointer-events-none' 
           : isVisible && position
             ? 'opacity-100 scale-100' 
-            : 'opacity-0 scale-95'
-        }
-      `)}
+            : 'opacity-0 scale-95',
+        className
+      )}
       style={{
         left: position ? `${position.x}px` : '0px',
         top: position ? `${position.y}px` : '0px',
@@ -397,16 +446,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
       
       {showArrow && !isMeasuring && (
         <div
-          className={cn(`
-            absolute w-2 h-2
-            bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
-            border border-nocta-700 dark:border-nocta-300
-            rotate-45
-            ${actualSide === 'top' ? 'bottom-[-5px] left-1/2 -translate-x-1/2 border-t-0 border-l-0' : ''}
-            ${actualSide === 'bottom' ? 'top-[-5px] left-1/2 -translate-x-1/2 border-b-0 border-r-0' : ''}
-            ${actualSide === 'left' ? 'right-[-5px] top-1/2 -translate-y-1/2 border-l-0 border-b-0' : ''}
-            ${actualSide === 'right' ? 'left-[-5px] top-1/2 -translate-y-1/2 border-r-0 border-t-0' : ''}
-          `)}
+          className={cn(tooltipArrowVariants({ side: actualSide, variant }))}
         />
       )}
     </div>

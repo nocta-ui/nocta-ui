@@ -38,7 +38,6 @@ const buttonVariants = cva(
         size: "lg",
         class: "w-12 h-12 p-0 text-base"
       },
-      // Override background for primary variant when custom background is provided
       {
         variant: "primary",
         hasCustomBackground: true,

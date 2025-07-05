@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +9,49 @@ const hasBackgroundColor = (className: string = '') => {
   return /bg-(?!linear|gradient|none)\w+/.test(className);
 };
 
-// Toast types
+const toastContainerVariants = cva(
+  'fixed p-[1px] rounded-lg shadow-lg dark:shadow-xl not-prose pointer-events-auto will-change-transform',
+  {
+    variants: {
+      position: {
+        'top-left': 'top-4 left-4 max-w-sm w-full',
+        'top-center': 'top-4 left-1/2 transform -translate-x-1/2 max-w-sm w-full',
+        'top-right': 'top-4 right-4 max-w-sm w-full',
+        'bottom-left': 'bottom-4 left-4 max-w-sm w-full',
+        'bottom-center': 'bottom-4 left-1/2 transform -translate-x-1/2 max-w-sm w-full',
+        'bottom-right': 'bottom-4 right-4 max-w-sm w-full'
+      },
+      variant: {
+        default: 'bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent',
+        success: 'bg-linear-to-b from-green-200 dark:from-green-600/50 to-transparent',
+        warning: 'bg-linear-to-b from-yellow-200 dark:from-yellow-600/50 to-transparent',
+        destructive: 'bg-linear-to-b from-red-200 dark:from-red-600/50 to-transparent'
+      }
+    },
+    defaultVariants: {
+      position: 'bottom-center',
+      variant: 'default'
+    }
+  }
+);
+
+const toastContentVariants = cva(
+  'rounded-lg backdrop-blur-sm overflow-hidden',
+  {
+    variants: {
+      variant: {
+        default: '',
+        success: 'bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100',
+        warning: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100',
+        destructive: 'bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100'
+      }
+    },
+    defaultVariants: {
+      variant: 'default'
+    }
+  }
+);
+
 export type ToastPosition = 
   | 'top-left' 
   | 'top-center' 
@@ -17,20 +60,18 @@ export type ToastPosition =
   | 'bottom-center' 
   | 'bottom-right';
 
-export interface ToastData {
+export interface ToastData extends VariantProps<typeof toastContainerVariants> {
   id: string;
   title?: string;
   description?: string;
-  variant?: 'default' | 'success' | 'warning' | 'destructive';
   className?: string;
   duration?: number;
-  position?: ToastPosition; // Position of the toast on screen
   action?: {
     label: string;
     onClick: () => void;
   };
   onClose?: () => void;
-  shouldClose?: boolean; // Flag for programmatic closing with animation
+  shouldClose?: boolean;
 }
 
 interface ToastContextValue {
@@ -67,7 +108,6 @@ export const useToast = () => {
   return context;
 };
 
-// Individual Toast Component
 interface ToastItemProps {
   toast: ToastData & { index: number; total: number };
   onRemove: (id: string) => void;
@@ -80,69 +120,50 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const hasAnimatedIn = useRef(false);
   const animationRef = useRef<gsap.core.Tween | null>(null);
 
-  const { id, title, description, variant = 'default', duration = 5000, action, index, shouldClose, position = 'bottom-center', className = '' } = toast;
+  const { 
+    id, 
+    title, 
+    description, 
+    variant = 'default', 
+    duration = 5000, 
+    action, 
+    index, 
+    shouldClose, 
+    position = 'bottom-center', 
+    className = '' 
+  } = toast;
   
   const shouldOverrrideBackground = hasBackgroundColor(className);
 
-  const variants = {
-    default: shouldOverrrideBackground 
-      ? '' 
-      : 'bg-nocta-100 dark:bg-nocta-900',
-    success: 'bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100',
-    warning: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100',
-    destructive: 'bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100'
-  };
-
-  const borderVariants = {
-    default: 'bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent',
-    success: 'bg-linear-to-b from-green-200 dark:from-green-600/50 to-transparent',
-    warning: 'bg-linear-to-b from-yellow-200 dark:from-yellow-600/50 to-transparent',
-    destructive: 'bg-linear-to-b from-red-200 dark:from-red-600/50 to-transparent'
-  };
-
-  // Position styles and animation configurations
   const positionConfig = {
     'top-left': {
-      containerClass: 'top-4 left-4',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: -100, y: -20 },
       animateOut: { x: -100, y: -20 }
     },
     'top-center': {
-      containerClass: 'top-4 left-1/2 transform -translate-x-1/2',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: 0, y: -100 },
       animateOut: { x: 0, y: -100 }
     },
     'top-right': {
-      containerClass: 'top-4 right-4',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: 100, y: -20 },
       animateOut: { x: 100, y: -20 }
     },
     'bottom-left': {
-      containerClass: 'bottom-4 left-4',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: -100, y: 20 },
       animateOut: { x: -100, y: 100 }
     },
     'bottom-center': {
-      containerClass: 'bottom-4 left-1/2 transform -translate-x-1/2',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: 0, y: 100 },
       animateOut: { x: 0, y: 100 }
     },
     'bottom-right': {
-      containerClass: 'bottom-4 right-4',
-      widthClass: 'max-w-sm w-full',
       animateIn: { x: 100, y: 20 },
       animateOut: { x: 100, y: 100 }
     }
   };
 
-  const config = positionConfig[position];
+  const config = positionConfig[position as keyof typeof positionConfig];
 
-  // Focus trap functionality
   const getFocusableElements = () => {
     if (!toastRef.current) return [];
     
@@ -185,7 +206,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     });
   }, [id, onRemove, config.animateOut]);
 
-  // Handle programmatic close via shouldClose flag
   useEffect(() => {
     if (shouldClose) {
       handleClose();
@@ -197,7 +217,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 
     const element = toastRef.current;
     const isLatest = index === 0;
-    const isTopPosition = position.startsWith('top-');
+    const isTopPosition = position?.startsWith('top-');
     const offset = isTopPosition ? index * 8 : -(index * 8);
     const scale = Math.max(0.92, 1 - index * 0.04);
 
@@ -292,7 +312,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     };
   }, []);
 
-  // Enhanced keyboard handling with focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const isLatest = index === 0;
@@ -302,7 +321,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         return;
       }
 
-      // Focus trap only for the latest toast
       if (e.key === 'Tab' && isLatest) {
         const focusableElements = getFocusableElements();
         if (focusableElements.length === 0) return;
@@ -312,13 +330,11 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
         const activeElement = document.activeElement as HTMLElement;
 
         if (e.shiftKey) {
-          // Shift + Tab (backward)
           if (activeElement === firstElement || !toastRef.current?.contains(activeElement)) {
             e.preventDefault();
             lastElement.focus();
           }
         } else {
-          // Tab (forward)
           if (activeElement === lastElement || !toastRef.current?.contains(activeElement)) {
             e.preventDefault();
             firstElement.focus();
@@ -327,7 +343,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
       }
     };
 
-    // Only add listeners for the latest toast
     if (index === 0) {
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
@@ -338,22 +353,21 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
     <div
       ref={toastRef}
       className={cn(
-        `fixed ${config.containerClass} ${config.widthClass} p-[1px] ${borderVariants[variant]} rounded-lg shadow-lg dark:shadow-xl not-prose pointer-events-auto will-change-transform`,
+        toastContainerVariants({ position, variant }),
         className
       )}
       style={{ 
         zIndex: 50 - index,
-        transformOrigin: position.startsWith('top-') ? 'center top' : 'center bottom'
+        transformOrigin: position?.startsWith('top-') ? 'center top' : 'center bottom'
       }}
       role="alert"
       aria-live="polite"
       tabIndex={-1}
     >
       <div className={cn(
-        'rounded-lg backdrop-blur-sm overflow-hidden',
-        variants[variant]
+        toastContentVariants({ variant }),
+        variant === 'default' && !shouldOverrrideBackground ? 'bg-nocta-100 dark:bg-nocta-900' : ''
       )}>
-      {/* Close button */}
       <button
         onClick={handleClose}
         className="
@@ -409,14 +423,12 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   );
 };
 
-// Toast Manager Component
 const ToastManager: React.FC<{ 
   toasts: (ToastData & { index: number; total: number })[], 
   onRemove: (id: string) => void 
 }> = ({ toasts, onRemove }) => {
   if (toasts.length === 0) return null;
 
-  // Group toasts by position for proper stacking
   const toastsByPosition = toasts.reduce((acc, toast) => {
     const pos = toast.position || 'bottom-center';
     if (!acc[pos]) acc[pos] = [];
@@ -424,11 +436,10 @@ const ToastManager: React.FC<{
     return acc;
   }, {} as Record<ToastPosition, (ToastData & { index: number; total: number })[]>);
 
-  // Recalculate indices within each position group
   Object.keys(toastsByPosition).forEach(position => {
     toastsByPosition[position as ToastPosition] = toastsByPosition[position as ToastPosition].map((toast, index) => ({
       ...toast,
-      index, // Reset index to be relative to position group
+      index,
       total: toastsByPosition[position as ToastPosition].length
     }));
   });
@@ -450,7 +461,6 @@ const ToastManager: React.FC<{
   );
 };
 
-// Toast Provider
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
@@ -458,7 +468,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const id = Math.random().toString(36).substring(2, 11);
     const newToast: ToastData = { ...data, id };
     
-    setToasts(prev => [newToast, ...prev]); // Add to beginning for proper stacking
+    setToasts(prev => [newToast, ...prev]);
     return id;
   }, []);
 
@@ -467,7 +477,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   const dismissAll = useCallback(() => {
-    // Set shouldClose flag on all toasts with staggered delay
     setToasts(prev => {
       prev.forEach((toast) => {
         setTimeout(() => {
@@ -481,11 +490,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         });
       });
       
-      return prev; // Return unchanged initially
+      return prev;
     });
   }, []);
 
-  // Add index and total to each toast for positioning
   const toastsWithIndex = toasts.map((toast, index) => ({
     ...toast,
     index,

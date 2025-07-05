@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useCallback } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { Spinner } from '../spinner';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +9,69 @@ const hasBackgroundColor = (className: string = '') => {
   return /bg-(?!linear|gradient|none)\w+/.test(className);
 };
 
-// Types
+const tableContainerVariants = cva(
+  'rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden',
+  {
+    variants: {
+      variant: {
+        default: '',
+        striped: ''
+      }
+    },
+    defaultVariants: {
+      variant: 'default'
+    }
+  }
+);
+
+const tableVariants = cva(
+  'w-full border-collapse',
+  {
+    variants: {
+      size: {
+        sm: 'text-xs',
+        md: 'text-sm',
+        lg: 'text-base'
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
+  }
+);
+
+const tableRowVariants = cva(
+  '',
+  {
+    variants: {
+      variant: {
+        default: '',
+        striped: ''
+      },
+      isOdd: {
+        true: '',
+        false: ''
+      },
+      clickable: {
+        true: 'cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out',
+        false: ''
+      }
+    },
+    compoundVariants: [
+      {
+        variant: 'striped',
+        isOdd: true,
+        class: 'bg-nocta-200/50 dark:bg-nocta-800/30'
+      }
+    ],
+    defaultVariants: {
+      variant: 'default',
+      isOdd: false,
+      clickable: false
+    }
+  }
+);
+
 export type SortDirection = 'asc' | 'desc' | null;
 export type TableVariant = 'default' | 'striped';
 export type TableSize = 'sm' | 'md' | 'lg';
@@ -24,11 +87,12 @@ export interface TableColumn<T = Record<string, unknown>> {
   className?: string;
 }
 
-export interface TableProps<T = Record<string, unknown>> extends Omit<React.TableHTMLAttributes<HTMLTableElement>, 'size'> {
+export interface TableProps<T = Record<string, unknown>> 
+  extends Omit<React.TableHTMLAttributes<HTMLTableElement>, 'size'>,
+    VariantProps<typeof tableContainerVariants>,
+    VariantProps<typeof tableVariants> {
   columns: TableColumn<T>[];
   data: T[];
-  variant?: TableVariant;
-  size?: TableSize;
   loading?: boolean;
   emptyText?: string;
   sortable?: boolean;
@@ -57,10 +121,11 @@ export interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionEle
   className?: string;
 }
 
-export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+export interface TableRowProps 
+  extends React.HTMLAttributes<HTMLTableRowElement>,
+    VariantProps<typeof tableRowVariants> {
   children: React.ReactNode;
   className?: string;
-  clickable?: boolean;
 }
 
 export interface TableCellProps extends React.HTMLAttributes<HTMLTableCellElement> {
@@ -85,7 +150,6 @@ export interface TableCaptionProps extends React.HTMLAttributes<HTMLTableCaption
   className?: string;
 }
 
-// Base Table Component
 export const Table = <T extends Record<string, unknown>>({
   columns,
   data,
@@ -147,7 +211,6 @@ export const Table = <T extends Record<string, unknown>>({
   const sortedAndFilteredData = useMemo(() => {
     let result = [...data];
 
-    // Apply filters
     if (filterable && Object.keys(filters).length > 0) {
       result = result.filter(record => {
         return Object.entries(filters).every(([key, filterValue]) => {
@@ -157,13 +220,11 @@ export const Table = <T extends Record<string, unknown>>({
       });
     }
 
-    // Apply sorting
     if (sortable && sortState.key && sortState.direction) {
       result.sort((a, b) => {
         const aVal = a[sortState.key];
         const bVal = b[sortState.key];
         
-        // Handle comparison for unknown types safely
         const aStr = String(aVal ?? '');
         const bStr = String(bVal ?? '');
         
@@ -176,54 +237,29 @@ export const Table = <T extends Record<string, unknown>>({
     return result;
   }, [data, filters, sortState, sortable, filterable]);
 
-  const getVariantStyles = () => {
-    const variants = {
-      default: '',
-      striped: ''
-    };
-    return variants[variant];
-  };
-
-  const getSizeStyles = () => {
-    const sizes = {
-      sm: 'text-xs',
-      md: 'text-sm',
-      lg: 'text-base'
-    };
-    return sizes[size];
-  };
-
   const getRowClassName = useCallback((record: T, index: number): string => {
-    let className = '';
-    
-    if (variant === 'striped' && index % 2 === 1) {
-      className += ' bg-nocta-200/50 dark:bg-nocta-800/30';
-    }
-    
-    if (onRowClick) {
-      className += ' cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out';
-    }
+    let baseClassName = '';
     
     if (typeof rowClassName === 'function') {
-      className += ' ' + rowClassName(record, index);
+      baseClassName += rowClassName(record, index);
     } else if (rowClassName) {
-      className += ' ' + rowClassName;
+      baseClassName += rowClassName;
     }
     
-    return className.trim();
-  }, [variant, onRowClick, rowClassName]);
+    return baseClassName.trim();
+  }, [rowClassName]);
 
   return (
     <div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl">
-      <div className={cn('rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden', shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900', getVariantStyles(), className)}>
+      <div className={cn(tableContainerVariants({ variant }), shouldOverrrideBackground ? '' : 'bg-nocta-100 dark:bg-nocta-900', className)}>
 
         <div className="overflow-x-auto">
           <table
-            className={cn('w-full border-collapse', getSizeStyles())}
+            className={cn(tableVariants({ size }))}
             {...props}
           >
             <TableHeader>
-              <TableRow>
+              <TableRow variant={variant}>
                 {columns.map((column) => (
                   <TableCell
                     key={column.key}
@@ -254,7 +290,7 @@ export const Table = <T extends Record<string, unknown>>({
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow>
+                <TableRow variant={variant}>
                   <TableCell 
                     colSpan={columns.length}
                     align="center"
@@ -266,7 +302,7 @@ export const Table = <T extends Record<string, unknown>>({
                   </TableCell>
                 </TableRow>
               ) : sortedAndFilteredData.length === 0 ? (
-                <TableRow>
+                <TableRow variant={variant}>
                   <TableCell 
                     colSpan={columns.length}
                     align="center"
@@ -279,8 +315,10 @@ export const Table = <T extends Record<string, unknown>>({
                 sortedAndFilteredData.map((record, index) => (
                   <TableRow
                     key={getRowKey(record, index)}
-                    className={getRowClassName(record, index)}
+                    variant={variant}
+                    isOdd={index % 2 === 1}
                     clickable={!!onRowClick}
+                    className={getRowClassName(record, index)}
                     onClick={() => onRowClick?.(record, index)}
                   >
                     {columns.map((column) => {
@@ -338,7 +376,6 @@ export const Table = <T extends Record<string, unknown>>({
   );
 };
 
-// Table Header Component
 export const TableHeader: React.FC<TableHeaderProps> = ({ 
   children, 
   className = '', 
@@ -354,7 +391,6 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
   );
 };
 
-// Table Body Component  
 export const TableBody: React.FC<TableBodyProps> = ({ 
   children, 
   className = '', 
@@ -370,16 +406,17 @@ export const TableBody: React.FC<TableBodyProps> = ({
   );
 };
 
-// Table Row Component
 export const TableRow: React.FC<TableRowProps> = ({ 
   children, 
   className = '', 
+  variant = 'default',
+  isOdd = false,
   clickable = false,
   ...props 
 }) => {
   return (
     <tr 
-      className={cn(clickable ? 'cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out' : '', className)}
+      className={cn(tableRowVariants({ variant, isOdd, clickable }), className)}
       {...props}
     >
       {children}
@@ -387,7 +424,6 @@ export const TableRow: React.FC<TableRowProps> = ({
   );
 };
 
-// Table Cell Component
 export const TableCell: React.FC<TableCellProps> = ({ 
   children, 
   className = '', 
@@ -452,7 +488,6 @@ export const TableCell: React.FC<TableCellProps> = ({
   );
 };
 
-// Table Footer Component
 export const TableFooter: React.FC<TableFooterProps> = ({ 
   children, 
   className = '', 
@@ -468,7 +503,6 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   );
 };
 
-// Table Caption Component
 export const TableCaption: React.FC<TableCaptionProps> = ({ 
   children, 
   className = '', 
@@ -482,4 +516,4 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
       {children}
     </caption>
   );
-}; 
+};
