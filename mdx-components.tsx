@@ -31,6 +31,7 @@ import { Slider } from '@/app/components/ui/slider';
 import { Skeleton } from '@/app/components/ui/skeleton';
 import { Calendar } from '@/app/components/ui/calendar';
 import { CodeBlock as YourCustomCodeBlock, Pre } from '@/app/components/ui/codeblock/codeblock';
+import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions } from '@/app/components/ui/chat';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -122,6 +123,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Skeleton,
     Calendar,
     FrameworkSelector,
+    Chat,
+    ChatHeader,
+    ChatTitle,
+    ChatDescription,
+    ChatMessages,
+    ChatMessage,
+    ChatInput,
+    ChatActions,
 
     pre: ({ ref: _ref, ...props }) => (
       <YourCustomCodeBlock {...props}>

@@ -1,0 +1,446 @@
+---
+title: Chat
+description: A comprehensive chat component system with message display, input handling, avatars, timestamps, and real-time messaging capabilities
+---
+
+import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions } from '@/app/components/ui/chat';
+import { Button } from "@/app/components/ui/button"
+import { 
+  BasicChatDemo,
+  ChatWithHeaderDemo,
+  ChatWithAvatarsDemo,
+  ChatWithTimestampsDemo,
+  ReadOnlyChatDemo,
+  ChatWithActionsDemo,
+  CustomStyledChatDemo
+} from '@/app/components/ui/chat/chat-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the Chat component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add chat
+```
+
+Then import the components you need:
+
+```tsx lineNumbers title="Import"
+import {
+  Chat,
+  ChatHeader,
+  ChatTitle,
+  ChatDescription,
+  ChatMessages,
+  ChatMessage,
+  ChatInput,
+  ChatActions,
+  type Message,
+} from '@/components/ui/chat';
+```
+
+## Basic Usage
+
+### Simple Chat
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicChatDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Chat"
+    const [messages, setMessages] = useState<Message[]>([
+      {
+        id: '1',
+        content: 'Hello! How can I help you today?',
+        sender: 'assistant',
+        timestamp: new Date(),
+        name: 'AI Assistant'
+      }
+    ]);
+
+    const handleSendMessage = (message: string) => {
+      const newMessage: Message = {
+        id: Date.now().toString(),
+        content: message,
+        sender: 'user',
+        timestamp: new Date(),
+        name: 'You'
+      };
+      
+      setMessages(prev => [...prev, newMessage]);
+    };
+
+    return (
+      <div className="h-96">
+        <Chat
+          messages={messages}
+          onSendMessage={handleSendMessage}
+          placeholder="Type your message here..."
+          className="w-full max-w-2xl"
+        />
+      </div>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Chat with Header
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ChatWithHeaderDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Chat with Header"
+    <div className="h-96">
+      <Chat
+        messages={messages}
+        onSendMessage={handleSendMessage}
+        showTimestamps
+        showAvatars
+        className="max-w-lg"
+      >
+        <ChatHeader>
+          <ChatTitle>Customer Support</ChatTitle>
+          <ChatDescription>
+            We're here to help! Chat with our support team.
+          </ChatDescription>
+        </ChatHeader>
+      </Chat>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Message Types
+
+The Chat component supports three message types: `user`, `assistant`, and `system`.
+
+```tsx lineNumbers title="Message Interface"
+interface Message {
+  id: string;
+  content: string;
+  sender: 'user' | 'assistant' | 'system';
+  timestamp: Date;
+  avatar?: string;
+  name?: string;
+}
+```
+
+## Sizing and Layout
+
+The Chat component's size is controlled through the `className` prop, giving you full flexibility over dimensions:
+
+```tsx lineNumbers title="Size Control Examples"
+// Small chat window
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  className="w-80 h-64"
+/>
+
+// Medium chat (default-like)
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  className="w-96 h-96"
+/>
+
+// Large chat
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  className="w-full max-w-2xl h-[500px]"
+/>
+
+// Full width with responsive height
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  className="w-full h-screen max-h-[600px]"
+/>
+
+// Custom breakpoint sizing
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  className="w-full sm:w-96 md:w-[500px] lg:w-[600px] h-80 md:h-96"
+/>
+```
+
+## Features
+
+### Chat with Avatars
+
+Display user avatars alongside messages for better visual identification.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ChatWithAvatarsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Chat with Avatars"
+    const messages: Message[] = [
+      {
+        id: '1',
+        content: 'Hey everyone! Welcome to the group chat 👋',
+        sender: 'assistant',
+        timestamp: new Date(),
+        name: 'Alice',
+        avatar: 'https://example.com/avatar1.jpg'
+      },
+      {
+        id: '2',
+        content: 'Thanks for setting this up!',
+        sender: 'user',
+        timestamp: new Date(),
+        name: 'Bob',
+        avatar: 'https://example.com/avatar2.jpg'
+      }
+    ];
+
+    <Chat
+      messages={messages}
+      onSendMessage={handleSendMessage}
+      showAvatars
+      placeholder="Join the conversation..."
+      className="w-full max-w-lg"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Chat with Timestamps
+
+Show message timestamps for better context and conversation tracking.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ChatWithTimestampsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Chat with Timestamps"
+    <Chat
+      messages={messages}
+      onSendMessage={handleSendMessage}
+      showTimestamps
+      placeholder="Ask a question..."
+      className="w-full max-w-md"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Read-Only Chat
+
+Display conversation history without input capabilities.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ReadOnlyChatDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Read-Only Chat"
+    <Chat
+      messages={messages}
+      showTimestamps
+      showAvatars
+      className="w-full max-w-lg h-80"
+      // No onSendMessage prop = read-only mode
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Advanced Usage
+
+### Chat with Actions
+
+Add external action buttons for enhanced functionality.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ChatWithActionsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Chat with Actions"
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h4 className="text-lg font-medium">Chat with Actions</h4>
+        <ChatActions>
+          <Button variant="ghost" size="sm" onClick={handleClearChat}>
+            Clear Chat
+          </Button>
+          <Button variant="secondary" size="sm">
+            Export
+          </Button>
+        </ChatActions>
+      </div>
+      
+      <div className="h-96">
+        <Chat
+          messages={messages}
+          onSendMessage={handleSendMessage}
+          showTimestamps
+          placeholder="Ask me anything..."
+          className="w-full max-w-2xl"
+        />
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Input Configuration
+
+### Message Length Limit
+
+Set a maximum character limit for messages:
+
+```tsx lineNumbers title="Message Length Limit"
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  maxLength={280}
+  placeholder="Type your message (max 280 chars)..."
+  className="w-full max-w-md"
+/>
+```
+
+### Multiline Control
+
+Control whether users can send multiline messages:
+
+```tsx lineNumbers title="Multiline Control"
+// Allow multiline (default)
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  allowMultiline={true}
+  placeholder="Press Shift+Enter for new line..."
+  className="w-full max-w-lg"
+/>
+
+// Single line only
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  allowMultiline={false}
+  placeholder="Press Enter to send..."
+  className="w-full max-w-lg"
+/>
+```
+
+### Disabled State
+
+Disable the chat input when needed:
+
+```tsx lineNumbers title="Disabled State"
+<Chat
+  messages={messages}
+  onSendMessage={handleSendMessage}
+  disabled={isLoading}
+  placeholder="Chat is disabled..."
+  className="w-full max-w-lg opacity-50"
+/>
+```
+
+## Customization
+
+### Custom Styling
+
+All components accept a `className` prop for custom styling:
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <CustomStyledChatDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Styling"
+    <Chat
+      messages={messages}
+      onSendMessage={handleSendMessage}
+      showAvatars
+      className="w-full max-w-lg border-2 border-purple-200 dark:border-purple-800 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
+      placeholder="Type with style..."
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Individual Component Styling
+
+Style individual chat components:
+
+```tsx lineNumbers title="Individual Component Styling"
+<Chat 
+  messages={messages} 
+  onSendMessage={handleSendMessage}
+  className="w-full max-w-2xl"
+>
+  <ChatHeader className="bg-blue-50 dark:bg-blue-950">
+    <ChatTitle className="text-blue-900 dark:text-blue-100">
+      Custom Chat
+    </ChatTitle>
+    <ChatDescription className="text-blue-700 dark:text-blue-300">
+      With custom header styling
+    </ChatDescription>
+  </ChatHeader>
+</Chat>
+```
+
+## Component Architecture
+
+The Chat component is built with a modular architecture:
+
+- **Chat**: Main container component
+- **ChatHeader**: Optional header with title and description
+- **ChatTitle**: Title component with customizable element type
+- **ChatDescription**: Description text component
+- **ChatMessages**: Messages container with auto-scroll
+- **ChatMessage**: Individual message component
+- **ChatInput**: Input component with auto-resize textarea
+- **ChatActions**: Container for action buttons
+
+## Accessibility
+
+The Chat component includes several accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support for input and actions
+- **Screen Reader Support**: Proper ARIA labels and semantic HTML
+- **Focus Management**: Proper focus handling for interactive elements
+- **Auto-scroll**: Automatic scrolling to new messages
+- **Message Timestamps**: Available for screen readers
+
+## API Reference
+
+### Chat Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `messages` | `Message[]` | `[]` | Array of chat messages |
+| `onSendMessage` | `(message: string) => void` | `undefined` | Callback when message is sent |
+| `placeholder` | `string` | `"Type a message..."` | Input placeholder text |
+| `disabled` | `boolean` | `false` | Disable chat input |
+| `autoFocus` | `boolean` | `false` | Auto-focus input on mount |
+| `maxLength` | `number` | `500` | Maximum message length |
+| `showTimestamps` | `boolean` | `false` | Show message timestamps |
+| `showAvatars` | `boolean` | `false` | Show user avatars |
+| `allowMultiline` | `boolean` | `true` | Allow multiline messages |
+| `variant` | `'default'` | `'default'` | Visual variant |
+| `className` | `string` | `''` | Additional CSS classes (used for sizing and custom styling) |
+
+### Message Interface
+
+```tsx lineNumbers title="Message Interface"
+interface Message {
+  id: string;                    // Unique message identifier
+  content: string;               // Message text content
+  sender: 'user' | 'assistant' | 'system'; // Message sender type
+  timestamp: Date;               // Message timestamp
+  avatar?: string;               // Optional avatar URL
+  name?: string;                 // Optional sender name
+}
+``` 
