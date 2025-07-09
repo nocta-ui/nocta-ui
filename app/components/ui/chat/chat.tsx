@@ -327,7 +327,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       className={cn('flex-1 overflow-y-auto p-4 space-y-3 not-prose', className)}
       {...props}
     >
-      {messages.map((message, index) => (
+      {messages.map((message) => (
         <ChatMessage
           key={message.id}
           message={message}
