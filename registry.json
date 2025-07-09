@@ -1141,6 +1141,69 @@
         "responsive-design"
       ]
     },
+    "file-upload": {
+      "name": "File Upload",
+      "description": "Advanced file upload component with drag & drop, progress tracking, validation, and preview support",
+      "category": "form",
+      "files": [
+        {
+          "name": "file-upload.tsx",
+          "path": "app/components/ui/file-upload/file-upload.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
+      },
+      "internalDependencies": ["spinner"],
+      "exports": [
+        "FileUpload",
+        "FileUploadZone",
+        "FileUploadItem",
+        "FileUploadProgress",
+        "FileUploadFile"
+      ],
+      "props": {
+        "FileUpload": [
+          "variant", "size", "multiple", "accept", "maxSize", "maxFiles", 
+          "disabled", "files", "onFilesChange", "onUpload", "showProgress", 
+          "showPreview", "uploadText", "dragText", "className"
+        ],
+        "FileUploadZone": [
+          "onFilesSelect", "accept", "multiple", "disabled", "isDragOver", "children"
+        ],
+        "FileUploadItem": [
+          "file", "showPreview", "onRemove", "className"
+        ],
+        "FileUploadProgress": [
+          "progress", "className"
+        ]
+      },
+      "variants": ["default"],
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "drag-and-drop",
+        "file-validation",
+        "progress-tracking",
+        "image-preview",
+        "multiple-files",
+        "size-limits",
+        "type-restrictions",
+        "error-handling",
+        "keyboard-navigation",
+        "accessibility-compliant",
+        "file-removal",
+        "upload-status",
+        "custom-styling",
+        "disabled-state",
+        "dark-mode",
+        "responsive-design",
+        "client-component"
+      ]
+    },
     "chat": {
       "name": "Chat",
       "description": "Complete chat interface component with messages, input, avatars, timestamps, and real-time features",
@@ -1218,7 +1281,7 @@
     "form": {
       "name": "Form",
       "description": "Form input and control components",
-      "components": ["button", "checkbox", "combobox", "form", "input", "select", "slider", "switch", "textarea", "calendar"]
+      "components": ["button", "checkbox", "combobox", "file-upload", "form", "input", "select", "slider", "switch", "textarea", "calendar"]
     },
     "data-display": {
       "name": "Data Display",

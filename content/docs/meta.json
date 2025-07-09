@@ -21,6 +21,7 @@
       "combobox",
       "context-menu",
       "dialog",
+      "file-upload",
       "form",
       "input",
       "popover",

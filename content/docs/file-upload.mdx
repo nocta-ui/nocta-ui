@@ -1,0 +1,374 @@
+---
+title: File Upload
+description: Advanced file upload component with drag & drop, progress tracking, validation, and preview support
+---
+
+import { FileUpload } from '@/app/components/ui/file-upload';
+import { 
+  FileUploadDemo,
+  FileUploadSizesDemo,
+  FileUploadImageOnlyDemo,
+  FileUploadSingleFileDemo,
+  FileUploadDisabledDemo,
+} from '@/app/components/ui/file-upload/file-upload-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+
+## Installation
+
+Install the File Upload component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add file-upload
+```
+
+Then import the component:
+
+```tsx lineNumbers title="Import"
+import { FileUpload } from '@/components/ui/file-upload';
+```
+
+## Basic Usage
+
+### Basic File Upload
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <FileUploadDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic File Upload"
+    const [files, setFiles] = useState<FileUploadFile[]>([]);
+
+    const handleUpload = async (filesToUpload: FileUploadFile[]) => {
+      // Your upload logic here
+      for (const file of filesToUpload) {
+        // Simulate progress
+        for (let progress = 0; progress <= 100; progress += 10) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          setFiles(prevFiles => 
+            prevFiles.map(f => 
+              f.id === file.id 
+                ? { ...f, progress, status: progress === 100 ? 'success' : 'uploading' }
+                : f
+            )
+          );
+        }
+      }
+    };
+
+    return (
+      <FileUpload
+        multiple
+        accept="image/*,.pdf,.doc,.docx"
+        maxSize={5 * 1024 * 1024} // 5MB
+        maxFiles={5}
+        files={files}
+        onFilesChange={setFiles}
+        onUpload={handleUpload}
+      />
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Single File Upload
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <FileUploadSingleFileDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Single File Upload"
+    <FileUpload
+      variant="compact"
+      multiple={false}
+      accept=".pdf,.doc,.docx"
+      maxSize={10 * 1024 * 1024} // 10MB
+      files={files}
+      onFilesChange={setFiles}
+      uploadText="Click to upload a document"
+      dragText="Drop document here"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Image Upload with Preview
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <FileUploadImageOnlyDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Image Upload"
+    <FileUpload
+      variant="default"
+      multiple
+      accept="image/*"
+      maxSize={2 * 1024 * 1024} // 2MB
+      maxFiles={10}
+      files={files}
+      onFilesChange={setFiles}
+      onUpload={handleUpload}
+      showPreview={true}
+      uploadText="Click to upload images or drag and drop"
+      dragText="Drop your images here"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <FileUploadSizesDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="File Upload Sizes"
+    <FileUpload
+      size="sm"
+      files={smFiles}
+      onFilesChange={setSmFiles}
+    />
+
+    <FileUpload
+      size="md"
+      files={mdFiles}
+      onFilesChange={setMdFiles}
+    />
+
+    <FileUpload
+      size="lg"
+      files={lgFiles}
+      onFilesChange={setLgFiles}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Component States
+
+### Disabled State
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <FileUploadDisabledDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled State"
+    <FileUpload
+      disabled
+      multiple
+      files={files}
+      onFilesChange={setFiles}
+      uploadText="Upload is disabled"
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## File Types & Validation
+
+### File Type Restrictions
+
+```tsx lineNumbers title="File Type Examples"
+// Images only
+<FileUpload accept="image/*" />
+
+// Specific image types
+<FileUpload accept="image/jpeg,image/png,image/gif" />
+
+// Documents
+<FileUpload accept=".pdf,.doc,.docx,.txt" />
+
+// Multiple types
+<FileUpload accept="image/*,.pdf,.doc,.docx,text/*" />
+
+// All files
+<FileUpload accept="*/*" />
+```
+
+### File Size Limits
+
+```tsx lineNumbers title="Size Limits"
+// 1MB limit
+<FileUpload maxSize={1024 * 1024} />
+
+// 5MB limit
+<FileUpload maxSize={5 * 1024 * 1024} />
+
+// 50MB limit
+<FileUpload maxSize={50 * 1024 * 1024} />
+```
+
+### File Count Limits
+
+```tsx lineNumbers title="File Count"
+// Single file only
+<FileUpload multiple={false} />
+
+// Up to 5 files
+<FileUpload multiple maxFiles={5} />
+
+// Up to 20 files
+<FileUpload multiple maxFiles={20} />
+
+// Unlimited files
+<FileUpload multiple />
+```
+
+## Custom Upload Implementation
+
+### Basic Upload Function
+
+```tsx lineNumbers title="Upload Implementation"
+const handleUpload = async (filesToUpload: FileUploadFile[]) => {
+  for (const fileData of filesToUpload) {
+    const formData = new FormData();
+    formData.append('file', fileData.file);
+    
+    try {
+      // Update status to uploading
+      setFiles(prevFiles => 
+        prevFiles.map(f => 
+          f.id === fileData.id 
+            ? { ...f, status: 'uploading', progress: 0 }
+            : f
+        )
+      );
+
+      // Make upload request
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Success
+        setFiles(prevFiles => 
+          prevFiles.map(f => 
+            f.id === fileData.id 
+              ? { ...f, status: 'success', progress: 100 }
+              : f
+          )
+        );
+      } else {
+        throw new Error('Upload failed');
+      }
+    } catch (error) {
+      // Error
+      setFiles(prevFiles => 
+        prevFiles.map(f => 
+          f.id === fileData.id 
+            ? { ...f, status: 'error', error: 'Upload failed' }
+            : f
+        )
+      );
+    }
+  }
+};
+```
+
+### Upload with Progress Tracking
+
+```tsx lineNumbers title="Progress Tracking"
+const handleUploadWithProgress = async (filesToUpload: FileUploadFile[]) => {
+  for (const fileData of filesToUpload) {
+    const formData = new FormData();
+    formData.append('file', fileData.file);
+    
+    try {
+      setFiles(prevFiles => 
+        prevFiles.map(f => 
+          f.id === fileData.id 
+            ? { ...f, status: 'uploading', progress: 0 }
+            : f
+        )
+      );
+
+      await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        
+        // Track upload progress
+        xhr.upload.addEventListener('progress', (e) => {
+          if (e.lengthComputable) {
+            const progress = (e.loaded / e.total) * 100;
+            setFiles(prevFiles => 
+              prevFiles.map(f => 
+                f.id === fileData.id 
+                  ? { ...f, progress }
+                  : f
+              )
+            );
+          }
+        });
+
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            setFiles(prevFiles => 
+              prevFiles.map(f => 
+                f.id === fileData.id 
+                  ? { ...f, status: 'success', progress: 100 }
+                  : f
+              )
+            );
+            resolve(xhr.response);
+          } else {
+            reject(new Error('Upload failed'));
+          }
+        });
+
+        xhr.addEventListener('error', () => {
+          reject(new Error('Upload failed'));
+        });
+
+        xhr.open('POST', '/api/upload');
+        xhr.send(formData);
+      });
+    } catch (error) {
+      setFiles(prevFiles => 
+        prevFiles.map(f => 
+          f.id === fileData.id 
+            ? { ...f, status: 'error', error: 'Upload failed' }
+            : f
+        )
+      );
+    }
+  }
+};
+```
+
+## Accessibility
+
+The File Upload component includes comprehensive accessibility features:
+
+- **Keyboard Navigation**: Full keyboard support with Enter and Space keys
+- **Screen Reader Support**: Proper ARIA labels and announcements
+- **Focus Management**: Visible focus indicators and logical tab order
+- **Progress Announcements**: Screen readers announce upload progress
+- **Error Handling**: Clear error messages for assistive technologies
+
+## API Reference
+
+### FileUpload Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'default' \| 'compact'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the upload area |
+| `multiple` | `boolean` | `false` | Allow multiple file selection |
+| `accept` | `string` | - | Accepted file types (MIME types or extensions) |
+| `maxSize` | `number` | - | Maximum file size in bytes |
+| `maxFiles` | `number` | - | Maximum number of files |
+| `disabled` | `boolean` | `false` | Disable the upload component |
+| `files` | `FileUploadFile[]` | `[]` | Array of files |
+| `onFilesChange` | `(files: FileUploadFile[]) => void` | - | Callback when files change |
+| `onUpload` | `(files: FileUploadFile[]) => Promise<void>` | - | Upload function |
+| `showProgress` | `boolean` | `true` | Show upload progress |
+| `showPreview` | `boolean` | `true` | Show image previews |
+| `uploadText` | `string` | `'Click to upload or drag and drop'` | Upload zone text |
+| `dragText` | `string` | `'Drop files here'` | Drag over text |
+| `className` | `string` | - | Additional CSS classes |

@@ -33,6 +33,7 @@ import { Calendar } from '@/app/components/ui/calendar';
 import { CodeBlock as YourCustomCodeBlock, Pre } from '@/app/components/ui/codeblock/codeblock';
 import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions } from '@/app/components/ui/chat';
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from '@/app/components/ui/breadcrumb';
+import { FileUpload, FileUploadZone, FileUploadItem, FileUploadProgress } from '@/app/components/ui/file-upload';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -139,6 +140,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     BreadcrumbPage,
     BreadcrumbSeparator,
     BreadcrumbEllipsis,
+    FileUpload,
+    FileUploadZone,
+    FileUploadItem,
+    FileUploadProgress,
     pre: ({ ref: _ref, ...props }) => (
       <YourCustomCodeBlock {...props}>
         <Pre>{props.children}</Pre>
