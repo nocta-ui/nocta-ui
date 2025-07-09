@@ -26,7 +26,7 @@ const messageVariants = cva(
   [
     'rounded-lg px-3 py-2 text-sm w-fit max-w-[80%]',
     'transition-all duration-200 ease-in-out not-prose',
-    'overflow-hidden'
+    'overflow-hidden '
   ],
   {
     variants: {
@@ -35,22 +35,16 @@ const messageVariants = cva(
         assistant: 'bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100',
         system: 'bg-nocta-300/50 dark:bg-nocta-700/50 text-nocta-600 dark:text-nocta-400 text-center text-xs mx-auto'
       },
-      size: {
-        sm: 'px-2 py-1 text-xs',
-        md: 'px-3 py-2 text-sm',
-        lg: 'px-4 py-3 text-base'
-      }
     },
     defaultVariants: {
       variant: 'user',
-      size: 'md'
     }
   }
 );
 
 const inputVariants = cva(
   [
-    'flex-1 rounded-lg border transition-all duration-200 ease-in-out resize-none',
+    'flex-1 px-3 py-2 text-sm min-h-[40px] rounded-lg border transition-all duration-200 ease-in-out resize-none',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
     'focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50',
     'disabled:opacity-50 disabled:cursor-not-allowed',
@@ -67,16 +61,10 @@ const inputVariants = cva(
           'focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50',
           'focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50'
         ]
-      },
-      size: {
-        sm: 'px-3 py-2 text-sm min-h-[36px]',
-        md: 'px-3 py-2 text-sm min-h-[40px]',
-        lg: 'px-4 py-3 text-base min-h-[48px]'
       }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'md'
     }
   }
 );
@@ -90,6 +78,12 @@ export interface Message {
   name?: string;
 }
 
+export interface TypingUser {
+  id: string;
+  name?: string;
+  avatar?: string;
+}
+
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof chatVariants> {
   messages?: Message[];
   onSendMessage?: (message: string) => void;
@@ -100,6 +94,7 @@ export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, Variant
   showTimestamps?: boolean;
   showAvatars?: boolean;
   allowMultiline?: boolean;
+  typingUsers?: TypingUser[];
   className?: string;
   children?: React.ReactNode;
 }
@@ -124,6 +119,7 @@ export interface ChatMessagesProps extends React.HTMLAttributes<HTMLDivElement> 
   messages: Message[];
   showTimestamps?: boolean;
   showAvatars?: boolean;
+  typingUsers?: TypingUser[];
   className?: string;
 }
 
@@ -131,6 +127,12 @@ export interface ChatMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   message: Message;
   showTimestamp?: boolean;
   showAvatar?: boolean;
+  className?: string;
+}
+
+export interface TypingIndicatorProps extends React.HTMLAttributes<HTMLDivElement> {
+  typingUsers: TypingUser[];
+  showAvatars?: boolean;
   className?: string;
 }
 
@@ -149,6 +151,63 @@ export interface ChatActionsProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
+export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
+  typingUsers,
+  showAvatars = false,
+  className = '',
+  ...props
+}) => {
+  if (!typingUsers || typingUsers.length === 0) return null;
+
+  const getTypingText = () => {
+    if (typingUsers.length === 1) {
+      return `${typingUsers[0].name || 'Someone'} is typing`;
+    } else if (typingUsers.length === 2) {
+      return `${typingUsers[0].name || 'Someone'} and ${typingUsers[1].name || 'someone else'} are typing`;
+    } else {
+      return `${typingUsers[0].name || 'Someone'} and ${typingUsers.length - 1} others are typing`;
+    }
+  };
+
+  return (
+    <div 
+      className={cn('flex items-end gap-2 not-prose', className)}
+      {...props}
+    >
+      {showAvatars && (
+        <div className="w-8 h-8 rounded-full bg-nocta-200 dark:bg-nocta-800 flex items-center justify-center text-xs font-medium text-nocta-600 dark:text-nocta-400 flex-shrink-0">
+          {typingUsers[0].avatar ? (
+            <img 
+              src={typingUsers[0].avatar} 
+              alt={typingUsers[0].name || 'typing'}
+              className="w-full h-full rounded-full object-cover"
+            />
+          ) : (
+            <span>
+              {typingUsers[0].name ? typingUsers[0].name.charAt(0).toUpperCase() : '?'}
+            </span>
+          )}
+        </div>
+      )}
+      
+      <div className="flex flex-col gap-1 w-full items-start">
+        <div className="bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 rounded-lg px-3 py-2 text-sm w-fit max-w-[80%] transition-all duration-200 ease-in-out not-prose">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-nocta-600 dark:text-nocta-400">
+              {getTypingText()}
+            </span>
+            <div className="flex gap-1">
+              <div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
+              <div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+              <div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Chat: React.FC<ChatProps> = ({
   messages = [],
   onSendMessage,
@@ -159,6 +218,7 @@ export const Chat: React.FC<ChatProps> = ({
   showTimestamps = false,
   showAvatars = false,
   allowMultiline = true,
+  typingUsers = [],
   variant = 'default',
   className = '',
   children,
@@ -172,6 +232,7 @@ export const Chat: React.FC<ChatProps> = ({
           messages={messages}
           showTimestamps={showTimestamps}
           showAvatars={showAvatars}
+          typingUsers={typingUsers}
           className="flex-1 min-h-0 max-h-96"
         />
         {onSendMessage && (
@@ -239,6 +300,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   messages,
   showTimestamps = false,
   showAvatars = false,
+  typingUsers = [],
   className = '',
   ...props
 }) => {
@@ -251,9 +313,13 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       const scrollHeight = container.scrollHeight;
       const height = container.clientHeight;
       const maxScrollTop = scrollHeight - height;
-      container.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+      
+      container.scrollTo({
+        top: maxScrollTop > 0 ? maxScrollTop : 0,
+        behavior: 'smooth'
+      });
     }
-  }, [messages]);
+  }, [messages, typingUsers]);
 
   return (
     <div 
@@ -261,7 +327,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       className={cn('flex-1 overflow-y-auto p-4 space-y-3 not-prose', className)}
       {...props}
     >
-      {messages.map((message) => (
+      {messages.map((message, index) => (
         <ChatMessage
           key={message.id}
           message={message}
@@ -269,6 +335,10 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
           showAvatar={showAvatars}
         />
       ))}
+      <TypingIndicator 
+        typingUsers={typingUsers}
+        showAvatars={showAvatars}
+      />
       <div ref={messagesEndRef} />
     </div>
   );
@@ -391,7 +461,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           disabled={disabled}
           autoFocus={autoFocus}
           rows={1}
-          className={inputVariants({ variant: 'default', size: 'md' })}
+          className={inputVariants({ variant: 'default'})}
         />
         <button
           type="submit"

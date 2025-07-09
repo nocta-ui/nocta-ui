@@ -1086,6 +1086,78 @@
         "legacy-component-support",
         "client-component"
       ]
+    },
+    "chat": {
+      "name": "Chat",
+      "description": "Complete chat interface component with messages, input, avatars, timestamps, and real-time features",
+      "category": "communication",
+      "files": [
+        {
+          "name": "chat.tsx",
+          "path": "app/components/ui/chat/chat.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
+      },
+      "exports": [
+        "Chat",
+        "ChatHeader",
+        "ChatTitle",
+        "ChatDescription", 
+        "ChatMessages",
+        "ChatMessage",
+        "ChatInput",
+        "ChatActions",
+        "TypingIndicator",
+        "Message",
+        "TypingUser"
+      ],
+      "props": {
+        "Chat": [
+          "messages", "onSendMessage", "placeholder", "disabled", "autoFocus", 
+          "maxLength", "showTimestamps", "showAvatars", "allowMultiline", 
+          "typingUsers", "variant", "className", "children"
+        ],
+        "ChatHeader": ["children", "className"],
+        "ChatTitle": ["children", "className", "as"],
+        "ChatDescription": ["children", "className"],
+        "ChatMessages": ["messages", "showTimestamps", "showAvatars", "typingUsers", "className"],
+        "ChatMessage": ["message", "showTimestamp", "showAvatar", "className"],
+        "ChatInput": [
+          "onSendMessage", "placeholder", "disabled", "autoFocus", 
+          "maxLength", "allowMultiline", "className"
+        ],
+        "ChatActions": ["children", "className"],
+        "TypingIndicator": ["typingUsers", "showAvatars", "className"],
+        "Message": ["id", "content", "sender", "timestamp", "avatar", "name"],
+        "TypingUser": ["id", "name", "avatar"]
+      },
+      "variants": ["default"],
+      "senders": ["user", "assistant", "system"],
+      "features": [
+        "real-time-messaging",
+        "avatar-support",
+        "timestamp-display",
+        "multiline-input",
+        "character-counter",
+        "auto-scroll",
+        "smooth-animations",
+        "typing-indicators",
+        "message-variants",
+        "keyboard-shortcuts",
+        "auto-resize-textarea",
+        "accessibility-compliant",
+        "composable-architecture",
+        "message-history",
+        "custom-styling",
+        "dark-mode",
+        "client-component"
+      ]
     }
   },
   "categories": {
@@ -1118,6 +1190,11 @@
       "name": "Navigation",
       "description": "Components for navigation and routing",
       "components": ["tabs"]
+    },
+    "communication": {
+      "name": "Communication",
+      "description": "Components for messaging and real-time communication",
+      "components": ["chat"]
     }
   },
   "features": [
@@ -1129,7 +1206,6 @@
     "Custom variants",
     "Responsive design",
     "Animation support",
-    "Zero external dependencies (except React)",
     "Tree-shakeable"
   ],
   "requirements": {

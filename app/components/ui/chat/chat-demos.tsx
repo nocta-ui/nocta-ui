@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatActions, type Message } from './chat';
+import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatActions, type Message, type TypingUser } from './chat';
 import { Button } from '../button';
 
 export const BasicChatDemo: React.FC = () => {
@@ -295,7 +295,7 @@ export const ChatWithActionsDemo: React.FC = () => {
     }
   ]);
 
-  const [isTyping, setIsTyping] = useState(false);
+  const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
 
   const handleSendMessage = (message: string) => {
     const newMessage: Message = {
@@ -307,11 +307,11 @@ export const ChatWithActionsDemo: React.FC = () => {
     };
     
     setMessages(prev => [...prev, newMessage]);
-    setIsTyping(true);
+    setTypingUsers([{ id: 'assistant', name: 'AI Assistant' }]);
     
     // Simulate assistant response
     setTimeout(() => {
-      setIsTyping(false);
+      setTypingUsers([]);
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: 'Thanks for your message! I\'m processing your request.',
@@ -333,6 +333,7 @@ export const ChatWithActionsDemo: React.FC = () => {
         name: 'AI Assistant'
       }
     ]);
+    setTypingUsers([]);
   };
 
   return (
@@ -356,17 +357,12 @@ export const ChatWithActionsDemo: React.FC = () => {
           <Chat
             messages={messages}
             onSendMessage={handleSendMessage}
+            typingUsers={typingUsers}
             showTimestamps
             placeholder="Ask me anything..."
             className="w-xs md:w-lg h-73"
           />
         </div>
-        
-        {isTyping && (
-          <div className="text-sm text-nocta-500 dark:text-nocta-400 italic">
-            AI Assistant is typing...
-          </div>
-        )}
       </div>
     </div>
   );
@@ -404,6 +400,155 @@ export const CustomStyledChatDemo: React.FC = () => {
           className="w-xs md:w-lg border-2 border-purple-200 dark:border-purple-800 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
           placeholder="Type with style..."
         />
+      </div>
+    </div>
+  );
+}; 
+
+export const TypingIndicatorDemo: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: '1',
+      content: 'Hey there! Welcome to the team chat 👋',
+      sender: 'assistant',
+      timestamp: new Date(Date.now() - 300000),
+      name: 'Sarah',
+      avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png'
+    },
+    {
+      id: '2',
+      content: 'Thanks! Excited to be here and start collaborating.',
+      sender: 'user',
+      timestamp: new Date(Date.now() - 240000),
+      name: 'You'
+    }
+  ]);
+
+  const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
+  const [simulationActive, setSimulationActive] = useState(false);
+
+  const handleSendMessage = (message: string) => {
+    const newMessage: Message = {
+      id: Date.now().toString(),
+      content: message,
+      sender: 'user',
+      timestamp: new Date(),
+      name: 'You'
+    };
+    
+    setMessages(prev => [...prev, newMessage]);
+    
+    // Simulate multiple people typing responses
+    setTimeout(() => {
+      setTypingUsers([
+        { id: 'sarah', name: 'Sarah', avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png' }
+      ]);
+    }, 500);
+
+    setTimeout(() => {
+      setTypingUsers([
+        { id: 'sarah', name: 'Sarah', avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png' },
+        { id: 'mike', name: 'Mike', avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }
+      ]);
+    }, 1500);
+
+    setTimeout(() => {
+      setTypingUsers([]);
+      const responses = [
+        'That\'s awesome! Looking forward to working together.',
+        'Great to have you on board! 🎉',
+        'Welcome to the team! Feel free to ask if you need anything.'
+      ];
+      
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: responses[Math.floor(Math.random() * responses.length)],
+        sender: 'assistant',
+        timestamp: new Date(),
+        name: 'Sarah',
+        avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png'
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+    }, 3000);
+  };
+
+  const startTypingSimulation = () => {
+    if (simulationActive) return;
+    
+    setSimulationActive(true);
+    
+    // Simulate various typing scenarios
+    setTimeout(() => {
+      setTypingUsers([{ id: 'sarah', name: 'Sarah', avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png' }]);
+    }, 1000);
+
+    setTimeout(() => {
+      setTypingUsers([
+        { id: 'sarah', name: 'Sarah', avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png' },
+        { id: 'mike', name: 'Mike', avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }
+      ]);
+    }, 3000);
+
+    setTimeout(() => {
+      setTypingUsers([
+        { id: 'sarah', name: 'Sarah', avatar: 'https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png' },
+        { id: 'mike', name: 'Mike', avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' },
+        { id: 'alex', name: 'Alex' }
+      ]);
+    }, 5000);
+
+    setTimeout(() => {
+      setTypingUsers([]);
+      setSimulationActive(false);
+    }, 7000);
+  };
+
+  return (
+    <div className="my-6">
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h4 className="text-lg font-medium text-nocta-900 dark:text-nocta-100">
+            Typing Indicator Demo
+          </h4>
+          <Button 
+            variant="secondary" 
+            size="sm" 
+            onClick={startTypingSimulation}
+            disabled={simulationActive}
+          >
+            {simulationActive ? 'Simulating...' : 'Demo Typing'}
+          </Button>
+        </div>
+        
+        <div className="">
+          <Chat
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            typingUsers={typingUsers}
+            showTimestamps
+            showAvatars
+            placeholder="Send a message to see typing indicators..."
+            className="w-xs md:w-lg h-96"
+          >
+            <ChatHeader>
+              <ChatTitle>Team Chat</ChatTitle>
+              <ChatDescription>
+                Real-time typing indicators show when team members are responding
+              </ChatDescription>
+            </ChatHeader>
+          </Chat>
+        </div>
+        
+        <div className="text-sm text-nocta-600 dark:text-nocta-400 space-y-1">
+          <p><strong>Features demonstrated:</strong></p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Single user typing indicator</li>
+            <li>Multiple users typing simultaneously</li>
+            <li>Smart text that handles different user counts</li>
+            <li>Animated bouncing dots</li>
+            <li>Integration with avatars</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

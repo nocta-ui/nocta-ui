@@ -3,7 +3,7 @@ title: Chat
 description: A comprehensive chat component system with message display, input handling, avatars, timestamps, and real-time messaging capabilities
 ---
 
-import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions } from '@/app/components/ui/chat';
+import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions, TypingIndicator } from '@/app/components/ui/chat';
 import { Button } from "@/app/components/ui/button"
 import { 
   BasicChatDemo,
@@ -12,7 +12,8 @@ import {
   ChatWithTimestampsDemo,
   ReadOnlyChatDemo,
   ChatWithActionsDemo,
-  CustomStyledChatDemo
+  CustomStyledChatDemo,
+  TypingIndicatorDemo
 } from '@/app/components/ui/chat/chat-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
@@ -36,7 +37,9 @@ import {
   ChatMessage,
   ChatInput,
   ChatActions,
+  TypingIndicator,
   type Message,
+  type TypingUser,
 } from '@/components/ui/chat';
 ```
 
@@ -254,6 +257,87 @@ Display conversation history without input capabilities.
   </DocsTab>
 </DocsTabs>
 
+### Typing Indicators
+
+Display real-time typing indicators to show when users are composing messages.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <TypingIndicatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Typing Indicators"
+    const [messages, setMessages] = useState<Message[]>([...]);
+    const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
+
+    const handleSendMessage = (message: string) => {
+      const newMessage: Message = {
+        id: Date.now().toString(),
+        content: message,
+        sender: 'user',
+        timestamp: new Date(),
+        name: 'You'
+      };
+      
+      setMessages(prev => [...prev, newMessage]);
+      
+      // Simulate typing indicator
+      setTypingUsers([{ id: 'sarah', name: 'Sarah', avatar: 'avatar-url' }]);
+      
+      // Remove typing indicator and add response
+      setTimeout(() => {
+        setTypingUsers([]);
+        const response: Message = {
+          id: (Date.now() + 1).toString(),
+          content: 'Thanks for your message!',
+          sender: 'assistant',
+          timestamp: new Date(),
+          name: 'Sarah',
+          avatar: 'avatar-url'
+        };
+        setMessages(prev => [...prev, response]);
+      }, 2000);
+    };
+
+    return (
+      <Chat
+        messages={messages}
+        onSendMessage={handleSendMessage}
+        typingUsers={typingUsers}
+        showTimestamps
+        showAvatars
+        placeholder="Send a message to see typing indicators..."
+        className="w-full max-w-lg h-96"
+      >
+        <ChatHeader>
+          <ChatTitle>Team Chat</ChatTitle>
+          <ChatDescription>
+            Real-time typing indicators show when team members are responding
+          </ChatDescription>
+        </ChatHeader>
+      </Chat>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+#### TypingUser Interface
+
+```tsx lineNumbers title="TypingUser Interface"
+interface TypingUser {
+  id: string;           // Unique user identifier
+  name?: string;        // Optional user name
+  avatar?: string;      // Optional avatar URL
+}
+```
+
+#### Features:
+- **Single User Typing**: Shows "[Name] is typing"
+- **Multiple Users**: Shows "[Name] and [Name] are typing" or "[Name] and X others are typing"
+- **Animated Dots**: Bouncing animation with staggered timing
+- **Avatar Integration**: Works seamlessly with chat avatars
+- **Auto-scroll**: Automatically scrolls when typing indicators appear
+
 ## Advanced Usage
 
 ### Chat with Actions
@@ -403,6 +487,7 @@ The Chat component is built with a modular architecture:
 - **ChatMessage**: Individual message component
 - **ChatInput**: Input component with auto-resize textarea
 - **ChatActions**: Container for action buttons
+- **TypingIndicator**: Real-time typing indicator with animated dots
 
 ## Accessibility
 
@@ -411,8 +496,9 @@ The Chat component includes several accessibility features:
 - **Keyboard Navigation**: Full keyboard support for input and actions
 - **Screen Reader Support**: Proper ARIA labels and semantic HTML
 - **Focus Management**: Proper focus handling for interactive elements
-- **Auto-scroll**: Automatic scrolling to new messages
+- **Auto-scroll**: Automatic scrolling to new messages and typing indicators
 - **Message Timestamps**: Available for screen readers
+- **Typing Indicators**: Accessible real-time feedback for ongoing conversations
 
 ## API Reference
 
@@ -429,6 +515,7 @@ The Chat component includes several accessibility features:
 | `showTimestamps` | `boolean` | `false` | Show message timestamps |
 | `showAvatars` | `boolean` | `false` | Show user avatars |
 | `allowMultiline` | `boolean` | `true` | Allow multiline messages |
+| `typingUsers` | `TypingUser[]` | `[]` | Array of users currently typing |
 | `variant` | `'default'` | `'default'` | Visual variant |
 | `className` | `string` | `''` | Additional CSS classes (used for sizing and custom styling) |
 
@@ -442,5 +529,15 @@ interface Message {
   timestamp: Date;               // Message timestamp
   avatar?: string;               // Optional avatar URL
   name?: string;                 // Optional sender name
+}
+```
+
+### TypingUser Interface
+
+```tsx lineNumbers title="TypingUser Interface"
+interface TypingUser {
+  id: string;                    // Unique user identifier
+  name?: string;                 // Optional user name
+  avatar?: string;               // Optional avatar URL
 }
 ``` 

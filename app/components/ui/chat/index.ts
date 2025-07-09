@@ -7,6 +7,7 @@ export {
   ChatMessage,
   ChatInput,
   ChatActions,
+  TypingIndicator,
   type ChatProps,
   type ChatHeaderProps,
   type ChatTitleProps,
@@ -15,7 +16,9 @@ export {
   type ChatMessageProps,
   type ChatInputProps,
   type ChatActionsProps,
+  type TypingIndicatorProps,
   type Message,
+  type TypingUser,
 } from './chat';
 
 export {
@@ -26,4 +29,5 @@ export {
   ReadOnlyChatDemo,
   ChatWithActionsDemo,
   CustomStyledChatDemo,
+  TypingIndicatorDemo,
 } from './chat-demos'; 
