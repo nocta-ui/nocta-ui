@@ -1,0 +1,367 @@
+---
+title: Breadcrumb
+description: Displays the path to the current resource using a hierarchy of links.
+---
+
+import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+
+import {
+  BasicBreadcrumbDemo,
+  CustomSeparatorDemo,
+  ChevronSeparatorDemo,
+  EllipsisDemo,
+  SizesDemo,
+  GhostVariantDemo,
+  ComplexNavigationDemo,
+} from '@/app/components/ui/breadcrumb/breadcrumb-demos';
+
+## Installation
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add breadcrumb
+```
+
+## Introduction
+
+A breadcrumb trail on a page indicates the page's position in the site hierarchy. 
+A user can navigate all the way up in the site hierarchy, one level at a time, by following the breadcrumb trail.
+
+## Anatomy
+
+Import the breadcrumb primitives from `@/components/ui/breadcrumb`.
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "@/components/ui/breadcrumb"
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Components</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Usage
+
+### Basic
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicBreadcrumbDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Breadcrumb"
+    import {
+      Breadcrumb,
+      BreadcrumbList,
+      BreadcrumbItem,
+      BreadcrumbLink,
+      BreadcrumbPage,
+      BreadcrumbSeparator,
+    } from '@/components/ui/breadcrumb';
+
+    export function BasicBreadcrumbDemo() {
+      return (
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Custom Separator
+
+You can customize the separator between breadcrumb items.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <CustomSeparatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Custom Separator"
+    <Breadcrumb separator=">">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Getting Started</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### With Icons
+
+You can include icons in your breadcrumb links.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ComplexNavigationDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="With Icons"
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/" variant="ghost">
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 1v6" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 1v6" />
+            </svg>
+            Dashboard
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/users">Users</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Edit Profile</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### With Ellipsis
+
+For long paths, you can use ellipsis to truncate the breadcrumb.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <EllipsisDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="With Ellipsis"
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Sizes
+
+The breadcrumb component supports three sizes: `sm`, `md` (default), and `lg`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <SizesDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Breadcrumb Sizes"
+    <div className="space-y-4">
+      <Breadcrumb size="sm">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Small</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <Breadcrumb size="md">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Medium</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <Breadcrumb size="lg">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Large</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Ghost Variant
+
+Use the ghost variant for a more subtle appearance.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <GhostVariantDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Ghost Variant"
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/" variant="ghost">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/products" variant="ghost">Products</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Item Details</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Breadcrumb
+
+The root container for breadcrumb navigation.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | The size of the breadcrumb |
+| `separator` | `React.ReactNode` | `"/"` | Default separator between items |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbList
+
+Contains the list of breadcrumb items.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbItem
+
+A wrapper for individual breadcrumb items.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbLink
+
+A navigable link in the breadcrumb trail.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "ghost"` | `"default"` | The visual style of the link |
+| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
+| `asChild` | `boolean` | `false` | Render as child component |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbPage
+
+Represents the current page in the breadcrumb trail.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbSeparator
+
+A separator between breadcrumb items.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
+| `children` | `React.ReactNode` | Inherited | Custom separator content |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### BreadcrumbEllipsis
+
+An ellipsis indicator for truncated breadcrumb paths.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+## Accessibility
+
+The breadcrumb component is built with accessibility in mind:
+
+- Uses semantic HTML with `nav` and `ol` elements
+- Includes proper ARIA labels and roles
+- Supports keyboard navigation
+- Screen reader friendly with appropriate labels
+- Current page is marked with `aria-current="page"`
+
+## Usage Notes
+
+1. **Current Page**: Always use `BreadcrumbPage` for the current page, never `BreadcrumbLink`
+2. **Separators**: Place `BreadcrumbSeparator` between each breadcrumb item
+3. **Icons**: Icons work best with the `ghost` variant for better visual balance
+4. **Truncation**: Use `BreadcrumbEllipsis` for paths longer than 4-5 items
+5. **Navigation**: Links should use actual navigation (href) for better accessibility 

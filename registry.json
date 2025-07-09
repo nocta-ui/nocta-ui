@@ -1087,6 +1087,60 @@
         "client-component"
       ]
     },
+    "breadcrumb": {
+      "name": "Breadcrumb",
+      "description": "Navigation breadcrumb component showing hierarchical location with customizable separators and styling",
+      "category": "navigation",
+      "files": [
+        {
+          "name": "breadcrumb.tsx",
+          "path": "app/components/ui/breadcrumb/breadcrumb.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": {
+        "react": "^18.0.0",
+        "tailwind-merge": "^3.3.1",
+        "clsx": "^2.1.1",
+        "class-variance-authority": "^0.7.1"
+      },
+      "exports": [
+        "Breadcrumb",
+        "BreadcrumbList",
+        "BreadcrumbItem",
+        "BreadcrumbLink",
+        "BreadcrumbPage",
+        "BreadcrumbSeparator",
+        "BreadcrumbEllipsis"
+      ],
+      "props": {
+        "Breadcrumb": ["size", "separator", "className", "children"],
+        "BreadcrumbList": ["size", "className", "children"],
+        "BreadcrumbItem": ["size", "className", "children"],
+        "BreadcrumbLink": ["variant", "size", "asChild", "className", "children"],
+        "BreadcrumbPage": ["size", "className", "children"],
+        "BreadcrumbSeparator": ["size", "className", "children"],
+        "BreadcrumbEllipsis": ["className"]
+      },
+      "variants": {
+        "link": ["default", "ghost"]
+      },
+      "sizes": ["sm", "md", "lg"],
+      "features": [
+        "hierarchical-navigation",
+        "customizable-separators",
+        "context-based-sizing",
+        "link-variants",
+        "ellipsis-support",
+        "keyboard-navigation",
+        "accessibility-compliant",
+        "semantic-markup",
+        "composable-architecture",
+        "focus-management",
+        "dark-mode",
+        "responsive-design"
+      ]
+    },
     "chat": {
       "name": "Chat",
       "description": "Complete chat interface component with messages, input, avatars, timestamps, and real-time features",
@@ -1189,7 +1243,7 @@
     "navigation": {
       "name": "Navigation",
       "description": "Components for navigation and routing",
-      "components": ["tabs"]
+      "components": ["breadcrumb", "tabs"]
     },
     "communication": {
       "name": "Communication",
