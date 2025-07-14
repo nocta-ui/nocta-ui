@@ -117,6 +117,39 @@ export const Select: React.FC<SelectProps> = ({
     }
   }, [open]);
 
+  // Update displayValue when value changes or children change
+  useEffect(() => {
+    if (value && children) {
+      const childrenArray = React.Children.toArray(children);
+      const findDisplayValue = (children: React.ReactNode[]): React.ReactNode => {
+        for (const child of children) {
+          if (React.isValidElement(child)) {
+            if (child.type === SelectContent) {
+              const childProps = child.props as { children?: React.ReactNode };
+              return findDisplayValue(React.Children.toArray(childProps.children));
+            } else if (child.props && typeof child.props === 'object' && child.props !== null && 'value' in child.props && child.props.value === value) {
+              const childProps = child.props as { children?: React.ReactNode };
+              return childProps.children;
+            } else if (child.props && typeof child.props === 'object' && child.props !== null && 'children' in child.props) {
+              const childProps = child.props as { children?: React.ReactNode };
+              const result = findDisplayValue(React.Children.toArray(childProps.children));
+              if (result) return result;
+            }
+          }
+        }
+        return null;
+      };
+      
+      const foundDisplayValue = findDisplayValue(childrenArray);
+      if (foundDisplayValue) {
+        setDisplayValue(foundDisplayValue);
+      }
+    } else if (!value) {
+       setDisplayValue(null);
+     }
+   }, [value, children]);
+
+
   const handleValueChange = (newValue: string, newDisplayValue: React.ReactNode) => {
     if (controlledValue === undefined) {
       setUncontrolledValue(newValue);
