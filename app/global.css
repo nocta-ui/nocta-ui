@@ -41,7 +41,7 @@
 }
 
 @theme {
-  --font-haskoy: var(--font-haskoy);
+  --font-tomatogrotesk: var(--font-tomatogrotesk);
 
   --color-nocta-950: oklch(.145 0 0);
   --color-nocta-900: oklch(.205 0 0);
@@ -58,7 +58,7 @@
 
 @layer base {
     body {
-      @apply font-haskoy;
+      @apply font-tomatogrotesk;
     }
 }
 

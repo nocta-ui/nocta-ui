@@ -4,9 +4,9 @@ import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 
-const haskoy = localFont({
-  src: './assets/fonts/Haskoy-variable.woff2',
-  variable: '--font-haskoy',
+const tomatogrotesk = localFont({
+  src: './assets/fonts/Tomato Grotesk VF.woff2',
+  variable: '--font-tomatogrotesk',
 })
 
 export const metadata: Metadata = {
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${haskoy.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${tomatogrotesk.variable}`} suppressHydrationWarning>
       <body className="flex flex-col">
         <RootProvider>{children}</RootProvider>
       </body>
