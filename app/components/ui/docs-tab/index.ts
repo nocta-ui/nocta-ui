@@ -1,1 +1,1 @@
-export { DocsTab, DocsTabs } from './docs-tab';
+export { DocsTab, DocsTabs } from "./docs-tab";

@@ -1,12 +1,12 @@
 export {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  type PopoverProps,
-  type PopoverTriggerProps,
-  type PopoverContentProps,
-  type PopoverArrowProps,
-} from './popover';
+	Popover,
+	PopoverArrow,
+	type PopoverArrowProps,
+	PopoverContent,
+	type PopoverContentProps,
+	type PopoverProps,
+	PopoverTrigger,
+	type PopoverTriggerProps,
+} from "./popover";
 
-export * from './popover-demos'; 
+export * from "./popover-demos";

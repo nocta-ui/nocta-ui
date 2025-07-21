@@ -1,10 +1,10 @@
 export {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  type TooltipProps,
-  type TooltipTriggerProps,
-  type TooltipContentProps,
-} from './tooltip';
+	Tooltip,
+	TooltipContent,
+	type TooltipContentProps,
+	type TooltipProps,
+	TooltipTrigger,
+	type TooltipTriggerProps,
+} from "./tooltip";
 
-export * from './tooltip-demos'; 
+export * from "./tooltip-demos";

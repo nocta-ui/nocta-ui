@@ -1,13 +1,13 @@
 export {
-  Switch,
-  type SwitchProps,
-} from './switch'; 
+	Switch,
+	type SwitchProps,
+} from "./switch";
 
-export { 
-  BasicSwitchDemo, 
-  ControlledSwitchDemo, 
-  VariantsDemo, 
-  SizesDemo, 
-  DisabledStateDemo,
-  CustomStylingDemo
-} from './switch-demos'; 
+export {
+	BasicSwitchDemo,
+	ControlledSwitchDemo,
+	CustomStylingDemo,
+	DisabledStateDemo,
+	SizesDemo,
+	VariantsDemo,
+} from "./switch-demos";

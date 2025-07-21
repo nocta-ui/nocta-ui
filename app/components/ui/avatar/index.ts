@@ -1,16 +1,16 @@
 export {
-  Avatar,
-  type AvatarProps,
-} from './avatar'; 
+	Avatar,
+	type AvatarProps,
+} from "./avatar";
 
-export { 
-  BasicAvatarDemo, 
-  SizesDemo, 
-  VariantsDemo, 
-  StatusDemo,
-  FallbackDemo,
-  GroupDemo,
-  CustomStylingDemo,
-  ClickHandlersDemo,
-  InteractiveDemo
-} from './avatar-demos'; 
+export {
+	BasicAvatarDemo,
+	ClickHandlersDemo,
+	CustomStylingDemo,
+	FallbackDemo,
+	GroupDemo,
+	InteractiveDemo,
+	SizesDemo,
+	StatusDemo,
+	VariantsDemo,
+} from "./avatar-demos";

@@ -1,20 +1,20 @@
 export {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-  ContextMenuSub,
-  ContextMenuSubTrigger,
-  ContextMenuSubContent,
-  type ContextMenuProps,
-  type ContextMenuTriggerProps,
-  type ContextMenuContentProps,
-  type ContextMenuItemProps,
-  type ContextMenuSeparatorProps,
-  type ContextMenuSubProps,
-  type ContextMenuSubTriggerProps,
-  type ContextMenuSubContentProps,
-} from './context-menu';
+	ContextMenu,
+	ContextMenuContent,
+	type ContextMenuContentProps,
+	ContextMenuItem,
+	type ContextMenuItemProps,
+	type ContextMenuProps,
+	ContextMenuSeparator,
+	type ContextMenuSeparatorProps,
+	ContextMenuSub,
+	ContextMenuSubContent,
+	type ContextMenuSubContentProps,
+	type ContextMenuSubProps,
+	ContextMenuSubTrigger,
+	type ContextMenuSubTriggerProps,
+	ContextMenuTrigger,
+	type ContextMenuTriggerProps,
+} from "./context-menu";
 
-export * from './context-menu-demos'; 
+export * from "./context-menu-demos";

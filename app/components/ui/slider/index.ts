@@ -1,6 +1,6 @@
 export {
-  Slider,
-  type SliderProps,
-} from './slider';
- 
-export * from './slider-demos'; 
+	Slider,
+	type SliderProps,
+} from "./slider";
+
+export * from "./slider-demos";

@@ -1,76 +1,83 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@import 'fumadocs-ui/css/preset.css';
+@import "fumadocs-ui/css/preset.css";
 
 @theme {
-  --color-fd-background: hsl(0, 0%, 98%);
-  --color-fd-foreground: hsl(0, 0%, 3.9%);
-  --color-fd-muted: hsl(0, 0%, 96.1%);
-  --color-fd-muted-foreground: hsl(0, 0%, 45.1%);
-  --color-fd-popover: hsl(0, 0%, 100%);
-  --color-fd-popover-foreground: hsl(0, 0%, 15.1%);
-  --color-fd-card: hsl(0, 0%, 99.7%);
-  --color-fd-card-foreground: hsl(0, 0%, 3.9%);
-  --color-fd-border: hsla(0, 0%, 60%, 0.2);
-  --color-fd-primary: hsl(0, 0%, 9%);
-  --color-fd-primary-foreground: hsl(0, 0%, 98%);
-  --color-fd-secondary: hsl(0, 0%, 96.1%);
-  --color-fd-secondary-foreground: hsl(0, 0%, 9%);
-  --color-fd-accent: hsl(0, 0%, 94.1%);
-  --color-fd-accent-foreground: hsl(0, 0%, 9%);
-  --color-fd-ring: hsl(0, 0%, 63.9%);
+	--color-fd-background: hsl(0, 0%, 98%);
+	--color-fd-foreground: hsl(0, 0%, 3.9%);
+	--color-fd-muted: hsl(0, 0%, 96.1%);
+	--color-fd-muted-foreground: hsl(0, 0%, 45.1%);
+	--color-fd-popover: hsl(0, 0%, 100%);
+	--color-fd-popover-foreground: hsl(0, 0%, 15.1%);
+	--color-fd-card: hsl(0, 0%, 99.7%);
+	--color-fd-card-foreground: hsl(0, 0%, 3.9%);
+	--color-fd-border: hsla(0, 0%, 60%, 0.2);
+	--color-fd-primary: hsl(0, 0%, 9%);
+	--color-fd-primary-foreground: hsl(0, 0%, 98%);
+	--color-fd-secondary: hsl(0, 0%, 96.1%);
+	--color-fd-secondary-foreground: hsl(0, 0%, 9%);
+	--color-fd-accent: hsl(0, 0%, 94.1%);
+	--color-fd-accent-foreground: hsl(0, 0%, 9%);
+	--color-fd-ring: hsl(0, 0%, 63.9%);
 }
 
 .dark {
-  --color-fd-background: hsl(0, 0%, 2%);
-  --color-fd-foreground: hsl(0, 0%, 98%);
-  --color-fd-muted: hsl(0, 0%, 8%);
-  --color-fd-muted-foreground: hsl(0, 0%, 60%);
-  --color-fd-popover: hsl(0, 0%, 4%);
-  --color-fd-popover-foreground: hsl(0, 0%, 98%);
-  --color-fd-card: hsl(0, 0%, 4%);
-  --color-fd-card-foreground: hsl(0, 0%, 98%);
-  --color-fd-border: hsl(0, 0%, 50%, 0.2);
-  --color-fd-primary: hsl(0, 0%, 98%);
-  --color-fd-primary-foreground: hsl(0, 0%, 9%);
-  --color-fd-secondary: hsl(0, 0%, 12.9%);
-  --color-fd-secondary-foreground: hsl(0, 0%, 98%);
-  --color-fd-accent: hsl(0, 0%, 15%);
-  --color-fd-accent-foreground: hsl(0, 0%, 100%);
-  --color-fd-ring: hsl(0, 0%, 34.9%);
+	--color-fd-background: hsl(0, 0%, 2%);
+	--color-fd-foreground: hsl(0, 0%, 98%);
+	--color-fd-muted: hsl(0, 0%, 8%);
+	--color-fd-muted-foreground: hsl(0, 0%, 60%);
+	--color-fd-popover: hsl(0, 0%, 4%);
+	--color-fd-popover-foreground: hsl(0, 0%, 98%);
+	--color-fd-card: hsl(0, 0%, 4%);
+	--color-fd-card-foreground: hsl(0, 0%, 98%);
+	--color-fd-border: hsl(0, 0%, 50%, 0.2);
+	--color-fd-primary: hsl(0, 0%, 98%);
+	--color-fd-primary-foreground: hsl(0, 0%, 9%);
+	--color-fd-secondary: hsl(0, 0%, 12.9%);
+	--color-fd-secondary-foreground: hsl(0, 0%, 98%);
+	--color-fd-accent: hsl(0, 0%, 15%);
+	--color-fd-accent-foreground: hsl(0, 0%, 100%);
+	--color-fd-ring: hsl(0, 0%, 34.9%);
 }
 
 @theme {
-  --font-tomatogrotesk: var(--font-tomatogrotesk);
+	--font-tomatogrotesk: var(--font-tomatogrotesk);
 
-  --color-nocta-950: oklch(.145 0 0);
-  --color-nocta-900: oklch(.205 0 0);
-  --color-nocta-800: oklch(.269 0 0);
-  --color-nocta-700: oklch(.371 0 0);
-  --color-nocta-600: oklch(.444 .011 73.639);
-  --color-nocta-500: oklch(.556 0 0);
-  --color-nocta-400: oklch(.708 0 0);
-  --color-nocta-300: oklch(.87 0 0);
-  --color-nocta-200: oklch(.922 0 0);
-  --color-nocta-100: oklch(.97 0 0);
-  --color-nocta-50: oklch(.985 0 0);
+	--color-nocta-950: oklch(0.145 0 0);
+	--color-nocta-900: oklch(0.205 0 0);
+	--color-nocta-800: oklch(0.269 0 0);
+	--color-nocta-700: oklch(0.371 0 0);
+	--color-nocta-600: oklch(0.444 0.011 73.639);
+	--color-nocta-500: oklch(0.556 0 0);
+	--color-nocta-400: oklch(0.708 0 0);
+	--color-nocta-300: oklch(0.87 0 0);
+	--color-nocta-200: oklch(0.922 0 0);
+	--color-nocta-100: oklch(0.97 0 0);
+	--color-nocta-50: oklch(0.985 0 0);
 }
 
 @layer base {
-    body {
-      @apply font-tomatogrotesk;
-    }
+	body {
+		@apply font-tomatogrotesk;
+	}
 }
 
 @layer utilities {
-  /* Light mode */
-  .bg-custom-radial {
-    background-image: radial-gradient(125% 125% at 50% 0%, oklch(.985 0 0) 50%, oklch(.708 0 0));
-  }
+	/* Light mode */
+	.bg-custom-radial {
+		background-image: radial-gradient(
+			125% 125% at 50% 0%,
+			oklch(0.985 0 0) 50%,
+			oklch(0.708 0 0)
+		);
+	}
 
-  /* Dark mode */
-  .dark .bg-custom-radial {
-    background-image: radial-gradient(125% 125% at 50% 0%, oklch(.145 0 0) 50%, oklch(.205 0 0));
-  }
+	/* Dark mode */
+	.dark .bg-custom-radial {
+		background-image: radial-gradient(
+			125% 125% at 50% 0%,
+			oklch(0.145 0 0) 50%,
+			oklch(0.205 0 0)
+		);
+	}
 }
-

@@ -1,6 +1,6 @@
 export {
-  Badge,
-  type BadgeProps,
-} from './badge';
+	Badge,
+	type BadgeProps,
+} from "./badge";
 
-export * from './badge-demos'; 
+export * from "./badge-demos";

@@ -1,23 +1,22 @@
-export { 
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableFooter,
-  TableCaption
-} from './table';
-
 export type {
-  TableProps,
-  TableColumn,
-  TableHeaderProps,
-  TableBodyProps,
-  TableRowProps,
-  TableCellProps,
-  TableFooterProps,
-  TableCaptionProps,
-  SortDirection,
-  TableVariant,
-  TableSize
-} from './table'; 
+	SortDirection,
+	TableBodyProps,
+	TableCaptionProps,
+	TableCellProps,
+	TableColumn,
+	TableFooterProps,
+	TableHeaderProps,
+	TableProps,
+	TableRowProps,
+	TableSize,
+	TableVariant,
+} from "./table";
+export {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHeader,
+	TableRow,
+} from "./table";

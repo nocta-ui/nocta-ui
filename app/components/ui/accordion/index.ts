@@ -1,19 +1,19 @@
 export {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  type AccordionProps,
-  type AccordionItemProps,
-  type AccordionTriggerProps,
-  type AccordionContentProps,
-} from './accordion';
+	Accordion,
+	AccordionContent,
+	type AccordionContentProps,
+	AccordionItem,
+	type AccordionItemProps,
+	type AccordionProps,
+	AccordionTrigger,
+	type AccordionTriggerProps,
+} from "./accordion";
 
 export {
-  BasicAccordionDemo,
-  CardAccordionDemo,
-  MultipleAccordionDemo,
-  SizeAccordionDemo,
-  ControlledAccordionDemo,
-  FAQAccordionDemo,
-} from './accordion-demos'; 
+	BasicAccordionDemo,
+	CardAccordionDemo,
+	ControlledAccordionDemo,
+	FAQAccordionDemo,
+	MultipleAccordionDemo,
+	SizeAccordionDemo,
+} from "./accordion-demos";

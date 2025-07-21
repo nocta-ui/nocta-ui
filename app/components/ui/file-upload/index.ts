@@ -1,11 +1,11 @@
 export {
-  FileUpload,
-  FileUploadZone,
-  FileUploadItem,
-  FileUploadProgress,
-  type FileUploadProps,
-  type FileUploadZoneProps,
-  type FileUploadItemProps,
-  type FileUploadProgressProps,
-  type FileUploadFile
-} from './file-upload'; 
+	FileUpload,
+	type FileUploadFile,
+	FileUploadItem,
+	type FileUploadItemProps,
+	FileUploadProgress,
+	type FileUploadProgressProps,
+	type FileUploadProps,
+	FileUploadZone,
+	type FileUploadZoneProps,
+} from "./file-upload";

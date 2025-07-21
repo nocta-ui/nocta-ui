@@ -1,6 +1,6 @@
 export {
-  Input,
-  type InputProps,
-} from './input';
+	Input,
+	type InputProps,
+} from "./input";
 
-export * from './input-demos'; 
+export * from "./input-demos";
