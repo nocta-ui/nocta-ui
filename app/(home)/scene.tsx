@@ -72,7 +72,6 @@ function Logo3D() {
 	const hoverSpeed = 0.2;
 	const isDarkMode = useDarkMode();
 	const isMobile = useMediaQuery("(max-width: 768px)");
-	const cameraRef = useRef<THREE.PerspectiveCamera>(null);
 
 	const { nodes } = useGLTF("/models/nocta-logo-extruded-compressed.glb");
 
