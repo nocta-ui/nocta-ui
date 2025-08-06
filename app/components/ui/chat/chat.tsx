@@ -48,7 +48,7 @@ const inputVariants = cva(
 	[
 		"flex-1 px-3 py-2 text-sm min-h-[40px] rounded-lg border transition-all duration-200 ease-in-out resize-none",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50",
+		"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-nocta-400 dark:placeholder:text-nocta-500 not-prose",
 	],
@@ -57,7 +57,7 @@ const inputVariants = cva(
 			variant: {
 				default: [
 					"border-nocta-300 dark:border-nocta-800/50",
-					"bg-white dark:bg-nocta-950",
+					"bg-nocta-50 dark:bg-nocta-950",
 					"text-nocta-900 dark:text-nocta-100",
 					"hover:border-nocta-300/50 dark:hover:border-nocta-600/50",
 					"focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50",
@@ -511,10 +511,10 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					className={cn(
 						"px-3 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out h-full",
 						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-						"focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50",
+						"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
 						"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300",
+						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300",
 						"hover:contrast-125",
 						"text-nocta-50 dark:text-nocta-900",
 					)}

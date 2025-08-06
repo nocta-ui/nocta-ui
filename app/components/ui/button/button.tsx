@@ -3,12 +3,12 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
 				primary:
-					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 hover:contrast-125 text-white dark:text-nocta-900 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
+					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 hover:contrast-125 text-nocta-50 dark:text-nocta-900 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
 				secondary:
 					"bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 border border-nocta-300 dark:border-nocta-600",
 				ghost:

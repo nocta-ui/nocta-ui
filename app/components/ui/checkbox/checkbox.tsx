@@ -9,7 +9,7 @@ const checkboxVariants = cva(
 		"relative inline-flex items-center justify-center rounded border-2",
 		"transition-all duration-200 ease-in-out cursor-pointer",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-white dark:focus-visible:ring-offset-nocta-900",
+		"focus-visible:ring-offset-nocta-50 dark:focus-visible:ring-offset-nocta-900",
 		"not-prose",
 	],
 	{

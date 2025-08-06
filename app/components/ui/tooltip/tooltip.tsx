@@ -26,7 +26,7 @@ const tooltipContentVariants = cva(
 			},
 			variant: {
 				default: `
-          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
+          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
           text-nocta-100 dark:text-nocta-900
           border-nocta-700 dark:border-nocta-300
         `,
@@ -36,7 +36,7 @@ const tooltipContentVariants = cva(
           border-gray-700
         `,
 				light: `
-          bg-linear-to-b from-white to-gray-100
+          bg-linear-to-b from-nocta-50 to-gray-100
           text-gray-900
           border-gray-300
         `,
@@ -60,7 +60,7 @@ const tooltipArrowVariants = cva("absolute w-2 h-2 rotate-45 border", {
 		},
 		variant: {
 			default: `
-          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300
+          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
           border-nocta-700 dark:border-nocta-300
         `,
 			dark: `
@@ -68,7 +68,7 @@ const tooltipArrowVariants = cva("absolute w-2 h-2 rotate-45 border", {
           border-gray-700
         `,
 			light: `
-          bg-linear-to-b from-white to-gray-100
+          bg-linear-to-b from-nocta-50 to-gray-100
           border-gray-300
         `,
 		},

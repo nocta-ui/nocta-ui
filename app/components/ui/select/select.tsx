@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 const selectTriggerVariants = cva(
 	`flex w-fit items-center justify-between
    rounded-lg border border-nocta-300 dark:border-nocta-800/50
-   bg-white dark:bg-nocta-950
+   bg-nocta-50 dark:bg-nocta-950
    hover:border-nocta-300/50 dark:hover:border-nocta-600/50
    placeholder:text-nocta-400 dark:placeholder:text-nocta-500
-   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
    focus-visible:border-nocta-900 dark:focus-visible:border-nocta-100
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
@@ -438,7 +438,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			id={contentId}
 			role="listbox"
 			className={cn(
-				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl",
+				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-nocta-950 shadow-lg dark:shadow-xl",
 				positionStyles[position],
 				animationStyles,
 				"not-prose",

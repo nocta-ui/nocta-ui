@@ -163,7 +163,7 @@ export const FileUploadDemo: React.FC = () => {
 				<button
 					onClick={simulateUpload}
 					disabled={isUploading}
-					className="mt-3 px-3 py-1.5 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					className="mt-3 px-3 py-1.5 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 				>
 					{isUploading
 						? "Uploading..."

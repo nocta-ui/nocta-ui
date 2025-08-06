@@ -27,7 +27,6 @@ export const VariantsDemo: React.FC = () => {
 			<Badge variant="destructive">Destructive</Badge>
 			<Badge variant="success">Success</Badge>
 			<Badge variant="warning">Warning</Badge>
-			<Badge variant="outline">Outline</Badge>
 		</div>
 	);
 };

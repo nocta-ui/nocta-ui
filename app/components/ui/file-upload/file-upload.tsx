@@ -9,7 +9,7 @@ const fileUploadVariants = cva(
 	[
 		"relative transition-all duration-200 ease-in-out",
 		"focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
-		"focus-within:ring-offset-white/50 dark:focus-within:ring-offset-nocta-900/50",
+		"focus-within:ring-offset-nocta-50/50 dark:focus-within:ring-offset-nocta-900/50",
 		"focus-within:ring-nocta-900/50 dark:focus-within:ring-nocta-100/50",
 		"rounded-lg",
 	],
@@ -19,7 +19,7 @@ const fileUploadVariants = cva(
 				default: [
 					"border-2 border-dashed border-nocta-300 dark:border-nocta-700",
 					"hover:border-nocta-400 dark:hover:border-nocta-600",
-					"bg-white dark:bg-nocta-900",
+					"bg-nocta-50 dark:bg-nocta-900",
 				],
 			},
 			size: {
@@ -52,7 +52,7 @@ const fileItemVariants = cva(
 	[
 		"flex items-center gap-3 p-3 rounded-lg border",
 		"border-nocta-200 dark:border-nocta-700",
-		"bg-white dark:bg-nocta-800/50",
+		"bg-nocta-50 dark:bg-nocta-800/50",
 	],
 	{
 		variants: {

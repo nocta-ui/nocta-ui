@@ -9,7 +9,7 @@ const switchVariants = cva(
 		"relative inline-flex items-center rounded-full border-2 border-transparent",
 		"transition-all duration-200 ease-out cursor-pointer",
 		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-white dark:focus-visible:ring-offset-nocta-900",
+		"focus-visible:ring-offset-nocta-50 dark:focus-visible:ring-offset-nocta-900",
 		"not-prose",
 	],
 	{
@@ -91,7 +91,7 @@ const switchVariants = cva(
 
 const thumbVariants = cva(
 	[
-		"inline-block rounded-full bg-white dark:bg-white",
+		"inline-block rounded-full bg-nocta-50 dark:bg-nocta-50",
 		"shadow-sm transform transition-transform duration-200 ease-in-out",
 	],
 	{

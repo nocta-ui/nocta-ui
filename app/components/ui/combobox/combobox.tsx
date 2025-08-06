@@ -9,7 +9,7 @@ const comboboxVariants = cva(
 	`relative w-fit inline-flex items-center justify-between
    rounded-lg border transition-all duration-200 ease-in-out
    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-   focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50
+   focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
    not-prose`,
 	{
@@ -17,7 +17,7 @@ const comboboxVariants = cva(
 			variant: {
 				default: `
           border-nocta-300 dark:border-nocta-800/50
-          bg-white dark:bg-nocta-950
+          bg-nocta-50 dark:bg-nocta-950
           text-nocta-900 dark:text-nocta-100
           hover:border-nocta-300/50 dark:hover:border-nocta-600/50
           focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
@@ -25,7 +25,7 @@ const comboboxVariants = cva(
         `,
 				error: `
           border-red-300 dark:border-red-700/50
-          bg-white dark:bg-nocta-950
+          bg-nocta-50 dark:bg-nocta-950
           text-nocta-900 dark:text-nocta-100
           hover:border-red-400/50 dark:hover:border-red-600/50
           focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
@@ -33,7 +33,7 @@ const comboboxVariants = cva(
         `,
 				success: `
           border-green-300 dark:border-green-700/50
-          bg-white dark:bg-nocta-950
+          bg-nocta-50 dark:bg-nocta-950
           text-nocta-900 dark:text-nocta-100
           hover:border-green-400/50 dark:hover:border-green-600/50
           focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
@@ -331,7 +331,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 				<div
 					ref={listRef}
 					className={cn(
-						"absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl",
+						"absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-nocta-950 shadow-lg dark:shadow-xl",
 						`transform transition-all duration-200 ease-out origin-top ${
 							isVisible
 								? "translate-y-0 opacity-100"

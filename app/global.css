@@ -3,13 +3,12 @@
 @import "fumadocs-ui/css/preset.css";
 
 @theme {
-	--color-fd-background: hsl(0, 0%, 98%);
+	--color-fd-background: hsl(0, 0%, 95%);
 	--color-fd-foreground: hsl(0, 0%, 3.9%);
 	--color-fd-muted: hsl(0, 0%, 96.1%);
 	--color-fd-muted-foreground: hsl(0, 0%, 45.1%);
 	--color-fd-popover: hsl(0, 0%, 100%);
 	--color-fd-popover-foreground: hsl(0, 0%, 15.1%);
-	--color-fd-card: hsl(0, 0%, 99.7%);
 	--color-fd-card-foreground: hsl(0, 0%, 3.9%);
 	--color-fd-border: hsla(0, 0%, 60%, 0.2);
 	--color-fd-primary: hsl(0, 0%, 9%);
@@ -22,13 +21,12 @@
 }
 
 .dark {
-	--color-fd-background: hsl(0, 0%, 2%);
+	--color-fd-background: hsl(0, 0%, 5%);
 	--color-fd-foreground: hsl(0, 0%, 98%);
 	--color-fd-muted: hsl(0, 0%, 8%);
 	--color-fd-muted-foreground: hsl(0, 0%, 60%);
 	--color-fd-popover: hsl(0, 0%, 4%);
 	--color-fd-popover-foreground: hsl(0, 0%, 98%);
-	--color-fd-card: hsl(0, 0%, 4%);
 	--color-fd-card-foreground: hsl(0, 0%, 98%);
 	--color-fd-border: hsl(0, 0%, 50%, 0.2);
 	--color-fd-primary: hsl(0, 0%, 98%);
@@ -41,7 +39,7 @@
 }
 
 @theme {
-	--font-tomatogrotesk: var(--font-tomatogrotesk);
+	--font-universalsansgx: var(--font-universalsansgx);
 
 	--color-nocta-950: oklch(0.145 0 0);
 	--color-nocta-900: oklch(0.205 0 0);
@@ -58,7 +56,7 @@
 
 @layer base {
 	body {
-		@apply font-tomatogrotesk;
+		@apply font-universalsansgx;
 	}
 }
 

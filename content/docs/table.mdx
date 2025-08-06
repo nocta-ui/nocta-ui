@@ -1,13 +1,11 @@
 ---
 title: Table
-description: A powerful, highly customizable table component with sorting, filtering, pagination, and advanced features
+description: A powerful, highly customizable table component with pagination and advanced features
 ---
 
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
 import { 
   BasicTableDemo,
-  SortableTableDemo,
-  FilterableTableDemo,
   AdvancedTableDemo,
   TableVariantsDemo,
   TableSizesDemo,
@@ -64,84 +62,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-### Sortable Table
 
-Enable sorting by setting the `sortable` prop and defining which columns are sortable.
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SortableTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Sortable Table"
-    const [data, setData] = useState(users);
-
-    const columns = [
-      { key: 'name', title: 'Name', sortable: true },
-      { key: 'email', title: 'Email', sortable: true },
-      { key: 'role', title: 'Role', sortable: true },
-      { key: 'joinDate', title: 'Join Date', sortable: true }
-    ];
-
-    const handleSort = (key, direction) => {
-      // Your sorting logic here
-      const sorted = [...data].sort((a, b) => {
-        if (direction === 'asc') return a[key] > b[key] ? 1 : -1;
-        return a[key] < b[key] ? 1 : -1;
-      });
-      setData(sorted);
-    };
-
-    <Table 
-      columns={columns} 
-      data={data}
-      sortable
-      onSort={handleSort}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Filterable Table
-
-Enable column filtering by setting the `filterable` prop.
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FilterableTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Filterable Table"
-    const [filteredData, setFilteredData] = useState(users);
-
-    const columns = [
-      { key: 'name', title: 'Name', filterable: true },
-      { key: 'email', title: 'Email', filterable: true },
-      { key: 'role', title: 'Role', filterable: true },
-      { key: 'status', title: 'Status', filterable: true }
-    ];
-
-    const handleFilter = (filters) => {
-      let result = users;
-      Object.entries(filters).forEach(([key, value]) => {
-        if (value) {
-          result = result.filter(user => 
-            user[key]?.toString().toLowerCase().includes(value.toLowerCase())
-          );
-        } 
-      });
-      setFilteredData(result);
-    };
-
-    <Table 
-      columns={columns} 
-      data={filteredData}
-      filterable
-      onFilter={handleFilter}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
 
 ## Advanced Features
 
@@ -159,8 +80,6 @@ Use the `render` function in column definitions for custom cell content.
       { 
         key: 'name', 
         title: 'User',
-        sortable: true,
-        filterable: false,
         render: (value, record) => (
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
@@ -177,8 +96,6 @@ Use the `render` function in column definitions for custom cell content.
         key: 'status', 
         title: 'Status',
         align: 'left',
-        sortable: true,
-        filterable: false,
         render: (value) => (
           <div className="flex items-center justify-center">
             <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
@@ -191,7 +108,6 @@ Use the `render` function in column definitions for custom cell content.
         key: 'actions',
         title: 'Actions',
         align: 'right',
-        filterable: false,
         render: (_) => (
           <div className="flex items-center justify-end gap-1">
             <Button variant="ghost" size="sm">Edit</Button>
@@ -204,8 +120,6 @@ Use the `render` function in column definitions for custom cell content.
     <Table 
       columns={columns} 
       data={users}
-      sortable
-      filterable
       onRowClick={(record) => console.log('Clicked:', record)}
     />
     ```
@@ -359,11 +273,7 @@ For more control, you can use the individual table components:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Table size |
 | `loading` | `boolean` | `false` | Show loading state |
 | `emptyText` | `string` | `'No data available'` | Text shown when data is empty |
-| `sortable` | `boolean` | `false` | Enable sorting |
-| `filterable` | `boolean` | `false` | Enable filtering |
 | `pagination` | `PaginationConfig` | — | Pagination configuration |
-| `onSort` | `(key: string, direction: SortDirection) => void` | — | Sort callback |
-| `onFilter` | `(filters: Record<string, string>) => void` | — | Filter callback |
 | `onRowClick` | `(record: T, index: number) => void` | — | Row click handler |
 | `rowKey` | `string \| ((record: T) => string)` | `'id'` | Row key accessor |
 | `rowClassName` | `string \| ((record: T, index: number) => string)` | — | Row class name |
@@ -375,8 +285,6 @@ For more control, you can use the individual table components:
 |------|------|---------|-------------|
 | `key` | `string` | — | Data key |
 | `title` | `string` | — | Column header |
-| `sortable` | `boolean` | `true` | Enable sorting for this column |
-| `filterable` | `boolean` | `true` | Enable filtering for this column |
 | `render` | `(value: any, record: T, index: number) => ReactNode` | — | Custom render function |
 | `width` | `string \| number` | — | Column width |
 | `align` | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
@@ -394,6 +302,3 @@ All individual components (`TableHeader`, `TableBody`, `TableRow`, `TableCell`, 
 - `align` - Text alignment
 - `colSpan` - Column span
 - `rowSpan` - Row span
-- `sortable` - Enable sorting (for header cells)
-- `sortDirection` - Current sort direction
-- `onSort` - Sort callback 

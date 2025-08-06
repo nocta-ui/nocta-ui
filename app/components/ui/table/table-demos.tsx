@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Badge } from "../badge";
 import { Button } from "../button";
-import { type SortDirection, Table, type TableColumn } from "./table";
+import { Table, type TableColumn } from "./table";
 
 // Sample data types
 interface User extends Record<string, unknown> {
@@ -168,91 +168,6 @@ export const BasicTableDemo: React.FC = () => {
 	);
 };
 
-// Sortable Table Demo
-export const SortableTableDemo: React.FC = () => {
-	const [data, setData] = useState(sampleUsers);
-
-	const columns: TableColumn<User>[] = [
-		{ key: "name", title: "Name", sortable: true },
-		{ key: "email", title: "Email", sortable: true },
-		{ key: "role", title: "Role", sortable: true },
-		{ key: "joinDate", title: "Join Date", sortable: true },
-	];
-
-	const handleSort = (key: string, direction: SortDirection) => {
-		if (!direction) {
-			setData(sampleUsers);
-			return;
-		}
-
-		const sorted = [...data].sort((a, b) => {
-			const aVal = a[key as keyof User];
-			const bVal = b[key as keyof User];
-
-			const aStr = String(aVal ?? "");
-			const bStr = String(bVal ?? "");
-
-			return direction === "asc"
-				? aStr.localeCompare(bStr)
-				: bStr.localeCompare(aStr);
-		});
-
-		setData(sorted);
-	};
-
-	return (
-		<div className="my-6">
-			<Table
-				columns={columns}
-				data={data}
-				sortable
-				onSort={handleSort}
-				className="max-w-4xl"
-			/>
-		</div>
-	);
-};
-
-// Filterable Table Demo
-export const FilterableTableDemo: React.FC = () => {
-	const [filteredData, setFilteredData] = useState(sampleUsers);
-
-	const columns: TableColumn<User>[] = [
-		{ key: "name", title: "Name", filterable: true },
-		{ key: "email", title: "Email", filterable: true },
-		{ key: "role", title: "Role", filterable: true },
-	];
-
-	const handleFilter = (filters: Record<string, string>) => {
-		let result = sampleUsers;
-
-		Object.entries(filters).forEach(([key, value]) => {
-			if (value) {
-				result = result.filter((user) =>
-					user[key as keyof User]
-						?.toString()
-						.toLowerCase()
-						.includes(value.toLowerCase()),
-				);
-			}
-		});
-
-		setFilteredData(result);
-	};
-
-	return (
-		<div className="my-6 max-w-2xl">
-			<Table
-				columns={columns}
-				data={filteredData}
-				filterable
-				onFilter={handleFilter}
-				className="max-w-4xl"
-			/>
-		</div>
-	);
-};
-
 // Advanced Table with Custom Rendering
 export const AdvancedTableDemo: React.FC = () => {
 	const getStatusBadgeVariant = (status: string) => {
@@ -272,8 +187,6 @@ export const AdvancedTableDemo: React.FC = () => {
 		{
 			key: "name",
 			title: "User",
-			sortable: true,
-			filterable: false,
 			render: (value, record) => (
 				<div className="flex items-center gap-3">
 					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
@@ -294,8 +207,6 @@ export const AdvancedTableDemo: React.FC = () => {
 			key: "status",
 			title: "Status",
 			align: "left",
-			sortable: true,
-			filterable: false,
 			render: (value) => (
 				<div className="flex items-center justify-center">
 					<Badge variant={getStatusBadgeVariant(String(value))} size="sm">
@@ -308,7 +219,6 @@ export const AdvancedTableDemo: React.FC = () => {
 			key: "actions",
 			title: "Actions",
 			align: "right",
-			filterable: false,
 			render: (_) => (
 				<div className="flex items-center justify-end gap-1">
 					<Button variant="ghost" size="sm">
@@ -327,8 +237,6 @@ export const AdvancedTableDemo: React.FC = () => {
 			<Table
 				columns={columns}
 				data={sampleUsers}
-				sortable
-				filterable
 				onRowClick={(record) => console.log("Clicked user:", record.name)}
 			/>
 		</div>

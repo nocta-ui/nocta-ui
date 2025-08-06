@@ -226,7 +226,7 @@ export const InteractiveDemo: React.FC = () => {
 								onClick={() => setSelectedSize(size)}
 								className={`px-3 py-1 rounded-md text-sm ${
 									selectedSize === size
-										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
+										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
 										: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
 								}`}
 							>
@@ -245,7 +245,7 @@ export const InteractiveDemo: React.FC = () => {
 								onClick={() => setSelectedVariant(variant)}
 								className={`px-3 py-1 rounded-md text-sm capitalize ${
 									selectedVariant === variant
-										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
+										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
 										: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
 								}`}
 							>
@@ -265,7 +265,7 @@ export const InteractiveDemo: React.FC = () => {
 									onClick={() => setSelectedStatus(status)}
 									className={`px-3 py-1 rounded-md text-sm capitalize ${
 										selectedStatus === status
-											? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
+											? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
 											: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
 									}`}
 								>

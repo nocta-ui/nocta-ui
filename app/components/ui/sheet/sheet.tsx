@@ -307,7 +307,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose cursor-pointer",
 				className,
 			)}
 			onClick={handleClick}
@@ -447,7 +447,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 		<div className="fixed inset-0 z-50">
 			<div
 				className={cn(
-					"fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out",
+					"fixed inset-0 bg-nocta-950/50 dark:bg-nocta-950/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"

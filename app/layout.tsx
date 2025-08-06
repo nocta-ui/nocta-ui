@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 
-const tomatogrotesk = localFont({
-	src: "./assets/fonts/Tomato Grotesk VF.woff2",
-	variable: "--font-tomatogrotesk",
+const universalsansgx = localFont({
+	src: "./assets/fonts/UniversalSansGX.woff2",
+	variable: "--font-universalsansgx",
 });
 
 export const metadata: Metadata = {
@@ -102,7 +102,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${tomatogrotesk.variable}`}
+			className={`${universalsansgx.variable}`}
 			suppressHydrationWarning
 		>
 			<body className="flex flex-col">

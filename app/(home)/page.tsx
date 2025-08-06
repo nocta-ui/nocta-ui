@@ -76,25 +76,25 @@ export default function HomePage() {
 	return (
 		<main
 			ref={containerRef}
-			className="relative h-[93svh] overflow-hidden bg-custom-radial text-white"
+			className="h-svh overflow-hidden absolute inset-0 bg-custom-radial text-nocta-50"
 		>
-			<div ref={sceneRef} className="absolute inset-0 z-10 mt-16 md:mt-0">
+			<div ref={sceneRef} className="absolute inset-0 z-10 mt-16">
 				<Scene />
 			</div>
 
 			<section className="relative h-full flex flex-col">
-				<div className="flex-1 flex items-start mt-16">
-					<div className="mx-auto w-full max-w-3xl px-6 pb-8 md:pb-10 text-center">
+				<div className="flex-1 flex items-start mt-24">
+					<div className="mx-auto w-full max-w-3xl px-6 pb-8 md:pb-10 text-center relative z-10">
 						<p
 							ref={kickerRef}
-							className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/70"
+							className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-nocta-700/50 dark:text-nocta-50/70"
 						>
 							React UI Library
 						</p>
 						<h1
 							ref={headingRef}
 							className={cn(
-								"mt-3  tracking-[-0.0125em] font-semibold",
+								"tracking-[-0.0125em] font-semibold text-nocta-800 dark:text-nocta-50/85",
 								"text-[9.5vw] sm:text-[7vw] md:text-[5vw] max-md:text-[48px]",
 							)}
 						>
@@ -105,13 +105,13 @@ export default function HomePage() {
 
 				<div className="flex-none relative z-20">
 					<div className="mx-auto w-full max-w-3xl px-6">
-						<div className="rounded-2xl border border-white/10 bg-white/6 dark:bg-black/30 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+						<div className="rounded-2xl border border-nocta-50/10 bg-nocta-50/6 dark:bg-black/30 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
 							<div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-4 sm:p-5">
 								<div className="text-left">
-									<p className="text-xs uppercase tracking-[0.18em] text-white/70">
+									<p className="text-xs uppercase tracking-[0.18em] text-nocta-700/50 dark:text-nocta-50/70">
 										Get started
 									</p>
-									<p className="text-sm text-white/85">
+									<p className="text-sm text-nocta-700 dark:text-nocta-50/85">
 										Install and start in minutes.
 									</p>
 								</div>
@@ -154,7 +154,7 @@ export default function HomePage() {
 
 						<div
 							ref={footerRef}
-							className="flex flex-wrap items-center justify-between gap-2 py-3 text-xs text-white/60"
+							className="flex flex-wrap items-center justify-between gap-2 py-3 text-xs text-nocta-700 dark:text-nocta-50/70"
 						>
 							<div className="flex items-center gap-3">
 								<span>Accessible</span>
@@ -166,15 +166,6 @@ export default function HomePage() {
 					</div>
 				</div>
 			</section>
-
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/35 via-black/10 to-transparent"
-			/>
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/35 via-black/10 to-transparent"
-			/>
 		</main>
 	);
 }

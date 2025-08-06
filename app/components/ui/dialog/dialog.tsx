@@ -147,7 +147,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
 				className,
 			)}
 			onClick={handleClick}
@@ -302,7 +302,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
 			<div
 				className={cn(
-					"fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ease-out",
+					"fixed inset-0 bg-nocta-950/50 backdrop-blur-sm transition-opacity duration-300 ease-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"
@@ -416,7 +416,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 rounded-b-xl border-t flex items-center justify-end not-prose",
+				"px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-nocta-200 dark:border-nocta-800/50 rounded-b-xl border-t flex items-center justify-end not-prose",
 				className,
 			)}
 			{...props}
@@ -470,7 +470,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center w-8 h-8 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+				"inline-flex items-center justify-center w-8 h-8 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
 				className,
 			)}
 			onClick={handleClick}

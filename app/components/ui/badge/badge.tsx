@@ -19,7 +19,7 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300",
+					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300",
 					"hover:bg-nocta-900 dark:hover:bg-nocta-200",
 					"text-nocta-50 dark:text-nocta-900",
 				],
@@ -43,12 +43,6 @@ const badgeVariants = cva(
 					"bg-yellow-500 dark:bg-yellow-600/50",
 					"text-nocta-50 dark:text-nocta-50",
 					"hover:bg-yellow-600 dark:hover:bg-yellow-700",
-				],
-				outline: [
-					"bg-transparent",
-					"text-nocta-900 dark:text-nocta-100",
-					"border border-nocta-300 dark:border-nocta-800/50",
-					"hover:bg-nocta-50 dark:hover:bg-nocta-900",
 				],
 			},
 			size: {
@@ -84,7 +78,7 @@ export const Badge: React.FC<BadgeProps> = ({
 		if (shouldOverrideBackground && variant === "default") {
 			return badgeVariants({ variant: "default", size })
 				.replace(
-					/bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300/g,
+					/bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300/g,
 					"",
 				)
 				.replace(/hover:bg-nocta-900 dark:hover:bg-nocta-200/g, "");

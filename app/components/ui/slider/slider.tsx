@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const sliderVariants = cva(
-	"relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
+	"relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
 	{
 		variants: {
 			orientation: {
@@ -63,7 +63,7 @@ const fillVariants = cva("absolute rounded-full", {
 		variant: {
 			default: "bg-nocta-600 dark:bg-nocta-400",
 			primary:
-				"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300",
+				"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300",
 			secondary: "bg-nocta-500 dark:bg-nocta-600",
 		},
 		size: {
@@ -106,11 +106,11 @@ const thumbVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"bg-white dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400",
+					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400",
 				primary:
 					"bg-nocta-100 dark:bg-nocta-900 border-2 border-nocta-900 dark:border-nocta-100",
 				secondary:
-					"bg-white dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500",
+					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500",
 			},
 			size: {
 				sm: "w-4 h-4",

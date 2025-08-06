@@ -5,12 +5,12 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const popoverTriggerVariants = cva(
-	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 transition-colors duration-200 not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 transition-colors duration-200 not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
 				default:
-					"border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-neutral-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900",
+					"border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-neutral-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900",
 				outline:
 					"border-nocta-300 dark:border-nocta-700 bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-800",
 				ghost:
@@ -91,7 +91,7 @@ const popoverAnimationVariants = cva(
 );
 
 const popoverArrowVariants = cva(
-	"fill-white dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50",
+	"fill-nocta-50 dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50",
 	{
 		variants: {
 			size: {

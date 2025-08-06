@@ -298,7 +298,7 @@ export const FormPopoverDemo: React.FC = () => {
 						<div className="flex gap-2 pt-2">
 							<button
 								type="submit"
-								className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-white dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 font-medium"
+								className="flex-1 px-3 py-2 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 font-medium"
 							>
 								Create
 							</button>

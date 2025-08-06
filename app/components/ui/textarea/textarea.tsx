@@ -6,7 +6,7 @@ const textareaVariants = cva(
 	[
 		"w-full rounded-lg border transition-all duration-200 ease-in-out",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50",
+		"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-nocta-400 dark:placeholder:text-nocta-500",
 		"not-prose",
@@ -16,7 +16,7 @@ const textareaVariants = cva(
 			variant: {
 				default: [
 					"border-nocta-300 dark:border-nocta-800/50",
-					"bg-white dark:bg-nocta-950",
+					"bg-nocta-50 dark:bg-nocta-950",
 					"text-nocta-900 dark:text-nocta-100",
 					"hover:border-nocta-300/50 dark:hover:border-nocta-600/50",
 					"focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50",
@@ -24,7 +24,7 @@ const textareaVariants = cva(
 				],
 				error: [
 					"border-red-300 dark:border-red-700/50",
-					"bg-white dark:bg-nocta-950",
+					"bg-nocta-50 dark:bg-nocta-950",
 					"text-nocta-900 dark:text-nocta-100",
 					"hover:border-red-400/50 dark:hover:border-red-600/50",
 					"focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50",
@@ -32,7 +32,7 @@ const textareaVariants = cva(
 				],
 				success: [
 					"border-green-300 dark:border-green-700/50",
-					"bg-white dark:bg-nocta-950",
+					"bg-nocta-50 dark:bg-nocta-950",
 					"text-nocta-900 dark:text-nocta-100",
 					"hover:border-green-400/50 dark:hover:border-green-600/50",
 					"focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50",
