@@ -96,6 +96,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
 	const [open, setOpen] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [highlightedIndex, setHighlightedIndex] = useState(-1);
+	const [isVisible, setIsVisible] = useState(false);
+	const [shouldRender, setShouldRender] = useState(false);
 	const comboboxId = useId();
 
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -126,6 +128,24 @@ export const Combobox: React.FC<ComboboxProps> = ({
 		},
 		[disabled, controlledValue, onValueChange],
 	);
+
+	// Animation management
+	useEffect(() => {
+		if (open) {
+			setShouldRender(true);
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					setIsVisible(true);
+				});
+			});
+		} else {
+			setIsVisible(false);
+			const timer = setTimeout(() => {
+				setShouldRender(false);
+			}, 200);
+			return () => clearTimeout(timer);
+		}
+	}, [open]);
 
 	const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
 		e.stopPropagation();
@@ -213,14 +233,14 @@ export const Combobox: React.FC<ComboboxProps> = ({
 			}
 		};
 
-		if (open) {
+		if (shouldRender) {
 			document.addEventListener("mousedown", handleClickOutside);
 		}
 
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [open]);
+	}, [shouldRender]);
 
 	useEffect(() => {
 		if (open && searchable && searchInputRef.current) {
@@ -307,11 +327,16 @@ export const Combobox: React.FC<ComboboxProps> = ({
 				</div>
 			</button>
 
-			{open && (
+			{shouldRender && (
 				<div
 					ref={listRef}
 					className={cn(
 						"absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-white dark:bg-nocta-950 shadow-lg dark:shadow-xl",
+						`transform transition-all duration-200 ease-out origin-top ${
+							isVisible
+								? "translate-y-0 opacity-100"
+								: "-translate-y-1 opacity-0"
+						}`,
 						popoverClassName,
 					)}
 				>
