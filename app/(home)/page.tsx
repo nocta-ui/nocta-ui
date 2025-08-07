@@ -83,7 +83,7 @@ export default function HomePage() {
 			</div>
 
 			<section className="relative h-full flex flex-col">
-				<div className="flex-1 flex items-start mt-24">
+				<div className="flex-1 flex items-start mt-32">
 					<div className="mx-auto w-full max-w-3xl px-6 pb-8 md:pb-10 text-center relative z-10">
 						<p
 							ref={kickerRef}

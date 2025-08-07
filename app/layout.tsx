@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 
-const universalsansgx = localFont({
-	src: "./assets/fonts/UniversalSansGX.woff2",
-	variable: "--font-universalsansgx",
+const sfpro = localFont({
+	src: "./assets/fonts/SF-Pro.woff2",
+	variable: "--font-sfpro",
 });
 
 export const metadata: Metadata = {
@@ -102,7 +102,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${universalsansgx.variable}`}
+			className={`${sfpro.variable}`}
 			suppressHydrationWarning
 		>
 			<body className="flex flex-col">

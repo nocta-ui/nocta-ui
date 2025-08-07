@@ -2,12 +2,13 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { gsap } from "gsap";
-import type React from "react";
+import React from "react";
 import {
 	createContext,
 	useCallback,
 	useContext,
 	useEffect,
+	useMemo,
 	useRef,
 	useState,
 } from "react";
@@ -129,7 +130,8 @@ interface ToastItemProps {
 	onRemove: (id: string) => void;
 }
 
-const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
+const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => {
+ToastItem.displayName = 'ToastItem';
 	const toastRef = useRef<HTMLDivElement>(null);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const isExiting = useRef(false);
@@ -151,7 +153,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 
 	const shouldOverrrideBackground = hasBackgroundColor(className);
 
-	const positionConfig = {
+	const positionConfig = useMemo(() => ({
 		"top-left": {
 			animateIn: { x: -100, y: -20 },
 			animateOut: { x: -100, y: -20 },
@@ -176,11 +178,11 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 			animateIn: { x: 100, y: 20 },
 			animateOut: { x: 100, y: 100 },
 		},
-	};
+	}), []);
 
 	const config = positionConfig[position as keyof typeof positionConfig];
 
-	const getFocusableElements = () => {
+	const getFocusableElements = useCallback(() => {
 		if (!toastRef.current) return [];
 
 		const focusableSelectors = [
@@ -195,7 +197,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 		return Array.from(
 			toastRef.current.querySelectorAll(focusableSelectors),
 		) as HTMLElement[];
-	};
+	}, []);
 
 	const handleClose = useCallback(() => {
 		if (!toastRef.current || isExiting.current) return;
@@ -455,7 +457,17 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
 			</div>
 		</div>
 	);
-};
+}, (prevProps, nextProps) => {
+	return (
+		prevProps.toast.id === nextProps.toast.id &&
+		prevProps.toast.index === nextProps.toast.index &&
+		prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
+		prevProps.toast.total === nextProps.toast.total
+	);
+});
+
+ToastItem.displayName = 'ToastItem';
+
 
 const ToastManager: React.FC<{
 	toasts: (ToastData & { index: number; total: number })[];
