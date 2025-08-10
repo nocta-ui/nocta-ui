@@ -10,69 +10,9 @@ export const BasicCalendarDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<Calendar
-				variant="default"
 				value={selectedDate}
 				onChange={setSelectedDate}
 			/>
-		</div>
-	);
-};
-
-export const VariantsDemo: React.FC = () => {
-	const [defaultDate, setDefaultDate] = useState<Date | undefined>();
-	const [compactDate, setCompactDate] = useState<Date | undefined>();
-
-	return (
-		<div className="my-6 space-y-8">
-			<div className="space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Default
-				</label>
-				<Calendar
-					variant="default"
-					value={defaultDate}
-					onChange={setDefaultDate}
-				/>
-			</div>
-			<div className="space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Compact
-				</label>
-				<Calendar
-					variant="compact"
-					value={compactDate}
-					onChange={setCompactDate}
-				/>
-			</div>
-		</div>
-	);
-};
-
-export const SizesDemo: React.FC = () => {
-	const [smallDate, setSmallDate] = useState<Date | undefined>();
-	const [mediumDate, setMediumDate] = useState<Date | undefined>();
-	const [largeDate, setLargeDate] = useState<Date | undefined>();
-
-	return (
-		<div className="my-6 space-y-8">
-			<div className="space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Small
-				</label>
-				<Calendar size="sm" value={smallDate} onChange={setSmallDate} />
-			</div>
-			<div className="space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Medium
-				</label>
-				<Calendar size="md" value={mediumDate} onChange={setMediumDate} />
-			</div>
-			<div className="space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Large
-				</label>
-				<Calendar size="lg" value={largeDate} onChange={setLargeDate} />
-			</div>
 		</div>
 	);
 };
@@ -100,7 +40,7 @@ export const WithWeekNumbersDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
 	return (
-		<div className="my-6 w-120">
+		<div className="my-6">
 			<div className="space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					With Week Numbers
@@ -237,7 +177,6 @@ export const EventCalendarDemo: React.FC = () => {
 						Event Calendar
 					</label>
 					<Calendar
-						variant="compact"
 						value={selectedDate}
 						onChange={handleDateSelect}
 					/>

@@ -8,8 +8,6 @@ import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
 import {
   BasicCalendarDemo,
   CompactCalendarDemo,
-  VariantsDemo,
-  SizesDemo,
   WeekStartsOnMondayDemo,
   WithWeekNumbersDemo,
   DisabledDatesDemo,
@@ -50,69 +48,6 @@ A simple calendar with date selection functionality.
         />
       );
     }
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Variants
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Calendar Variants"
-    import { Calendar } from '@/components/ui/calendar';
-    import { useState } from 'react';
-
-    export const VariantsDemo: React.FC = () => {
-  const [defaultDate, setDefaultDate] = useState<Date | undefined>();
-  const [compactDate, setCompactDate] = useState<Date | undefined>();
-
-  return (
-    <div className="my-6 space-y-8">
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Default</label>
-        <Calendar 
-          variant="default"
-          value={defaultDate}
-          onChange={setDefaultDate}
-        />
-      </div>
-      <div className="space-y-2">
-        <label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">Compact</label>
-        <Calendar 
-          variant="compact"
-          value={compactDate}
-          onChange={setCompactDate}
-        />
-      </div>
-    </div>
-  );
-};
-    ```
-  </DocsTab>
-</DocsTabs>
-
-
-### Sizes
-
-Control the calendar size with the size prop.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Calendar Sizes"
-    // Small calendar
-    <Calendar size="sm" />
-
-    // Medium calendar (default)
-    <Calendar size="md" />
-
-    // Large calendar
-    <Calendar size="lg" />
     ```
   </DocsTab>
 </DocsTabs>
@@ -303,7 +238,6 @@ The Calendar component supports full keyboard navigation:
 | `value` | `Date \| undefined` | - | The selected date (controlled) |
 | `defaultValue` | `Date \| undefined` | - | The default selected date (uncontrolled) |
 | `onChange` | `(date: Date \| undefined) => void` | - | Callback when date is selected |
-| `variant` | `'default' \| 'compact'` | `'default'` | Visual style variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the calendar |
 | `disabled` | `boolean` | `false` | Whether the calendar is disabled |
 | `disabledDates` | `Date[] \| ((date: Date) => boolean)` | - | Dates to disable |

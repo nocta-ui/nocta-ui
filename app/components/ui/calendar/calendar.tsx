@@ -17,18 +17,12 @@ const calendarVariants = cva(
 		"backdrop-blur-sm",
 		"overflow-hidden",
 		"not-prose",
+		"text-xs",
+		"w-fit",
+		"max-w-sm",
 	],
 	{
 		variants: {
-			variant: {
-				default: "",
-				compact: "w-fit max-w-sm",
-			},
-			size: {
-				sm: "text-xs",
-				md: "text-sm",
-				lg: "text-base",
-			},
 			disabled: {
 				true: "opacity-50 cursor-not-allowed",
 				false: "",
@@ -39,8 +33,6 @@ const calendarVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "default",
-			size: "md",
 			disabled: false,
 			hasCustomBackground: false,
 		},
@@ -50,18 +42,20 @@ const calendarVariants = cva(
 const dayButtonVariants = cva(
 	[
 		"text-center",
-		"rounded",
+		"rounded-md",
 		"transition-colors",
 		"focus:outline-none",
-		"focus:ring-1",
+		"focus:ring-2",
 		"focus:ring-nocta-500/50",
+		"w-8",
+		"h-8",
+		"text-xs",
+		"flex",
+		"items-center",
+		"justify-center",
 	],
 	{
 		variants: {
-			variant: {
-				default: "p-2",
-				compact: "w-6 h-6 p-0 text-xs flex items-center justify-center",
-			},
 			state: {
 				default:
 					"hover:bg-nocta-300 dark:hover:bg-nocta-700 text-nocta-700 dark:text-nocta-300",
@@ -78,7 +72,6 @@ const dayButtonVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "default",
 			state: "default",
 			interaction: "enabled",
 		},
@@ -111,8 +104,6 @@ export interface CalendarProps
 	value?: Date;
 	defaultValue?: Date;
 	onChange?: (date: Date | undefined) => void;
-	variant?: "default" | "compact";
-	size?: "sm" | "md" | "lg";
 	disabled?: boolean;
 	disabledDates?: Date[] | ((date: Date) => boolean);
 	minDate?: Date;
@@ -129,8 +120,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 	value: controlledValue,
 	defaultValue,
 	onChange,
-	variant = "default",
-	size = "md",
 	disabled = false,
 	disabledDates,
 	minDate,
@@ -321,43 +310,43 @@ export const Calendar: React.FC<CalendarProps> = ({
 			const dayIndex = (weekStartsOn + i) % DAYS_IN_WEEK;
 			const date = new Date(2023, 0, dayIndex + 1); // Use a known Sunday (Jan 1, 2023)
 			const dayName = formatWeekday(date);
-			days.push(variant === "compact" ? dayName.slice(0, 2) : dayName);
+			days.push(dayName.slice(0, 2));
 		}
 		return days;
-	}, [weekStartsOn, formatWeekday, variant]);
+	}, [weekStartsOn, formatWeekday]);
 
 	return (
 		<div className="relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-xl w-fit">
 			<div
 				className={cn(
-					calendarVariants({
-						variant,
-						size,
-						disabled,
-						hasCustomBackground: shouldOverrideBackground,
-					}),
-					className,
-				)}
+				calendarVariants({
+					disabled,
+					hasCustomBackground: shouldOverrideBackground,
+				}),
+				className,
+			)}
 				role="application"
 				aria-label={ariaLabel || "Calendar"}
 				{...props}
 			>
 				<div
-					className={`flex items-center justify-between border-b border-nocta-100 dark:border-nocta-800/50 ${
-						variant === "compact" ? "px-3 py-2" : "px-6 py-5"
-					}`}
+					className={cn(
+					"flex items-center justify-between border-b border-nocta-100 dark:border-nocta-800/50",
+					"px-4 py-3",
+				)}
 				>
 					<button
 						type="button"
 						onClick={goToPreviousMonth}
 						disabled={disabled}
-						className={`rounded hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors ${
-							variant === "compact" ? "p-0.5" : "p-1"
-						}`}
+						className={cn(
+						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"p-1.5",
+					)}
 						aria-label="Previous month"
 					>
 						<svg
-							className={variant === "compact" ? "w-3 h-3" : "w-4 h-4"}
+							className="w-4 h-4"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -371,17 +360,12 @@ export const Calendar: React.FC<CalendarProps> = ({
 						</svg>
 					</button>
 
-					<div
-						className={
-							variant === "compact"
-								? "flex items-center space-x-1"
-								: "flex items-center space-x-2"
-						}
-					>
+					<div className="flex items-center space-x-3">
 						<h2
-							className={`font-semibold text-nocta-900 dark:text-nocta-100 ${
-								variant === "compact" ? "text-xs" : ""
-							}`}
+							className={cn(
+								"font-semibold text-nocta-900 dark:text-nocta-100",
+								"text-sm",
+							)}
 						>
 							{formatMonth(currentMonth)}
 						</h2>
@@ -390,10 +374,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 							onClick={goToToday}
 							disabled={disabled}
 							className={cn(
-								"rounded bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
-								variant === "compact"
-									? "px-1 py-0.5 text-xs"
-									: "px-2 py-1 text-xs",
+								"rounded-md bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+								"px-2 py-1 text-xs",
 							)}
 						>
 							Today
@@ -405,13 +387,13 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToNextMonth}
 						disabled={disabled}
 						className={cn(
-							"rounded hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
-							variant === "compact" ? "p-0.5" : "p-1",
-						)}
+						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"p-1.5",
+					)}
 						aria-label="Next month"
 					>
 						<svg
-							className={variant === "compact" ? "w-3 h-3" : "w-4 h-4"}
+							className="w-4 h-4"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -426,21 +408,19 @@ export const Calendar: React.FC<CalendarProps> = ({
 					</button>
 				</div>
 
-				<div className={variant === "compact" ? "px-2 py-2" : "px-6 py-5"}>
+				<div className="px-4 py-3">
 					<div
 						className={cn(
-							"grid",
-							showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
-							variant === "compact" ? "gap-0.5 mb-1" : "gap-1 mb-2",
-						)}
+						"grid mb-3",
+						showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
+						"gap-1",
+					)}
 					>
 						{showWeekNumbers && (
 							<div
 								className={cn(
-									"font-medium text-nocta-500 dark:text-nocta-400 text-center",
-									variant === "compact"
-										? "text-xs w-6 h-6 flex items-center justify-center"
-										: "text-xs p-2",
+									"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+									"text-xs w-8 h-8",
 								)}
 							>
 								Wk
@@ -450,10 +430,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 							<div
 								key={index}
 								className={cn(
-									"font-medium text-nocta-500 dark:text-nocta-400 text-center",
-									variant === "compact"
-										? "text-xs w-6 h-6 flex items-center justify-center"
-										: "text-xs p-2",
+									"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+									"text-xs w-8 h-8",
 								)}
 							>
 								{day}
@@ -461,26 +439,24 @@ export const Calendar: React.FC<CalendarProps> = ({
 						))}
 					</div>
 
-					<div className={variant === "compact" ? "space-y-0.5" : "space-y-1"}>
+					<div className="space-y-1">
 						{Array.from(
 							{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
 							(_, weekIndex) => (
 								<div
 									key={weekIndex}
 									className={cn(
-										"grid",
-										showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
-										variant === "compact" ? "gap-0.5" : "gap-1",
-									)}
+									"grid",
+									showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
+									"gap-1",
+								)}
 								>
 									{showWeekNumbers && (
 										<div
 											className={cn(
-												"text-nocta-400 dark:text-nocta-500 text-center",
-												variant === "compact"
-													? "text-xs w-6 h-6 flex items-center justify-center"
-													: "text-xs p-2",
-											)}
+											"text-nocta-400 dark:text-nocta-500 text-center flex items-center justify-center",
+											"text-xs w-8 h-8",
+										)}
 										>
 											{getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
 										</div>
@@ -500,13 +476,11 @@ export const Calendar: React.FC<CalendarProps> = ({
 
 											if (!shouldShow) {
 												return (
-													<div
-														key={dayIndex}
-														className={
-															variant === "compact" ? "w-6 h-6" : "p-2"
-														}
-													/>
-												);
+															<div
+																key={dayIndex}
+																className="w-8 h-8"
+															/>
+														);
 											}
 
 											return (
@@ -518,20 +492,19 @@ export const Calendar: React.FC<CalendarProps> = ({
 													disabled={isDisabled}
 													data-date={date.toISOString().split("T")[0]}
 													className={cn(
-														dayButtonVariants({
-															variant,
-															state: isSelected
-																? "selected"
-																: isToday
-																	? "today"
-																	: isDisabled
-																		? "disabled"
-																		: !isCurrentMonth
-																			? "outsideMonth"
-																			: "default",
-															interaction: isDisabled ? "disabled" : "enabled",
-														}),
-													)}
+																dayButtonVariants({
+																	state: isSelected
+																		? "selected"
+																		: isToday
+																			? "today"
+																			: isDisabled
+																				? "disabled"
+																				: !isCurrentMonth
+																					? "outsideMonth"
+																					: "default",
+																	interaction: isDisabled ? "disabled" : "enabled",
+																}),
+															)}
 													aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
 													aria-pressed={isSelected}
 													aria-current={isToday ? "date" : undefined}
