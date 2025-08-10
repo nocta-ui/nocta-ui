@@ -181,7 +181,7 @@ export const Table = <T extends Record<string, unknown>>({
 	);
 
 	return (
-		<div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl">
+		<div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-xl">
 			<div
 				className={cn(
 					tableContainerVariants({ variant }),

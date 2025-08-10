@@ -43,7 +43,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 		return (
 			<div
 				ref={ref}
-				className="relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-xl w-fit"
+				className="relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-xl w-fit"
 			>
 				<div
 					className={cn(

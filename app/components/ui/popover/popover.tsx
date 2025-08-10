@@ -481,7 +481,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 				zIndex: 50,
 			}}
 			className={cn(
-				"relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent rounded-lg",
+				"relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-lg",
 				popoverAnimationVariants({ side: actualSide, state: animationState }),
 			)}
 		>

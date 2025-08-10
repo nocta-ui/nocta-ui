@@ -29,7 +29,7 @@ const accordionItemVariants = cva(
 			variant: {
 				default:
 					"border-b border-nocta-300 dark:border-nocta-800/50 last:border-b-0",
-				card: "border border-nocta-300 dark:border-nocta-800/50 rounded-lg overflow-hidden bg-nocta-100 dark:bg-nocta-900 shadow-sm dark:shadow-lg",
+				card: "relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-lg w-full",
 			},
 			isOpen: {
 				true: "",
@@ -57,7 +57,7 @@ const accordionTriggerVariants = cva(
 			variant: {
 				default:
 					"text-nocta-900 dark:text-nocta-100 hover:text-nocta-700 dark:hover:text-nocta-300",
-				card: "text-nocta-900 dark:text-nocta-100 bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-50 dark:hover:bg-nocta-900/50",
+				card: "text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900/50",
 			},
 			size: {
 				sm: "text-xs",
@@ -107,7 +107,7 @@ const accordionTriggerVariants = cva(
 			{
 				variant: "card",
 				isOpen: true,
-				class: "bg-nocta-50 dark:bg-nocta-900/50",
+				class: "bg-nocta-50/50 dark:bg-nocta-900/30",
 			},
 		],
 		defaultVariants: {
@@ -360,6 +360,24 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 			}),
 			[value, itemIsOpen, disabled],
 		);
+
+		if (variant === "card") {
+			return (
+				<AccordionItemContext.Provider value={contextValue}>
+					<div
+						className={cn(
+							accordionItemVariants({ variant, isOpen: itemIsOpen }),
+							className,
+						)}
+						{...props}
+					>
+						<div className="bg-nocta-100 dark:bg-nocta-900 rounded-lg shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose">
+							{children}
+						</div>
+					</div>
+				</AccordionItemContext.Provider>
+			);
+		}
 
 		return (
 			<AccordionItemContext.Provider value={contextValue}>

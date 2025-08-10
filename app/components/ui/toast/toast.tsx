@@ -34,7 +34,7 @@ const toastContainerVariants = cva(
 			},
 			variant: {
 				default:
-					"bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent",
+					"bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent",
 				success:
 					"bg-linear-to-b from-green-200 dark:from-green-600/50 to-transparent",
 				warning:

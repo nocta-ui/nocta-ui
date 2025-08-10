@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
 	[
-		"relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-600/50 to-transparent",
+		"relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent",
 		"rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out",
 		"backdrop-blur-sm overflow-hidden not-prose",
 	],
