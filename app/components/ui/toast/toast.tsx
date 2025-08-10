@@ -9,6 +9,7 @@ import {
 	useMemo,
 	useRef,
 	useState,
+	useLayoutEffect,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -57,7 +58,7 @@ const ANIMATION_CONFIG = {
 	ENTER_DURATION: 0.4,
 	EXIT_DURATION: 0.3,
 	STACK_DURATION: 0.3,
-	STACK_OFFSET: 8,
+	STACK_OFFSET: 16,
 	SCALE_FACTOR: 0.04,
 	MIN_SCALE: 0.92,
 	MAX_VISIBLE_TOASTS: 3,
@@ -332,7 +333,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
 		}
 	}, [shouldClose, handleClose]);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 
 		if (!toastRef.current || isExiting.current) return;
 
@@ -342,6 +343,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
 		const offset = isTopPosition ? index * ANIMATION_CONFIG.STACK_OFFSET : -(index * ANIMATION_CONFIG.STACK_OFFSET);
 		const scale = Math.max(ANIMATION_CONFIG.MIN_SCALE, 1 - index * ANIMATION_CONFIG.SCALE_FACTOR);
 		const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - index;
+
+
 
 		if (animationRef.current) {
 			animationRef.current.kill();
@@ -478,7 +481,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
 			ref={toastRef}
 			className={cn(toastContainerVariants({ position, variant }), className)}
 			style={{
-				zIndex: 50 - index,
 				transformOrigin: position?.startsWith("top-")
 					? "center top"
 					: "center bottom",
@@ -567,37 +569,43 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
 ToastItem.displayName = 'ToastItem';
 
 const ToastManager: React.FC<{
-	toasts: (ToastData & { index: number; total: number })[];
+	toasts: ToastData[];
 	onRemove: (id: string) => void;
-}> = ({ toasts, onRemove }) => {
-	if (toasts.length === 0) return null;
+}> = React.memo(({ toasts, onRemove }) => {
+	const toastsByPosition = useMemo(() => {
+		const grouped = toasts.reduce(
+			(acc, toast) => {
+				const pos = toast.position || "bottom-center";
+				if (!acc[pos]) acc[pos] = [];
+				acc[pos].push(toast);
+				return acc;
+			},
+			{} as Record<ToastPosition, ToastData[]>,
+		);
 
-	const toastsByPosition = toasts.reduce(
-		(acc, toast) => {
-			const pos = toast.position || "bottom-center";
-			if (!acc[pos]) acc[pos] = [];
-			acc[pos].push(toast);
-			return acc;
-		},
-		{} as Record<
-			ToastPosition,
-			(ToastData & { index: number; total: number })[]
-		>,
+		// Dodaj indeksy i total do każdej grupy
+		Object.keys(grouped).forEach((position) => {
+			const positionKey = position as ToastPosition;
+			grouped[positionKey] = grouped[positionKey].map((toast, index) => ({
+				...toast,
+				index,
+				total: grouped[positionKey].length,
+			})) as (ToastData & { index: number; total: number })[];
+		});
+
+		return grouped as Record<ToastPosition, (ToastData & { index: number; total: number })[]>;
+	}, [toasts]);
+
+	const positionEntries = useMemo(() => 
+		Object.entries(toastsByPosition), 
+		[toastsByPosition]
 	);
 
-	Object.keys(toastsByPosition).forEach((position) => {
-		toastsByPosition[position as ToastPosition] = toastsByPosition[
-			position as ToastPosition
-		].map((toast, index) => ({
-			...toast,
-			index,
-			total: toastsByPosition[position as ToastPosition].length,
-		}));
-	});
+	if (toasts.length === 0) return null;
 
 	return (
 		<div className="fixed inset-0 pointer-events-none z-50">
-			{Object.entries(toastsByPosition).map(([position, positionToasts]) => (
+			{positionEntries.map(([position, positionToasts]) => (
 				<div key={position}>
 					{positionToasts.map((toast) => (
 						<ToastItem key={toast.id} toast={toast} onRemove={onRemove} />
@@ -606,7 +614,7 @@ const ToastManager: React.FC<{
 			))}
 		</div>
 	);
-};
+});
 
 ToastManager.displayName = 'ToastManager';
 
@@ -622,23 +630,15 @@ export const Toaster: React.FC = () => {
 		};
 	}, [instanceId]);
 
-	const handleRemove = (id: string) => {
+	const handleRemove = useCallback((id: string) => {
 		toastState.remove(id);
-	};
-
-	const toastsWithIndex = useMemo(() => 
-		toasts.map((toast, index) => ({
-			...toast,
-			index,
-			total: toasts.length,
-		})), [toasts]
-	);
+	}, []);
 
 	if (!toasterInstanceManager.isActiveInstance(instanceId)) {
 		return null;
 	}
 
 	return (
-		<ToastManager toasts={toastsWithIndex} onRemove={handleRemove} />
+		<ToastManager toasts={toasts} onRemove={handleRemove} />
 	);
 };
