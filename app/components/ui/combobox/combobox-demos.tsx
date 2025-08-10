@@ -47,7 +47,7 @@ export const BasicComboboxDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 h-24">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Framework
 				</label>
@@ -71,7 +71,7 @@ export const BasicComboboxDemo: React.FC = () => {
 export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Default
 				</label>
@@ -82,7 +82,7 @@ export const VariantsDemo: React.FC = () => {
 				/>
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Error
 				</label>
@@ -96,7 +96,7 @@ export const VariantsDemo: React.FC = () => {
 				</p>
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Success
 				</label>
@@ -112,14 +112,14 @@ export const VariantsDemo: React.FC = () => {
 export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Small
 				</label>
 				<Combobox options={frameworks} size="sm" placeholder="Small combobox" />
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Medium
 				</label>
@@ -130,7 +130,7 @@ export const SizesDemo: React.FC = () => {
 				/>
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Large
 				</label>
@@ -143,7 +143,7 @@ export const SizesDemo: React.FC = () => {
 export const SearchableDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Searchable (Default)
 				</label>
@@ -157,7 +157,7 @@ export const SearchableDemo: React.FC = () => {
 				</p>
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Non-searchable
 				</label>
@@ -177,7 +177,7 @@ export const SearchableDemo: React.FC = () => {
 export const ClearableDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Clearable (Default)
 				</label>
@@ -192,7 +192,7 @@ export const ClearableDemo: React.FC = () => {
 				</p>
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Non-clearable
 				</label>
@@ -213,7 +213,7 @@ export const ClearableDemo: React.FC = () => {
 export const DisabledOptionsDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Programming Languages
 				</label>
@@ -233,7 +233,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 export const DisabledComboboxDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Disabled Combobox
 				</label>
@@ -254,7 +254,7 @@ export const CustomMessagesDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Custom Empty Message
 				</label>
@@ -278,7 +278,7 @@ export const ControlledDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="space-y-4">
-				<div className="space-y-2">
+				<div className="flex flex-col space-y-2">
 					<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 						Controlled Combobox
 					</label>

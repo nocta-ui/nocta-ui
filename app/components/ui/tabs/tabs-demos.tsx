@@ -46,7 +46,7 @@ export const BasicTabsDemo: React.FC = () => {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<div className="space-y-2">
+							<div className="flex flex-col space-y-2">
 								<div className="flex justify-between items-center">
 									<span className="text-sm">Page Views</span>
 									<Badge>1,234</Badge>

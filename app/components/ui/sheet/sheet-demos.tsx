@@ -251,7 +251,7 @@ export const FormSheetDemo: React.FC = () => {
 							containerClassName="w-full"
 							className="w-full"
 						/>
-						<div className="space-y-2">
+						<div className="flex flex-col space-y-2">
 							<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300">
 								Status
 							</label>

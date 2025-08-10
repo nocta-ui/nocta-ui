@@ -11,7 +11,7 @@ export const BasicPopoverDemo: React.FC = () => {
 			<Popover>
 				<PopoverTrigger>Open Popover</PopoverTrigger>
 				<PopoverContent>
-					<div className="space-y-2">
+					<div className="flex flex-col space-y-2">
 						<h4 className="font-medium text-sm">About this feature</h4>
 						<p className="text-sm text-nocta-600 dark:text-nocta-400">
 							This is a popover component that can contain any content you want.
@@ -144,7 +144,7 @@ export const AsChildDemo: React.FC = () => {
 					<Button variant="secondary">Custom Button</Button>
 				</PopoverTrigger>
 				<PopoverContent>
-					<div className="space-y-2">
+					<div className="flex flex-col space-y-2">
 						<h4 className="font-medium text-sm">Custom Trigger</h4>
 						<p className="text-sm text-nocta-600 dark:text-nocta-400">
 							Using asChild prop to render a custom button component.
@@ -193,7 +193,7 @@ export const ControlledDemo: React.FC = () => {
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger>Controlled Popover</PopoverTrigger>
 					<PopoverContent>
-						<div className="space-y-2">
+						<div className="flex flex-col space-y-2">
 							<h4 className="font-medium text-sm">Controlled State</h4>
 							<p className="text-sm text-nocta-600 dark:text-nocta-400">
 								This popover&apos;s state is controlled externally.
@@ -235,7 +235,7 @@ export const RichContentDemo: React.FC = () => {
 						</div>
 
 						<div className="border-t border-nocta-300 dark:border-nocta-700 pt-3">
-							<div className="space-y-2">
+							<div className="flex flex-col space-y-2">
 								<button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded">
 									View Profile
 								</button>
@@ -272,7 +272,7 @@ export const FormPopoverDemo: React.FC = () => {
 							<h4 className="font-medium text-sm mb-3">Create New Item</h4>
 						</div>
 
-						<div className="space-y-2">
+						<div className="flex flex-col space-y-2">
 							<label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
 								Name
 							</label>
@@ -284,7 +284,7 @@ export const FormPopoverDemo: React.FC = () => {
 							/>
 						</div>
 
-						<div className="space-y-2">
+						<div className="flex flex-col space-y-2">
 							<label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
 								Description
 							</label>

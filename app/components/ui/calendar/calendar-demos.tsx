@@ -22,7 +22,7 @@ export const WeekStartsOnMondayDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Week Starts on Monday
 				</label>
@@ -41,7 +41,7 @@ export const WithWeekNumbersDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					With Week Numbers
 				</label>
@@ -66,7 +66,7 @@ export const DisabledDatesDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 space-y-8">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Disabled Weekends
 				</label>
@@ -97,7 +97,7 @@ export const DateRangeDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Date Range (Today to +2 months)
 				</label>
@@ -127,7 +127,7 @@ export const CustomFormattingDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Custom Formatting
 				</label>
@@ -149,7 +149,7 @@ export const DisabledCalendarDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-500 dark:text-nocta-500">
 					Disabled Calendar
 				</label>
@@ -172,7 +172,7 @@ export const EventCalendarDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="space-y-4">
-				<div className="space-y-2">
+				<div className="flex flex-col space-y-2">
 					<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 						Event Calendar
 					</label>

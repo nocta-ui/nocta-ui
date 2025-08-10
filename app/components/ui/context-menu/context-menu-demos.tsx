@@ -427,7 +427,7 @@ export const FileContextMenuDemo: React.FC = () => {
 				File manager context menu example
 			</div>
 
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				{files.map((file, index) => (
 					<ContextMenu key={index}>
 						<ContextMenuTrigger>

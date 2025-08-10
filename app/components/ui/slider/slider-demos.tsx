@@ -51,7 +51,7 @@ export const VariantsDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 space-y-6 w-48">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Default
 				</label>
@@ -62,7 +62,7 @@ export const VariantsDemo: React.FC = () => {
 					aria-label="Default variant slider"
 				/>
 			</div>
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Primary
 				</label>
@@ -73,7 +73,7 @@ export const VariantsDemo: React.FC = () => {
 					aria-label="Primary variant slider"
 				/>
 			</div>
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Secondary
 				</label>
@@ -95,7 +95,7 @@ export const SizesDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 space-y-6 w-48">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Small
 				</label>
@@ -106,7 +106,7 @@ export const SizesDemo: React.FC = () => {
 					aria-label="Small size slider"
 				/>
 			</div>
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Medium
 				</label>
@@ -117,7 +117,7 @@ export const SizesDemo: React.FC = () => {
 					aria-label="Medium size slider"
 				/>
 			</div>
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Large
 				</label>
@@ -154,7 +154,7 @@ export const CustomRangeDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 space-y-6 w-48">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Temperature (16°C - 30°C)
 				</label>
@@ -170,7 +170,7 @@ export const CustomRangeDemo: React.FC = () => {
 					aria-label="Temperature slider"
 				/>
 			</div>
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Volume (0 - 10)
 				</label>
@@ -191,7 +191,7 @@ export const CustomRangeDemo: React.FC = () => {
 export const DisabledDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4 w-48">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-500 dark:text-nocta-500">
 					Disabled Slider
 				</label>
@@ -206,7 +206,7 @@ export const StepDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-48">
-			<div className="space-y-2">
+			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Step = 5 (Snaps to: 0, 5, 10, ...)
 				</label>
