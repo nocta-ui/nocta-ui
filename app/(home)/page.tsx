@@ -2,10 +2,10 @@
 
 import { gsap } from "gsap";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 import { Button } from "../components/ui/button";
 import Scene from "./scene";
-import { cn } from "@/lib/utils";
 
 export default function HomePage() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -17,7 +17,7 @@ export default function HomePage() {
 	const ctaRightRef = useRef<HTMLAnchorElement>(null);
 	const footerRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
 			gsap.set([kickerRef.current, headingRef.current, descRef.current], {
 				opacity: 0,
@@ -78,7 +78,7 @@ export default function HomePage() {
 			ref={containerRef}
 			className="h-svh overflow-hidden absolute inset-0 bg-custom-radial text-nocta-50"
 		>
-			<div ref={sceneRef} className="absolute inset-0 z-10 mt-16">
+			<div ref={sceneRef} className="absolute inset-0 z-10 mt-16 blur-[18px]">
 				<Scene />
 			</div>
 
@@ -87,14 +87,14 @@ export default function HomePage() {
 					<div className="mx-auto w-full max-w-3xl px-6 pb-8 md:pb-10 text-center relative z-10">
 						<p
 							ref={kickerRef}
-							className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-nocta-700/50 dark:text-nocta-50/70"
+							className="opacity-0 text-[11px] md:text-xs uppercase tracking-[0.22em] text-nocta-700/50 dark:text-nocta-50/70"
 						>
 							React UI Library
 						</p>
 						<h1
 							ref={headingRef}
 							className={cn(
-								"tracking-[-0.0125em] font-semibold text-nocta-800 dark:text-nocta-50/85",
+								"opacity-0 tracking-[-0.0125em] font-semibold text-nocta-800 dark:text-nocta-50/85",
 								"text-[9.5vw] sm:text-[7vw] md:text-[5vw] max-md:text-[48px]",
 							)}
 						>
@@ -116,7 +116,7 @@ export default function HomePage() {
 									</p>
 								</div>
 								<div className="flex gap-3 sm:gap-4">
-									<Link href="/docs" ref={ctaLeftRef}>
+									<Link href="/docs" ref={ctaLeftRef} className="opacity-0">
 										<Button
 											variant="primary"
 											className="px-6 py-2.5 text-sm font-medium rounded-lg"
@@ -129,6 +129,7 @@ export default function HomePage() {
 										target="_blank"
 										rel="noopener noreferrer"
 										ref={ctaRightRef}
+										className="opacity-0"
 									>
 										<Button
 											variant="secondary"
@@ -154,7 +155,7 @@ export default function HomePage() {
 
 						<div
 							ref={footerRef}
-							className="flex flex-wrap items-center justify-between gap-2 py-3 text-xs text-nocta-700 dark:text-nocta-50/70"
+							className="opacity-0 flex flex-wrap items-center justify-between gap-2 py-3 text-xs text-nocta-700 dark:text-nocta-50/70"
 						>
 							<div className="flex items-center gap-3">
 								<span>Accessible</span>
