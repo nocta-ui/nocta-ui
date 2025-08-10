@@ -675,7 +675,7 @@
 				],
 				"TableHeader": ["children", "className"],
 				"TableBody": ["children", "className"],
-				"TableRow": ["children", "className", "clickable"],
+				"TableRow": ["children", "className"],
 				"TableCell": [
 					"children",
 					"className",
@@ -1196,7 +1196,7 @@
 		},
 		"toast": {
 			"name": "Toast",
-			"description": "Sonner-inspired toast notification system with stacking, GSAP animations, and provider pattern",
+			"description": "Advanced toast notification system with observer pattern, GSAP animations, positioning, and stacking",
 			"category": "feedback",
 			"files": [
 				{
@@ -1213,53 +1213,52 @@
 				"class-variance-authority": "^0.7.1"
 			},
 			"exports": [
-				"useToast",
-				"ToastProvider",
+				"toast",
+				"Toaster",
 				"ToastData",
-				"Toast",
-				"ToastHeader",
-				"ToastTitle",
-				"ToastDescription",
-				"ToastActions",
-				"ToastClose"
+				"ToastPosition"
 			],
 			"props": {
-				"useToast": [],
-				"ToastProvider": ["children"],
-				"ToastData": [
-					"id",
+				"toast": [
 					"title",
 					"description",
 					"variant",
+					"position",
 					"duration",
 					"action",
-					"onClose"
+					"onClose",
+					"className"
 				],
-				"Toast": ["children", "duration", "visible", "onClose", "className"],
-				"ToastHeader": ["children", "className"],
-				"ToastTitle": ["children", "className", "as"],
-				"ToastDescription": ["children", "className"],
-				"ToastActions": ["children", "className"],
-				"ToastClose": ["onClose", "className"]
+				"Toaster": []
 			},
+			"positions": [
+				"top-left",
+				"top-center",
+				"top-right",
+				"bottom-left",
+				"bottom-center",
+				"bottom-right"
+			],
 			"variants": ["default", "success", "warning", "destructive"],
 			"features": [
-				"sonner-inspired-stacking",
+				"observer-pattern-architecture",
 				"gsap-powered-animations",
-				"toast-provider-pattern",
-				"multiple-toast-queue",
-				"bottom-positioned",
+				"multiple-positioning-options",
+				"toast-stacking-system",
 				"auto-stacking-max-3",
 				"scale-and-blur-effects",
 				"auto-close-functionality",
 				"manual-dismiss",
 				"keyboard-navigation",
+				"focus-management",
 				"accessibility-compliant",
 				"screen-reader-support",
 				"dark-mode",
 				"customizable-duration",
 				"action-buttons",
-				"legacy-component-support",
+				"singleton-toaster-instance",
+				"imperative-api",
+				"backdrop-blur-effects",
 				"client-component"
 			]
 		},

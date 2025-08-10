@@ -46,11 +46,7 @@ const tableRowVariants = cva("", {
 		isOdd: {
 			true: "",
 			false: "",
-		},
-		clickable: {
-			true: "cursor-pointer hover:bg-nocta-50 dark:hover:bg-nocta-900/50 transition-colors duration-200 ease-in-out",
-			false: "",
-		},
+		}
 	},
 	compoundVariants: [
 		{
@@ -62,7 +58,6 @@ const tableRowVariants = cva("", {
 	defaultVariants: {
 		variant: "default",
 		isOdd: false,
-		clickable: false,
 	},
 });
 
@@ -235,7 +230,6 @@ export const Table = <T extends Record<string, unknown>>({
 										key={getRowKey(record, index)}
 										variant={variant}
 										isOdd={index % 2 === 1}
-										clickable={!!onRowClick}
 										className={getRowClassName(record, index)}
 										onClick={() => onRowClick?.(record, index)}
 									>
@@ -358,12 +352,11 @@ export const TableRow: React.FC<TableRowProps> = ({
 	className = "",
 	variant = "default",
 	isOdd = false,
-	clickable = false,
 	...props
 }) => {
 	return (
 		<tr
-			className={cn(tableRowVariants({ variant, isOdd, clickable }), className)}
+			className={cn(tableRowVariants({ variant, isOdd }), className)}
 			{...props}
 		>
 			{children}
