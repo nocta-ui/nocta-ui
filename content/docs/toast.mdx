@@ -3,7 +3,7 @@ title: Toast
 description: Sonner-inspired toast notification system with GSAP animations, smart stacking, and accessibility features
 ---
 
-import { useToast, ToastProvider } from '@/app/components/ui/toast';
+import { toast, Toaster } from '@/app/components/ui/toast';
 import { Button } from '@/app/components/ui/button';
 import { 
   BasicToastDemo,
@@ -28,21 +28,22 @@ npx nocta-ui add toast
 Then import the components you need:
 
 ```tsx lineNumbers title="Import"
-import { useToast, ToastProvider } from '@/components/ui/toast';
+import { toast, Toaster } from '@/components/ui/toast';
 ```
 
 ## Setup
 
-Wrap your app with the ToastProvider to enable toast notifications:
+Add the Toaster component to your app to enable toast notifications:
 
-```tsx lineNumbers title="Toast Provider Setup"
-import { ToastProvider } from '@/components/ui/toast';
+```tsx lineNumbers title="Toaster Setup"
+import { Toaster } from '@/components/ui/toast';
 
 function App() {
   return (
-    <ToastProvider>
+    <>
       <YourApp />
-    </ToastProvider>
+      <Toaster />
+    </>
   );
 }
 ```
@@ -57,11 +58,9 @@ function App() {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Simple Toast"
-    import { useToast } from '@/components/ui/toast';
+    import { toast } from '@/components/ui/toast';
 
     function MyComponent() {
-      const { toast } = useToast();
-
       const showToast = () => {
         toast({
           title: 'Success!',
@@ -97,26 +96,23 @@ The Toast component supports multiple variants: `default`, `success`, `warning`,
     };
 
     const showSuccess = () => {
-      toast({
+      toast.success({
         title: 'Success!',
         description: 'Your operation completed successfully.',
-        variant: 'success',
       });
     };
 
     const showWarning = () => {
-      toast({
+      toast.warning({
         title: 'Warning',
         description: 'Please check your input before continuing.',
-        variant: 'warning',
       });
     };
 
     const showError = () => {
-      toast({
+      toast.error({
         title: 'Error',
         description: 'Something went wrong. Please try again.',
-        variant: 'destructive',
       });
     };
     ```
@@ -202,26 +198,23 @@ The toast system supports smart stacking with a maximum of 3 visible toasts. New
       toast({ title: 'First Toast', description: 'This is the first notification.' });
       
       setTimeout(() => {
-        toast({
+        toast.success({
           title: 'Second Toast',
           description: 'This is the second notification.',
-          variant: 'success',
         });
       }, 500);
       
       setTimeout(() => {
-        toast({
+        toast.warning({
           title: 'Third Toast',
           description: 'This is the third notification.',
-          variant: 'warning',
         });
       }, 1000);
       
       setTimeout(() => {
-        toast({
+        toast.error({
           title: 'Fourth Toast',
           description: 'This will push the first one out!',
-          variant: 'destructive',
         });
       }, 1500);
     };
@@ -281,12 +274,15 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Dismiss All Toasts"
-    const { toast, dismissAll } = useToast();
-
     const showMultiple = () => {
       toast({ title: 'Toast 1', description: 'First notification' });
-      toast({ title: 'Toast 2', description: 'Second notification', variant: 'success' });
-      toast({ title: 'Toast 3', description: 'Third notification', variant: 'warning' });
+      toast.success({ title: 'Toast 2', description: 'Second notification' });
+      toast.warning({ title: 'Toast 3', description: 'Third notification' });
+    };
+
+    // Dismiss all toasts
+    const handleDismissAll = () => {
+      toast.dismissAll();
     };
     ```
   </DocsTab>
@@ -327,12 +323,26 @@ toast({
 | `action` | `{ label: string; onClick: () => void }` | — | Action button configuration |
 | `shouldClose` | `boolean` | false | Flag for programmatic closing with animation |
 
-### useToast Hook
+### Toast API
 
-The `useToast` hook returns:
+The toast function and its methods:
 
 | Function | Type | Description |
-|----------|------|-------------|
-| `toast` | `(data: ToastData) => string` | Show a toast notification |
-| `dismiss` | `(id: string) => void` | Dismiss a specific toast |
-| `dismissAll` | `() => void` | Dismiss all active toasts |
+|----------|------|-----------|
+| `toast()` | `(data: ToastData \| string) => string` | Show a default toast notification |
+| `toast.success()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show a success toast |
+| `toast.warning()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show a warning toast |
+| `toast.error()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show an error toast |
+| `toast.dismiss()` | `(id: string) => void` | Dismiss a specific toast |
+| `toast.dismissAll()` | `() => void` | Dismiss all active toasts |
+
+### Simple String Usage
+
+You can also pass a simple string for quick notifications:
+
+```tsx lineNumbers title="Simple String Toasts"
+toast('Simple message');
+toast.success('Operation successful!');
+toast.warning('Please be careful');
+toast.error('Something went wrong');
+```

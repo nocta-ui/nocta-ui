@@ -1,5 +1,5 @@
 export type { ToastData, ToastPosition } from "./toast";
 export {
-	ToastProvider,
-	useToast,
+	toast,
+	Toaster,
 } from "./toast";

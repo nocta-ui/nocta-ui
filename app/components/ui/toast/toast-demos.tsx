@@ -2,22 +2,21 @@
 
 import type React from "react";
 import { Button } from "../button";
-import { type ToastPosition, ToastProvider, useToast } from "./toast";
+import { type ToastPosition, toast, Toaster } from "./toast";
 
 // Basic demo - single toast example
 export const BasicToastDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<BasicToastExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const BasicToastExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showToast = () => {
 		toast({
 			title: "Success!",
@@ -31,17 +30,16 @@ const BasicToastExample: React.FC = () => {
 // Toast variants demo
 export const ToastVariantsDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<ToastVariantsExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const ToastVariantsExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showDefault = () => {
 		toast({
 			title: "Information",
@@ -50,26 +48,23 @@ const ToastVariantsExample: React.FC = () => {
 	};
 
 	const showSuccess = () => {
-		toast({
+		toast.success({
 			title: "Success!",
 			description: "Your operation completed successfully.",
-			variant: "success",
 		});
 	};
 
 	const showWarning = () => {
-		toast({
+		toast.warning({
 			title: "Warning",
 			description: "Please check your input before continuing.",
-			variant: "warning",
 		});
 	};
 
 	const showError = () => {
-		toast({
+		toast.error({
 			title: "Error",
 			description: "Something went wrong. Please try again.",
-			variant: "destructive",
 		});
 	};
 
@@ -94,17 +89,16 @@ const ToastVariantsExample: React.FC = () => {
 // Toast with actions demo
 export const ToastWithActionsDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<ToastWithActionsExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const ToastWithActionsExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showToast = () => {
 		toast({
 			title: "Update Available",
@@ -122,17 +116,16 @@ const ToastWithActionsExample: React.FC = () => {
 // Multiple stacked toasts demo
 export const StackedToastsDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<StackedToastsExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const StackedToastsExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showMultiple = () => {
 		toast({
 			title: "First Toast",
@@ -140,26 +133,23 @@ const StackedToastsExample: React.FC = () => {
 		});
 
 		setTimeout(() => {
-			toast({
+			toast.success({
 				title: "Second Toast",
 				description: "This is the second notification.",
-				variant: "success",
 			});
 		}, 500);
 
 		setTimeout(() => {
-			toast({
+			toast.warning({
 				title: "Third Toast",
 				description: "This is the third notification.",
-				variant: "warning",
 			});
 		}, 1000);
 
 		setTimeout(() => {
-			toast({
+			toast.error({
 				title: "Fourth Toast",
 				description: "This will push the first one out!",
-				variant: "destructive",
 			});
 		}, 1500);
 	};
@@ -174,17 +164,16 @@ const StackedToastsExample: React.FC = () => {
 // Persistent toast demo
 export const PersistentToastDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<PersistentToastExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const PersistentToastExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showToast = () => {
 		toast({
 			title: "Important Notice",
@@ -203,17 +192,16 @@ const PersistentToastExample: React.FC = () => {
 // Custom duration demo
 export const CustomDurationDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<CustomDurationExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const CustomDurationExample: React.FC = () => {
-	const { toast } = useToast();
-
 	const showToast = () => {
 		toast({
 			title: "Quick Toast",
@@ -232,28 +220,25 @@ const CustomDurationExample: React.FC = () => {
 // Dismiss all demo
 export const DismissAllDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<DismissAllExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const DismissAllExample: React.FC = () => {
-	const { toast, dismissAll } = useToast();
-
 	const showMultiple = () => {
 		toast({ title: "Toast 1", description: "First notification" });
-		toast({
+		toast.success({
 			title: "Toast 2",
 			description: "Second notification",
-			variant: "success",
 		});
-		toast({
+		toast.warning({
 			title: "Toast 3",
 			description: "Third notification",
-			variant: "warning",
 		});
 	};
 
@@ -262,7 +247,7 @@ const DismissAllExample: React.FC = () => {
 			<Button onClick={showMultiple} variant="secondary" size="sm">
 				Show Multiple
 			</Button>
-			<Button onClick={dismissAll} variant="ghost" size="sm">
+			<Button onClick={toast.dismissAll} variant="ghost" size="sm">
 				Dismiss All
 			</Button>
 		</div>
@@ -272,16 +257,16 @@ const DismissAllExample: React.FC = () => {
 // Toast positions demo
 export const ToastPositionsDemo: React.FC = () => {
 	return (
-		<ToastProvider>
+		<>
 			<div className="my-6">
 				<ToastPositionsExample />
 			</div>
-		</ToastProvider>
+			<Toaster />
+		</>
 	);
 };
 
 const ToastPositionsExample: React.FC = () => {
-	const { toast } = useToast();
 
 	const positions = [
 		{ key: "top-left", label: "Top Left" },

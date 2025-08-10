@@ -97,7 +97,7 @@ import {
 	ContextMenuSubContent,
 } from "@/app/components/ui/context-menu";
 import { Progress } from "@/app/components/ui/progress";
-import { ToastProvider, useToast } from "@/app/components/ui/toast";
+import { toast, Toaster } from "@/app/components/ui/toast";
 import {
 	Table,
 	TableHeader,
@@ -217,8 +217,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		ContextMenuSubTrigger,
 		ContextMenuSubContent,
 		Progress,
-		ToastProvider,
-		useToast,
+		toast,
+		Toaster,
 		Table,
 		TableHeader,
 		TableBody,
