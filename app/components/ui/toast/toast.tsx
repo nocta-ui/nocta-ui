@@ -2,14 +2,13 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { gsap } from "gsap";
-import React from "react";
-import {
+import React, {
 	useCallback,
 	useEffect,
+	useLayoutEffect,
 	useMemo,
 	useRef,
 	useState,
-	useLayoutEffect,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +50,7 @@ const FOCUSABLE_SELECTORS = [
 	"textarea:not([disabled])",
 	"select:not([disabled])",
 	"a[href]",
-	'[tabindex]:not([tabindex="-1"])'
+	'[tabindex]:not([tabindex="-1"])',
 ].join(", ");
 
 const ANIMATION_CONFIG = {
@@ -81,7 +80,7 @@ class ToastState {
 	}
 
 	private notify(): void {
-		this.subscribers.forEach(callback => callback([...this.toasts]));
+		this.subscribers.forEach((callback) => callback([...this.toasts]));
 	}
 
 	private generateId(): string {
@@ -102,17 +101,17 @@ class ToastState {
 	}
 
 	update(id: string, data: Partial<ToastData>): void {
-		this.toasts = this.toasts.map(toast => 
-			toast.id === id ? { ...toast, ...data } : toast
+		this.toasts = this.toasts.map((toast) =>
+			toast.id === id ? { ...toast, ...data } : toast,
 		);
 		this.notify();
 	}
 
 	dismissAll(): void {
-		this.toasts = this.toasts.map(toast => ({
+		this.toasts = this.toasts.map((toast) => ({
 			...toast,
 			shouldClose: true,
-			duration: 0
+			duration: 0,
 		}));
 		this.notify();
 	}
@@ -264,242 +263,251 @@ interface ToastItemProps {
 	onRemove: (id: string) => void;
 }
 
-const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => {
-	const toastRef = useRef<HTMLDivElement>(null);
-	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const isExiting = useRef(false);
-	const hasAnimatedIn = useRef(false);
-	const animationRef = useRef<gsap.core.Tween | null>(null);
+const ToastItem: React.FC<ToastItemProps> = React.memo(
+	({ toast, onRemove }) => {
+		const toastRef = useRef<HTMLDivElement>(null);
+		const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+		const isExiting = useRef(false);
+		const hasAnimatedIn = useRef(false);
+		const animationRef = useRef<gsap.core.Tween | null>(null);
 
-	const {
-		id,
-		title,
-		description,
-		variant = "default",
-		duration = 5000,
-		action,
-		index,
-		shouldClose,
-		position = "bottom-center",
-		className = "",
-	} = toast;
+		const {
+			id,
+			title,
+			description,
+			variant = "default",
+			duration = 5000,
+			action,
+			index,
+			shouldClose,
+			position = "bottom-center",
+			className = "",
+		} = toast;
 
-	const shouldOverrideBackground = useMemo(() => hasBackgroundColor(className), [className]);
+		const shouldOverrideBackground = useMemo(
+			() => hasBackgroundColor(className),
+			[className],
+		);
 
-	const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
+		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
 
-	const getFocusableElements = useCallback(() => {
-		if (!toastRef.current) return [];
-		return Array.from(
-			toastRef.current.querySelectorAll(FOCUSABLE_SELECTORS),
-		) as HTMLElement[];
-	}, []);
+		const getFocusableElements = useCallback(() => {
+			if (!toastRef.current) return [];
+			return Array.from(
+				toastRef.current.querySelectorAll(FOCUSABLE_SELECTORS),
+			) as HTMLElement[];
+		}, []);
 
-	const handleClose = useCallback(() => {
+		const handleClose = useCallback(() => {
+			if (!toastRef.current || isExiting.current) return;
 
-		
-		if (!toastRef.current || isExiting.current) return;
+			isExiting.current = true;
 
-		isExiting.current = true;
-
-
-		if (animationRef.current) {
-			animationRef.current.kill();
-		}
-
-		if (timeoutRef.current) {
-			clearTimeout(timeoutRef.current);
-			timeoutRef.current = null;
-		}
-
-		animationRef.current = gsap.to(toastRef.current, {
-			x: config.animateOut.x,
-			y: config.animateOut.y,
-			opacity: 0,
-			scale: 0.9,
-			duration: ANIMATION_CONFIG.EXIT_DURATION,
-			ease: "power2.in",
-			onComplete: () => {
-
-				onRemove(id);
-			},
-		});
-	}, [id, onRemove, config.animateOut]);
-
-	useEffect(() => {
-
-		if (shouldClose) {
-			handleClose();
-		}
-	}, [shouldClose, handleClose]);
-
-	useLayoutEffect(() => {
-
-		if (!toastRef.current || isExiting.current) return;
-
-		const element = toastRef.current;
-		const isLatest = index === 0;
-		const isTopPosition = position?.startsWith("top-");
-		const offset = isTopPosition ? index * ANIMATION_CONFIG.STACK_OFFSET : -(index * ANIMATION_CONFIG.STACK_OFFSET);
-		const scale = Math.max(ANIMATION_CONFIG.MIN_SCALE, 1 - index * ANIMATION_CONFIG.SCALE_FACTOR);
-		const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - index;
-
-
-
-		if (animationRef.current) {
-			animationRef.current.kill();
-		}
-
-		const setFocusToToast = () => {
-			if (!isLatest) return;
-			const focusableElements = getFocusableElements();
-			if (focusableElements.length > 0) {
-				focusableElements[0].focus();
-			} else {
-				element.focus();
+			if (animationRef.current) {
+				animationRef.current.kill();
 			}
-		};
 
-		if (!hasAnimatedIn.current && isLatest) {
-			hasAnimatedIn.current = true;
-
-			gsap.set(element, {
-				x: config.animateIn.x,
-				y: config.animateIn.y,
-				opacity: 0,
-				scale: 0.9,
-				zIndex,
-			});
-
-			animationRef.current = gsap.to(element, {
-				x: 0,
-				y: offset,
-				opacity: 1,
-				scale: 1,
-				duration: ANIMATION_CONFIG.ENTER_DURATION,
-				ease: "power2.out",
-				force3D: true,
-				delay: 0.01,
-				onComplete: setFocusToToast,
-			});
-		} else {
-			gsap.set(element, { zIndex });
-
-			animationRef.current = gsap.to(element, {
-				x: 0,
-				y: offset,
-				scale: isLatest ? 1 : scale,
-				opacity: index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS ? 0 : 1,
-				duration: ANIMATION_CONFIG.STACK_DURATION,
-				ease: "power2.out",
-				force3D: true,
-				onComplete: () => {
-					if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
-						onRemove(id);
-					} else if (isLatest && !hasAnimatedIn.current) {
-						hasAnimatedIn.current = true;
-						setFocusToToast();
-					}
-				},
-			});
-		}
-	}, [index, position, config.animateIn.x, config.animateIn.y, id, onRemove, getFocusableElements]);
-
-	useEffect(() => {
-		if (shouldClose || !hasAnimatedIn.current) return;
-
-		if (duration > 0) {
-			timeoutRef.current = setTimeout(() => {
-				handleClose();
-			}, duration);
-		}
-
-		return () => {
 			if (timeoutRef.current) {
 				clearTimeout(timeoutRef.current);
 				timeoutRef.current = null;
 			}
-		};
-	}, [duration, shouldClose, handleClose]);
 
-	useEffect(() => {
-		return () => {
+			animationRef.current = gsap.to(toastRef.current, {
+				x: config.animateOut.x,
+				y: config.animateOut.y,
+				opacity: 0,
+				scale: 0.9,
+				duration: ANIMATION_CONFIG.EXIT_DURATION,
+				ease: "power2.in",
+				onComplete: () => {
+					onRemove(id);
+				},
+			});
+		}, [id, onRemove, config.animateOut]);
+
+		useEffect(() => {
+			if (shouldClose) {
+				handleClose();
+			}
+		}, [shouldClose, handleClose]);
+
+		useLayoutEffect(() => {
+			if (!toastRef.current || isExiting.current) return;
+
+			const element = toastRef.current;
+			const isLatest = index === 0;
+			const isTopPosition = position?.startsWith("top-");
+			const offset = isTopPosition
+				? index * ANIMATION_CONFIG.STACK_OFFSET
+				: -(index * ANIMATION_CONFIG.STACK_OFFSET);
+			const scale = Math.max(
+				ANIMATION_CONFIG.MIN_SCALE,
+				1 - index * ANIMATION_CONFIG.SCALE_FACTOR,
+			);
+			const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - index;
+
 			if (animationRef.current) {
 				animationRef.current.kill();
 			}
-			if (timeoutRef.current) {
-				clearTimeout(timeoutRef.current);
-			}
-		};
-	}, []);
 
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			const isLatest = index === 0;
-
-			if (e.key === "Escape" && isLatest) {
-				handleClose();
-				return;
-			}
-
-			if (e.key === "Tab" && isLatest) {
+			const setFocusToToast = () => {
+				if (!isLatest) return;
 				const focusableElements = getFocusableElements();
-				if (focusableElements.length === 0) return;
-
-				const firstElement = focusableElements[0];
-				const lastElement = focusableElements[focusableElements.length - 1];
-				const activeElement = document.activeElement as HTMLElement;
-
-				if (e.shiftKey) {
-					if (
-						activeElement === firstElement ||
-						!toastRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						lastElement.focus();
-					}
+				if (focusableElements.length > 0) {
+					focusableElements[0].focus();
 				} else {
-					if (
-						activeElement === lastElement ||
-						!toastRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						firstElement.focus();
+					element.focus();
+				}
+			};
+
+			if (!hasAnimatedIn.current && isLatest) {
+				hasAnimatedIn.current = true;
+
+				gsap.set(element, {
+					x: config.animateIn.x,
+					y: config.animateIn.y,
+					opacity: 0,
+					scale: 0.9,
+					zIndex,
+				});
+
+				animationRef.current = gsap.to(element, {
+					x: 0,
+					y: offset,
+					opacity: 1,
+					scale: 1,
+					duration: ANIMATION_CONFIG.ENTER_DURATION,
+					ease: "power2.out",
+					force3D: true,
+					delay: 0.01,
+					onComplete: setFocusToToast,
+				});
+			} else {
+				gsap.set(element, { zIndex });
+
+				animationRef.current = gsap.to(element, {
+					x: 0,
+					y: offset,
+					scale: isLatest ? 1 : scale,
+					opacity: index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS ? 0 : 1,
+					duration: ANIMATION_CONFIG.STACK_DURATION,
+					ease: "power2.out",
+					force3D: true,
+					onComplete: () => {
+						if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
+							onRemove(id);
+						} else if (isLatest && !hasAnimatedIn.current) {
+							hasAnimatedIn.current = true;
+							setFocusToToast();
+						}
+					},
+				});
+			}
+		}, [
+			index,
+			position,
+			config.animateIn.x,
+			config.animateIn.y,
+			id,
+			onRemove,
+			getFocusableElements,
+		]);
+
+		useEffect(() => {
+			if (shouldClose || !hasAnimatedIn.current) return;
+
+			if (duration > 0) {
+				timeoutRef.current = setTimeout(() => {
+					handleClose();
+				}, duration);
+			}
+
+			return () => {
+				if (timeoutRef.current) {
+					clearTimeout(timeoutRef.current);
+					timeoutRef.current = null;
+				}
+			};
+		}, [duration, shouldClose, handleClose]);
+
+		useEffect(() => {
+			return () => {
+				if (animationRef.current) {
+					animationRef.current.kill();
+				}
+				if (timeoutRef.current) {
+					clearTimeout(timeoutRef.current);
+				}
+			};
+		}, []);
+
+		useEffect(() => {
+			const handleKeyDown = (e: KeyboardEvent) => {
+				const isLatest = index === 0;
+
+				if (e.key === "Escape" && isLatest) {
+					handleClose();
+					return;
+				}
+
+				if (e.key === "Tab" && isLatest) {
+					const focusableElements = getFocusableElements();
+					if (focusableElements.length === 0) return;
+
+					const firstElement = focusableElements[0];
+					const lastElement = focusableElements[focusableElements.length - 1];
+					const activeElement = document.activeElement as HTMLElement;
+
+					if (e.shiftKey) {
+						if (
+							activeElement === firstElement ||
+							!toastRef.current?.contains(activeElement)
+						) {
+							e.preventDefault();
+							lastElement.focus();
+						}
+					} else {
+						if (
+							activeElement === lastElement ||
+							!toastRef.current?.contains(activeElement)
+						) {
+							e.preventDefault();
+							firstElement.focus();
+						}
 					}
 				}
+			};
+
+			if (index === 0) {
+				document.addEventListener("keydown", handleKeyDown);
+				return () => document.removeEventListener("keydown", handleKeyDown);
 			}
-		};
+		}, [handleClose, index]);
 
-		if (index === 0) {
-			document.addEventListener("keydown", handleKeyDown);
-			return () => document.removeEventListener("keydown", handleKeyDown);
-		}
-	}, [handleClose, index]);
-
-	return (
-		<div
-			ref={toastRef}
-			className={cn(toastContainerVariants({ position, variant }), className)}
-			style={{
-				transformOrigin: position?.startsWith("top-")
-					? "center top"
-					: "center bottom",
-			}}
-			role="alert"
-			aria-live="polite"
-			tabIndex={-1}
-		>
+		return (
 			<div
-				className={cn(
-					toastContentVariants({ variant }),
-					variant === "default" && !shouldOverrideBackground
-						? "bg-nocta-100 dark:bg-nocta-900"
-						: "",
-				)}
+				ref={toastRef}
+				className={cn(toastContainerVariants({ position, variant }), className)}
+				style={{
+					transformOrigin: position?.startsWith("top-")
+						? "center top"
+						: "center bottom",
+				}}
+				role="alert"
+				aria-live="polite"
+				tabIndex={-1}
 			>
-				<button
-					onClick={handleClose}
-					className="
+				<div
+					className={cn(
+						toastContentVariants({ variant }),
+						variant === "default" && !shouldOverrideBackground
+							? "bg-nocta-100 dark:bg-nocta-900"
+							: "",
+					)}
+				>
+					<button
+						onClick={handleClose}
+						className="
           absolute top-2 right-2 p-1 rounded-md
           text-nocta-400 dark:text-nocta-500
           hover:text-nocta-600 dark:hover:text-nocta-300
@@ -507,39 +515,39 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
           transition-colors duration-200
           focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
         "
-					aria-label="Close toast"
-				>
-					<svg
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
+						aria-label="Close toast"
 					>
-						<path d="M18 6L6 18M6 6l12 12" />
-					</svg>
-				</button>
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+						>
+							<path d="M18 6L6 18M6 6l12 12" />
+						</svg>
+					</button>
 
-				<div className="p-4 pr-8">
-					{title && (
-						<div className="font-semibold text-sm mb-1 leading-tight">
-							{title}
-						</div>
-					)}
-					{description && (
-						<div className="text-sm opacity-90 leading-relaxed">
-							{description}
-						</div>
-					)}
-					{action && (
-						<div className="mt-3">
-							<button
-								onClick={() => {
-									action.onClick();
-									handleClose();
-								}}
-								className="
+					<div className="p-4 pr-8">
+						{title && (
+							<div className="font-semibold text-sm mb-1 leading-tight">
+								{title}
+							</div>
+						)}
+						{description && (
+							<div className="text-sm opacity-90 leading-relaxed">
+								{description}
+							</div>
+						)}
+						{action && (
+							<div className="mt-3">
+								<button
+									onClick={() => {
+										action.onClick();
+										handleClose();
+									}}
+									className="
                 inline-flex items-center justify-center rounded-md
                 px-3 py-1.5 text-sm font-medium
                 bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
@@ -548,25 +556,27 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(({ toast, onRemove }) => 
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
                 transition-colors duration-200 cursor-pointer
               "
-							>
-								{action.label}
-							</button>
-						</div>
-					)}
+								>
+									{action.label}
+								</button>
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
-		</div>
-	);
-}, (prevProps, nextProps) => {
-	return (
-		prevProps.toast.id === nextProps.toast.id &&
-		prevProps.toast.index === nextProps.toast.index &&
-		prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
-		prevProps.toast.total === nextProps.toast.total
-	);
-});
+		);
+	},
+	(prevProps, nextProps) => {
+		return (
+			prevProps.toast.id === nextProps.toast.id &&
+			prevProps.toast.index === nextProps.toast.index &&
+			prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
+			prevProps.toast.total === nextProps.toast.total
+		);
+	},
+);
 
-ToastItem.displayName = 'ToastItem';
+ToastItem.displayName = "ToastItem";
 
 const ToastManager: React.FC<{
 	toasts: ToastData[];
@@ -593,12 +603,15 @@ const ToastManager: React.FC<{
 			})) as (ToastData & { index: number; total: number })[];
 		});
 
-		return grouped as Record<ToastPosition, (ToastData & { index: number; total: number })[]>;
+		return grouped as Record<
+			ToastPosition,
+			(ToastData & { index: number; total: number })[]
+		>;
 	}, [toasts]);
 
-	const positionEntries = useMemo(() => 
-		Object.entries(toastsByPosition), 
-		[toastsByPosition]
+	const positionEntries = useMemo(
+		() => Object.entries(toastsByPosition),
+		[toastsByPosition],
 	);
 
 	if (toasts.length === 0) return null;
@@ -616,11 +629,13 @@ const ToastManager: React.FC<{
 	);
 });
 
-ToastManager.displayName = 'ToastManager';
+ToastManager.displayName = "ToastManager";
 
 export const Toaster: React.FC = () => {
 	const [toasts, setToasts] = useState<ToastData[]>([]);
-	const [instanceId] = useState(() => toasterInstanceManager.registerInstance());
+	const [instanceId] = useState(() =>
+		toasterInstanceManager.registerInstance(),
+	);
 
 	useEffect(() => {
 		const unsubscribe = toastState.subscribe(setToasts);
@@ -638,7 +653,5 @@ export const Toaster: React.FC = () => {
 		return null;
 	}
 
-	return (
-		<ToastManager toasts={toasts} onRemove={handleRemove} />
-	);
+	return <ToastManager toasts={toasts} onRemove={handleRemove} />;
 };

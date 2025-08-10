@@ -1,145 +1,143 @@
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
-
-import { FrameworkSelector } from "@/app/components/ui/framework-selector";
-import { DocsTabs } from "@/app/components/ui/docs-tab";
-
-import {
-	Card,
-	CardHeader,
-	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter,
-	CardActions,
-} from "@/app/components/ui/card";
-import { Button } from "@/app/components/ui/button/";
-import { Input } from "@/app/components/ui/input";
-import {
-	Alert,
-	AlertTitle,
-	AlertDescription,
-	AlertIcon,
-} from "@/app/components/ui/alert";
-import {
-	Select,
-	SelectTrigger,
-	SelectContent,
-	SelectItem,
-	SelectValue,
-} from "@/app/components/ui/select";
-import { Badge } from "@/app/components/ui/badge";
-import { Switch } from "@/app/components/ui/switch";
-import {
-	Dialog,
-	DialogTrigger,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-	DialogDescription,
-	DialogFooter,
-	DialogActions,
-	DialogClose,
-} from "@/app/components/ui/dialog";
-import {
-	Tooltip,
-	TooltipTrigger,
-	TooltipContent,
-} from "@/app/components/ui/tooltip";
-import { Checkbox } from "@/app/components/ui/checkbox";
-import { Combobox } from "@/app/components/ui/combobox";
-import {
-	Popover,
-	PopoverTrigger,
-	PopoverContent,
-} from "@/app/components/ui/popover";
-import { Avatar } from "@/app/components/ui/avatar";
-import { Textarea } from "@/app/components/ui/textarea";
-import {
-	Form,
-	FormField,
-	FormLabel,
-	FormControl,
-	FormDescription,
-	FormMessage,
-	FormActions,
-} from "@/app/components/ui/form";
-import {
-	Tabs,
-	TabsList,
-	TabsTrigger,
-	TabsContent,
-} from "@/app/components/ui/tabs";
-import {
-	Sheet,
-	SheetTrigger,
-	SheetContent,
-	SheetHeader,
-	SheetTitle,
-	SheetDescription,
-	SheetFooter,
-	SheetClose,
-} from "@/app/components/ui/sheet";
 import {
 	Accordion,
+	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-	AccordionContent,
 } from "@/app/components/ui/accordion";
 import {
+	Alert,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@/app/components/ui/alert";
+import { Avatar } from "@/app/components/ui/avatar";
+import { Badge } from "@/app/components/ui/badge";
+import {
+	Breadcrumb,
+	BreadcrumbEllipsis,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/app/components/ui/breadcrumb";
+import { Button } from "@/app/components/ui/button/";
+import { Calendar } from "@/app/components/ui/calendar";
+import {
+	Card,
+	CardActions,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/app/components/ui/card";
+import {
+	Chat,
+	ChatActions,
+	ChatDescription,
+	ChatHeader,
+	ChatInput,
+	ChatMessage,
+	ChatMessages,
+	ChatTitle,
+} from "@/app/components/ui/chat";
+import { Checkbox } from "@/app/components/ui/checkbox";
+import {
+	Pre,
+	CodeBlock as YourCustomCodeBlock,
+} from "@/app/components/ui/codeblock/codeblock";
+import { Combobox } from "@/app/components/ui/combobox";
+import {
 	ContextMenu,
-	ContextMenuTrigger,
 	ContextMenuContent,
 	ContextMenuItem,
 	ContextMenuSeparator,
 	ContextMenuSub,
-	ContextMenuSubTrigger,
 	ContextMenuSubContent,
+	ContextMenuSubTrigger,
+	ContextMenuTrigger,
 } from "@/app/components/ui/context-menu";
-import { Progress } from "@/app/components/ui/progress";
-import { toast, Toaster } from "@/app/components/ui/toast";
 import {
-	Table,
-	TableHeader,
-	TableBody,
-	TableRow,
-	TableCell,
-	TableFooter,
-	TableCaption,
-} from "@/app/components/ui/table";
-import { Spinner } from "@/app/components/ui/spinner";
-import { Slider } from "@/app/components/ui/slider";
-import { Skeleton } from "@/app/components/ui/skeleton";
-import { Calendar } from "@/app/components/ui/calendar";
-import {
-	CodeBlock as YourCustomCodeBlock,
-	Pre,
-} from "@/app/components/ui/codeblock/codeblock";
-import {
-	Chat,
-	ChatHeader,
-	ChatTitle,
-	ChatDescription,
-	ChatMessages,
-	ChatMessage,
-	ChatInput,
-	ChatActions,
-} from "@/app/components/ui/chat";
-import {
-	Breadcrumb,
-	BreadcrumbList,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-	BreadcrumbEllipsis,
-} from "@/app/components/ui/breadcrumb";
+	Dialog,
+	DialogActions,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/app/components/ui/dialog";
+import { DocsTabs } from "@/app/components/ui/docs-tab";
 import {
 	FileUpload,
-	FileUploadZone,
 	FileUploadItem,
 	FileUploadProgress,
+	FileUploadZone,
 } from "@/app/components/ui/file-upload";
+import {
+	Form,
+	FormActions,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormLabel,
+	FormMessage,
+} from "@/app/components/ui/form";
+import { FrameworkSelector } from "@/app/components/ui/framework-selector";
+import { Input } from "@/app/components/ui/input";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/app/components/ui/popover";
+import { Progress } from "@/app/components/ui/progress";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/app/components/ui/select";
+import {
+	Sheet,
+	SheetClose,
+	SheetContent,
+	SheetDescription,
+	SheetFooter,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/app/components/ui/sheet";
+import { Skeleton } from "@/app/components/ui/skeleton";
+import { Slider } from "@/app/components/ui/slider";
+import { Spinner } from "@/app/components/ui/spinner";
+import { Switch } from "@/app/components/ui/switch";
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHeader,
+	TableRow,
+} from "@/app/components/ui/table";
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/app/components/ui/tabs";
+import { Textarea } from "@/app/components/ui/textarea";
+import { Toaster, toast } from "@/app/components/ui/toast";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/app/components/ui/tooltip";
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {

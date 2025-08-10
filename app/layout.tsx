@@ -100,11 +100,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
 	return (
-		<html
-			lang="en"
-			className={`${sfpro.variable}`}
-			suppressHydrationWarning
-		>
+		<html lang="en" className={`${sfpro.variable}`} suppressHydrationWarning>
 			<body className="flex flex-col">
 				<RootProvider>{children}</RootProvider>
 			</body>

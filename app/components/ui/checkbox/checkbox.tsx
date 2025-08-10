@@ -51,7 +51,7 @@ const checkboxVariants = cva(
 				variant: "success",
 				checked: true,
 				class:
-					"bg-green-500 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50",
+					"bg-green-600/30 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50",
 			},
 			{
 				variant: "success",
@@ -63,7 +63,7 @@ const checkboxVariants = cva(
 				variant: "warning",
 				checked: true,
 				class:
-					"bg-yellow-500 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-visible:ring-yellow-500/50",
+					"bg-yellow-600/30 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-visible:ring-yellow-500/50",
 			},
 			{
 				variant: "warning",
@@ -75,7 +75,7 @@ const checkboxVariants = cva(
 				variant: "destructive",
 				checked: true,
 				class:
-					"bg-red-500 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-visible:ring-red-500/50",
+					"bg-red-600/30 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-visible:ring-red-500/50",
 			},
 			{
 				variant: "destructive",
@@ -95,11 +95,17 @@ const checkboxVariants = cva(
 
 const iconVariants = cva(
 	[
-		"text-nocta-50 dark:text-nocta-50 stroke-[3]",
+		"stroke-[3]",
 		"transition-opacity duration-200",
 	],
 	{
 		variants: {
+			variant: {
+				default: "text-nocta-50 dark:text-nocta-50",
+				success: "text-green-500 dark:green-500",
+				warning: "text-yellow-500 dark:yellow-500",
+				destructive: "text-red-500 dark:red-500",
+			},
 			size: {
 				sm: "h-2.5 w-2.5",
 				md: "h-3 w-3",
@@ -111,6 +117,7 @@ const iconVariants = cva(
 			},
 		},
 		defaultVariants: {
+			variant: "default",
 			size: "md",
 			checked: false,
 		},
@@ -148,7 +155,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
 	const CheckIcon = () => (
 		<svg
-			className={iconVariants({ size, checked })}
+			className={iconVariants({ variant, size, checked })}
 			fill="none"
 			viewBox="0 0 24 24"
 			stroke="currentColor"

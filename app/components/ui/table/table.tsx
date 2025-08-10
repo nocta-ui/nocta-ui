@@ -1,7 +1,7 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback} from "react";
+import React, { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 

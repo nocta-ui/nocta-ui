@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { Button } from "../button";
-import { type ToastPosition, toast, Toaster } from "./toast";
+import { Toaster, type ToastPosition, toast } from "./toast";
 
 // Basic demo - single toast example
 export const BasicToastDemo: React.FC = () => {
@@ -267,7 +267,6 @@ export const ToastPositionsDemo: React.FC = () => {
 };
 
 const ToastPositionsExample: React.FC = () => {
-
 	const positions = [
 		{ key: "top-left", label: "Top Left" },
 		{ key: "top-center", label: "Top Center" },

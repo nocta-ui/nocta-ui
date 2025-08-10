@@ -1,5 +1,5 @@
 export type { ToastData, ToastPosition } from "./toast";
 export {
-	toast,
 	Toaster,
+	toast,
 } from "./toast";
