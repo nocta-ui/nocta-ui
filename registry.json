@@ -78,7 +78,7 @@
 				"AlertDescription": ["children", "className"],
 				"AlertIcon": ["children", "className"]
 			},
-			"variants": ["default", "destructive", "warning", "success"],
+			"variants": ["default", "error", "warning", "success"],
 			"features": ["accessible", "dark-mode", "composable"]
 		},
 		"avatar": {
@@ -146,8 +146,7 @@
 				"secondary",
 				"destructive",
 				"success",
-				"warning",
-				"outline"
+				"warning"
 			],
 			"sizes": ["sm", "md", "lg"],
 			"features": ["hover-effects", "dark-mode"]
@@ -173,7 +172,7 @@
 			"props": {
 				"Button": ["children", "variant", "size", "className", "disabled"]
 			},
-			"variants": ["primary", "secondary", "ghost"],
+			"variants": ["primary", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"],
 			"features": ["focus-ring", "disabled-state", "dark-mode", "hover-effects"]
 		},
@@ -212,7 +211,7 @@
 				"CardFooter": ["children", "className"],
 				"CardActions": ["children", "className"]
 			},
-			"features": ["composable", "hover-shadow", "dark-mode", "backdrop-blur"]
+			"features": ["composable", "dark-mode"]
 		},
 		"calendar": {
 			"name": "Calendar",
@@ -251,7 +250,7 @@
 					"aria-label"
 				]
 			},
-			"variants": ["default", "compact"],
+			"variants": ["default"],
 			"sizes": ["sm", "md", "lg"],
 			"features": [
 				"keyboard-navigation",
@@ -663,14 +662,11 @@
 					"size",
 					"loading",
 					"emptyText",
-					"sortable",
-					"filterable",
 					"pagination",
 					"onSort",
 					"onFilter",
 					"className",
 					"rowKey",
-					"onRowClick",
 					"rowClassName"
 				],
 				"TableHeader": ["children", "className"],

@@ -3,9 +3,9 @@
 @import "fumadocs-ui/css/preset.css";
 
 @theme {
-	--color-fd-background: hsl(0, 0%, 95%);
-	--color-fd-foreground: hsl(0, 0%, 3.9%);
-	--color-fd-muted: hsl(0, 0%, 96.1%);
+	--color-fd-background: hsl(0, 0%, 92%);
+	--color-fd-foreground: hsl(0, 0%, 10%);
+	--color-fd-muted: hsl(0, 0%, 92.1%);
 	--color-fd-muted-foreground: hsl(0, 0%, 45.1%);
 	--color-fd-popover: hsl(0, 0%, 100%);
 	--color-fd-popover-foreground: hsl(0, 0%, 15.1%);
@@ -21,8 +21,8 @@
 }
 
 .dark {
-	--color-fd-background: hsl(0, 0%, 5%);
-	--color-fd-foreground: hsl(0, 0%, 98%);
+	--color-fd-background: hsl(0, 0%, 7%);
+	--color-fd-foreground: hsl(0, 0%, 92%);
 	--color-fd-muted: hsl(0, 0%, 8%);
 	--color-fd-muted-foreground: hsl(0, 0%, 60%);
 	--color-fd-popover: hsl(0, 0%, 4%);
@@ -65,8 +65,8 @@
 	.bg-custom-radial {
 		background-image: radial-gradient(
 			125% 125% at 50% 0%,
-			oklch(0.985 0 0) 50%,
-			oklch(0.708 0 0)
+			hsl(0, 0%, 92%),
+			hsl(0, 0%, 70%)
 		);
 	}
 
@@ -74,8 +74,8 @@
 	.dark .bg-custom-radial {
 		background-image: radial-gradient(
 			125% 125% at 50% 0%,
-			oklch(0.145 0 0) 50%,
-			oklch(0.205 0 0)
+			hsl(0, 0%, 7%),
+			hsl(0, 0%, 10%)
 		);
 	}
 }
