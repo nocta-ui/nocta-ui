@@ -1192,7 +1192,7 @@
 		},
 		"toast": {
 			"name": "Toast",
-			"description": "Advanced toast notification system with observer pattern, GSAP animations, positioning, and stacking",
+			"description": "Advanced toast notification system with observer pattern, CSS transition animations, positioning, and stacking",
 			"category": "feedback",
 			"files": [
 				{
@@ -1203,7 +1203,6 @@
 			],
 			"dependencies": {
 				"react": "^18.0.0",
-				"gsap": "^3.13.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
@@ -1238,7 +1237,9 @@
 			"variants": ["default", "success", "warning", "destructive"],
 			"features": [
 				"observer-pattern-architecture",
-				"gsap-powered-animations",
+				"css-transition-animations",
+				"transitionend-driven-exit",
+				"raf-driven-enter-animations",
 				"multiple-positioning-options",
 				"toast-stacking-system",
 				"auto-stacking-max-3",
@@ -1255,6 +1256,7 @@
 				"singleton-toaster-instance",
 				"imperative-api",
 				"backdrop-blur-effects",
+				"centralized-animation-config",
 				"client-component"
 			]
 		},
