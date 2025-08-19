@@ -29,7 +29,7 @@ const accordionItemVariants = cva(
 			variant: {
 				default:
 					"border-b border-nocta-300 dark:border-nocta-800/50 last:border-b-0",
-				card: "relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-lg w-full",
+				card: "relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-lg w-full",
 			},
 			isOpen: {
 				true: "",

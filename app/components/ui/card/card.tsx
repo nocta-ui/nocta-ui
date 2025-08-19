@@ -43,11 +43,11 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 		return (
 			<div
 				ref={ref}
-				className="relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-xl w-fit"
+				className="relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-xl w-fit"
 			>
 				<div
 					className={cn(
-						"bg-nocta-100 dark:bg-nocta-900 rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose",
+						"bg-nocta-100 dark:bg-nocta-900 rounded-xl shadow-md dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose",
 						className,
 					)}
 					{...props}

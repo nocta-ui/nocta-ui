@@ -12,7 +12,7 @@ const hasBackgroundColor = (className: string = "") => {
 const calendarVariants = cva(
 	[
 		"rounded-xl",
-		"shadow-sm dark:shadow-lg",
+		"shadow-md dark:shadow-lg",
 		"transition-all duration-300 ease-out",
 		"backdrop-blur-sm",
 		"overflow-hidden",
@@ -316,7 +316,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 	}, [weekStartsOn, formatWeekday]);
 
 	return (
-		<div className="relative p-[1px] bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent rounded-xl w-fit">
+		<div className="relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-xl w-fit">
 			<div
 				className={cn(
 				calendarVariants({
