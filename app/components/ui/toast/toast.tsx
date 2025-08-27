@@ -11,10 +11,7 @@ import React, {
 } from "react";
 import { cn } from "@/lib/utils";
 
-const BACKGROUND_COLOR_REGEX = /bg-(?!linear|gradient|none)\w+/;
-const hasBackgroundColor = (className: string = "") => {
-	return BACKGROUND_COLOR_REGEX.test(className);
-};
+
 
 const POSITION_CONFIGS = {
 	"top-left": {
@@ -151,7 +148,7 @@ class ToasterInstanceManager {
 const toasterInstanceManager = new ToasterInstanceManager();
 
 const toastContainerVariants = cva(
-	"fixed p-[1px] rounded-lg shadow-lg dark:shadow-xl not-prose pointer-events-auto will-change-transform",
+	"fixed rounded-lg border shadow-lg dark:shadow-xl not-prose pointer-events-auto will-change-transform transition-all duration-200 ease-in-out",
 	{
 		variants: {
 			position: {
@@ -166,13 +163,13 @@ const toastContainerVariants = cva(
 			},
 			variant: {
 				default:
-					"bg-linear-to-b from-nocta-300 dark:from-nocta-100/20 to-transparent",
+					"border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 overflow-hidden",
 				success:
-					"bg-linear-to-b from-green-200 dark:from-green-600/50 to-transparent",
+					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
 				warning:
-					"bg-linear-to-b from-yellow-200 dark:from-yellow-600/50 to-transparent",
+					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100",
 				destructive:
-					"bg-linear-to-b from-red-200 dark:from-red-600/50 to-transparent",
+					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100",
 			},
 		},
 		defaultVariants: {
@@ -183,16 +180,14 @@ const toastContainerVariants = cva(
 );
 
 const toastContentVariants = cva(
-	"rounded-lg backdrop-blur-sm overflow-hidden",
+	"relative rounded-lg overflow-hidden",
 	{
 		variants: {
 			variant: {
 				default: "",
-				success:
-					"bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
-				warning:
-					"bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100",
-				destructive: "bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100",
+				success: "",
+				warning: "",
+				destructive: "",
 			},
 		},
 		defaultVariants: {
@@ -287,10 +282,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			onClose,
 		} = toast;
 
-		const shouldOverrideBackground = useMemo(
-			() => hasBackgroundColor(className),
-			[className],
-		);
+
 
 		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
 
@@ -486,24 +478,22 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				onTransitionEnd={handleTransitionEnd}
 				data-toast-id={id}
 			>
-				<div
-					className={cn(
-						toastContentVariants({ variant }),
-						variant === "default" && !shouldOverrideBackground
-							? "bg-nocta-100 dark:bg-nocta-900"
-							: "",
-					)}
-				>
+				{variant === "default" && (
+					<span
+						aria-hidden
+						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+						style={{
+							maskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							WebkitMaskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						}}
+					/>
+				)}
+				<div className={cn(toastContentVariants({ variant }))}>
 					<button
 						onClick={handleClose}
-						className="
-          absolute top-2 right-2 p-1 rounded-md
-          text-nocta-400 dark:text-nocta-500
-          hover:text-nocta-600 dark:hover:text-nocta-300
-          hover:bg-nocta-100/50 dark:hover:bg-nocta-800/50
-          transition-colors duration-200
-          focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
-        "
+						className="absolute top-2 right-2 p-1 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100/50 dark:hover:bg-nocta-800/50 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50"
 						aria-label="Close toast"
 					>
 						<svg
@@ -536,15 +526,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 										action.onClick();
 										handleClose();
 									}}
-									className="
-                inline-flex items-center justify-center rounded-md
-                px-3 py-1.5 text-sm font-medium
-                bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
-                text-nocta-50 dark:text-nocta-900
-                hover:bg-nocta-900 dark:hover:bg-nocta-200
-                focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50
-                transition-colors duration-200 cursor-pointer
-              "
+									className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-gradient-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 hover:bg-nocta-900 dark:hover:bg-nocta-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50 transition-colors duration-200 cursor-pointer"
 								>
 									{action.label}
 								</button>

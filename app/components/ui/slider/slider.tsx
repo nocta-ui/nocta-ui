@@ -62,8 +62,6 @@ const fillVariants = cva("absolute rounded-full", {
 	variants: {
 		variant: {
 			default: "bg-nocta-600 dark:bg-nocta-400",
-			primary:
-				"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300",
 			secondary: "bg-nocta-500 dark:bg-nocta-600",
 		},
 		size: {
@@ -107,8 +105,6 @@ const thumbVariants = cva(
 			variant: {
 				default:
 					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400",
-				primary:
-					"bg-nocta-100 dark:bg-nocta-900 border-2 border-nocta-900 dark:border-nocta-100",
 				secondary:
 					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500",
 			},
@@ -145,7 +141,7 @@ export interface SliderProps
 	step?: number;
 	disabled?: boolean;
 	size?: "sm" | "md" | "lg";
-	variant?: "default" | "primary" | "secondary";
+	variant?: "default" | "secondary";
 	showValue?: boolean;
 	formatValue?: (value: number) => string;
 	onChange?: (value: number) => void;

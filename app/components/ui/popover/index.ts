@@ -1,7 +1,6 @@
 export {
 	Popover,
-	PopoverArrow,
-	type PopoverArrowProps,
+
 	PopoverContent,
 	type PopoverContentProps,
 	type PopoverProps,

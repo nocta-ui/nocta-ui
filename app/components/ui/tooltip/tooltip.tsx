@@ -10,7 +10,7 @@ const tooltipContentVariants = cva(
    border rounded-lg shadow-lg
    pointer-events-auto
    transition-opacity duration-200 ease-in-out
-   not-prose`,
+   not-prose  overflow-hidden`,
 	{
 		variants: {
 			side: {
@@ -26,19 +26,19 @@ const tooltipContentVariants = cva(
 			},
 			variant: {
 				default: `
-          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
-          text-nocta-100 dark:text-nocta-900
-          border-nocta-700 dark:border-nocta-300
+          bg-nocta-100 dark:bg-nocta-900
+          text-nocta-900 dark:text-nocta-100
+          border-nocta-200 dark:border-nocta-800
         `,
 				dark: `
-          bg-linear-to-b from-gray-900 to-gray-800
-          text-gray-100
-          border-gray-700
+          bg-nocta-100 dark:bg-nocta-900
+          text-nocta-900 dark:text-nocta-100
+          border-nocta-200 dark:border-nocta-800
         `,
 				light: `
-          bg-linear-to-b from-nocta-50 to-gray-100
-          text-gray-900
-          border-gray-300
+          bg-nocta-100 dark:bg-nocta-900
+          text-nocta-900 dark:text-nocta-100
+          border-nocta-200 dark:border-nocta-800
         `,
 			},
 		},
@@ -50,34 +50,7 @@ const tooltipContentVariants = cva(
 	},
 );
 
-const tooltipArrowVariants = cva("absolute w-2 h-2 rotate-45 border", {
-	variants: {
-		side: {
-			top: "bottom-[-5px] left-1/2 -translate-x-1/2 border-t-0 border-l-0",
-			bottom: "top-[-5px] left-1/2 -translate-x-1/2 border-b-0 border-r-0",
-			left: "right-[-5px] top-1/2 -translate-y-1/2 border-l-0 border-b-0",
-			right: "left-[-5px] top-1/2 -translate-y-1/2 border-r-0 border-t-0",
-		},
-		variant: {
-			default: `
-          bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300
-          border-nocta-700 dark:border-nocta-300
-        `,
-			dark: `
-          bg-linear-to-b from-gray-900 to-gray-800
-          border-gray-700
-        `,
-			light: `
-          bg-linear-to-b from-nocta-50 to-gray-100
-          border-gray-300
-        `,
-		},
-	},
-	defaultVariants: {
-		side: "top",
-		variant: "default",
-	},
-});
+
 
 export interface TooltipProps {
 	children: React.ReactNode;
@@ -99,7 +72,7 @@ export interface TooltipContentProps
 	className?: string;
 	sideOffset?: number;
 	alignOffset?: number;
-	showArrow?: boolean;
+
 }
 
 interface TooltipContextType {
@@ -266,7 +239,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	variant = "default",
 	sideOffset = 8,
 	alignOffset = 0,
-	showArrow = true,
+
 	onMouseEnter,
 	onMouseLeave,
 	...props
@@ -473,11 +446,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 		>
 			{children}
 
-			{showArrow && !isMeasuring && (
-				<div
-					className={cn(tooltipArrowVariants({ side: actualSide, variant }))}
-				/>
-			)}
+
 		</div>
 	);
 

@@ -14,21 +14,6 @@ export const BasicSliderDemo: React.FC = () => {
 	);
 };
 
-export const PrimarySliderDemo: React.FC = () => {
-	const [value, setValue] = useState(75);
-
-	return (
-		<div className="my-6 w-48">
-			<Slider
-				variant="primary"
-				value={value}
-				onChange={setValue}
-				aria-label="Primary slider"
-			/>
-		</div>
-	);
-};
-
 export const SecondarySliderDemo: React.FC = () => {
 	const [value, setValue] = useState(25);
 
@@ -46,7 +31,6 @@ export const SecondarySliderDemo: React.FC = () => {
 
 export const VariantsDemo: React.FC = () => {
 	const [defaultValue, setDefaultValue] = useState(30);
-	const [primaryValue, setPrimaryValue] = useState(60);
 	const [secondaryValue, setSecondaryValue] = useState(80);
 
 	return (
@@ -60,17 +44,6 @@ export const VariantsDemo: React.FC = () => {
 					value={defaultValue}
 					onChange={setDefaultValue}
 					aria-label="Default variant slider"
-				/>
-			</div>
-			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
-					Primary
-				</label>
-				<Slider
-					variant="primary"
-					value={primaryValue}
-					onChange={setPrimaryValue}
-					aria-label="Primary variant slider"
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
@@ -141,7 +114,7 @@ export const WithValueDemo: React.FC = () => {
 				value={value}
 				onChange={setValue}
 				showValue
-				variant="primary"
+				variant="default"
 				aria-label="Slider with value display"
 			/>
 		</div>
@@ -166,7 +139,7 @@ export const CustomRangeDemo: React.FC = () => {
 					onChange={setTemperature}
 					showValue
 					formatValue={(val) => `${val}°C`}
-					variant="primary"
+					variant="default"
 					aria-label="Temperature slider"
 				/>
 			</div>
@@ -217,7 +190,7 @@ export const StepDemo: React.FC = () => {
 					value={value}
 					onChange={setValue}
 					showValue
-					variant="primary"
+					variant="default"
 					aria-label="Stepped slider"
 				/>
 			</div>
@@ -237,12 +210,12 @@ export const VerticalDemo: React.FC = () => {
 						orientation="vertical"
 						value={value1}
 						onChange={setValue1}
-						variant="primary"
+						variant="default"
 						className="h-full"
 						aria-label="Vertical slider 1"
 					/>
 					<span className="text-xs text-nocta-600 dark:text-nocta-400">
-						Primary
+						Default
 					</span>
 				</div>
 				<div className="flex flex-col items-center gap-2 h-48">
@@ -285,7 +258,7 @@ export const PriceRangeDemo: React.FC = () => {
 						step={100}
 						value={budget}
 						onChange={setBudget}
-						variant="primary"
+						variant="default"
 						size="lg"
 						aria-label="Budget range slider"
 					/>

@@ -12,47 +12,6 @@ export const BasicSpinnerDemo: React.FC = () => {
 	);
 };
 
-export const PrimarySpinnerDemo: React.FC = () => {
-	return (
-		<div className="my-6">
-			<Spinner variant="primary" />
-		</div>
-	);
-};
-
-export const SecondarySpinnerDemo: React.FC = () => {
-	return (
-		<div className="my-6">
-			<Spinner variant="secondary" />
-		</div>
-	);
-};
-
-export const VariantsDemo: React.FC = () => {
-	return (
-		<div className="my-6 flex flex-wrap items-center gap-6">
-			<div className="flex flex-col items-center gap-2">
-				<Spinner variant="default" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
-					Default
-				</span>
-			</div>
-			<div className="flex flex-col items-center gap-2">
-				<Spinner variant="primary" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
-					Primary
-				</span>
-			</div>
-			<div className="flex flex-col items-center gap-2">
-				<Spinner variant="secondary" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
-					Secondary
-				</span>
-			</div>
-		</div>
-	);
-};
-
 export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 flex flex-wrap items-center gap-6">
@@ -97,7 +56,6 @@ export const LoadingButtonDemo: React.FC = () => {
 					<div className="flex items-center gap-2">
 						<Spinner
 							size="sm"
-							variant="primary"
 							className="text-nocta-50 dark:text-nocta-900"
 						/>
 						<span>Loading...</span>

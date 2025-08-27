@@ -13,7 +13,6 @@ import {
   AlignmentDemo,
   RichContentDemo,
   DelayDurationDemo,
-  WithoutArrowDemo
 } from '@/app/components/ui/tooltip/tooltip-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
@@ -206,26 +205,6 @@ The Tooltip components accept a `className` prop for custom styling:
 </TooltipContent>
 ```
 
-### Without Arrow
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <WithoutArrowDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Tooltip Without Arrow"
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="secondary">No Arrow</Button>
-      </TooltipTrigger>
-      <TooltipContent showArrow={false}>
-        Tooltip without arrow
-      </TooltipContent>
-    </Tooltip>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Controlled Tooltip
 
 For programmatic control, you can use the `open` and `onOpenChange` props:
@@ -292,6 +271,5 @@ The tooltip content that appears on hover/focus.
 | `align` | `'start' \| 'center' \| 'end'` | `'center'` | Tooltip alignment |
 | `sideOffset` | `number` | `8` | Distance from trigger |
 | `alignOffset` | `number` | `0` | Alignment offset |
-| `showArrow` | `boolean` | `true` | Show tooltip arrow |
 | `children` | `React.ReactNode` | - | Tooltip content |
 ``` 

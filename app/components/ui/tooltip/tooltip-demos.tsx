@@ -191,16 +191,3 @@ export const DelayDurationDemo: React.FC = () => {
 		</div>
 	);
 };
-
-export const WithoutArrowDemo: React.FC = () => {
-	return (
-		<div className="my-6 flex justify-center">
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button variant="secondary">No Arrow</Button>
-				</TooltipTrigger>
-				<TooltipContent showArrow={false}>Tooltip without arrow</TooltipContent>
-			</Tooltip>
-		</div>
-	);
-};

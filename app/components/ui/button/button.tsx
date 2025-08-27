@@ -3,16 +3,16 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
 				primary:
-					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 hover:contrast-125 text-nocta-50 dark:text-nocta-900 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
+					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50 hover:contrast-115 text-nocta-100 dark:text-nocta-100 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
 				secondary:
-					"bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 border border-nocta-300 dark:border-nocta-600",
+					"bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50 border border-nocta-300 dark:border-nocta-800/80",
 				ghost:
-					"text-nocta-700 dark:text-nocta-300 hover:bg-nocta-200 dark:hover:bg-nocta-900 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
+					"text-nocta-700 dark:text-nocta-300 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
 				icon: "text-nocta-700 dark:text-nocta-300 hover:bg-nocta-200 dark:hover:bg-nocta-900 focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
 			},
 			size: {
@@ -74,6 +74,7 @@ export const Button: React.FC<ButtonProps> = ({
 	...props
 }) => {
 	const shouldOverrideBackground = hasBackgroundColor(className);
+	const isPrimary = variant === "primary";
 
 	return (
 		<button
@@ -83,10 +84,34 @@ export const Button: React.FC<ButtonProps> = ({
 					size,
 					hasCustomBackground: shouldOverrideBackground,
 				}),
+				isPrimary && "relative",
 				className,
 			)}
 			{...props}
 		>
+			{isPrimary && (
+				<>
+					<span
+						aria-hidden
+						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+						style={{
+							maskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							WebkitMaskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						}}
+					/>
+
+					<span
+						aria-hidden
+						className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-lg opacity-60"
+						style={{
+							background:
+								"linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
+						}}
+					/>
+				</>
+			)}
 			{children}
 		</button>
 	);

@@ -6,8 +6,8 @@ import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
-	`relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent 
-   rounded-xl shadow-xl dark:shadow-2xl backdrop-blur-sm not-prose 
+	`relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-800
+   rounded-xl shadow-xl dark:shadow-2xl not-prose overflow-hidden
    transition-all duration-300 ease-out`,
 	{
 		variants: {
@@ -318,34 +318,40 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 					"transform transition-all duration-300 ease-out",
 					className,
 				)}
+				role="dialog"
+				aria-modal="true"
+				aria-describedby="dialog-description"
+				{...props}
 			>
-				<div
-					className="relative z-50 w-full bg-nocta-100 dark:bg-nocta-900 rounded-xl"
-					role="dialog"
-					aria-modal="true"
-					aria-describedby="dialog-description"
-					{...props}
-				>
-					{showClose && (
-						<DialogClose className="absolute right-4 top-4 z-10">
-							<svg
-								className="h-4 w-4"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
-							<span className="sr-only">Close</span>
-						</DialogClose>
-					)}
-					{children}
-				</div>
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+					style={{
+						maskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						WebkitMaskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					}}
+				/>
+				{showClose && (
+					<DialogClose className="absolute right-4 top-4 z-10">
+						<svg
+							className="h-4 w-4"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth={2}
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+						<span className="sr-only">Close</span>
+					</DialogClose>
+				)}
+				{children}
 			</div>
 		</div>
 	);

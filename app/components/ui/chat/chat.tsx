@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
 	[
-		"relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent",
-		"rounded-xl shadow-sm dark:shadow-lg transition-all duration-300 ease-out",
-		"backdrop-blur-sm overflow-hidden not-prose",
+		"relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-50/5",
+		"rounded-xl shadow-lg transition-all duration-300 ease-out",
+		"overflow-hidden not-prose",
 	],
 	{
 		variants: {
 			variant: {
-				default: "bg-nocta-100 dark:bg-nocta-900",
+				default: "",
 			},
 		},
 		defaultVariants: {
@@ -233,7 +233,17 @@ export const Chat: React.FC<ChatProps> = ({
 }) => {
 	return (
 		<div className={cn(chatVariants({ variant }), className)} {...props}>
-			<div className="bg-nocta-100 dark:bg-nocta-900 rounded-xl h-full flex flex-col">
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
+			<div className="rounded-xl h-full flex flex-col">
 				{children}
 				<ChatMessages
 					messages={messages}
@@ -514,9 +524,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 						"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
 						"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300",
+						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50",
 						"hover:contrast-125",
-						"text-nocta-50 dark:text-nocta-900",
+						"text-nocta-900 dark:text-nocta-100",
 					)}
 				>
 					<svg

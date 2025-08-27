@@ -16,28 +16,31 @@ const comboboxVariants = cva(
 		variants: {
 			variant: {
 				default: `
-          border-nocta-300 dark:border-nocta-800/50
-          bg-nocta-50 dark:bg-nocta-950
+          border-nocta-200 dark:border-nocta-800/50
+          bg-nocta-100 dark:bg-nocta-900
           text-nocta-900 dark:text-nocta-100
-          hover:border-nocta-300/50 dark:hover:border-nocta-600/50
+          hover:border-nocta-300 dark:hover:border-nocta-700
           focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
           focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+          shadow-sm
         `,
 				error: `
           border-red-300 dark:border-red-700/50
-          bg-nocta-50 dark:bg-nocta-950
+          bg-nocta-100 dark:bg-nocta-900
           text-nocta-900 dark:text-nocta-100
-          hover:border-red-400/50 dark:hover:border-red-600/50
+          hover:border-red-400 dark:hover:border-red-600
           focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
           focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50
+          shadow-sm
         `,
 				success: `
           border-green-300 dark:border-green-700/50
-          bg-nocta-50 dark:bg-nocta-950
+          bg-nocta-100 dark:bg-nocta-900
           text-nocta-900 dark:text-nocta-100
-          hover:border-green-400/50 dark:hover:border-green-600/50
+          hover:border-green-400 dark:hover:border-green-600
           focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
           focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50
+          shadow-sm
         `,
 			},
 			size: {
@@ -331,7 +334,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 				<div
 					ref={listRef}
 					className={cn(
-						"absolute z-50 mt-1 w-full rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-nocta-950 shadow-lg dark:shadow-xl",
+						"absolute z-50 mt-1 w-full rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl overflow-hidden",
 						`transform transition-all duration-200 ease-out origin-top ${
 							isVisible
 								? "translate-y-0 opacity-100"
@@ -340,8 +343,19 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						popoverClassName,
 					)}
 				>
+					<span
+						aria-hidden
+						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+						style={{
+							maskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							WebkitMaskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						}}
+					/>
+					
 					{searchable && (
-						<div className="p-1 border-b border-nocta-300 dark:border-nocta-800/50">
+						<div className="p-1 border-b border-nocta-200 dark:border-nocta-800/50">
 							<input
 								ref={searchInputRef}
 								type="text"
@@ -363,7 +377,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						className="max-h-60 overflow-auto py-1 flex flex-col gap-1"
 					>
 						{filteredOptions.length === 0 ? (
-							<div className="px-3 py-2 text-sm text-nocta-500 dark:text-nocta-400 text-center mx-1">
+							<div className="px-3 py-2 text-sm text-nocta-600 dark:text-nocta-400 text-center mx-1">
 								{emptyMessage}
 							</div>
 						) : (
@@ -376,12 +390,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									role="option"
 									aria-selected={option.value === value}
 									className={cn(
-										"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900",
+										"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800",
 										highlightedIndex === index
-											? "bg-nocta-100 dark:bg-nocta-900"
+											? "bg-nocta-200 dark:bg-nocta-800"
 											: "",
 										option.value === value
-											? "bg-nocta-100 dark:bg-nocta-900 font-medium"
+											? "bg-nocta-200 dark:bg-nocta-800 font-medium"
 											: "",
 										option.disabled
 											? "opacity-50 cursor-not-allowed pointer-events-none"

@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 const selectTriggerVariants = cva(
 	`flex w-fit items-center justify-between
-   rounded-lg border border-nocta-300 dark:border-nocta-800/50
-   bg-nocta-50 dark:bg-nocta-950
-   hover:border-nocta-300/50 dark:hover:border-nocta-600/50
+   rounded-lg border border-nocta-200 dark:border-nocta-800/50
+   bg-nocta-100 dark:bg-nocta-900
+   hover:border-nocta-300 dark:hover:border-nocta-700
    placeholder:text-nocta-400 dark:placeholder:text-nocta-500
    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
    focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-   focus-visible:border-nocta-900 dark:focus-visible:border-nocta-100
+   focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
-   transition-all duration-200 ease-out
+   transition-all duration-200 ease-out shadow-sm
    not-prose`,
 	{
 		variants: {
@@ -433,23 +433,33 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				}`;
 
 	return (
-		<div
-			ref={contentRef}
-			id={contentId}
-			role="listbox"
-			className={cn(
-				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-nocta-950 shadow-lg dark:shadow-xl",
-				positionStyles[position],
-				animationStyles,
-				"not-prose",
-				className,
-			)}
-		>
-			<div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
-				{children}
+			<div
+				ref={contentRef}
+				id={contentId}
+				role="listbox"
+				className={cn(
+					"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl",
+					positionStyles[position],
+					animationStyles,
+					"not-prose",
+					className,
+				)}
+			>
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+					style={{
+						maskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						WebkitMaskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					}}
+				/>
+				<div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
+					{children}
+				</div>
 			</div>
-		</div>
-	);
+		);
 };
 
 export const SelectItem: React.FC<SelectItemProps> = ({
@@ -497,9 +507,9 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			role="option"
 			aria-selected={isSelected}
 			className={cn(
-				"relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800",
-				isSelected ? "bg-nocta-100 dark:bg-nocta-900" : "",
-				isFocused ? "bg-nocta-100 dark:bg-nocta-900" : "",
+				"relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800",
+				isSelected ? "bg-nocta-200 dark:bg-nocta-800 font-medium" : "",
+				isFocused ? "bg-nocta-200 dark:bg-nocta-800" : "",
 				disabled
 					? "pointer-events-none opacity-50"
 					: "transition-colors duration-150 not-prose",

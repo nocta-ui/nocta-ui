@@ -12,9 +12,8 @@ const hasBackgroundColor = (className: string = "") => {
 const calendarVariants = cva(
 	[
 		"rounded-xl",
-		"shadow-md dark:shadow-lg",
+		"shadow-lg",
 		"transition-all duration-300 ease-out",
-		"backdrop-blur-sm",
 		"overflow-hidden",
 		"not-prose",
 		"text-xs",
@@ -316,19 +315,29 @@ export const Calendar: React.FC<CalendarProps> = ({
 	}, [weekStartsOn, formatWeekday]);
 
 	return (
-		<div className="relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-xl w-fit">
-			<div
-				className={cn(
+		<div
+			className={cn(
 				calendarVariants({
 					disabled,
 					hasCustomBackground: shouldOverrideBackground,
 				}),
+				"relative border border-nocta-200 dark:border-nocta-50/5 overflow-hidden",
 				className,
 			)}
-				role="application"
-				aria-label={ariaLabel || "Calendar"}
-				{...props}
-			>
+			role="application"
+			aria-label={ariaLabel || "Calendar"}
+			{...props}
+		>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
 				<div
 					className={cn(
 					"flex items-center justify-between border-b border-nocta-100 dark:border-nocta-800/50",
@@ -518,7 +527,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 						)}
 					</div>
 				</div>
-			</div>
 		</div>
 	);
 };

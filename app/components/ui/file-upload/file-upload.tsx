@@ -17,7 +17,7 @@ const fileUploadVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"border-2 border-dashed border-nocta-300 dark:border-nocta-700",
+					"border border-dashed border-nocta-300 dark:border-nocta-700",
 					"hover:border-nocta-400 dark:hover:border-nocta-600",
 					"bg-nocta-50 dark:bg-nocta-900",
 				],
@@ -615,7 +615,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 									"disabled:opacity-50 disabled:cursor-not-allowed",
 								)}
 							>
-								{isUploading && <Spinner size="sm" variant="secondary" />}
+								{isUploading && <Spinner size="sm" variant="default" />}
 								{isUploading
 									? `Uploading ${uploadingFiles.length} file${uploadingFiles.length > 1 ? "s" : ""}...`
 									: `Upload ${pendingFiles.length} file${pendingFiles.length > 1 ? "s" : ""}`}

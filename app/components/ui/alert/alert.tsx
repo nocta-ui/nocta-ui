@@ -3,12 +3,12 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-	"relative rounded-lg border px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit not-prose",
+	"relative rounded-lg border border-nocta-200 dark:border-nocta-50/5 px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit shadow-lg not-prose",
 	{
 		variants: {
 			variant: {
 				default:
-					"border-nocta-300 dark:border-nocta-800/50 bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 [&>svg]:text-nocta-600 dark:[&>svg]:text-nocta-400",
+					"border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 [&>svg]:text-nocta-600 dark:[&>svg]:text-nocta-400 overflow-hidden",
 				destructive:
 					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
 				warning:
@@ -101,6 +101,18 @@ export const Alert: React.FC<AlertProps> = ({
 			className={cn(alertVariants({ variant, size }), className)}
 			{...props}
 		>
+			{variant === "default" && (
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+					style={{
+						maskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						WebkitMaskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					}}
+				/>
+			)}
 			{React.Children.map(children, (child, index) => {
 				if (React.isValidElement(child) && child.type === AlertIcon) {
 					return child;

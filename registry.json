@@ -423,8 +423,7 @@
 			"exports": [
 				"Popover",
 				"PopoverTrigger",
-				"PopoverContent",
-				"PopoverArrow"
+				"PopoverContent"
 			],
 			"props": {
 				"Popover": ["open", "defaultOpen", "onOpenChange"],
@@ -438,8 +437,7 @@
 					"className",
 					"onEscapeKeyDown",
 					"onPointerDownOutside"
-				],
-				"PopoverArrow": ["width", "height", "className"]
+				]
 			},
 			"variants": [],
 			"sizes": [],
@@ -577,7 +575,7 @@
 				"Spinner": ["size", "variant", "className"]
 			},
 			"sizes": ["sm", "md", "lg"],
-			"variants": ["default", "primary", "secondary"],
+			"variants": ["default"],
 			"features": [
 				"smooth-animations",
 				"dark-mode",
@@ -934,9 +932,7 @@
 					"side",
 					"align",
 					"sideOffset",
-					"alignOffset",
-					"arrowPadding",
-					"showArrow"
+					"alignOffset"
 				]
 			},
 			"sides": ["top", "bottom", "left", "right"],
@@ -948,7 +944,6 @@
 				"hover-delay",
 				"keyboard-support",
 				"animations",
-				"arrow-support",
 				"composable",
 				"controlled-uncontrolled",
 				"dark-mode",

@@ -6,7 +6,6 @@ description: A customizable range slider component with variants, orientations, 
 import { Slider } from '@/app/components/ui/slider';
 import { 
   BasicSliderDemo,
-  PrimarySliderDemo,
   SecondarySliderDemo,
   VariantsDemo,
   SizesDemo,
@@ -56,23 +55,6 @@ import { Slider } from '@/components/ui/slider';
   </DocsTab>
 </DocsTabs>
 
-### Primary Slider
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <PrimarySliderDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Primary Slider"
-    <Slider 
-      variant="primary"
-      value={value} 
-      onChange={setValue}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ### Secondary Slider
 
 <DocsTabs defaultValue="preview">
@@ -92,7 +74,7 @@ import { Slider } from '@/components/ui/slider';
 
 ## Variants
 
-The Slider component supports three variants: `default`, `primary`, and `secondary`.
+The Slider component supports three variants: `default` and `secondary`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -101,7 +83,6 @@ The Slider component supports three variants: `default`, `primary`, and `seconda
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Slider Variants"
     <Slider variant="default" value={value} onChange={setValue} />
-    <Slider variant="primary" value={value} onChange={setValue} />
     <Slider variant="secondary" value={value} onChange={setValue} />
     ```
   </DocsTab>
@@ -138,7 +119,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       value={value} 
       onChange={setValue}
       showValue
-      variant="primary"
+      variant="default"
     />
     ```
   </DocsTab>
@@ -161,7 +142,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       onChange={setTemperature}
       showValue
       formatValue={(val) => `${val}°C`}
-      variant="primary"
+      variant="default"
     />
 
     // Volume slider  
@@ -192,7 +173,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       value={value} 
       onChange={setValue}
       showValue
-      variant="primary"
+      variant="default"
     />
     ```
   </DocsTab>
@@ -210,7 +191,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       orientation="vertical"
       value={value} 
       onChange={setValue}
-      variant="primary"
+      variant="default"
       className="h-48"
     />
     ```
@@ -292,7 +273,7 @@ The Slider component includes comprehensive accessibility features:
 | `step` | `number` | `1` | Step increment |
 | `disabled` | `boolean` | `false` | Disable the slider |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Slider size |
-| `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Slider style variant |
+| `variant` | `'default' \| 'secondary'` | `'default'` | Slider style variant |
 | `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider orientation |
 | `showValue` | `boolean` | `false` | Show current value |
 | `formatValue` | `(value: number) => string` | `(value) => value.toString()` | Custom value formatter |

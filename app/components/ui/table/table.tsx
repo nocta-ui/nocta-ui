@@ -10,7 +10,7 @@ const hasBackgroundColor = (className: string = "") => {
 };
 
 const tableContainerVariants = cva(
-	"rounded-xl shadow-md dark:shadow-lg backdrop-blur-sm overflow-hidden",
+	"rounded-xl overflow-hidden",
 	{
 		variants: {
 			variant: {
@@ -176,14 +176,24 @@ export const Table = <T extends Record<string, unknown>>({
 	);
 
 	return (
-		<div className="not-prose relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-xl">
-			<div
-				className={cn(
-					tableContainerVariants({ variant }),
-					shouldOverrrideBackground ? "" : "bg-nocta-100 dark:bg-nocta-900",
-					className,
-				)}
-			>
+		<div
+			className={cn(
+				tableContainerVariants({ variant }),
+				"not-prose relative border border-nocta-200 dark:border-nocta-50/5 shadow-lg",
+				shouldOverrrideBackground ? "" : "bg-nocta-100 dark:bg-nocta-900",
+				className,
+			)}
+		>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
 				<div className="overflow-x-auto">
 					<table className={cn(tableVariants({ size }))} {...props}>
 						<TableHeader>
@@ -210,7 +220,7 @@ export const Table = <T extends Record<string, unknown>>({
 										className="py-12"
 									>
 										<div className="flex items-center justify-center">
-											<Spinner size="lg" variant="primary" />
+											<Spinner size="lg" variant="default" />
 										</div>
 									</TableCell>
 								</TableRow>
@@ -306,7 +316,6 @@ export const Table = <T extends Record<string, unknown>>({
 						</div>
 					</div>
 				)}
-			</div>
 		</div>
 	);
 };

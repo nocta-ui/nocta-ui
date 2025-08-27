@@ -10,11 +10,7 @@ const popoverTriggerVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-nocta-300 dark:border-nocta-800/50 bg-nocta-50 dark:bg-neutral-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900",
-				outline:
-					"border-nocta-300 dark:border-nocta-700 bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-800",
-				ghost:
-					"border-transparent bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-800",
+					"border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-neutral-900 text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900",
 			},
 			size: {
 				sm: "px-2 py-1 text-xs",
@@ -30,7 +26,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-nocta-100 dark:bg-nocta-900 p-4 shadow-lg dark:shadow-xl not-prose",
+	"w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-nocta-100 dark:bg-nocta-900 p-4 shadow-lg dark:shadow-xl not-prose relative overflow-hidden border border-nocta-200 dark:border-nocta-800",
 	{
 		variants: {
 			size: {
@@ -90,21 +86,7 @@ const popoverAnimationVariants = cva(
 	},
 );
 
-const popoverArrowVariants = cva(
-	"fill-nocta-50 dark:fill-nocta-900 stroke-nocta-200 dark:stroke-nocta-700/50",
-	{
-		variants: {
-			size: {
-				sm: "w-2 h-1",
-				md: "w-3 h-1.5",
-				lg: "w-4 h-2",
-			},
-		},
-		defaultVariants: {
-			size: "md",
-		},
-	},
-);
+
 
 export interface PopoverProps {
 	children: React.ReactNode;
@@ -133,12 +115,7 @@ export interface PopoverContentProps
 	onPointerDownOutside?: (event: PointerEvent) => void;
 }
 
-export interface PopoverArrowProps
-	extends VariantProps<typeof popoverArrowVariants> {
-	className?: string;
-	width?: number;
-	height?: number;
-}
+
 
 const PopoverContext = React.createContext<{
 	open: boolean;
@@ -481,41 +458,22 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 				zIndex: 50,
 			}}
 			className={cn(
-				"relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-lg",
+				popoverContentVariants({ size }),
 				popoverAnimationVariants({ side: actualSide, state: animationState }),
+				className,
 			)}
 		>
-			<div className={cn(popoverContentVariants({ size }), className)}>
-				{children}
-			</div>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
+			{children}
 		</div>
-	);
-};
-
-export const PopoverArrow: React.FC<PopoverArrowProps> = ({
-	className = "",
-	width = 12,
-	height = 6,
-	size = "md",
-}) => {
-	const sizes = {
-		sm: { width: 8, height: 4 },
-		md: { width: 12, height: 6 },
-		lg: { width: 16, height: 8 },
-	};
-
-	const currentSize = sizes[size || "md"];
-	const actualWidth = width ?? currentSize.width;
-	const actualHeight = height ?? currentSize.height;
-
-	return (
-		<svg
-			width={actualWidth}
-			height={actualHeight}
-			viewBox="0 0 12 6"
-			className={cn(popoverArrowVariants({ size }), className)}
-		>
-			<path d="M0 6L6 0L12 6" strokeWidth={1} />
-		</svg>
 	);
 };

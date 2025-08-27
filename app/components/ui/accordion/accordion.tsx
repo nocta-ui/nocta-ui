@@ -29,7 +29,7 @@ const accordionItemVariants = cva(
 			variant: {
 				default:
 					"border-b border-nocta-300 dark:border-nocta-800/50 last:border-b-0",
-				card: "relative p-[1px] bg-linear-to-b from-nocta-200 dark:from-nocta-100/20 to-transparent rounded-lg w-full",
+				card: "rounded-lg",
 			},
 			isOpen: {
 				true: "",
@@ -371,7 +371,17 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="bg-nocta-100 dark:bg-nocta-900 rounded-lg shadow-sm dark:shadow-lg transition-all duration-300 ease-out backdrop-blur-sm overflow-hidden not-prose">
+						<div className="relative bg-nocta-100 dark:bg-nocta-900 border rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-out not-prose">
+							<span
+								aria-hidden
+								className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+								style={{
+									maskImage:
+										"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+									WebkitMaskImage:
+										"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+								}}
+							/>
 							{children}
 						</div>
 					</div>
