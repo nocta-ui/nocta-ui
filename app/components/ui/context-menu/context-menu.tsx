@@ -14,9 +14,9 @@ import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const contextMenuContentVariants = cva(
-	`z-50 min-w-[10rem] overflow-hidden rounded-md border
-   bg-nocta-50 dark:bg-nocta-950 border-nocta-300 dark:border-nocta-800
-   p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
+	`z-50 min-w-[10rem] overflow-hidden rounded-lg border
+   bg-nocta-100 dark:bg-nocta-900 border-nocta-200 dark:border-nocta-50/5
+   p-1 text-nocta-900 dark:text-nocta-100 shadow-lg dark:shadow-xl
    not-prose`,
 	{
 		variants: {
@@ -380,20 +380,15 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 				const firstElement = focusableElements[0];
 				const lastElement = focusableElements[focusableElements.length - 1];
 				const activeElement = document.activeElement as HTMLElement;
+				const isActiveInMenu = contentRef.current?.contains(activeElement);
 
 				if (e.shiftKey) {
-					if (
-						activeElement === firstElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
+					if (activeElement === firstElement || !isActiveInMenu) {
 						e.preventDefault();
 						lastElement.focus({ preventScroll: true });
 					}
 				} else {
-					if (
-						activeElement === lastElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
+					if (activeElement === lastElement || !isActiveInMenu) {
 						e.preventDefault();
 						firstElement.focus({ preventScroll: true });
 					}
@@ -411,14 +406,14 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 			switch (e.key) {
 				case "ArrowDown": {
 					e.preventDefault();
-					const nextIndex =
+					const nextIndex = currentIndex === -1 ? 0 :
 						currentIndex < focusableElements.length - 1 ? currentIndex + 1 : 0;
 					focusableElements[nextIndex]?.focus({ preventScroll: true });
 					break;
 				}
 				case "ArrowUp": {
 					e.preventDefault();
-					const prevIndex =
+					const prevIndex = currentIndex === -1 ? focusableElements.length - 1 :
 						currentIndex > 0 ? currentIndex - 1 : focusableElements.length - 1;
 					focusableElements[prevIndex]?.focus({ preventScroll: true });
 					break;
@@ -467,17 +462,6 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 		};
 	}, [open, onPointerDownOutside, setOpen, contentRef]);
 
-	useEffect(() => {
-		if (open && isVisible && contentRef.current) {
-			const firstFocusable = contentRef.current.querySelector(
-				'[role="menuitem"]:not([disabled])',
-			) as HTMLElement;
-			if (firstFocusable) {
-				firstFocusable.focus({ preventScroll: true });
-			}
-		}
-	}, [open, isVisible, contentRef]);
-
 	if (!shouldRender || typeof window === "undefined") {
 		return null;
 	}
@@ -494,28 +478,38 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   `;
 
 	return createPortal(
-		<div
-			ref={contentRef}
-			className={cn(
-				contextMenuContentVariants({ side, align }),
-				animationStyles,
-				className,
-			)}
-			style={{
-				position: "fixed",
-				top: calculatedPosition ? `${calculatedPosition.top}px` : "0px",
-				left: calculatedPosition ? `${calculatedPosition.left}px` : "0px",
-			}}
-			role="menu"
-			aria-orientation="vertical"
-			data-state={open ? "open" : "closed"}
-			data-side={side}
-			{...props}
-		>
-			<div className="flex flex-col gap-1">{children}</div>
-		</div>,
-		document.body,
-	);
+			<div
+				ref={contentRef}
+				className={cn(
+					contextMenuContentVariants({ side, align }),
+					animationStyles,
+					className,
+				)}
+				style={{
+					position: "fixed",
+					top: calculatedPosition ? `${calculatedPosition.top}px` : "0px",
+					left: calculatedPosition ? `${calculatedPosition.left}px` : "0px",
+				}}
+				role="menu"
+				aria-orientation="vertical"
+				data-state={open ? "open" : "closed"}
+				data-side={side}
+				{...props}
+			>
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+					style={{
+						maskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						WebkitMaskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					}}
+				/>
+				<div className="flex flex-col gap-1">{children}</div>
+			</div>,
+			document.body,
+		);
 };
 
 export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
@@ -527,19 +521,29 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 	...props
 }) => {
 	const { setOpen } = useContextMenu();
+	const subContext = useContext(ContextMenuSubContext);
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		if (disabled) return;
-		onClick?.(e);
+		
+		if (subContext) {
+			if (subContext.hoverTimeoutRef.current) {
+				clearTimeout(subContext.hoverTimeoutRef.current);
+				subContext.hoverTimeoutRef.current = null;
+			}
+			subContext.setOpen(false);
+		}
+		
 		setOpen(false);
+		onClick?.(e);
 	};
 
 	const baseStyles = `
-    w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800
-    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-50 data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-nocta-100 dark:hover:bg-nocta-900
-    hover:text-nocta-900 dark:hover:text-nocta-50
+    w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
+    outline-none transition-colors focus-visible:bg-nocta-200 dark:focus-visible:bg-nocta-800
+    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-100 data-[disabled]:pointer-events-none
+    data-[disabled]:opacity-50 hover:bg-nocta-200 dark:hover:bg-nocta-800
+    hover:text-nocta-900 dark:hover:text-nocta-100
   `;
 
 	return (
@@ -561,12 +565,12 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={`-mx-1 my-1 h-px bg-nocta-200 dark:bg-nocta-900 ${className}`}
-			role="separator"
-			{...props}
-		/>
-	);
+			<div
+				className={`-mx-1 my-1 h-px bg-nocta-200 dark:bg-nocta-800/50 ${className}`}
+				role="separator"
+				{...props}
+			/>
+		);
 };
 
 export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({
@@ -664,11 +668,11 @@ export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
 	};
 
 	const baseStyles = `
-    w-full relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
-    outline-none transition-colors focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800
-    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-50 data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-nocta-100 dark:hover:bg-nocta-900
-    hover:text-nocta-900 dark:hover:text-nocta-50
+    w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
+    outline-none transition-colors focus-visible:bg-nocta-200 dark:focus-visible:bg-nocta-800
+    focus-visible:text-nocta-900 dark:focus-visible:text-nocta-100 data-[disabled]:pointer-events-none
+    data-[disabled]:opacity-50 hover:bg-nocta-200 dark:hover:bg-nocta-800
+    hover:text-nocta-900 dark:hover:text-nocta-100
   `;
 
 	return (
@@ -861,9 +865,9 @@ export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
 	}
 
 	const baseStyles = `
-    z-50 min-w-[8rem] overflow-hidden rounded-md border
-    bg-nocta-50 dark:bg-nocta-950 border-nocta-300 dark:border-nocta-800
-    p-1 text-nocta-950 dark:text-nocta-50 shadow-lg
+    z-50 min-w-[8rem] overflow-hidden rounded-lg border
+    bg-nocta-100 dark:bg-nocta-900 border-nocta-200 dark:border-nocta-800/50
+    p-1 text-nocta-900 dark:text-nocta-100 shadow-lg
     transition-opacity transition-transform duration-200 not-prose
     ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}
   `;
