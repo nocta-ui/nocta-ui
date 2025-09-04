@@ -19,7 +19,7 @@ const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
       className={cn(
         "relative px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ease-out group",
         isActive
-          ? "bg-nocta-100 dark:bg-nocta-800 text-fd-foreground shadow-sm ring-1 ring-fd-border/20"
+          ? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50 hover:contrast-115 text-nocta-100 dark:text-nocta-100"
           : "text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50 hover:shadow-sm",
         "hover:scale-[1.02] active:scale-[0.97]"
       )}
@@ -82,7 +82,7 @@ const DocsTabs = ({
   };
 
   return (
-    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-900 text-sm outline-none">
+    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200/50 dark:bg-nocta-900 text-sm outline-none z-0">
       <div className="flex items-center gap-2 px-4 py-1.5 relative">
         {tabs.map((tab) => (
           <DocsTab

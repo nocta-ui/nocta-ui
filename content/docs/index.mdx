@@ -1,139 +1,32 @@
 ---
 title: Introduction
-description: Nocta UI is a modern, accessible React component library built with simplicity, performance, and developer experience at its core. Every component is crafted to be beautiful, functional, and accessible by default.
-
+description: Nocta UI is a modern, accessible React component library focused on simplicity, performance, and developer experience.
 ---
 
-import { Button } from '@/app/components/ui/button';
-import { Badge } from '@/app/components/ui/badge';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/app/components/ui/card';
-import { Alert, AlertDescription } from '@/app/components/ui/alert';
+## Overview
 
+Nocta UI is a React component library built with a **copy-paste philosophy**.  
+Instead of shipping as a heavy package, it provides source code you add directly to your project.  
+This gives you **full control**, easy customization, and no versioning headaches.
 
-## Philosophy
+## Core Principles
 
-Our design philosophy centers around four core principles that guide every decision:
+- **Minimal** – clean, purposeful components  
+- **Performant** – lightweight and dependency-conscious  
+- **Accessible** – WCAG-compliant, keyboard-friendly, screen reader ready  
+- **Developer First** – TypeScript, intuitive APIs, and strong docs  
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
-  <Card className="p-6">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300" />
-      <h3 className="font-semibold text-lg">Minimal</h3>
-    </div>
-    <p className="text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed">
-      Clean components with no unnecessary complexity. Every element serves a purpose, 
-      every interaction feels natural.
-    </p>
-  </Card>
-  
-  <Card className="p-6">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300" />
-      <h3 className="font-semibold text-lg">Performant</h3>
-    </div>
-    <p className="text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed">
-      Copy-paste approach with CLI tooling. Components live in your codebase, 
-      giving you full control and customization power.
-    </p>
-  </Card>
-  
-  <Card className="p-6 h-full">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300" />
-      <h3 className="font-semibold text-lg">Accessible</h3>
-    </div>
-    <p className="text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed">
-      WCAG compliant components with keyboard navigation, 
-      screen reader support, and semantic HTML.
-    </p>
-  </Card>
-  
-  <Card className="p-6">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="w-3 h-3 rounded-full bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300" />
-      <h3 className="font-semibold text-lg">Developer First</h3>
-    </div>
-    <p className="text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed">
-      Full TypeScript support, intuitive APIs, and comprehensive documentation 
-      for the best developer experience.
-    </p>
-  </Card>
-</div>
+## Why Nocta UI?
 
-## Architecture
-
-### Copy-Paste Philosophy
-
-Unlike traditional component libraries, Nocta UI follows the **copy-paste approach** pioneered by shadcn/ui. Instead of installing a package, you use our CLI to copy component source code directly into your project:
-
-```bash lineNumbers title="Terminal"
-# Initialize your project with required dependencies
-npx nocta-ui init
-
-# Add components to your project
-npx nocta-ui add button card badge
-
-# Components are now in your /components/ui directory
-# You own the code and can modify it however you want
-```
-
-**Benefits of this approach:**
-- **Full control** - modify components to fit your exact needs
-- **No version conflicts** - components are copied, not installed
-- **Easy customization** - change styling, behavior, or structure
-- **React focused** - optimized for Next.js, Vite React and React Router projects
-- **Minimal dependencies** - lightweight with minimal external dependencies
-- **Multiple themes** - Choose from Charcoal, Jade, Copper, or Cobalt themes during initialization
-
-### Composable Design
-
-Components are designed to work together seamlessly. Complex interfaces are built by composing simple, focused components:
-
-<div className="my-6">
-  <Card className="md:w-md">
-    <CardHeader>
-      <CardTitle>User Profile</CardTitle>
-      <CardDescription>Compose multiple components together</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-nocta-200 dark:bg-nocta-800 rounded-full"></div>
-        <div className="space-y-1">
-          <div className="font-medium text-sm">John Doe</div>
-          <Badge variant="secondary" size="sm">Premium</Badge>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-</div>
-
-```tsx lineNumbers title="User Profile Component"
-<Card>
-  <CardHeader>
-    <CardTitle>User Profile</CardTitle>
-    <CardDescription>Compose multiple components together</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <div className="flex items-center gap-3">
-      <Avatar src="/user.jpg" fallback="JD" />
-      <div>
-        <div className="font-medium">John Doe</div>
-        <Badge variant="secondary">Premium</Badge>
-      </div>
-    </div>
-  </CardContent>
-</Card>
-```
-
-### TypeScript First
-
-Every component is built with TypeScript from the ground up:
-
-- **Full type safety** for all props and component APIs
-- **IntelliSense support** in modern IDEs
-- **Runtime safety** with comprehensive prop validation
-- **Extensible interfaces** for custom implementations
+- Own the code, modify freely  
+- Works seamlessly with Next.js, Vite, and React Router  
+- Multiple built-in themes to kickstart your design  
+- Composable by design: build complex UIs from simple parts  
 
 ## Getting Started
 
-Ready to start building with Nocta UI? Check out our [Quick Start Guide](/docs/quick-start)
+Install the CLI and add components to your project:
+
+```bash
+npx nocta-ui init
+npx nocta-ui add button card badge

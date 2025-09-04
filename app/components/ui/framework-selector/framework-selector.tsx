@@ -57,19 +57,19 @@ const frameworks: FrameworkOption[] = [
 	{
 		id: "vite",
 		name: "Vite",
-		description: "Fast build tool for modern web development",
+		description: "Vite with React for fast development",
 		logo: <ViteLogo />,
 	},
 	{
 		id: "nextjs",
 		name: "Next.js",
-		description: "React framework for production applications",
+		description: "Next.js React framework for production",
 		logo: <NextJsLogo />,
 	},
 	{
 		id: "reactrouter",
 		name: "React Router",
-		description: "Declarative routing for React applications",
+		description: "React Router 7 in framework mode",
 		logo: <ReactRouterLogo />,
 	},
 ];
@@ -82,17 +82,24 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 					<Link
 						href={`/docs/${framework.id}`}
 						key={framework.id}
-						className="no-underline"
+						className="no-underline group"
 					>
 						<button
 							key={framework.id}
-							className={`relative w-full h-full p-1 dark:bg-nocta-950 rounded-lg border text-center flex flex-col items-center justify-center cursor-pointer`}
+							className={`relative cursor-pointer`}
 						>
-							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-nocta-200 dark:bg-nocta-900 transition-colors duration-200 rounded-md p-8">
+							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-nocta-200 dark:bg-nocta-900 transition-colors duration-300 rounded-md p-8">
 								{framework.logo}
-								<span className="text-lg font-medium text-nocta-600 dark:text-nocta-400">
+								<div
+							className="mt-3"
+							>
+								<span className="block text-lg font-medium text-nocta-600 dark:text-nocta-400">
 									{framework.name}
 								</span>
+								<span className="block text-sm text-nocta-500 dark:text-nocta-500">
+									{framework.description}
+								</span>
+								</div>
 							</div>
 						</button>
 					</Link>

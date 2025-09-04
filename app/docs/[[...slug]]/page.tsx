@@ -1,13 +1,12 @@
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import {
 	DocsBody,
-	DocsDescription,
 	DocsPage,
-	DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
+import { LLMCopyButton, ViewOptions } from "@/app/page-options"
 
 export default async function Page(props: {
 	params: Promise<{ slug?: string[] }>;
@@ -18,16 +17,34 @@ export default async function Page(props: {
 
 	const MDXContent = page.data.body;
 
+	const { toc, lastModified } = page.data;
+
+
 	return (
-		<DocsPage toc={page.data.toc} full={page.data.full}>
-			<DocsTitle>{page.data.title}</DocsTitle>
-			<DocsDescription>{page.data.description}</DocsDescription>
-			<DocsBody>
-				<MDXContent
-					components={getMDXComponents({
-						a: createRelativeLink(source, page),
-					})}
-				/>
+	<DocsPage
+      toc={toc}
+      lastUpdate={lastModified ? new Date(lastModified) : undefined}
+      tableOfContent={{
+        style: 'clerk',
+      }}
+    >
+      <h1 className="text-[1.75em] font-semibold">{page.data.title}</h1>
+      <p className="text-lg text-fd-muted-foreground">
+        {page.data.description}
+      </p>
+      <div className="flex flex-row gap-2 items-center border-b pt-2 pb-6">
+        <LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
+        <ViewOptions
+          markdownUrl={`/api/mdx?path=${page.url}`}
+          githubUrl={`https://github.com/66HEX/nocta-ui/tree/main/content/docs/${page.file.path}`}
+        />
+      </div>			
+	  	<DocsBody>
+			<MDXContent
+				components={getMDXComponents({
+					a: createRelativeLink(source, page),
+				})}
+			/>
 			</DocsBody>
 		</DocsPage>
 	);
