@@ -2,6 +2,7 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const popoverTriggerVariants = cva(
@@ -445,7 +446,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 			? "visible"
 			: "hidden";
 
-	return (
+	return createPortal(
 		<div
 			ref={contentRef}
 			id={contentId}
@@ -474,6 +475,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 				}}
 			/>
 			{children}
-		</div>
+		</div>,
+		document.body
 	);
 };
