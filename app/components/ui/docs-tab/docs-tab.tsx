@@ -82,7 +82,7 @@ const DocsTabs = ({
   };
 
   return (
-    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-900 text-sm outline-none overflow-hidden">
+    <div className="not-prose group relative my-4 rounded-lg border bg-nocta-200 dark:bg-nocta-900 text-sm outline-none">
       <div className="flex items-center gap-2 px-4 py-1.5 relative">
         {tabs.map((tab) => (
           <DocsTab
@@ -97,7 +97,7 @@ const DocsTabs = ({
 
       <div
         ref={contentRef}
-        className="transition-all duration-300 ease-in-out p-1 relative"
+        className="transition-all duration-200 ease-in-out p-1 relative"
       >
         <div className="absolute inset-1 border rounded-md bg-nocta-100 dark:bg-nocta-950/50 z-0"></div>
         <div

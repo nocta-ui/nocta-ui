@@ -566,7 +566,7 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
 }) => {
 	return (
 			<div
-				className={`-mx-1 my-1 h-px bg-nocta-200 dark:bg-nocta-800/50 ${className}`}
+				className={`-mx-1 my-1 h-px bg-nocta-200/60 dark:bg-nocta-800/40 ${className}`}
 				role="separator"
 				{...props}
 			/>

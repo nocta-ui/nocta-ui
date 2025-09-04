@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const chatVariants = cva(
 	[
 		"relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-50/5",
-		"rounded-xl shadow-lg transition-all duration-300 ease-out",
+		"rounded-xl shadow-lg transition-all duration-200 ease-out",
 		"overflow-hidden not-prose",
 	],
 	{
@@ -57,7 +57,7 @@ const inputVariants = cva(
 			variant: {
 				default: [
 					"border-nocta-300 dark:border-nocta-800/50",
-					"bg-nocta-50 dark:bg-nocta-950",
+					"bg-nocta-100 dark:bg-nocta-950/50",
 					"text-nocta-900 dark:text-nocta-100",
 					"hover:border-nocta-300/50 dark:hover:border-nocta-600/50",
 					"focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50",
@@ -498,7 +498,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 	return (
 		<div
 			className={cn(
-				"p-4 border-t border-nocta-200 dark:border-nocta-800/50 not-prose",
+				"p-4 border-t border-nocta-200/60 dark:border-nocta-800/40 not-prose",
 				className,
 			)}
 			{...props}
@@ -526,7 +526,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
 						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50",
 						"hover:contrast-125",
-						"text-nocta-900 dark:text-nocta-100",
+						"text-nocta-100 dark:text-nocta-100",
+						"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
 					)}
 				>
 					<svg

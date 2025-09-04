@@ -155,7 +155,7 @@ export const CustomStylingDemo: React.FC = () => {
 			<Avatar
 				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
 				alt="John Doe"
-				className="grayscale hover:grayscale-0 transition-all duration-300"
+				className="grayscale hover:grayscale-0 transition-all duration-200"
 			/>
 		</div>
 	);

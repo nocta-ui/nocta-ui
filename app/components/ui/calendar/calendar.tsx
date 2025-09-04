@@ -13,7 +13,7 @@ const calendarVariants = cva(
 	[
 		"rounded-xl",
 		"shadow-lg",
-		"transition-all duration-300 ease-out",
+		"transition-all duration-200 ease-out",
 		"overflow-hidden",
 		"not-prose",
 		"text-xs",
@@ -340,7 +340,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			/>
 				<div
 					className={cn(
-					"flex items-center justify-between border-b border-nocta-100 dark:border-nocta-800/50",
+					"flex items-center justify-between border-b border-nocta-200/60 dark:border-nocta-800/40",
 					"px-4 py-3",
 				)}
 				>

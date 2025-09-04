@@ -355,7 +355,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 					/>
 					
 					{searchable && (
-						<div className="p-1 border-b border-nocta-200 dark:border-nocta-800/50">
+						<div className="p-1 border-b border-nocta-200/60 dark:border-nocta-800/40">
 							<input
 								ref={searchInputRef}
 								type="text"
@@ -374,7 +374,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 					<div
 						role="listbox"
 						id={`${comboboxId}-listbox`}
-						className="max-h-60 overflow-auto py-1 flex flex-col gap-1"
+						className="max-h-60 overflow-auto py-1 flex flex-col gap-1 z-50"
 					>
 						{filteredOptions.length === 0 ? (
 							<div className="px-3 py-2 text-sm text-nocta-600 dark:text-nocta-400 text-center mx-1">

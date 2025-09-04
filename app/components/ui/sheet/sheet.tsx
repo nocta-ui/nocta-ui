@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-nocta-100 dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800/50 overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-300 ease-in-out",
+	"fixed flex flex-col bg-nocta-100 dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800/50 overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
@@ -447,7 +447,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 		<div className="fixed inset-0 z-50">
 			<div
 				className={cn(
-					"fixed inset-0 bg-nocta-950/50 dark:bg-nocta-950/70 backdrop-blur-sm transition-opacity duration-300 ease-in-out",
+					"fixed inset-0 bg-nocta-950/50 dark:bg-nocta-950/70 backdrop-blur-sm transition-opacity duration-200 ease-in-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"
@@ -502,7 +502,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-5 border-b border-nocta-200 dark:border-nocta-800/50 not-prose",
+				"px-6 py-5 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
 				className,
 			)}
 			{...props}

@@ -346,7 +346,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 	return (
 		<tbody
 			className={cn(
-				"divide-y divide-nocta-200 dark:divide-nocta-700/50",
+				"divide-y divide-nocta-200/60 dark:divide-nocta-800/40",
 				className,
 			)}
 			{...props}

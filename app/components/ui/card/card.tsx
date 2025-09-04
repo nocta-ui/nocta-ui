@@ -68,22 +68,23 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = "Card";
 
 export const CardHeader: React.FC<CardHeaderProps> = ({
-	children,
-	className = "",
-	...props
+  children,
+  className = "",
+  ...props
 }) => {
-	return (
-		<div
-			className={cn(
-				"px-4 py-4 border-b border-nocta-200 dark:border-nocta-800/50 not-prose",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-		</div>
-	);
+  return (
+    <div
+      className={cn(
+        "px-4 py-4 backdrop-blur-sm bg-nocta-50/60 dark:bg-nocta-900/40 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
 };
+
 
 export const CardTitle: React.FC<CardTitleProps> = ({
 	children,

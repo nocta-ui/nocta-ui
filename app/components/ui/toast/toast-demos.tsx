@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { Button } from "../button";
-import { Toaster, type ToastPosition, toast } from "./toast";
+import { type ToastPosition, toast } from "./toast";
 
 // Basic demo - single toast example
 export const BasicToastDemo: React.FC = () => {
@@ -11,7 +11,6 @@ export const BasicToastDemo: React.FC = () => {
 			<div className="my-6">
 				<BasicToastExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -34,7 +33,6 @@ export const ToastVariantsDemo: React.FC = () => {
 			<div className="my-6">
 				<ToastVariantsExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -93,7 +91,6 @@ export const ToastWithActionsDemo: React.FC = () => {
 			<div className="my-6">
 				<ToastWithActionsExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -120,7 +117,6 @@ export const StackedToastsDemo: React.FC = () => {
 			<div className="my-6">
 				<StackedToastsExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -168,7 +164,6 @@ export const PersistentToastDemo: React.FC = () => {
 			<div className="my-6">
 				<PersistentToastExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -196,7 +191,6 @@ export const CustomDurationDemo: React.FC = () => {
 			<div className="my-6">
 				<CustomDurationExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -224,7 +218,6 @@ export const DismissAllDemo: React.FC = () => {
 			<div className="my-6">
 				<DismissAllExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };
@@ -261,7 +254,6 @@ export const ToastPositionsDemo: React.FC = () => {
 			<div className="my-6">
 				<ToastPositionsExample />
 			</div>
-			<Toaster />
 		</>
 	);
 };

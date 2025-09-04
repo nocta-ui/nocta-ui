@@ -257,7 +257,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 			)}
 		>
 			<div
-				className="bg-nocta-900 dark:bg-nocta-100/50 h-2 rounded-full transition-all duration-300 ease-out"
+				className="bg-nocta-900 dark:bg-nocta-100/50 h-2 rounded-full transition-all duration-200 ease-out"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}

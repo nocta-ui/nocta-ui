@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const dialogContentVariants = cva(
 	`relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-800
    rounded-xl shadow-xl dark:shadow-2xl not-prose overflow-hidden
-   transition-all duration-300 ease-out`,
+   transition-all duration-200 ease-out`,
 	{
 		variants: {
 			size: {
@@ -302,7 +302,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
 			<div
 				className={cn(
-					"fixed inset-0 bg-nocta-950/50 backdrop-blur-sm transition-opacity duration-300 ease-out",
+					"fixed inset-0 bg-nocta-950/50 backdrop-blur-sm transition-opacity duration-200 ease-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"
@@ -315,7 +315,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 					isVisible
 						? "opacity-100 scale-100 translate-y-0"
 						: "opacity-0 scale-95 translate-y-4",
-					"transform transition-all duration-300 ease-out",
+					"transform transition-all duration-200 ease-out",
 					className,
 				)}
 				role="dialog"
@@ -367,7 +367,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-5 border-b border-nocta-200 dark:border-nocta-800/50 not-prose",
+				"px-6 py-5 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
 				className,
 			)}
 			{...props}

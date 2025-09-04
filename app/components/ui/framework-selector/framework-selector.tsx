@@ -88,7 +88,7 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 							key={framework.id}
 							className={`relative w-full h-full p-1 dark:bg-nocta-950 rounded-lg border text-center flex flex-col items-center justify-center cursor-pointer`}
 						>
-							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-nocta-200 dark:bg-nocta-900 transition-colors duration-300 rounded-md p-8">
+							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-nocta-200 dark:bg-nocta-900 transition-colors duration-200 rounded-md p-8">
 								{framework.logo}
 								<span className="text-lg font-medium text-nocta-600 dark:text-nocta-400">
 									{framework.name}

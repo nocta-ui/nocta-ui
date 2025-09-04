@@ -371,7 +371,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="relative bg-nocta-100 dark:bg-nocta-900 border rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-out not-prose">
+						<div className="relative bg-nocta-100 dark:bg-nocta-900 border rounded-lg shadow-lg overflow-hidden transition-all duration-200 ease-out not-prose">
 							<span
 								aria-hidden
 								className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
