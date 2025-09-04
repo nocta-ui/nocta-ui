@@ -12,12 +12,22 @@ export async function GET(request: NextRequest) {
     }
 
     // Security: Only allow paths within content/docs
-    if (!path.startsWith('/docs/') || path.includes('..')) {
+    if ((!path.startsWith('/docs/') && path !== '/docs') || path.includes('..')) {
       return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
     }
 
     // Remove /docs prefix and add .mdx extension if not present
-    let filePath = path.replace('/docs/', '');
+    let filePath;
+    if (path === '/docs') {
+      filePath = 'index';
+    } else {
+      filePath = path.replace('/docs/', '');
+      // Handle root docs path
+      if (filePath === '' || filePath === '/') {
+        filePath = 'index';
+      }
+    }
+    
     if (!filePath.endsWith('.mdx')) {
       filePath += '.mdx';
     }

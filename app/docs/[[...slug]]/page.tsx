@@ -19,7 +19,6 @@ export default async function Page(props: {
 
 	const { toc, lastModified } = page.data;
 
-
 	return (
 	<DocsPage
       toc={toc}
