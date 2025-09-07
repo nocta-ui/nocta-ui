@@ -148,14 +148,16 @@ export default function MoonShaderBackground({
 	);
 
 	useEffect(() => {
-		if ((shaderUniforms as any).iInvert) {
-			(shaderUniforms as any).iInvert.value = isLight ? 1.0 : 0.0;
+		const invertUniform = shaderUniforms.iInvert as { value: number } | undefined;
+		if (invertUniform) {
+			invertUniform.value = isLight ? 1.0 : 0.0;
 		}
 	}, [isLight, shaderUniforms]);
 
 	useEffect(() => {
-		if ((shaderUniforms as any).iMobile) {
-			(shaderUniforms as any).iMobile.value = isMobile ? 1.0 : 0.0;
+		const mobileUniform = shaderUniforms.iMobile as { value: number } | undefined;
+		if (mobileUniform) {
+			mobileUniform.value = isMobile ? 1.0 : 0.0;
 		}
 	}, [isMobile, shaderUniforms]);
 
