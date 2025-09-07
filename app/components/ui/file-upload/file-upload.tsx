@@ -538,6 +538,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 					<div className="flex flex-col items-center justify-center text-center">
 						<div className="mb-3">
 							<svg
+								xmlns="http://www.w3.org/2000/svg"
 								className={cn(
 									"mx-auto transition-colors",
 									size === "sm"
@@ -549,17 +550,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 										? "text-nocta-600 dark:text-nocta-300"
 										: "text-nocta-400 dark:text-nocta-500",
 								)}
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 48 48"
+								fill="currentColor"
+								viewBox="0 0 256 256"
 								aria-hidden="true"
 							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-								/>
+								<path d="M238,136v64a14,14,0,0,1-14,14H32a14,14,0,0,1-14-14V136a14,14,0,0,1,14-14H80a6,6,0,0,1,0,12H32a2,2,0,0,0-2,2v64a2,2,0,0,0,2,2H224a2,2,0,0,0,2-2V136a2,2,0,0,0-2-2H176a6,6,0,0,1,0-12h48A14,14,0,0,1,238,136ZM84.24,76.24,122,38.49V128a6,6,0,0,0,12,0V38.49l37.76,37.75a6,6,0,0,0,8.48-8.48l-48-48a6,6,0,0,0-8.48,0l-48,48a6,6,0,0,0,8.48,8.48ZM198,168a10,10,0,1,0-10,10A10,10,0,0,0,198,168Z"></path>
 							</svg>
 						</div>
 
