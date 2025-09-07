@@ -60,7 +60,6 @@ const ANIMATION_CONFIG = {
 	EASING_EXIT: "cubic-bezier(0.25, 0.1, 0.25, 1)",
 } as const;
 
-// Observer Pattern - ToastState
 type ToastSubscriber = (toasts: ToastData[]) => void;
 
 class ToastState {
@@ -119,7 +118,6 @@ class ToastState {
 
 const toastState = new ToastState();
 
-// Single instance management for Toaster
 class ToasterInstanceManager {
 	private activeInstanceId: string | null = null;
 	private instanceCounter = 0;
@@ -611,12 +609,10 @@ const ToastManager: React.FC<{
 		[toastsByPosition],
 	);
 
-	// Global keyboard handling for latest toast in each position
 	useEffect(() => {
 		if (positionEntries.length === 0) return;
 
 		const handleKeyDown = (e: KeyboardEvent) => {
-			// Operate on the latest toast (index 0) per position
 			for (const [, group] of positionEntries) {
 				const latest = group?.[0];
 				if (!latest) continue;

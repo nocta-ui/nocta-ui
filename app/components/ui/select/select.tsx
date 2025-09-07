@@ -122,7 +122,6 @@ export const Select: React.FC<SelectProps> = ({
 		}
 	}, [open]);
 
-	// Update displayValue when value changes or children change
 	useEffect(() => {
 		if (value && children) {
 			const childrenArray = React.Children.toArray(children);

@@ -293,7 +293,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 					setCurrentMonth(newDate);
 				}
 
-				// Focus the new date button
 				const newDateButton = document.querySelector(
 					`[data-date="${newDate.toISOString().split("T")[0]}"]`,
 				) as HTMLButtonElement;

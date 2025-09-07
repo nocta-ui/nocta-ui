@@ -13,7 +13,6 @@ export default function ThemeReloadWatcher() {
 		lastIsDark.current = compute();
 
 		const reload = () => {
-			// small delay to allow DOM/class updates to settle
 			setTimeout(() => {
 				window.location.reload();
 			}, 10);

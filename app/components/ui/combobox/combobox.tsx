@@ -132,7 +132,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
 		[disabled, controlledValue, onValueChange],
 	);
 
-	// Animation management
 	useEffect(() => {
 		if (open) {
 			setShouldRender(true);

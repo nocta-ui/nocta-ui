@@ -21,7 +21,7 @@ const sliderVariants = cva(
 );
 
 const trackVariants = cva(
-	"relative bg-nocta-200 dark:bg-nocta-800 rounded-full overflow-hidden",
+	"relative rounded-full overflow-hidden bg-nocta-300 dark:bg-nocta-800/60 border border-nocta-200 dark:border-nocta-50/5 shadow-inner",
 	{
 		variants: {
 			size: {
@@ -58,10 +58,11 @@ const trackVariants = cva(
 	},
 );
 
-const fillVariants = cva("absolute rounded-full", {
+const fillVariants = cva("absolute rounded-full ", {
 	variants: {
 		variant: {
-			default: "bg-nocta-600 dark:bg-nocta-400",
+			default:
+				"bg-nocta-600 dark:bg-nocta-400",
 			secondary: "bg-nocta-500 dark:bg-nocta-600",
 		},
 		size: {
@@ -99,14 +100,14 @@ const fillVariants = cva("absolute rounded-full", {
 });
 
 const thumbVariants = cva(
-	"absolute rounded-full shadow-lg transform origin-center",
+	"absolute rounded-full transform origin-center shadow-sm hover:shadow-md",
 	{
 		variants: {
 			variant: {
 				default:
-					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-600 dark:border-nocta-400",
+					"bg-nocta-50 dark:bg-nocta-200 border border-nocta-300 dark:border-nocta-600/50",
 				secondary:
-					"bg-nocta-50 dark:bg-nocta-200 border-2 border-nocta-500 dark:border-nocta-500",
+					"bg-nocta-50 dark:bg-nocta-200 border border-nocta-500 dark:border-nocta-500",
 			},
 			size: {
 				sm: "w-4 h-4",
@@ -118,7 +119,7 @@ const thumbVariants = cva(
 				vertical: "left-1/2 -translate-x-1/2",
 			},
 			disabled: {
-				true: "cursor-not-allowed",
+				true: "cursor-not-allowed opacity-60",
 				false: "cursor-grab active:cursor-grabbing",
 			},
 		},
@@ -445,6 +446,17 @@ export const Slider: React.FC<SliderProps> = ({
 						trackClassName,
 					)}
 				>
+					<span
+						aria-hidden
+						className="pointer-events-none absolute -inset-px rounded-full bg-gradient-to-b to-transparent opacity-60 z-[1]"
+						style={{
+							maskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							WebkitMaskImage:
+								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						}}
+					/>
+
 					<div
 						className={cn(
 							fillVariants({
@@ -466,6 +478,7 @@ export const Slider: React.FC<SliderProps> = ({
 							orientation: currentOrientation,
 							disabled: disabled,
 						}),
+						isDragging && "ring-4 ring-nocta-900/10 dark:ring-nocta-100/10",
 						thumbClassName,
 					)}
 					style={thumbStyle}
