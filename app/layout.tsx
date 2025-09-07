@@ -3,6 +3,7 @@ import { RootProvider } from "fumadocs-ui/provider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
+import ThemeReloadWatcher from "./ThemeReloadWatcher";
 
 const sfpro = localFont({
 	src: "./assets/fonts/SF-Pro.woff2",
@@ -31,19 +32,19 @@ export const metadata: Metadata = {
 	],
 	authors: [
 		{
-			name: "Nocta UI Team",
+			name: "Marek Jóźwiak",
 		},
 	],
-	creator: "Nocta UI Team",
+	creator: "Marek Jóźwiak",
 	publisher: "Nocta UI",
-	metadataBase: new URL("https://nocta-ui-beryl.vercel.app"),
+	metadataBase: new URL("https://nocta-ui.com"),
 	alternates: {
 		canonical: "/",
 	},
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		url: "https://nocta-ui-beryl.vercel.app",
+		url: "https://nocta-ui.com",
 		title: "Nocta UI - Modern React Component Library",
 		description:
 			"A modern, accessible React component library built with simplicity, performance, and developer experience at its core. Copy-paste components with full TypeScript support.",
@@ -78,7 +79,7 @@ export const metadata: Metadata = {
 	},
 	icons: {
 		icon: [
-			{ url: "/favicon.ico" },
+			{ url: "/favicon.ico", type: "image/x-icon" },
 			{ url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
 			{ url: "/favicon.svg", type: "image/svg+xml" },
 		],
@@ -95,6 +96,7 @@ export const metadata: Metadata = {
 		"mobile-web-app-capable": "yes",
 		"mobile-web-app-status-bar-style": "default",
 		"format-detection": "telephone=no",
+		"apple-mobile-web-app-title": "Nocta UI",
 	},
 };
 
@@ -102,7 +104,10 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en" className={`${sfpro.variable}`} suppressHydrationWarning>
 			<body className="flex flex-col">
-				<RootProvider>{children}</RootProvider>
+				<RootProvider>
+					{children}
+					<ThemeReloadWatcher />
+				</RootProvider>
 			</body>
 		</html>
 	);

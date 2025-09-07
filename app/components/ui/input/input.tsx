@@ -157,7 +157,7 @@ export const Input: React.FC<InputProps> = ({
 								size,
 								disabled: !!disabled,
 							}),
-							"[&>svg]:w-full [&>svg]:h-full"
+							"[&>svg]:w-full [&>svg]:h-full",
 						)}
 					>
 						{leftIcon}
@@ -181,7 +181,7 @@ export const Input: React.FC<InputProps> = ({
 								size,
 								disabled: !!disabled,
 							}),
-							"[&>svg]:w-full [&>svg]:h-full"
+							"[&>svg]:w-full [&>svg]:h-full",
 						)}
 					>
 						{rightIcon}

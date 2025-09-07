@@ -9,10 +9,7 @@ export const BasicCalendarDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<Calendar
-				value={selectedDate}
-				onChange={setSelectedDate}
-			/>
+			<Calendar value={selectedDate} onChange={setSelectedDate} />
 		</div>
 	);
 };
@@ -176,10 +173,7 @@ export const EventCalendarDemo: React.FC = () => {
 					<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 						Event Calendar
 					</label>
-					<Calendar
-						value={selectedDate}
-						onChange={handleDateSelect}
-					/>
+					<Calendar value={selectedDate} onChange={handleDateSelect} />
 				</div>
 				{selectedDate && (
 					<div className="p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">

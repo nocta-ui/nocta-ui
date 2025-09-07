@@ -9,20 +9,17 @@ const hasBackgroundColor = (className: string = "") => {
 	return /bg-(?!linear|gradient|none)\w+/.test(className);
 };
 
-const tableContainerVariants = cva(
-	"rounded-xl overflow-hidden",
-	{
-		variants: {
-			variant: {
-				default: "",
-				striped: "",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
+const tableContainerVariants = cva("rounded-xl overflow-hidden", {
+	variants: {
+		variant: {
+			default: "",
+			striped: "",
 		},
 	},
-);
+	defaultVariants: {
+		variant: "default",
+	},
+});
 
 const tableVariants = cva("w-full border-collapse", {
 	variants: {
@@ -46,7 +43,7 @@ const tableRowVariants = cva("", {
 		isOdd: {
 			true: "",
 			false: "",
-		}
+		},
 	},
 	compoundVariants: [
 		{
@@ -194,128 +191,122 @@ export const Table = <T extends Record<string, unknown>>({
 						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 				}}
 			/>
-				<div className="overflow-x-auto">
-					<table className={cn(tableVariants({ size }))} {...props}>
-						<TableHeader>
+			<div className="overflow-x-auto">
+				<table className={cn(tableVariants({ size }))} {...props}>
+					<TableHeader>
+						<TableRow variant={variant}>
+							{columns.map((column) => (
+								<TableCell
+									key={column.key}
+									header
+									align={column.align}
+									className={column.className}
+									style={{ width: column.width }}
+								>
+									{column.title}
+								</TableCell>
+							))}
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{loading ? (
 							<TableRow variant={variant}>
-								{columns.map((column) => (
-									<TableCell
-										key={column.key}
-										header
-										align={column.align}
-										className={column.className}
-										style={{ width: column.width }}
-									>
-										{column.title}
-									</TableCell>
-								))}
+								<TableCell
+									colSpan={columns.length}
+									align="center"
+									className="py-12"
+								>
+									<div className="flex items-center justify-center">
+										<Spinner size="lg" variant="default" />
+									</div>
+								</TableCell>
 							</TableRow>
-						</TableHeader>
-						<TableBody>
-							{loading ? (
-								<TableRow variant={variant}>
-									<TableCell
-										colSpan={columns.length}
-										align="center"
-										className="py-12"
-									>
-										<div className="flex items-center justify-center">
-											<Spinner size="lg" variant="default" />
-										</div>
-									</TableCell>
-								</TableRow>
-							) : data.length === 0 ? (
-								<TableRow variant={variant}>
-									<TableCell
-										colSpan={columns.length}
-										align="center"
-										className="py-12 text-nocta-500 dark:text-nocta-400"
-									>
-										{emptyText}
-									</TableCell>
-								</TableRow>
-							) : (
-								data.map((record, index) => (
-									<TableRow
-										key={getRowKey(record, index)}
-										variant={variant}
-										isOdd={index % 2 === 1}
-										className={getRowClassName(record, index)}
-										onClick={() => onRowClick?.(record, index)}
-									>
-										{columns.map((column) => {
-											const value = record[column.key];
-											const content = column.render
-												? column.render(value, record, index)
-												: value?.toString() || "";
+						) : data.length === 0 ? (
+							<TableRow variant={variant}>
+								<TableCell
+									colSpan={columns.length}
+									align="center"
+									className="py-12 text-nocta-500 dark:text-nocta-400"
+								>
+									{emptyText}
+								</TableCell>
+							</TableRow>
+						) : (
+							data.map((record, index) => (
+								<TableRow
+									key={getRowKey(record, index)}
+									variant={variant}
+									isOdd={index % 2 === 1}
+									className={getRowClassName(record, index)}
+									onClick={() => onRowClick?.(record, index)}
+								>
+									{columns.map((column) => {
+										const value = record[column.key];
+										const content = column.render
+											? column.render(value, record, index)
+											: value?.toString() || "";
 
-											return (
-												<TableCell
-													key={column.key}
-													align={column.align}
-													className={column.className}
-												>
-													{content}
-												</TableCell>
-											);
-										})}
-									</TableRow>
-								))
-							)}
-						</TableBody>
-					</table>
-				</div>
+										return (
+											<TableCell
+												key={column.key}
+												align={column.align}
+												className={column.className}
+											>
+												{content}
+											</TableCell>
+										);
+									})}
+								</TableRow>
+							))
+						)}
+					</TableBody>
+				</table>
+			</div>
 
-				{pagination && (
-					<div className="px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
-						<div className="text-sm text-nocta-600 dark:text-nocta-400">
-							Showing{" "}
-							{Math.min(
-								(pagination.current - 1) * pagination.pageSize + 1,
-								pagination.total,
-							)}{" "}
-							to{" "}
-							{Math.min(
-								pagination.current * pagination.pageSize,
-								pagination.total,
-							)}{" "}
-							of {pagination.total} entries
-						</div>
-						<div className="flex items-center gap-2">
-							<button
-								onClick={() =>
-									pagination.onChange(
-										pagination.current - 1,
-										pagination.pageSize,
-									)
-								}
-								disabled={pagination.current <= 1}
-								className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
-							>
-								Previous
-							</button>
-							<span className="px-3 py-1.5 text-sm text-nocta-600 dark:text-nocta-400">
-								Page {pagination.current} of{" "}
-								{Math.ceil(pagination.total / pagination.pageSize)}
-							</span>
-							<button
-								onClick={() =>
-									pagination.onChange(
-										pagination.current + 1,
-										pagination.pageSize,
-									)
-								}
-								disabled={
-									pagination.current >=
-									Math.ceil(pagination.total / pagination.pageSize)
-								}
-								className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
-							>
-								Next
-							</button>
-						</div>
+			{pagination && (
+				<div className="px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
+					<div className="text-sm text-nocta-600 dark:text-nocta-400">
+						Showing{" "}
+						{Math.min(
+							(pagination.current - 1) * pagination.pageSize + 1,
+							pagination.total,
+						)}{" "}
+						to{" "}
+						{Math.min(
+							pagination.current * pagination.pageSize,
+							pagination.total,
+						)}{" "}
+						of {pagination.total} entries
 					</div>
-				)}
+					<div className="flex items-center gap-2">
+						<button
+							onClick={() =>
+								pagination.onChange(pagination.current - 1, pagination.pageSize)
+							}
+							disabled={pagination.current <= 1}
+							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+						>
+							Previous
+						</button>
+						<span className="px-3 py-1.5 text-sm text-nocta-600 dark:text-nocta-400">
+							Page {pagination.current} of{" "}
+							{Math.ceil(pagination.total / pagination.pageSize)}
+						</span>
+						<button
+							onClick={() =>
+								pagination.onChange(pagination.current + 1, pagination.pageSize)
+							}
+							disabled={
+								pagination.current >=
+								Math.ceil(pagination.total / pagination.pageSize)
+							}
+							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+						>
+							Next
+						</button>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

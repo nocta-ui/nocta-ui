@@ -338,195 +338,190 @@ export const Calendar: React.FC<CalendarProps> = ({
 						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 				}}
 			/>
-				<div
-					className={cn(
+			<div
+				className={cn(
 					"flex items-center justify-between border-b border-nocta-200/60 dark:border-nocta-800/40",
 					"px-4 py-3",
 				)}
+			>
+				<button
+					type="button"
+					onClick={goToPreviousMonth}
+					disabled={disabled}
+					className={cn(
+						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"p-1.5",
+					)}
+					aria-label="Previous month"
 				>
+					<svg
+						className="w-4 h-4"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M15 19l-7-7 7-7"
+						/>
+					</svg>
+				</button>
+
+				<div className="flex items-center space-x-3">
+					<h2
+						className={cn(
+							"font-semibold text-nocta-900 dark:text-nocta-100",
+							"text-sm",
+						)}
+					>
+						{formatMonth(currentMonth)}
+					</h2>
 					<button
 						type="button"
-						onClick={goToPreviousMonth}
+						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
-						"p-1.5",
-					)}
-						aria-label="Previous month"
+							"rounded-md bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+							"px-2 py-1 text-xs",
+						)}
 					>
-						<svg
-							className="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M15 19l-7-7 7-7"
-							/>
-						</svg>
-					</button>
-
-					<div className="flex items-center space-x-3">
-						<h2
-							className={cn(
-								"font-semibold text-nocta-900 dark:text-nocta-100",
-								"text-sm",
-							)}
-						>
-							{formatMonth(currentMonth)}
-						</h2>
-						<button
-							type="button"
-							onClick={goToToday}
-							disabled={disabled}
-							className={cn(
-								"rounded-md bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
-								"px-2 py-1 text-xs",
-							)}
-						>
-							Today
-						</button>
-					</div>
-
-					<button
-						type="button"
-						onClick={goToNextMonth}
-						disabled={disabled}
-						className={cn(
-						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
-						"p-1.5",
-					)}
-						aria-label="Next month"
-					>
-						<svg
-							className="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M9 5l7 7-7 7"
-							/>
-						</svg>
+						Today
 					</button>
 				</div>
 
-				<div className="px-4 py-3">
-					<div
-						className={cn(
+				<button
+					type="button"
+					onClick={goToNextMonth}
+					disabled={disabled}
+					className={cn(
+						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"p-1.5",
+					)}
+					aria-label="Next month"
+				>
+					<svg
+						className="w-4 h-4"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M9 5l7 7-7 7"
+						/>
+					</svg>
+				</button>
+			</div>
+
+			<div className="px-4 py-3">
+				<div
+					className={cn(
 						"grid mb-3",
 						showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
 						"gap-1",
 					)}
-					>
-						{showWeekNumbers && (
-							<div
-								className={cn(
-									"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
-									"text-xs w-8 h-8",
-								)}
-							>
-								Wk
-							</div>
-						)}
-						{weekdays.map((day, index) => (
-							<div
-								key={index}
-								className={cn(
-									"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
-									"text-xs w-8 h-8",
-								)}
-							>
-								{day}
-							</div>
-						))}
-					</div>
+				>
+					{showWeekNumbers && (
+						<div
+							className={cn(
+								"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+								"text-xs w-8 h-8",
+							)}
+						>
+							Wk
+						</div>
+					)}
+					{weekdays.map((day, index) => (
+						<div
+							key={index}
+							className={cn(
+								"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+								"text-xs w-8 h-8",
+							)}
+						>
+							{day}
+						</div>
+					))}
+				</div>
 
-					<div className="space-y-1">
-						{Array.from(
-							{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
-							(_, weekIndex) => (
-								<div
-									key={weekIndex}
-									className={cn(
+				<div className="space-y-1">
+					{Array.from(
+						{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
+						(_, weekIndex) => (
+							<div
+								key={weekIndex}
+								className={cn(
 									"grid",
 									showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
 									"gap-1",
 								)}
-								>
-									{showWeekNumbers && (
-										<div
-											className={cn(
+							>
+								{showWeekNumbers && (
+									<div
+										className={cn(
 											"text-nocta-400 dark:text-nocta-500 text-center flex items-center justify-center",
 											"text-xs w-8 h-8",
 										)}
-										>
-											{getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
-										</div>
-									)}
-									{calendarDays
-										.slice(
-											weekIndex * DAYS_IN_WEEK,
-											(weekIndex + 1) * DAYS_IN_WEEK,
-										)
-										.map((date, dayIndex) => {
-											const isSelected =
-												selectedDate && isSameDay(date, selectedDate);
-											const isCurrentMonth = isSameMonth(date, currentMonth);
-											const isToday = isSameDay(date, new Date());
-											const isDisabled = isDateDisabled(date);
-											const shouldShow = showOutsideDays || isCurrentMonth;
+									>
+										{getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
+									</div>
+								)}
+								{calendarDays
+									.slice(
+										weekIndex * DAYS_IN_WEEK,
+										(weekIndex + 1) * DAYS_IN_WEEK,
+									)
+									.map((date, dayIndex) => {
+										const isSelected =
+											selectedDate && isSameDay(date, selectedDate);
+										const isCurrentMonth = isSameMonth(date, currentMonth);
+										const isToday = isSameDay(date, new Date());
+										const isDisabled = isDateDisabled(date);
+										const shouldShow = showOutsideDays || isCurrentMonth;
 
-											if (!shouldShow) {
-												return (
-															<div
-																key={dayIndex}
-																className="w-8 h-8"
-															/>
-														);
-											}
+										if (!shouldShow) {
+											return <div key={dayIndex} className="w-8 h-8" />;
+										}
 
-											return (
-												<button
-													key={dayIndex}
-													type="button"
-													onClick={() => handleDateSelect(date)}
-													onKeyDown={(e) => handleKeyDown(e, date)}
-													disabled={isDisabled}
-													data-date={date.toISOString().split("T")[0]}
-													className={cn(
-																dayButtonVariants({
-																	state: isSelected
-																		? "selected"
-																		: isToday
-																			? "today"
-																			: isDisabled
-																				? "disabled"
-																				: !isCurrentMonth
-																					? "outsideMonth"
-																					: "default",
-																	interaction: isDisabled ? "disabled" : "enabled",
-																}),
-															)}
-													aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
-													aria-pressed={isSelected}
-													aria-current={isToday ? "date" : undefined}
-												>
-													{date.getDate()}
-												</button>
-											);
-										})}
-								</div>
-							),
-						)}
-					</div>
+										return (
+											<button
+												key={dayIndex}
+												type="button"
+												onClick={() => handleDateSelect(date)}
+												onKeyDown={(e) => handleKeyDown(e, date)}
+												disabled={isDisabled}
+												data-date={date.toISOString().split("T")[0]}
+												className={cn(
+													dayButtonVariants({
+														state: isSelected
+															? "selected"
+															: isToday
+																? "today"
+																: isDisabled
+																	? "disabled"
+																	: !isCurrentMonth
+																		? "outsideMonth"
+																		: "default",
+														interaction: isDisabled ? "disabled" : "enabled",
+													}),
+												)}
+												aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
+												aria-pressed={isSelected}
+												aria-current={isToday ? "date" : undefined}
+											>
+												{date.getDate()}
+											</button>
+										);
+									})}
+							</div>
+						),
+					)}
 				</div>
+			</div>
 		</div>
 	);
 };

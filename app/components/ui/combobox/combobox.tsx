@@ -353,7 +353,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 						}}
 					/>
-					
+
 					{searchable && (
 						<div className="p-1 border-b border-nocta-200/60 dark:border-nocta-800/40">
 							<input

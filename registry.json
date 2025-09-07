@@ -141,13 +141,7 @@
 			"props": {
 				"Badge": ["children", "variant", "size", "className"]
 			},
-			"variants": [
-				"default",
-				"secondary",
-				"destructive",
-				"success",
-				"warning"
-			],
+			"variants": ["default", "secondary", "destructive", "success", "warning"],
 			"sizes": ["sm", "md", "lg"],
 			"features": ["hover-effects", "dark-mode"]
 		},
@@ -420,11 +414,7 @@
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
-			"exports": [
-				"Popover",
-				"PopoverTrigger",
-				"PopoverContent"
-			],
+			"exports": ["Popover", "PopoverTrigger", "PopoverContent"],
 			"props": {
 				"Popover": ["open", "defaultOpen", "onOpenChange"],
 				"PopoverTrigger": ["asChild", "className"],
@@ -1202,12 +1192,7 @@
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
-			"exports": [
-				"toast",
-				"Toaster",
-				"ToastData",
-				"ToastPosition"
-			],
+			"exports": ["toast", "Toaster", "ToastData", "ToastPosition"],
 			"props": {
 				"toast": [
 					"title",

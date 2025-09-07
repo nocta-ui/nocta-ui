@@ -11,8 +11,6 @@ import React, {
 } from "react";
 import { cn } from "@/lib/utils";
 
-
-
 const POSITION_CONFIGS = {
 	"top-left": {
 		animateIn: { x: -100, y: -20 },
@@ -58,8 +56,8 @@ const ANIMATION_CONFIG = {
 	MIN_SCALE: 0.92,
 	MAX_VISIBLE_TOASTS: 3,
 	Z_INDEX_BASE: 50,
-	EASING_DEFAULT: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
-	EASING_EXIT: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+	EASING_DEFAULT: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+	EASING_EXIT: "cubic-bezier(0.25, 0.1, 0.25, 1)",
 } as const;
 
 // Observer Pattern - ToastState
@@ -179,22 +177,19 @@ const toastContainerVariants = cva(
 	},
 );
 
-const toastContentVariants = cva(
-	"relative rounded-lg overflow-hidden",
-	{
-		variants: {
-			variant: {
-				default: "",
-				success: "",
-				warning: "",
-				destructive: "",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
+const toastContentVariants = cva("relative rounded-lg overflow-hidden", {
+	variants: {
+		variant: {
+			default: "",
+			success: "",
+			warning: "",
+			destructive: "",
 		},
 	},
-);
+	defaultVariants: {
+		variant: "default",
+	},
+});
 
 export type ToastPosition =
 	| "top-left"
@@ -266,7 +261,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const enterAnimationRef = useRef<number | null>(null);
 		const isExiting = useRef(false);
 		const hasAnimatedIn = useRef(false);
-		const [animationState, setAnimationState] = useState<'entering' | 'entered' | 'exiting' | 'stacking'>('entering');
+		const [animationState, setAnimationState] = useState<
+			"entering" | "entered" | "exiting" | "stacking"
+		>("entering");
 
 		const {
 			id,
@@ -282,8 +279,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			onClose,
 		} = toast;
 
-
-
 		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
 
 		const getFocusableElements = useCallback(() => {
@@ -293,15 +288,18 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			) as HTMLElement[];
 		}, []);
 
-		const handleTransitionEnd = useCallback((e: React.TransitionEvent) => {
-			if (e.target !== toastRef.current) return;
-			if (e.propertyName !== 'opacity') return;
-			
-			if (animationState === 'exiting') {
-				onClose?.();
-				onRemove(id);
-			}
-		}, [animationState, id, onRemove, onClose]);
+		const handleTransitionEnd = useCallback(
+			(e: React.TransitionEvent) => {
+				if (e.target !== toastRef.current) return;
+				if (e.propertyName !== "opacity") return;
+
+				if (animationState === "exiting") {
+					onClose?.();
+					onRemove(id);
+				}
+			},
+			[animationState, id, onRemove, onClose],
+		);
 
 		const handleClose = useCallback(() => {
 			if (!toastRef.current || isExiting.current) return;
@@ -318,7 +316,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				timeoutRef.current = null;
 			}
 
-			setAnimationState('exiting');
+			setAnimationState("exiting");
 		}, []);
 
 		useEffect(() => {
@@ -345,39 +343,36 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 			if (!hasAnimatedIn.current && isLatest) {
 				hasAnimatedIn.current = true;
-				setAnimationState('entering');
-				
+				setAnimationState("entering");
+
 				enterAnimationRef.current = requestAnimationFrame(() => {
 					enterAnimationRef.current = requestAnimationFrame(() => {
-						setAnimationState('entered');
+						setAnimationState("entered");
 						setTimeout(setFocusToToast, ANIMATION_CONFIG.ENTER_DURATION * 1000);
 					});
 				});
-			} 
-			else if (hasAnimatedIn.current) {
-				if (animationState !== 'stacking' || index > 0) {
-					setAnimationState('stacking');
+			} else if (hasAnimatedIn.current) {
+				if (animationState !== "stacking" || index > 0) {
+					setAnimationState("stacking");
 				}
-				
+
 				if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
-					setTimeout(() => onRemove(id), ANIMATION_CONFIG.STACK_DURATION * 1000);
+					setTimeout(
+						() => onRemove(id),
+						ANIMATION_CONFIG.STACK_DURATION * 1000,
+					);
+				}
+			} else {
+				setAnimationState("stacking");
+
+				if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
+					setTimeout(
+						() => onRemove(id),
+						ANIMATION_CONFIG.STACK_DURATION * 1000,
+					);
 				}
 			}
-			else {
-				setAnimationState('stacking');
-				
-				if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
-					setTimeout(() => onRemove(id), ANIMATION_CONFIG.STACK_DURATION * 1000);
-				}
-			}
-		}, [
-			index,
-			position,
-			id,
-			onRemove,
-			getFocusableElements,
-			animationState,
-		]);
+		}, [index, position, id, onRemove, getFocusableElements, animationState]);
 
 		useEffect(() => {
 			if (shouldClose || !hasAnimatedIn.current) return;
@@ -420,44 +415,56 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 		const transformStyle = useMemo(() => {
 			switch (animationState) {
-				case 'entering':
+				case "entering":
 					return {
 						transform: `translate(${config.animateIn.x}px, ${config.animateIn.y}px)`,
 						opacity: 0,
 					};
-				case 'entered':
+				case "entered":
 					return {
 						transform: `translate(0px, ${offset}px)`,
 						opacity: 1,
 					};
-				case 'exiting':
+				case "exiting":
 					return {
 						transform: `translate(${config.animateOut.x}px, ${config.animateOut.y}px)`,
 						opacity: 0,
 					};
-				case 'stacking':
-				return {
+				case "stacking":
+					return {
 						transform: `translate(0px, ${offset}px) scale(${isLatest ? 1 : scale})`,
 						opacity: index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS ? 0 : 1,
 					};
 			}
-		}, [animationState, config.animateIn.x, config.animateIn.y, config.animateOut.x, config.animateOut.y, offset, isLatest, scale, index]);
+		}, [
+			animationState,
+			config.animateIn.x,
+			config.animateIn.y,
+			config.animateOut.x,
+			config.animateOut.y,
+			offset,
+			isLatest,
+			scale,
+			index,
+		]);
 
 		const transitionDuration = useMemo(() => {
 			switch (animationState) {
-				case 'entering':
-				case 'entered':
+				case "entering":
+				case "entered":
 					return `${ANIMATION_CONFIG.ENTER_DURATION}s`;
-				case 'exiting':
+				case "exiting":
 					return `${ANIMATION_CONFIG.EXIT_DURATION}s`;
-				case 'stacking':
+				case "stacking":
 				default:
 					return `${ANIMATION_CONFIG.STACK_DURATION}s`;
 			}
 		}, [animationState]);
 
 		const transitionTimingFunction = useMemo(() => {
-			return animationState === 'exiting' ? ANIMATION_CONFIG.EASING_EXIT : ANIMATION_CONFIG.EASING_DEFAULT;
+			return animationState === "exiting"
+				? ANIMATION_CONFIG.EASING_EXIT
+				: ANIMATION_CONFIG.EASING_DEFAULT;
 		}, [animationState]);
 
 		return (
@@ -594,11 +601,15 @@ const ToastManager: React.FC<{
 				const latest = group?.[0];
 				if (!latest) continue;
 
-				const container = document.querySelector(`[data-toast-id="${latest.id}"]`) as HTMLElement | null;
+				const container = document.querySelector(
+					`[data-toast-id="${latest.id}"]`,
+				) as HTMLElement | null;
 				if (!container) continue;
 
-				if (e.key === 'Escape') {
-					const closeBtn = container.querySelector('[aria-label="Close toast"]') as HTMLButtonElement | null;
+				if (e.key === "Escape") {
+					const closeBtn = container.querySelector(
+						'[aria-label="Close toast"]',
+					) as HTMLButtonElement | null;
 					if (closeBtn) {
 						e.preventDefault();
 						closeBtn.click();
@@ -606,8 +617,10 @@ const ToastManager: React.FC<{
 					return;
 				}
 
-				if (e.key === 'Tab') {
-					const focusable = Array.from(container.querySelectorAll(FOCUSABLE_SELECTORS)) as HTMLElement[];
+				if (e.key === "Tab") {
+					const focusable = Array.from(
+						container.querySelectorAll(FOCUSABLE_SELECTORS),
+					) as HTMLElement[];
 					if (focusable.length === 0) continue;
 
 					const first = focusable[0];
@@ -629,8 +642,8 @@ const ToastManager: React.FC<{
 			}
 		};
 
-		document.addEventListener('keydown', handleKeyDown);
-		return () => document.removeEventListener('keydown', handleKeyDown);
+		document.addEventListener("keydown", handleKeyDown);
+		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [positionEntries]);
 
 	if (toasts.length === 0) return null;

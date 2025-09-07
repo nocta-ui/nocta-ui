@@ -406,15 +406,23 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
 			switch (e.key) {
 				case "ArrowDown": {
 					e.preventDefault();
-					const nextIndex = currentIndex === -1 ? 0 :
-						currentIndex < focusableElements.length - 1 ? currentIndex + 1 : 0;
+					const nextIndex =
+						currentIndex === -1
+							? 0
+							: currentIndex < focusableElements.length - 1
+								? currentIndex + 1
+								: 0;
 					focusableElements[nextIndex]?.focus({ preventScroll: true });
 					break;
 				}
 				case "ArrowUp": {
 					e.preventDefault();
-					const prevIndex = currentIndex === -1 ? focusableElements.length - 1 :
-						currentIndex > 0 ? currentIndex - 1 : focusableElements.length - 1;
+					const prevIndex =
+						currentIndex === -1
+							? focusableElements.length - 1
+							: currentIndex > 0
+								? currentIndex - 1
+								: focusableElements.length - 1;
 					focusableElements[prevIndex]?.focus({ preventScroll: true });
 					break;
 				}
@@ -478,38 +486,38 @@ export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
   `;
 
 	return createPortal(
-			<div
-				ref={contentRef}
-				className={cn(
-					contextMenuContentVariants({ side, align }),
-					animationStyles,
-					className,
-				)}
+		<div
+			ref={contentRef}
+			className={cn(
+				contextMenuContentVariants({ side, align }),
+				animationStyles,
+				className,
+			)}
+			style={{
+				position: "fixed",
+				top: calculatedPosition ? `${calculatedPosition.top}px` : "0px",
+				left: calculatedPosition ? `${calculatedPosition.left}px` : "0px",
+			}}
+			role="menu"
+			aria-orientation="vertical"
+			data-state={open ? "open" : "closed"}
+			data-side={side}
+			{...props}
+		>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
 				style={{
-					position: "fixed",
-					top: calculatedPosition ? `${calculatedPosition.top}px` : "0px",
-					left: calculatedPosition ? `${calculatedPosition.left}px` : "0px",
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 				}}
-				role="menu"
-				aria-orientation="vertical"
-				data-state={open ? "open" : "closed"}
-				data-side={side}
-				{...props}
-			>
-				<span
-					aria-hidden
-					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-					style={{
-						maskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						WebkitMaskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					}}
-				/>
-				<div className="flex flex-col gap-1">{children}</div>
-			</div>,
-			document.body,
-		);
+			/>
+			<div className="flex flex-col gap-1">{children}</div>
+		</div>,
+		document.body,
+	);
 };
 
 export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
@@ -525,7 +533,7 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		if (disabled) return;
-		
+
 		if (subContext) {
 			if (subContext.hoverTimeoutRef.current) {
 				clearTimeout(subContext.hoverTimeoutRef.current);
@@ -533,7 +541,7 @@ export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
 			}
 			subContext.setOpen(false);
 		}
-		
+
 		setOpen(false);
 		onClick?.(e);
 	};
@@ -565,12 +573,12 @@ export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
 	...props
 }) => {
 	return (
-			<div
-				className={`-mx-1 my-1 h-px bg-nocta-200/60 dark:bg-nocta-800/40 ${className}`}
-				role="separator"
-				{...props}
-			/>
-		);
+		<div
+			className={`-mx-1 my-1 h-px bg-nocta-200/60 dark:bg-nocta-800/40 ${className}`}
+			role="separator"
+			{...props}
+		/>
+	);
 };
 
 export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({

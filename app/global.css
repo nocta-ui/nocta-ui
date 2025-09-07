@@ -3,8 +3,6 @@
 @import "fumadocs-ui/css/preset.css";
 @import "fumadocs-ui/css/neutral.css";
 
-
-
 @theme {
 	--font-sfpro: var(--font-sfpro);
 

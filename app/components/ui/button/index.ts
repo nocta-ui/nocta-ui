@@ -1,7 +1,7 @@
 export {
 	Button,
-	buttonVariants,
 	type ButtonProps,
+	buttonVariants,
 } from "./button";
 
 export * from "./button-demos";

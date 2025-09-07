@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "../components/ui/button";
-import Scene from "./scene";
+import MoonShaderBackground from "./ShaderScene";
 
 export default function HomePage() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -16,6 +16,7 @@ export default function HomePage() {
 	const ctaLeftRef = useRef<HTMLAnchorElement>(null);
 	const ctaRightRef = useRef<HTMLAnchorElement>(null);
 	const footerRef = useRef<HTMLDivElement>(null);
+	const bottomBarRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
@@ -28,12 +29,14 @@ export default function HomePage() {
 				y: 10,
 			});
 			gsap.set(footerRef.current, { opacity: 0, y: 8 });
+			gsap.set(bottomBarRef.current, { opacity: 0, y: 10 });
 			gsap.set(sceneRef.current, { filter: "blur(18px)" });
 
 			const tl = gsap.timeline({ delay: 0.6 });
 
 			tl.to(sceneRef.current, {
 				filter: "blur(0px)",
+				opacity: 1,
 				duration: 1.2,
 				ease: "power2.out",
 			})
@@ -51,6 +54,11 @@ export default function HomePage() {
 					descRef.current,
 					{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
 					"-=0.35",
+				)
+				.to(
+					bottomBarRef.current,
+					{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+					"-=0.2",
 				)
 				.to(
 					[ctaLeftRef.current, ctaRightRef.current],
@@ -78,24 +86,27 @@ export default function HomePage() {
 			ref={containerRef}
 			className="h-svh overflow-hidden absolute inset-0 bg-custom-radial text-nocta-50"
 		>
-			<div ref={sceneRef} className="absolute inset-0 z-10 mt-16 blur-[18px]">
-				<Scene />
+			<div
+				ref={sceneRef}
+				className="absolute inset-0 z-10 opacity-0 blur-[18px] pointer-events-none"
+			>
+				<MoonShaderBackground />
 			</div>
 
 			<section className="relative h-full flex flex-col">
-				<div className="flex-1 flex items-start mt-32">
-					<div className="mx-auto w-full max-w-3xl px-6 pb-8 md:pb-10 text-center relative z-10">
+				<div className="flex-1 flex items-start absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+					<div className="mx-auto w-full max-w-3xl px-6 text-center relative z-10">
 						<p
 							ref={kickerRef}
-							className="opacity-0 text-[11px] md:text-xs uppercase tracking-[0.22em] text-nocta-700/50 dark:text-nocta-50/70"
+							className="opacity-0 text-[11px] md:text-xs uppercase tracking-[0.22em] text-nocta-700/50 dark:text-nocta-50/70 sm:-mb-2 md:-mb-4"
 						>
 							React UI Library
 						</p>
 						<h1
 							ref={headingRef}
 							className={cn(
-								"opacity-0 tracking-[-0.0125em] font-semibold text-nocta-800 dark:text-nocta-50/85",
-								"text-[9.5vw] sm:text-[7vw] md:text-[5vw] max-md:text-[48px]",
+								"opacity-0 tracking-relaxed font-semibold text-nocta-800 dark:text-nocta-50/85 leading-none",
+								"text-[9.5vw] sm:text-[7vw] md:text-[17vw] lg:text-[5vw] max-md:text-[48px] whitespace-nowrap",
 							)}
 						>
 							NOCTA UI
@@ -103,9 +114,9 @@ export default function HomePage() {
 					</div>
 				</div>
 
-				<div className="flex-none relative z-20">
+				<div className="flex-none fixed z-20 fixed left-1/2 -translate-x-1/2 w-full max-w-3xl bottom-4">
 					<div className="mx-auto w-full max-w-3xl px-6">
-						<div className="rounded-2xl border border-nocta-50/10 bg-nocta-50/6 dark:bg-black/30 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+						<div ref={bottomBarRef} className="opacity-0 rounded-2xl border border-nocta-50/10 bg-nocta-50/60 dark:bg-nocta-950/50 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
 							<div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-4 sm:p-5">
 								<div className="text-left">
 									<p className="text-xs uppercase tracking-[0.18em] text-nocta-700/50 dark:text-nocta-50/70">

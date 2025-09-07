@@ -87,8 +87,6 @@ const popoverAnimationVariants = cva(
 	},
 );
 
-
-
 export interface PopoverProps {
 	children: React.ReactNode;
 	open?: boolean;
@@ -115,8 +113,6 @@ export interface PopoverContentProps
 	onEscapeKeyDown?: (event: KeyboardEvent) => void;
 	onPointerDownOutside?: (event: PointerEvent) => void;
 }
-
-
 
 const PopoverContext = React.createContext<{
 	open: boolean;
@@ -476,6 +472,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 			/>
 			{children}
 		</div>,
-		document.body
+		document.body,
 	);
 };

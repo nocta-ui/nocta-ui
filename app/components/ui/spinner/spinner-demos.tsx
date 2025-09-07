@@ -54,10 +54,7 @@ export const LoadingButtonDemo: React.FC = () => {
 			>
 				{isLoading ? (
 					<div className="flex items-center gap-2">
-						<Spinner
-							size="sm"
-							className="text-nocta-50 dark:text-nocta-900"
-						/>
+						<Spinner size="sm" className="text-nocta-50 dark:text-nocta-900" />
 						<span>Loading...</span>
 					</div>
 				) : (

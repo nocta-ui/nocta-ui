@@ -433,33 +433,33 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				}`;
 
 	return (
-			<div
-				ref={contentRef}
-				id={contentId}
-				role="listbox"
-				className={cn(
-					"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl",
-					positionStyles[position],
-					animationStyles,
-					"not-prose",
-					className,
-				)}
-			>
-				<span
-					aria-hidden
-					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-					style={{
-						maskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						WebkitMaskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					}}
-				/>
-				<div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
-					{children}
-				</div>
+		<div
+			ref={contentRef}
+			id={contentId}
+			role="listbox"
+			className={cn(
+				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl",
+				positionStyles[position],
+				animationStyles,
+				"not-prose",
+				className,
+			)}
+		>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
+			<div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
+				{children}
 			</div>
-		);
+		</div>
+	);
 };
 
 export const SelectItem: React.FC<SelectItemProps> = ({

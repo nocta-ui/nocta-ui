@@ -93,36 +93,30 @@ const checkboxVariants = cva(
 	},
 );
 
-const iconVariants = cva(
-	[
-		"stroke-[3]",
-		"transition-opacity duration-200",
-	],
-	{
-		variants: {
-			variant: {
-				default: "text-nocta-50 dark:text-nocta-50",
-				success: "text-green-500 dark:green-500",
-				warning: "text-yellow-500 dark:yellow-500",
-				destructive: "text-red-500 dark:red-500",
-			},
-			size: {
-				sm: "h-2.5 w-2.5",
-				md: "h-3 w-3",
-				lg: "h-3.5 w-3.5",
-			},
-			checked: {
-				true: "opacity-100",
-				false: "opacity-0",
-			},
+const iconVariants = cva(["stroke-[3]", "transition-opacity duration-200"], {
+	variants: {
+		variant: {
+			default: "text-nocta-50 dark:text-nocta-50",
+			success: "text-green-500 dark:green-500",
+			warning: "text-yellow-500 dark:yellow-500",
+			destructive: "text-red-500 dark:red-500",
 		},
-		defaultVariants: {
-			variant: "default",
-			size: "md",
-			checked: false,
+		size: {
+			sm: "h-2.5 w-2.5",
+			md: "h-3 w-3",
+			lg: "h-3.5 w-3.5",
+		},
+		checked: {
+			true: "opacity-100",
+			false: "opacity-0",
 		},
 	},
-);
+	defaultVariants: {
+		variant: "default",
+		size: "md",
+		checked: false,
+	},
+});
 
 export interface CheckboxProps
 	extends Omit<

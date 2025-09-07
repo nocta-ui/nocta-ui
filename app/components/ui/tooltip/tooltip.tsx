@@ -50,8 +50,6 @@ const tooltipContentVariants = cva(
 	},
 );
 
-
-
 export interface TooltipProps {
 	children: React.ReactNode;
 	open?: boolean;
@@ -72,7 +70,6 @@ export interface TooltipContentProps
 	className?: string;
 	sideOffset?: number;
 	alignOffset?: number;
-
 }
 
 interface TooltipContextType {
@@ -445,8 +442,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 			{...props}
 		>
 			{children}
-
-
 		</div>
 	);
 
