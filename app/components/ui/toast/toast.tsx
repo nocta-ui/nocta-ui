@@ -161,7 +161,7 @@ const toastContainerVariants = cva(
 			},
 			variant: {
 				default:
-					"border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100 overflow-hidden",
+					"border-nocta-300 dark:border-nocta-50/5 bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 overflow-hidden",
 				success:
 					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
 				warning:

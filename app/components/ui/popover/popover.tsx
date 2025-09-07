@@ -27,7 +27,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-nocta-100 dark:bg-nocta-900 p-4 shadow-lg dark:shadow-xl not-prose relative overflow-hidden border border-nocta-200 dark:border-nocta-800",
+	"w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-nocta-200 dark:bg-nocta-800 p-4 shadow-lg dark:shadow-xl not-prose relative overflow-hidden border border-nocta-300 dark:border-nocta-50/5",
 	{
 		variants: {
 			size: {

@@ -26,20 +26,10 @@ const tooltipContentVariants = cva(
 			},
 			variant: {
 				default: `
-          bg-nocta-100 dark:bg-nocta-900
+          bg-nocta-200 dark:bg-nocta-800
           text-nocta-900 dark:text-nocta-100
-          border-nocta-200 dark:border-nocta-800
-        `,
-				dark: `
-          bg-nocta-100 dark:bg-nocta-900
-          text-nocta-900 dark:text-nocta-100
-          border-nocta-200 dark:border-nocta-800
-        `,
-				light: `
-          bg-nocta-100 dark:bg-nocta-900
-          text-nocta-900 dark:text-nocta-100
-          border-nocta-200 dark:border-nocta-800
-        `,
+          border-nocta-300 dark:border-nocta-50/5
+        `
 			},
 		},
 		defaultVariants: {
