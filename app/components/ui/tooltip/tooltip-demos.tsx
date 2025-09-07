@@ -41,7 +41,7 @@ export const PositioningDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="grid grid-cols-2 gap-8 max-w-md mx-auto">
-				<div className="flex justify-center">
+				<div className="flex justify-between">
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button size="sm" variant="ghost">
@@ -52,7 +52,7 @@ export const PositioningDemo: React.FC = () => {
 					</Tooltip>
 				</div>
 
-				<div className="flex justify-center">
+				<div className="flex justify-start">
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button size="sm" variant="ghost">
@@ -63,7 +63,7 @@ export const PositioningDemo: React.FC = () => {
 					</Tooltip>
 				</div>
 
-				<div className="flex justify-center">
+				<div className="flex justify-start">
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button size="sm" variant="ghost">
@@ -74,7 +74,7 @@ export const PositioningDemo: React.FC = () => {
 					</Tooltip>
 				</div>
 
-				<div className="flex justify-center">
+				<div className="flex justify-end">
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button size="sm" variant="ghost">

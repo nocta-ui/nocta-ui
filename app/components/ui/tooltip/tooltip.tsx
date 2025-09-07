@@ -1,15 +1,16 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
+
+type Side = "top" | "bottom" | "left" | "right";
 
 const tooltipContentVariants = cva(
 	`fixed z-50 px-3 py-2 text-sm
    border rounded-lg shadow-lg
    pointer-events-auto
-   transition-opacity duration-200 ease-in-out
    not-prose  overflow-hidden`,
 	{
 		variants: {
@@ -40,6 +41,41 @@ const tooltipContentVariants = cva(
 	},
 );
 
+const tooltipAnimationVariants = cva(
+	"transform duration-200 ease-in-out",
+	{
+		variants: {
+			side: {
+				top: "",
+				bottom: "",
+				left: "",
+				right: "",
+			},
+			state: {
+				measuring:
+					"opacity-0 scale-95 pointer-events-none invisible transition-all",
+				visible:
+					"translate-y-0 opacity-100 scale-100 origin-center transition-[opacity,scale,transform]",
+				hidden: "opacity-0 scale-95 transition-[opacity,translate,scale]",
+			},
+		},
+		compoundVariants: [
+			{ side: "top", state: "hidden", class: "translate-y-1 origin-top" },
+			{ side: "bottom", state: "hidden", class: "-translate-y-1 origin-bottom" },
+			{ side: "left", state: "hidden", class: "translate-x-1 origin-left" },
+			{ side: "right", state: "hidden", class: "-translate-x-1 origin-right" },
+			{ side: "top", state: "measuring", class: "translate-y-1 origin-top" },
+			{ side: "bottom", state: "measuring", class: "-translate-y-1 origin-bottom" },
+			{ side: "left", state: "measuring", class: "translate-x-1 origin-left" },
+			{ side: "right", state: "measuring", class: "-translate-x-1 origin-right" },
+		],
+		defaultVariants: {
+			side: "top",
+			state: "hidden",
+		},
+	},
+);
+
 export interface TooltipProps {
 	children: React.ReactNode;
 	open?: boolean;
@@ -55,11 +91,13 @@ export interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
 
 export interface TooltipContentProps
 	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof tooltipContentVariants> {
+		Omit<VariantProps<typeof tooltipContentVariants>, 'side'> {
 	children: React.ReactNode;
 	className?: string;
+	side?: Side;
 	sideOffset?: number;
 	alignOffset?: number;
+	avoidCollisions?: boolean;
 }
 
 interface TooltipContextType {
@@ -226,6 +264,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	variant = "default",
 	sideOffset = 8,
 	alignOffset = 0,
+	avoidCollisions = true,
 
 	onMouseEnter,
 	onMouseLeave,
@@ -233,170 +272,150 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 }) => {
 	const { open, onOpenChange, triggerRef } = useTooltip();
 	const contentRef = useRef<HTMLDivElement>(null);
-	const [position, setPosition] = useState<{ x: number; y: number } | null>(
+	const [position, setPosition] = useState<{ top: number; left: number } | null>(
 		null,
 	);
+	const [actualSide, setActualSide] = useState<Side>(side);
 	const [isVisible, setIsVisible] = useState(false);
+	const [shouldRender, setShouldRender] = useState(false);
 	const [isMeasuring, setIsMeasuring] = useState(false);
-	const [actualSide, setActualSide] = useState<
-		"top" | "bottom" | "left" | "right"
-	>(side || "top");
 
 	useEffect(() => {
-		if (!open) {
+		if (open) {
+			setShouldRender(true);
+			setIsMeasuring(true);
+			setIsVisible(false);
 			setPosition(null);
+		} else {
 			setIsVisible(false);
 			setIsMeasuring(false);
-			setActualSide(side || "top");
+			const timer = setTimeout(() => {
+				setShouldRender(false);
+				setPosition(null);
+			}, 200);
+			return () => clearTimeout(timer);
+		}
+	}, [open]);
+
+	const calculatePosition = useCallback(() => {
+		if (!contentRef.current || !triggerRef.current) return;
+
+		const triggerRect = triggerRef.current.getBoundingClientRect();
+		const contentWidth = contentRef.current.offsetWidth;
+		const contentHeight = contentRef.current.offsetHeight;
+
+		if (contentWidth === 0 || contentHeight === 0) {
+			if (isMeasuring) {
+				requestAnimationFrame(calculatePosition);
+			}
 			return;
 		}
 
-		setIsMeasuring(true);
-		setIsVisible(false);
-	}, [open, side]);
+		const viewport = {
+			width: window.innerWidth,
+			height: window.innerHeight,
+		};
 
-	useEffect(() => {
-		if (!isMeasuring || !contentRef.current || !triggerRef.current) return;
+		let finalSide: Side = side;
+		let top = 0;
+		let left = 0;
 
-		const calculatePosition = () => {
-			const triggerRect = triggerRef.current!.getBoundingClientRect();
-			const contentRect = contentRef.current!.getBoundingClientRect();
+		switch (side) {
+			case "top":
+				top = triggerRect.top - contentHeight - sideOffset;
+				break;
+			case "bottom":
+				top = triggerRect.bottom + sideOffset;
+				break;
+			case "left":
+				left = triggerRect.left - contentWidth - sideOffset;
+				break;
+			case "right":
+				left = triggerRect.right + sideOffset;
+				break;
+		}
 
-			if (contentRect.width === 0 || contentRect.height === 0) {
-				requestAnimationFrame(calculatePosition);
-				return;
+		if (side === "top" || side === "bottom") {
+			switch (align) {
+				case "start":
+					left = triggerRect.left + alignOffset;
+					break;
+				case "center":
+					left =
+						triggerRect.left +
+						triggerRect.width / 2 -
+						contentWidth / 2 +
+						alignOffset;
+					break;
+				case "end":
+					left = triggerRect.right - contentWidth + alignOffset;
+					break;
+			}
+		} else {
+			switch (align) {
+				case "start":
+					top = triggerRect.top + alignOffset;
+					break;
+				case "center":
+					top =
+						triggerRect.top +
+						triggerRect.height / 2 -
+						contentHeight / 2 +
+						alignOffset;
+					break;
+				case "end":
+					top = triggerRect.bottom - contentHeight + alignOffset;
+					break;
+			}
+		}
+
+		if (avoidCollisions) {
+			if (side === "top" && top < 0) {
+				finalSide = "bottom";
+				top = triggerRect.bottom + sideOffset;
+			} else if (side === "bottom" && top + contentHeight > viewport.height) {
+				finalSide = "top";
+				top = triggerRect.top - contentHeight - sideOffset;
+			} else if (side === "left" && left < 0) {
+				finalSide = "right";
+				left = triggerRect.right + sideOffset;
+			} else if (side === "right" && left + contentWidth > viewport.width) {
+				finalSide = "left";
+				left = triggerRect.left - contentWidth - sideOffset;
 			}
 
-			const viewportWidth = window.innerWidth;
-			const viewportHeight = window.innerHeight;
-			const margin = 8;
-
-			const getPositionForSide = (
-				targetSide: "top" | "bottom" | "left" | "right",
-			) => {
-				let x = 0;
-				let y = 0;
-
-				switch (targetSide) {
-					case "top":
-						x =
-							triggerRect.left + triggerRect.width / 2 - contentRect.width / 2;
-						y = triggerRect.top - contentRect.height - sideOffset;
-						break;
-					case "bottom":
-						x =
-							triggerRect.left + triggerRect.width / 2 - contentRect.width / 2;
-						y = triggerRect.bottom + sideOffset;
-						break;
-					case "left":
-						x = triggerRect.left - contentRect.width - sideOffset;
-						y =
-							triggerRect.top + triggerRect.height / 2 - contentRect.height / 2;
-						break;
-					case "right":
-						x = triggerRect.right + sideOffset;
-						y =
-							triggerRect.top + triggerRect.height / 2 - contentRect.height / 2;
-						break;
-				}
-
-				if (targetSide === "top" || targetSide === "bottom") {
-					if (align === "start")
-						x = triggerRect.right - contentRect.width + alignOffset;
-					if (align === "end") x = triggerRect.left + alignOffset;
-				} else {
-					if (align === "start")
-						y = triggerRect.bottom - contentRect.height + alignOffset;
-					if (align === "end") y = triggerRect.top + alignOffset;
-				}
-
-				return { x, y };
-			};
-
-			const fitsInViewport = (x: number, y: number) => {
-				return (
-					x >= margin &&
-					x + contentRect.width <= viewportWidth - margin &&
-					y >= margin &&
-					y + contentRect.height <= viewportHeight - margin
-				);
-			};
-
-			const currentSide = side || "top";
-			let bestSide = currentSide;
-			let { x, y } = getPositionForSide(currentSide);
-
-			if (!fitsInViewport(x, y)) {
-				let oppositeSide: "top" | "bottom" | "left" | "right";
-
-				switch (currentSide) {
-					case "top":
-						oppositeSide = "bottom";
-						break;
-					case "bottom":
-						oppositeSide = "top";
-						break;
-					case "left":
-						oppositeSide = "right";
-						break;
-					case "right":
-						oppositeSide = "left";
-						break;
-				}
-
-				const oppositePosition = getPositionForSide(oppositeSide);
-
-				if (fitsInViewport(oppositePosition.x, oppositePosition.y)) {
-					bestSide = oppositeSide;
-					x = oppositePosition.x;
-					y = oppositePosition.y;
-				} else {
-					const preferredSpaceAvailable =
-						currentSide === "top"
-							? triggerRect.top
-							: currentSide === "bottom"
-								? viewportHeight - triggerRect.bottom
-								: currentSide === "left"
-									? triggerRect.left
-									: viewportWidth - triggerRect.right;
-
-					const oppositeSpaceAvailable =
-						oppositeSide === "top"
-							? triggerRect.top
-							: oppositeSide === "bottom"
-								? viewportHeight - triggerRect.bottom
-								: oppositeSide === "left"
-									? triggerRect.left
-									: viewportWidth - triggerRect.right;
-
-					if (oppositeSpaceAvailable > preferredSpaceAvailable) {
-						bestSide = oppositeSide;
-						x = oppositePosition.x;
-						y = oppositePosition.y;
-					}
-				}
+			if (side === "top" || side === "bottom") {
+				left = Math.max(8, Math.min(left, viewport.width - contentWidth - 8));
+			} else {
+				top = Math.max(8, Math.min(top, viewport.height - contentHeight - 8));
 			}
+		}
 
-			x = Math.max(
-				margin,
-				Math.min(x, viewportWidth - contentRect.width - margin),
-			);
-			y = Math.max(
-				margin,
-				Math.min(y, viewportHeight - contentRect.height - margin),
-			);
+		setPosition({ top, left });
+		setActualSide(finalSide);
 
-			setActualSide(bestSide);
-			setPosition({ x, y });
+		if (isMeasuring) {
 			setIsMeasuring(false);
-
 			requestAnimationFrame(() => {
 				setIsVisible(true);
 			});
-		};
+		}
+	}, [side, align, sideOffset, alignOffset, avoidCollisions, isMeasuring, triggerRef]);
 
+	useEffect(() => {
+		if (!isMeasuring) return;
 		requestAnimationFrame(calculatePosition);
-	}, [isMeasuring, side, align, sideOffset, alignOffset, triggerRef]);
+	}, [isMeasuring, calculatePosition]);
+
+	useEffect(() => {
+		if (!open || isMeasuring) return;
+		window.addEventListener("scroll", calculatePosition, true);
+		window.addEventListener("resize", calculatePosition);
+		return () => {
+			window.removeEventListener("scroll", calculatePosition, true);
+			window.removeEventListener("resize", calculatePosition);
+		};
+	}, [open, isMeasuring, calculatePosition]);
 
 	const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
 		onMouseEnter?.(e);
@@ -407,26 +426,30 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 		onMouseLeave?.(e);
 	};
 
-	if (!open) return null;
+	if (!shouldRender) return null;
+
+	const animationState = isMeasuring
+		? "measuring"
+		: isVisible && position
+			? "visible"
+			: "hidden";
 
 	const tooltipContent = (
 		<div
 			ref={contentRef}
 			id="tooltip"
 			role="tooltip"
+			style={{
+				position: "fixed",
+				top: position ? `${position.top}px` : "-10000px",
+				left: position ? `${position.left}px` : "-10000px",
+				zIndex: 50,
+			}}
 			className={cn(
 				tooltipContentVariants({ side: actualSide, align, variant }),
-				isMeasuring
-					? "opacity-0 pointer-events-none"
-					: isVisible && position
-						? "opacity-100 scale-100"
-						: "opacity-0 scale-95",
+				tooltipAnimationVariants({ side: actualSide, state: animationState }),
 				className,
 			)}
-			style={{
-				left: position ? `${position.x}px` : "0px",
-				top: position ? `${position.y}px` : "0px",
-			}}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			{...props}
