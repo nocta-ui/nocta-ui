@@ -178,7 +178,7 @@ export const StepDemo: React.FC = () => {
 	const [value, setValue] = useState(20);
 
 	return (
-		<div className="my-6 w-48">
+		<div className="my-6 w-56">
 			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Step = 5 (Snaps to: 0, 5, 10, ...)
@@ -203,8 +203,8 @@ export const VerticalDemo: React.FC = () => {
 	const [value2, setValue2] = useState(70);
 
 	return (
-		<div className="my-6 w-48">
-			<div className="flex items-center gap-8 h-48">
+		<div className="my-6">
+			<div className="flex items-center gap-8">
 				<div className="flex flex-col items-center gap-2 h-48">
 					<Slider
 						orientation="vertical"

@@ -24,7 +24,7 @@ export default async function Page(props: {
 				style: "clerk",
 			}}
 		>
-			<h1 className="text-[1.75em] font-semibold">{page.data.title}</h1>
+			<h1 className="text-[1.75em] font-semibold -mb-4">{page.data.title}</h1>
 			<p className="text-lg text-fd-muted-foreground">
 				{page.data.description}
 			</p>
@@ -35,7 +35,7 @@ export default async function Page(props: {
 					githubUrl={`https://github.com/66HEX/nocta-ui/tree/main/content/docs/${page.file.path}`}
 				/>
 			</div>
-			<DocsBody>
+			<DocsBody className="">
 				<MDXContent
 					components={getMDXComponents({
 						a: createRelativeLink(source, page),

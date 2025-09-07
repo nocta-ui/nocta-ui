@@ -17,7 +17,7 @@ const breadcrumbVariants = cva("flex items-center not-prose", {
 	},
 });
 
-const breadcrumbListVariants = cva("flex flex-wrap items-center", {
+const breadcrumbListVariants = cva("flex flex-wrap items-center not-prose", {
 	variants: {
 		size: {
 			sm: "gap-1",

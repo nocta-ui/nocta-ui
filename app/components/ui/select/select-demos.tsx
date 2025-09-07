@@ -86,7 +86,7 @@ export const DisabledStateDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4">
 			<Select disabled>
-				<SelectTrigger className="w-[180px]">
+				<SelectTrigger className="w-[200px]">
 					<SelectValue placeholder="Disabled select" />
 				</SelectTrigger>
 				<SelectContent>
@@ -96,7 +96,7 @@ export const DisabledStateDemo: React.FC = () => {
 			</Select>
 
 			<Select>
-				<SelectTrigger className="w-[180px]">
+				<SelectTrigger className="w-[200px]">
 					<SelectValue placeholder="Some disabled items" />
 				</SelectTrigger>
 				<SelectContent>

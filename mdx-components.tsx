@@ -139,10 +139,23 @@ import {
 	TooltipTrigger,
 } from "@/app/components/ui/tooltip";
 
+const wrap = (Tag: any, className?: string) =>
+  (props: any) => <Tag className={className} {...props} />;
+
+
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
 	return {
 		...defaultMdxComponents,
+		p: wrap("p", "!font-light leading-relaxed"),
+		li: wrap("li", "!font-light"),
+		blockquote: wrap("blockquote", "!font-light italic border-l-2 pl-4"),
+		h1: wrap("h1", "!font-semibold text-3xl mt-6 mb-3"),
+		h2: wrap("h2", "!font-semibold text-2xl mt-5 mb-2"),
+		h3: wrap("h3", "!font-normal text-xl mt-4 mb-1"),
+		h4: wrap("h4", "!font-light text-lg mt-3 mb-1"),
+		h5: wrap("h5", "!font-light text-base mt-2 mb-1"),
+		h6: wrap("h6", "!font-light text-sm mt-1 mb-1"),
 		Card,
 		CardHeader,
 		CardTitle,

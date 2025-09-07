@@ -46,7 +46,7 @@ export const BasicComboboxDemo: React.FC = () => {
 	const [value, setValue] = useState("");
 
 	return (
-		<div className="my-6 h-24">
+		<div className="my-6">
 			<div className="flex flex-col space-y-2">
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Framework

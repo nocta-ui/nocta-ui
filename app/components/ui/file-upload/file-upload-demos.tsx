@@ -27,7 +27,7 @@ export function FileUploadDemo() {
 	};
 
 	return (
-		<div className="space-y-6">
+		<div className="my-6">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">Basic File Upload</h3>
 				<FileUpload
@@ -50,7 +50,7 @@ export function FileUploadSizesDemo() {
 	const [lgFiles, setLgFiles] = useState<FileUploadFile[]>([]);
 
 	return (
-		<div className="space-y-8">
+		<div className="my-6 space-y-8">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">Small Size</h3>
 				<FileUpload size="sm" files={smFiles} onFilesChange={setSmFiles} />
@@ -85,7 +85,7 @@ export function FileUploadImageOnlyDemo() {
 	};
 
 	return (
-		<div className="space-y-6">
+		<div className="my-6">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">
 					Image Upload with Preview
@@ -112,7 +112,7 @@ export function FileUploadSingleFileDemo() {
 	const [files, setFiles] = useState<FileUploadFile[]>([]);
 
 	return (
-		<div className="space-y-6">
+		<div className="my-6">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">Single File Upload</h3>
 				<FileUpload
@@ -134,7 +134,7 @@ export function FileUploadDisabledDemo() {
 	const [files, setFiles] = useState<FileUploadFile[]>([]);
 
 	return (
-		<div className="space-y-6">
+		<div className="my-6">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">Disabled State</h3>
 				<FileUpload
@@ -188,7 +188,7 @@ export function FileUploadCustomizationDemo() {
 	};
 
 	return (
-		<div className="space-y-6">
+		<div className="my-6">
 			<div>
 				<h3 className="text-lg font-semibold mb-2">
 					Advanced Upload with Progress

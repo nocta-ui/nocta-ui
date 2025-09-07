@@ -2,12 +2,9 @@
 
 import {
 	Code,
-	Gear,
 	Lock,
 	Palette,
 	Question,
-	Shield,
-	User,
 } from "phosphor-react";
 import React from "react";
 import {
@@ -20,8 +17,8 @@ import {
 // Basic demo showing simple accordion usage
 export function BasicAccordionDemo() {
 	return (
-		<div className="w-full max-w-md mx-auto h-64 relative">
-			<Accordion className="absolute left-1/2 -translate-x-1/2 top-10">
+		<div className="w-full max-w-md mx-auto my-6 relative">
+			<Accordion>
 				<AccordionItem value="item-1">
 					<AccordionTrigger>What is Nocta UI?</AccordionTrigger>
 					<AccordionContent>
@@ -53,17 +50,14 @@ export function BasicAccordionDemo() {
 // Card variant demo
 export function CardAccordionDemo() {
 	return (
-		<div className="w-full max-w-lg mx-auto h-64 relative">
+		<div className="w-full max-w-lg mx-auto my-6 relative">
 			<Accordion
 				variant="card"
-				className="space-y-3 absolute left-1/2 -translate-x-1/2 top-10"
+				className="space-y-3"
 			>
 				<AccordionItem value="account">
 					<AccordionTrigger>
-						<div className="flex items-center">
-							<User size={18} className="mr-2" />
-							Account Settings
-						</div>
+						Account Settings
 					</AccordionTrigger>
 					<AccordionContent>
 						Manage your profile, change email address and password.
@@ -72,10 +66,7 @@ export function CardAccordionDemo() {
 
 				<AccordionItem value="security">
 					<AccordionTrigger>
-						<div className="flex items-center">
-							<Shield size={18} className="mr-2" />
-							Security
-						</div>
+						Security
 					</AccordionTrigger>
 					<AccordionContent>
 						Enable two-factor authentication and manage your login sessions.
@@ -84,10 +75,7 @@ export function CardAccordionDemo() {
 
 				<AccordionItem value="preferences">
 					<AccordionTrigger>
-						<div className="flex items-center">
-							<Gear size={18} className="mr-2" />
-							Preferences
-						</div>
+						Preferences
 					</AccordionTrigger>
 					<AccordionContent>
 						Customize the interface theme, language, and notification settings.
@@ -101,10 +89,9 @@ export function CardAccordionDemo() {
 // Multiple open demo
 export function MultipleAccordionDemo() {
 	return (
-		<div className="w-full max-w-md mx-auto h-84 relative">
+		<div className="w-full max-w-md mx-auto my-6 relative">
 			<Accordion
 				type="multiple"
-				className="absolute left-1/2 -translate-x-1/2 top-10"
 			>
 				<AccordionItem value="react">
 					<AccordionTrigger>React Basics</AccordionTrigger>
@@ -135,8 +122,8 @@ export function MultipleAccordionDemo() {
 // Size variants demo
 export function SizeAccordionDemo() {
 	return (
-		<div className="w-full max-w-md mx-auto space-y-8 h-82 flex relative">
-			<div className="flex flex-col gap-4 w-full absolute left-1/2 -translate-x-1/2 top-10">
+		<div className="w-full max-w-md mx-auto space-y-8 my-6 flex flex-col">
+			<div className="flex flex-col gap-4">
 				<div>
 					<Accordion size="sm">
 						<AccordionItem value="small">
@@ -188,8 +175,8 @@ export function ControlledAccordionDemo() {
 	};
 
 	return (
-		<div className="w-full max-w-md mx-auto space-y-4 h-64 flex flex-col justify-center items-center relative">
-			<div className="absolute left-1/2 -translate-x-1/2 top-10">
+		<div className="w-full max-w-md mx-auto space-y-4 flex flex-col justify-center items-center relative">
+			<div className="my-6">
 				<div className="flex gap-2 mb-10">
 					<button
 						onClick={() => setOpenItems(["controlled-1"])}
