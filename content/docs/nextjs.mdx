@@ -3,6 +3,10 @@ title: Next.js Installation
 description: Step-by-step guide to install and configure Nocta UI with Next.js
 ---
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 ## Create Next.js Project
 
 First, create a new Next.js project:
@@ -17,7 +21,9 @@ npx create-next-app@latest my-app
   --import-alias "@/*"
 cd my-app
 ```
+</Step>
 
+<Step>
 ## Install Nocta UI
 
 Initialize Nocta UI in your project. This will automatically install all required dependencies:
@@ -34,7 +40,9 @@ The init command will:
 - **Project Structure**: Create the `components/ui/` directory structure for components
 - **Utils Setup**: Generate `lib/utils.ts` with the necessary utility functions
 - **Theme Configuration**: Add your selected theme tokens to either your CSS file (Tailwind v4) or tailwind.config (Tailwind v3)
+</Step>
 
+<Step>
 ## Add Components
 
 Now you can add specific components that you need:
@@ -44,7 +52,9 @@ npx nocta-ui add button
 npx nocta-ui add card
 npx nocta-ui add badge
 ```
+</Step>
 
+<Step>
 ## Usage
 
 Now you can import and use Nocta UI components in your Next.js application:
@@ -76,5 +86,7 @@ export default function Home() {
   );
 }
 ```
+</Step>
+</Steps>
 
 You're all set! You can now copy component code from the documentation and use it in your Next.js application.

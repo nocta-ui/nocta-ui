@@ -12,20 +12,26 @@ import {
   FileUploadDisabledDemo,
 } from '@/app/components/ui/file-upload/file-upload-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
 
-Install the File Upload component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the File Upload component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add file-upload
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add file-upload
+    ```
+  </Step>
+  <Step>
+    Import the component:
 
-Then import the component:
-
-```tsx lineNumbers title="Import"
-import { FileUpload } from '@/components/ui/file-upload';
-```
+    ```tsx lineNumbers title="Import"
+    import { FileUpload } from '@/components/ui/file-upload';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 
@@ -218,127 +224,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 // Unlimited files
 <FileUpload multiple />
-```
-
-## Custom Upload Implementation
-
-### Basic Upload Function
-
-```tsx lineNumbers title="Upload Implementation"
-const handleUpload = async (filesToUpload: FileUploadFile[]) => {
-  for (const fileData of filesToUpload) {
-    const formData = new FormData();
-    formData.append('file', fileData.file);
-    
-    try {
-      // Update status to uploading
-      setFiles(prevFiles => 
-        prevFiles.map(f => 
-          f.id === fileData.id 
-            ? { ...f, status: 'uploading', progress: 0 }
-            : f
-        )
-      );
-
-      // Make upload request
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Success
-        setFiles(prevFiles => 
-          prevFiles.map(f => 
-            f.id === fileData.id 
-              ? { ...f, status: 'success', progress: 100 }
-              : f
-          )
-        );
-      } else {
-        throw new Error('Upload failed');
-      }
-    } catch (error) {
-      // Error
-      setFiles(prevFiles => 
-        prevFiles.map(f => 
-          f.id === fileData.id 
-            ? { ...f, status: 'error', error: 'Upload failed' }
-            : f
-        )
-      );
-    }
-  }
-};
-```
-
-### Upload with Progress Tracking
-
-```tsx lineNumbers title="Progress Tracking"
-const handleUploadWithProgress = async (filesToUpload: FileUploadFile[]) => {
-  for (const fileData of filesToUpload) {
-    const formData = new FormData();
-    formData.append('file', fileData.file);
-    
-    try {
-      setFiles(prevFiles => 
-        prevFiles.map(f => 
-          f.id === fileData.id 
-            ? { ...f, status: 'uploading', progress: 0 }
-            : f
-        )
-      );
-
-      await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        
-        // Track upload progress
-        xhr.upload.addEventListener('progress', (e) => {
-          if (e.lengthComputable) {
-            const progress = (e.loaded / e.total) * 100;
-            setFiles(prevFiles => 
-              prevFiles.map(f => 
-                f.id === fileData.id 
-                  ? { ...f, progress }
-                  : f
-              )
-            );
-          }
-        });
-
-        xhr.addEventListener('load', () => {
-          if (xhr.status === 200) {
-            setFiles(prevFiles => 
-              prevFiles.map(f => 
-                f.id === fileData.id 
-                  ? { ...f, status: 'success', progress: 100 }
-                  : f
-              )
-            );
-            resolve(xhr.response);
-          } else {
-            reject(new Error('Upload failed'));
-          }
-        });
-
-        xhr.addEventListener('error', () => {
-          reject(new Error('Upload failed'));
-        });
-
-        xhr.open('POST', '/api/upload');
-        xhr.send(formData);
-      });
-    } catch (error) {
-      setFiles(prevFiles => 
-        prevFiles.map(f => 
-          f.id === fileData.id 
-            ? { ...f, status: 'error', error: 'Upload failed' }
-            : f
-        )
-      );
-    }
-  }
-};
 ```
 
 ## Accessibility

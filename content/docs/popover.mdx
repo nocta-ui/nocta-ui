@@ -4,6 +4,7 @@ description: Advanced popover component with smart positioning, collision detect
 ---
 
 import { Popover, PopoverTrigger, PopoverContent } from '@/app/components/ui/popover';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { 
   BasicPopoverDemo,
   SidesDemo,
@@ -19,13 +20,16 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+<Steps>
+<Step>
 Install the Popover component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add popover
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { 
@@ -34,6 +38,8 @@ import {
   PopoverContent 
 } from '@/components/ui/popover';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -260,152 +266,6 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
   </DocsTab>
 </DocsTabs>
 
-## Rich Content
-
-Popovers can contain complex content including forms, menus, and interactive elements.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <RichContentDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Rich Popover Content"
-    <Popover>
-      <PopoverTrigger>Rich Content</PopoverTrigger>
-      <PopoverContent className="w-80">
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-base mb-2">User Profile</h3>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-nocta-50 font-medium">
-                JD
-              </div>
-              <div>
-                <p className="font-medium text-sm">John Doe</p>
-                <p className="text-xs text-nocta-600 dark:text-nocta-400">john@example.com</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-nocta-300 dark:border-nocta-700 pt-3">
-            <div className="space-y-2">
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded">
-                View Profile
-              </button>
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded">
-                Settings
-              </button>
-              <button className="w-full text-left px-2 py-1 text-sm hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded text-red-600 dark:text-red-400">
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Form Integration
-
-Popovers work great for inline forms and quick actions.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FormPopoverDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Form Popover"
-    const [open, setOpen] = useState(false);
-
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-      setOpen(false);
-    };
-
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger>Create New Item</PopoverTrigger>
-      <PopoverContent className="w-72">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <h4 className="font-medium text-sm mb-3">Create New Item</h4>
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
-              Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter item name"
-              className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-nocta-700 dark:text-nocta-300">
-              Description
-            </label>
-            <textarea
-              placeholder="Enter description"
-              rows={3}
-              className="w-full px-3 py-2 text-sm border border-nocta-300 dark:border-nocta-700 rounded-md"
-            />
-          </div>
-
-          <div className="flex gap-2 pt-2">
-            <button type="submit" className="flex-1 px-3 py-2 text-sm bg-nocta-900 text-nocta-50 rounded-md">
-              Create
-            </button>
-            <button type="button" onClick={() => setOpen(false)} className="px-3 py-2 text-sm border rounded-md">
-              Cancel
-            </button>
-          </div>
-        </form>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Collision Detection
-
-The popover automatically detects viewport edges and flips position to stay visible.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CollisionDetectionDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Collision Detection"
-    {/* These will automatically flip if they would go outside viewport */}
-    <Popover>
-      <PopoverTrigger>Left Edge</PopoverTrigger>
-      <PopoverContent side="left" avoidCollisions={true}>
-        <p className="text-sm">This will flip to the right if needed</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>Right Edge</PopoverTrigger>
-      <PopoverContent side="right" avoidCollisions={true}>
-        <p className="text-sm">This will flip to the left if needed</p>
-      </PopoverContent>
-    </Popover>
-
-    {/* Disable collision detection */}
-    <Popover>
-      <PopoverTrigger>No Collision Detection</PopoverTrigger>
-      <PopoverContent avoidCollisions={false}>
-        <p className="text-sm">This won't flip position</p>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Keyboard Navigation
 
 The Popover component includes comprehensive keyboard support:
@@ -513,4 +373,4 @@ const [user, setUser] = useState(null);
 | `onEscapeKeyDown` | `(event: KeyboardEvent) => void` | — | Callback when Escape key is pressed |
 | `onPointerDownOutside` | `(event: PointerEvent) => void` | — | Callback when clicking outside |
 
-The Popover component also accepts all standard HTML attributes for their respective elements. 
+The Popover component also accepts all standard HTML attributes for their respective elements.

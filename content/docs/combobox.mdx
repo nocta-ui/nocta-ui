@@ -16,20 +16,26 @@ import {
   ControlledDemo
 } from '@/app/components/ui/combobox/combobox-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
 
-Install the Combobox component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the Combobox component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add combobox
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add combobox
+    ```
+  </Step>
+  <Step>
+    Import the component:
 
-Then import the component:
-
-```tsx lineNumbers title="Import"
-import { Combobox, ComboboxOption } from '@/components/ui/combobox';
-```
+    ```tsx lineNumbers title="Import"
+    import { Combobox, ComboboxOption } from '@/components/ui/combobox';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 
@@ -412,4 +418,4 @@ Customize the appearance with className props:
 | `label` | `string` | — | Display text for the option |
 | `disabled` | `boolean` | `false` | Disable this option |
 
-The Combobox component also accepts all standard HTML button attributes for the trigger element. 
+The Combobox component also accepts all standard HTML button attributes for the trigger element.

@@ -15,13 +15,18 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Tabs component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add tabs
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { 
@@ -31,6 +36,8 @@ import {
   TabsContent 
 } from '@/components/ui/tabs';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -402,4 +409,4 @@ const tabs = [
 | `value` | `string` | — | Tab identifier this content belongs to |
 | `className` | `string` | `''` | Additional CSS classes |
 
-The Tabs components also accept all standard HTML attributes for their respective elements. 
+The Tabs components also accept all standard HTML attributes for their respective elements.

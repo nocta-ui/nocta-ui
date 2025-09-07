@@ -21,7 +21,7 @@ export default async function Page(props: {
 			toc={toc}
 			lastUpdate={lastModified ? new Date(lastModified) : undefined}
 			tableOfContent={{
-				style: "clerk",
+				style: "normal",
 			}}
 		>
 			<h1 className="text-[1.75em] font-semibold -mb-4">{page.data.title}</h1>

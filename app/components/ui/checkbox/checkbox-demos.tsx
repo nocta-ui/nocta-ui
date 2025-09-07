@@ -101,56 +101,6 @@ export const SizesDemo: React.FC = () => {
 	);
 };
 
-export const FormDemo: React.FC = () => {
-	const [formData, setFormData] = useState({
-		terms: false,
-		newsletter: true,
-		notifications: false,
-	});
-
-	const handleChange = (field: keyof typeof formData) => (checked: boolean) => {
-		setFormData((prev) => ({ ...prev, [field]: checked }));
-	};
-
-	return (
-		<div className="space-y-4 p-4 border rounded-lg dark:border-nocta-700">
-			<h3 className="font-medium not-prose">Account Settings</h3>
-			<div className="space-y-3">
-				<div className="flex items-center gap-3">
-					<Checkbox
-						checked={formData.terms}
-						onCheckedChange={handleChange("terms")}
-						variant="default"
-					/>
-					<label className="text-sm cursor-pointer">
-						I agree to the terms and conditions
-					</label>
-				</div>
-				<div className="flex items-center gap-3">
-					<Checkbox
-						checked={formData.newsletter}
-						onCheckedChange={handleChange("newsletter")}
-						variant="success"
-					/>
-					<label className="text-sm cursor-pointer">
-						Subscribe to newsletter
-					</label>
-				</div>
-				<div className="flex items-center gap-3">
-					<Checkbox
-						checked={formData.notifications}
-						onCheckedChange={handleChange("notifications")}
-						variant="warning"
-					/>
-					<label className="text-sm cursor-pointer">
-						Enable push notifications
-					</label>
-				</div>
-			</div>
-		</div>
-	);
-};
-
 export const LabeledCheckboxDemo: React.FC = () => {
 	const [states, setStates] = useState({
 		notifications: false,

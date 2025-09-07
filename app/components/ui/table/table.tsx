@@ -284,7 +284,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.onChange(pagination.current - 1, pagination.pageSize)
 							}
 							disabled={pagination.current <= 1}
-							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-800 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Previous
 						</button>
@@ -300,7 +300,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.current >=
 								Math.ceil(pagination.total / pagination.pageSize)
 							}
-							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-600 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-800 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Next
 						</button>

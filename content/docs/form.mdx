@@ -12,28 +12,34 @@ import {
   FormMessageTypesDemo
 } from '@/app/components/ui/form/form-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
 
-Install the Form component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the Form component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add form
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add form
+    ```
+  </Step>
+  <Step>
+    Import the component:
 
-Then import the component:
-
-```tsx lineNumbers title="Import"
-import { 
-  Form, 
-  FormField, 
-  FormLabel, 
-  FormControl, 
-  FormDescription, 
-  FormMessage, 
-  FormActions 
-} from '@/components/ui/form';
-```
+    ```tsx lineNumbers title="Import"
+    import { 
+      Form, 
+      FormField, 
+      FormLabel, 
+      FormControl, 
+      FormDescription, 
+      FormMessage, 
+      FormActions 
+    } from '@/components/ui/form';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 
@@ -375,4 +381,4 @@ function MyForm() {
 | `className` | `string` | `''` | Additional CSS classes |
 | `align` | `'left' \| 'center' \| 'right'` | `'right'` | Button alignment |
 
-The Form components also accept all standard HTML attributes for their respective elements. 
+The Form components also accept all standard HTML attributes for their respective elements.

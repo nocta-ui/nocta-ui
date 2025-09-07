@@ -18,13 +18,18 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Tooltip component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add tooltip
 ```
-
-Then import the components you need:
+</Step>
+<Step>
+Import the components you need:
 
 ```tsx lineNumbers title="Import"
 import {
@@ -33,6 +38,8 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -127,35 +134,6 @@ Control the alignment of the tooltip relative to the trigger element using the `
       </TooltipTrigger>
       <TooltipContent side="bottom" align="start">
         Aligned to start
-      </TooltipContent>
-    </Tooltip>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Rich Content
-
-Tooltips can contain rich content including multiple lines and formatted text.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <RichContentDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Rich Tooltip Content"
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="primary">Features</Button>
-      </TooltipTrigger>
-      <TooltipContent className="max-w-xs">
-        <div className="space-y-1">
-          <div className="font-medium">Premium Features</div>
-          <div className="text-xs opacity-90">
-            • Advanced analytics<br/>
-            • Priority support<br/>
-            • Custom integrations
-          </div>
-        </div>
       </TooltipContent>
     </Tooltip>
     ```
@@ -272,4 +250,4 @@ The tooltip content that appears on hover/focus.
 | `sideOffset` | `number` | `8` | Distance from trigger |
 | `alignOffset` | `number` | `0` | Alignment offset |
 | `children` | `React.ReactNode` | - | Tooltip content |
-``` 
+```

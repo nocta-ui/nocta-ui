@@ -17,13 +17,18 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Table component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add table
 ```
-
-Then import the components you need:
+</Step>
+<Step>
+Import the components you need:
 
 ```tsx lineNumbers title="Import"
 import {
@@ -36,6 +41,8 @@ import {
   TableCaption,
 } from '@/components/ui/table';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 

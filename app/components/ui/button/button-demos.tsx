@@ -120,24 +120,6 @@ export const SizesDemo: React.FC = () => {
 	);
 };
 
-export const ActionButtonGroupDemo: React.FC = () => {
-	return (
-		<div className="my-6">
-			<div className="flex flex-wrap gap-2">
-				<Button variant="ghost" size="sm">
-					Cancel
-				</Button>
-				<Button variant="secondary" size="sm">
-					Save Draft
-				</Button>
-				<Button variant="primary" size="sm">
-					Publish
-				</Button>
-			</div>
-		</div>
-	);
-};
-
 export const DisabledStateDemo: React.FC = () => {
 	return (
 		<div className="my-6 flex flex-wrap gap-3">

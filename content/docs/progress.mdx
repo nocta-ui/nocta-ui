@@ -12,23 +12,29 @@ import {
   AnimatedDemo,
   CustomMaxDemo,
   WithoutLabelDemo,
-  FileUploadDemo
 } from '@/app/components/ui/progress/progress-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Progress component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add progress
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { Progress } from '@/components/ui/progress';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -137,57 +143,6 @@ Hide the label by omitting the `showLabel` prop.
   </DocsTab>
 </DocsTabs>
 
-## Real-world Example
-
-### File Upload Progress
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FileUploadDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="File Upload Progress"
-    const [uploadProgress, setUploadProgress] = useState(0);
-    const [isUploading, setIsUploading] = useState(false);
-
-    const simulateUpload = () => {
-      setIsUploading(true);
-      setUploadProgress(0);
-      
-      const timer = setInterval(() => {
-        setUploadProgress((prev) => {
-          if (prev >= 100) {
-            setIsUploading(false);
-            clearInterval(timer);
-            return 100;
-          }
-          return prev + Math.random() * 15;
-        });
-      }, 200);
-    };
-
-    return (
-      <div className="border rounded-lg p-4">
-        <div className="flex justify-between mb-3">
-          <span className="font-medium">document.pdf</span>
-          <span className="text-sm text-nocta-500">2.4 MB</span>
-        </div>
-        
-        <Progress 
-          value={uploadProgress} 
-          variant={uploadProgress === 100 ? "success" : "default"}
-          showLabel 
-        />
-        
-        <button onClick={simulateUpload} disabled={isUploading}>
-          {isUploading ? 'Uploading...' : 'Start Upload'}
-        </button>
-      </div>
-    );
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Customization
 
 ### Custom Styling
@@ -238,4 +193,4 @@ The Progress component includes proper ARIA attributes:
 | `className` | `string` | `''` | Additional CSS classes |
 | `aria-label` | `string` | — | Accessible label for screen readers |
 
-The Progress component also accepts all standard HTML div attributes. 
+The Progress component also accepts all standard HTML div attributes.

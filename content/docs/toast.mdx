@@ -19,17 +19,24 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Toast component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add toast
 ```
-
-Then import the components you need:
+</Step>
+<Step>
+Import the components you need:
 
 ```tsx lineNumbers title="Import"
 import { toast, Toaster } from '@/components/ui/toast';
 ```
+</Step>
+</Steps>
 
 ## Setup
 

@@ -17,20 +17,26 @@ import {
   CustomContainerDemo
 } from '@/app/components/ui/input/input-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
+<Steps>
+  <Step>
+    Install the Input component using the nocta-ui CLI:
 
-Install the Input component using the nocta-ui CLI:
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add input
+    ```
+    </Step>
+    <Step>
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add input
-```
+    Then import the component:
 
-Then import the component:
-
-```tsx lineNumbers title="Import"
-import { Input } from '@/components/ui/input';
-```
+    ```tsx lineNumbers title="Import"
+    import { Input } from '@/components/ui/input';
+    ```
+    </Step>
+</Steps>
 
 ## Basic Usage
 

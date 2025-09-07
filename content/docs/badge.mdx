@@ -12,20 +12,25 @@ import {
   CustomStylingDemo
 } from '@/app/components/ui/badge/badge-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
-
+<Steps>
+<Step>
 Install the Badge component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add badge
 ```
-
+</Step>
+<Step>
 Then import the component:
 
 ```tsx lineNumbers title="Import"
 import { Badge } from '@/components/ui/badge';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -132,4 +137,4 @@ The Badge component accepts a `className` prop for custom styling:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the badge |
 | `className` | `string` | `''` | Additional CSS classes to apply |
 
-The Badge component also accepts all standard HTML span element props through the `...props` spread operator. 
+The Badge component also accepts all standard HTML span element props through the `...props` spread operator.

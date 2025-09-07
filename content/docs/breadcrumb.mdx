@@ -4,6 +4,7 @@ description: Displays the path to the current resource using a hierarchy of link
 ---
 
 import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
   BasicBreadcrumbDemo,
@@ -17,48 +18,31 @@ import {
 
 ## Installation
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add breadcrumb
-```
+<Steps>
+  <Step>
+    Install the Breadcrumb component using the nocta-ui CLI:
 
-## Introduction
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add breadcrumb
+    ```
+  </Step>
+  <Step>
+    Then import the components you need:
 
-A breadcrumb trail on a page indicates the page's position in the site hierarchy. 
-A user can navigate all the way up in the site hierarchy, one level at a time, by following the breadcrumb trail.
+    ```tsx lineNumbers title="Import"
+    import {
+      Breadcrumb,
+      BreadcrumbList,
+      BreadcrumbItem,
+      BreadcrumbLink,
+      BreadcrumbPage,
+      BreadcrumbSeparator,
+      BreadcrumbEllipsis,
+    } from '@/components/ui/breadcrumb';
+    ```
+  </Step>
+</Steps>
 
-## Anatomy
-
-Import the breadcrumb primitives from `@/components/ui/breadcrumb`.
-
-```tsx
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
-} from "@/components/ui/breadcrumb"
-```
-
-```tsx
-<Breadcrumb>
-  <BreadcrumbList>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Components</BreadcrumbPage>
-    </BreadcrumbItem>
-  </BreadcrumbList>
-</Breadcrumb>
-```
 
 ## Usage
 
@@ -364,4 +348,4 @@ The breadcrumb component is built with accessibility in mind:
 2. **Separators**: Place `BreadcrumbSeparator` between each breadcrumb item
 3. **Icons**: Icons work best with the `ghost` variant for better visual balance
 4. **Truncation**: Use `BreadcrumbEllipsis` for paths longer than 4-5 items
-5. **Navigation**: Links should use actual navigation (href) for better accessibility 
+5. **Navigation**: Links should use actual navigation (href) for better accessibility

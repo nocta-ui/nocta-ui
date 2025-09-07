@@ -21,26 +21,32 @@ import {
   FileContextMenuDemo
 } from '@/app/components/ui/context-menu/context-menu-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
 
-Install the Context Menu component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the Context Menu component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add context-menu
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add context-menu
+    ```
+  </Step>
+  <Step>
+    Import the component:
 
-Then import the component:
-
-```tsx lineNumbers title="Import"
-import { 
-  ContextMenu, 
-  ContextMenuTrigger, 
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator
-} from '@/components/ui/context-menu';
-```
+    ```tsx lineNumbers title="Import"
+    import { 
+      ContextMenu, 
+      ContextMenuTrigger, 
+      ContextMenuContent,
+      ContextMenuItem,
+      ContextMenuSeparator
+    } from '@/components/ui/context-menu';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 
@@ -222,71 +228,6 @@ Both the entire context menu and individual items can be disabled.
         <ContextMenuItem disabled>Another Disabled Item</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## File Manager Example
-
-A real-world example showing a file manager with context menus.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FileContextMenuDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="File Manager Context Menu"
-    const files = [
-      { name: 'document.pdf', type: 'pdf', size: '2.4 MB' },
-      { name: 'image.jpg', type: 'image', size: '1.8 MB' },
-      { name: 'project.zip', type: 'archive', size: '15.2 MB' },
-    ];
-
-    return (
-      <div className="space-y-2">
-        {files.map((file, index) => (
-          <ContextMenu key={index}>
-            <ContextMenuTrigger>
-              <div className="flex items-center gap-3 p-3 border rounded-lg bg-nocta-50 hover:bg-nocta-50 cursor-context-menu">
-                <FileIcon type={file.type} className="w-5 h-5" />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium truncate">
-                    {file.name}
-                  </div>
-                  <div className="text-xs text-nocta-500">
-                    {file.size}
-                  </div>
-                </div>
-              </div>
-            </ContextMenuTrigger>
-            <ContextMenuContent>
-              <ContextMenuItem>
-                <OpenIcon className="w-4 h-4 mr-2" />
-                Open
-              </ContextMenuItem>
-              <ContextMenuItem>
-                <RenameIcon className="w-4 h-4 mr-2" />
-                Rename
-              </ContextMenuItem>
-              <ContextMenuSeparator />
-              <ContextMenuItem>
-                <CopyIcon className="w-4 h-4 mr-2" />
-                Copy
-              </ContextMenuItem>
-              <ContextMenuItem>
-                <ShareIcon className="w-4 h-4 mr-2" />
-                Share
-              </ContextMenuItem>
-              <ContextMenuSeparator />
-              <ContextMenuItem>
-                <PropertiesIcon className="w-4 h-4 mr-2" />
-                Properties
-              </ContextMenuItem>
-            </ContextMenuContent>
-          </ContextMenu>
-        ))}
-      </div>
-    );
     ```
   </DocsTab>
 </DocsTabs>

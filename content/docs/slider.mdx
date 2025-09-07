@@ -20,17 +20,24 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Slider component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add slider
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { Slider } from '@/components/ui/slider';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -285,4 +292,4 @@ The Slider component includes comprehensive accessibility features:
 | `aria-label` | `string` | — | Accessibility label |
 | `aria-labelledby` | `string` | — | ID of labeling element |
 
-The Slider component also accepts all standard HTML div attributes. 
+The Slider component also accepts all standard HTML div attributes.

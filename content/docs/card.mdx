@@ -10,28 +10,34 @@ import {
   CardWithActionsDemo
 } from '@/app/components/ui/card/card-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
 
-Install the Card component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the Card component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add card
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add card
+    ```
+  </Step>
+  <Step>
+    Then import the components you need:
 
-Then import the components you need:
-
-```tsx lineNumbers title="Import"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  CardActions,
-} from '@/components/ui/card';
-```
+    ```tsx lineNumbers title="Import"
+    import {
+      Card,
+      CardHeader,
+      CardTitle,
+      CardDescription,
+      CardContent,
+      CardFooter,
+      CardActions,
+    } from '@/components/ui/card';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 

@@ -168,6 +168,7 @@ export const ReadOnlyStateDemo: React.FC = () => {
 				value="This value cannot be changed"
 				readOnly
 				helperText="This field is read-only"
+				className="w-56"
 			/>
 		</div>
 	);

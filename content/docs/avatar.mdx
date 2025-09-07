@@ -16,20 +16,25 @@ import {
   InteractiveDemo
 } from '@/app/components/ui/avatar/avatar-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
-
+<Steps>
+<Step>
 Install the Avatar component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add avatar
 ```
-
+</Step>
+<Step>
 Then import the component:
 
 ```tsx lineNumbers title="Import"
 import { Avatar } from '@/components/ui/avatar';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -284,4 +289,4 @@ The Avatar component is built with accessibility in mind:
 | `md` | 40×40px | Default size, most common use |
 | `lg` | 48×48px | User cards, prominent displays |
 | `xl` | 64×64px | Profile headers, large cards |
-| `2xl` | 80×80px | Profile pages, hero sections | 
+| `2xl` | 80×80px | Profile pages, hero sections |

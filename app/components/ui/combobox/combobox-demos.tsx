@@ -57,6 +57,7 @@ export const BasicComboboxDemo: React.FC = () => {
 					onValueChange={setValue}
 					placeholder="Select a framework..."
 					searchPlaceholder="Search frameworks..."
+					className="w-[200px]"
 				/>
 				{value && (
 					<p className="text-xs text-nocta-600 dark:text-nocta-400">
@@ -79,6 +80,7 @@ export const VariantsDemo: React.FC = () => {
 					options={frameworks}
 					placeholder="Default variant"
 					variant="default"
+					className="w-[200px]"
 				/>
 			</div>
 
@@ -90,6 +92,7 @@ export const VariantsDemo: React.FC = () => {
 					options={frameworks}
 					placeholder="Error variant"
 					variant="error"
+					className="w-[200px]"
 				/>
 				<p className="text-xs text-red-600 dark:text-red-400">
 					This field is required
@@ -100,7 +103,12 @@ export const VariantsDemo: React.FC = () => {
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Success
 				</label>
-				<Combobox options={frameworks} defaultValue="react" variant="success" />
+				<Combobox
+					options={frameworks}
+					defaultValue="react"
+					variant="success"
+					className="w-[200px]"
+				/>
 				<p className="text-xs text-green-600 dark:text-green-400">
 					Selection confirmed
 				</p>
@@ -116,7 +124,12 @@ export const SizesDemo: React.FC = () => {
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Small
 				</label>
-				<Combobox options={frameworks} size="sm" placeholder="Small combobox" />
+				<Combobox
+					options={frameworks}
+					size="sm"
+					placeholder="Small combobox"
+					className="w-[200px]"
+				/>
 			</div>
 
 			<div className="flex flex-col space-y-2">
@@ -127,6 +140,7 @@ export const SizesDemo: React.FC = () => {
 					options={frameworks}
 					size="md"
 					placeholder="Medium combobox"
+					className="w-[200px]"
 				/>
 			</div>
 
@@ -134,7 +148,12 @@ export const SizesDemo: React.FC = () => {
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Large
 				</label>
-				<Combobox options={frameworks} size="lg" placeholder="Large combobox" />
+				<Combobox
+					options={frameworks}
+					size="lg"
+					placeholder="Large combobox"
+					className="w-[200px]"
+				/>
 			</div>
 		</div>
 	);
@@ -151,6 +170,7 @@ export const SearchableDemo: React.FC = () => {
 					options={countries}
 					placeholder="Search for a country..."
 					searchPlaceholder="Type to search..."
+					className="w-[200px]"
 				/>
 				<p className="text-xs text-nocta-600 dark:text-nocta-400">
 					Type to filter options
@@ -163,6 +183,7 @@ export const SearchableDemo: React.FC = () => {
 				</label>
 				<Combobox
 					options={countries}
+					className="w-[200px]"
 					placeholder="Select a country..."
 					searchable={false}
 				/>
@@ -186,6 +207,7 @@ export const ClearableDemo: React.FC = () => {
 					defaultValue="react"
 					placeholder="Select framework..."
 					clearable={true}
+					className="w-[200px]"
 				/>
 				<p className="text-xs text-nocta-600 dark:text-nocta-400">
 					X button appears when value is selected
@@ -199,6 +221,7 @@ export const ClearableDemo: React.FC = () => {
 				<Combobox
 					options={frameworks}
 					defaultValue="vue"
+					className="w-[200px]"
 					placeholder="Select framework..."
 					clearable={false}
 				/>
@@ -221,6 +244,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 					options={languages}
 					placeholder="Select a language..."
 					searchPlaceholder="Search languages..."
+					className="w-[200px]"
 				/>
 				<p className="text-xs text-nocta-600 dark:text-nocta-400">
 					Some options are disabled (e.g., PHP)
@@ -237,7 +261,12 @@ export const DisabledComboboxDemo: React.FC = () => {
 				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
 					Disabled Combobox
 				</label>
-				<Combobox options={frameworks} defaultValue="react" disabled={true} />
+				<Combobox
+					options={frameworks}
+					defaultValue="react"
+					disabled={true}
+					className="w-[200px]"
+				/>
 				<p className="text-xs text-nocta-600 dark:text-nocta-400">
 					Entire combobox is disabled
 				</p>
@@ -263,6 +292,7 @@ export const CustomMessagesDemo: React.FC = () => {
 					placeholder="Search for options..."
 					searchPlaceholder="Try typing 'test'..."
 					emptyMessage="😔 No matching options found. Try different keywords."
+					className="w-[200px]"
 				/>
 				<p className="text-xs text-nocta-600 dark:text-nocta-400">
 					Type something that doesn&apos;t match to see custom message
@@ -287,6 +317,7 @@ export const ControlledDemo: React.FC = () => {
 						value={selectedFramework}
 						onValueChange={setSelectedFramework}
 						placeholder="Select framework..."
+						className="w-[200px]"
 					/>
 				</div>
 

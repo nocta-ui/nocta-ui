@@ -16,17 +16,24 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Spinner component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add spinner
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { Spinner } from '@/components/ui/spinner';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -56,50 +63,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     <Spinner size="sm" />
     <Spinner size="md" />
     <Spinner size="lg" />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Usage Examples
-
-### Loading Button
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <LoadingButtonDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Loading Button"
-    const [isLoading, setIsLoading] = useState(false);
-
-    return (
-      <Button onClick={handleClick} disabled={isLoading}>
-        {isLoading ? (
-          <div className="flex items-center gap-2">
-            <Spinner size="sm" variant="primary" className="text-nocta-50" />
-            <span>Loading...</span>
-          </div>
-        ) : (
-          'Click me'
-        )}
-      </Button>
-    );
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Inline Spinner
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <InlineSpinnerDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Inline Spinner"
-    <div className="flex items-center gap-2">
-      <Spinner size="sm" />
-      <span>Processing your request...</span>
-    </div>
     ```
   </DocsTab>
 </DocsTabs>
@@ -151,4 +114,4 @@ The Spinner component includes proper accessibility attributes:
 | `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Spinner style variant |
 | `className` | `string` | `''` | Additional CSS classes |
 
-The Spinner component also accepts all standard HTML div attributes. 
+The Spinner component also accepts all standard HTML div attributes.

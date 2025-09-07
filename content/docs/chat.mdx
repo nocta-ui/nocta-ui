@@ -16,32 +16,38 @@ import {
   TypingIndicatorDemo
 } from '@/app/components/ui/chat/chat-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
 
-Install the Chat component using the nocta-ui CLI:
+<Steps>
+  <Step>
+    Install the Chat component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add chat
-```
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add chat
+    ```
+  </Step>
+  <Step>
+    Then import the components you need:
 
-Then import the components you need:
-
-```tsx lineNumbers title="Import"
-import {
-  Chat,
-  ChatHeader,
-  ChatTitle,
-  ChatDescription,
-  ChatMessages,
-  ChatMessage,
-  ChatInput,
-  ChatActions,
-  TypingIndicator,
-  type Message,
-  type TypingUser,
-} from '@/components/ui/chat';
-```
+    ```tsx lineNumbers title="Import"
+    import {
+      Chat,
+      ChatHeader,
+      ChatTitle,
+      ChatDescription,
+      ChatMessages,
+      ChatMessage,
+      ChatInput,
+      ChatActions,
+      TypingIndicator,
+      type Message,
+      type TypingUser,
+    } from '@/components/ui/chat';
+    ```
+  </Step>
+</Steps>
 
 ## Basic Usage
 
@@ -338,45 +344,6 @@ interface TypingUser {
 - **Avatar Integration**: Works seamlessly with chat avatars
 - **Auto-scroll**: Automatically scrolls when typing indicators appear
 
-## Advanced Usage
-
-### Chat with Actions
-
-Add external action buttons for enhanced functionality.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ChatWithActionsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Chat with Actions"
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h4 className="text-lg font-medium">Chat with Actions</h4>
-        <ChatActions>
-          <Button variant="ghost" size="sm" onClick={handleClearChat}>
-            Clear Chat
-          </Button>
-          <Button variant="secondary" size="sm">
-            Export
-          </Button>
-        </ChatActions>
-      </div>
-      
-      <div className="h-96">
-        <Chat
-          messages={messages}
-          onSendMessage={handleSendMessage}
-          showTimestamps
-          placeholder="Ask me anything..."
-          className="w-full max-w-2xl"
-        />
-      </div>
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Input Configuration
 
 ### Message Length Limit
@@ -540,4 +507,4 @@ interface TypingUser {
   name?: string;                 // Optional user name
   avatar?: string;               // Optional avatar URL
 }
-``` 
+```

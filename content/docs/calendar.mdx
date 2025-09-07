@@ -4,6 +4,7 @@ description: A fully featured date picker with keyboard navigation, accessibilit
 ---
 
 import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
   BasicCalendarDemo,
@@ -19,9 +20,22 @@ import {
 
 ## Installation
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add calendar
-```
+<Steps>
+  <Step>
+    Install the Calendar component using the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add calendar
+    ```
+  </Step>
+  <Step>
+    Then import the component:
+
+    ```tsx lineNumbers title="Import"
+    import { Calendar } from '@/components/ui/calendar';
+    ```
+  </Step>
+</Steps>
 
 ## Usage
 
@@ -251,4 +265,4 @@ The Calendar component supports full keyboard navigation:
 | `className` | `string` | - | Additional CSS classes |
 | `aria-label` | `string` | `'Calendar'` | Accessibility label |
 
-The Calendar component also accepts all standard HTML `div` attributes. 
+The Calendar component also accepts all standard HTML `div` attributes.

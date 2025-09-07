@@ -455,7 +455,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 				}}
 			/>
-			<div className="max-h-60 overflow-auto py-1 flex flex-col gap-1">
+			<div className="max-h-42 overflow-auto py-1 flex flex-col gap-1">
 				{children}
 			</div>
 		</div>

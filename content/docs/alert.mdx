@@ -9,19 +9,20 @@ import {
   SimpleAlertDemo,
   VariantsDemo,
   AlertWithoutIconsDemo,
-  FormValidationDemo,
-  SystemNotificationsDemo
 } from '@/app/components/ui/alert/alert-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
-
+<Steps>
+<Step>
 Install the Alert component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add alert
 ```
-
+</Step>
+<Step>
 Then import the components you need:
 
 ```tsx lineNumbers title="Import"
@@ -32,6 +33,8 @@ import {
   AlertIcon,
 } from '@/components/ui/alert';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -112,91 +115,6 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
       <AlertTitle>Success</AlertTitle>
       <AlertDescription>
         Your changes have been saved successfully.
-      </AlertDescription>
-    </Alert>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Alert Without Icons
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <AlertWithoutIconsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Alert Without Icons"
-    <Alert variant="default">
-      <AlertTitle>System Maintenance</AlertTitle>
-      <AlertDescription>
-        We will be performing scheduled maintenance on Sunday at 2:00 AM UTC.
-      </AlertDescription>
-    </Alert>
-
-    <Alert variant="destructive">
-      <AlertTitle>Account Suspended</AlertTitle>
-      <AlertDescription>
-        Your account has been temporarily suspended. Contact support for assistance.
-      </AlertDescription>
-    </Alert>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Usage Examples
-
-### Form Validation
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FormValidationDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Form Validation"
-    <Alert variant="destructive">
-      <AlertIcon><XCircleIcon /></AlertIcon>
-      <AlertTitle>Validation Error</AlertTitle>
-      <AlertDescription>
-        Please fix the following errors:
-        <ul className="mt-2 list-disc list-inside">
-          <li>Email address is required</li>
-          <li>Password must be at least 8 characters</li>
-        </ul>
-      </AlertDescription>
-    </Alert>
-
-    <Alert variant="success">
-      <AlertIcon><CheckCircleIcon /></AlertIcon>
-      <AlertTitle>Form Submitted</AlertTitle>
-      <AlertDescription>
-        Thank you! Your form has been submitted successfully.
-      </AlertDescription>
-    </Alert>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### System Notifications
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SystemNotificationsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="System Notifications"
-    <Alert variant="warning">
-      <AlertIcon><ExclamationTriangleIcon /></AlertIcon>
-      <AlertTitle>Storage Almost Full</AlertTitle>
-      <AlertDescription>
-        You're using 95% of your storage quota. Consider upgrading your plan.
-      </AlertDescription>
-    </Alert>
-
-    <Alert variant="default">
-      <AlertIcon><ClipboardIcon /></AlertIcon>
-      <AlertTitle>New Feature Available</AlertTitle>
-      <AlertDescription>
-        Check out our new dashboard analytics feature in the Settings panel.
       </AlertDescription>
     </Alert>
     ```

@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "fumadocs-ui/components/ui/button";
 import { cn } from "fumadocs-ui/utils/cn";
 import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import type React from "react";
@@ -102,6 +103,10 @@ interface CodeBlockProps extends HTMLAttributes<HTMLElement> {
 export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 	(
 		{
+			title,
+			allowCopy = true,
+			keepBackground = false,
+			icon,
 			viewportProps,
 			children,
 			...props
@@ -128,19 +133,47 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 				dir="ltr"
 				{...props}
 				className={cn(
-					"not-prose group relative my-0 w-full text-sm outline-none z-0 mb-16",
+					"not-prose group relative my-4 rounded-lg border bg-nocta-200/50 dark:bg-nocta-900 text-sm outline-none z-0 mb-16",
+					keepBackground && "bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)",
 					props.className,
 				)}
 			>
-				<CopyButton
-					className="absolute right-2 top-2 z-[2] backdrop-blur-md"
-					onCopy={onCopy}
-				/>
+				{title ? (
+					<div className="flex items-center gap-2 px-4 py-1.5">
+						{icon ? (
+							<div
+								className="text-fd-muted-foreground [&_svg]:size-3.5"
+								dangerouslySetInnerHTML={
+									typeof icon === "string"
+										? {
+												__html: icon,
+											}
+										: undefined
+								}
+							>
+								{typeof icon !== "string" ? icon : null}
+							</div>
+						) : null}
+						<figcaption className="flex-1 truncate text-fd-muted-foreground">
+							{title}
+						</figcaption>
+						{allowCopy ? (
+							<CopyButton className="-me-2" onCopy={onCopy} />
+						) : null}
+					</div>
+				) : (
+					allowCopy && (
+						<CopyButton
+							className="absolute right-2 top-2 z-[2] backdrop-blur-md"
+							onCopy={onCopy}
+						/>
+					)
+				)}
 				<div
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						"text-[13px] py-3.5 rounded-xl overflow-auto bg-nocta-200 dark:bg-nocta-950/50 m-1 border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
+						"text-[13px] py-3.5 overflow-auto bg-nocta-100 dark:bg-nocta-950/50 m-1 rounded-md border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
 						props["data-line-numbers"] && "[&_.line]:pl-3",
 						viewportProps?.className,
 					)}
@@ -172,9 +205,10 @@ function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
 		<button
 			type="button"
 			className={cn(
-				"inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none",
-				"hover:bg-fd-accent/50 hover:text-fd-accent-foreground",
-				"transition-opacity [&_svg]:size-3.5",
+				buttonVariants({
+					color: "ghost",
+				}),
+				"transition-opacity  [&_svg]:size-3.5",
 				!checked && "[@media(hover:hover)]:opacity-100",
 				className,
 			)}

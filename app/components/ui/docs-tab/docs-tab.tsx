@@ -1,8 +1,7 @@
 "use client";
 
 import { cn } from "fumadocs-ui/utils/cn";
-import gsap from "gsap";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface DocsTabProps {
 	children?: React.ReactNode;
@@ -17,17 +16,13 @@ const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
 		<button
 			onClick={() => onClick?.(value)}
 			className={cn(
-				"relative px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ease-out group",
+				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-out group",
 				isActive
-					? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50 hover:contrast-115 text-nocta-100 dark:text-nocta-100"
-					: "text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-secondary/50 hover:shadow-sm",
-				"hover:scale-[1.02] active:scale-[0.97]",
+					? "hover:contrast-115 text-nocta-900 dark:text-nocta-100"
+					: "text-fd-muted-foreground hover:text-fd-foreground",
 			)}
 		>
 			<span className="relative z-10">{title}</span>
-			{isActive && (
-				<span className="absolute bottom-0 left-0 right-0 mx-auto block h-0.5 w-6 rounded-full bg-fd-primary/60" />
-			)}
 		</button>
 	);
 };
@@ -54,27 +49,6 @@ const DocsTabs = ({
 
 	const activeContent = tabs.find((tab) => tab.props.value === activeTab);
 
-	const animateContent = useCallback(() => {
-		if (!wrapperRef.current) return;
-
-		const el = wrapperRef.current;
-
-		gsap.fromTo(
-			el,
-			{ autoAlpha: 0, y: 10, height: "auto" },
-			{
-				autoAlpha: 1,
-				y: 0,
-				duration: 0.35,
-				ease: "power2.out",
-			},
-		);
-	}, []);
-
-	useEffect(() => {
-		animateContent();
-	}, [activeTab, animateContent]);
-
 	const handleTabChange = (value: string) => {
 		if (value !== activeTab) {
 			setActiveTab(value);
@@ -82,8 +56,8 @@ const DocsTabs = ({
 	};
 
 	return (
-		<div className="not-prose group relative my-4 rounded-lg border bg-nocta-200/50 dark:bg-nocta-900 text-sm outline-none z-0 mb-16">
-			<div className="flex items-center gap-2 px-4 py-1.5 relative">
+		<div className="not-prose group relative text-sm outline-none z-0 mb-16">
+			<div className="flex items-center gap-4 px-1.5 py-1.5 relative">
 				{tabs.map((tab) => (
 					<DocsTab
 						key={tab.props.value}
@@ -97,15 +71,17 @@ const DocsTabs = ({
 
 			<div
 				ref={contentRef}
-				className="transition-all duration-200 ease-in-out p-1 relative"
+				className="relative"
 			>
-				<div className="absolute inset-1 border rounded-md bg-nocta-100 dark:bg-nocta-950/50 z-0"></div>
+				{activeTab !== 'code' && (
+					<div className="absolute inset-1 border rounded-xl bg-nocta-200 dark:bg-nocta-950/50 z-0"></div>
+				)}
 				<div
 					ref={wrapperRef}
-					className="p-4 rounded-md relative bg-transparent"
+					className={`relative p-1 transition-opacity duration-300 ease-in-out ${activeTab === 'code' ? ' overflow-y-visible' : ''}`}
 				>
 					<div
-						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-visible`}
+						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-x-visible ${activeTab !== 'code' ? 'py-0 px-4 md:py-16 md:px-8' : ''} ${activeTab === 'code' ? ' -mb-16' : ''}`}
 					>
 						{activeContent?.props.children}
 					</div>
@@ -116,3 +92,4 @@ const DocsTabs = ({
 };
 
 export { DocsTab, DocsTabs };
+

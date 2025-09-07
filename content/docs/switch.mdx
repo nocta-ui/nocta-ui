@@ -16,17 +16,24 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Switch component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add switch
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { Switch } from '@/components/ui/switch';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -142,4 +149,4 @@ The Switch component accepts a `className` prop for custom styling:
 | `className` | `string` | `''` | Additional CSS classes to apply |
 | `id` | `string` | - | The id attribute for the switch input |
 
-The Switch component also accepts all standard HTML input element props through the `...props` spread operator. 
+The Switch component also accepts all standard HTML input element props through the `...props` spread operator.

@@ -21,17 +21,24 @@ import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
 ## Installation
 
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
 Install the Skeleton component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add skeleton
 ```
-
-Then import the component:
+</Step>
+<Step>
+Import the component:
 
 ```tsx lineNumbers title="Import"
 import { Skeleton } from '@/components/ui/skeleton';
 ```
+</Step>
+</Steps>
 
 ## Basic Usage
 
@@ -142,112 +149,6 @@ You can customize the width and height of skeleton elements using the `width` an
   </DocsTab>
 </DocsTabs>
 
-## Real-world Examples
-
-### Card Skeleton
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CardSkeletonDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Card Skeleton"
-    <div className="max-w-sm p-4 border rounded-lg">
-      <div className="space-y-4">
-        <div className="flex items-center space-x-3">
-          <Skeleton shape="circle" size="md" />
-          <div className="flex-1">
-            <Skeleton shape="text" width="60%" className="mb-2" />
-            <Skeleton shape="text" width="40%" size="sm" />
-          </div>
-        </div>
-        <Skeleton width="100%" height="160px" />
-        <Skeleton shape="text" lines={3} />
-      </div>
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Article Skeleton
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ArticleSkeletonDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Article Skeleton"
-    <div className="max-w-md space-y-4">
-      <Skeleton width="100%" height="200px" />
-      <Skeleton shape="text" width="80%" size="lg" />
-      <Skeleton shape="text" lines={4} />
-      <div className="flex items-center space-x-3 pt-4">
-        <Skeleton shape="circle" size="sm" />
-        <Skeleton shape="text" width="120px" size="sm" />
-      </div>
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Table Skeleton
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <TableSkeletonDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Table Skeleton"
-    <div className="space-y-3">
-      {Array.from({ length: 5 }, (_, index) => (
-        <div key={index} className="flex items-center space-x-4">
-          <Skeleton shape="circle" size="sm" />
-          <Skeleton width="120px" height="16px" />
-          <Skeleton width="80px" height="16px" />
-          <Skeleton width="100px" height="16px" />
-        </div>
-      ))}
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Usage Patterns
-
-### Loading States
-
-```tsx lineNumbers title="Loading States"
-const [loading, setLoading] = useState(true);
-
-return (
-  <div>
-    {loading ? (
-      <Skeleton shape="text" lines={3} />
-    ) : (
-      <div>
-        <p>Actual content here...</p>
-      </div>
-    )}
-  </div>
-);
-```
-
-### Conditional Rendering
-
-```tsx lineNumbers title="Conditional Rendering"
-return (
-  <div className="space-y-4">
-    {posts.length > 0 ? (
-      posts.map(post => <PostCard key={post.id} post={post} />)
-    ) : (
-      Array.from({ length: 3 }, (_, i) => (
-        <CardSkeletonDemo key={i} />
-      ))
-    )}
-  </div>
-);
-```
-
 ## Customization
 
 ### Custom Classes
@@ -290,4 +191,4 @@ The Skeleton component is designed with accessibility in mind:
 | `lines` | `number` | `1` | Number of text lines (only for text shape) |
 | `className` | `string` | `''` | Additional CSS classes |
 
-The Skeleton component also accepts all standard HTML div attributes. 
+The Skeleton component also accepts all standard HTML div attributes.
