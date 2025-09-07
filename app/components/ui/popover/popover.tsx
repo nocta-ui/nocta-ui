@@ -43,7 +43,7 @@ const popoverContentVariants = cva(
 );
 
 const popoverAnimationVariants = cva(
-	"transform transition-opacity transition-scale transition-transform duration-200 ease-out",
+	"transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
@@ -53,9 +53,9 @@ const popoverAnimationVariants = cva(
 				right: "",
 			},
 			state: {
-				measuring: "opacity-0 pointer-events-none",
-				visible: "translate-y-0 opacity-100 scale-100",
-				hidden: "opacity-0 scale-95",
+				measuring: "opacity-0 scale-95 pointer-events-none invisible transition-all",
+				visible: "translate-y-0 opacity-100 scale-100 transition-[opacity,scale,transform]",
+				hidden: "opacity-0 scale-95 transition-[opacity,translate,scale]",
 			},
 		},
 		compoundVariants: [
@@ -77,6 +77,26 @@ const popoverAnimationVariants = cva(
 			{
 				side: "right",
 				state: "hidden",
+				class: "-translate-x-1",
+			},
+			{
+				side: "top",
+				state: "measuring",
+				class: "translate-y-1",
+			},
+			{
+				side: "bottom",
+				state: "measuring",
+				class: "-translate-y-1",
+			},
+			{
+				side: "left",
+				state: "measuring",
+				class: "translate-x-1",
+			},
+			{
+				side: "right",
+				state: "measuring",
 				class: "-translate-x-1",
 			},
 		],
@@ -450,8 +470,8 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 			aria-modal="false"
 			style={{
 				position: "fixed",
-				top: position ? `${position.top}px` : "0px",
-				left: position ? `${position.left}px` : "0px",
+				top: position ? `${position.top}px` : "-10000px",
+				left: position ? `${position.left}px` : "-10000px",
 				zIndex: 50,
 			}}
 			className={cn(

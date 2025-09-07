@@ -65,7 +65,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground hover:bg-fd-accent [&_svg]:size-4",
+	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-nocta-200 [&_svg]:size-4",
 );
 
 export function ViewOptions({
@@ -160,7 +160,7 @@ export function ViewOptions({
 				Open
 				<CaretDown className="size-3.5 text-fd-muted-foreground" />
 			</PopoverTrigger>
-			<PopoverContent className="flex flex-col overflow-auto !p-1">
+			<PopoverContent align="start" className="flex flex-col overflow-auto !p-1 bg-nocta-100">
 				{items.map((item) => (
 					<a
 						key={item.href}
