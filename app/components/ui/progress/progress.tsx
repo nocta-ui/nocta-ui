@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const progressVariants = cva(
 	[
 		"relative w-full overflow-hidden rounded-full",
-		"bg-nocta-200 dark:bg-nocta-800",
+		"bg-nocta-300 dark:bg-nocta-800/60 border border-nocta-200 dark:border-nocta-50/5",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
 	],
@@ -74,10 +74,23 @@ export const Progress: React.FC<ProgressProps> = ({
 				aria-label={ariaLabel}
 				{...props}
 			>
-				<div
-					className="h-full rounded-full transition-all duration-500 ease-out"
-					style={{ width: `${percentage}%` }}
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -inset-px rounded-full bg-gradient-to-b to-transparent opacity-60"
+					style={{
+						maskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+						WebkitMaskImage:
+							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					}}
 				/>
+
+				<div
+						className={cn(
+							"progress-fill h-full rounded-full transition-all duration-500 ease-out",
+						)}
+						style={{ width: `${percentage}%` }}
+					/>
 			</div>
 		</div>
 	);
