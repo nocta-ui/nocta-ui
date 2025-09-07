@@ -1,12 +1,15 @@
+"use client";
+
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const skeletonVariants = cva("bg-nocta-200 dark:bg-nocta-800 not-prose", {
 	variants: {
 		variant: {
 			default: "",
-			pulse: "animate-pulse",
+			shimmer: "relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:animate-[shimmer_2s_ease-in-out_infinite] after:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]",
 		},
 		shape: {
 			rectangle: "rounded",
@@ -104,6 +107,16 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 	className = "",
 	...props
 }) => {
+  useEffect(() => {
+    if (variant !== "shimmer") return;
+    if (!document.getElementById("shimmer-keyframes")) {
+      const style = document.createElement("style");
+      style.id = "shimmer-keyframes";
+      style.innerHTML = `@keyframes shimmer {\n  0% {\n    transform: translateX(-100%);\n  }\n  100% {\n    transform: translateX(100%);\n  }\n}`;
+      document.head.appendChild(style);
+    }
+  }, [variant]);
+
 	if (shape === "text" && lines > 1) {
 		return (
 			<div className={cn("space-y-2", className)} {...props}>

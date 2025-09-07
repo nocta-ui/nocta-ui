@@ -11,10 +11,10 @@ export const BasicSkeletonDemo: React.FC = () => {
 	);
 };
 
-export const PulseSkeletonDemo: React.FC = () => {
+export const ShimmerSkeletonDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-96">
-			<Skeleton variant="pulse" />
+			<Skeleton variant="shimmer" />
 		</div>
 	);
 };
