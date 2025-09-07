@@ -191,6 +191,23 @@ const toastContentVariants = cva("relative rounded-lg overflow-hidden", {
 	},
 });
 
+const closeIconVariants = cva(
+	"transition-colors duration-200",
+	{
+		variants: {
+			variant: {
+				default: "text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100/50 dark:hover:bg-nocta-700/50 focus-visible:ring-nocta-500/50",
+				success: "text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
+				warning: "text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
+				destructive: "text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
+			},
+		},
+		defaultVariants: {
+			variant: "default",
+		},
+	}
+);
+
 export type ToastPosition =
 	| "top-left"
 	| "top-center"
@@ -500,7 +517,10 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				<div className={cn(toastContentVariants({ variant }))}>
 					<button
 						onClick={handleClose}
-						className="absolute top-2 right-2 p-1 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100/50 dark:hover:bg-nocta-800/50 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50"
+						className={cn(
+							"absolute top-2 right-2 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1",
+							closeIconVariants({ variant })
+						)}
 						aria-label="Close toast"
 					>
 						<svg
