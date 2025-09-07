@@ -528,7 +528,7 @@
 					"className"
 				]
 			},
-			"variants": ["default", "pulse", "wave"],
+			"variants": ["default", "shimmer"],
 			"sizes": ["sm", "md", "lg"],
 			"shapes": ["rectangle", "circle", "text"],
 			"features": [

@@ -65,7 +65,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-nocta-200 [&_svg]:size-4",
+	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-nocta-200 dark:hover:bg-nocta-700 [&_svg]:size-4",
 );
 
 export function ViewOptions({
