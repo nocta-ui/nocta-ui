@@ -15,15 +15,15 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50",
+					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50",
 					"hover:contrast-115 border-none",
-					"text-nocta-100 dark:text-nocta-100",
+					"text-primary-foreground dark:text-primary",
 				],
 				secondary: [
-					"bg-nocta-100 dark:bg-nocta-900",
-					"text-nocta-900 dark:text-nocta-100",
-					"hover:bg-nocta-200 dark:hover:bg-nocta-800",
-					"border-nocta-200 dark:border-nocta-50/5",
+					"bg-background",
+					"text-foreground",
+					"hover:bg-background-muted",
+					"border-border-muted",
 				],
 				destructive: [
 					"bg-red-50 dark:bg-red-950/50",

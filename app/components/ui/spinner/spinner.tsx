@@ -10,7 +10,7 @@ const spinnerVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "text-nocta-600 dark:text-nocta-400",
+				default: "text-foreground-muted",
 			},
 			size: {
 				sm: "w-4 h-4 border-2",

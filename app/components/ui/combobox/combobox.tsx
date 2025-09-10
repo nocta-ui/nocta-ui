@@ -8,39 +8,32 @@ import { cn } from "@/lib/utils";
 const comboboxVariants = cva(
 	`relative w-fit inline-flex items-center justify-between
    rounded-lg border transition-all duration-200 ease-in-out
-   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-   focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0
    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-   not-prose`,
+   shadow-xs not-prose`,
 	{
 		variants: {
 			variant: {
 				default: `
-          border-nocta-200 dark:border-nocta-800/50
-          bg-nocta-100 dark:bg-nocta-900
-          text-nocta-900 dark:text-nocta-100
-          hover:border-nocta-300 dark:hover:border-nocta-700
-          focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
-          focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-          shadow-sm
+          border-border-muted
+          bg-background
+          text-foreground
+			focus-visible:border-border/10
+			focus-visible:ring-ring/10
         `,
 				error: `
           border-red-300 dark:border-red-700/50
-          bg-nocta-100 dark:bg-nocta-900
-          text-nocta-900 dark:text-nocta-100
-          hover:border-red-400 dark:hover:border-red-600
+          bg-background
+          text-foreground
           focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50
           focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50
-          shadow-sm
         `,
 				success: `
           border-green-300 dark:border-green-700/50
-          bg-nocta-100 dark:bg-nocta-900
-          text-nocta-900 dark:text-nocta-100
-          hover:border-green-400 dark:hover:border-green-600
+          bg-background
+          text-foreground
           focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50
           focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50
-          shadow-sm
         `,
 			},
 			size: {
@@ -133,21 +126,21 @@ export const Combobox: React.FC<ComboboxProps> = ({
 	);
 
 	useEffect(() => {
-		if (open) {
-			setShouldRender(true);
-			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					setIsVisible(true);
-				});
-			});
-		} else {
-			setIsVisible(false);
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-			}, 200);
-			return () => clearTimeout(timer);
-		}
-	}, [open]);
+    if (open) {
+        setShouldRender(true);
+        const t = setTimeout(() => {
+            listRef.current?.getBoundingClientRect();
+            setIsVisible(true);
+        }, 16);
+        return () => clearTimeout(t);
+    } else {
+        setIsVisible(false);
+        const timer = setTimeout(() => {
+            setShouldRender(false);
+        }, 200);
+        return () => clearTimeout(timer);
+    }
+  }, [open]);
 
 	const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
 		e.stopPropagation();
@@ -270,7 +263,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 				<span
 					className={cn(
 						"flex-1 text-left truncate",
-						selectedOption ? "" : "text-nocta-400 dark:text-nocta-500",
+						selectedOption ? "" : "text-foreground-subtle",
 					)}
 				>
 					{selectedOption ? selectedOption.label : placeholder}
@@ -288,7 +281,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									handleClear(e);
 								}
 							}}
-							className="p-0.5 hover:bg-nocta-100 dark:hover:bg-nocta-900 rounded text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500"
+							className="p-0.5 hover:bg-background rounded text-foreground-subtle cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/10"
 							aria-label="Clear selection"
 						>
 							<svg
@@ -308,7 +301,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 					)}
 
 					<svg
-						className="w-4 h-4 text-nocta-400 dark:text-nocta-500"
+						className="w-4 h-4 text-foreground-subtle"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -329,19 +322,19 @@ export const Combobox: React.FC<ComboboxProps> = ({
 				</div>
 			</button>
 
-			{shouldRender && (
-				<div
-					ref={listRef}
-					className={cn(
-						"absolute z-[999] mt-1 w-full rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl overflow-hidden",
-						`transform transition-all duration-200 ease-out origin-top ${
-							isVisible
-								? "translate-y-0 opacity-100"
-								: "-translate-y-1 opacity-0"
-						}`,
-						popoverClassName,
-					)}
-				>
+            {shouldRender && (
+                <div
+                    ref={listRef}
+                    className={cn(
+                        "absolute z-[999] mt-1 w-full rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl overflow-hidden",
+                        `transform transition-all duration-200 ease-out origin-top ${
+                            isVisible
+                                ? "translate-y-0 opacity-100 scale-100"
+                                : "-translate-y-1 opacity-0 scale-95"
+                        }`,
+                        popoverClassName,
+                    )}
+                >
 					<span
 						aria-hidden
 						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
@@ -354,7 +347,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 					/>
 
 					{searchable && (
-						<div className="p-1 border-b border-nocta-200/60 dark:border-nocta-800/40">
+						<div className="p-1 border-b border-border-muted/30">
 							<input
 								ref={searchInputRef}
 								type="text"
@@ -365,7 +358,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									setHighlightedIndex(0);
 								}}
 								onKeyDown={handleKeyDown}
-								className="w-full px-3 py-2 text-sm bg-transparent border-0 focus-visible:outline-none placeholder:text-nocta-400 dark:placeholder:text-nocta-500"
+								className="w-full px-3 py-2 text-sm bg-transparent border-0 focus-visible:outline-none placeholder:text-foreground-subtle"
 							/>
 						</div>
 					)}
@@ -376,7 +369,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						className="max-h-42 overflow-auto py-1 flex flex-col gap-1 z-50"
 					>
 						{filteredOptions.length === 0 ? (
-							<div className="px-3 py-2 text-sm text-nocta-600 dark:text-nocta-400 text-center mx-1">
+							<div className="px-3 py-2 text-sm text-foreground-muted text-center mx-1">
 								{emptyMessage}
 							</div>
 						) : (
@@ -389,12 +382,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									role="option"
 									aria-selected={option.value === value}
 									className={cn(
-										"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800",
+										"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-background-muted focus-visible:bg-background-muted",
 										highlightedIndex === index
-											? "bg-nocta-200 dark:bg-nocta-800"
+											? "bg-background-muted"
 											: "",
 										option.value === value
-											? "bg-nocta-200 dark:bg-nocta-800 font-medium"
+											? "bg-background-muted font-medium"
 											: "",
 										option.disabled
 											? "opacity-50 cursor-not-allowed pointer-events-none"
@@ -408,7 +401,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									<span className="flex-1">{option.label}</span>
 									{option.value === value && (
 										<svg
-											className="w-4 h-4 text-nocta-600 dark:text-nocta-400"
+											className="w-4 h-4 text-foreground-muted"
 											fill="none"
 											stroke="currentColor"
 											viewBox="0 0 24 24"

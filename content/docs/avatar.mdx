@@ -13,7 +13,6 @@ import {
   GroupDemo,
   CustomStylingDemo,
   ClickHandlersDemo,
-  InteractiveDemo
 } from '@/app/components/ui/avatar/avatar-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -171,23 +170,23 @@ Stack multiple avatars to show groups or teams.
       <Avatar 
         src="avatar1.jpg" 
         alt="John Doe" 
-        className="ring-1 ring-nocta-50 dark:ring-nocta-900"
+        className="ring-1 ring-ring-offset"
       />
       <Avatar 
         src="avatar2.jpg" 
         alt="Jane Smith" 
-        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-ring-offset"
       />
       <Avatar 
         src="avatar3.jpg" 
         alt="Mike Johnson" 
-        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-ring-offset"
       />
       <Avatar 
         fallback="AB" 
-        className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+        className="-ml-2 ring-1 ring-ring-offset"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-900 ring-1 ring-nocta-50 dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
         +5
       </div>
     </div>
@@ -215,7 +214,7 @@ The Avatar component accepts a `className` prop for custom styling:
     
     <Avatar 
       fallback="JD" 
-      className="bg-gradient-to-br from-purple-500 to-pink-500 text-nocta-50"
+      className="bg-gradient-to-br from-purple-500 to-pink-500 text-primary-foreground"
     />
     
     <Avatar 
@@ -247,7 +246,7 @@ The Avatar component accepts a `className` prop for custom styling:
     <Avatar 
       src="avatar.jpg" 
       alt="John Doe" 
-      className="cursor-pointer hover:ring-1 hover:ring-nocta-300 dark:hover:ring-nocta-600 transition-all"
+      className="cursor-pointer hover:ring-1 hover:ring-neutral-300 transition-all"
       onClick={() => handleAvatarClick('John Doe')}
     />
     ```

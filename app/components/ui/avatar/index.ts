@@ -9,7 +9,6 @@ export {
 	CustomStylingDemo,
 	FallbackDemo,
 	GroupDemo,
-	InteractiveDemo,
 	SizesDemo,
 	StatusDemo,
 	VariantsDemo,

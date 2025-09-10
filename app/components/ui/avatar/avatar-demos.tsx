@@ -117,23 +117,23 @@ export const GroupDemo: React.FC = () => {
 			<Avatar
 				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
 				alt="John Doe"
-				className="ring-1 ring-nocta-50 dark:ring-nocta-900"
+				className="ring-1 ring-ring-offset"
 			/>
 			<Avatar
 				src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
 				alt="Jane Smith"
-				className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+				className="-ml-2 ring-1 ring-ring-offset"
 			/>
 			<Avatar
 				src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
 				alt="Mike Johnson"
-				className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+				className="-ml-2 ring-1 ring-ring-offset"
 			/>
 			<Avatar
 				fallback="AB"
-				className="-ml-2 ring-1 ring-nocta-50 dark:ring-nocta-900"
+				className="-ml-2 ring-1 ring-ring-offset"
 			/>
-			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-nocta-100 dark:bg-nocta-900 ring-1 ring-nocta-50 dark:ring-nocta-900 text-xs font-medium text-nocta-600 dark:text-nocta-400">
+			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
 				+5
 			</div>
 		</div>
@@ -150,7 +150,7 @@ export const CustomStylingDemo: React.FC = () => {
 			/>
 			<Avatar
 				fallback="JD"
-				className="bg-gradient-to-br from-purple-500 to-pink-500 text-nocta-50"
+				className="bg-gradient-to-br from-purple-500 to-pink-500 text-primary-foreground"
 			/>
 			<Avatar
 				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
@@ -175,7 +175,7 @@ export const ClickHandlersDemo: React.FC = () => {
 				<Avatar
 					src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
 					alt="John Doe"
-					className="cursor-pointer hover:ring-1 hover:ring-nocta-300 dark:hover:ring-nocta-600 transition-all"
+					className="cursor-pointer hover:ring-1 hover:ring-neutral-300 transition-all"
 					onClick={() => handleAvatarClick("John Doe")}
 				/>
 				<Avatar
@@ -189,93 +189,6 @@ export const ClickHandlersDemo: React.FC = () => {
 					{message}
 				</div>
 			)}
-		</div>
-	);
-};
-
-export const InteractiveDemo: React.FC = () => {
-	const [selectedSize, setSelectedSize] = useState<
-		"xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-	>("md");
-	const [selectedVariant, setSelectedVariant] = useState<"circle" | "square">(
-		"circle",
-	);
-	const [selectedStatus, setSelectedStatus] = useState<
-		"online" | "offline" | "away" | "busy" | null
-	>("online");
-
-	return (
-		<div className="space-y-6">
-			<div className="flex justify-center">
-				<Avatar
-					src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
-					alt="John Doe"
-					size={selectedSize}
-					variant={selectedVariant}
-					status={selectedStatus}
-				/>
-			</div>
-
-			<div className="space-y-4">
-				<div>
-					<label className="block text-sm font-medium mb-2">Size</label>
-					<div className="flex gap-2">
-						{(["xs", "sm", "md", "lg", "xl", "2xl"] as const).map((size) => (
-							<button
-								key={size}
-								onClick={() => setSelectedSize(size)}
-								className={`px-3 py-1 rounded-md text-sm ${
-									selectedSize === size
-										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
-										: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
-								}`}
-							>
-								{size}
-							</button>
-						))}
-					</div>
-				</div>
-
-				<div>
-					<label className="block text-sm font-medium mb-2">Variant</label>
-					<div className="flex gap-2">
-						{(["circle", "square"] as const).map((variant) => (
-							<button
-								key={variant}
-								onClick={() => setSelectedVariant(variant)}
-								className={`px-3 py-1 rounded-md text-sm capitalize ${
-									selectedVariant === variant
-										? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
-										: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
-								}`}
-							>
-								{variant}
-							</button>
-						))}
-					</div>
-				</div>
-
-				<div>
-					<label className="block text-sm font-medium mb-2">Status</label>
-					<div className="flex gap-2">
-						{([null, "online", "offline", "away", "busy"] as const).map(
-							(status) => (
-								<button
-									key={status || "none"}
-									onClick={() => setSelectedStatus(status)}
-									className={`px-3 py-1 rounded-md text-sm capitalize ${
-										selectedStatus === status
-											? "bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900"
-											: "bg-nocta-100 dark:bg-nocta-900 text-nocta-900 dark:text-nocta-100"
-									}`}
-								>
-									{status || "none"}
-								</button>
-							),
-						)}
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 };

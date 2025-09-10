@@ -126,7 +126,7 @@ export const LabeledCheckboxDemo: React.FC = () => {
 					>
 						Enable notifications
 					</label>
-					<p className="text-xs text-nocta-600 dark:text-nocta-400 mt-1">
+					<p className="text-xs text-foreground-muted mt-1">
 						Receive email notifications about your account activity
 					</p>
 				</div>
@@ -145,7 +145,7 @@ export const LabeledCheckboxDemo: React.FC = () => {
 					>
 						Marketing emails
 					</label>
-					<p className="text-xs text-nocta-600 dark:text-nocta-400 mt-1">
+					<p className="text-xs text-foreground-muted mt-1">
 						Get updates about new features and special offers
 					</p>
 				</div>

@@ -138,6 +138,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/app/components/ui/tooltip";
+import { CommandK } from "@/app/components/ui/command-k";
 
 const wrap = (Tag: any, className?: string) =>
   (props: any) => <Tag className={className} {...props} />;
@@ -152,7 +153,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		blockquote: wrap("blockquote", "!font-light italic border-l-2 pl-4"),
 		h1: wrap("h1", "!font-semibold text-3xl mt-6 mb-3"),
 		h2: wrap("h2", "!font-semibold text-2xl mt-5 mb-2"),
-		h3: wrap("h3", "!font-normal text-lg mt-4 mb-1"),
+		h3: wrap("h3", "!font-semibold text-lg mt-4 mb-1"),
 		h4: wrap("h4", "!font-light text-lg mt-3 mb-1"),
 		h5: wrap("h5", "!font-light text-base mt-2 mb-1"),
 		h6: wrap("h6", "!font-light text-sm mt-1 mb-1"),
@@ -261,6 +262,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		FileUploadZone,
 		FileUploadItem,
 		FileUploadProgress,
+		CommandK,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

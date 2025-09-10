@@ -44,7 +44,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 			<div
 				ref={ref}
 				className={cn(
-					"relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-50/5 rounded-xl shadow-lg overflow-hidden not-prose",
+					"relative bg-background border border-border-muted rounded-xl shadow-lg overflow-hidden not-prose",
 					className,
 				)}
 				{...props}
@@ -75,7 +75,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-4 py-4 backdrop-blur-sm bg-nocta-50/60 dark:bg-nocta-900/40 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
+				"px-4 py-4 border-b border-border-muted/30 not-prose",
 				className,
 			)}
 			{...props}
@@ -95,7 +95,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				"text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose",
+				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			),
 			...props,
@@ -112,7 +112,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				"text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose",
+				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
@@ -128,7 +128,7 @@ export const CardContent: React.FC<CardContentProps> = ({
 	...props
 }) => {
 	return (
-		<div className={cn("px-4 py-4 not-prose text-sm", className)} {...props}>
+		<div className={cn("px-4 py-4 not-prose text-sm text-foreground-muted/", className)} {...props}>
 			{children}
 		</div>
 	);
@@ -142,7 +142,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/30 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end not-prose",
+				"px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end not-prose",
 				className,
 			)}
 			{...props}

@@ -47,22 +47,22 @@ const breadcrumbLinkVariants = cva(
 	[
 		"inline-flex items-center transition-colors duration-200 ease-in-out",
 		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
-		"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+		"focus-visible:ring-offset-ring-offset/50",
+		"focus-visible:ring-ring/20",
 		"rounded-md",
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					"text-nocta-600 dark:text-nocta-400",
-					"hover:text-nocta-900 dark:hover:text-nocta-100",
+					"text-foreground-subtle",
+					"hover:text-foreground",
 					"underline-offset-4 hover:underline",
 				],
 				ghost: [
-					"text-nocta-600 dark:text-nocta-400",
-					"hover:text-nocta-900 dark:hover:text-nocta-100",
-					"hover:bg-nocta-100 dark:hover:bg-nocta-900",
+					"text-foreground-subtle",
+					"hover:text-foreground",
+					"hover:bg-background",
 					"px-2 py-1 rounded-md",
 				],
 			},
@@ -80,7 +80,7 @@ const breadcrumbLinkVariants = cva(
 );
 
 const breadcrumbPageVariants = cva(
-	"text-nocta-900 dark:text-nocta-100 font-medium",
+	"text-foreground font-medium",
 	{
 		variants: {
 			size: {
@@ -96,7 +96,7 @@ const breadcrumbPageVariants = cva(
 );
 
 const breadcrumbSeparatorVariants = cva(
-	"text-nocta-400 dark:text-nocta-500 select-none",
+	"text-foreground-subtle select-none",
 	{
 		variants: {
 			size: {

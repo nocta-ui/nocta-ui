@@ -20,7 +20,7 @@ const ViteLogo = () => (
 		role="img"
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"
-		className="h-16 w-16 text-nocta-400 dark:text-nocta-400"
+		className="h-16 w-16 text-foreground-subtle"
 		fill="currentColor"
 	>
 		<title>Vite</title>
@@ -33,7 +33,7 @@ const NextJsLogo = () => (
 		role="img"
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"
-		className="h-16 w-16 text-nocta-400 dark:text-nocta-400"
+		className="h-16 w-16 text-foreground-subtle"
 		fill="currentColor"
 	>
 		<title>Next.js</title>
@@ -45,7 +45,7 @@ const ReactRouterLogo = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
-		className="h-16 w-16 text-nocta-400 dark:text-nocta-400"
+		className="h-16 w-16 text-foreground-subtle"
 		fill="currentColor"
 	>
 		<title>React Router</title>
@@ -85,13 +85,13 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 						className="no-underline group"
 					>
 						<button key={framework.id} className={`relative cursor-pointer`}>
-							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-nocta-200 dark:bg-nocta-900 transition-colors duration-300 rounded-md p-8">
+							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border bg-background-muted transition-colors duration-300 rounded-md p-8">
 								{framework.logo}
 								<div className="mt-3">
-									<span className="block text-lg font-medium text-nocta-600 dark:text-nocta-400">
+									<span className="block text-lg font-medium text-foreground-muted">
 										{framework.name}
 									</span>
-									<span className="block text-sm text-nocta-500 dark:text-nocta-500">
+									<span className="block text-sm text-foreground-subtle dark:text-foreground-subtle">
 										{framework.description}
 									</span>
 								</div>

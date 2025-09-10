@@ -189,14 +189,14 @@ export const AdvancedTableDemo: React.FC = () => {
 			title: "User",
 			render: (value, record) => (
 				<div className="flex items-center gap-3">
-					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
+					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-primary-foreground text-sm font-medium">
 						{String(value).charAt(0)}
 					</div>
 					<div className="min-w-0">
-						<div className="font-medium text-nocta-900 dark:text-nocta-100 truncate">
+						<div className="font-medium text-foreground truncate">
 							{String(value)}
 						</div>
-						<div className="text-xs text-nocta-500 dark:text-nocta-400 truncate">
+						<div className="text-xs text-foreground-subtle truncate">
 							{record.email}
 						</div>
 					</div>
@@ -260,14 +260,14 @@ export const TableVariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-8">
 			<div>
-				<h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-semibold text-foreground mb-3">
 					Default
 				</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 3)} />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-semibold text-foreground mb-3">
 					Striped
 				</h4>
 				<Table
@@ -296,21 +296,21 @@ export const TableSizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-8">
 			<div>
-				<h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-semibold text-foreground mb-3">
 					Small
 				</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="sm" />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-semibold text-foreground mb-3">
 					Medium
 				</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="md" />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-semibold text-foreground mb-3">
 					Large
 				</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="lg" />

@@ -32,7 +32,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4">
 			<div>
-				<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300 mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Small
 				</label>
 				<Select size="sm">
@@ -48,7 +48,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300 mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Medium
 				</label>
 				<Select size="md">
@@ -64,7 +64,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300 mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Large
 				</label>
 				<Select size="lg">

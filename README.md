@@ -122,9 +122,9 @@ const CustomButton = ({ ...props }) => {
 // Or extend with your own variants
 const variants = {
   // Add your brand colors
-  brand: "bg-purple-600 text-nocta-50 hover:bg-purple-700",
+  brand: "bg-purple-600 text-primary-foreground hover:bg-purple-700",
   // Modify existing variants  
-  primary: "bg-blue-600 text-nocta-50 hover:bg-blue-700",
+  primary: "bg-blue-600 text-primary-foreground hover:bg-blue-700",
 }
 ```
 

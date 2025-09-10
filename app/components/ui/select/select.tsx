@@ -6,16 +6,15 @@ import { cn } from "@/lib/utils";
 
 const selectTriggerVariants = cva(
 	`flex w-fit items-center justify-between
-   rounded-lg border border-nocta-200 dark:border-nocta-800/50
-   bg-nocta-100 dark:bg-nocta-900
-   hover:border-nocta-300 dark:hover:border-nocta-700
-   placeholder:text-nocta-400 dark:placeholder:text-nocta-500
-   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
-   focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
-   focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50
+   rounded-lg border border-border-muted
+   bg-background
+   placeholder:text-foreground-subtle
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0
+   focus-visible:border-border/10
+   focus-visible:ring-ring/10
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
-   transition-all duration-200 ease-out shadow-sm
-   not-prose`,
+   transition-all duration-200 ease-out
+   shadow-xs not-prose`,
 	{
 		variants: {
 			size: {
@@ -298,22 +297,23 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 	const [isVisible, setIsVisible] = useState(false);
 	const [shouldRender, setShouldRender] = useState(false);
 
-	useEffect(() => {
-		if (open) {
-			setShouldRender(true);
-			requestAnimationFrame(() => {
-				requestAnimationFrame(() => {
-					setIsVisible(true);
-				});
-			});
-		} else {
-			setIsVisible(false);
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-			}, 200);
-			return () => clearTimeout(timer);
-		}
-	}, [open]);
+  useEffect(() => {
+    if (open) {
+      setShouldRender(true);
+      // Delay to next frame and force a reflow before enabling the transition
+      const t = setTimeout(() => {
+        contentRef.current?.getBoundingClientRect(); // force reflow
+        setIsVisible(true);
+      }, 16);
+      return () => clearTimeout(t);
+    } else {
+      setIsVisible(false);
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -422,14 +422,14 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 		top: "bottom-full mb-1",
 	};
 
-	const animationStyles =
-		position === "bottom"
-			? `transform transition-all duration-200 ease-out origin-top ${
-					isVisible ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
-				}`
-			: `transform transition-all duration-200 ease-out origin-bottom ${
-					isVisible ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-				}`;
+  const animationStyles =
+    position === "bottom"
+      ? `transform transition-all duration-200 ease-out origin-top ${
+          isVisible ? "translate-y-0 opacity-100 scale-100" : "-translate-y-1 opacity-0 scale-95"
+        }`
+      : `transform transition-all duration-200 ease-out origin-bottom ${
+          isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-1 opacity-0 scale-95"
+        }`;
 
 	return (
 		<div
@@ -437,7 +437,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			id={contentId}
 			role="listbox"
 			className={cn(
-				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-nocta-200 dark:border-nocta-50/5 bg-nocta-100 dark:bg-nocta-900 shadow-lg dark:shadow-xl",
+				"absolute z-50 w-full min-w-[8rem] overflow-hidden rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl",
 				positionStyles[position],
 				animationStyles,
 				"not-prose",
@@ -506,9 +506,9 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			role="option"
 			aria-selected={isSelected}
 			className={cn(
-				"relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:bg-nocta-100 dark:focus-visible:bg-nocta-800",
-				isSelected ? "bg-nocta-200 dark:bg-nocta-800 font-medium" : "",
-				isFocused ? "bg-nocta-200 dark:bg-nocta-800" : "",
+				"relative flex cursor-pointer select-none items-center px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-background-muted focus-visible:bg-background-muted",
+				isSelected ? "bg-background-muted font-medium" : "",
+				isFocused ? "bg-background-muted" : "",
 				disabled
 					? "pointer-events-none opacity-50"
 					: "transition-colors duration-150 not-prose",
@@ -521,7 +521,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			</span>
 			{isSelected && (
 				<svg
-					className="ml-2 h-4 w-4 text-nocta-600 dark:text-nocta-400"
+					className="ml-2 h-4 w-4 text-foreground-muted"
 					fill="none"
 					stroke="currentColor"
 					viewBox="0 0 24 24"
@@ -545,11 +545,11 @@ export const SelectValue: React.FC<SelectValueProps> = ({
 	const { value, displayValue } = React.useContext(SelectContext);
 
 	return (
-		<span className={`block text-left ${className}`}>
+		<span className={`block text-left text-primary ${className}`}>
 			{value ? (
 				<span>{displayValue}</span>
 			) : (
-				<span className="text-nocta-400 dark:text-nocta-500">
+				<span className="text-foreground-subtle">
 					{placeholder}
 				</span>
 			)}

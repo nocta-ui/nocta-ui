@@ -28,7 +28,7 @@ const accordionItemVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-b border-nocta-300 dark:border-nocta-800/50 last:border-b-0",
+					"border-b border-border/10 last:border-b-0",
 				card: "rounded-lg",
 			},
 			isOpen: {
@@ -40,7 +40,7 @@ const accordionItemVariants = cva(
 			{
 				variant: "card",
 				isOpen: true,
-				class: "shadow-md dark:shadow-xl",
+				class: "shadow-md dark:shadow-md",
 			},
 		],
 		defaultVariants: {
@@ -51,13 +51,13 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	"w-full flex items-center justify-between text-left transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+	"w-full flex items-center justify-between text-left transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-ring/10 not-prose",
 	{
 		variants: {
 			variant: {
 				default:
-					"text-nocta-900 dark:text-nocta-100 hover:text-nocta-700 dark:hover:text-nocta-300",
-				card: "text-nocta-900 dark:text-nocta-100 hover:bg-nocta-50 dark:hover:bg-nocta-900/50",
+					"text-primary hover:text-primary-muted",
+				card: "text-primary hover:text-primary-muted",
 			},
 			size: {
 				sm: "text-xs",
@@ -107,7 +107,7 @@ const accordionTriggerVariants = cva(
 			{
 				variant: "card",
 				isOpen: true,
-				class: "bg-nocta-50/50 dark:bg-nocta-900/30",
+				class: "",
 			},
 		],
 		defaultVariants: {
@@ -136,12 +136,12 @@ const accordionContentVariants = cva(
 );
 
 const accordionContentInnerVariants = cva(
-	"text-nocta-600 dark:text-nocta-400 leading-relaxed",
+	"text-primary-muted leading-relaxed",
 	{
 		variants: {
 			variant: {
 				default: "",
-				card: "border-t border-nocta-100 dark:border-nocta-800/50",
+				card: "border-t border-border-muted",
 			},
 			size: {
 				sm: "",
@@ -371,7 +371,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="relative bg-nocta-100 dark:bg-nocta-900 border rounded-lg shadow-lg overflow-hidden transition-all duration-200 ease-out not-prose">
+						<div className="relative bg-background border shadow-lg rounded-lg overflow-hidden transition-all duration-200 ease-out not-prose">
 							<span
 								aria-hidden
 								className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
@@ -460,7 +460,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					strokeLinecap="round"
 					strokeLinejoin="round"
 					className={cn(
-						"transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-nocta-500 dark:text-nocta-400 will-change-transform",
+						"transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-foreground-subtle will-change-transform",
 						isOpen ? "rotate-180" : "rotate-0",
 					)}
 				>

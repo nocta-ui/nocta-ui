@@ -11,7 +11,7 @@ export const baseOptions: BaseLayoutProps = {
 	nav: {
 		transparentMode: "always",
 		title: (
-			<div className="flex gap-1 items-center justify-center text-nocta-800 dark:text-nocta-50/85">
+			<div className="flex gap-1 items-center justify-center text-foreground-muted">
 				<svg
 					width="32"
 					height="32"

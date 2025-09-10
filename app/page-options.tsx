@@ -55,7 +55,7 @@ export function LLMCopyButton({
 			disabled={isLoading}
 			variant="primary"
 			size="sm"
-			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-nocta-50 [&_svg]:dark:text-fd-muted-foreground"
+			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-fd-muted-foreground"
 			onClick={onClick}
 		>
 			{checked ? <Check /> : <Copy />}
@@ -65,7 +65,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-nocta-200 dark:hover:bg-nocta-700 [&_svg]:size-4",
+	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-neutral-200 dark:hover:bg-neutral-700 [&_svg]:size-4",
 );
 
 export function ViewOptions({
@@ -160,7 +160,7 @@ export function ViewOptions({
 				Open
 				<CaretDown className="size-3.5 text-fd-muted-foreground" />
 			</PopoverTrigger>
-			<PopoverContent align="start" className="flex flex-col overflow-auto !p-1 bg-nocta-100">
+			<PopoverContent align="start" className="flex flex-col overflow-auto !p-1 bg-neutral-100">
 				{items.map((item) => (
 					<a
 						key={item.href}

@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-nocta-100 dark:bg-nocta-900 border-nocta-300 dark:border-nocta-800/50 overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
+	"fixed flex flex-col bg-background border-border-muted overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
@@ -307,7 +307,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose cursor-pointer",
 				className,
 			)}
 			onClick={handleClick}
@@ -447,7 +447,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 		<div className="fixed inset-0 z-50">
 			<div
 				className={cn(
-					"fixed inset-0 bg-nocta-950/50 dark:bg-nocta-950/70 backdrop-blur-sm transition-opacity duration-200 ease-in-out",
+					"fixed inset-0 bg-overlay/50 backdrop-blur-sm transition-opacity duration-200 ease-in-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"
@@ -468,7 +468,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				{showClose && (
 					<button
 						onClick={() => onOpenChange(false)}
-						className="absolute top-4 right-4 p-1 rounded-md text-nocta-500 dark:text-nocta-400 hover:text-nocta-700 dark:hover:text-nocta-200 hover:bg-nocta-100 dark:hover:bg-nocta-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50 transition-colors duration-200 ease-in-out z-10 cursor-pointer"
+						className="absolute top-4 right-4 p-1 rounded-md text-foreground-subtle hover:text-foreground-muted hover:bg-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/10 transition-colors duration-200 ease-in-out z-10 cursor-pointer"
 						aria-label="Close sheet"
 					>
 						<svg
@@ -502,7 +502,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-5 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
+				"px-6 py-5 border-b border-border-muted/30 not-prose",
 				className,
 			)}
 			{...props}
@@ -522,7 +522,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				"text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose",
+				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			),
 			...props,
@@ -539,7 +539,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				"text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose",
+				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
@@ -557,7 +557,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 mt-auto bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-end gap-3 not-prose",
+				"px-6 py-4 mt-auto bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end gap-3 not-prose",
 				className,
 			)}
 			{...props}
@@ -596,7 +596,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-nocta-900 dark:text-nocta-100 hover:bg-nocta-200 dark:hover:bg-nocta-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/10 cursor-pointer",
 				className,
 			)}
 			onClick={handleClick}

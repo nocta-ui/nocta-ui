@@ -89,12 +89,12 @@ Use the `render` function in column definitions for custom cell content.
         title: 'User',
         render: (value, record) => (
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-nocta-50 text-sm font-medium">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-primary-foreground text-sm font-medium">
               {String(value).charAt(0)}
             </div>
             <div className="min-w-0">
-              <div className="font-medium text-nocta-900 dark:text-nocta-100 truncate">{String(value)}</div>
-              <div className="text-xs text-nocta-500 dark:text-nocta-400 truncate">{record.email}</div>
+              <div className="font-medium text-foreground truncate">{String(value)}</div>
+              <div className="text-xs text-foreground-subtle truncate">{record.email}</div>
             </div>
           </div>
         )

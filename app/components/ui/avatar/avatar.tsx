@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 const avatarVariants = cva(
 	[
 		"relative inline-flex items-center justify-center",
-		"bg-nocta-200 dark:bg-nocta-800",
-		"text-nocta-700 dark:text-nocta-300",
+		"bg-background-muted",
+		"text-foreground-muted",
 		"font-medium select-none",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
@@ -36,7 +36,7 @@ const avatarVariants = cva(
 	},
 );
 
-const textVariants = cva("font-medium", {
+const textVariants = cva("font-medium text-primary-muted", {
 	variants: {
 		size: {
 			xs: "text-xs",
@@ -52,7 +52,7 @@ const textVariants = cva("font-medium", {
 	},
 });
 
-const iconVariants = cva("text-nocta-400 dark:text-nocta-500", {
+const iconVariants = cva("text-foreground-subtle", {
 	variants: {
 		size: {
 			xs: "h-3 w-3",
@@ -69,12 +69,12 @@ const iconVariants = cva("text-nocta-400 dark:text-nocta-500", {
 });
 
 const statusVariants = cva(
-	"absolute rounded-full ring-nocta-50 dark:ring-nocta-900",
+	"absolute rounded-full ring-ring-offset",
 	{
 		variants: {
 			status: {
 				online: "bg-green-500 dark:bg-green-600",
-				offline: "bg-nocta-400 dark:bg-nocta-600",
+				offline: "bg-foreground-subtle",
 				away: "bg-yellow-500 dark:bg-yellow-600",
 				busy: "bg-red-500 dark:bg-red-600",
 			},

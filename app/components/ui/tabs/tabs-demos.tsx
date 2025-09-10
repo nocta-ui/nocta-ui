@@ -30,7 +30,7 @@ export const BasicTabsDemo: React.FC = () => {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<p className="text-sm text-nocta-600 dark:text-nocta-400">
+							<p className="text-sm text-foreground-muted">
 								This is the overview tab content. You can add any components
 								here.
 							</p>
@@ -89,7 +89,7 @@ export const VariantsDemo: React.FC = () => {
 		<div className="my-6 space-y-8 w-72">
 			{/* Default variant */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Default
 				</h4>
 				<Tabs defaultValue="tab1" variant="default">
@@ -99,17 +99,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Settings</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Account settings and profile information.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Change your password and security settings.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Application preferences and configurations.
 						</p>
 					</TabsContent>
@@ -118,7 +118,7 @@ export const VariantsDemo: React.FC = () => {
 
 			{/* Pills variant */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Pills
 				</h4>
 				<Tabs defaultValue="tab1" variant="pills">
@@ -128,17 +128,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">About</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Welcome to the home page content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Browse our product catalog.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Learn more about our company.
 						</p>
 					</TabsContent>
@@ -147,7 +147,7 @@ export const VariantsDemo: React.FC = () => {
 
 			{/* Underline variant */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Underline
 				</h4>
 				<Tabs defaultValue="tab1" variant="underline">
@@ -157,17 +157,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Projects</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Your dashboard overview and quick stats.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Manage your team members and permissions.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							View and manage your active projects.
 						</p>
 					</TabsContent>
@@ -182,7 +182,7 @@ export const SizesDemo: React.FC = () => {
 		<div className="my-6 space-y-8 w-64">
 			{/* Small size */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Small
 				</h4>
 				<Tabs defaultValue="tab1" size="sm">
@@ -192,17 +192,17 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Small tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Small tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Small tab content.
 						</p>
 					</TabsContent>
@@ -211,7 +211,7 @@ export const SizesDemo: React.FC = () => {
 
 			{/* Medium size */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Medium
 				</h4>
 				<Tabs defaultValue="tab1" size="md">
@@ -221,17 +221,17 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Medium tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Medium tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Medium tab content.
 						</p>
 					</TabsContent>
@@ -240,7 +240,7 @@ export const SizesDemo: React.FC = () => {
 
 			{/* Large size */}
 			<div>
-				<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100 mb-3">
+				<h4 className="text-sm font-medium text-foreground mb-3">
 					Large
 				</h4>
 				<Tabs defaultValue="tab1" size="lg">
@@ -250,17 +250,17 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Large tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Large tab content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Large tab content.
 						</p>
 					</TabsContent>
@@ -293,13 +293,13 @@ export const VerticalTabsDemo: React.FC = () => {
 								<div className="space-y-4">
 									<div>
 										<label className="text-sm font-medium">Display Name</label>
-										<p className="text-sm text-nocta-600 dark:text-nocta-400 mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											This is your public display name.
 										</p>
 									</div>
 									<div>
 										<label className="text-sm font-medium">Email</label>
-										<p className="text-sm text-nocta-600 dark:text-nocta-400 mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											Your email address for notifications.
 										</p>
 									</div>
@@ -321,7 +321,7 @@ export const VerticalTabsDemo: React.FC = () => {
 										<label className="text-sm font-medium">
 											Two-Factor Authentication
 										</label>
-										<p className="text-sm text-nocta-600 dark:text-nocta-400 mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											Add an extra layer of security to your account.
 										</p>
 									</div>
@@ -339,7 +339,7 @@ export const VerticalTabsDemo: React.FC = () => {
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
-								<p className="text-sm text-nocta-600 dark:text-nocta-400">
+								<p className="text-sm text-foreground-muted">
 									No integrations configured yet.
 								</p>
 							</CardContent>
@@ -354,7 +354,7 @@ export const VerticalTabsDemo: React.FC = () => {
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
-								<p className="text-sm text-nocta-600 dark:text-nocta-400">
+								<p className="text-sm text-foreground-muted">
 									Advanced settings and developer options.
 								</p>
 							</CardContent>
@@ -382,7 +382,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="available" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-nocta-600 dark:text-nocta-400">
+							<p className="text-sm text-foreground-muted">
 								This tab is available and can be accessed.
 							</p>
 						</CardContent>
@@ -391,7 +391,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="disabled" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-nocta-600 dark:text-nocta-400">
+							<p className="text-sm text-foreground-muted">
 								This content won&apos;t be shown as the tab is disabled.
 							</p>
 						</CardContent>
@@ -400,7 +400,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="coming-soon" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-nocta-600 dark:text-nocta-400">
+							<p className="text-sm text-foreground-muted">
 								Coming soon feature content.
 							</p>
 						</CardContent>

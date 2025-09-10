@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 const progressVariants = cva(
 	[
 		"relative w-full overflow-hidden rounded-full",
-		"bg-nocta-300 dark:bg-nocta-800/60 border border-nocta-200 dark:border-nocta-50/5",
+		"bg-background-muted border border-border-muted shadow-inner",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
 	],
 	{
 		variants: {
 			variant: {
-				default: "[&>div]:bg-nocta-900 dark:[&>div]:bg-nocta-100/50",
+				default: "[&>div]:bg-foreground dark:[&>div]:bg-foreground/50",
 				success: "[&>div]:bg-green-500 dark:[&>div]:bg-green-600/50",
 				warning: "[&>div]:bg-yellow-500 dark:[&>div]:bg-yellow-600/50",
 				destructive: "[&>div]:bg-red-500 dark:[&>div]:bg-red-600/50",
@@ -56,10 +56,10 @@ export const Progress: React.FC<ProgressProps> = ({
 		<div className="w-full">
 			{showLabel && (
 				<div className="flex justify-between items-center mb-2">
-					<span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+					<span className="text-sm font-medium text-foreground-muted">
 						{ariaLabel || "Progress"}
 					</span>
-					<span className="text-sm text-nocta-500 dark:text-nocta-400 ml-2">
+					<span className="text-sm text-foreground-subtle ml-2">
 						{Math.round(percentage)}%
 					</span>
 				</div>

@@ -5,36 +5,33 @@ import { cn } from "@/lib/utils";
 const textareaVariants = cva(
 	[
 		"w-full flex rounded-lg border transition-all duration-200 ease-in-out",
-		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:ring-offset-ring-offset/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
-		"placeholder:text-nocta-400 dark:placeholder:text-nocta-500",
-		"not-prose shadow-sm",
+		"placeholder:text-foreground-subtle",
+		"shadow-xs not-prose",
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					"border-nocta-200 dark:border-nocta-800/50",
-					"bg-nocta-100 dark:bg-nocta-900",
-					"text-nocta-900 dark:text-nocta-100",
-					"hover:border-nocta-300 dark:hover:border-nocta-700",
-					"focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50",
-					"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+					"border-border-muted",
+					"bg-background",
+					"text-foreground",
+					"focus-visible:border-border/10",
+					"focus-visible:ring-ring/10",
 				],
 				error: [
 					"border-red-300 dark:border-red-700/50",
-					"bg-nocta-100 dark:bg-nocta-900",
-					"text-nocta-900 dark:text-nocta-100",
-					"hover:border-red-400 dark:hover:border-red-600",
+					"bg-background",
+					"text-foreground",
 					"focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50",
 					"focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50",
 				],
 				success: [
 					"border-green-300 dark:border-green-700/50",
-					"bg-nocta-100 dark:bg-nocta-900",
-					"text-nocta-900 dark:text-nocta-100",
-					"hover:border-green-400 dark:hover:border-green-600",
+					"bg-background",
+					"text-foreground",
 					"focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50",
 					"focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50",
 				],
@@ -64,7 +61,7 @@ const messageVariants = cva("mt-1.5 text-sm", {
 		type: {
 			error: "text-red-600 dark:text-red-400",
 			success: "text-green-600 dark:text-green-400",
-			helper: "text-nocta-600 dark:text-nocta-400",
+			helper: "text-foreground-subtle",
 		},
 	},
 });
@@ -100,7 +97,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 	return (
 		<div className={cn("not-prose", containerClassName)}>
 			{label && (
-				<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300 mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					{label}
 				</label>
 			)}

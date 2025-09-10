@@ -14,9 +14,9 @@ const tabsListVariants = cva(
 				vertical: "flex-col w-fit",
 			},
 			variant: {
-				default: "rounded-lg bg-nocta-200 dark:bg-nocta-900",
+				default: "rounded-lg bg-background",
 				pills: "gap-1",
-				underline: "border-b border-nocta-300 dark:border-nocta-700 gap-0",
+				underline: "border-b border-muted gap-0",
 			},
 			size: {
 				sm: "",
@@ -53,8 +53,8 @@ const tabsTriggerVariants = cva(
 	`inline-flex items-center justify-center whitespace-nowrap
    font-medium transition-all duration-200 ease-in-out
    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2
-   focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50
-   focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50
+  
+   focus-visible:ring-ring
    disabled:pointer-events-none disabled:opacity-50 cursor-pointer
    not-prose`,
 	{
@@ -62,28 +62,28 @@ const tabsTriggerVariants = cva(
 			variant: {
 				default: `
           w-full rounded-md
-          text-nocta-700 dark:text-nocta-300
-          hover:text-nocta-900 dark:hover:text-nocta-100
-          data-[state=active]:bg-nocta-50 dark:data-[state=active]:bg-nocta-800
-          data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
+          text-foreground-muted
+          hover:text-foreground
+          data-[state=active]:bg-background-muted
+          data-[state=active]:text-foreground
           data-[state=active]:shadow-sm
         `,
 				pills: `
           rounded-lg
-          text-nocta-700 dark:text-nocta-300
-          hover:bg-nocta-100 dark:hover:bg-nocta-900
-          hover:text-nocta-900 dark:hover:text-nocta-100
-          data-[state=active]:bg-nocta-900 dark:data-[state=active]:bg-nocta-100
-          data-[state=active]:text-nocta-50 dark:data-[state=active]:text-nocta-900
+          text-foreground-muted
+          hover:bg-background
+          hover:text-foreground
+          data-[state=active]:bg-foreground-muted
+          data-[state=active]:text-primary-foreground
           data-[state=active]:shadow-sm
         `,
 				underline: `
           border-b-2 border-transparent
-          text-nocta-700 dark:text-nocta-300
-          hover:text-nocta-900 dark:hover:text-nocta-100
-          hover:border-nocta-300 dark:hover:border-nocta-600
-          data-[state=active]:border-nocta-900 dark:data-[state=active]:border-nocta-100
-          data-[state=active]:text-nocta-900 dark:data-[state=active]:text-nocta-100
+          text-foreground-muted
+          hover:text-foreground
+          border-muted
+          data-[state=active]:border-border
+          data-[state=active]:text-foreground
         `,
 			},
 			size: {
@@ -389,7 +389,7 @@ export const TabsContent: React.FC<TabsContentProps> = ({
 			aria-labelledby={`tab-trigger-${value}`}
 			data-state={isSelected ? "active" : "inactive"}
 			className={cn(
-				"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+				"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose",
 				isSelected ? "block" : "hidden",
 				className,
 			)}

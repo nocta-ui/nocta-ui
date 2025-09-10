@@ -160,7 +160,7 @@ const toastContainerVariants = cva(
 			},
 			variant: {
 				default:
-					"border-nocta-300 dark:border-nocta-50/5 bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 overflow-hidden",
+					"border-muted bg-background-muted text-foreground overflow-hidden",
 				success:
 					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
 				warning:
@@ -195,7 +195,7 @@ const closeIconVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100/50 dark:hover:bg-nocta-700/50 focus-visible:ring-nocta-500/50",
+				default: "text-foreground-subtle hover:bg-background-elevated/50 focus-visible:ring-ring/10",
 				success: "text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
 				warning: "text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
 				destructive: "text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
@@ -611,7 +611,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							</div>
 						)}
 						{description && (
-							<div className="text-sm opacity-90 leading-relaxed">
+							<div className="text-sm opacity-80 leading-relaxed">
 								{description}
 							</div>
 						)}
@@ -622,7 +622,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 										action.onClick();
 										handleClose();
 									}}
-									className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-gradient-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 hover:bg-nocta-900 dark:hover:bg-nocta-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-nocta-500/50 transition-colors duration-200 cursor-pointer"
+									className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50 hover:contrast-115 text-primary-foreground dark:text-primary focus-visible:ring-ring/10 shadow-sm transition-all duration-200 cursor-pointer"
 								>
 									{action.label}
 								</button>

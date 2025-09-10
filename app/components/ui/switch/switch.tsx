@@ -8,8 +8,8 @@ const switchVariants = cva(
 	[
 		"relative inline-flex items-center rounded-full border-2 border-transparent",
 		"transition-all duration-200 ease-out cursor-pointer",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-nocta-50 dark:focus-visible:ring-offset-nocta-900",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:ring-offset-ring-offset/50",
 		"not-prose",
 	],
 	{
@@ -39,12 +39,12 @@ const switchVariants = cva(
 				variant: "default",
 				checked: true,
 				class:
-					"bg-nocta-400 dark:bg-nocta-600 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+					"bg-foreground-subtle focus-visible:ring-ring",
 			},
 			{
 				variant: "default",
 				checked: false,
-				class: "bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-nocta-500/50",
+				class: "bg-background-elevated focus-visible:ring-ring",
 			},
 			{
 				variant: "success",
@@ -55,7 +55,7 @@ const switchVariants = cva(
 			{
 				variant: "success",
 				checked: false,
-				class: "bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-green-500/50",
+				class: "bg-background-elevated focus-visible:ring-green-500/50",
 			},
 			{
 				variant: "warning",
@@ -67,7 +67,7 @@ const switchVariants = cva(
 				variant: "warning",
 				checked: false,
 				class:
-					"bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-yellow-500/50",
+					"bg-background-elevated focus-visible:ring-yellow-500/50",
 			},
 			{
 				variant: "destructive",
@@ -77,7 +77,7 @@ const switchVariants = cva(
 			{
 				variant: "destructive",
 				checked: false,
-				class: "bg-nocta-200 dark:bg-nocta-800 focus-visible:ring-red-500/50",
+				class: "bg-background-elevated focus-visible:ring-red-500/50",
 			},
 		],
 		defaultVariants: {
@@ -91,7 +91,7 @@ const switchVariants = cva(
 
 const thumbVariants = cva(
 	[
-		"inline-block rounded-full bg-nocta-50 dark:bg-nocta-50",
+		"inline-block rounded-full bg-background dark:bg-foreground",
 		"shadow-sm transform transition-transform duration-200 ease-in-out",
 	],
 	{

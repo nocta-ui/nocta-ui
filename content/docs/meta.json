@@ -35,6 +35,7 @@
 		"---Overlay---",
 		"context-menu",
 		"dialog",
+		"command-k",
 		"popover",
 		"sheet",
 		"tooltip",

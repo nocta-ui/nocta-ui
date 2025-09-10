@@ -13,7 +13,6 @@ import {
   AsChildDemo,
   ControlledDemo,
   RichContentDemo,
-  FormPopoverDemo,
   CollisionDetectionDemo
 } from '@/app/components/ui/popover/popover-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -58,7 +57,7 @@ The Popover component provides a floating panel that appears on demand, perfect 
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-nocta-600 dark:text-nocta-400">
+          <p className="text-sm text-foreground-muted">
             This is a popover component that can contain any content you want.
           </p>
         </div>
@@ -207,7 +206,7 @@ Use the `asChild` prop to render custom trigger elements while maintaining popov
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Custom Trigger</h4>
-          <p className="text-sm text-nocta-600 dark:text-nocta-400">
+          <p className="text-sm text-foreground-muted">
             Using asChild prop to render a custom button component.
           </p>
         </div>
@@ -217,7 +216,7 @@ Use the `asChild` prop to render custom trigger elements while maintaining popov
     {/* Using with custom element */}
     <Popover>
       <PopoverTrigger asChild>
-        <button className="px-3 py-2 bg-blue-500 text-nocta-50 rounded-md hover:bg-blue-600">
+        <button className="px-3 py-2 bg-blue-500 text-primary-foreground rounded-md hover:bg-blue-600">
           Custom Element
         </button>
       </PopoverTrigger>
@@ -246,12 +245,12 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-nocta-600 dark:text-nocta-400">
+          <p className="text-sm text-foreground-muted">
             This popover's state is controlled externally.
           </p>
           <button
             onClick={() => setOpen(false)}
-            className="px-2 py-1 text-xs bg-nocta-100 dark:bg-nocta-900 rounded"
+            className="px-2 py-1 text-xs bg-background rounded"
           >
             Close from inside
           </button>

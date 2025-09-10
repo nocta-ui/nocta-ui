@@ -353,6 +353,54 @@
 				"client-component"
 			]
 		},
+		"command-k": {
+			"name": "CommandK",
+			"description": "Command palette modal (Cmd/Ctrl+K) for quick search, navigation and actions with full keyboard support",
+			"category": "overlay",
+			"files": [
+				{
+					"name": "command-k.tsx",
+					"path": "app/components/ui/command-k/command-k.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1"
+			},
+			"internalDependencies": ["dialog", "input"],
+			"exports": ["CommandK"],
+			"props": {
+				"CommandK": [
+					"items",
+					"open",
+					"defaultOpen",
+					"onOpenChange",
+					"placeholder",
+					"emptyMessage",
+					"closeOnAction",
+					"size",
+					"className",
+					"listClassName",
+					"autoFocus",
+					"hotkey",
+					"onSelect"
+				]
+			},
+			"sizes": ["sm", "md", "lg", "xl", "full"],
+			"features": [
+				"keyboard-navigation",
+				"focus-management",
+				"search-filtering",
+				"grouping",
+				"hotkey-open",
+				"dark-mode",
+				"accessibility",
+				"client-component"
+			]
+		},
 		"input": {
 			"name": "Input",
 			"description": "Input component with variants, icons, and helper text",

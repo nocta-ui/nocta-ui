@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
 	[
-		"relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-50/5",
+		"relative bg-background border border-border-muted",
 		"rounded-xl shadow-lg transition-all duration-200 ease-out",
 		"overflow-hidden not-prose",
 	],
@@ -31,11 +31,11 @@ const messageVariants = cva(
 	{
 		variants: {
 			variant: {
-				user: "bg-nocta-950 dark:bg-nocta-50 text-nocta-50 dark:text-nocta-900",
+				user: "bg-primary-muted text-primary-foreground",
 				assistant:
-					"bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100",
+					"bg-background-muted text-foreground",
 				system:
-					"bg-nocta-300/50 dark:bg-nocta-700/50 text-nocta-600 dark:text-nocta-400 text-center text-xs mx-auto",
+					"bg-background-muted/50 dark:bg-background-muted/30 text-foreground-subtle text-center text-xs mx-auto",
 			},
 		},
 		defaultVariants: {
@@ -47,21 +47,20 @@ const messageVariants = cva(
 const inputVariants = cva(
 	[
 		"flex-1 px-3 py-2 text-sm min-h-[40px] rounded-lg border transition-all duration-200 ease-in-out resize-none",
-		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
-		"placeholder:text-nocta-400 dark:placeholder:text-nocta-500 not-prose",
+		"placeholder:text-foreground-subtle not-prose",
+		"focus-visible:ring-offset-ring-offset/50",
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					"border-nocta-300 dark:border-nocta-800/50",
-					"bg-nocta-100 dark:bg-nocta-950/50",
-					"text-nocta-900 dark:text-nocta-100",
-					"hover:border-nocta-300/50 dark:hover:border-nocta-600/50",
-					"focus-visible:border-nocta-900/50 dark:focus-visible:border-nocta-100/50",
-					"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+					"border-border-muted",
+					"bg-background",
+					"text-foreground",
+					"focus-visible:border-border/10",
+					"focus-visible:ring-ring/10",
 				],
 			},
 		},
@@ -180,7 +179,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 	return (
 		<div className={cn("flex items-end gap-2 not-prose", className)} {...props}>
 			{showAvatars && (
-				<div className="w-8 h-8 rounded-full bg-nocta-200 dark:bg-nocta-800 flex items-center justify-center text-xs font-medium text-nocta-600 dark:text-nocta-400 flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
 					{typingUsers[0].avatar ? (
 						<img
 							src={typingUsers[0].avatar}
@@ -198,15 +197,15 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			)}
 
 			<div className="flex flex-col gap-1 w-full items-start">
-				<div className="bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100 rounded-lg px-3 py-2 text-sm w-fit max-w-[80%] transition-all duration-200 ease-in-out not-prose">
+				<div className="bg-background-muted text-foreground rounded-lg px-3 py-2 text-sm w-fit max-w-[80%] transition-all duration-200 ease-in-out not-prose">
 					<div className="flex items-center gap-2">
-						<span className="text-xs text-nocta-600 dark:text-nocta-400">
+						<span className="text-xs text-foreground-muted">
 							{getTypingText()}
 						</span>
 						<div className="flex gap-1">
-							<div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-							<div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-							<div className="w-1.5 h-1.5 bg-nocta-600 dark:bg-nocta-400 rounded-full animate-bounce" />
+							<div className="w-1.5 h-1.5 bg-foreground-muted rounded-full animate-bounce [animation-delay:-0.3s]" />
+							<div className="w-1.5 h-1.5 bg-foreground-muted rounded-full animate-bounce [animation-delay:-0.15s]" />
+							<div className="w-1.5 h-1.5 bg-foreground-muted rounded-full animate-bounce" />
 						</div>
 					</div>
 				</div>
@@ -275,7 +274,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-4 py-3 border-b border-nocta-200 dark:border-nocta-800/50 not-prose",
+				"px-4 py-3 border-b border-border-muted not-prose",
 				className,
 			)}
 			{...props}
@@ -295,7 +294,7 @@ export const ChatTitle: React.FC<ChatTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				"text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose",
+				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			),
 			...props,
@@ -312,7 +311,7 @@ export const ChatDescription: React.FC<ChatDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				"text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose",
+				"text-sm text-foreground-muted leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
@@ -391,7 +390,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 			{...props}
 		>
 			{showAvatar && !isSystem && (
-				<div className="w-8 h-8 rounded-full bg-nocta-200 dark:bg-nocta-800 flex items-center justify-center text-xs font-medium text-nocta-600 dark:text-nocta-400 flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
 					{message.avatar ? (
 						<img
 							src={message.avatar}
@@ -421,7 +420,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 						{showTimestamp && (
 							<span
 								className={cn(
-									"text-xs text-nocta-500 dark:text-nocta-500",
+									"text-xs text-foreground-subtle dark:text-foreground-subtle",
 									isUser ? "text-right" : "text-left",
 									isSystem ? "text-center" : "",
 								)}
@@ -498,7 +497,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 	return (
 		<div
 			className={cn(
-				"p-4 border-t border-nocta-200/60 dark:border-nocta-800/40 not-prose",
+				"p-4 border-t border-border-muted/30 not-prose",
 				className,
 			)}
 			{...props}
@@ -521,13 +520,13 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					className={cn(
 						"px-3 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out h-full",
 						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-						"focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50",
-						"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+						"focus-visible:ring-offset-ring-offset/50",
+						"focus-visible:ring-ring",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-700 dark:to-nocta-700/50",
+						"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50",
 						"hover:contrast-125",
-						"text-nocta-100 dark:text-nocta-100",
-						"focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 shadow-sm",
+						"text-primary-foreground dark:text-primary",
+						"focus-visible:ring-ring shadow-sm",
 					)}
 				>
 					<svg
@@ -547,7 +546,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 				</button>
 			</form>
 			{maxLength && (
-				<div className="text-xs text-nocta-500 dark:text-nocta-500 mt-1 text-right">
+				<div className="text-xs text-foreground-subtle dark:text-foreground-subtle mt-1 text-right">
 					{message.length}/{maxLength}
 				</div>
 			)}

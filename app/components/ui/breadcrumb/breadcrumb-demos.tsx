@@ -154,7 +154,7 @@ export function SizesDemo() {
 		<div className="my-6">
 			<div className="space-y-8">
 				<div>
-					<p className="text-sm text-nocta-600 dark:text-nocta-400 mb-2">Small</p>
+					<p className="text-sm text-foreground-muted mb-2">Small</p>
 					<Breadcrumb size="sm">
 						<BreadcrumbList>
 							<BreadcrumbItem>
@@ -173,7 +173,7 @@ export function SizesDemo() {
 				</div>
 
 				<div>
-					<p className="text-sm text-nocta-600 dark:text-nocta-400 mb-2">
+					<p className="text-sm text-foreground-muted mb-2">
 						Medium (Default)
 					</p>
 					<Breadcrumb size="md">
@@ -194,7 +194,7 @@ export function SizesDemo() {
 				</div>
 
 				<div>
-					<p className="text-sm text-nocta-600 dark:text-nocta-400 mb-2">Large</p>
+					<p className="text-sm text-foreground-muted mb-2">Large</p>
 					<Breadcrumb size="lg">
 						<BreadcrumbList>
 							<BreadcrumbItem>

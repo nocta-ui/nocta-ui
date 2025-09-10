@@ -28,7 +28,7 @@ const calendarVariants = cva(
 			},
 			hasCustomBackground: {
 				true: "",
-				false: "bg-nocta-100 dark:bg-nocta-900",
+				false: "bg-background",
 			},
 		},
 		defaultVariants: {
@@ -43,9 +43,8 @@ const dayButtonVariants = cva(
 		"text-center",
 		"rounded-md",
 		"transition-colors",
-		"focus:outline-none",
-		"focus:ring-2",
-		"focus:ring-nocta-500/50",
+		"focus:outline-none, focus-visible:ring-1",
+		"focus-visible:ring-ring/10",
 		"w-8",
 		"h-8",
 		"text-xs",
@@ -57,13 +56,13 @@ const dayButtonVariants = cva(
 		variants: {
 			state: {
 				default:
-					"hover:bg-nocta-300 dark:hover:bg-nocta-700 text-nocta-700 dark:text-nocta-300",
+					"hover:bg-background-elevated text-foreground-muted",
 				selected:
-					"bg-nocta-950 dark:bg-nocta-50 text-nocta-50 dark:text-nocta-900",
+					"bg-primary text-primary-foreground",
 				today:
-					"bg-nocta-200 dark:bg-nocta-800 text-nocta-900 dark:text-nocta-100",
+					"bg-background-muted text-foreground",
 				disabled: "opacity-50 cursor-not-allowed",
-				outsideMonth: "text-nocta-400 dark:text-nocta-600",
+				outsideMonth: "text-foreground-subtle",
 			},
 			interaction: {
 				enabled: "cursor-pointer",
@@ -320,7 +319,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					disabled,
 					hasCustomBackground: shouldOverrideBackground,
 				}),
-				"relative border border-nocta-200 dark:border-nocta-50/5 overflow-hidden",
+				"relative border border-border-muted overflow-hidden",
 				className,
 			)}
 			role="application"
@@ -339,7 +338,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			/>
 			<div
 				className={cn(
-					"flex items-center justify-between border-b border-nocta-200/60 dark:border-nocta-800/40",
+					"flex items-center justify-between border-b border-border-muted/30",
 					"px-4 py-3",
 				)}
 			>
@@ -348,7 +347,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToPreviousMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"rounded-md hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Previous month"
@@ -371,7 +370,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 				<div className="flex items-center space-x-3">
 					<h2
 						className={cn(
-							"font-semibold text-nocta-900 dark:text-nocta-100",
+							"font-semibold text-foreground",
 							"text-sm",
 						)}
 					>
@@ -382,7 +381,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							"rounded-md bg-nocta-100 dark:bg-nocta-900 hover:bg-nocta-200 dark:hover:bg-nocta-800 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
 							"px-2 py-1 text-xs",
 						)}
 					>
@@ -395,7 +394,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToNextMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md hover:bg-nocta-100 dark:hover:bg-nocta-900 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"rounded-md hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Next month"
@@ -427,7 +426,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					{showWeekNumbers && (
 						<div
 							className={cn(
-								"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+								"font-medium text-foreground-subtle text-center flex items-center justify-center",
 								"text-xs w-8 h-8",
 							)}
 						>
@@ -438,7 +437,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						<div
 							key={index}
 							className={cn(
-								"font-medium text-nocta-500 dark:text-nocta-400 text-center flex items-center justify-center",
+								"font-medium text-foreground-subtle text-center flex items-center justify-center",
 								"text-xs w-8 h-8",
 							)}
 						>
@@ -462,7 +461,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 								{showWeekNumbers && (
 									<div
 										className={cn(
-											"text-nocta-400 dark:text-nocta-500 text-center flex items-center justify-center",
+											"text-foreground-subtle text-center flex items-center justify-center",
 											"text-xs w-8 h-8",
 										)}
 									>

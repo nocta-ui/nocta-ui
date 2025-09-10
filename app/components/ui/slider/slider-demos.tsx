@@ -36,7 +36,7 @@ export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Default
 				</label>
 				<Slider
@@ -47,7 +47,7 @@ export const VariantsDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Secondary
 				</label>
 				<Slider
@@ -69,7 +69,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Small
 				</label>
 				<Slider
@@ -80,7 +80,7 @@ export const SizesDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Medium
 				</label>
 				<Slider
@@ -91,7 +91,7 @@ export const SizesDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Large
 				</label>
 				<Slider
@@ -128,7 +128,7 @@ export const CustomRangeDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Temperature (16°C - 30°C)
 				</label>
 				<Slider
@@ -144,7 +144,7 @@ export const CustomRangeDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Volume (0 - 10)
 				</label>
 				<Slider
@@ -165,7 +165,7 @@ export const DisabledDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-500 dark:text-nocta-500">
+				<label className="text-sm font-medium text-foreground-subtle dark:text-foreground-subtle">
 					Disabled Slider
 				</label>
 				<Slider value={60} disabled aria-label="Disabled slider" />
@@ -180,7 +180,7 @@ export const StepDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-56">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Step = 5 (Snaps to: 0, 5, 10, ...)
 				</label>
 				<Slider
@@ -214,7 +214,7 @@ export const VerticalDemo: React.FC = () => {
 						className="h-full"
 						aria-label="Vertical slider 1"
 					/>
-					<span className="text-xs text-nocta-600 dark:text-nocta-400">
+					<span className="text-xs text-foreground-muted">
 						Default
 					</span>
 				</div>
@@ -228,7 +228,7 @@ export const VerticalDemo: React.FC = () => {
 						className="h-full"
 						aria-label="Vertical slider 2"
 					/>
-					<span className="text-xs text-nocta-600 dark:text-nocta-400">
+					<span className="text-xs text-foreground-muted">
 						Secondary Large
 					</span>
 				</div>
@@ -242,13 +242,13 @@ export const PriceRangeDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-48">
-			<div className="p-4 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
+			<div className="p-4 bg-background rounded-lg">
 				<div className="space-y-4">
 					<div className="flex items-center justify-between">
-						<h3 className="text-sm font-semibold text-nocta-900 dark:text-nocta-100">
+						<h3 className="text-sm font-semibold text-foreground">
 							Budget Range
 						</h3>
-						<span className="text-sm font-medium text-nocta-600 dark:text-nocta-400">
+						<span className="text-sm font-medium text-foreground-muted">
 							${budget.toLocaleString()}
 						</span>
 					</div>
@@ -262,7 +262,7 @@ export const PriceRangeDemo: React.FC = () => {
 						size="lg"
 						aria-label="Budget range slider"
 					/>
-					<div className="flex justify-between text-xs text-nocta-500 dark:text-nocta-500">
+					<div className="flex justify-between text-xs text-foreground-subtle dark:text-foreground-subtle">
 						<span>$500</span>
 						<span>$10,000</span>
 					</div>

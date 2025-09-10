@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
-	`relative bg-nocta-100 dark:bg-nocta-900 border border-nocta-200 dark:border-nocta-800
+	`relative bg-background border border-border-muted
    rounded-xl shadow-xl dark:shadow-2xl not-prose overflow-hidden
    transition-all duration-200 ease-out`,
 	{
@@ -147,7 +147,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose",
 				className,
 			)}
 			onClick={handleClick}
@@ -302,7 +302,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
 			<div
 				className={cn(
-					"fixed inset-0 bg-nocta-950/50 backdrop-blur-sm transition-opacity duration-200 ease-out",
+					"fixed inset-0 bg-overlay/50 backdrop-blur-sm transition-opacity duration-200 ease-out",
 					isVisible ? "opacity-100" : "opacity-0",
 				)}
 				aria-hidden="true"
@@ -367,7 +367,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-5 border-b border-nocta-200/60 dark:border-nocta-800/40 not-prose",
+				"px-6 py-5 border-b border-border-muted/30 not-prose",
 				className,
 			)}
 			{...props}
@@ -387,7 +387,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				"text-lg font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight leading-tight not-prose",
+				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			),
 			...props,
@@ -404,7 +404,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				"text-sm text-nocta-600 dark:text-nocta-400 leading-relaxed mt-1 not-prose",
+				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
@@ -422,7 +422,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-nocta-200 dark:border-nocta-800/50 rounded-b-xl border-t flex items-center justify-end not-prose",
+				"px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-border-muted rounded-b-xl border-t flex items-center justify-end not-prose",
 				className,
 			)}
 			{...props}
@@ -476,7 +476,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center w-8 h-8 rounded-md text-nocta-400 dark:text-nocta-500 hover:text-nocta-600 dark:hover:text-nocta-300 hover:bg-nocta-100 dark:hover:bg-nocta-900 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50 not-prose",
+				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle text-foreground-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose",
 				className,
 			)}
 			onClick={handleClick}

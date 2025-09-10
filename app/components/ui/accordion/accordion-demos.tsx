@@ -180,19 +180,19 @@ export function ControlledAccordionDemo() {
 				<div className="flex gap-2 mb-10">
 					<button
 						onClick={() => setOpenItems(["controlled-1"])}
-						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-nocta-50 rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
 					>
 						Open First
 					</button>
 					<button
 						onClick={() => setOpenItems(["controlled-2"])}
-						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-nocta-50 rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
 					>
 						Open Second
 					</button>
 					<button
 						onClick={() => setOpenItems([])}
-						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-nocta-50 rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
 					>
 						Close All
 					</button>
@@ -219,128 +219,6 @@ export function ControlledAccordionDemo() {
 					</AccordionItem>
 				</Accordion>
 			</div>
-		</div>
-	);
-}
-
-// FAQ Demo with mixed content
-export function FAQAccordionDemo() {
-	return (
-		<div className="w-full max-w-2xl mx-auto">
-			<div className="text-center mb-6">
-				<h2 className="text-2xl font-bold mb-2">Frequently Asked Questions</h2>
-				<p className="text-nocta-600 dark:text-nocta-400">
-					Find answers to the most commonly asked questions
-				</p>
-			</div>
-
-			<Accordion variant="card" className="space-y-3">
-				<AccordionItem value="what-is">
-					<AccordionTrigger>
-						<div className="flex items-center">
-							<Question size={18} className="mr-2 text-blue-500" />
-							What is Nocta UI?
-						</div>
-					</AccordionTrigger>
-					<AccordionContent>
-						<div className="space-y-3 pt-2">
-							<p>
-								Nocta UI is a modern React component library, built with focus
-								on:
-							</p>
-							<ul className="list-disc list-inside space-y-1 text-sm">
-								<li>High performance and accessibility</li>
-								<li>Full TypeScript support</li>
-								<li>Native dark mode</li>
-								<li>Easy customization through design tokens</li>
-							</ul>
-						</div>
-					</AccordionContent>
-				</AccordionItem>
-
-				<AccordionItem value="installation">
-					<AccordionTrigger>
-						<div className="flex items-center">
-							<Code size={18} className="mr-2 text-green-500" />
-							How to install components?
-						</div>
-					</AccordionTrigger>
-					<AccordionContent>
-						<div className="space-y-3 pt-2">
-							<p>You can install components in several ways:</p>
-							<div className="bg-nocta-100 dark:bg-nocta-900 p-3 rounded font-mono text-sm">
-								<div># Install single component</div>
-								<div>npx nocta-ui add button</div>
-								<br />
-								<div># Install multiple components</div>
-								<div>npx nocta-ui add button card input</div>
-							</div>
-						</div>
-					</AccordionContent>
-				</AccordionItem>
-
-				<AccordionItem value="customization">
-					<AccordionTrigger>
-						<div className="flex items-center">
-							<Palette size={18} className="mr-2 text-purple-500" />
-							How to customize appearance?
-						</div>
-					</AccordionTrigger>
-					<AccordionContent>
-						<div className="space-y-3 pt-2">
-							<p>Nocta UI uses design tokens for easy customization:</p>
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-								<div className="bg-nocta-50 dark:bg-nocta-900 p-3 rounded">
-									<h4 className="font-medium mb-2">CSS Variables</h4>
-									<p className="text-sm text-nocta-600 dark:text-nocta-400">
-										Change colors through CSS custom properties
-									</p>
-								</div>
-								<div className="bg-nocta-50 dark:bg-nocta-900 p-3 rounded">
-									<h4 className="font-medium mb-2">Tailwind Config</h4>
-									<p className="text-sm text-nocta-600 dark:text-nocta-400">
-										Extend Tailwind CSS configuration
-									</p>
-								</div>
-							</div>
-						</div>
-					</AccordionContent>
-				</AccordionItem>
-
-				<AccordionItem value="support">
-					<AccordionTrigger>
-						<div className="flex items-center">
-							<Lock size={18} className="mr-2 text-orange-500" />
-							Where to get help?
-						</div>
-					</AccordionTrigger>
-					<AccordionContent>
-						<div className="space-y-3 pt-2">
-							<p>Need help? Contact us:</p>
-							<div className="flex flex-wrap gap-2">
-								<a
-									href="#"
-									className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded text-sm hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-								>
-									GitHub Issues
-								</a>
-								<a
-									href="#"
-									className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded text-sm hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
-								>
-									Discord
-								</a>
-								<a
-									href="#"
-									className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 rounded text-sm hover:bg-green-200 dark:hover:bg-green-800 transition-colors"
-								>
-									Documentation
-								</a>
-							</div>
-						</div>
-					</AccordionContent>
-				</AccordionItem>
-			</Accordion>
 		</div>
 	);
 }

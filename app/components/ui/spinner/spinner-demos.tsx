@@ -17,19 +17,19 @@ export const SizesDemo: React.FC = () => {
 		<div className="my-6 flex flex-wrap items-center gap-6">
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="sm" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
+				<span className="text-xs text-foreground-muted">
 					Small
 				</span>
 			</div>
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="md" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
+				<span className="text-xs text-foreground-muted">
 					Medium
 				</span>
 			</div>
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="lg" />
-				<span className="text-xs text-nocta-600 dark:text-nocta-400">
+				<span className="text-xs text-foreground-muted">
 					Large
 				</span>
 			</div>
@@ -54,7 +54,7 @@ export const LoadingButtonDemo: React.FC = () => {
 			>
 				{isLoading ? (
 					<div className="flex items-center gap-2">
-						<Spinner size="sm" className="text-nocta-50 dark:text-nocta-900" />
+						<Spinner size="sm" className="text-primary-foreground" />
 						<span>Loading...</span>
 					</div>
 				) : (
@@ -68,7 +68,7 @@ export const LoadingButtonDemo: React.FC = () => {
 export const InlineSpinnerDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<div className="flex items-center gap-2 text-sm text-nocta-700 dark:text-nocta-300">
+			<div className="flex items-center gap-2 text-sm text-foreground-muted">
 				<Spinner size="sm" />
 				<span>Processing your request...</span>
 			</div>

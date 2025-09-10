@@ -18,7 +18,7 @@ const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
 			className={cn(
 				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-out group",
 				isActive
-					? "hover:contrast-115 text-nocta-900 dark:text-nocta-100"
+					? "hover:contrast-115 text-foreground"
 					: "text-fd-muted-foreground hover:text-fd-foreground",
 			)}
 		>
@@ -74,7 +74,7 @@ const DocsTabs = ({
 				className="relative"
 			>
 				{activeTab !== 'code' && (
-					<div className="absolute inset-1 border rounded-xl bg-nocta-200 dark:bg-nocta-950/50 z-0"></div>
+					<div className="absolute inset-1 border rounded-xl bg-neutral-200/50 dark:bg-neutral-950/50 z-0"></div>
 				)}
 				<div
 					ref={wrapperRef}

@@ -358,7 +358,7 @@ export const ChatWithActionsDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex justify-between items-center">
-					<h4 className="text-lg font-medium text-nocta-900 dark:text-nocta-100">
+					<h4 className="text-lg font-medium text-foreground">
 						Chat with Actions
 					</h4>
 					<ChatActions>
@@ -569,7 +569,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex justify-between items-center">
-					<h4 className="text-lg font-medium text-nocta-900 dark:text-nocta-100">
+					<h4 className="text-lg font-medium text-foreground">
 						Typing Indicator Demo
 					</h4>
 					<Button
@@ -602,7 +602,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 					</Chat>
 				</div>
 
-				<div className="text-sm text-nocta-600 dark:text-nocta-400 space-y-1">
+				<div className="text-sm text-foreground-muted space-y-1">
 					<p>
 						<strong>Features demonstrated:</strong>
 					</p>

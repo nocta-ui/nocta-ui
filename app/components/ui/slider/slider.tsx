@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const sliderVariants = cva(
-	"relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-offset-nocta-50/50 dark:focus-visible:ring-offset-nocta-900/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-nocta-500/50 dark:focus-visible:ring-nocta-400/50",
+	"relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-offset-ring-offset/50",
 	{
 		variants: {
 			orientation: {
@@ -21,7 +21,7 @@ const sliderVariants = cva(
 );
 
 const trackVariants = cva(
-	"relative rounded-full overflow-hidden bg-nocta-300 dark:bg-nocta-800/60 border border-nocta-200 dark:border-nocta-50/5 shadow-inner",
+	"relative rounded-full overflow-hidden bg-background-muted border border-border-muted shadow-inner",
 	{
 		variants: {
 			size: {
@@ -62,8 +62,8 @@ const fillVariants = cva("absolute rounded-full ", {
 	variants: {
 		variant: {
 			default:
-				"bg-nocta-600 dark:bg-nocta-400",
-			secondary: "bg-nocta-500 dark:bg-nocta-600",
+				"bg-foreground-subtle",
+			secondary: "bg-foreground-subtle/50",
 		},
 		size: {
 			sm: "h-1",
@@ -105,9 +105,9 @@ const thumbVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"bg-nocta-50 dark:bg-nocta-200 border border-nocta-300 dark:border-nocta-600/50",
+					"bg-foreground dark:bg-foreground border border-muted/50",
 				secondary:
-					"bg-nocta-50 dark:bg-nocta-200 border border-nocta-500 dark:border-nocta-500",
+					"bg-background-muted border border-border-subtle/50",
 			},
 			size: {
 				sm: "w-4 h-4",
@@ -413,7 +413,7 @@ export const Slider: React.FC<SliderProps> = ({
 			{showValue && (
 				<div
 					className={cn(
-						"mb-2 text-sm text-nocta-700 dark:text-nocta-300",
+						"mb-2 text-sm text-foreground-muted",
 						currentOrientation === "vertical" ? "mb-0 mr-2" : "",
 					)}
 				>
@@ -478,7 +478,7 @@ export const Slider: React.FC<SliderProps> = ({
 							orientation: currentOrientation,
 							disabled: disabled,
 						}),
-						isDragging && "ring-4 ring-nocta-900/10 dark:ring-nocta-100/10",
+						isDragging && "ring-2 ring-ring/10",
 						thumbClassName,
 					)}
 					style={thumbStyle}

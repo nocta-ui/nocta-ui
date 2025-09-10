@@ -270,7 +270,7 @@ export function FileUploadWithErrorDemo() {
 				<h3 className="text-lg font-semibold mb-2">
 					Upload with Random Errors
 				</h3>
-				<p className="text-sm text-nocta-600 dark:text-nocta-400 mb-4">
+				<p className="text-sm text-foreground-muted mb-4">
 					This demo simulates random upload failures to show error handling
 				</p>
 				<FileUpload

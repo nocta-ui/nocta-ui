@@ -9,17 +9,16 @@ const fileUploadVariants = cva(
 	[
 		"relative transition-all duration-200 ease-in-out",
 		"focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
-		"focus-within:ring-offset-nocta-50/50 dark:focus-within:ring-offset-nocta-900/50",
-		"focus-within:ring-nocta-900/50 dark:focus-within:ring-nocta-100/50",
+		"focus-within:ring-offset-ring-offset/50",
+		"focus-within:ring-ring/10",
 		"rounded-lg",
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					"border border-dashed border-nocta-300 dark:border-nocta-700",
-					"hover:border-nocta-400 dark:hover:border-nocta-600",
-					"bg-nocta-50 dark:bg-nocta-900",
+					"border border-dashed border-border-muted shadow-lg",
+					"bg-background",
 				],
 			},
 			size: {
@@ -30,8 +29,8 @@ const fileUploadVariants = cva(
 			state: {
 				idle: "",
 				dragover: [
-					"border-nocta-500 dark:border-nocta-400",
-					"bg-nocta-100 dark:bg-nocta-800",
+					"border-background-subtle",
+					"bg-background",
 					"scale-[1.02]",
 				],
 				error: [
@@ -51,14 +50,13 @@ const fileUploadVariants = cva(
 const fileItemVariants = cva(
 	[
 		"flex items-center gap-3 p-3 rounded-lg border",
-		"border-nocta-200 dark:border-nocta-700",
-		"bg-nocta-50 dark:bg-nocta-800/50",
+		"border-border-muted",
 	],
 	{
 		variants: {
 			status: {
-				pending: "bg-nocta-50 dark:bg-nocta-800/30",
-				uploading: "bg-nocta-50 dark:bg-nocta-800/30",
+				pending: "bg-background",
+				uploading: "bg-background",
 				success:
 					"bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800",
 				error:
@@ -252,12 +250,12 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 	return (
 		<div
 			className={cn(
-				"w-full bg-nocta-200 dark:bg-nocta-700 rounded-full h-2",
+				"w-full bg-background-muted rounded-full h-2",
 				className,
 			)}
 		>
 			<div
-				className="bg-nocta-900 dark:bg-nocta-100/50 h-2 rounded-full transition-all duration-200 ease-out"
+				className="bg-foreground h-2 rounded-full transition-all duration-200 ease-out"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}
@@ -294,7 +292,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 						className="w-10 h-10 rounded object-cover"
 					/>
 				) : (
-					<div className="w-10 h-10 flex items-center justify-center text-nocta-500 dark:text-nocta-400">
+					<div className="w-10 h-10 flex items-center justify-center text-foreground-subtle">
 						<FileIcon className="w-6 h-6" />
 					</div>
 				)}
@@ -302,13 +300,13 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 
 			<div className="flex-1 min-w-0">
 				<div className="flex items-center justify-between gap-2">
-					<p className="text-sm font-medium text-nocta-900 dark:text-nocta-100 truncate flex-1 min-w-0">
+					<p className="text-sm font-medium text-foreground truncate flex-1 min-w-0">
 						{file.file.name}
 					</p>
 					{onRemove && (
 						<button
 							onClick={handleRemove}
-							className="flex-shrink-0 p-1 text-nocta-500 hover:text-nocta-700 dark:text-nocta-400 dark:hover:text-nocta-200 transition-colors"
+							className="flex-shrink-0 p-1 text-foreground-subtle hover:text-primary-muted transition-colors"
 							aria-label={`Remove ${file.file.name}`}
 						>
 							<svg
@@ -329,7 +327,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 				</div>
 
 				<div className="flex items-center gap-2 mt-1 min-w-0">
-					<p className="text-xs text-nocta-600 dark:text-nocta-400 flex-shrink-0">
+					<p className="text-xs text-foreground-muted flex-shrink-0">
 						{formatFileSize(file.file.size)}
 					</p>
 
@@ -547,8 +545,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 											? "h-16 w-16"
 											: "h-12 w-12",
 									isDragOver
-										? "text-nocta-600 dark:text-nocta-300"
-										: "text-nocta-400 dark:text-nocta-500",
+										? "text-foreground-subtle"
+										: "text-foreground-subtle",
 								)}
 								fill="currentColor"
 								viewBox="0 0 256 256"
@@ -563,8 +561,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								className={cn(
 									"font-medium",
 									isDragOver
-										? "text-nocta-700 dark:text-nocta-200"
-										: "text-nocta-600 dark:text-nocta-300",
+										? "text-foreground-muted"
+										: "text-foreground-subtle",
 								)}
 							>
 								{isDragOver ? dragText : uploadText}
@@ -572,17 +570,17 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 							{!isDragOver && (
 								<div className="mt-1 space-y-1">
 									{accept && (
-										<p className="text-xs text-nocta-500 dark:text-nocta-400">
+										<p className="text-xs text-foreground-subtle">
 											Accepted types: {accept}
 										</p>
 									)}
 									{maxSize && (
-										<p className="text-xs text-nocta-500 dark:text-nocta-400">
+										<p className="text-xs text-foreground-subtle">
 											Max size: {formatFileSize(maxSize)}
 										</p>
 									)}
 									{multiple && maxFiles && (
-										<p className="text-xs text-nocta-500 dark:text-nocta-400">
+										<p className="text-xs text-foreground-subtle">
 											Max files: {maxFiles}
 										</p>
 									)}
@@ -596,7 +594,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 			{hasFiles && (
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h4 className="text-sm font-medium text-nocta-900 dark:text-nocta-100">
+						<h4 className="text-sm font-medium text-foreground">
 							Files ({files.length}
 							{maxFiles ? `/${maxFiles}` : ""})
 						</h4>
@@ -606,7 +604,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								disabled={disabled || isUploading}
 								className={cn(
 									"px-3 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-2",
-									"bg-nocta-900 text-white hover:bg-nocta-800 dark:bg-nocta-100 dark:text-nocta-900 dark:hover:bg-nocta-200",
+									"bg-foreground text-primary-foreground hover:bg-foreground-muted",
 									"disabled:opacity-50 disabled:cursor-not-allowed",
 								)}
 							>

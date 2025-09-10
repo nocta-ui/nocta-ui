@@ -46,7 +46,7 @@ export const CardWithActionsDemo: React.FC = () => {
 				<CardContent>
 					<div className="space-y-3">
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+							<span className="text-sm font-medium text-foreground-muted">
 								Status
 							</span>
 							<span className="px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full">
@@ -54,10 +54,10 @@ export const CardWithActionsDemo: React.FC = () => {
 							</span>
 						</div>
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+							<span className="text-sm font-medium text-foreground-muted">
 								Members
 							</span>
-							<span className="text-sm text-nocta-600 dark:text-nocta-400">
+							<span className="text-sm text-foreground-muted">
 								12
 							</span>
 						</div>

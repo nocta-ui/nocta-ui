@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 
 const checkboxVariants = cva(
 	[
-		"relative inline-flex items-center justify-center rounded border-2",
+		"relative inline-flex items-center justify-center rounded border",
 		"transition-all duration-200 ease-in-out cursor-pointer",
-		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-nocta-50 dark:focus-visible:ring-offset-nocta-900",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:ring-offset-ring-offset/50",
 		"not-prose",
 	],
 	{
@@ -39,13 +39,13 @@ const checkboxVariants = cva(
 				variant: "default",
 				checked: true,
 				class:
-					"bg-nocta-900 dark:bg-nocta-600 border-nocta-900 dark:border-nocta-100/50 focus-visible:ring-nocta-900/50 dark:focus-visible:ring-nocta-100/50",
+					"bg-foreground border-border/30 focus-visible:ring-ring",
 			},
 			{
 				variant: "default",
 				checked: false,
 				class:
-					"bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-nocta-400 dark:hover:border-nocta-500 focus-visible:ring-nocta-500/50",
+					"bg-background-muted border-border/10 focus-visible:ring-ring/10",
 			},
 			{
 				variant: "success",
@@ -57,7 +57,7 @@ const checkboxVariants = cva(
 				variant: "success",
 				checked: false,
 				class:
-					"bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-green-400 dark:hover:border-green-500 focus-visible:ring-green-500/50",
+					"bg-background-muted border-border/10 focus-visible:ring-green-500/50",
 			},
 			{
 				variant: "warning",
@@ -69,7 +69,7 @@ const checkboxVariants = cva(
 				variant: "warning",
 				checked: false,
 				class:
-					"bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-yellow-400 dark:hover:border-yellow-500 focus-visible:ring-yellow-500/50",
+					"bg-background-muted border-border/10 focus-visible:ring-yellow-500/50",
 			},
 			{
 				variant: "destructive",
@@ -81,7 +81,7 @@ const checkboxVariants = cva(
 				variant: "destructive",
 				checked: false,
 				class:
-					"bg-nocta-200 dark:bg-nocta-800 border-nocta-300 dark:border-nocta-600 hover:border-red-400 dark:hover:border-red-500 focus-visible:ring-red-500/50",
+					"bg-background-muted border-border/10 focus-visible:ring-red-500/50",
 			},
 		],
 		defaultVariants: {
@@ -96,7 +96,7 @@ const checkboxVariants = cva(
 const iconVariants = cva(["stroke-[3]", "transition-opacity duration-200"], {
 	variants: {
 		variant: {
-			default: "text-nocta-50 dark:text-nocta-50",
+			default: "text-primary-foreground dark:text-foreground",
 			success: "text-green-500 dark:green-500",
 			warning: "text-yellow-500 dark:yellow-500",
 			destructive: "text-red-500 dark:red-500",

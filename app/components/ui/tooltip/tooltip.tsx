@@ -27,9 +27,9 @@ const tooltipContentVariants = cva(
 			},
 			variant: {
 				default: `
-          bg-nocta-200 dark:bg-nocta-800
-          text-nocta-900 dark:text-nocta-100
-          border-nocta-300 dark:border-nocta-50/5
+          bg-background-muted
+          text-foreground
+          border-muted
         `
 			},
 		},

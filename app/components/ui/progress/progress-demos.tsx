@@ -47,19 +47,19 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4 w-64">
 			<div>
-				<span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">
+				<span className="text-sm text-foreground-muted mb-2 block">
 					Small
 				</span>
 				<Progress value={50} size="sm" />
 			</div>
 			<div>
-				<span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">
+				<span className="text-sm text-foreground-muted mb-2 block">
 					Medium
 				</span>
 				<Progress value={65} size="md" />
 			</div>
 			<div>
-				<span className="text-sm text-nocta-600 dark:text-nocta-400 mb-2 block">
+				<span className="text-sm text-foreground-muted mb-2 block">
 					Large
 				</span>
 				<Progress value={80} size="lg" />
@@ -117,61 +117,6 @@ export const WithoutLabelDemo: React.FC = () => {
 			<Progress value={40} />
 			<Progress value={70} variant="success" />
 			<Progress value={85} variant="warning" />
-		</div>
-	);
-};
-
-export const FileUploadDemo: React.FC = () => {
-	const [uploadProgress, setUploadProgress] = useState(0);
-	const [isUploading, setIsUploading] = useState(false);
-
-	const simulateUpload = () => {
-		setIsUploading(true);
-		setUploadProgress(0);
-
-		const timer = setInterval(() => {
-			setUploadProgress((prev) => {
-				if (prev >= 100) {
-					setIsUploading(false);
-					clearInterval(timer);
-					return 100;
-				}
-				return prev + Math.random() * 15;
-			});
-		}, 200);
-	};
-
-	return (
-		<div className="my-6 space-y-4 w-64">
-			<div className="border border-nocta-300 dark:border-nocta-700 rounded-lg p-4">
-				<div className="flex items-center justify-between mb-3">
-					<span className="text-sm font-medium text-nocta-900 dark:text-nocta-100">
-						document.pdf
-					</span>
-					<span className="text-xs text-nocta-500 dark:text-nocta-400">
-						2.4 MB
-					</span>
-				</div>
-
-				<Progress
-					value={uploadProgress}
-					variant={uploadProgress === 100 ? "success" : "default"}
-					showLabel
-					aria-label="File upload progress"
-				/>
-
-				<button
-					onClick={simulateUpload}
-					disabled={isUploading}
-					className="mt-3 px-3 py-1.5 text-sm bg-linear-to-b from-nocta-900 to-nocta-700 dark:from-nocta-50 dark:to-nocta-300 text-nocta-50 dark:text-nocta-900 rounded-md hover:bg-nocta-900 dark:hover:bg-nocta-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-				>
-					{isUploading
-						? "Uploading..."
-						: uploadProgress === 100
-							? "Upload Complete"
-							: "Start Upload"}
-				</button>
-			</div>
 		</div>
 	);
 };

@@ -5,7 +5,7 @@ import type React from "react";
 import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-const skeletonVariants = cva("bg-nocta-200 dark:bg-nocta-800 not-prose", {
+const skeletonVariants = cva("bg-background-muted not-prose", {
 	variants: {
 		variant: {
 			default: "",

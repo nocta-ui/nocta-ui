@@ -49,7 +49,7 @@ const tableRowVariants = cva("", {
 		{
 			variant: "striped",
 			isOdd: true,
-			class: "bg-nocta-200/50 dark:bg-nocta-800/30",
+			class: "bg-background-muted/50 dark:bg-background-muted/30",
 		},
 	],
 	defaultVariants: {
@@ -176,8 +176,8 @@ export const Table = <T extends Record<string, unknown>>({
 		<div
 			className={cn(
 				tableContainerVariants({ variant }),
-				"not-prose relative border border-nocta-200 dark:border-nocta-50/5 shadow-lg",
-				shouldOverrrideBackground ? "" : "bg-nocta-100 dark:bg-nocta-900",
+				"not-prose relative border border-border-muted shadow-lg",
+				shouldOverrrideBackground ? "" : "bg-background",
 				className,
 			)}
 		>
@@ -226,7 +226,7 @@ export const Table = <T extends Record<string, unknown>>({
 								<TableCell
 									colSpan={columns.length}
 									align="center"
-									className="py-12 text-nocta-500 dark:text-nocta-400"
+									className="py-12 text-foreground-subtle"
 								>
 									{emptyText}
 								</TableCell>
@@ -264,8 +264,8 @@ export const Table = <T extends Record<string, unknown>>({
 			</div>
 
 			{pagination && (
-				<div className="px-6 py-4 bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 flex items-center justify-between">
-					<div className="text-sm text-nocta-600 dark:text-nocta-400">
+				<div className="px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-between">
+					<div className="text-sm text-foreground-subtle">
 						Showing{" "}
 						{Math.min(
 							(pagination.current - 1) * pagination.pageSize + 1,
@@ -284,11 +284,11 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.onChange(pagination.current - 1, pagination.pageSize)
 							}
 							disabled={pagination.current <= 1}
-							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-800 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted/30 bg-background text-foreground-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Previous
 						</button>
-						<span className="px-3 py-1.5 text-sm text-nocta-600 dark:text-nocta-400">
+						<span className="px-3 py-1.5 text-sm text-foreground-muted">
 							Page {pagination.current} of{" "}
 							{Math.ceil(pagination.total / pagination.pageSize)}
 						</span>
@@ -300,7 +300,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.current >=
 								Math.ceil(pagination.total / pagination.pageSize)
 							}
-							className="px-3 py-1.5 text-sm rounded-lg border border-nocta-300 dark:border-nocta-800 bg-nocta-50 dark:bg-nocta-900 text-nocta-700 dark:text-nocta-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-nocta-100 dark:hover:bg-nocta-800 transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted/30 bg-background text-foreground-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Next
 						</button>
@@ -319,7 +319,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 	return (
 		<thead
 			className={cn(
-				"bg-nocta-200/50 dark:bg-nocta-800/50 border-b border-nocta-200 dark:border-nocta-800/50",
+				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-border-muted/30",
 				className,
 			)}
 			{...props}
@@ -337,7 +337,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 	return (
 		<tbody
 			className={cn(
-				"divide-y divide-nocta-200/60 dark:divide-nocta-800/40",
+				"divide-y divide-border-muted/30",
 				className,
 			)}
 			{...props}
@@ -391,8 +391,8 @@ export const TableCell: React.FC<TableCellProps> = ({
 				"px-6 py-4",
 				getAlignmentClass(),
 				header
-					? "font-semibold text-nocta-900 dark:text-nocta-100 tracking-tight"
-					: "text-nocta-700 dark:text-nocta-300",
+					? "font-semibold text-foreground tracking-tight"
+					: "text-foreground-muted",
 				className,
 			),
 			colSpan,
@@ -411,7 +411,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 	return (
 		<tfoot
 			className={cn(
-				"bg-nocta-200/50 dark:bg-nocta-800/50 border-t border-nocta-200 dark:border-nocta-800/50 font-semibold",
+				"bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-border-muted font-semibold",
 				className,
 			)}
 			{...props}
@@ -429,7 +429,7 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
 	return (
 		<caption
 			className={cn(
-				"py-3 text-sm text-nocta-600 dark:text-nocta-400",
+				"py-3 text-sm text-foreground-muted",
 				className,
 			)}
 			{...props}

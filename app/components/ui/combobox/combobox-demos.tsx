@@ -48,7 +48,7 @@ export const BasicComboboxDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Framework
 				</label>
 				<Combobox
@@ -60,7 +60,7 @@ export const BasicComboboxDemo: React.FC = () => {
 					className="w-[200px]"
 				/>
 				{value && (
-					<p className="text-xs text-nocta-600 dark:text-nocta-400">
+					<p className="text-xs text-foreground-muted">
 						Selected: {frameworks.find((f) => f.value === value)?.label}
 					</p>
 				)}
@@ -73,7 +73,7 @@ export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Default
 				</label>
 				<Combobox
@@ -85,7 +85,7 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Error
 				</label>
 				<Combobox
@@ -100,7 +100,7 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Success
 				</label>
 				<Combobox
@@ -121,7 +121,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Small
 				</label>
 				<Combobox
@@ -133,7 +133,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Medium
 				</label>
 				<Combobox
@@ -145,7 +145,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Large
 				</label>
 				<Combobox
@@ -163,7 +163,7 @@ export const SearchableDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Searchable (Default)
 				</label>
 				<Combobox
@@ -172,13 +172,13 @@ export const SearchableDemo: React.FC = () => {
 					searchPlaceholder="Type to search..."
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					Type to filter options
 				</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Non-searchable
 				</label>
 				<Combobox
@@ -187,7 +187,7 @@ export const SearchableDemo: React.FC = () => {
 					placeholder="Select a country..."
 					searchable={false}
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					Dropdown only, no search
 				</p>
 			</div>
@@ -199,7 +199,7 @@ export const ClearableDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Clearable (Default)
 				</label>
 				<Combobox
@@ -209,13 +209,13 @@ export const ClearableDemo: React.FC = () => {
 					clearable={true}
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					X button appears when value is selected
 				</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Non-clearable
 				</label>
 				<Combobox
@@ -225,7 +225,7 @@ export const ClearableDemo: React.FC = () => {
 					placeholder="Select framework..."
 					clearable={false}
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					No clear button shown
 				</p>
 			</div>
@@ -237,7 +237,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Programming Languages
 				</label>
 				<Combobox
@@ -246,7 +246,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 					searchPlaceholder="Search languages..."
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					Some options are disabled (e.g., PHP)
 				</p>
 			</div>
@@ -258,7 +258,7 @@ export const DisabledComboboxDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Disabled Combobox
 				</label>
 				<Combobox
@@ -267,7 +267,7 @@ export const DisabledComboboxDemo: React.FC = () => {
 					disabled={true}
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					Entire combobox is disabled
 				</p>
 			</div>
@@ -284,7 +284,7 @@ export const CustomMessagesDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+				<label className="text-sm font-medium text-foreground-muted">
 					Custom Empty Message
 				</label>
 				<Combobox
@@ -294,7 +294,7 @@ export const CustomMessagesDemo: React.FC = () => {
 					emptyMessage="😔 No matching options found. Try different keywords."
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-nocta-600 dark:text-nocta-400">
+				<p className="text-xs text-foreground-muted">
 					Type something that doesn&apos;t match to see custom message
 				</p>
 			</div>
@@ -309,7 +309,7 @@ export const ControlledDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex flex-col space-y-2">
-					<label className="text-sm font-medium text-nocta-700 dark:text-nocta-300">
+					<label className="text-sm font-medium text-foreground-muted">
 						Controlled Combobox
 					</label>
 					<Combobox
@@ -321,20 +321,20 @@ export const ControlledDemo: React.FC = () => {
 					/>
 				</div>
 
-				<div className="p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
-					<p className="text-sm font-medium text-nocta-900 dark:text-nocta-100">
+				<div className="p-3 bg-background rounded-lg">
+					<p className="text-sm font-medium text-foreground">
 						Current value: {selectedFramework || "None"}
 					</p>
 					<div className="mt-2 space-x-2">
 						<button
 							onClick={() => setSelectedFramework("vue")}
-							className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-800 rounded hover:bg-nocta-300 dark:hover:bg-nocta-700"
+							className="px-2 py-1 text-xs bg-background-muted rounded hover:bg-background-elevated"
 						>
 							Set Vue.js
 						</button>
 						<button
 							onClick={() => setSelectedFramework("")}
-							className="px-2 py-1 text-xs bg-nocta-200 dark:bg-nocta-800 rounded hover:bg-nocta-300 dark:hover:bg-nocta-700"
+							className="px-2 py-1 text-xs bg-background-muted rounded hover:bg-background-elevated"
 						>
 							Clear
 						</button>

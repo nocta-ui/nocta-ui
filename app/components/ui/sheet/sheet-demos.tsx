@@ -31,7 +31,7 @@ export const BasicSheetDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Sheet content goes here. You can add any components or content you
 							need.
 						</p>
@@ -60,7 +60,7 @@ export const SheetSidesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Content for left-side sheet.
 						</p>
 					</div>
@@ -79,7 +79,7 @@ export const SheetSidesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Content for right-side sheet.
 						</p>
 					</div>
@@ -98,7 +98,7 @@ export const SheetSidesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Content for top sheet.
 						</p>
 					</div>
@@ -117,7 +117,7 @@ export const SheetSidesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Content for bottom sheet.
 						</p>
 					</div>
@@ -144,7 +144,7 @@ export const SheetSizesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Compact content for small sheet.
 						</p>
 					</div>
@@ -165,7 +165,7 @@ export const SheetSizesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Standard content for medium sheet.
 						</p>
 					</div>
@@ -186,7 +186,7 @@ export const SheetSizesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Expanded content for large sheet.
 						</p>
 					</div>
@@ -207,7 +207,7 @@ export const SheetSizesDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							Wide content for extra large sheet.
 						</p>
 					</div>
@@ -252,7 +252,7 @@ export const FormSheetDemo: React.FC = () => {
 							className="w-full"
 						/>
 						<div className="flex flex-col space-y-2">
-							<label className="block text-sm font-medium text-nocta-700 dark:text-nocta-300">
+							<label className="block text-sm font-medium text-foreground-muted">
 								Status
 							</label>
 							<div className="flex gap-2">
@@ -296,13 +296,13 @@ export const ControlledSheetDemo: React.FC = () => {
 						</SheetDescription>
 					</SheetHeader>
 					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-nocta-600 dark:text-nocta-400">
+						<p className="text-sm text-foreground-muted">
 							This sheet's open state is managed by the parent component. You
 							can control when it opens and closes from outside the Sheet
 							component.
 						</p>
-						<div className="mt-4 p-3 bg-nocta-50 dark:bg-nocta-900 rounded-lg">
-							<p className="text-xs font-mono text-nocta-700 dark:text-nocta-300">
+						<div className="mt-4 p-3 bg-background rounded-lg">
+							<p className="text-xs font-mono text-foreground-muted">
 								Current state: {open ? "open" : "closed"}
 							</p>
 						</div>
