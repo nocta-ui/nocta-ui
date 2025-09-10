@@ -52,6 +52,7 @@ const ANIMATION_CONFIG = {
 	EXIT_DURATION: 0.45,
 	STACK_DURATION: 0.5,
 	STACK_OFFSET: 16,
+	EXPANDED_GAP: 12,
 	SCALE_FACTOR: 0.04,
 	MIN_SCALE: 0.92,
 	MAX_VISIBLE_TOASTS: 3,
@@ -267,15 +268,22 @@ toast.dismissAll = (): void => {
 interface ToastItemProps {
 	toast: ToastData & { index: number; total: number };
 	onRemove: (id: string) => void;
+	isGroupHovered?: boolean;
+	expandedOffset?: number;
+	onHeightChange?: (id: string, height: number) => void;
+	onGroupHoverEnter?: () => void;
 }
 
 const ToastItem: React.FC<ToastItemProps> = React.memo(
-	({ toast, onRemove }) => {
+	({ toast, onRemove, isGroupHovered = false, expandedOffset = 0, onHeightChange, onGroupHoverEnter }) => {
 		const toastRef = useRef<HTMLDivElement>(null);
 		const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+		const timerStartRef = useRef<number | null>(null);
+		const remainingRef = useRef<number>(Number.NaN);
 		const enterAnimationRef = useRef<number | null>(null);
 		const isExiting = useRef(false);
 		const hasAnimatedIn = useRef(false);
+		const [isItemHovered, setIsItemHovered] = useState(false);
 		const [animationState, setAnimationState] = useState<
 			"entering" | "entered" | "exiting" | "stacking"
 		>("entering");
@@ -295,6 +303,19 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		} = toast;
 
 		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
+
+		useLayoutEffect(() => {
+			if (!toastRef.current) return;
+			const el = toastRef.current;
+			const notify = () => {
+				if (!onHeightChange) return;
+				onHeightChange(id, el.offsetHeight);
+			};
+			notify();
+			const ro = new ResizeObserver(() => notify());
+			ro.observe(el);
+			return () => ro.disconnect();
+		}, [id, onHeightChange]);
 
 		const getFocusableElements = useCallback(() => {
 			if (!toastRef.current) return [];
@@ -391,20 +412,54 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 		useEffect(() => {
 			if (shouldClose || !hasAnimatedIn.current) return;
+			if (duration <= 0) return;
 
-			if (duration > 0) {
+			if (remainingRef.current == null || Number.isNaN(remainingRef.current)) {
+				remainingRef.current = duration;
+			}
+
+			const isPaused = isGroupHovered || isItemHovered;
+			if (isPaused) {
+				if (timeoutRef.current) {
+					clearTimeout(timeoutRef.current);
+					timeoutRef.current = null;
+				}
+				if (timerStartRef.current !== null) {
+					const elapsed = Date.now() - timerStartRef.current;
+					remainingRef.current = Math.max(0, remainingRef.current - elapsed);
+					timerStartRef.current = null;
+				}
+				return;
+			}
+
+			if (!timeoutRef.current) {
+				const ms = Math.max(0, remainingRef.current ?? duration);
+				if (ms === 0) {
+					handleClose();
+					return;
+				}
+				timerStartRef.current = Date.now();
 				timeoutRef.current = setTimeout(() => {
 					handleClose();
-				}, duration);
+				}, ms);
 			}
 
 			return () => {
 				if (timeoutRef.current) {
 					clearTimeout(timeoutRef.current);
+					if (timerStartRef.current !== null) {
+						const elapsed = Date.now() - timerStartRef.current;
+						remainingRef.current = Math.max(0, remainingRef.current - elapsed);
+					}
 					timeoutRef.current = null;
+					timerStartRef.current = null;
 				}
 			};
-		}, [duration, shouldClose, handleClose]);
+		}, [duration, shouldClose, handleClose, isGroupHovered, isItemHovered]);
+
+		useEffect(() => {
+			remainingRef.current = duration;
+		}, [duration]);
 
 		useEffect(() => {
 			return () => {
@@ -429,6 +484,14 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const isLatest = index === 0;
 
 		const transformStyle = useMemo(() => {
+			if (isGroupHovered && animationState !== "exiting") {
+				const expandedTranslate = isTopPosition ? `${expandedOffset}` : `${-expandedOffset}`;
+				return {
+					transform: `translate(0px, ${expandedTranslate}px) scale(1)`,
+					opacity: 1,
+				};
+			}
+
 			switch (animationState) {
 				case "entering":
 					return {
@@ -446,6 +509,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						opacity: 0,
 					};
 				case "stacking":
+				default:
 					return {
 						transform: `translate(0px, ${offset}px) scale(${isLatest ? 1 : scale})`,
 						opacity: index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS ? 0 : 1,
@@ -461,6 +525,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			isLatest,
 			scale,
 			index,
+			isGroupHovered,
+			expandedOffset,
 		]);
 
 		const transitionDuration = useMemo(() => {
@@ -499,6 +565,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				tabIndex={-1}
 				onTransitionEnd={handleTransitionEnd}
 				data-toast-id={id}
+				onMouseEnter={() => {
+					setIsItemHovered(true);
+					onGroupHoverEnter?.();
+				}}
+				onMouseLeave={() => setIsItemHovered(false)}
 			>
 				{variant === "default" && (
 					<span
@@ -567,7 +638,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			prevProps.toast.id === nextProps.toast.id &&
 			prevProps.toast.index === nextProps.toast.index &&
 			prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
-			prevProps.toast.total === nextProps.toast.total
+			prevProps.toast.total === nextProps.toast.total &&
+			prevProps.isGroupHovered === nextProps.isGroupHovered &&
+			prevProps.expandedOffset === nextProps.expandedOffset
 		);
 	},
 );
@@ -577,7 +650,18 @@ ToastItem.displayName = "ToastItem";
 const ToastManager: React.FC<{
 	toasts: ToastData[];
 	onRemove: (id: string) => void;
-}> = React.memo(({ toasts, onRemove }) => {
+	expandedGap?: number;
+}> = React.memo(({ toasts, onRemove, expandedGap = ANIMATION_CONFIG.EXPANDED_GAP }) => {
+	const [heights, setHeights] = useState<Record<string, number>>({});
+	const [hovered, setHovered] = useState<Record<ToastPosition, boolean>>({
+		"top-left": false,
+		"top-center": false,
+		"top-right": false,
+		"bottom-left": false,
+		"bottom-center": false,
+		"bottom-right": false,
+	});
+
 	const toastsByPosition = useMemo(() => {
 		const grouped = toasts.reduce(
 			(acc, toast) => {
@@ -608,6 +692,72 @@ const ToastManager: React.FC<{
 		() => Object.entries(toastsByPosition),
 		[toastsByPosition],
 	);
+
+	const expandedOffsetsByPosition = useMemo(() => {
+		const result: Record<ToastPosition, number[]> = {
+			"top-left": [],
+			"top-center": [],
+			"top-right": [],
+			"bottom-left": [],
+			"bottom-center": [],
+			"bottom-right": [],
+		};
+		for (const [pos, group] of positionEntries as [ToastPosition, (ToastData & { index: number; total: number })[]][]) {
+			const offsets: number[] = [];
+			let acc = 0;
+			for (let i = 0; i < group.length; i++) {
+				if (i === 0) {
+					offsets.push(0);
+					continue;
+				}
+				const prev = group[i - 1];
+				const prevHeight = heights[prev.id] ?? 0;
+				acc += prevHeight + expandedGap;
+				offsets.push(acc);
+			}
+			result[pos] = offsets;
+		}
+		return result;
+	}, [positionEntries, heights, expandedGap]);
+
+	useEffect(() => {
+		if (positionEntries.length === 0) return;
+
+		const handler = (e: MouseEvent) => {
+			const { clientX: x, clientY: y } = e;
+			const next: Record<ToastPosition, boolean> = { ...hovered } as Record<ToastPosition, boolean>;
+			for (const [pos, group] of positionEntries as [ToastPosition, (ToastData & { index: number; total: number })[]][]) {
+				let top = Number.POSITIVE_INFINITY;
+				let left = Number.POSITIVE_INFINITY;
+				let right = Number.NEGATIVE_INFINITY;
+				let bottom = Number.NEGATIVE_INFINITY;
+				let any = false;
+				for (const t of group) {
+					const el = document.querySelector(`[data-toast-id="${t.id}"]`) as HTMLElement | null;
+					if (!el) continue;
+					const r = el.getBoundingClientRect();
+					top = Math.min(top, r.top);
+					left = Math.min(left, r.left);
+					right = Math.max(right, r.right);
+					bottom = Math.max(bottom, r.bottom);
+					any = true;
+				}
+
+				if (!any) {
+					next[pos] = false;
+					continue;
+				}
+
+				const inside = x >= left && x <= right && y >= top && y <= bottom;
+				next[pos] = inside;
+			}
+			const changed = Object.keys(next).some((k) => (next as any)[k] !== (hovered as any)[k]);
+			if (changed) setHovered(next);
+		};
+
+		document.addEventListener("mousemove", handler);
+		return () => document.removeEventListener("mousemove", handler);
+	}, [hovered, positionEntries]);
 
 	useEffect(() => {
 		if (positionEntries.length === 0) return;
@@ -666,20 +816,33 @@ const ToastManager: React.FC<{
 
 	return (
 		<div className="fixed inset-0 pointer-events-none z-50">
-			{positionEntries.map(([position, positionToasts]) => (
-				<div key={position}>
-					{positionToasts.map((toast) => (
-						<ToastItem key={toast.id} toast={toast} onRemove={onRemove} />
-					))}
-				</div>
-			))}
+			{positionEntries.map(([position, positionToasts]) => {
+				const pos = position as ToastPosition;
+				const expandedOffsets = expandedOffsetsByPosition[pos];
+				const isHovered = hovered[pos];
+				return (
+					<React.Fragment key={position}>
+						{positionToasts.map((toast, idx) => (
+							<ToastItem
+								key={toast.id}
+								toast={toast}
+								onRemove={onRemove}
+								isGroupHovered={isHovered}
+								expandedOffset={expandedOffsets?.[idx] ?? 0}
+								onHeightChange={(id, h) => setHeights((prev) => (prev[id] === h ? prev : { ...prev, [id]: h }))}
+								onGroupHoverEnter={() => setHovered((prev) => ({ ...prev, [pos]: true }))}
+							/>
+						))}
+					</React.Fragment>
+				);
+			})}
 		</div>
 	);
 });
 
 ToastManager.displayName = "ToastManager";
 
-export const Toaster: React.FC = () => {
+export const Toaster: React.FC<{ expandedGap?: number }> = ({ expandedGap }) => {
 	const [toasts, setToasts] = useState<ToastData[]>([]);
 	const [instanceId] = useState(() =>
 		toasterInstanceManager.registerInstance(),
@@ -701,5 +864,5 @@ export const Toaster: React.FC = () => {
 		return null;
 	}
 
-	return <ToastManager toasts={toasts} onRemove={handleRemove} />;
+	return <ToastManager toasts={toasts} onRemove={handleRemove} expandedGap={expandedGap} />;
 };
