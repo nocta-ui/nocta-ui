@@ -1,12 +1,12 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback, useEffect, useId, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 const popoverTriggerVariants = cva(
-	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-ring/10 transition-colors duration-200 not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 transition-colors duration-200 not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
@@ -27,7 +27,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-content-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-lg dark:shadow-xl not-prose relative text-foreground overflow-hidden border border-muted",
+	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-lg dark:shadow-xl not-prose relative text-foreground overflow-hidden border border-muted",
 	{
 		variants: {
 			size: {
@@ -42,70 +42,8 @@ const popoverContentVariants = cva(
 	},
 );
 
-const popoverAnimationVariants = cva(
-	"transform duration-200 ease-in-out",
-	{
-		variants: {
-			side: {
-				top: "",
-				bottom: "",
-				left: "",
-				right: "",
-			},
-			state: {
-				measuring: "opacity-0 scale-95 pointer-events-none invisible transition-all",
-				visible: "translate-y-0 opacity-100 scale-100 transition-[opacity,scale,transform]",
-				hidden: "opacity-0 scale-95 transition-[opacity,translate,scale]",
-			},
-		},
-		compoundVariants: [
-			{
-				side: "top",
-				state: "hidden",
-				class: "translate-y-1",
-			},
-			{
-				side: "bottom",
-				state: "hidden",
-				class: "-translate-y-1",
-			},
-			{
-				side: "left",
-				state: "hidden",
-				class: "translate-x-1",
-			},
-			{
-				side: "right",
-				state: "hidden",
-				class: "-translate-x-1",
-			},
-			{
-				side: "top",
-				state: "measuring",
-				class: "translate-y-1",
-			},
-			{
-				side: "bottom",
-				state: "measuring",
-				class: "-translate-y-1",
-			},
-			{
-				side: "left",
-				state: "measuring",
-				class: "translate-x-1",
-			},
-			{
-				side: "right",
-				state: "measuring",
-				class: "-translate-x-1",
-			},
-		],
-		defaultVariants: {
-			side: "bottom",
-			state: "hidden",
-		},
-	},
-);
+const popoverMotion =
+	"transform will-change-transform duration-200 ease-in-out transition opacity-0 scale-95 translate-y-1 data-[enter]:opacity-100 data-[enter]:scale-100 data-[enter]:translate-y-0 data-[leave]:opacity-0 data-[leave]:scale-95 data-[leave]:translate-y-1";
 
 export interface PopoverProps {
 	children: React.ReactNode;
@@ -125,57 +63,32 @@ export interface PopoverContentProps
 	extends VariantProps<typeof popoverContentVariants> {
 	children: React.ReactNode;
 	className?: string;
-	side?: "top" | "right" | "bottom" | "left";
-	align?: "start" | "center" | "end";
-	sideOffset?: number;
-	alignOffset?: number;
-	avoidCollisions?: boolean;
-	onEscapeKeyDown?: (event: KeyboardEvent) => void;
-	onPointerDownOutside?: (event: PointerEvent) => void;
+	portal?: boolean;
+	fixed?: boolean;
 }
 
-const PopoverContext = React.createContext<{
-	open: boolean;
-	setOpen: (open: boolean) => void;
-	triggerRef: React.RefObject<HTMLElement | null>;
-	contentId: string;
-}>({
-	open: false,
-	setOpen: () => {},
-	triggerRef: { current: null },
-	contentId: "",
-});
+const PopoverStoreContext = React.createContext<Ariakit.PopoverStore | null>(
+	null,
+);
 
 export const Popover: React.FC<PopoverProps> = ({
 	children,
-	open: controlledOpen,
+	open,
 	defaultOpen = false,
 	onOpenChange,
 }) => {
-	const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
-	const triggerRef = useRef<HTMLElement>(null);
-	const contentId = useId();
-
-	const open = controlledOpen !== undefined ? controlledOpen : uncontrolledOpen;
-
-	const setOpen = (newOpen: boolean) => {
-		if (controlledOpen === undefined) {
-			setUncontrolledOpen(newOpen);
-		}
-		onOpenChange?.(newOpen);
-	};
+	const store = Ariakit.usePopoverStore({
+		open,
+		defaultOpen,
+		setOpen: onOpenChange,
+	});
 
 	return (
-		<PopoverContext.Provider
-			value={{
-				open,
-				setOpen,
-				triggerRef,
-				contentId,
-			}}
-		>
-			<div className="relative not-prose">{children}</div>
-		</PopoverContext.Provider>
+		<PopoverStoreContext.Provider value={store}>
+			<Ariakit.PopoverProvider store={store}>
+				<div className="relative not-prose">{children}</div>
+			</Ariakit.PopoverProvider>
+		</PopoverStoreContext.Provider>
 	);
 };
 
@@ -186,46 +99,25 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
 	variant = "default",
 	size = "md",
 }) => {
-	const { open, setOpen, triggerRef, contentId } =
-		React.useContext(PopoverContext);
-
-	const handleClick = () => {
-		setOpen(!open);
-	};
-
-	const handleKeyDown = (event: React.KeyboardEvent) => {
-		if (event.key === "Enter" || event.key === " ") {
-			event.preventDefault();
-			setOpen(!open);
-		}
-	};
+	const store = React.useContext(PopoverStoreContext);
+	if (!store) throw new Error("PopoverTrigger must be used within <Popover>");
 
 	if (asChild && React.isValidElement(children)) {
-		const childProps = children.props as Record<string, unknown>;
-		return React.cloneElement(
-			children as React.ReactElement<Record<string, unknown>>,
-			{
-				ref: triggerRef,
-				"aria-expanded": open,
-				"aria-controls": contentId,
-				"aria-haspopup": "dialog",
-				onClick: handleClick,
-				onKeyDown: handleKeyDown,
-				className:
-					`${(childProps.className as string) || ""} ${className}`.trim(),
-			},
-		);
+		const child = children as React.ReactElement<{ className?: string }>;
+		const merged = React.cloneElement(child, {
+			className: cn(
+				child.props.className,
+				popoverTriggerVariants({ variant, size }),
+				"font-medium",
+				className,
+			),
+		});
+
+		return <Ariakit.PopoverDisclosure render={merged} />;
 	}
 
 	return (
-		<button
-			ref={triggerRef as React.RefObject<HTMLButtonElement>}
-			type="button"
-			aria-expanded={open}
-			aria-controls={contentId}
-			aria-haspopup="dialog"
-			onClick={handleClick}
-			onKeyDown={handleKeyDown}
+		<Ariakit.PopoverDisclosure
 			className={cn(
 				popoverTriggerVariants({ variant, size }),
 				"font-medium",
@@ -233,252 +125,26 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
 			)}
 		>
 			{children}
-		</button>
+		</Ariakit.PopoverDisclosure>
 	);
 };
 
 export const PopoverContent: React.FC<PopoverContentProps> = ({
 	children,
 	className = "",
-	side = "bottom",
-	align = "center",
-	sideOffset = 8,
-	alignOffset = 0,
-	avoidCollisions = true,
-	onEscapeKeyDown,
-	onPointerDownOutside,
 	size = "md",
+	portal = false,
+	fixed = false,
 }) => {
-	const { open, setOpen, triggerRef, contentId } =
-		React.useContext(PopoverContext);
-	const contentRef = useRef<HTMLDivElement>(null);
-	const [position, setPosition] = useState<{
-		top: number;
-		left: number;
-	} | null>(null);
-	const [actualSide, setActualSide] = useState(side);
-	const [isVisible, setIsVisible] = useState(false);
-	const [shouldRender, setShouldRender] = useState(false);
-	const [isMeasuring, setIsMeasuring] = useState(false);
+	const store = React.useContext(PopoverStoreContext);
+	if (!store) throw new Error("PopoverContent must be used within <Popover>");
 
-	useEffect(() => {
-		if (open) {
-			setShouldRender(true);
-			setIsMeasuring(true);
-			setIsVisible(false);
-			setPosition(null);
-		} else {
-			setIsVisible(false);
-			setIsMeasuring(false);
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-				setPosition(null);
-			}, 200);
-			return () => clearTimeout(timer);
-		}
-	}, [open]);
-
-	const calculatePosition = useCallback(() => {
-		if (!contentRef.current || !triggerRef.current) return;
-
-		const triggerRect = triggerRef.current.getBoundingClientRect();
-		const contentRect = contentRef.current.getBoundingClientRect();
-
-		if (contentRect.width === 0 || contentRect.height === 0) {
-			if (isMeasuring) {
-				requestAnimationFrame(calculatePosition);
-			}
-			return;
-		}
-
-		const viewport = {
-			width: window.innerWidth,
-			height: window.innerHeight,
-		};
-
-		let finalSide = side;
-		let top = 0;
-		let left = 0;
-
-		switch (side) {
-			case "top":
-				top = triggerRect.top - contentRect.height - sideOffset;
-				break;
-			case "bottom":
-				top = triggerRect.bottom + sideOffset;
-				break;
-			case "left":
-				left = triggerRect.left - contentRect.width - sideOffset;
-				break;
-			case "right":
-				left = triggerRect.right + sideOffset;
-				break;
-		}
-
-		if (side === "top" || side === "bottom") {
-			switch (align) {
-				case "start":
-					left = triggerRect.left + alignOffset;
-					break;
-				case "center":
-					left =
-						triggerRect.left +
-						triggerRect.width / 2 -
-						contentRect.width / 2 +
-						alignOffset;
-					break;
-				case "end":
-					left = triggerRect.right - contentRect.width + alignOffset;
-					break;
-			}
-		} else {
-			switch (align) {
-				case "start":
-					top = triggerRect.top + alignOffset;
-					break;
-				case "center":
-					top =
-						triggerRect.top +
-						triggerRect.height / 2 -
-						contentRect.height / 2 +
-						alignOffset;
-					break;
-				case "end":
-					top = triggerRect.bottom - contentRect.height + alignOffset;
-					break;
-			}
-		}
-
-		if (avoidCollisions) {
-			if (side === "top" && top < 0) {
-				finalSide = "bottom";
-				top = triggerRect.bottom + sideOffset;
-			} else if (
-				side === "bottom" &&
-				top + contentRect.height > viewport.height
-			) {
-				finalSide = "top";
-				top = triggerRect.top - contentRect.height - sideOffset;
-			} else if (side === "left" && left < 0) {
-				finalSide = "right";
-				left = triggerRect.right + sideOffset;
-			} else if (
-				side === "right" &&
-				left + contentRect.width > viewport.width
-			) {
-				finalSide = "left";
-				left = triggerRect.left - contentRect.width - sideOffset;
-			}
-
-			if (side === "top" || side === "bottom") {
-				left = Math.max(
-					8,
-					Math.min(left, viewport.width - contentRect.width - 8),
-				);
-			} else {
-				top = Math.max(
-					8,
-					Math.min(top, viewport.height - contentRect.height - 8),
-				);
-			}
-		}
-
-		setPosition({ top, left });
-		setActualSide(finalSide);
-
-		if (isMeasuring) {
-			setIsMeasuring(false);
-			requestAnimationFrame(() => {
-				setIsVisible(true);
-			});
-		}
-	}, [
-		side,
-		align,
-		sideOffset,
-		alignOffset,
-		avoidCollisions,
-		isMeasuring,
-		triggerRef,
-	]);
-
-	useEffect(() => {
-		if (!isMeasuring) return;
-
-		requestAnimationFrame(calculatePosition);
-	}, [isMeasuring, calculatePosition]);
-
-	useEffect(() => {
-		if (!open || isMeasuring) return;
-
-		window.addEventListener("scroll", calculatePosition, true);
-		window.addEventListener("resize", calculatePosition);
-
-		return () => {
-			window.removeEventListener("scroll", calculatePosition, true);
-			window.removeEventListener("resize", calculatePosition);
-		};
-	}, [open, isMeasuring, calculatePosition]);
-
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				onEscapeKeyDown?.(event);
-				if (!event.defaultPrevented) {
-					setOpen(false);
-				}
-			}
-		};
-
-		const handlePointerDown = (event: PointerEvent) => {
-			const target = event.target as Node;
-			const isClickInContent = contentRef.current?.contains(target);
-			const isClickInTrigger = triggerRef.current?.contains(target);
-
-			if (!isClickInContent && !isClickInTrigger) {
-				onPointerDownOutside?.(event);
-				if (!event.defaultPrevented) {
-					setOpen(false);
-				}
-			}
-		};
-
-		if (open) {
-			document.addEventListener("keydown", handleKeyDown);
-			document.addEventListener("pointerdown", handlePointerDown);
-		}
-
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-			document.removeEventListener("pointerdown", handlePointerDown);
-		};
-	}, [open, onEscapeKeyDown, onPointerDownOutside, setOpen, triggerRef]);
-
-	if (!shouldRender) return null;
-
-	const animationState = isMeasuring
-		? "measuring"
-		: isVisible && position
-			? "visible"
-			: "hidden";
-
-	return createPortal(
-		<div
-			ref={contentRef}
-			id={contentId}
-			role="dialog"
-			aria-modal="false"
-			style={{
-				position: "fixed",
-				top: position ? `${position.top}px` : "-10000px",
-				left: position ? `${position.left}px` : "-10000px",
-				zIndex: 50,
-			}}
-			className={cn(
-				popoverContentVariants({ size }),
-				popoverAnimationVariants({ side: actualSide, state: animationState }),
-				className,
-			)}
+	return (
+		<Ariakit.Popover
+			portal={portal}
+			fixed={fixed}
+			gutter={8}
+			className={cn(popoverContentVariants({ size }), popoverMotion, className)}
 		>
 			<span
 				aria-hidden
@@ -491,7 +157,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 				}}
 			/>
 			{children}
-		</div>,
-		document.body,
+		</Ariakit.Popover>
 	);
 };

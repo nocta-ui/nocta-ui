@@ -36,7 +36,7 @@ import { Progress } from '@/components/ui/progress';
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Progress
 
@@ -143,44 +143,7 @@ Hide the label by omitting the `showLabel` prop.
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Styling
-
-The Progress component accepts a `className` prop for custom styling:
-
-```tsx lineNumbers title="Custom Styling"
-<Progress 
-  value={75} 
-  className="w-full max-w-md" 
-  showLabel 
-/>
-
-<Progress 
-  value={60} 
-  className="h-6 rounded-lg" 
-  variant="success" 
-/>
-```
-
-## Accessibility
-
-The Progress component includes proper ARIA attributes:
-
-- `role="progressbar"` for screen readers
-- `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` for progress values
-- `aria-label` for descriptive labels
-- Proper focus management
-
-```tsx lineNumbers title="Accessibility Example"
-<Progress 
-  value={50} 
-  aria-label="File download progress" 
-  showLabel 
-/>
-```
-
-## Props
+## Api Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

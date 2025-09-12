@@ -10,7 +10,7 @@ const spinnerVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "text-foreground-muted",
+				default: "text-primary-muted",
 			},
 			size: {
 				sm: "w-4 h-4 border-2",
@@ -39,8 +39,8 @@ export const Spinner: React.FC<SpinnerProps> = ({
 }) => {
 	return (
 		<div
-			role="status"
-			aria-label="Loading"
+			aria-live="polite"
+			aria-busy="true"
 			className={cn(spinnerVariants({ variant, size }), className)}
 			{...props}
 		>

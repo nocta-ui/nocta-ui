@@ -1,5 +1,10 @@
 "use client";
 
+import {
+	Checkbox as AriakitCheckbox,
+	useCheckboxStore,
+	useStoreState,
+} from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
 import { cn } from "@/lib/utils";
@@ -7,10 +12,10 @@ import { cn } from "@/lib/utils";
 const checkboxVariants = cva(
 	[
 		"relative inline-flex items-center justify-center rounded border",
-		"transition-all duration-200 ease-in-out cursor-pointer",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
-		"focus-visible:ring-offset-ring-offset/50",
-		"not-prose",
+		"transition-colors duration-200 ease-in-out cursor-pointer",
+		"has-[:focus-visible]:outline-none has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1",
+		"has-[:focus-visible]:ring-offset-ring-offset/50",
+		"shadow-xs not-prose",
 	],
 	{
 		variants: {
@@ -39,49 +44,49 @@ const checkboxVariants = cva(
 				variant: "default",
 				checked: true,
 				class:
-					"bg-foreground border-border/30 focus-visible:ring-ring",
+					"bg-foreground-muted border-border/30 has-[:focus-visible]:ring-ring/50",
 			},
 			{
 				variant: "default",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 focus-visible:ring-ring/10",
+					"bg-background-muted border-border/10 has-[:focus-visible]:ring-ring/50",
 			},
 			{
 				variant: "success",
 				checked: true,
 				class:
-					"bg-green-600/30 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 focus-visible:ring-green-500/50",
+					"bg-green-600/30 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 has-[:focus-visible]:ring-green-500/50",
 			},
 			{
 				variant: "success",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 focus-visible:ring-green-500/50",
+					"bg-background-muted border-border/10 has-[:focus-visible]:ring-green-500/50",
 			},
 			{
 				variant: "warning",
 				checked: true,
 				class:
-					"bg-yellow-600/30 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 focus-visible:ring-yellow-500/50",
+					"bg-yellow-600/30 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 has-[:focus-visible]:ring-yellow-500/50",
 			},
 			{
 				variant: "warning",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 focus-visible:ring-yellow-500/50",
+					"bg-background-muted border-border/10 has-[:focus-visible]:ring-yellow-500/50",
 			},
 			{
 				variant: "destructive",
 				checked: true,
 				class:
-					"bg-red-600/30 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 focus-visible:ring-red-500/50",
+					"bg-red-600/30 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 has-[:focus-visible]:ring-red-500/50",
 			},
 			{
 				variant: "destructive",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 focus-visible:ring-red-500/50",
+					"bg-background-muted border-border/10 has-[:focus-visible]:ring-red-500/50",
 			},
 		],
 		defaultVariants: {
@@ -93,30 +98,54 @@ const checkboxVariants = cva(
 	},
 );
 
-const iconVariants = cva(["stroke-[3]", "transition-opacity duration-200"], {
-	variants: {
-		variant: {
-			default: "text-primary-foreground dark:text-foreground",
-			success: "text-green-500 dark:green-500",
-			warning: "text-yellow-500 dark:yellow-500",
-			destructive: "text-red-500 dark:red-500",
+const iconVariants = cva(
+	["stroke-[3]", "transition-opacity duration-200 ease-in-out"],
+	{
+		variants: {
+			variant: {
+				default: "text-primary-foreground",
+				success: "text-green-500 dark:text-green-500",
+				warning: "text-yellow-500 dark:text-yellow-500",
+				destructive: "text-red-500 dark:text-red-500",
+			},
+			size: {
+				sm: "h-2.5 w-2.5",
+				md: "h-3 w-3",
+				lg: "h-3.5 w-3.5",
+			},
+			checked: {
+				true: "opacity-100",
+				false: "opacity-0",
+			},
 		},
-		size: {
-			sm: "h-2.5 w-2.5",
-			md: "h-3 w-3",
-			lg: "h-3.5 w-3.5",
-		},
-		checked: {
-			true: "opacity-100",
-			false: "opacity-0",
+		defaultVariants: {
+			variant: "default",
+			size: "md",
+			checked: false,
 		},
 	},
-	defaultVariants: {
-		variant: "default",
-		size: "md",
-		checked: false,
-	},
-});
+);
+
+interface CheckIconProps {
+	variant?: VariantProps<typeof iconVariants>["variant"];
+	size?: VariantProps<typeof iconVariants>["size"];
+	checked: boolean;
+}
+
+const CheckIcon: React.FC<CheckIconProps> = ({ variant, size, checked }) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		className={iconVariants({ variant, size, checked })}
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke="currentColor"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+	>
+		<polyline points="20,6 9,17 4,12" />
+	</svg>
+);
 
 export interface CheckboxProps
 	extends Omit<
@@ -129,11 +158,13 @@ export interface CheckboxProps
 	disabled?: boolean;
 	className?: string;
 	id?: string;
+	defaultChecked?: boolean;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
-	checked = false,
+	checked,
 	onCheckedChange,
+	defaultChecked,
 	size = "md",
 	variant = "default",
 	disabled = false,
@@ -141,44 +172,42 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 	id,
 	...props
 }) => {
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (!disabled && onCheckedChange) {
-			onCheckedChange(event.target.checked);
-		}
-	};
+	let propsForStore: Parameters<typeof useCheckboxStore<boolean>>[0];
+	if (typeof checked !== "undefined") {
+		propsForStore = {
+			value: checked,
+			setValue: onCheckedChange
+				? (value) => {
+						const bool = Array.isArray(value)
+							? value.length > 0
+							: Boolean(value);
+						onCheckedChange(bool);
+					}
+				: undefined,
+		};
+	} else {
+		propsForStore = { defaultValue: Boolean(defaultChecked) };
+	}
+	const store = useCheckboxStore<boolean>(propsForStore);
 
-	const CheckIcon = () => (
-		<svg
-			className={iconVariants({ variant, size, checked })}
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke="currentColor"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<polyline points="20,6 9,17 4,12" />
-		</svg>
-	);
+	const isChecked = useStoreState(store, "value");
 
 	return (
 		<label
 			className={cn(
-				checkboxVariants({ variant, size, checked, disabled }),
+				checkboxVariants({ variant, size, checked: isChecked, disabled }),
 				className,
 			)}
 			htmlFor={id}
 		>
-			<input
-				type="checkbox"
+			<AriakitCheckbox
+				store={store}
 				className="sr-only"
-				checked={checked}
-				onChange={handleChange}
 				disabled={disabled}
 				id={id}
-				aria-checked={checked}
 				{...props}
 			/>
-			<CheckIcon />
+			<CheckIcon variant={variant} size={size} checked={isChecked} />
 		</label>
 	);
 };

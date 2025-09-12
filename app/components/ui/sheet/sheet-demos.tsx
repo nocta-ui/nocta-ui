@@ -30,8 +30,8 @@ export const BasicSheetDemo: React.FC = () => {
 							the screen.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Sheet content goes here. You can add any components or content you
 							need.
 						</p>
@@ -59,8 +59,8 @@ export const SheetSidesDemo: React.FC = () => {
 							This sheet slides in from the left side.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Content for left-side sheet.
 						</p>
 					</div>
@@ -78,8 +78,8 @@ export const SheetSidesDemo: React.FC = () => {
 							This sheet slides in from the right side.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Content for right-side sheet.
 						</p>
 					</div>
@@ -97,10 +97,8 @@ export const SheetSidesDemo: React.FC = () => {
 							This sheet slides in from the top.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
-							Content for top sheet.
-						</p>
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">Content for top sheet.</p>
 					</div>
 				</SheetContent>
 			</Sheet>
@@ -116,8 +114,8 @@ export const SheetSidesDemo: React.FC = () => {
 							This sheet slides in from the bottom.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Content for bottom sheet.
 						</p>
 					</div>
@@ -143,8 +141,8 @@ export const SheetSizesDemo: React.FC = () => {
 							This is a small-sized sheet (320px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Compact content for small sheet.
 						</p>
 					</div>
@@ -164,8 +162,8 @@ export const SheetSizesDemo: React.FC = () => {
 							This is a medium-sized sheet (384px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Standard content for medium sheet.
 						</p>
 					</div>
@@ -185,8 +183,8 @@ export const SheetSizesDemo: React.FC = () => {
 							This is a large-sized sheet (448px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Expanded content for large sheet.
 						</p>
 					</div>
@@ -206,8 +204,8 @@ export const SheetSizesDemo: React.FC = () => {
 							This is an extra large sheet (512px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							Wide content for extra large sheet.
 						</p>
 					</div>
@@ -231,7 +229,7 @@ export const FormSheetDemo: React.FC = () => {
 							Make changes to your profile here. Click save when you're done.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1 space-y-4">
+					<div className="p-4 flex-1 space-y-4">
 						<Input
 							label="Name"
 							placeholder="Enter your name"
@@ -252,9 +250,9 @@ export const FormSheetDemo: React.FC = () => {
 							className="w-full"
 						/>
 						<div className="flex flex-col space-y-2">
-							<label className="block text-sm font-medium text-foreground-muted">
+							<div className="block text-sm font-medium text-primary-muted">
 								Status
-							</label>
+							</div>
 							<div className="flex gap-2">
 								<Badge variant="success">Active</Badge>
 								<Badge variant="secondary">Premium</Badge>
@@ -295,14 +293,14 @@ export const ControlledSheetDemo: React.FC = () => {
 							it programmatically.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="px-6 py-4 flex-1">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4 flex-1">
+						<p className="text-sm text-primary-muted">
 							This sheet's open state is managed by the parent component. You
 							can control when it opens and closes from outside the Sheet
 							component.
 						</p>
 						<div className="mt-4 p-3 bg-background rounded-lg">
-							<p className="text-xs font-mono text-foreground-muted">
+							<p className="text-xs font-mono text-primary-muted">
 								Current state: {open ? "open" : "closed"}
 							</p>
 						</div>

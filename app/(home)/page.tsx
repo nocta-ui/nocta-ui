@@ -98,14 +98,14 @@ export default function HomePage() {
 					<div className="mx-auto w-full max-w-3xl px-6 text-center relative z-10">
 						<p
 							ref={kickerRef}
-							className="opacity-0 text-[11px] md:text-xs uppercase tracking-[0.22em] text-foreground-muted sm:-mb-2 md:-mb-4"
+							className="opacity-0 text-[11px] md:text-xs uppercase tracking-[0.22em] text-primary-muted sm:-mb-2 md:-mb-4"
 						>
 							React UI Library
 						</p>
 						<h1
 							ref={headingRef}
 							className={cn(
-								"opacity-0 tracking-relaxed font-semibold text-foreground-muted leading-none",
+								"opacity-0 tracking-relaxed font-semibold text-primary-muted leading-none",
 								"text-[9.5vw] sm:text-[7vw] md:text-[17vw] lg:text-[5vw] max-md:text-[48px] whitespace-nowrap",
 							)}
 						>
@@ -116,13 +116,16 @@ export default function HomePage() {
 
 				<div className="flex-none fixed z-20 fixed left-1/2 -translate-x-1/2 w-full max-w-3xl bottom-4">
 					<div className="mx-auto w-full max-w-3xl px-6">
-						<div ref={bottomBarRef} className="opacity-0 rounded-2xl border border-neutral-50/10 bg-neutral-50/60 dark:bg-neutral-950/50 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]">
+						<div
+							ref={bottomBarRef}
+							className="opacity-0 rounded-2xl border border-neutral-50/10 bg-neutral-50/60 dark:bg-neutral-950/50 backdrop-blur-md shadow-[0_8px_40px_rgba(0,0,0,0.25)]"
+						>
 							<div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-4 sm:p-5">
 								<div className="text-left">
-									<p className="text-xs uppercase tracking-[0.18em] text-foreground-muted">
+									<p className="text-xs uppercase tracking-[0.18em] text-primary-muted">
 										Get started
 									</p>
-									<p className="text-sm text-foreground-muted">
+									<p className="text-sm text-primary-muted">
 										Install and start in minutes.
 									</p>
 								</div>
@@ -136,7 +139,7 @@ export default function HomePage() {
 										</Button>
 									</Link>
 									<Link
-										href="https://github.com/66HEX/neutral-ui"
+										href="https://github.com/66HEX/nocta-ui"
 										target="_blank"
 										rel="noopener noreferrer"
 										ref={ctaRightRef}
@@ -171,7 +174,7 @@ export default function HomePage() {
 							<div className="flex items-center gap-3">
 								<span>Accessible</span>
 								<span>Performant</span>
-								<span>Themeable</span>
+								<span>Composable</span>
 							</div>
 							<div className="opacity-80">npx nocta-ui init</div>
 						</div>

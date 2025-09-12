@@ -39,7 +39,7 @@ import {
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 The Tabs component follows a composable architecture where you build tabbed interfaces by combining smaller components together.
 
@@ -98,15 +98,6 @@ The Tabs component follows a composable architecture where you build tabbed inte
     ```
   </DocsTab>
 </DocsTabs>
-
-## Tabs Architecture
-
-The Tabs component is built with a composable architecture:
-
-- **Tabs**: The main container that manages state and provides context
-- **TabsList**: Container for tab triggers with keyboard navigation
-- **TabsTrigger**: Individual tab buttons that can be clicked or navigated
-- **TabsContent**: Content panels that are shown/hidden based on selection
 
 ## Variants
 
@@ -263,113 +254,7 @@ Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
   </DocsTab>
 </DocsTabs>
 
-## Keyboard Navigation
-
-The Tabs component includes comprehensive keyboard support:
-
-- **Arrow Keys**: Navigate between tabs (Left/Right for horizontal, Up/Down for vertical)
-- **Home**: Jump to the first tab
-- **End**: Jump to the last tab
-- **Tab**: Move focus to the active tab content
-- **Space/Enter**: Activate the focused tab
-
-## Accessibility Features
-
-The Tabs component is built with accessibility in mind:
-
-- **ARIA Attributes**: Proper `role`, `aria-selected`, `aria-controls`, and `aria-labelledby` attributes
-- **Keyboard Navigation**: Full keyboard support with arrow keys and shortcuts
-- **Focus Management**: Proper focus handling and visual focus indicators
-- **Screen Reader Support**: Announces tab state changes and content
-- **Semantic HTML**: Uses proper button and panel elements
-
-## Controlled vs Uncontrolled
-
-### Uncontrolled (Recommended)
-
-Use `defaultValue` for uncontrolled behavior:
-
-```tsx
-<Tabs defaultValue="tab1">
-  <TabsList>
-    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-  </TabsList>
-  <TabsContent value="tab1">Content 1</TabsContent>
-  <TabsContent value="tab2">Content 2</TabsContent>
-</Tabs>
-```
-
-### Controlled
-
-Use `value` and `onValueChange` for controlled behavior:
-
-```tsx
-const [activeTab, setActiveTab] = useState("tab1");
-
-<Tabs value={activeTab} onValueChange={setActiveTab}>
-  <TabsList>
-    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-  </TabsList>
-  <TabsContent value="tab1">Content 1</TabsContent>
-  <TabsContent value="tab2">Content 2</TabsContent>
-</Tabs>
-```
-
-## Customization
-
-### Custom Styling
-
-All tabs components accept a `className` prop for custom styling:
-
-```tsx
-<Tabs defaultValue="tab1" className="w-full max-w-2xl">
-  <TabsList className="grid w-full grid-cols-3">
-    <TabsTrigger value="tab1" className="data-[state=active]:bg-blue-500">
-      Custom Tab 1
-    </TabsTrigger>
-    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-    <TabsTrigger value="tab3">Tab 3</TabsTrigger>
-  </TabsList>
-  <TabsContent value="tab1" className="border-t-2 border-blue-500 pt-4">
-    <p>Custom styled content</p>
-  </TabsContent>
-</Tabs>
-```
-
-### Dynamic Tabs
-
-Create tabs dynamically from data:
-
-```tsx
-const tabs = [
-  { id: 'overview', label: 'Overview', content: 'Overview content' },
-  { id: 'details', label: 'Details', content: 'Details content' },
-  { id: 'settings', label: 'Settings', content: 'Settings content' }
-];
-
-<Tabs defaultValue={tabs[0].id}>
-  <TabsList>
-    {tabs.map((tab) => (
-      <TabsTrigger key={tab.id} value={tab.id}>
-        {tab.label}
-      </TabsTrigger>
-    ))}
-  </TabsList>
-  {tabs.map((tab) => (
-    <TabsContent key={tab.id} value={tab.id}>
-      <Card>
-        <CardContent>
-          <p>{tab.content}</p>
-        </CardContent>
-      </Card>
-    </TabsContent>
-  ))}
-</Tabs>
-```
-
-## Props
+## Api Reference
 
 ### Tabs
 

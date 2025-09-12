@@ -27,7 +27,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </Step>
 </Steps>
 
-## Basic Usage
+## Example
 
 The Command Palette provides a fast, searchable modal for navigating and triggering actions using the keyboard.
 
@@ -41,11 +41,35 @@ The Command Palette provides a fast, searchable modal for navigating and trigger
     import { CommandK, type CommandKItem } from '@/components/ui/command-k';
 
      const items: CommandKItem[] = [
-    { label: "Search docs", group: "Navigation", description: "Go to documentation", icon: IconSearch, shortcut: ["G", "D"] },
-    { label: "Open settings", group: "Navigation", description: "Application preferences", icon: IconCog, shortcut: ["G", "S"] },
-    { label: "New file", group: "Actions", description: "Create an untitled file", icon: IconFile, shortcut: ["N", "F"] },
-    { label: "New folder", group: "Actions", description: "Create a folder", icon: IconFolder, shortcut: ["N", "D"] },
-  ];
+		{
+			label: "Search docs",
+			group: "Navigation",
+			description: "Go to documentation",
+			icon: IconSearch,
+			shortcut: ["S"],
+		},
+		{
+			label: "Open settings",
+			group: "Navigation",
+			description: "Application preferences",
+			icon: IconCog,
+			shortcut: ["O"],
+		},
+		{
+			label: "New file",
+			group: "Actions",
+			description: "Create an untitled file",
+			icon: IconFile,
+			shortcut: ["Shift", "F"],
+		},
+		{
+			label: "New folder",
+			group: "Actions",
+			description: "Create a folder",
+			icon: IconFolder,
+			shortcut: ["Shift", "G"],
+		},
+	];
 
     export default function Example() {
       const [open, setOpen] = useState(false);
@@ -57,8 +81,10 @@ The Command Palette provides a fast, searchable modal for navigating and trigger
             open={open}
             onOpenChange={setOpen}
             onSelect={(it) => {
-              // eslint-disable-next-line no-alert
-              alert(`Selected: ${it.label}`);
+              toast.success({
+						  title: "Command executed",
+						  description: `Selected: ${it.label}`,
+              });
             }}
           />
         </>
@@ -67,24 +93,6 @@ The Command Palette provides a fast, searchable modal for navigating and trigger
     ```
   </DocsTab>
 </DocsTabs>
-
-## Item Structure
-
-Define your palette entries using the `CommandKItem` interface:
-
-```tsx lineNumbers title="CommandKItem"
-export type CommandKItem = {
-  id?: string;            // Optional unique id (auto-generated if missing)
-  label: string;          // Display label
-  group?: string;         // Optional grouping header (e.g., 'Navigation')
-  description?: string;   // Secondary text under the label
-  keywords?: string[];    // Additional searchable terms
-  icon?: React.ReactNode; // Optional icon element
-  shortcut?: string[];    // Optional visual shortcut hints (e.g., ['G','H'])
-  disabled?: boolean;     // Disable selection
-  action?: () => void;    // Action invoked on selection
-};
-```
 
 ## Keyboard Shortcuts
 
@@ -121,15 +129,6 @@ const [open, setOpen] = useState(false);
 // No local state — palette opens with Cmd/Ctrl+K
 <CommandK items={items} />
 ```
-
-## Accessibility
-
-Built on top of the `Dialog` and `Input` primitives for consistent UX and a11y:
-
-- Proper roles: `role="listbox"`/`role="option"` for results
-- Focus trap and Escape to close via Dialog
-- Visual focus indicators and high-contrast colors
-- Screen reader-friendly labels and states
 
 ## API Reference
 

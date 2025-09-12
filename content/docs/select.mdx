@@ -7,7 +7,6 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@
 import { 
   DefaultSelectDemo,
   SizesDemo,
-  DisabledStateDemo
 } from '@/app/components/ui/select/select-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
@@ -38,7 +37,7 @@ import {
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Select
 
@@ -110,58 +109,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Disabled State
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <DisabledStateDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Disabled State"
-    <Select disabled>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Disabled select" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="option1">Option 1</SelectItem>
-        <SelectItem value="option2">Option 2</SelectItem>
-      </SelectContent>
-    </Select>
-
-    <Select>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Some disabled items" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="option1">Option 1</SelectItem>
-        <SelectItem value="option2" disabled>Option 2 (disabled)</SelectItem>
-        <SelectItem value="option3">Option 3</SelectItem>
-        <SelectItem value="option4" disabled>Option 4 (disabled)</SelectItem>
-      </SelectContent>
-    </Select>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Customization
-
-### Custom Styling
-
-The Select components accept `className` props for custom styling:
-
-```tsx lineNumbers title="Custom Styling"
-<Select>
-  <SelectTrigger className="w-full border-2 border-purple-300 focus-visible:border-purple-500">
-    <SelectValue placeholder="Custom styled select" />
-  </SelectTrigger>
-  <SelectContent className="border-purple-300">
-    <SelectItem value="option1">Option 1</SelectItem>
-    <SelectItem value="option2">Option 2</SelectItem>
-  </SelectContent>
-</Select>
-```
-
-## Props
+## Api Reference
 
 ### Select
 
@@ -187,7 +135,8 @@ The Select components accept `className` props for custom styling:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `className` | `string` | `''` | Additional CSS classes |
-| `position` | `'bottom' \| 'top'` | `'bottom'` | Dropdown position |
+| `portal` | `boolean` | `false` | Render the dropdown in a React portal |
+| `fixed` | `boolean` | `false` | Use fixed positioning to avoid clipping |
 | `children` | `React.ReactNode` | — | Content (SelectItems) |
 
 ### SelectItem

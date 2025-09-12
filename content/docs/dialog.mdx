@@ -11,7 +11,6 @@ import {
   SimpleDialogDemo,
   DialogWithActionsDemo,
   SizesDemo,
-  FormDialogDemo,
   WithoutCloseButtonDemo
 } from '@/app/components/ui/dialog/dialog-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -46,7 +45,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Simple Dialog
 
@@ -67,7 +66,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
             This is a basic dialog example with a title and description.
           </DialogDescription>
         </DialogHeader>
-        <div className="px-6 py-4">
+        <div className="p-4">
           <p className="text-sm">Dialog content goes here.</p>
         </div>
       </DialogContent>
@@ -92,10 +91,10 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this item? This action cannot be undone.
+            Are you sure you want to delete this item?
           </DialogDescription>
         </DialogHeader>
-        <div className="px-6 py-4">
+        <div className="p-4">
           <p className="text-sm">
             This will permanently remove <strong>Project Alpha</strong> and all associated data.
           </p>
@@ -133,7 +132,7 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
           <DialogTitle>Small Dialog</DialogTitle>
           <DialogDescription>This is a small dialog example.</DialogDescription>
         </DialogHeader>
-        <div className="px-6 py-4">
+        <div className="p-4">
           <p className="text-sm">Compact dialog for simple interactions.</p>
         </div>
       </DialogContent>
@@ -141,91 +140,6 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, `xl`, and `full
     ```
   </DocsTab>
 </DocsTabs>
-
-## Customization
-
-### Custom Styling
-
-The Dialog components accept a `className` prop for custom styling:
-
-```tsx lineNumbers title="Custom Dialog Styling"
-<DialogContent className="border-2 border-blue-200 dark:border-blue-800">
-  <DialogHeader className="bg-blue-50 dark:bg-blue-900/20">
-    <DialogTitle className="text-blue-900 dark:text-blue-100">
-      Custom Styled Dialog
-    </DialogTitle>
-  </DialogHeader>
-</DialogContent>
-```
-
-### Without Close Button
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <WithoutCloseButtonDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Dialog Without Close Button"
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="secondary">Processing...</Button>
-       </DialogTrigger>
-      <DialogContent showClose={false} size="sm">
-        <DialogHeader>
-          <DialogTitle>Processing Request</DialogTitle>
-          <DialogDescription>
-            Please wait while we process your request...
-          </DialogDescription>
-        </DialogHeader>
-        <div className="px-6 py-8 text-center">
-          <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-border"></div>
-        </div>
-      </DialogContent>
-    </Dialog>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Controlled Dialog
-
-For programmatic control, you can use the `open` and `onOpenChange` props:
-
-```tsx lineNumbers title="Controlled Dialog"
-const [open, setOpen] = useState(false);
-
-return (
-  <Dialog open={open} onOpenChange={setOpen}>
-    <DialogTrigger asChild>
-      <Button>Open Controlled Dialog</Button>
-    </DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Controlled Dialog</DialogTitle>
-        <DialogDescription>
-          This dialog is controlled by React state.
-        </DialogDescription>
-      </DialogHeader>
-      <div className="px-6 py-4">
-        <Button onClick={() => setOpen(false)}>
-          Close Programmatically
-        </Button>
-      </div>
-    </DialogContent>
-  </Dialog>
-);
-```
-
-## Accessibility Features
-
-The Dialog component includes comprehensive accessibility features:
-
-- **ARIA attributes**: Proper `role`, `aria-modal`, and `aria-labelledby` attributes
-- **Focus management**: Focus is trapped within the dialog when open
-- **Keyboard navigation**: 
-  - `Escape` key closes the dialog
-  - `Tab` cycles through focusable elements
-- **Screen reader support**: Proper announcement of dialog content
-- **Backdrop interaction**: Clicking outside closes the dialog
 
 ## API Reference
 
@@ -246,6 +160,7 @@ Button that opens the dialog.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `asChild` | `boolean` | `false` | Render as child element instead of button |
+| `className` | `string` | `''` | Additional CSS classes to apply |
 | `children` | `React.ReactNode` | - | Trigger content |
 
 ### DialogContent
@@ -256,6 +171,8 @@ The dialog modal content.
 |------|------|---------|-------------|
 | `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'` | Dialog size |
 | `showClose` | `boolean` | `true` | Show close button |
+| `portal` | `boolean` | `true` | Render the dialog in a React portal |
+| `className` | `string` | `''` | Additional CSS classes to apply |
 | `children` | `React.ReactNode` | - | Dialog content |
 
 ### DialogClose
@@ -265,4 +182,51 @@ Button that closes the dialog.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `asChild` | `boolean` | `false` | Render as child element instead of button |
+| `className` | `string` | `''` | Additional CSS classes to apply |
 | `children` | `React.ReactNode` | - | Close button content |
+
+### DialogHeader
+
+Container for the title and description.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | Header content |
+
+### DialogTitle
+
+Accessible heading for the dialog.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `React.ElementType` | `'h2'` | Optional element type for the heading |
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | Title content |
+
+### DialogDescription
+
+Accessible description for the dialog.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | Description content |
+
+### DialogFooter
+
+Footer container, typically for actions.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | Footer content |
+
+### DialogActions
+
+Layout container for action buttons.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes to apply |
+| `children` | `React.ReactNode` | - | Actions content |

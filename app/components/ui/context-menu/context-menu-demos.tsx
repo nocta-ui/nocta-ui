@@ -2,6 +2,8 @@
 
 import type React from "react";
 import { useState } from "react";
+import { buttonVariants } from "@/app/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
 	ContextMenu,
 	ContextMenuContent,
@@ -17,18 +19,16 @@ export const BasicContextMenuDemo: React.FC = () => {
 	const [lastAction, setLastAction] = useState<string>("");
 
 	return (
-		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-foreground-muted text-center">
+		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
+			<div className="text-sm text-primary-muted text-center">
 				Right-click on the area below to open the context menu
 			</div>
 
 			<ContextMenu>
-				<ContextMenuTrigger>
-					<div className="w-full h-32 border border-dashed border-border-muted rounded-lg flex items-center justify-center bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
-						<span className="text-foreground-muted">
-							Right-click here
-						</span>
-					</div>
+				<ContextMenuTrigger
+					className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+				>
+					Right-click here
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem onClick={() => setLastAction("Cut")}>
@@ -37,6 +37,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -53,6 +54,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -69,6 +71,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -83,7 +86,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 			</ContextMenu>
 
 			{lastAction && (
-				<div className="text-sm text-foreground-muted text-center">
+				<div className="text-sm text-primary-muted text-center">
 					Last action: <span className="font-medium">{lastAction}</span>
 				</div>
 			)}
@@ -93,18 +96,16 @@ export const BasicContextMenuDemo: React.FC = () => {
 
 export const ContextMenuWithSeparatorDemo: React.FC = () => {
 	return (
-		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-foreground-muted text-center">
+		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
+			<div className="text-sm text-primary-muted text-center">
 				Context menu with separators
 			</div>
 
 			<ContextMenu>
-				<ContextMenuTrigger>
-					<div className="w-full h-32 border border-dashed border-border-muted rounded-lg flex items-center justify-center bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
-						<span className="text-foreground-muted">
-							Right-click for menu with separators
-						</span>
-					</div>
+				<ContextMenuTrigger
+					className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+				>
+					Right-click for menu with separators
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem>
@@ -113,6 +114,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -129,6 +131,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -148,6 +151,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -164,6 +168,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -177,12 +182,13 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 
 					<ContextMenuSeparator />
 
-					<ContextMenuItem className="text-red-600 dark:text-red-400">
+					<ContextMenuItem destructive>
 						<svg
 							className="w-4 h-4 mr-2"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -201,18 +207,16 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 
 export const ContextMenuWithSubmenuDemo: React.FC = () => {
 	return (
-		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-foreground-muted text-center">
+		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
+			<div className="text-sm text-primary-muted text-center">
 				Context menu with submenu
 			</div>
 
 			<ContextMenu>
-				<ContextMenuTrigger>
-					<div className="w-full h-32 border border-dashed border-border-muted rounded-lg flex items-center justify-center bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
-						<span className="text-foreground-muted">
-							Right-click for submenu example
-						</span>
-					</div>
+				<ContextMenuTrigger
+					className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+				>
+					Right-click for submenu example
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem>
@@ -221,6 +225,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -239,6 +244,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
+								aria-hidden="true"
 							>
 								<path
 									strokeLinecap="round"
@@ -256,6 +262,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"
@@ -272,6 +279,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"
@@ -288,6 +296,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"
@@ -309,6 +318,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
+							aria-hidden="true"
 						>
 							<path
 								strokeLinecap="round"
@@ -333,19 +343,18 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 
 export const DisabledContextMenuDemo: React.FC = () => {
 	return (
-		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-foreground-muted text-center">
+		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
+			<div className="text-sm text-primary-muted text-center">
 				Disabled context menu and items
 			</div>
 
 			<div className="space-y-4">
 				<ContextMenu>
-					<ContextMenuTrigger disabled>
-						<div className="w-full h-24 border border-dashed border-border-muted rounded-lg flex items-center justify-center bg-background opacity-50">
-							<span className="text-foreground-subtle dark:text-foreground-subtle">
-								Context menu disabled
-							</span>
-						</div>
+					<ContextMenuTrigger
+						disabled
+						className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+					>
+						Context menu disabled
 					</ContextMenuTrigger>
 					<ContextMenuContent>
 						<ContextMenuItem>This won't show</ContextMenuItem>
@@ -353,12 +362,10 @@ export const DisabledContextMenuDemo: React.FC = () => {
 				</ContextMenu>
 
 				<ContextMenu>
-					<ContextMenuTrigger>
-						<div className="w-full h-24 border border-dashed border-border-muted rounded-lg flex items-center justify-center bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
-							<span className="text-foreground-muted">
-								Some items disabled
-							</span>
-						</div>
+					<ContextMenuTrigger
+						className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+					>
+						Some items disabled
 					</ContextMenuTrigger>
 					<ContextMenuContent>
 						<ContextMenuItem>Available Item</ContextMenuItem>
@@ -423,7 +430,7 @@ export const FileContextMenuDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-foreground-muted text-center">
+			<div className="text-sm text-primary-muted text-center">
 				File manager context menu example
 			</div>
 
@@ -437,6 +444,7 @@ export const FileContextMenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									{getFileIcon(file.type)}
 								</svg>
@@ -457,6 +465,7 @@ export const FileContextMenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"
@@ -479,6 +488,7 @@ export const FileContextMenuDemo: React.FC = () => {
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
+									aria-hidden="true"
 								>
 									<path
 										strokeLinecap="round"
@@ -492,6 +502,7 @@ export const FileContextMenuDemo: React.FC = () => {
 							<ContextMenuSeparator />
 							<ContextMenuItem>
 								<svg
+									aria-hidden="true"
 									className="w-4 h-4 mr-2"
 									fill="none"
 									stroke="currentColor"
@@ -508,6 +519,7 @@ export const FileContextMenuDemo: React.FC = () => {
 							</ContextMenuItem>
 							<ContextMenuItem>
 								<svg
+									aria-hidden="true"
 									className="w-4 h-4 mr-2"
 									fill="none"
 									stroke="currentColor"
@@ -525,6 +537,7 @@ export const FileContextMenuDemo: React.FC = () => {
 							<ContextMenuSeparator />
 							<ContextMenuItem>
 								<svg
+									aria-hidden="true"
 									className="w-4 h-4 mr-2"
 									fill="none"
 									stroke="currentColor"

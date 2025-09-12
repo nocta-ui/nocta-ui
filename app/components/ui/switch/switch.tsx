@@ -1,16 +1,16 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import type React from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const switchVariants = cva(
 	[
 		"relative inline-flex items-center rounded-full border-2 border-transparent",
 		"transition-all duration-200 ease-out cursor-pointer",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
-		"focus-visible:ring-offset-ring-offset/50",
-		"not-prose",
+		"peer-focus-visible:outline-none peer-focus-visible:ring-1",
+		"peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50",
 	],
 	{
 		variants: {
@@ -38,46 +38,45 @@ const switchVariants = cva(
 			{
 				variant: "default",
 				checked: true,
-				class:
-					"bg-foreground-subtle focus-visible:ring-ring",
+				class: "bg-foreground-subtle peer-focus-visible:ring-ring/50",
 			},
 			{
 				variant: "default",
 				checked: false,
-				class: "bg-background-elevated focus-visible:ring-ring",
+				class: "bg-background-elevated peer-focus-visible:ring-ring/50",
 			},
 			{
 				variant: "success",
 				checked: true,
 				class:
-					"bg-green-500 dark:bg-green-600/50 focus-visible:ring-green-500/50",
+					"bg-green-500 dark:bg-green-600/50 peer-focus-visible:ring-green-500/50",
 			},
 			{
 				variant: "success",
 				checked: false,
-				class: "bg-background-elevated focus-visible:ring-green-500/50",
+				class: "bg-background-elevated peer-focus-visible:ring-green-500/50",
 			},
 			{
 				variant: "warning",
 				checked: true,
 				class:
-					"bg-yellow-500 dark:bg-yellow-600/50 focus-visible:ring-yellow-500/50",
+					"bg-yellow-500 dark:bg-yellow-600/50 peer-focus-visible:ring-yellow-500/50",
 			},
 			{
 				variant: "warning",
 				checked: false,
-				class:
-					"bg-background-elevated focus-visible:ring-yellow-500/50",
+				class: "bg-background-elevated peer-focus-visible:ring-yellow-500/50",
 			},
 			{
 				variant: "destructive",
 				checked: true,
-				class: "bg-red-500 dark:bg-red-600/50 focus-visible:ring-red-500/50",
+				class:
+					"bg-red-500 dark:bg-red-600/50 peer-focus-visible:ring-red-500/50",
 			},
 			{
 				variant: "destructive",
 				checked: false,
-				class: "bg-background-elevated focus-visible:ring-red-500/50",
+				class: "bg-background-elevated peer-focus-visible:ring-red-500/50",
 			},
 		],
 		defaultVariants: {
@@ -107,36 +106,12 @@ const thumbVariants = cva(
 			},
 		},
 		compoundVariants: [
-			{
-				size: "sm",
-				checked: true,
-				class: "translate-x-4",
-			},
-			{
-				size: "sm",
-				checked: false,
-				class: "translate-x-1",
-			},
-			{
-				size: "md",
-				checked: true,
-				class: "translate-x-5",
-			},
-			{
-				size: "md",
-				checked: false,
-				class: "translate-x-1",
-			},
-			{
-				size: "lg",
-				checked: true,
-				class: "translate-x-5",
-			},
-			{
-				size: "lg",
-				checked: false,
-				class: "translate-x-1",
-			},
+			{ size: "sm", checked: true, class: "translate-x-4" },
+			{ size: "sm", checked: false, class: "translate-x-1" },
+			{ size: "md", checked: true, class: "translate-x-5" },
+			{ size: "md", checked: false, class: "translate-x-1" },
+			{ size: "lg", checked: true, class: "translate-x-5" },
+			{ size: "lg", checked: false, class: "translate-x-1" },
 		],
 		defaultVariants: {
 			size: "md",
@@ -146,54 +121,53 @@ const thumbVariants = cva(
 );
 
 export interface SwitchProps
-	extends Omit<
-			React.InputHTMLAttributes<HTMLInputElement>,
-			"size" | "disabled"
-		>,
-		Omit<VariantProps<typeof switchVariants>, "checked"> {
-	checked?: boolean;
-	onCheckedChange?: (checked: boolean) => void;
+	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>, "size">,
+		Omit<VariantProps<typeof switchVariants>, "checked" | "disabled"> {
+	size?: "sm" | "md" | "lg";
+	variant?: "default" | "success" | "warning" | "destructive";
 	disabled?: boolean;
 	className?: string;
-	id?: string;
+	onCheckedChange?: (checked: boolean) => void;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
-	checked = false,
-	onCheckedChange,
 	size = "md",
 	variant = "default",
 	disabled = false,
-	className = "",
-	id,
+	className,
+	onCheckedChange,
+	checked,
+	defaultChecked,
 	...props
 }) => {
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (!disabled && onCheckedChange) {
-			onCheckedChange(event.target.checked);
-		}
-	};
+	const id = React.useId();
+	const store = Ariakit.useCheckboxStore({
+		value: checked,
+		setValue: (val) => onCheckedChange?.(val === true),
+		defaultValue: defaultChecked ?? false,
+	});
+	const value = Ariakit.useStoreState(store, "value");
+	const isChecked = value === true;
 
 	return (
-		<label
-			className={cn(
-				switchVariants({ variant, size, checked, disabled }),
-				className,
-			)}
-			htmlFor={id}
-		>
-			<input
-				type="checkbox"
-				className="sr-only"
-				checked={checked}
-				onChange={handleChange}
-				disabled={disabled}
+		<>
+			<Ariakit.Checkbox
 				id={id}
+				store={store}
 				role="switch"
-				aria-checked={checked}
+				disabled={disabled}
+				className="sr-only peer"
 				{...props}
 			/>
-			<span className={thumbVariants({ size, checked })} />
-		</label>
+			<label
+				htmlFor={id}
+				className={cn(
+					switchVariants({ size, variant, checked: isChecked, disabled }),
+					className,
+				)}
+			>
+				<span className={thumbVariants({ size, checked: isChecked })} />
+			</label>
+		</>
 	);
 };

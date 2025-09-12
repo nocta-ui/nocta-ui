@@ -4,7 +4,6 @@ import type React from "react";
 import { useState } from "react";
 import { Combobox, type ComboboxOption } from "./combobox";
 
-// Sample data
 const frameworks: ComboboxOption[] = [
 	{ value: "next", label: "Next.js" },
 	{ value: "react", label: "React" },
@@ -14,19 +13,6 @@ const frameworks: ComboboxOption[] = [
 	{ value: "nuxt", label: "Nuxt.js" },
 	{ value: "gatsby", label: "Gatsby" },
 	{ value: "remix", label: "Remix" },
-];
-
-const countries: ComboboxOption[] = [
-	{ value: "us", label: "United States" },
-	{ value: "ca", label: "Canada" },
-	{ value: "uk", label: "United Kingdom" },
-	{ value: "de", label: "Germany" },
-	{ value: "fr", label: "France" },
-	{ value: "es", label: "Spain" },
-	{ value: "it", label: "Italy" },
-	{ value: "pl", label: "Poland" },
-	{ value: "jp", label: "Japan" },
-	{ value: "au", label: "Australia" },
 ];
 
 const languages: ComboboxOption[] = [
@@ -48,7 +34,7 @@ export const BasicComboboxDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Framework
 				</label>
 				<Combobox
@@ -60,7 +46,7 @@ export const BasicComboboxDemo: React.FC = () => {
 					className="w-[200px]"
 				/>
 				{value && (
-					<p className="text-xs text-foreground-muted">
+					<p className="text-xs text-primary-muted">
 						Selected: {frameworks.find((f) => f.value === value)?.label}
 					</p>
 				)}
@@ -73,7 +59,7 @@ export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Default
 				</label>
 				<Combobox
@@ -85,9 +71,7 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Error
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Error</label>
 				<Combobox
 					options={frameworks}
 					placeholder="Error variant"
@@ -100,7 +84,7 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Success
 				</label>
 				<Combobox
@@ -121,9 +105,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Small
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Small</label>
 				<Combobox
 					options={frameworks}
 					size="sm"
@@ -133,9 +115,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Medium
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Medium</label>
 				<Combobox
 					options={frameworks}
 					size="md"
@@ -145,9 +125,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Large
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Large</label>
 				<Combobox
 					options={frameworks}
 					size="lg"
@@ -159,47 +137,11 @@ export const SizesDemo: React.FC = () => {
 	);
 };
 
-export const SearchableDemo: React.FC = () => {
-	return (
-		<div className="my-6 space-y-6">
-			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Searchable (Default)
-				</label>
-				<Combobox
-					options={countries}
-					placeholder="Search for a country..."
-					searchPlaceholder="Type to search..."
-					className="w-[200px]"
-				/>
-				<p className="text-xs text-foreground-muted">
-					Type to filter options
-				</p>
-			</div>
-
-			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Non-searchable
-				</label>
-				<Combobox
-					options={countries}
-					className="w-[200px]"
-					placeholder="Select a country..."
-					searchable={false}
-				/>
-				<p className="text-xs text-foreground-muted">
-					Dropdown only, no search
-				</p>
-			</div>
-		</div>
-	);
-};
-
 export const ClearableDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Clearable (Default)
 				</label>
 				<Combobox
@@ -209,13 +151,13 @@ export const ClearableDemo: React.FC = () => {
 					clearable={true}
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-foreground-muted">
+				<p className="text-xs text-primary-muted">
 					X button appears when value is selected
 				</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Non-clearable
 				</label>
 				<Combobox
@@ -225,9 +167,7 @@ export const ClearableDemo: React.FC = () => {
 					placeholder="Select framework..."
 					clearable={false}
 				/>
-				<p className="text-xs text-foreground-muted">
-					No clear button shown
-				</p>
+				<p className="text-xs text-primary-muted">No clear button shown</p>
 			</div>
 		</div>
 	);
@@ -237,7 +177,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Programming Languages
 				</label>
 				<Combobox
@@ -246,7 +186,7 @@ export const DisabledOptionsDemo: React.FC = () => {
 					searchPlaceholder="Search languages..."
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-foreground-muted">
+				<p className="text-xs text-primary-muted">
 					Some options are disabled (e.g., PHP)
 				</p>
 			</div>
@@ -258,7 +198,7 @@ export const DisabledComboboxDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Disabled Combobox
 				</label>
 				<Combobox
@@ -267,7 +207,7 @@ export const DisabledComboboxDemo: React.FC = () => {
 					disabled={true}
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-foreground-muted">
+				<p className="text-xs text-primary-muted">
 					Entire combobox is disabled
 				</p>
 			</div>
@@ -284,7 +224,7 @@ export const CustomMessagesDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Custom Empty Message
 				</label>
 				<Combobox
@@ -294,7 +234,7 @@ export const CustomMessagesDemo: React.FC = () => {
 					emptyMessage="😔 No matching options found. Try different keywords."
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-foreground-muted">
+				<p className="text-xs text-primary-muted">
 					Type something that doesn&apos;t match to see custom message
 				</p>
 			</div>
@@ -309,7 +249,7 @@ export const ControlledDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex flex-col space-y-2">
-					<label className="text-sm font-medium text-foreground-muted">
+					<label className="text-sm font-medium text-primary-muted">
 						Controlled Combobox
 					</label>
 					<Combobox

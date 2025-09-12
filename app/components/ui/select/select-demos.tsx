@@ -32,7 +32,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4">
 			<div>
-				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
+				<label className="block text-sm font-medium text-primary-muted mb-1.5">
 					Small
 				</label>
 				<Select size="sm">
@@ -48,7 +48,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
+				<label className="block text-sm font-medium text-primary-muted mb-1.5">
 					Medium
 				</label>
 				<Select size="md">
@@ -64,7 +64,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
+				<label className="block text-sm font-medium text-primary-muted mb-1.5">
 					Large
 				</label>
 				<Select size="lg">
@@ -78,38 +78,6 @@ export const SizesDemo: React.FC = () => {
 					</SelectContent>
 				</Select>
 			</div>
-		</div>
-	);
-};
-
-export const DisabledStateDemo: React.FC = () => {
-	return (
-		<div className="my-6 space-y-4">
-			<Select disabled>
-				<SelectTrigger className="w-[200px]">
-					<SelectValue placeholder="Disabled select" />
-				</SelectTrigger>
-				<SelectContent>
-					<SelectItem value="option1">Option 1</SelectItem>
-					<SelectItem value="option2">Option 2</SelectItem>
-				</SelectContent>
-			</Select>
-
-			<Select>
-				<SelectTrigger className="w-[200px]">
-					<SelectValue placeholder="Some disabled items" />
-				</SelectTrigger>
-				<SelectContent>
-					<SelectItem value="option1">Option 1</SelectItem>
-					<SelectItem value="option2" disabled>
-						Option 2 (disabled)
-					</SelectItem>
-					<SelectItem value="option3">Option 3</SelectItem>
-					<SelectItem value="option4" disabled>
-						Option 4 (disabled)
-					</SelectItem>
-				</SelectContent>
-			</Select>
 		</div>
 	);
 };

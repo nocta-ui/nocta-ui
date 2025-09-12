@@ -1,13 +1,13 @@
 "use client";
 
+import {
+	Disclosure,
+	type DisclosureStore,
+	useDisclosureStore,
+	useStoreState,
+} from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, {
-	createContext,
-	useCallback,
-	useContext,
-	useMemo,
-	useState,
-} from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 const accordionVariants = cva("w-full not-prose", {
@@ -27,9 +27,8 @@ const accordionItemVariants = cva(
 	{
 		variants: {
 			variant: {
-				default:
-					"border-b border-border/10 last:border-b-0",
-				card: "rounded-lg",
+				default: "border-b border-border/10 last:border-b-0",
+				card: "rounded-lg [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-1 [&:has(:focus-visible)]:ring-offset-2 [&:has(:focus-visible)]:ring-offset-ring-offset/50 [&:has(:focus-visible)]:ring-ring",
 			},
 			isOpen: {
 				true: "",
@@ -51,12 +50,11 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	"w-full flex items-center justify-between text-left transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-ring/10 not-prose",
+	"w-full flex items-center justify-between rounded-lg text-left transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose",
 	{
 		variants: {
 			variant: {
-				default:
-					"text-primary hover:text-primary-muted",
+				default: "text-primary hover:text-primary-muted",
 				card: "text-primary hover:text-primary-muted",
 			},
 			size: {
@@ -74,6 +72,10 @@ const accordionTriggerVariants = cva(
 			},
 		},
 		compoundVariants: [
+			{
+				variant: "card",
+				class: "focus-visible:ring-0 focus-visible:ring-offset-1",
+			},
 			{
 				variant: "default",
 				size: "sm",
@@ -192,11 +194,9 @@ export interface AccordionProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof accordionVariants> {
 	children: React.ReactNode;
-	type?: "single" | "multiple";
 	size?: "sm" | "md" | "lg";
 	className?: string;
-	defaultValue?: string | string[];
-	value?: string | string[];
+
 	onValueChange?: (value: string | string[]) => void;
 }
 
@@ -204,9 +204,11 @@ export interface AccordionItemProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof accordionItemVariants> {
 	children: React.ReactNode;
-	value: string;
+	value?: string;
+	id?: string;
 	className?: string;
 	disabled?: boolean;
+	defaultOpen?: boolean;
 }
 
 export interface AccordionTriggerProps
@@ -223,33 +225,29 @@ export interface AccordionContentProps
 	children: React.ReactNode;
 	className?: string;
 }
-
-interface AccordionContextType {
-	type: "single" | "multiple";
+type AccordionStyleContextType = {
 	variant: "default" | "card";
 	size: "sm" | "md" | "lg";
-	openItems: string[];
-	toggleItem: (value: string) => void;
-	isOpen: (value: string) => boolean;
-}
+};
 
-const AccordionContext = createContext<AccordionContextType | undefined>(
-	undefined,
-);
+const AccordionStyleContext = createContext<
+	AccordionStyleContextType | undefined
+>(undefined);
 
-const useAccordion = () => {
-	const context = useContext(AccordionContext);
+const useAccordionStyle = () => {
+	const context = useContext(AccordionStyleContext);
 	if (!context) {
 		throw new Error("Accordion components must be used within an Accordion");
 	}
 	return context;
 };
 
-interface AccordionItemContextType {
-	value: string;
-	isOpen: boolean;
+type AccordionItemContextType = {
+	store: DisclosureStore;
 	disabled: boolean;
-}
+	triggerId: string;
+	contentId: string;
+};
 
 const AccordionItemContext = createContext<
 	AccordionItemContextType | undefined
@@ -266,81 +264,28 @@ const useAccordionItem = () => {
 };
 
 export const Accordion: React.FC<AccordionProps> = React.memo(
-	({
-		children,
-		type = "single",
-		variant = "default",
-		size = "md",
-		className,
-		defaultValue,
-		value: controlledValue,
-		onValueChange,
-		...props
-	}) => {
-		const [internalValue, setInternalValue] = useState<string[]>(() => {
-			if (defaultValue) {
-				return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
-			}
-			return [];
-		});
+	({ children, variant = "default", size = "md", className, ...props }) => {
+		const resolvedVariant: "default" | "card" = variant ?? "default";
+		const resolvedSize: "sm" | "md" | "lg" = size ?? "md";
 
-		const openItems = useMemo(() => {
-			return controlledValue
-				? Array.isArray(controlledValue)
-					? controlledValue
-					: [controlledValue]
-				: internalValue;
-		}, [controlledValue, internalValue]);
-
-		const toggleItem = useCallback(
-			(itemValue: string) => {
-				let newValue: string[];
-
-				if (type === "single") {
-					newValue = openItems.includes(itemValue) ? [] : [itemValue];
-				} else {
-					newValue = openItems.includes(itemValue)
-						? openItems.filter((v) => v !== itemValue)
-						: [...openItems, itemValue];
-				}
-
-				if (!controlledValue) {
-					setInternalValue(newValue);
-				}
-
-				if (onValueChange) {
-					onValueChange(type === "single" ? newValue[0] || "" : newValue);
-				}
-			},
-			[type, openItems, controlledValue, onValueChange],
-		);
-
-		const isOpen = useCallback(
-			(itemValue: string) => openItems.includes(itemValue),
-			[openItems],
-		);
-
-		const contextValue = useMemo(
-			() => ({
-				type,
-				variant: variant!,
-				size: size!,
-				openItems,
-				toggleItem,
-				isOpen,
-			}),
-			[type, variant, size, openItems, toggleItem, isOpen],
+		const styleValue = useMemo(
+			() => ({ variant: resolvedVariant, size: resolvedSize }),
+			[resolvedVariant, resolvedSize],
 		);
 
 		return (
-			<AccordionContext.Provider value={contextValue}>
+			<AccordionStyleContext.Provider value={styleValue}>
 				<div
-					className={cn(accordionVariants({ variant }), className)}
+					data-accordion-root
+					className={cn(
+						accordionVariants({ variant: resolvedVariant }),
+						className,
+					)}
 					{...props}
 				>
 					{children}
 				</div>
-			</AccordionContext.Provider>
+			</AccordionStyleContext.Provider>
 		);
 	},
 );
@@ -348,25 +293,37 @@ export const Accordion: React.FC<AccordionProps> = React.memo(
 Accordion.displayName = "Accordion";
 
 export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
-	({ children, value, className, disabled = false, ...props }) => {
-		const { variant, isOpen } = useAccordion();
-		const itemIsOpen = isOpen(value);
+	({
+		children,
+		value,
+		id,
+		className,
+		disabled = false,
+		defaultOpen = false,
+		...props
+	}) => {
+		const { variant } = useAccordionStyle();
+		const reactId = React.useId();
+		const baseId = (id || value || reactId).toString();
 
-		const contextValue = useMemo(
-			() => ({
-				value,
-				isOpen: itemIsOpen,
-				disabled,
-			}),
-			[value, itemIsOpen, disabled],
+		const store = useDisclosureStore({ defaultOpen });
+
+		const triggerId = `${baseId}-trigger`;
+		const contentId = `${baseId}-content`;
+
+		const contextValue = useMemo<AccordionItemContextType>(
+			() => ({ store, disabled: !!disabled, triggerId, contentId }),
+			[store, disabled, triggerId, contentId],
 		);
+
+		const open = useStoreState(store, "open");
 
 		if (variant === "card") {
 			return (
 				<AccordionItemContext.Provider value={contextValue}>
 					<div
 						className={cn(
-							accordionItemVariants({ variant, isOpen: itemIsOpen }),
+							accordionItemVariants({ variant, isOpen: open }),
 							className,
 						)}
 						{...props}
@@ -393,7 +350,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 			<AccordionItemContext.Provider value={contextValue}>
 				<div
 					className={cn(
-						accordionItemVariants({ variant, isOpen: itemIsOpen }),
+						accordionItemVariants({ variant, isOpen: open }),
 						className,
 					)}
 					{...props}
@@ -409,64 +366,55 @@ AccordionItem.displayName = "AccordionItem";
 
 export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 	({ children, className, ...props }) => {
-		const { variant, size, toggleItem } = useAccordion();
-		const { value, isOpen, disabled } = useAccordionItem();
-
-		const handleClick = useCallback(() => {
-			if (!disabled) {
-				toggleItem(value);
-			}
-		}, [disabled, toggleItem, value]);
-
-		const handleKeyDown = useCallback(
-			(e: React.KeyboardEvent) => {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					handleClick();
-				}
-			},
-			[handleClick],
-		);
+		const { variant, size } = useAccordionStyle();
+		const { store, disabled, triggerId, contentId } = useAccordionItem();
+		const isOpen = useStoreState(store, "open");
 
 		const iconSize = useMemo(() => {
 			return size === "sm" ? 14 : size === "md" ? 16 : 20;
 		}, [size]);
 
 		return (
-			<button
-				className={cn(
-					accordionTriggerVariants({
-						variant,
-						size,
-						disabled: disabled || false,
-						isOpen,
-					}),
-					className,
-				)}
-				onClick={handleClick}
-				onKeyDown={handleKeyDown}
-				aria-expanded={isOpen}
-				disabled={disabled}
-				{...props}
-			>
-				<span className="font-medium">{children}</span>
-				<svg
-					width={iconSize}
-					height={iconSize}
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					strokeWidth={2}
-					strokeLinecap="round"
-					strokeLinejoin="round"
+			<h3 className="not-prose">
+				<Disclosure
+					store={store}
+					id={triggerId}
+					data-accordion-trigger
 					className={cn(
-						"transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-foreground-subtle will-change-transform",
-						isOpen ? "rotate-180" : "rotate-0",
+						accordionTriggerVariants({
+							variant,
+							size,
+							disabled: disabled || false,
+							isOpen,
+						}),
+						className,
 					)}
+					aria-controls={contentId}
+					aria-disabled={disabled || undefined}
+					disabled={disabled}
+					{...props}
 				>
-					<path d="m6 9 6 6 6-6" />
-				</svg>
-			</button>
+					<span className="font-medium">{children}</span>
+					<svg
+						aria-hidden="true"
+						focusable="false"
+						width={iconSize}
+						height={iconSize}
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth={2}
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className={cn(
+							"transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-foreground-subtle will-change-transform",
+							isOpen ? "rotate-180" : "rotate-0",
+						)}
+					>
+						<path d="m6 9 6 6 6-6" />
+					</svg>
+				</Disclosure>
+			</h3>
 		);
 	},
 );
@@ -475,14 +423,16 @@ AccordionTrigger.displayName = "AccordionTrigger";
 
 export const AccordionContent: React.FC<AccordionContentProps> = React.memo(
 	({ children, className, ...props }) => {
-		const { variant, size } = useAccordion();
-		const { isOpen } = useAccordionItem();
+		const { variant, size } = useAccordionStyle();
+		const { store, triggerId, contentId } = useAccordionItem();
+		const isOpen = useStoreState(store, "open");
+
 		const contentRef = React.useRef<HTMLDivElement>(null);
 		const innerRef = React.useRef<HTMLDivElement>(null);
-		const [height, setHeight] = useState<number>(0);
+		const [height, setHeight] = React.useState<number>(0);
 		const rafRef = React.useRef<number | undefined>(undefined);
 
-		const updateHeight = useCallback(() => {
+		const updateHeight = React.useCallback(() => {
 			if (rafRef.current) {
 				cancelAnimationFrame(rafRef.current);
 			}
@@ -515,7 +465,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(
 
 		React.useEffect(() => {
 			updateHeight();
-		}, [children, updateHeight]);
+		}, [updateHeight]);
 
 		const contentStyle = useMemo(
 			() => ({
@@ -532,12 +482,16 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(
 				style={contentStyle}
 				{...props}
 			>
-				<div
+				<section
+					id={contentId}
+					aria-labelledby={triggerId}
+					aria-hidden={!isOpen}
+					inert={!isOpen}
 					ref={innerRef}
 					className={cn(accordionContentInnerVariants({ variant, size }))}
 				>
 					{children}
-				</div>
+				</section>
 			</div>
 		);
 	},

@@ -14,6 +14,7 @@ interface DocsTabProps {
 const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
 	return (
 		<button
+			type="button"
 			onClick={() => onClick?.(value)}
 			className={cn(
 				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-out group",
@@ -69,19 +70,16 @@ const DocsTabs = ({
 				))}
 			</div>
 
-			<div
-				ref={contentRef}
-				className="relative"
-			>
-				{activeTab !== 'code' && (
-					<div className="absolute inset-1 border rounded-xl bg-neutral-200/50 dark:bg-neutral-950/50 z-0"></div>
+			<div ref={contentRef} className="relative">
+				{activeTab !== "code" && (
+					<div className="absolute inset-1 border rounded-xl bg-neutral-50 dark:bg-neutral-950/50 z-0"></div>
 				)}
 				<div
 					ref={wrapperRef}
-					className={`relative p-1 transition-opacity duration-300 ease-in-out ${activeTab === 'code' ? ' overflow-y-visible' : ''}`}
+					className={`relative p-1 transition-opacity duration-300 ease-in-out ${activeTab === "code" ? " overflow-y-visible" : ""}`}
 				>
 					<div
-						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-x-visible ${activeTab !== 'code' ? 'py-0 px-4 md:py-16 md:px-8' : ''} ${activeTab === 'code' ? ' -mb-16' : ''}`}
+						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-x-visible ${activeTab !== "code" ? "py-0 px-4 md:py-16 md:px-8" : ""} ${activeTab === "code" ? " -mb-16" : ""}`}
 					>
 						{activeContent?.props.children}
 					</div>
@@ -92,4 +90,3 @@ const DocsTabs = ({
 };
 
 export { DocsTab, DocsTabs };
-

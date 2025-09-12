@@ -35,7 +35,7 @@ import { Avatar } from '@/components/ui/avatar';
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Avatar
 
@@ -186,7 +186,7 @@ Stack multiple avatars to show groups or teams.
         fallback="AB" 
         className="-ml-2 ring-1 ring-ring-offset"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-primary-muted">
         +5
       </div>
     </div>
@@ -194,68 +194,7 @@ Stack multiple avatars to show groups or teams.
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Styling
-
-The Avatar component accepts a `className` prop for custom styling:
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomStylingDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Styling"
-    <Avatar 
-      src="avatar.jpg" 
-      alt="John Doe" 
-      className="ring-4 ring-blue-500/50"
-    />
-    
-    <Avatar 
-      fallback="JD" 
-      className="bg-gradient-to-br from-purple-500 to-pink-500 text-primary-foreground"
-    />
-    
-    <Avatar 
-      src="avatar.jpg" 
-      alt="John Doe"
-      className="grayscale hover:grayscale-0 transition-all duration-200"
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### With Click Handlers
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <div className="my-6">
-      <ClickHandlersDemo />
-    </div>
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Click Handlers"
-    const [message, setMessage] = useState('');
-
-    const handleAvatarClick = (name: string) => {
-      setMessage(`${name} avatar clicked!`);
-      setTimeout(() => setMessage(''), 2000);
-    };
-
-    <Avatar 
-      src="avatar.jpg" 
-      alt="John Doe" 
-      className="cursor-pointer hover:ring-1 hover:ring-neutral-300 transition-all"
-      onClick={() => handleAvatarClick('John Doe')}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## API Reference
-
-### Avatar Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -268,24 +207,3 @@ The Avatar component accepts a `className` prop for custom styling:
 | `className` | `string` | `''` | Additional CSS classes to apply |
 
 The Avatar component also accepts all standard HTML div element props through the `...props` spread operator.
-
-## Accessibility
-
-The Avatar component is built with accessibility in mind:
-
-- Uses semantic HTML with proper alt attributes for images
-- Status indicators include aria-label for screen readers
-- Supports keyboard navigation when used with click handlers
-- Proper contrast ratios for text and status indicators
-- Fallback content for failed image loads
-
-## Size Reference
-
-| Size | Dimensions | Best Use Case |
-|------|------------|---------------|
-| `xs` | 24×24px | Dense lists, small UI elements |
-| `sm` | 32×32px | Compact interfaces, comments |
-| `md` | 40×40px | Default size, most common use |
-| `lg` | 48×48px | User cards, prominent displays |
-| `xl` | 64×64px | Profile headers, large cards |
-| `2xl` | 80×80px | Profile pages, hero sections |

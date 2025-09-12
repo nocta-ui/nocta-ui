@@ -9,9 +9,6 @@ import { Badge } from '@/app/components/ui/badge';
 import { 
   SimpleTooltipDemo,
   WithTextTriggerDemo,
-  PositioningDemo,
-  AlignmentDemo,
-  RichContentDemo,
   DelayDurationDemo,
 } from '@/app/components/ui/tooltip/tooltip-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -41,7 +38,7 @@ import {
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Simple Tooltip
 
@@ -52,7 +49,7 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Simple Tooltip"
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger>
         <Button variant="secondary">Hover me</Button>
       </TooltipTrigger>
       <TooltipContent>
@@ -87,59 +84,6 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Positioning
-
-The Tooltip component supports different positioning sides: `top`, `bottom`, `left`, and `right`. The default position is `top`.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <PositioningDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Tooltip Positioning"
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button size="sm" variant="ghost">Top</Button>
-      </TooltipTrigger>
-      <TooltipContent side="top">
-        Tooltip on top
-      </TooltipContent>
-    </Tooltip>
-    
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button size="sm" variant="ghost">Bottom</Button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom">
-        Tooltip on bottom
-      </TooltipContent>
-    </Tooltip>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Alignment
-
-Control the alignment of the tooltip relative to the trigger element using the `align` prop.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <AlignmentDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Tooltip Alignment"
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button size="sm" variant="secondary">Start</Button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom" align="start">
-        Aligned to start
-      </TooltipContent>
-    </Tooltip>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Delay Duration
 
 Control how long the user must hover before the tooltip appears using the `delayDuration` prop.
@@ -151,7 +95,7 @@ Control how long the user must hover before the tooltip appears using the `delay
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Tooltip Delay Duration"
     <Tooltip delayDuration={0}>
-      <TooltipTrigger asChild>
+      <TooltipTrigger>
         <Button size="sm" variant="ghost">Instant</Button>
       </TooltipTrigger>
       <TooltipContent>
@@ -160,7 +104,7 @@ Control how long the user must hover before the tooltip appears using the `delay
     </Tooltip>
     
     <Tooltip delayDuration={1000}>
-      <TooltipTrigger asChild>
+      <TooltipTrigger>
         <Button size="sm" variant="ghost">Slow</Button>
       </TooltipTrigger>
       <TooltipContent>
@@ -171,64 +115,16 @@ Control how long the user must hover before the tooltip appears using the `delay
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Styling
-
-The Tooltip components accept a `className` prop for custom styling:
-
-```tsx lineNumbers title="Custom Styling"
-<TooltipContent className="bg-blue-900 text-blue-100 border-blue-700">
-  Custom styled tooltip
-</TooltipContent>
-```
-
-## Controlled Tooltip
-
-For programmatic control, you can use the `open` and `onOpenChange` props:
-
-```tsx lineNumbers title="Controlled Tooltip"
-const [open, setOpen] = useState(false);
-
-return (
-  <Tooltip open={open} onOpenChange={setOpen}>
-    <TooltipTrigger asChild>
-      <Button onClick={() => setOpen(!open)}>
-        Toggle Tooltip
-      </Button>
-    </TooltipTrigger>
-    <TooltipContent>
-      This tooltip is controlled by React state.
-    </TooltipContent>
-  </Tooltip>
-);
-```
-
-## Accessibility Features
-
-The Tooltip component includes comprehensive accessibility features:
-
-- **ARIA attributes**: Proper `role="tooltip"` and `aria-describedby` attributes
-- **Keyboard navigation**: 
-  - `Focus` shows the tooltip
-  - `Blur` hides the tooltip
-  - `Escape` key support
-- **Screen reader support**: Tooltip content is properly announced
-- **Focus management**: Works with keyboard navigation
-- **Hover interaction**: Mouse enter/leave events
-
 ## API Reference
 
 ### Tooltip
 
-The root component that manages tooltip state.
+The provider that manages tooltip behavior and timing.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controls the tooltip state |
-| `onOpenChange` | `(open: boolean) => void` | `undefined` | Callback when tooltip state changes |
 | `delayDuration` | `number` | `400` | Delay before showing tooltip (ms) |
-| `children` | `React.ReactNode` | - | Tooltip content |
+| `children` | `React.ReactNode` | - | Tooltip subtree |
 
 ### TooltipTrigger
 
@@ -236,18 +132,15 @@ Element that triggers the tooltip on hover/focus.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element instead of span |
-| `children` | `React.ReactNode` | - | Trigger content |
+| `children` | `React.ReactNode` | - | Trigger content (element or text) |
+| `className` | `string` | `undefined` | Additional classes for the trigger wrapper |
 
 ### TooltipContent
 
-The tooltip content that appears on hover/focus.
+The tooltip content that appears on hover/focus. Renders in a portal.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `side` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Tooltip position |
-| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Tooltip alignment |
-| `sideOffset` | `number` | `8` | Distance from trigger |
-| `alignOffset` | `number` | `0` | Alignment offset |
+| `variant` | `'default'` | `'default'` | Visual style variant |
 | `children` | `React.ReactNode` | - | Tooltip content |
-```
+| `className` | `string` | `undefined` | Additional classes for the content container |

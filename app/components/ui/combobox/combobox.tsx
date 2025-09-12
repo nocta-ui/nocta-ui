@@ -1,14 +1,16 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const comboboxVariants = cva(
 	`relative w-fit inline-flex items-center justify-between
    rounded-lg border transition-all duration-200 ease-in-out
-   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 
+   focus-visible:ring-offset-ring-offset/50
    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
    shadow-xs not-prose`,
 	{
@@ -18,8 +20,8 @@ const comboboxVariants = cva(
           border-border-muted
           bg-background
           text-foreground
-			focus-visible:border-border/10
-			focus-visible:ring-ring/10
+			    focus-visible:border-border/10
+			    focus-visible:ring-ring/50
         `,
 				error: `
           border-red-300 dark:border-red-700/50
@@ -66,7 +68,6 @@ export interface ComboboxProps extends VariantProps<typeof comboboxVariants> {
 	disabled?: boolean;
 	className?: string;
 	popoverClassName?: string;
-	searchable?: boolean;
 	clearable?: boolean;
 }
 
@@ -83,209 +84,102 @@ export const Combobox: React.FC<ComboboxProps> = ({
 	variant = "default",
 	className = "",
 	popoverClassName = "",
-	searchable = true,
 	clearable = true,
 }) => {
+	const baseId = useId();
 	const [uncontrolledValue, setUncontrolledValue] = useState(
 		defaultValue || "",
 	);
-	const [open, setOpen] = useState(false);
-	const [searchTerm, setSearchTerm] = useState("");
-	const [highlightedIndex, setHighlightedIndex] = useState(-1);
-	const [isVisible, setIsVisible] = useState(false);
-	const [shouldRender, setShouldRender] = useState(false);
-	const comboboxId = useId();
-
-	const triggerRef = useRef<HTMLButtonElement>(null);
-	const searchInputRef = useRef<HTMLInputElement>(null);
-	const listRef = useRef<HTMLDivElement>(null);
-	const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-	const value =
+	const selectedValue =
 		controlledValue !== undefined ? controlledValue : uncontrolledValue;
-
-	const filteredOptions = options.filter((option) =>
-		option.label.toLowerCase().includes(searchTerm.toLowerCase()),
+	const selectedOption = useMemo(
+		() => options.find((o) => o.value === selectedValue),
+		[options, selectedValue],
 	);
 
-	const selectedOption = options.find((option) => option.value === value);
-
-	const handleValueChange = useCallback(
-		(newValue: string) => {
-			if (disabled) return;
-
-			if (controlledValue === undefined) {
-				setUncontrolledValue(newValue);
-			}
-			onValueChange?.(newValue);
-			setOpen(false);
-			setSearchTerm("");
-			setHighlightedIndex(-1);
-		},
-		[disabled, controlledValue, onValueChange],
+	const [searchValue, setSearchValue] = useState("");
+	const matches = useMemo(
+		() =>
+			options.filter((o) =>
+				o.label.toLowerCase().includes(searchValue.trim().toLowerCase()),
+			),
+		[options, searchValue],
 	);
 
-	useEffect(() => {
-    if (open) {
-        setShouldRender(true);
-        const t = setTimeout(() => {
-            listRef.current?.getBoundingClientRect();
-            setIsVisible(true);
-        }, 16);
-        return () => clearTimeout(t);
-    } else {
-        setIsVisible(false);
-        const timer = setTimeout(() => {
-            setShouldRender(false);
-        }, 200);
-        return () => clearTimeout(timer);
-    }
-  }, [open]);
+	const menu = Ariakit.useMenuStore({ animated: true });
 
-	const handleClear = (e: React.MouseEvent | React.KeyboardEvent) => {
-		e.stopPropagation();
-		handleValueChange("");
+	const handleSelect = (newValue: string) => {
+		if (disabled) return;
+		if (controlledValue === undefined) setUncontrolledValue(newValue);
+		onValueChange?.(newValue);
+		menu.hide();
+		setSearchValue("");
 	};
 
-	const handleKeyDown = useCallback(
-		(event: React.KeyboardEvent) => {
-			if (disabled) return;
-
-			switch (event.key) {
-				case "ArrowDown":
-					event.preventDefault();
-					if (!open) {
-						setOpen(true);
-						setHighlightedIndex(0);
-					} else {
-						setHighlightedIndex((prev) =>
-							prev < filteredOptions.length - 1 ? prev + 1 : 0,
-						);
-					}
-					break;
-				case "ArrowUp":
-					event.preventDefault();
-					if (!open) {
-						setOpen(true);
-						setHighlightedIndex(filteredOptions.length - 1);
-					} else {
-						setHighlightedIndex((prev) =>
-							prev > 0 ? prev - 1 : filteredOptions.length - 1,
-						);
-					}
-					break;
-				case "Enter":
-					event.preventDefault();
-					if (
-						open &&
-						highlightedIndex >= 0 &&
-						highlightedIndex < filteredOptions.length
-					) {
-						const selectedOption = filteredOptions[highlightedIndex];
-						if (!selectedOption.disabled) {
-							handleValueChange(selectedOption.value);
-						}
-					} else if (!open) {
-						setOpen(true);
-					}
-					break;
-				case "Escape":
-					event.preventDefault();
-					setOpen(false);
-					setSearchTerm("");
-					setHighlightedIndex(-1);
-					triggerRef.current?.focus();
-					break;
-				case "Tab":
-					setOpen(false);
-					setSearchTerm("");
-					setHighlightedIndex(-1);
-					break;
-			}
-		},
-		[open, highlightedIndex, filteredOptions, disabled, handleValueChange],
-	);
-
-	useEffect(() => {
-		if (highlightedIndex >= 0 && optionRefs.current[highlightedIndex]) {
-			optionRefs.current[highlightedIndex]?.scrollIntoView({
-				block: "nearest",
-				behavior: "smooth",
-			});
-		}
-	}, [highlightedIndex]);
-
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			const target = event.target as Node;
-			const isClickInTrigger = triggerRef.current?.contains(target);
-			const isClickInList = listRef.current?.contains(target);
-
-			if (!isClickInTrigger && !isClickInList) {
-				setOpen(false);
-				setSearchTerm("");
-				setHighlightedIndex(-1);
-			}
-		};
-
-		if (shouldRender) {
-			document.addEventListener("mousedown", handleClickOutside);
-		}
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [shouldRender]);
-
-	useEffect(() => {
-		if (open && searchable && searchInputRef.current) {
-			const timeoutId = setTimeout(() => {
-				searchInputRef.current?.focus();
-			}, 200);
-			return () => clearTimeout(timeoutId);
-		}
-	}, [open, searchable]);
+	const handleClear = (e: React.SyntheticEvent) => {
+		e.stopPropagation();
+		e.preventDefault();
+		handleSelect("");
+	};
 
 	return (
-		<div className="relative not-prose">
-			<button
-				ref={triggerRef}
-				type="button"
-				role="combobox"
-				aria-expanded={open}
-				aria-controls={`${comboboxId}-listbox`}
-				aria-haspopup="listbox"
-				disabled={disabled}
-				className={cn(comboboxVariants({ variant, size }), className)}
-				onClick={() => !disabled && setOpen(!open)}
-				onKeyDown={handleKeyDown}
-			>
-				<span
-					className={cn(
-						"flex-1 text-left truncate",
-						selectedOption ? "" : "text-foreground-subtle",
-					)}
-				>
-					{selectedOption ? selectedOption.label : placeholder}
-				</span>
-
-				<div className="flex items-center gap-1 ml-2">
-					{clearable && selectedOption && !disabled && (
-						<div
-							role="button"
-							tabIndex={0}
-							onClick={handleClear}
-							onKeyDown={(e) => {
-								if (e.key === "Enter" || e.key === " ") {
-									e.preventDefault();
-									handleClear(e);
-								}
-							}}
-							className="p-0.5 hover:bg-background rounded text-foreground-subtle cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/10"
-							aria-label="Clear selection"
+		<Ariakit.ComboboxProvider resetValueOnHide>
+			<Ariakit.MenuProvider store={menu}>
+				<div className="relative not-prose">
+					<Ariakit.MenuButton
+						disabled={disabled}
+						className={cn(
+							comboboxVariants({ variant, size }),
+							disabled && "opacity-50 cursor-not-allowed",
+							className,
+						)}
+					>
+						<span
+							className={cn(
+								"flex-1 text-left truncate",
+								selectedOption ? "" : "text-foreground-subtle",
+							)}
 						>
+							{selectedOption ? selectedOption.label : placeholder}
+						</span>
+						<div className="flex items-center gap-1 ml-2">
+							{clearable && selectedOption && !disabled && (
+								<span
+									onMouseDown={handleClear}
+									onClick={handleClear}
+									onKeyDown={(e) => {
+										if (e.key === "Enter" || e.key === " ") {
+											e.preventDefault();
+											handleClear(e);
+										}
+									}}
+									role="button"
+									tabIndex={0}
+									className="p-0.5 hover:bg-background rounded text-foreground-subtle hover:text-primary-muted cursor-pointer duration-200 ease-in-out"
+									title="Clear selection"
+									aria-label="Clear selection"
+								>
+									<svg
+										aria-hidden="true"
+										focusable="false"
+										className="w-3 h-3"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											strokeWidth={2}
+											d="M6 18L18 6M6 6l12 12"
+										/>
+									</svg>
+								</span>
+							)}
 							<svg
-								className="w-3 h-3"
+								aria-hidden="true"
+								focusable="false"
+								className="w-4 h-4 text-foreground-subtle"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -294,132 +188,122 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									strokeLinecap="round"
 									strokeLinejoin="round"
 									strokeWidth={2}
-									d="M6 18L18 6M6 6l12 12"
+									d="m7 15 5 5 5-5"
+								/>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="m7 9 5-5 5 5"
 								/>
 							</svg>
 						</div>
-					)}
+					</Ariakit.MenuButton>
 
-					<svg
-						className="w-4 h-4 text-foreground-subtle"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
+					<Ariakit.Menu
+						sameWidth
+						className={cn(
+							"absolute z-[999] my-1 rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl overflow-hidden",
+							"transform transition-all duration-200 ease-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
+							popoverClassName,
+						)}
 					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="m7 15 5 5 5-5"
+						<span
+							aria-hidden
+							className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+							style={{
+								maskImage:
+									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+								WebkitMaskImage:
+									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							}}
 						/>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="m7 9 5-5 5 5"
-						/>
-					</svg>
-				</div>
-			</button>
 
-            {shouldRender && (
-                <div
-                    ref={listRef}
-                    className={cn(
-                        "absolute z-[999] mt-1 w-full rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl overflow-hidden",
-                        `transform transition-all duration-200 ease-out origin-top ${
-                            isVisible
-                                ? "translate-y-0 opacity-100 scale-100"
-                                : "-translate-y-1 opacity-0 scale-95"
-                        }`,
-                        popoverClassName,
-                    )}
-                >
-					<span
-						aria-hidden
-						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-						style={{
-							maskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-							WebkitMaskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						}}
-					/>
-
-					{searchable && (
-						<div className="p-1 border-b border-border-muted/30">
-							<input
-								ref={searchInputRef}
-								type="text"
+						<div className="p-1 border-b border-border-muted">
+							<Ariakit.Combobox
+								autoSelect
 								placeholder={searchPlaceholder}
-								value={searchTerm}
-								onChange={(e) => {
-									setSearchTerm(e.target.value);
-									setHighlightedIndex(0);
+								aria-controls={`${baseId}-listbox`}
+								onChange={(e) => setSearchValue(e.currentTarget.value)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter") {
+										const inputValue = (e.currentTarget as HTMLInputElement)
+											.value;
+										const exact = options.find((o) => o.label === inputValue);
+										const pick = exact ?? matches[0];
+										if (pick && !pick.disabled) {
+											e.preventDefault();
+											handleSelect(pick.value);
+										}
+									}
 								}}
-								onKeyDown={handleKeyDown}
 								className="w-full px-3 py-2 text-sm bg-transparent border-0 focus-visible:outline-none placeholder:text-foreground-subtle"
 							/>
 						</div>
-					)}
 
-					<div
-						role="listbox"
-						id={`${comboboxId}-listbox`}
-						className="max-h-42 overflow-auto py-1 flex flex-col gap-1 z-50"
-					>
-						{filteredOptions.length === 0 ? (
-							<div className="px-3 py-2 text-sm text-foreground-muted text-center mx-1">
-								{emptyMessage}
+						<Ariakit.ComboboxList
+							id={`${baseId}-listbox`}
+							className="max-h-42 overflow-auto py-1 flex flex-col gap-1 z-50"
+						>
+							<div aria-live="polite" className="sr-only">
+								{matches.length} result{matches.length === 1 ? "" : "s"}
 							</div>
-						) : (
-							filteredOptions.map((option, index) => (
-								<div
-									key={option.value}
-									ref={(el) => {
-										optionRefs.current[index] = el;
-									}}
-									role="option"
-									aria-selected={option.value === value}
-									className={cn(
-										"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-background-muted focus-visible:bg-background-muted",
-										highlightedIndex === index
-											? "bg-background-muted"
-											: "",
-										option.value === value
-											? "bg-background-muted font-medium"
-											: "",
-										option.disabled
-											? "opacity-50 cursor-not-allowed pointer-events-none"
-											: "",
-										"transition-colors duration-150",
-									)}
-									onClick={() =>
-										!option.disabled && handleValueChange(option.value)
-									}
+							{matches.length === 0 ? (
+								<output
+									aria-live="polite"
+									className="px-3 py-2 text-sm text-primary-muted text-center mx-1"
 								>
-									<span className="flex-1">{option.label}</span>
-									{option.value === value && (
-										<svg
-											className="w-4 h-4 text-foreground-muted"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
+									{emptyMessage}
+								</output>
+							) : (
+								matches.map((option, i) => {
+									const isSelected = option.value === selectedValue;
+									return (
+										<Ariakit.ComboboxItem
+											key={option.value}
+											id={`${baseId}-option-${i}`}
+											value={option.label}
+											focusOnHover
+											setValueOnClick={false}
+											disabled={option.disabled}
+											aria-disabled={option.disabled || undefined}
+											className={cn(
+												"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-md hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
+												isSelected && "bg-background-muted font-medium",
+												option.disabled &&
+													"opacity-50 cursor-not-allowed pointer-events-none",
+											)}
+											onClick={(e) => {
+												e.preventDefault();
+												if (!option.disabled) handleSelect(option.value);
+											}}
 										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth={2}
-												d="M5 13l4 4L19 7"
-											/>
-										</svg>
-									)}
-								</div>
-							))
-						)}
-					</div>
+											<span className="flex-1">{option.label}</span>
+											{isSelected && (
+												<svg
+													aria-hidden="true"
+													focusable="false"
+													className="w-4 h-4 text-primary-muted"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth={2}
+														d="M5 13l4 4L19 7"
+													/>
+												</svg>
+											)}
+										</Ariakit.ComboboxItem>
+									);
+								})
+							)}
+						</Ariakit.ComboboxList>
+					</Ariakit.Menu>
 				</div>
-			)}
-		</div>
+			</Ariakit.MenuProvider>
+		</Ariakit.ComboboxProvider>
 	);
 };

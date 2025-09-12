@@ -17,21 +17,15 @@ export const SizesDemo: React.FC = () => {
 		<div className="my-6 flex flex-wrap items-center gap-6">
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="sm" />
-				<span className="text-xs text-foreground-muted">
-					Small
-				</span>
+				<span className="text-xs text-primary-muted">Small</span>
 			</div>
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="md" />
-				<span className="text-xs text-foreground-muted">
-					Medium
-				</span>
+				<span className="text-xs text-primary-muted">Medium</span>
 			</div>
 			<div className="flex flex-col items-center gap-2">
 				<Spinner size="lg" />
-				<span className="text-xs text-foreground-muted">
-					Large
-				</span>
+				<span className="text-xs text-primary-muted">Large</span>
 			</div>
 		</div>
 	);
@@ -68,7 +62,7 @@ export const LoadingButtonDemo: React.FC = () => {
 export const InlineSpinnerDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<div className="flex items-center gap-2 text-sm text-foreground-muted">
+			<div className="flex items-center gap-2 text-sm text-primary-muted">
 				<Spinner size="sm" />
 				<span>Processing your request...</span>
 			</div>

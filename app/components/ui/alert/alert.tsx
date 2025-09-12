@@ -8,7 +8,7 @@ const alertVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-border-muted bg-background text-primary-muted [&>svg]:text-foreground-muted overflow-hidden",
+					"border-border-muted bg-background text-primary-muted [&>svg]:text-primary-muted overflow-hidden",
 				destructive:
 					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
 				warning:
@@ -176,7 +176,10 @@ export const AlertIcon: React.FC<AlertIconProps> = ({
 	className = "",
 }) => {
 	return (
-		<div className={cn("w-4 h-4 flex-shrink-0 mt-0.5", className)}>
+		<div
+			aria-hidden="true"
+			className={cn("w-4 h-4 flex-shrink-0 mt-0.5", className)}
+		>
 			{children}
 		</div>
 	);

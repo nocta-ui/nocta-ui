@@ -10,10 +10,6 @@ export const BasicSwitchDemo: React.FC = () => {
 	return <Switch checked={isChecked} onCheckedChange={setIsChecked} />;
 };
 
-export const ControlledSwitchDemo: React.FC = () => {
-	return <Switch checked={true} onCheckedChange={() => {}} />;
-};
-
 export const VariantsDemo: React.FC = () => {
 	const [states, setStates] = useState({
 		default: true,
@@ -100,70 +96,6 @@ export const SizesDemo: React.FC = () => {
 					onCheckedChange={handleChange("lg")}
 				/>
 				<span className="text-sm">Large</span>
-			</div>
-		</div>
-	);
-};
-
-export const DisabledStateDemo: React.FC = () => {
-	return (
-		<div className="my-6 space-y-4">
-			<div className="flex items-center gap-3">
-				<Switch disabled={false} />
-				<span className="text-sm">Enabled (off)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch checked={true} disabled={false} />
-				<span className="text-sm">Enabled (on)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch disabled={true} />
-				<span className="text-sm">Disabled (off)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch checked={true} disabled={true} />
-				<span className="text-sm">Disabled (on)</span>
-			</div>
-		</div>
-	);
-};
-
-export const CustomStylingDemo: React.FC = () => {
-	const [states, setStates] = useState({
-		scaled: true,
-		opacity: true,
-		rounded: false,
-	});
-
-	const handleChange = (type: keyof typeof states) => (checked: boolean) => {
-		setStates((prev) => ({ ...prev, [type]: checked }));
-	};
-
-	return (
-		<div className="flex items-center gap-4">
-			<div className="flex items-center gap-2">
-				<Switch
-					className="scale-125"
-					checked={states.scaled}
-					onCheckedChange={handleChange("scaled")}
-				/>
-				<span className="text-sm">Scaled (1.25x)</span>
-			</div>
-			<div className="flex items-center gap-2">
-				<Switch
-					className="opacity-75"
-					checked={states.opacity}
-					onCheckedChange={handleChange("opacity")}
-				/>
-				<span className="text-sm">75% Opacity</span>
-			</div>
-			<div className="flex items-center gap-2">
-				<Switch
-					className="rounded-sm"
-					checked={states.rounded}
-					onCheckedChange={handleChange("rounded")}
-				/>
-				<span className="text-sm">Square corners</span>
 			</div>
 		</div>
 	);

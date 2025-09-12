@@ -40,7 +40,7 @@ import { Textarea } from '@/components/ui/textarea';
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Textarea
 
@@ -285,29 +285,7 @@ Adjust the initial height of the textarea using the `rows` prop.
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Container
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomContainerDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx
-    <Textarea 
-      containerClassName="max-w-md max-w-md flex flex-col items-center"
-      label="Centered Textarea"
-      placeholder="This textarea is centered with max width"
-      helperText="Custom container styling applied"
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## API Reference
-
-### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -322,11 +300,3 @@ Adjust the initial height of the textarea using the `rows` prop.
 | `containerClassName` | `string` | `''` | Additional CSS classes for the container |
 
 All standard HTML textarea attributes are also supported through props spreading.
-
-## Accessibility
-
-- Proper label association using `htmlFor` and `id` attributes
-- Support for `aria-describedby` when helper text is present
-- Focus management with visible focus indicators
-- Screen reader compatible error states
-- Keyboard navigation support

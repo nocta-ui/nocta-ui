@@ -14,9 +14,9 @@ function useIsMobile() {
 		};
 
 		checkIsMobile();
-		window.addEventListener('resize', checkIsMobile);
+		window.addEventListener("resize", checkIsMobile);
 
-		return () => window.removeEventListener('resize', checkIsMobile);
+		return () => window.removeEventListener("resize", checkIsMobile);
 	}, []);
 
 	return isMobile;
@@ -148,14 +148,18 @@ export default function MoonShaderBackground({
 	);
 
 	useEffect(() => {
-		const invertUniform = shaderUniforms.iInvert as { value: number } | undefined;
+		const invertUniform = shaderUniforms.iInvert as
+			| { value: number }
+			| undefined;
 		if (invertUniform) {
 			invertUniform.value = isLight ? 1.0 : 0.0;
 		}
 	}, [isLight, shaderUniforms]);
 
 	useEffect(() => {
-		const mobileUniform = shaderUniforms.iMobile as { value: number } | undefined;
+		const mobileUniform = shaderUniforms.iMobile as
+			| { value: number }
+			| undefined;
 		if (mobileUniform) {
 			mobileUniform.value = isMobile ? 1.0 : 0.0;
 		}

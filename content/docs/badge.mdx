@@ -32,7 +32,7 @@ import { Badge } from '@/components/ui/badge';
 </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Badge
 
@@ -97,38 +97,9 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Styling
-
-The Badge component accepts a `className` prop for custom styling:
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomStylingDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Styling"
-      <Badge
-        className="bg-linear-to-r dark:from-purple-500 dark:to-pink-500 from-purple-500 to-pink-500 text-primary-foreground dark:text-foreground">
-          Gradient
-      </Badge>
-      <Badge 
-        variant="secondary" 
-        className="bg-blue-500 dark:bg-blue-500/50 text-primary-foreground dark:text-foreground shadow-lg">
-          Custom Color
-      </Badge>
-      <Badge
-        className="rounded-sm">
-          Square
-      </Badge>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## API Reference
 
-### Badge Props
+### Badge Api Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

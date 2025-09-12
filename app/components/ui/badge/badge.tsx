@@ -15,9 +15,9 @@ const badgeVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50",
+					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end",
 					"hover:contrast-115 border-none",
-					"text-primary-foreground dark:text-primary",
+					"text-primary-white",
 				],
 				secondary: [
 					"bg-background",
@@ -71,9 +71,11 @@ export const Badge: React.FC<BadgeProps> = ({
 	className = "",
 	...props
 }) => {
-
 	return (
-		<span className={cn(badgeVariants({ variant, size }), className)} {...props}>
+		<span
+			className={cn(badgeVariants({ variant, size }), className)}
+			{...props}
+		>
 			{children}
 		</span>
 	);

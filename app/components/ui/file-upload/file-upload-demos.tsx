@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { FileUpload, type FileUploadFile } from "./file-upload";
 
 export function FileUploadDemo() {
 	const [files, setFiles] = useState<FileUploadFile[]>([]);
 
 	const handleUpload = async (filesToUpload: FileUploadFile[]) => {
-		// Simulate upload with progress
 		for (const file of filesToUpload) {
 			for (let progress = 0; progress <= 100; progress += 10) {
 				await new Promise((resolve) => setTimeout(resolve, 100));
@@ -33,7 +32,7 @@ export function FileUploadDemo() {
 				<FileUpload
 					multiple
 					accept="image/*,.pdf,.doc,.docx"
-					maxSize={5 * 1024 * 1024} // 5MB
+					maxSize={5 * 1024 * 1024}
 					maxFiles={5}
 					files={files}
 					onFilesChange={setFiles}
@@ -73,7 +72,6 @@ export function FileUploadImageOnlyDemo() {
 	const [files, setFiles] = useState<FileUploadFile[]>([]);
 
 	const handleUpload = async (filesToUpload: FileUploadFile[]) => {
-		// Simulate upload
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 		setFiles((prevFiles) =>
 			prevFiles.map((f) =>
@@ -94,7 +92,7 @@ export function FileUploadImageOnlyDemo() {
 					variant="default"
 					multiple
 					accept="image/*"
-					maxSize={2 * 1024 * 1024} // 2MB
+					maxSize={2 * 1024 * 1024}
 					maxFiles={10}
 					files={files}
 					onFilesChange={setFiles}
@@ -119,7 +117,7 @@ export function FileUploadSingleFileDemo() {
 					variant="default"
 					multiple={false}
 					accept=".pdf,.doc,.docx"
-					maxSize={10 * 1024 * 1024} // 10MB
+					maxSize={10 * 1024 * 1024}
 					files={files}
 					onFilesChange={setFiles}
 					uploadText="Click to upload a document"
@@ -153,9 +151,7 @@ export function FileUploadCustomizationDemo() {
 	const [files, setFiles] = useState<FileUploadFile[]>([]);
 
 	const handleUpload = async (filesToUpload: FileUploadFile[]) => {
-		// Simulate realistic upload with progress
 		for (const file of filesToUpload) {
-			// Update to uploading status
 			setFiles((prevFiles) =>
 				prevFiles.map((f) =>
 					f.id === file.id
@@ -164,7 +160,6 @@ export function FileUploadCustomizationDemo() {
 				),
 			);
 
-			// Simulate progress
 			for (let progress = 0; progress <= 100; progress += Math.random() * 15) {
 				await new Promise((resolve) =>
 					setTimeout(resolve, 50 + Math.random() * 100),
@@ -176,7 +171,6 @@ export function FileUploadCustomizationDemo() {
 				);
 			}
 
-			// Complete upload
 			setFiles((prevFiles) =>
 				prevFiles.map((f) =>
 					f.id === file.id
@@ -198,7 +192,7 @@ export function FileUploadCustomizationDemo() {
 					size="lg"
 					multiple
 					accept="*/*"
-					maxSize={50 * 1024 * 1024} // 50MB
+					maxSize={50 * 1024 * 1024}
 					maxFiles={20}
 					files={files}
 					onFilesChange={setFiles}
@@ -219,11 +213,9 @@ export function FileUploadWithErrorDemo() {
 
 	const handleUpload = async (filesToUpload: FileUploadFile[]) => {
 		for (const file of filesToUpload) {
-			// Simulate random success/failure
 			const willFail = Math.random() > 0.7;
 
 			if (willFail) {
-				// Simulate failure
 				setFiles((prevFiles) =>
 					prevFiles.map((f) =>
 						f.id === file.id
@@ -236,7 +228,6 @@ export function FileUploadWithErrorDemo() {
 					),
 				);
 			} else {
-				// Simulate success with progress
 				setFiles((prevFiles) =>
 					prevFiles.map((f) =>
 						f.id === file.id
@@ -270,7 +261,7 @@ export function FileUploadWithErrorDemo() {
 				<h3 className="text-lg font-semibold mb-2">
 					Upload with Random Errors
 				</h3>
-				<p className="text-sm text-foreground-muted mb-4">
+				<p className="text-sm text-primary-muted mb-4">
 					This demo simulates random upload failures to show error handling
 				</p>
 				<FileUpload

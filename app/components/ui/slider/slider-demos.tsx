@@ -36,7 +36,7 @@ export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Default
 				</label>
 				<Slider
@@ -47,7 +47,7 @@ export const VariantsDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Secondary
 				</label>
 				<Slider
@@ -69,9 +69,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Small
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Small</label>
 				<Slider
 					size="sm"
 					value={smallValue}
@@ -80,9 +78,7 @@ export const SizesDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Medium
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Medium</label>
 				<Slider
 					size="md"
 					value={mediumValue}
@@ -91,9 +87,7 @@ export const SizesDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
-					Large
-				</label>
+				<label className="text-sm font-medium text-primary-muted">Large</label>
 				<Slider
 					size="lg"
 					value={largeValue}
@@ -128,7 +122,7 @@ export const CustomRangeDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6 w-48">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Temperature (16°C - 30°C)
 				</label>
 				<Slider
@@ -144,7 +138,7 @@ export const CustomRangeDemo: React.FC = () => {
 				/>
 			</div>
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Volume (0 - 10)
 				</label>
 				<Slider
@@ -180,7 +174,7 @@ export const StepDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-56">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground-muted">
+				<label className="text-sm font-medium text-primary-muted">
 					Step = 5 (Snaps to: 0, 5, 10, ...)
 				</label>
 				<Slider
@@ -214,9 +208,7 @@ export const VerticalDemo: React.FC = () => {
 						className="h-full"
 						aria-label="Vertical slider 1"
 					/>
-					<span className="text-xs text-foreground-muted">
-						Default
-					</span>
+					<span className="text-xs text-primary-muted">Default</span>
 				</div>
 				<div className="flex flex-col items-center gap-2 h-48">
 					<Slider
@@ -228,9 +220,7 @@ export const VerticalDemo: React.FC = () => {
 						className="h-full"
 						aria-label="Vertical slider 2"
 					/>
-					<span className="text-xs text-foreground-muted">
-						Secondary Large
-					</span>
+					<span className="text-xs text-primary-muted">Secondary Large</span>
 				</div>
 			</div>
 		</div>
@@ -248,7 +238,7 @@ export const PriceRangeDemo: React.FC = () => {
 						<h3 className="text-sm font-semibold text-foreground">
 							Budget Range
 						</h3>
-						<span className="text-sm font-medium text-foreground-muted">
+						<span className="text-sm font-medium text-primary-muted">
 							${budget.toLocaleString()}
 						</span>
 					</div>

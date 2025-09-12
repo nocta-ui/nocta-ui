@@ -5,9 +5,6 @@ export {
 
 export {
 	BasicSwitchDemo,
-	ControlledSwitchDemo,
-	CustomStylingDemo,
-	DisabledStateDemo,
 	SizesDemo,
 	VariantsDemo,
 } from "./switch-demos";

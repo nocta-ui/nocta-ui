@@ -1,903 +1,227 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
-import {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
-import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
 const contextMenuContentVariants = cva(
-	`z-50 min-w-[10rem] overflow-hidden rounded-lg border
-   bg-background border-border-muted
-   p-1 text-foreground shadow-lg dark:shadow-xl
-   not-prose`,
+	`z-50 overflow-hidden rounded-lg border bg-background border-border-muted
+   text-foreground shadow-lg dark:shadow-xl not-prose
+   transform transition-all duration-200 ease-out
+   origin-top -translate-y-1 opacity-0 scale-95
+   data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
+   data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,
 	{
 		variants: {
-			side: {
-				top: "",
-				right: "",
-				bottom: "",
-				left: "",
-			},
-			align: {
-				start: "",
-				center: "",
-				end: "",
+			size: {
+				sm: "min-w-[8rem] p-1",
+				md: "min-w-[10rem] p-1",
+				lg: "min-w-[12rem] p-2",
 			},
 		},
 		defaultVariants: {
-			side: "bottom",
-			align: "start",
+			size: "md",
 		},
 	},
 );
 
-export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface ContextMenuTriggerProps
-	extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
-}
-
-export interface ContextMenuContentProps
-	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof contextMenuContentVariants> {
-	children: React.ReactNode;
-	className?: string;
-	sideOffset?: number;
-	alignOffset?: number;
-	avoidCollisions?: boolean;
-	onEscapeKeyDown?: (event: KeyboardEvent) => void;
-	onPointerDownOutside?: (event: PointerEvent) => void;
-}
-
-export interface ContextMenuItemProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
-	inset?: boolean;
-}
-
-export interface ContextMenuSeparatorProps
-	extends React.HTMLAttributes<HTMLDivElement> {
-	className?: string;
-}
-
-export interface ContextMenuSubProps
-	extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-	open?: boolean;
-	onOpenChange?: (open: boolean) => void;
-}
-
-export interface ContextMenuSubTriggerProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
-	inset?: boolean;
-}
-
-export interface ContextMenuSubContentProps
-	extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-interface ContextMenuContextType {
-	open: boolean;
-	setOpen: (open: boolean) => void;
-	triggerRef: React.RefObject<HTMLDivElement | null>;
-	contentRef: React.RefObject<HTMLDivElement | null>;
-	position: { x: number; y: number };
-	setPosition: (position: { x: number; y: number }) => void;
-}
-
-const ContextMenuContext = createContext<ContextMenuContextType | undefined>(
-	undefined,
+const contextSubMenuContentVariants = cva(
+	`z-50 overflow-hidden rounded-lg border bg-background border-border-muted
+   text-foreground shadow-lg not-prose transform transition-all duration-200
+   origin-top-left -translate-y-1 opacity-0 scale-95
+   data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
+   data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,
+	{
+		variants: {
+			size: {
+				sm: "min-w-[7rem] p-1",
+				md: "min-w-[8rem] p-1",
+				lg: "min-w-[10rem] p-2",
+			},
+		},
+		defaultVariants: {
+			size: "md",
+		},
+	},
 );
 
-const useContextMenu = () => {
-	const context = useContext(ContextMenuContext);
-	if (!context) {
-		throw new Error("ContextMenu components must be used within a ContextMenu");
-	}
-	return context;
-};
+const contextMenuItemVariants = cva(
+	`w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
+   outline-none transition-colors focus-visible:bg-background-muted
+   focus-visible:text-primary aria-disabled:pointer-events-none
+   aria-disabled:opacity-50 hover:bg-background-muted hover:text-foreground`,
+	{
+		variants: {
+			inset: {
+				true: "pl-8",
+				false: "",
+			},
+			destructive: {
+				true: "text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300/90 dark:hover:bg-red-950/40",
+				false: "",
+			},
+		},
+		defaultVariants: {
+			inset: false,
+			destructive: false,
+		},
+	},
+);
 
-interface ContextMenuSubContextType {
-	open: boolean;
-	setOpen: (open: boolean) => void;
-	triggerRef: React.RefObject<HTMLButtonElement | null>;
-	contentRef: React.RefObject<HTMLDivElement | null>;
-	hoverTimeoutRef: React.RefObject<NodeJS.Timeout | null>;
+export interface ContextMenuProps {
+	children: React.ReactNode;
+	className?: string;
 }
-
-const ContextMenuSubContext = createContext<
-	ContextMenuSubContextType | undefined
->(undefined);
-
-const useContextMenuSub = () => {
-	const context = useContext(ContextMenuSubContext);
-	if (!context) {
-		throw new Error(
-			"ContextMenuSub components must be used within a ContextMenuSub",
-		);
-	}
-	return context;
-};
 
 export const ContextMenu: React.FC<ContextMenuProps> = ({
 	children,
-	className = "",
-	...props
+	className,
 }) => {
-	const [open, setOpen] = useState(false);
-	const [position, setPosition] = useState({ x: 0, y: 0 });
-	const triggerRef = useRef<HTMLDivElement>(null);
-	const contentRef = useRef<HTMLDivElement>(null);
+	const menu = Ariakit.useMenuStore({ animated: true });
 
 	return (
-		<ContextMenuContext.Provider
-			value={{
-				open,
-				setOpen,
-				triggerRef,
-				contentRef,
-				position,
-				setPosition,
-			}}
-		>
-			<div className={cn("not-prose", className)} {...props}>
-				{children}
-			</div>
-		</ContextMenuContext.Provider>
+		<Ariakit.MenuProvider store={menu}>
+			<div className={cn("not-prose", className)}>{children}</div>
+		</Ariakit.MenuProvider>
 	);
 };
+
+export interface ContextMenuTriggerProps {
+	children: React.ReactNode;
+	className?: string;
+	disabled?: boolean;
+}
 
 export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
 	children,
-	className = "",
-	disabled = false,
-	...props
+	className,
+	disabled,
 }) => {
-	const { setOpen, setPosition, triggerRef } = useContextMenu();
-
-	const handleContextMenu = (e: React.MouseEvent) => {
-		e.preventDefault();
-		e.stopPropagation();
-		if (disabled) return;
-
-		setPosition({ x: e.clientX, y: e.clientY });
-		setOpen(true);
-	};
-
-	return (
-		<div
-			ref={triggerRef}
-			className={cn(
-				className,
-				disabled ? "pointer-events-none opacity-50" : "",
-			)}
-			onContextMenu={handleContextMenu}
-			{...props}
-		>
-			{children}
-		</div>
-	);
-};
-
-export const ContextMenuContent: React.FC<ContextMenuContentProps> = ({
-	children,
-	className = "",
-	side = "bottom",
-	align = "start",
-	sideOffset = 4,
-	alignOffset = 0,
-	avoidCollisions = true,
-	onEscapeKeyDown,
-	onPointerDownOutside,
-	...props
-}) => {
-	const { open, setOpen, contentRef, position } = useContextMenu();
-	const [calculatedPosition, setCalculatedPosition] = useState<{
-		top: number;
-		left: number;
-	} | null>(null);
-	const [isVisible, setIsVisible] = useState(false);
-	const [shouldRender, setShouldRender] = useState(false);
-	const [isMeasuring, setIsMeasuring] = useState(false);
-	const positionRef = useRef(position);
-
-	useEffect(() => {
-		positionRef.current = position;
-	}, [position]);
-
-	useEffect(() => {
-		if (open) {
-			setShouldRender(true);
-			setIsMeasuring(true);
-			setIsVisible(false);
-			setCalculatedPosition(null);
-		} else {
-			setIsVisible(false);
-			setIsMeasuring(false);
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-				setCalculatedPosition(null);
-			}, 200);
-			return () => clearTimeout(timer);
-		}
-	}, [open]);
-
-	const calculateMenuPosition = useCallback(() => {
-		if (!contentRef.current || !open || !isMeasuring) return;
-
-		const contentRect = contentRef.current.getBoundingClientRect();
-
-		if (contentRect.width === 0 || contentRect.height === 0) {
-			requestAnimationFrame(calculateMenuPosition);
-			return;
-		}
-
-		const viewport = {
-			width: window.innerWidth,
-			height: window.innerHeight,
-		};
-
-		const currentPosition = positionRef.current;
-		let top = currentPosition.y;
-		let left = currentPosition.x;
-
-		switch (side) {
-			case "top":
-				top = currentPosition.y - contentRect.height - sideOffset;
-				break;
-			case "bottom":
-				top = currentPosition.y + sideOffset;
-				break;
-			case "left":
-				left = currentPosition.x - contentRect.width - sideOffset;
-				break;
-			case "right":
-				left = currentPosition.x + sideOffset;
-				break;
-		}
-
-		if (side === "top" || side === "bottom") {
-			switch (align) {
-				case "center":
-					left = currentPosition.x - contentRect.width / 2 + alignOffset;
-					break;
-				case "end":
-					left = currentPosition.x - contentRect.width + alignOffset;
-					break;
-				default:
-					left = currentPosition.x + alignOffset;
-			}
-		} else {
-			switch (align) {
-				case "center":
-					top = currentPosition.y - contentRect.height / 2 + alignOffset;
-					break;
-				case "end":
-					top = currentPosition.y - contentRect.height + alignOffset;
-					break;
-				default:
-					top = currentPosition.y + alignOffset;
-			}
-		}
-
-		if (avoidCollisions) {
-			if (left + contentRect.width > viewport.width) {
-				left = viewport.width - contentRect.width - 8;
-			}
-			if (left < 8) {
-				left = 8;
-			}
-			if (top + contentRect.height > viewport.height) {
-				top = viewport.height - contentRect.height - 8;
-			}
-			if (top < 8) {
-				top = 8;
-			}
-		}
-
-		setCalculatedPosition({ top, left });
-		setIsMeasuring(false);
-
-		requestAnimationFrame(() => {
-			setIsVisible(true);
-		});
-	}, [
-		open,
-		isMeasuring,
-		side,
-		align,
-		sideOffset,
-		alignOffset,
-		avoidCollisions,
-		contentRef,
-	]);
-
-	useEffect(() => {
-		if (!isMeasuring) return;
-
-		requestAnimationFrame(calculateMenuPosition);
-	}, [isMeasuring, calculateMenuPosition]);
-
-	const getFocusableElements = useCallback(() => {
-		if (!contentRef.current) return [];
-
-		const focusableSelectors = [
-			'[role="menuitem"]:not([disabled])',
-			'[role="menuitemcheckbox"]:not([disabled])',
-			'[role="menuitemradio"]:not([disabled])',
-			"button:not([disabled])",
-			"input:not([disabled])",
-			"textarea:not([disabled])",
-			"select:not([disabled])",
-			"a[href]",
-			'[tabindex]:not([tabindex="-1"])',
-		].join(", ");
-
-		return Array.from(
-			contentRef.current.querySelectorAll(focusableSelectors),
-		) as HTMLElement[];
-	}, [contentRef]);
-
-	useEffect(() => {
-		if (!open) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				e.preventDefault();
-				onEscapeKeyDown?.(e);
-				setOpen(false);
-				return;
-			}
-
-			if (!contentRef.current) return;
-
-			const focusableElements = getFocusableElements();
-
-			if (focusableElements.length === 0) return;
-
-			if (e.key === "Tab") {
-				const firstElement = focusableElements[0];
-				const lastElement = focusableElements[focusableElements.length - 1];
-				const activeElement = document.activeElement as HTMLElement;
-				const isActiveInMenu = contentRef.current?.contains(activeElement);
-
-				if (e.shiftKey) {
-					if (activeElement === firstElement || !isActiveInMenu) {
-						e.preventDefault();
-						lastElement.focus({ preventScroll: true });
-					}
-				} else {
-					if (activeElement === lastElement || !isActiveInMenu) {
-						e.preventDefault();
-						firstElement.focus({ preventScroll: true });
-					}
-				}
-				return;
-			}
-
-			const activeElement = document.activeElement as HTMLElement;
-			const isInSubmenu = activeElement?.closest('[data-submenu="true"]');
-
-			if (isInSubmenu) return;
-
-			const currentIndex = focusableElements.indexOf(activeElement);
-
-			switch (e.key) {
-				case "ArrowDown": {
-					e.preventDefault();
-					const nextIndex =
-						currentIndex === -1
-							? 0
-							: currentIndex < focusableElements.length - 1
-								? currentIndex + 1
-								: 0;
-					focusableElements[nextIndex]?.focus({ preventScroll: true });
-					break;
-				}
-				case "ArrowUp": {
-					e.preventDefault();
-					const prevIndex =
-						currentIndex === -1
-							? focusableElements.length - 1
-							: currentIndex > 0
-								? currentIndex - 1
-								: focusableElements.length - 1;
-					focusableElements[prevIndex]?.focus({ preventScroll: true });
-					break;
-				}
-				case "ArrowRight":
-					e.preventDefault();
-					if (activeElement?.getAttribute("aria-haspopup") === "menu") {
-						activeElement.click();
-					}
-					break;
-				case "Home":
-					e.preventDefault();
-					focusableElements[0]?.focus({ preventScroll: true });
-					break;
-				case "End":
-					e.preventDefault();
-					focusableElements[focusableElements.length - 1]?.focus({
-						preventScroll: true,
-					});
-					break;
-			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, [open, onEscapeKeyDown, setOpen, getFocusableElements, contentRef]);
-
-	useEffect(() => {
-		if (!open) return;
-
-		const handlePointerDown = (e: PointerEvent) => {
-			const target = e.target as Node;
-			if (contentRef.current && !contentRef.current.contains(target)) {
-				onPointerDownOutside?.(e);
-				setOpen(false);
-			}
-		};
-
-		document.addEventListener("pointerdown", handlePointerDown);
-
-		document.body.style.overflow = "hidden";
-
-		return () => {
-			document.removeEventListener("pointerdown", handlePointerDown);
-			document.body.style.overflow = "";
-		};
-	}, [open, onPointerDownOutside, setOpen, contentRef]);
-
-	if (!shouldRender || typeof window === "undefined") {
-		return null;
-	}
-
-	const animationStyles = `
-    transition-opacity transition-scale transition-transform duration-200 ease-out
-    ${
-			isMeasuring
-				? "opacity-0 pointer-events-none"
-				: isVisible && calculatedPosition
-					? "opacity-100 scale-100"
-					: "opacity-0 scale-95"
-		}
-  `;
-
-	return createPortal(
-		<div
-			ref={contentRef}
-			className={cn(
-				contextMenuContentVariants({ side, align }),
-				animationStyles,
-				className,
-			)}
-			style={{
-				position: "fixed",
-				top: calculatedPosition ? `${calculatedPosition.top}px` : "0px",
-				left: calculatedPosition ? `${calculatedPosition.left}px` : "0px",
-			}}
-			role="menu"
-			aria-orientation="vertical"
-			data-state={open ? "open" : "closed"}
-			data-side={side}
-			{...props}
-		>
-			<span
-				aria-hidden
-				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-				style={{
-					maskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					WebkitMaskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-				}}
-			/>
-			<div className="flex flex-col gap-1">{children}</div>
-		</div>,
-		document.body,
-	);
-};
-
-export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
-	children,
-	className = "",
-	disabled = false,
-	inset = false,
-	onClick,
-	...props
-}) => {
-	const { setOpen } = useContextMenu();
-	const subContext = useContext(ContextMenuSubContext);
-
-	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		if (disabled) return;
-
-		if (subContext) {
-			if (subContext.hoverTimeoutRef.current) {
-				clearTimeout(subContext.hoverTimeoutRef.current);
-				subContext.hoverTimeoutRef.current = null;
-			}
-			subContext.setOpen(false);
-		}
-
-		setOpen(false);
-		onClick?.(e);
-	};
-
-	const baseStyles = `
-    w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
-    outline-none transition-colors focus-visible:bg-background-muted
-    focus-visible:text-primary data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-background-muted
-    hover:text-foreground
-  `;
+	const menu = Ariakit.useMenuContext();
 
 	return (
 		<button
-			className={cn(baseStyles, inset ? "pl-8" : "", className)}
-			role="menuitem"
+			type="button"
 			disabled={disabled}
-			data-disabled={disabled ? "" : undefined}
-			onClick={handleClick}
-			{...props}
+			onContextMenu={(e) => {
+				if (!disabled) {
+					e.preventDefault();
+					menu?.setAnchorElement(e.currentTarget);
+					menu?.show();
+				}
+			}}
+			onKeyDown={(e) => {
+				if (disabled) return;
+				const isContextKey = e.key === "ContextMenu";
+				const isShiftF10 = e.key === "F10" && e.shiftKey;
+				if (isContextKey || isShiftF10) {
+					e.preventDefault();
+					menu?.setAnchorElement(e.currentTarget);
+					menu?.show();
+				}
+			}}
+			className={cn(
+				"appearance-none bg-transparent p-0 text-left",
+				className,
+				disabled && "opacity-50",
+			)}
 		>
 			{children}
 		</button>
 	);
 };
 
-export const ContextMenuSeparator: React.FC<ContextMenuSeparatorProps> = ({
-	className = "",
-	...props
-}) => {
-	return (
-		<div
-			className={`-mx-1 my-1 h-px bg-border-muted/30 ${className}`}
-			role="separator"
-			{...props}
+export const ContextMenuContent: React.FC<
+	{
+		children: React.ReactNode;
+		className?: string;
+	} & VariantProps<typeof contextMenuContentVariants>
+> = ({ children, className, size }) => (
+	<Ariakit.Menu
+		portal
+		sameWidth
+		gutter={4}
+		className={cn(contextMenuContentVariants({ size }), className)}
+	>
+		<span
+			aria-hidden
+			className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+			style={{
+				maskImage:
+					"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				WebkitMaskImage:
+					"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+			}}
 		/>
-	);
-};
+		<div className="flex flex-col gap-1">{children}</div>
+	</Ariakit.Menu>
+);
 
-export const ContextMenuSub: React.FC<ContextMenuSubProps> = ({
+export const ContextMenuItem: React.FC<
+	{
+		children: React.ReactNode;
+		className?: string;
+		disabled?: boolean;
+		inset?: boolean;
+		destructive?: boolean;
+		onClick?: () => void;
+	} & VariantProps<typeof contextMenuItemVariants>
+> = ({ children, className, disabled, inset, destructive, onClick }) => (
+	<Ariakit.MenuItem
+		disabled={disabled}
+		onClick={onClick}
+		className={cn(contextMenuItemVariants({ inset, destructive }), className)}
+	>
+		{children}
+	</Ariakit.MenuItem>
+);
+
+export const ContextMenuSeparator: React.FC<{ className?: string }> = ({
+	className,
+}) => (
+	<Ariakit.MenuSeparator
+		className={cn("-mx-1 my-1 h-px bg-border-muted/30", className)}
+	/>
+);
+
+export const ContextMenuSub: React.FC<{ children: React.ReactNode }> = ({
 	children,
-	open: controlledOpen,
-	onOpenChange,
-	...props
 }) => {
-	const [internalOpen, setInternalOpen] = useState(false);
-	const triggerRef = useRef<HTMLButtonElement>(null);
-	const contentRef = useRef<HTMLDivElement>(null);
-	const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-	const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
-	const setOpen = onOpenChange || setInternalOpen;
-
-	useEffect(() => {
-		const timeoutRef = hoverTimeoutRef.current;
-		return () => {
-			if (timeoutRef) {
-				clearTimeout(timeoutRef);
-			}
-		};
-	}, []);
-
+	const subMenu = Ariakit.useMenuStore({ animated: true });
 	return (
-		<ContextMenuSubContext.Provider
-			value={{
-				open,
-				setOpen,
-				triggerRef,
-				contentRef,
-				hoverTimeoutRef,
-			}}
-		>
-			<div {...props}>{children}</div>
-		</ContextMenuSubContext.Provider>
+		<Ariakit.MenuProvider store={subMenu}>{children}</Ariakit.MenuProvider>
 	);
 };
 
-export const ContextMenuSubTrigger: React.FC<ContextMenuSubTriggerProps> = ({
-	children,
-	className = "",
-	disabled = false,
-	inset = false,
-	onClick,
-	...props
-}) => {
-	const { open, setOpen, triggerRef, hoverTimeoutRef } = useContextMenuSub();
+export const ContextMenuSubTrigger: React.FC<
+	{
+		children: React.ReactNode;
+		className?: string;
+		disabled?: boolean;
+		inset?: boolean;
+		destructive?: boolean;
+	} & VariantProps<typeof contextMenuItemVariants>
+> = ({ children, className, disabled, inset, destructive }) => (
+	<Ariakit.MenuButton
+		disabled={disabled}
+		className={cn(contextMenuItemVariants({ inset, destructive }), className)}
+	>
+		<span className="flex-1 flex justify-start items-center">{children}</span>
+		<Ariakit.MenuButtonArrow className="ml-2" />
+	</Ariakit.MenuButton>
+);
 
-	const handleMouseEnter = () => {
-		if (disabled) return;
-
-		if (hoverTimeoutRef.current) {
-			clearTimeout(hoverTimeoutRef.current);
-			hoverTimeoutRef.current = null;
-		}
-		setOpen(true);
-	};
-
-	const handleMouseLeave = () => {
-		if (disabled) return;
-
-		hoverTimeoutRef.current = setTimeout(() => {
-			setOpen(false);
-		}, 150);
-	};
-
-	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		if (disabled) return;
-
-		e.preventDefault();
-		e.stopPropagation();
-		setOpen(!open);
-		onClick?.(e);
-	};
-
-	const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-		if (disabled) return;
-
-		if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") {
-			e.preventDefault();
-			setOpen(true);
-
-			setTimeout(() => {
-				const submenu = document.querySelector(
-					'[role="menu"][data-submenu="true"]',
-				);
-				const firstItem = submenu?.querySelector(
-					'[role="menuitem"]:not([disabled])',
-				) as HTMLElement;
-				firstItem?.focus({ preventScroll: true });
-			}, 0);
-		}
-	};
-
-	const baseStyles = `
-    w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
-    outline-none transition-colors focus-visible:bg-background-muted
-    focus-visible:text-primary data-[disabled]:pointer-events-none
-    data-[disabled]:opacity-50 hover:bg-background-muted
-    hover:text-foreground
-  `;
-
-	return (
-		<button
-			ref={triggerRef}
-			className={cn(baseStyles, inset ? "pl-8" : "", className)}
-			role="menuitem"
-			aria-haspopup="menu"
-			aria-expanded={open}
-			disabled={disabled}
-			data-disabled={disabled ? "" : undefined}
-			onClick={handleClick}
-			onKeyDown={handleKeyDown}
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			{...props}
-		>
-			<span className="flex-1 flex justify-start items-center">{children}</span>
-			<svg
-				className="w-4 h-4 ml-2"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-				aria-hidden="true"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M9 5l7 7-7 7"
-				/>
-			</svg>
-		</button>
-	);
-};
-
-export const ContextMenuSubContent: React.FC<ContextMenuSubContentProps> = ({
-	children,
-	className = "",
-	...props
-}) => {
-	const { open, setOpen, triggerRef, contentRef, hoverTimeoutRef } =
-		useContextMenuSub();
-	const [position, setPosition] = useState({ x: 0, y: 0 });
-	const [isVisible, setIsVisible] = useState(false);
-
-	useEffect(() => {
-		if (open && triggerRef.current && contentRef.current) {
-			const triggerRect = triggerRef.current.getBoundingClientRect();
-			const contentRect = contentRef.current.getBoundingClientRect();
-
-			let left = triggerRect.right + 4;
-			let top = triggerRect.top;
-
-			const viewport = {
-				width: window.innerWidth,
-				height: window.innerHeight,
-			};
-
-			if (left + contentRect.width > viewport.width) {
-				left = triggerRect.left - contentRect.width - 4;
-			}
-			if (top + contentRect.height > viewport.height) {
-				top = viewport.height - contentRect.height - 8;
-			}
-			if (top < 8) {
-				top = 8;
-			}
-
-			setPosition({ x: left, y: top });
-			setIsVisible(true);
-		} else {
-			setIsVisible(false);
-		}
-	}, [open, contentRef, triggerRef]);
-
-	const handleMouseEnter = () => {
-		if (hoverTimeoutRef.current) {
-			clearTimeout(hoverTimeoutRef.current);
-			hoverTimeoutRef.current = null;
-		}
-		setOpen(true);
-	};
-
-	const handleMouseLeave = () => {
-		hoverTimeoutRef.current = setTimeout(() => {
-			setOpen(false);
-		}, 150);
-	};
-
-	useEffect(() => {
-		if (!open || !contentRef.current) return;
-
-		const getFocusableElements = () => {
-			if (!contentRef.current) return [];
-
-			const focusableSelectors = [
-				'[role="menuitem"]:not([disabled])',
-				'[role="menuitemcheckbox"]:not([disabled])',
-				'[role="menuitemradio"]:not([disabled])',
-				"button:not([disabled])",
-				"input:not([disabled])",
-				"textarea:not([disabled])",
-				"select:not([disabled])",
-				"a[href]",
-				'[tabindex]:not([tabindex="-1"])',
-			].join(", ");
-
-			return Array.from(
-				contentRef.current.querySelectorAll(focusableSelectors),
-			) as HTMLElement[];
-		};
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (!contentRef.current?.contains(e.target as Node)) return;
-
-			const focusableElements = getFocusableElements();
-			if (focusableElements.length === 0) return;
-
-			const activeElement = document.activeElement as HTMLElement;
-			const currentIndex = focusableElements.indexOf(activeElement);
-
-			switch (e.key) {
-				case "ArrowDown": {
-					e.preventDefault();
-					const nextIndex =
-						currentIndex < focusableElements.length - 1 ? currentIndex + 1 : 0;
-					focusableElements[nextIndex]?.focus({ preventScroll: true });
-					break;
-				}
-				case "ArrowUp": {
-					e.preventDefault();
-					const prevIndex =
-						currentIndex > 0 ? currentIndex - 1 : focusableElements.length - 1;
-					focusableElements[prevIndex]?.focus({ preventScroll: true });
-					break;
-				}
-				case "ArrowLeft":
-					e.preventDefault();
-					setOpen(false);
-					triggerRef.current?.focus({ preventScroll: true });
-					break;
-				case "Escape":
-					e.preventDefault();
-					setOpen(false);
-					triggerRef.current?.focus({ preventScroll: true });
-					break;
-				case "Home":
-					e.preventDefault();
-					focusableElements[0]?.focus({ preventScroll: true });
-					break;
-				case "End":
-					e.preventDefault();
-					focusableElements[focusableElements.length - 1]?.focus({
-						preventScroll: true,
-					});
-					break;
-				case "Tab": {
-					const firstElement = focusableElements[0];
-					const lastElement = focusableElements[focusableElements.length - 1];
-
-					if (e.shiftKey) {
-						if (
-							activeElement === firstElement ||
-							!contentRef.current?.contains(activeElement)
-						) {
-							e.preventDefault();
-							lastElement.focus({ preventScroll: true });
-						}
-					} else {
-						if (
-							activeElement === lastElement ||
-							!contentRef.current?.contains(activeElement)
-						) {
-							e.preventDefault();
-							firstElement.focus({ preventScroll: true });
-						}
-					}
-					break;
-				}
-			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, [open, setOpen, contentRef, triggerRef]);
-
-	if (!open || typeof window === "undefined") {
-		return null;
-	}
-
-	const baseStyles = `
-    z-50 min-w-[8rem] overflow-hidden rounded-lg border
-    bg-background border-border-muted
-    p-1 text-foreground shadow-lg
-    transition-opacity transition-transform duration-200 not-prose
-    ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}
-  `;
-
-	return createPortal(
-		<div
-			ref={contentRef}
-			className={cn(baseStyles, className)}
-			style={{
-				position: "fixed",
-				left: `${position.x}px`,
-				top: `${position.y}px`,
-			}}
-			role="menu"
-			aria-orientation="vertical"
-			data-submenu="true"
-			onMouseEnter={handleMouseEnter}
-			onMouseLeave={handleMouseLeave}
-			{...props}
-		>
-			<div className="flex flex-col gap-1">{children}</div>
-		</div>,
-		document.body,
-	);
-};
+export const ContextMenuSubContent: React.FC<
+	{
+		children: React.ReactNode;
+		className?: string;
+	} & VariantProps<typeof contextSubMenuContentVariants>
+> = ({ children, className, size }) => (
+	<Ariakit.Menu
+		portal
+		className={cn(contextSubMenuContentVariants({ size }), className)}
+	>
+		<div className="flex flex-col gap-1">{children}</div>
+	</Ariakit.Menu>
+);

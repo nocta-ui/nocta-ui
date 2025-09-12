@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const textareaVariants = cva(
 	[
 		"w-full flex rounded-lg border transition-all duration-200 ease-in-out",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1",
 		"focus-visible:ring-offset-ring-offset/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-foreground-subtle",
@@ -19,7 +19,7 @@ const textareaVariants = cva(
 					"bg-background",
 					"text-foreground",
 					"focus-visible:border-border/10",
-					"focus-visible:ring-ring/10",
+					"focus-visible:ring-ring/50",
 				],
 				error: [
 					"border-red-300 dark:border-red-700/50",
@@ -77,6 +77,9 @@ export interface TextareaProps
 	containerClassName?: string;
 }
 
+let textareaIdCounter = 0;
+const generateTextareaId = () => `textarea-${++textareaIdCounter}`;
+
 export const Textarea: React.FC<TextareaProps> = ({
 	variant = "default",
 	size = "md",
@@ -89,15 +92,26 @@ export const Textarea: React.FC<TextareaProps> = ({
 	containerClassName = "",
 	disabled,
 	rows = 4,
+	id,
 	...props
 }) => {
 	const displayErrorMessage = variant === "error" && errorMessage;
 	const displaySuccessMessage = variant === "success" && successMessage;
+	const textareaId = id ?? generateTextareaId();
+
+	const helperId = helperText ? `${textareaId}-helper` : undefined;
+	const errorId = displayErrorMessage ? `${textareaId}-error` : undefined;
+	const successId = displaySuccessMessage ? `${textareaId}-success` : undefined;
+	const describedBy =
+		[helperId, errorId, successId].filter(Boolean).join(" ") || undefined;
 
 	return (
 		<div className={cn("not-prose", containerClassName)}>
 			{label && (
-				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
+				<label
+					htmlFor={textareaId}
+					className="block text-sm font-medium text-primary-muted mb-1.5"
+				>
 					{label}
 				</label>
 			)}
@@ -106,19 +120,36 @@ export const Textarea: React.FC<TextareaProps> = ({
 				className={cn(textareaVariants({ variant, size, resize }), className)}
 				disabled={disabled}
 				rows={rows}
+				id={textareaId}
+				aria-describedby={describedBy}
+				aria-invalid={variant === "error" ? true : undefined}
 				{...props}
 			/>
 
 			{displayErrorMessage && (
-				<p className={messageVariants({ type: "error" })}>{errorMessage}</p>
+				<p
+					id={errorId}
+					className={messageVariants({ type: "error" })}
+					aria-live="polite"
+				>
+					{errorMessage}
+				</p>
 			)}
 
 			{displaySuccessMessage && (
-				<p className={messageVariants({ type: "success" })}>{successMessage}</p>
+				<p
+					id={successId}
+					className={messageVariants({ type: "success" })}
+					aria-live="polite"
+				>
+					{successMessage}
+				</p>
 			)}
 
 			{helperText && !displayErrorMessage && !displaySuccessMessage && (
-				<p className={messageVariants({ type: "helper" })}>{helperText}</p>
+				<p id={helperId} className={messageVariants({ type: "helper" })}>
+					{helperText}
+				</p>
 			)}
 		</div>
 	);

@@ -40,7 +40,7 @@ import {
 </Step>
 </Steps>
 
-## Basic Usage
+## Example
 
 The Popover component provides a floating panel that appears on demand, perfect for displaying additional information or controls.
 
@@ -57,171 +57,10 @@ The Popover component provides a floating panel that appears on demand, perfect 
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-foreground-muted">
+          <p className="text-sm text-primary-muted">
             This is a popover component that can contain any content you want.
           </p>
         </div>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Positioning
-
-Control where the popover appears relative to the trigger with the `side` prop.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SidesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Popover Positioning"
-    <Popover>
-      <PopoverTrigger>Top</PopoverTrigger>
-      <PopoverContent side="top">
-        <p className="text-sm">Popover on top</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>Right</PopoverTrigger>
-      <PopoverContent side="right">
-        <p className="text-sm">Popover on right</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>Bottom</PopoverTrigger>
-      <PopoverContent side="bottom">
-        <p className="text-sm">Popover on bottom</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>Left</PopoverTrigger>
-      <PopoverContent side="left">
-        <p className="text-sm">Popover on left</p>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Alignment
-
-Fine-tune the alignment of the popover relative to the trigger using the `align` prop.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <AlignmentDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Popover Alignment"
-    {/* Horizontal alignment (for top/bottom sides) */}
-    <Popover>
-      <PopoverTrigger>Start</PopoverTrigger>
-      <PopoverContent side="bottom" align="start">
-        <p className="text-sm">Aligned to start</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>Center</PopoverTrigger>
-      <PopoverContent side="bottom" align="center">
-        <p className="text-sm">Aligned to center</p>
-      </PopoverContent>
-    </Popover>
-
-    <Popover>
-      <PopoverTrigger>End</PopoverTrigger>
-      <PopoverContent side="bottom" align="end">
-        <p className="text-sm">Aligned to end</p>
-      </PopoverContent>
-    </Popover>
-
-    {/* Vertical alignment (for left/right sides) */}
-    <Popover>
-      <PopoverTrigger>Side Start</PopoverTrigger>
-      <PopoverContent side="right" align="start">
-        <p className="text-sm">Side aligned to start</p>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Offsets
-
-Adjust the distance and alignment offset of the popover from the trigger.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <OffsetsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Popover Offsets"
-    {/* Default offset */}
-    <Popover>
-      <PopoverTrigger>Default Offset</PopoverTrigger>
-      <PopoverContent>
-        <p className="text-sm">Default offset (8px)</p>
-      </PopoverContent>
-    </Popover>
-
-    {/* Custom side offset */}
-    <Popover>
-      <PopoverTrigger>Large Offset</PopoverTrigger>
-      <PopoverContent sideOffset={20}>
-        <p className="text-sm">Large side offset (20px)</p>
-      </PopoverContent>
-    </Popover>
-
-    {/* Alignment offset */}
-    <Popover>
-      <PopoverTrigger>Align Offset</PopoverTrigger>
-      <PopoverContent alignOffset={50}>
-        <p className="text-sm">Align offset (50px)</p>
-      </PopoverContent>
-    </Popover>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Custom Triggers
-
-Use the `asChild` prop to render custom trigger elements while maintaining popover functionality.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <AsChildDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Triggers"
-    {/* Using with Button component */}
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="secondary">Custom Button</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <div className="space-y-2">
-          <h4 className="font-medium text-sm">Custom Trigger</h4>
-          <p className="text-sm text-foreground-muted">
-            Using asChild prop to render a custom button component.
-          </p>
-        </div>
-      </PopoverContent>
-    </Popover>
-
-    {/* Using with custom element */}
-    <Popover>
-      <PopoverTrigger asChild>
-        <button className="px-3 py-2 bg-blue-500 text-primary-foreground rounded-md hover:bg-blue-600">
-          Custom Element
-        </button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <p className="text-sm">Any element can be a trigger!</p>
       </PopoverContent>
     </Popover>
     ```
@@ -245,7 +84,7 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-foreground-muted">
+          <p className="text-sm text-primary-muted">
             This popover's state is controlled externally.
           </p>
           <button
@@ -265,84 +104,7 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
   </DocsTab>
 </DocsTabs>
 
-## Keyboard Navigation
-
-The Popover component includes comprehensive keyboard support:
-
-- **Escape**: Close the popover and return focus to trigger
-- **Enter/Space**: Open popover when trigger is focused
-- **Tab**: Navigate through focusable elements inside popover
-- **Click outside**: Close popover when clicking outside
-
-## Accessibility Features
-
-The Popover component is built with accessibility in mind:
-
-- **ARIA Attributes**: Proper `role`, `aria-expanded`, `aria-controls`, and `aria-haspopup` attributes
-- **Focus Management**: Focus is properly managed when opening/closing
-- **Keyboard Navigation**: Full keyboard support for all interactions
-- **Screen Reader Support**: Announces popover state changes
-- **Portal Rendering**: Content is rendered in a portal to avoid z-index issues
-
-## Advanced Usage
-
-### Event Handling
-
-Handle specific events for custom behavior:
-
-```tsx lineNumbers title="Event Handling Example"
-<Popover>
-  <PopoverTrigger>Custom Events</PopoverTrigger>
-  <PopoverContent
-    onEscapeKeyDown={(event) => {
-      console.log('Escape pressed');
-      // event.preventDefault() to prevent default close behavior
-    }}
-    onPointerDownOutside={(event) => {
-      console.log('Clicked outside');
-      // event.preventDefault() to prevent default close behavior
-    }}
-  >
-    <p>Content with custom event handling</p>
-  </PopoverContent>
-</Popover>
-```
-
-### Custom Styling
-
-Customize the appearance with className props:
-
-```tsx lineNumbers title="Custom Styling Example"
-<Popover>
-  <PopoverTrigger className="custom-trigger-styles">
-    Custom Styled Trigger
-  </PopoverTrigger>
-  <PopoverContent className="custom-content-styles w-96 p-6">
-    <p>Custom styled content</p>
-  </PopoverContent>
-</Popover>
-```
-
-### Conditional Rendering
-
-Show different content based on state:
-
-```tsx lineNumbers title="Conditional Rendering Example"
-const [user, setUser] = useState(null);
-
-<Popover>
-  <PopoverTrigger>User Menu</PopoverTrigger>
-  <PopoverContent>
-    {user ? (
-      <UserProfile user={user} />
-    ) : (
-      <LoginForm onLogin={setUser} />
-    )}
-  </PopoverContent>
-</Popover>
-```
-
-## Props
+## Api Reference
 
 ### Popover
 
@@ -356,6 +118,8 @@ const [user, setUser] = useState(null);
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `variant` | `'default'` | `'default'` | Visual style of the trigger |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger size |
 | `asChild` | `boolean` | `false` | Render as child element instead of button |
 | `className` | `string` | `''` | Additional CSS classes |
 
@@ -363,13 +127,9 @@ const [user, setUser] = useState(null);
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side to display popover |
-| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment relative to trigger |
-| `sideOffset` | `number` | `8` | Distance from trigger in pixels |
-| `alignOffset` | `number` | `0` | Alignment offset in pixels |
-| `avoidCollisions` | `boolean` | `true` | Whether to flip position to avoid viewport edges |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content size (padding, typography) |
 | `className` | `string` | `''` | Additional CSS classes |
-| `onEscapeKeyDown` | `(event: KeyboardEvent) => void` | — | Callback when Escape key is pressed |
-| `onPointerDownOutside` | `(event: PointerEvent) => void` | — | Callback when clicking outside |
+| `portal` | `boolean` | `false` | Render content in a portal |
+| `fixed` | `boolean` | `false` | Use CSS `position: fixed` for the popover |
 
 The Popover component also accepts all standard HTML attributes for their respective elements.

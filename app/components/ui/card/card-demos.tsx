@@ -15,7 +15,7 @@ import {
 export const SimpleCardDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<Card className="max-w-md">
+			<Card className="max-w-100">
 				<CardHeader>
 					<CardTitle>Getting Started</CardTitle>
 					<CardDescription>
@@ -46,7 +46,7 @@ export const CardWithActionsDemo: React.FC = () => {
 				<CardContent>
 					<div className="space-y-3">
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-foreground-muted">
+							<span className="text-sm font-medium text-primary-muted">
 								Status
 							</span>
 							<span className="px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full">
@@ -54,12 +54,10 @@ export const CardWithActionsDemo: React.FC = () => {
 							</span>
 						</div>
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-foreground-muted">
+							<span className="text-sm font-medium text-primary-muted">
 								Members
 							</span>
-							<span className="text-sm text-foreground-muted">
-								12
-							</span>
+							<span className="text-sm text-primary-muted">12</span>
 						</div>
 					</div>
 				</CardContent>

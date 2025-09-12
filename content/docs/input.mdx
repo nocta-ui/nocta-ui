@@ -38,7 +38,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Input
 
@@ -239,46 +239,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Customization
-
-### Custom Styling
-
-The Input component accepts `className` and `containerClassName` props for custom styling:
-
-```tsx lineNumbers title="Custom Styling"
-<Input 
-  className="border-2 border-purple-300 focus-visible:border-purple-500"
-  containerClassName="max-w-xs"
-  label="Custom Styled Input"
-  placeholder="Custom styling"
-/>
-
-<Input 
-  className="rounded-full"
-  label="Rounded Input"
-  placeholder="Fully rounded"
-/>
-```
-
-### Custom Container
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomContainerDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx
-    <Input 
-      containerClassName="max-w-xs mx-auto"
-      className="text-center"
-      label="Centered Input"
-      placeholder="Centered text"
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Props
+## Api Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

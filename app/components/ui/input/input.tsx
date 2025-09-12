@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import type React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 const inputVariants = cva(
 	[
 		"w-fit flex rounded-lg border transition-all duration-200 ease-in-out",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1",
 		"focus-visible:ring-offset-ring-offset/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-foreground-subtle",
@@ -19,7 +19,7 @@ const inputVariants = cva(
 					"bg-background",
 					"text-foreground",
 					"focus-visible:border-border/10",
-					"focus-visible:ring-ring/10",
+					"focus-visible:ring-ring/50",
 				],
 				error: [
 					"border-red-300 dark:border-red-700/50",
@@ -60,10 +60,7 @@ const inputVariants = cva(
 );
 
 const iconVariants = cva(
-	[
-		"absolute top-1/2 transform -translate-y-1/2",
-		"text-foreground-subtle",
-	],
+	["absolute top-1/2 transform -translate-y-1/2", "text-foreground-subtle"],
 	{
 		variants: {
 			position: {
@@ -90,9 +87,9 @@ const iconVariants = cva(
 const labelVariants = cva("block text-sm font-medium mb-1.5", {
 	variants: {
 		variant: {
-			default: "text-foreground-muted",
-			error: "text-foreground-muted",
-			success: "text-foreground-muted",
+			default: "text-primary-muted",
+			error: "text-primary-muted",
+			success: "text-primary-muted",
 		},
 	},
 	defaultVariants: {
@@ -105,7 +102,7 @@ const messageVariants = cva("mt-1.5 text-sm", {
 		type: {
 			error: "text-red-600 dark:text-red-400",
 			success: "text-green-600 dark:text-green-400",
-			helper: "text-foreground-muted",
+			helper: "text-primary-muted",
 		},
 	},
 });
@@ -141,9 +138,17 @@ export const Input: React.FC<InputProps> = ({
 	const hasRightIcon = !!rightIcon;
 	const displayErrorMessage = variant === "error" && errorMessage;
 
+	const autoId = React.useId();
+	const inputId = props.id ?? autoId;
+	const describedBy: string[] = [];
+
 	return (
 		<div className={`not-prose ${containerClassName}`}>
-			{label && <label className={labelVariants({ variant })}>{label}</label>}
+			{label && (
+				<label htmlFor={inputId} className={labelVariants({ variant })}>
+					{label}
+				</label>
+			)}
 
 			<div className="relative">
 				{leftIcon && (
@@ -166,7 +171,15 @@ export const Input: React.FC<InputProps> = ({
 						inputVariants({ variant, size, hasLeftIcon, hasRightIcon }),
 						className,
 					)}
+					id={inputId}
 					disabled={disabled}
+					aria-invalid={displayErrorMessage ? true : undefined}
+					aria-describedby={(() => {
+						if (displayErrorMessage) describedBy.push(`${inputId}-error`);
+						else if (successMessage) describedBy.push(`${inputId}-success`);
+						if (helperText) describedBy.push(`${inputId}-helper`);
+						return describedBy.length ? describedBy.join(" ") : undefined;
+					})()}
 					{...props}
 				/>
 
@@ -187,15 +200,30 @@ export const Input: React.FC<InputProps> = ({
 			</div>
 
 			{displayErrorMessage && (
-				<p className={messageVariants({ type: "error" })}>{errorMessage}</p>
+				<p
+					id={`${inputId}-error`}
+					className={messageVariants({ type: "error" })}
+				>
+					{errorMessage}
+				</p>
 			)}
 
 			{!displayErrorMessage && successMessage && (
-				<p className={messageVariants({ type: "success" })}>{successMessage}</p>
+				<p
+					id={`${inputId}-success`}
+					className={messageVariants({ type: "success" })}
+				>
+					{successMessage}
+				</p>
 			)}
 
 			{helperText && (
-				<p className={messageVariants({ type: "helper" })}>{helperText}</p>
+				<p
+					id={`${inputId}-helper`}
+					className={messageVariants({ type: "helper" })}
+				>
+					{helperText}
+				</p>
 			)}
 		</div>
 	);

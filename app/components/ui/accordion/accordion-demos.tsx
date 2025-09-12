@@ -1,11 +1,5 @@
 "use client";
 
-import {
-	Code,
-	Lock,
-	Palette,
-	Question,
-} from "phosphor-react";
 import React from "react";
 import {
 	Accordion,
@@ -14,7 +8,6 @@ import {
 	AccordionTrigger,
 } from "./accordion";
 
-// Basic demo showing simple accordion usage
 export function BasicAccordionDemo() {
 	return (
 		<div className="w-full max-w-md mx-auto my-6 relative">
@@ -47,36 +40,26 @@ export function BasicAccordionDemo() {
 	);
 }
 
-// Card variant demo
 export function CardAccordionDemo() {
 	return (
 		<div className="w-full max-w-lg mx-auto my-6 relative">
-			<Accordion
-				variant="card"
-				className="space-y-3"
-			>
+			<Accordion variant="card" className="space-y-3">
 				<AccordionItem value="account">
-					<AccordionTrigger>
-						Account Settings
-					</AccordionTrigger>
+					<AccordionTrigger>Account Settings</AccordionTrigger>
 					<AccordionContent>
 						Manage your profile, change email address and password.
 					</AccordionContent>
 				</AccordionItem>
 
 				<AccordionItem value="security">
-					<AccordionTrigger>
-						Security
-					</AccordionTrigger>
+					<AccordionTrigger>Security</AccordionTrigger>
 					<AccordionContent>
 						Enable two-factor authentication and manage your login sessions.
 					</AccordionContent>
 				</AccordionItem>
 
 				<AccordionItem value="preferences">
-					<AccordionTrigger>
-						Preferences
-					</AccordionTrigger>
+					<AccordionTrigger>Preferences</AccordionTrigger>
 					<AccordionContent>
 						Customize the interface theme, language, and notification settings.
 					</AccordionContent>
@@ -86,13 +69,10 @@ export function CardAccordionDemo() {
 	);
 }
 
-// Multiple open demo
 export function MultipleAccordionDemo() {
 	return (
 		<div className="w-full max-w-md mx-auto my-6 relative">
-			<Accordion
-				type="multiple"
-			>
+			<Accordion>
 				<AccordionItem value="react">
 					<AccordionTrigger>React Basics</AccordionTrigger>
 					<AccordionContent>
@@ -119,7 +99,6 @@ export function MultipleAccordionDemo() {
 	);
 }
 
-// Size variants demo
 export function SizeAccordionDemo() {
 	return (
 		<div className="w-full max-w-md mx-auto space-y-8 my-6 flex flex-col">
@@ -162,9 +141,8 @@ export function SizeAccordionDemo() {
 	);
 }
 
-// Controlled demo
 export function ControlledAccordionDemo() {
-	const [openItems, setOpenItems] = React.useState<string[]>(["controlled-1"]);
+	const [, setOpenItems] = React.useState<string[]>(["controlled-1"]);
 
 	const handleValueChange = (value: string | string[]) => {
 		if (Array.isArray(value)) {
@@ -179,29 +157,30 @@ export function ControlledAccordionDemo() {
 			<div className="my-6">
 				<div className="flex gap-2 mb-10">
 					<button
+						type="button"
 						onClick={() => setOpenItems(["controlled-1"])}
-						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-primary-white rounded text-sm whitespace-nowrap"
 					>
 						Open First
 					</button>
 					<button
+						type="button"
 						onClick={() => setOpenItems(["controlled-2"])}
-						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-primary-white rounded text-sm whitespace-nowrap"
 					>
 						Open Second
 					</button>
 					<button
+						type="button"
 						onClick={() => setOpenItems([])}
-						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-primary-foreground dark:text-primary rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-primary-white rounded text-sm whitespace-nowrap"
 					>
 						Close All
 					</button>
 				</div>
 
 				<Accordion
-					value={openItems}
 					onValueChange={handleValueChange}
-					type="multiple"
 				>
 					<AccordionItem value="controlled-1">
 						<AccordionTrigger>Controlled item 1</AccordionTrigger>

@@ -1,8 +1,16 @@
 "use client";
 
+import {
+	Dialog as AriakitDialog,
+	DialogDescription as AriakitDialogDescription,
+	DialogDismiss as AriakitDialogDismiss,
+	DialogHeading as AriakitDialogHeading,
+	type DialogStore,
+	useDialogStore,
+	useStoreState,
+} from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
@@ -132,67 +140,6 @@ const sheetContentVariants = cva(
 	},
 );
 
-const sheetAnimationVariants = cva("", {
-	variants: {
-		side: {
-			left: "",
-			right: "",
-			top: "",
-			bottom: "",
-		},
-		isVisible: {
-			true: "",
-			false: "",
-		},
-	},
-	compoundVariants: [
-		{
-			side: "left",
-			isVisible: true,
-			class: "translate-x-0",
-		},
-		{
-			side: "left",
-			isVisible: false,
-			class: "-translate-x-full",
-		},
-		{
-			side: "right",
-			isVisible: true,
-			class: "translate-x-0",
-		},
-		{
-			side: "right",
-			isVisible: false,
-			class: "translate-x-full",
-		},
-		{
-			side: "top",
-			isVisible: true,
-			class: "translate-y-0",
-		},
-		{
-			side: "top",
-			isVisible: false,
-			class: "-translate-y-full",
-		},
-		{
-			side: "bottom",
-			isVisible: true,
-			class: "translate-y-0",
-		},
-		{
-			side: "bottom",
-			isVisible: false,
-			class: "translate-y-full",
-		},
-	],
-	defaultVariants: {
-		side: "right",
-		isVisible: false,
-	},
-});
-
 export interface SheetProps {
 	children: React.ReactNode;
 	open?: boolean;
@@ -245,8 +192,7 @@ export interface SheetCloseProps
 }
 
 interface SheetContextType {
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
+	store: DialogStore;
 }
 
 const SheetContext = React.createContext<SheetContextType | undefined>(
@@ -266,15 +212,14 @@ export const Sheet: React.FC<SheetProps> = ({
 	open: controlledOpen,
 	onOpenChange,
 }) => {
-	const [internalOpen, setInternalOpen] = useState(false);
-
-	const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
-	const setOpen = onOpenChange || setInternalOpen;
+	const store = useDialogStore(
+		controlledOpen !== undefined
+			? { open: controlledOpen, setOpen: onOpenChange }
+			: undefined,
+	);
 
 	return (
-		<SheetContext.Provider value={{ open, onOpenChange: setOpen }}>
-			{children}
-		</SheetContext.Provider>
+		<SheetContext.Provider value={{ store }}>{children}</SheetContext.Provider>
 	);
 };
 
@@ -285,10 +230,11 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	onClick,
 	...props
 }) => {
-	const { onOpenChange } = useSheet();
+	const { store } = useSheet();
+	const isOpen = useStoreState(store, "open");
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		onOpenChange(true);
+		store.show();
 		onClick?.(e);
 	};
 
@@ -299,6 +245,8 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 			>,
 			{
 				onClick: handleClick,
+				"aria-haspopup": "dialog",
+				"aria-expanded": isOpen,
 				...(children.props || {}),
 			},
 		);
@@ -307,10 +255,13 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 not-prose cursor-pointer",
 				className,
 			)}
+			type="button"
 			onClick={handleClick}
+			aria-haspopup="dialog"
+			aria-expanded={isOpen}
 			{...props}
 		>
 			{children}
@@ -326,171 +277,71 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 	showClose = true,
 	...props
 }) => {
-	const { open, onOpenChange } = useSheet();
-	const contentRef = useRef<HTMLDivElement>(null);
-	const [isVisible, setIsVisible] = useState(false);
-	const [shouldRender, setShouldRender] = useState(false);
-	const previousActiveElementRef = useRef<HTMLElement | null>(null);
-
-	const getFocusableElements = () => {
-		if (!contentRef.current) return [];
-
-		const focusableSelectors = [
-			"button:not([disabled])",
-			"input:not([disabled])",
-			"textarea:not([disabled])",
-			"select:not([disabled])",
-			"a[href]",
-			'[tabindex]:not([tabindex="-1"])',
-		].join(", ");
-
-		return Array.from(
-			contentRef.current.querySelectorAll(focusableSelectors),
-		) as HTMLElement[];
-	};
-
-	const handleKeyDown = useCallback(
-		(e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				onOpenChange(false);
-				return;
-			}
-
-			if (e.key === "Tab") {
-				const focusableElements = getFocusableElements();
-				if (focusableElements.length === 0) return;
-
-				const firstElement = focusableElements[0];
-				const lastElement = focusableElements[focusableElements.length - 1];
-				const activeElement = document.activeElement as HTMLElement;
-
-				if (e.shiftKey) {
-					if (
-						activeElement === firstElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						lastElement.focus();
-					}
-				} else {
-					if (
-						activeElement === lastElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						firstElement.focus();
-					}
-				}
-			}
-		},
-		[onOpenChange],
-	);
-
-	useEffect(() => {
+	const { store } = useSheet();
+	const open = useStoreState(store, "open");
+	const [mounted, setMounted] = React.useState(open);
+	React.useEffect(() => {
 		if (open) {
-			previousActiveElementRef.current = document.activeElement as HTMLElement;
-
-			setShouldRender(true);
-			const timer = setTimeout(() => {
-				setIsVisible(true);
-				const focusableElements = getFocusableElements();
-				if (focusableElements.length > 0) {
-					focusableElements[0].focus();
-				} else {
-					contentRef.current?.focus();
-				}
-			}, 10);
-
-			return () => clearTimeout(timer);
-		} else {
-			setIsVisible(false);
-			const timer = setTimeout(() => {
-				setShouldRender(false);
-				if (previousActiveElementRef.current) {
-					previousActiveElementRef.current.focus();
-				}
-			}, 300);
-
-			return () => clearTimeout(timer);
+			setMounted(true);
+			return;
 		}
+		const t = window.setTimeout(() => setMounted(false), 200);
+		return () => window.clearTimeout(t);
 	}, [open]);
 
-	useEffect(() => {
-		if (!open) return;
+	if (!mounted) return null;
 
-		const handleClickOutside = (e: MouseEvent) => {
-			if (
-				contentRef.current &&
-				!contentRef.current.contains(e.target as Node)
-			) {
-				onOpenChange(false);
+	const sideTransform =
+		side === "left"
+			? "-translate-x-full data-[enter]:translate-x-0 data-[leave]:-translate-x-full"
+			: side === "right"
+				? "translate-x-full data-[enter]:translate-x-0 data-[leave]:translate-x-full"
+				: side === "top"
+					? "-translate-y-full data-[enter]:translate-y-0 data-[leave]:-translate-y-full"
+					: "translate-y-full data-[enter]:translate-y-0 data-[leave]:translate-y-full";
+
+	return (
+		<AriakitDialog
+			store={store}
+			portal
+			backdrop={
+				<div
+					className={cn(
+						"fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm",
+						"transition-opacity duration-200 ease-in-out opacity-0",
+						"data-[enter]:opacity-100 data-[leave]:opacity-0",
+					)}
+				/>
 			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		document.addEventListener("mousedown", handleClickOutside);
-
-		document.body.style.overflow = "hidden";
-
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-			document.removeEventListener("mousedown", handleClickOutside);
-			document.body.style.overflow = "";
-		};
-	}, [open, handleKeyDown, onOpenChange]);
-
-	if (typeof window === "undefined" || !shouldRender) {
-		return null;
-	}
-
-	return createPortal(
-		<div className="fixed inset-0 z-50">
-			<div
-				className={cn(
-					"fixed inset-0 bg-overlay/50 backdrop-blur-sm transition-opacity duration-200 ease-in-out",
-					isVisible ? "opacity-100" : "opacity-0",
-				)}
-				aria-hidden="true"
-			/>
-
-			<div
-				ref={contentRef}
-				className={cn(
-					sheetContentVariants({ side, size }),
-					sheetAnimationVariants({ side, isVisible }),
-					className,
-				)}
-				role="dialog"
-				aria-modal="true"
-				tabIndex={-1}
-				{...props}
-			>
-				{showClose && (
-					<button
-						onClick={() => onOpenChange(false)}
-						className="absolute top-4 right-4 p-1 rounded-md text-foreground-subtle hover:text-foreground-muted hover:bg-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/10 transition-colors duration-200 ease-in-out z-10 cursor-pointer"
-						aria-label="Close sheet"
+			className={cn(
+				sheetContentVariants({ side, size }),
+				"z-50",
+				sideTransform,
+				className,
+			)}
+			{...props}
+		>
+			{showClose && (
+				<AriakitDialogDismiss className="absolute right-4 top-4 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 cursor-pointer">
+					<svg
+						aria-hidden="true"
+						className="h-4 w-4"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
 					>
-						<svg
-							className="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M6 18L18 6M6 6l12 12"
-							/>
-						</svg>
-					</button>
-				)}
-
-				{children}
-			</div>
-		</div>,
-		document.body,
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+					<span className="sr-only">Close</span>
+				</AriakitDialogDismiss>
+			)}
+			{children}
+		</AriakitDialog>
 	);
 };
 
@@ -501,10 +352,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				"px-6 py-5 border-b border-border-muted/30 not-prose",
-				className,
-			)}
+			className={cn("p-4 not-prose border-b border-border-muted", className)}
 			{...props}
 		>
 			{children}
@@ -515,19 +363,19 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 export const SheetTitle: React.FC<SheetTitleProps> = ({
 	children,
 	className = "",
-	as: Component = "h2",
+	as: _Component = "h2",
 	...props
 }) => {
-	return React.createElement(
-		Component,
-		{
-			className: cn(
+	return (
+		<AriakitDialogHeading
+			className={cn(
 				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
-			),
-			...props,
-		},
-		children,
+			)}
+			{...props}
+		>
+			{children}
+		</AriakitDialogHeading>
 	);
 };
 
@@ -537,15 +385,15 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 	...props
 }) => {
 	return (
-		<p
+		<AriakitDialogDescription
 			className={cn(
-				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
+				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
 				className,
 			)}
 			{...props}
 		>
 			{children}
-		</p>
+		</AriakitDialogDescription>
 	);
 };
 
@@ -557,7 +405,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 mt-auto bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end gap-3 not-prose",
+				"p-4 mt-auto bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end gap-3 not-prose",
 				className,
 			)}
 			{...props}
@@ -574,35 +422,36 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 	onClick,
 	...props
 }) => {
-	const { onOpenChange } = useSheet();
-
-	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		onOpenChange(false);
-		onClick?.(e);
-	};
+	const { store } = useSheet();
 
 	if (asChild && React.isValidElement(children)) {
-		return React.cloneElement(
-			children as React.ReactElement<
-				React.ButtonHTMLAttributes<HTMLButtonElement>
-			>,
-			{
-				onClick: handleClick,
-				...(children.props || {}),
-			},
-		);
+		const child = children as React.ReactElement<
+			React.ButtonHTMLAttributes<HTMLButtonElement>
+		>;
+		const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+			store.hide();
+			child.props?.onClick?.(e);
+			onClick?.(e);
+		};
+		return React.cloneElement(child, {
+			onClick: handleClick,
+			...props,
+			...(child.props || {}),
+		});
 	}
 
 	return (
-		<button
+		<AriakitDialogDismiss
+			store={store}
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring/10 cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 cursor-pointer",
 				className,
 			)}
-			onClick={handleClick}
+			type="button"
+			onClick={onClick}
 			{...props}
 		>
 			{children || "Close"}
-		</button>
+		</AriakitDialogDismiss>
 	);
 };

@@ -9,7 +9,7 @@ const avatarVariants = cva(
 	[
 		"relative inline-flex items-center justify-center",
 		"bg-background-muted",
-		"text-foreground-muted",
+		"text-primary-muted",
 		"font-medium select-none",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
@@ -68,30 +68,27 @@ const iconVariants = cva("text-foreground-subtle", {
 	},
 });
 
-const statusVariants = cva(
-	"absolute rounded-full ring-ring-offset",
-	{
-		variants: {
-			status: {
-				online: "bg-green-500 dark:bg-green-600",
-				offline: "bg-foreground-subtle",
-				away: "bg-yellow-500 dark:bg-yellow-600",
-				busy: "bg-red-500 dark:bg-red-600",
-			},
-			size: {
-				xs: "h-1.5 w-1.5 ring-1 bottom-0 right-0",
-				sm: "h-2 w-2 ring-1 bottom-0 right-0",
-				md: "h-2.5 w-2.5 ring-1 bottom-0.5 right-0.5",
-				lg: "h-3 w-3 ring-1 bottom-0.5 right-0.5",
-				xl: "h-3.5 w-3.5 ring-1 bottom-1 right-1",
-				"2xl": "h-4 w-4 ring-1 bottom-1 right-1",
-			},
+const statusVariants = cva("absolute rounded-full ring-ring-offset", {
+	variants: {
+		status: {
+			online: "bg-green-500 dark:bg-green-600",
+			offline: "bg-foreground-subtle",
+			away: "bg-yellow-500 dark:bg-yellow-600",
+			busy: "bg-red-500 dark:bg-red-600",
 		},
-		defaultVariants: {
-			size: "md",
+		size: {
+			xs: "h-1.5 w-1.5 ring-1 bottom-0 right-0",
+			sm: "h-2 w-2 ring-1 bottom-0 right-0",
+			md: "h-2.5 w-2.5 ring-1 bottom-0.5 right-0.5",
+			lg: "h-3 w-3 ring-1 bottom-0.5 right-0.5",
+			xl: "h-3.5 w-3.5 ring-1 bottom-1 right-1",
+			"2xl": "h-4 w-4 ring-1 bottom-1 right-1",
 		},
 	},
-);
+	defaultVariants: {
+		size: "md",
+	},
+});
 
 export interface AvatarProps
 	extends React.HTMLAttributes<HTMLDivElement>,
@@ -150,9 +147,10 @@ export const Avatar: React.FC<AvatarProps> = ({
 			{...props}
 		>
 			{showImage && (
+				/* biome-ignore lint/performance/noImgElement: native img is intentional here */
 				<img
 					src={src}
-					alt=""
+					alt={alt}
 					className={cn(
 						"h-full w-full object-cover",
 						variant === "circle" ? "rounded-full" : "rounded-lg",
@@ -172,6 +170,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
 			{!showImage && !showInitials && (
 				<svg
+					aria-hidden="true"
 					className={iconVariants({ size })}
 					fill="currentColor"
 					viewBox="0 0 256 256"
@@ -181,10 +180,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 			)}
 
 			{status && (
-				<span
-					className={statusVariants({ status, size })}
-					aria-label={`Status: ${status}`}
-				/>
+				<span className={statusVariants({ status, size })} aria-hidden="true" />
 			)}
 		</div>
 	);

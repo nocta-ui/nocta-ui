@@ -1,8 +1,16 @@
 "use client";
 
+import {
+	Dialog as AriakitDialog,
+	DialogDescription as AriakitDialogDescription,
+	DialogDismiss as AriakitDialogDismiss,
+	DialogHeading as AriakitDialogHeading,
+	type DialogStore,
+	useDialogStore,
+	useStoreState,
+} from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
@@ -44,6 +52,7 @@ export interface DialogContentProps
 	children: React.ReactNode;
 	className?: string;
 	showClose?: boolean;
+	portal?: boolean;
 }
 
 export interface DialogHeaderProps
@@ -85,8 +94,7 @@ export interface DialogCloseProps
 }
 
 interface DialogContextType {
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
+	store: DialogStore;
 }
 
 const DialogContext = React.createContext<DialogContextType | undefined>(
@@ -106,13 +114,14 @@ export const Dialog: React.FC<DialogProps> = ({
 	open: controlledOpen,
 	onOpenChange,
 }) => {
-	const [internalOpen, setInternalOpen] = useState(false);
-
-	const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
-	const setOpen = onOpenChange || setInternalOpen;
+	const store = useDialogStore(
+		controlledOpen !== undefined
+			? { open: controlledOpen, setOpen: onOpenChange }
+			: undefined,
+	);
 
 	return (
-		<DialogContext.Provider value={{ open, onOpenChange: setOpen }}>
+		<DialogContext.Provider value={{ store }}>
 			{children}
 		</DialogContext.Provider>
 	);
@@ -125,10 +134,11 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	onClick,
 	...props
 }) => {
-	const { onOpenChange } = useDialog();
+	const { store } = useDialog();
+	const isOpen = useStoreState(store, "open");
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		onOpenChange(true);
+		store.show();
 		onClick?.(e);
 	};
 
@@ -139,6 +149,8 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 			>,
 			{
 				onClick: handleClick,
+				"aria-haspopup": "dialog",
+				"aria-expanded": isOpen,
 				...(children.props || {}),
 			},
 		);
@@ -147,10 +159,12 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 not-prose",
 				className,
 			)}
 			onClick={handleClick}
+			aria-haspopup="dialog"
+			aria-expanded={isOpen}
 			{...props}
 		>
 			{children}
@@ -163,200 +177,78 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 	className = "",
 	size = "md",
 	showClose = true,
+	portal = true,
 	...props
 }) => {
-	const { open, onOpenChange } = useDialog();
-	const contentRef = useRef<HTMLDivElement>(null);
-	const [isVisible, setIsVisible] = useState(false);
-	const [shouldRender, setShouldRender] = useState(false);
-	const previousActiveElementRef = useRef<HTMLElement | null>(null);
-	const animationFrameRef = useRef<number | null>(null);
-	const timeoutRef = useRef<number | null>(null);
-
-	const getFocusableElements = () => {
-		if (!contentRef.current) return [];
-
-		const focusableSelectors = [
-			"button:not([disabled])",
-			"input:not([disabled])",
-			"textarea:not([disabled])",
-			"select:not([disabled])",
-			"a[href]",
-			'[tabindex]:not([tabindex="-1"])',
-		].join(", ");
-
-		return Array.from(
-			contentRef.current.querySelectorAll(focusableSelectors),
-		) as HTMLElement[];
-	};
-
-	const handleKeyDown = useCallback(
-		(e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				onOpenChange(false);
-				return;
-			}
-
-			if (e.key === "Tab") {
-				const focusableElements = getFocusableElements();
-				if (focusableElements.length === 0) return;
-
-				const firstElement = focusableElements[0];
-				const lastElement = focusableElements[focusableElements.length - 1];
-				const activeElement = document.activeElement as HTMLElement;
-
-				if (e.shiftKey) {
-					if (
-						activeElement === firstElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						lastElement.focus();
-					}
-				} else {
-					if (
-						activeElement === lastElement ||
-						!contentRef.current?.contains(activeElement)
-					) {
-						e.preventDefault();
-						firstElement.focus();
-					}
-				}
-			}
-		},
-		[onOpenChange],
-	);
-
-	useEffect(() => {
-		if (animationFrameRef.current) {
-			cancelAnimationFrame(animationFrameRef.current);
-		}
-		if (timeoutRef.current) {
-			window.clearTimeout(timeoutRef.current);
-		}
-
+	const { store } = useDialog();
+	const open = useStoreState(store, "open");
+	const [mounted, setMounted] = React.useState(open);
+	React.useEffect(() => {
 		if (open) {
-			previousActiveElementRef.current = document.activeElement as HTMLElement;
-
-			setShouldRender(true);
-
-			animationFrameRef.current = requestAnimationFrame(() => {
-				timeoutRef.current = window.setTimeout(() => {
-					setIsVisible(true);
-
-					timeoutRef.current = window.setTimeout(() => {
-						const focusableElements = getFocusableElements();
-						if (focusableElements.length > 0) {
-							focusableElements[0].focus();
-						}
-					}, 150);
-				}, 16);
-			});
-		} else {
-			setIsVisible(false);
-
-			timeoutRef.current = window.setTimeout(() => {
-				setShouldRender(false);
-				if (previousActiveElementRef.current) {
-					previousActiveElementRef.current.focus();
-				}
-			}, 300);
+			setMounted(true);
+			return;
 		}
-
-		return () => {
-			if (animationFrameRef.current) {
-				cancelAnimationFrame(animationFrameRef.current);
-			}
-			if (timeoutRef.current) {
-				window.clearTimeout(timeoutRef.current);
-			}
-		};
+		const t = window.setTimeout(() => setMounted(false), 200);
+		return () => window.clearTimeout(t);
 	}, [open]);
 
-	useEffect(() => {
-		const handleClickOutside = (e: MouseEvent) => {
-			if (
-				contentRef.current &&
-				!contentRef.current.contains(e.target as Node)
-			) {
-				onOpenChange(false);
-			}
-		};
+	if (!mounted) return null;
 
-		if (open) {
-			document.addEventListener("keydown", handleKeyDown);
-			document.addEventListener("mousedown", handleClickOutside);
-			document.body.style.overflow = "hidden";
-		}
-
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-			document.removeEventListener("mousedown", handleClickOutside);
-			document.body.style.overflow = "unset";
-		};
-	}, [open, onOpenChange, handleKeyDown]);
-
-	if (!shouldRender) return null;
-
-	const dialogContent = (
-		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-			<div
-				className={cn(
-					"fixed inset-0 bg-overlay/50 backdrop-blur-sm transition-opacity duration-200 ease-out",
-					isVisible ? "opacity-100" : "opacity-0",
-				)}
-				aria-hidden="true"
-			/>
-
-			<div
-				ref={contentRef}
-				className={cn(
-					dialogContentVariants({ size }),
-					isVisible
-						? "opacity-100 scale-100 translate-y-0"
-						: "opacity-0 scale-95 translate-y-4",
-					"transform transition-all duration-200 ease-out",
-					className,
-				)}
-				role="dialog"
-				aria-modal="true"
-				aria-describedby="dialog-description"
-				{...props}
-			>
-				<span
-					aria-hidden
-					className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
-					style={{
-						maskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						WebkitMaskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					}}
+	return (
+		<AriakitDialog
+			store={store}
+			portal={portal}
+			backdrop={
+				<div
+					className={cn(
+						"fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm",
+						"transition-opacity duration-200 ease-in-out opacity-0",
+						"data-[enter]:opacity-100 data-[leave]:opacity-0",
+					)}
 				/>
-				{showClose && (
-					<DialogClose className="absolute right-4 top-4 z-10">
-						<svg
-							className="h-4 w-4"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M6 18L18 6M6 6l12 12"
-							/>
-						</svg>
-						<span className="sr-only">Close</span>
-					</DialogClose>
-				)}
-				{children}
-			</div>
-		</div>
+			}
+			className={cn(
+				dialogContentVariants({ size }),
+				"fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform z-50",
+				"transition-all duration-200 ease-in-out opacity-0 scale-105 blur-sm",
+				"data-[enter]:opacity-100 data-[enter]:scale-100 data-[enter]:blur-none",
+				"data-[leave]:opacity-0 data-[leave]:scale-105 data-[leave]:blur-sm",
+				className,
+			)}
+			{...props}
+		>
+			<span
+				aria-hidden
+				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
+				style={{
+					maskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+					WebkitMaskImage:
+						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+				}}
+			/>
+			{showClose && (
+				<DialogClose className="absolute right-4 top-4 z-10">
+					<svg
+						aria-hidden="true"
+						className="h-4 w-4"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+					<span className="sr-only">Close</span>
+				</DialogClose>
+			)}
+			{children}
+		</AriakitDialog>
 	);
-
-	return createPortal(dialogContent, document.body);
 };
 
 export const DialogHeader: React.FC<DialogHeaderProps> = ({
@@ -366,10 +258,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				"px-6 py-5 border-b border-border-muted/30 not-prose",
-				className,
-			)}
+			className={cn("p-4 not-prose border-b border-border-muted", className)}
 			{...props}
 		>
 			{children}
@@ -378,22 +267,23 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 };
 
 export const DialogTitle: React.FC<DialogTitleProps> = ({
-	children,
-	className = "",
-	as: Component = "h2",
-	...props
+    children,
+    className = "",
+    as: Component = "h2",
+    ...props
 }) => {
-	return React.createElement(
-		Component,
-		{
-			className: cn(
-				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
-				className,
-			),
-			...props,
-		},
-		children,
-	);
+    return (
+        <AriakitDialogHeading
+            render={(headingProps) => React.createElement(Component, headingProps)}
+            className={cn(
+                "text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
+                className,
+            )}
+            {...props}
+        >
+            {children}
+        </AriakitDialogHeading>
+    );
 };
 
 export const DialogDescription: React.FC<DialogDescriptionProps> = ({
@@ -402,15 +292,15 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 	...props
 }) => {
 	return (
-		<p
+		<AriakitDialogDescription
 			className={cn(
-				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
+				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
 				className,
 			)}
 			{...props}
 		>
 			{children}
-		</p>
+		</AriakitDialogDescription>
 	);
 };
 
@@ -422,7 +312,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-border-muted rounded-b-xl border-t flex items-center justify-end not-prose",
+				"p-4 bg-background-muted/50 dark:bg-background-muted/30 border-border-muted rounded-b-xl border-t flex items-center justify-end not-prose",
 				className,
 			)}
 			{...props}
@@ -454,35 +344,36 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 	onClick,
 	...props
 }) => {
-	const { onOpenChange } = useDialog();
-
-	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-		onOpenChange(false);
-		onClick?.(e);
-	};
+	const { store } = useDialog();
 
 	if (asChild && React.isValidElement(children)) {
-		return React.cloneElement(
-			children as React.ReactElement<
-				React.ButtonHTMLAttributes<HTMLButtonElement>
-			>,
-			{
-				onClick: handleClick,
-				...(children.props || {}),
-			},
-		);
+		const child = children as React.ReactElement<
+			React.ButtonHTMLAttributes<HTMLButtonElement>
+		>;
+		const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+			store.hide();
+			child.props?.onClick?.(e);
+			onClick?.(e);
+		};
+		return React.cloneElement(child, {
+			onClick: handleClick,
+			...props,
+			...(child.props || {}),
+		});
 	}
 
 	return (
-		<button
+		<AriakitDialogDismiss
+			store={store}
 			className={cn(
-				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle text-foreground-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:ring-ring not-prose",
+				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 cursor-pointer not-prose",
 				className,
 			)}
-			onClick={handleClick}
+			type="button"
+			onClick={onClick}
 			{...props}
 		>
 			{children}
-		</button>
+		</AriakitDialogDismiss>
 	);
 };

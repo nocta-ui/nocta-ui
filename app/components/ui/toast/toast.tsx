@@ -76,7 +76,9 @@ class ToastState {
 	}
 
 	private notify(): void {
-		this.subscribers.forEach((callback) => callback([...this.toasts]));
+		this.subscribers.forEach((callback) => {
+			callback([...this.toasts]);
+		});
 	}
 
 	private generateId(): string {
@@ -190,22 +192,23 @@ const toastContentVariants = cva("relative rounded-lg overflow-hidden", {
 	},
 });
 
-const closeIconVariants = cva(
-	"transition-colors duration-200",
-	{
-		variants: {
-			variant: {
-				default: "text-foreground-subtle hover:bg-background-elevated/50 focus-visible:ring-ring/10",
-				success: "text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
-				warning: "text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
-				destructive: "text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
-			},
+const closeIconVariants = cva("transition-colors duration-200", {
+	variants: {
+		variant: {
+			default:
+				"text-foreground-subtle hover:bg-background-elevated/50 focus-visible:ring-ring/50",
+			success:
+				"text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
+			warning:
+				"text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
+			destructive:
+				"text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
 		},
-		defaultVariants: {
-			variant: "default",
-		},
-	}
-);
+	},
+	defaultVariants: {
+		variant: "default",
+	},
+});
 
 export type ToastPosition =
 	| "top-left"
@@ -275,7 +278,14 @@ interface ToastItemProps {
 }
 
 const ToastItem: React.FC<ToastItemProps> = React.memo(
-	({ toast, onRemove, isGroupHovered = false, expandedOffset = 0, onHeightChange, onGroupHoverEnter }) => {
+	({
+		toast,
+		onRemove,
+		isGroupHovered = false,
+		expandedOffset = 0,
+		onHeightChange,
+		onGroupHoverEnter,
+	}) => {
 		const toastRef = useRef<HTMLDivElement>(null);
 		const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 		const timerStartRef = useRef<number | null>(null);
@@ -301,6 +311,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			className = "",
 			onClose,
 		} = toast;
+
+		const titleId = title ? `${id}-title` : undefined;
+		const descriptionId = description ? `${id}-desc` : undefined;
+		const liveRole = variant === "destructive" ? "alert" : "status";
+		const livePoliteness = variant === "destructive" ? "assertive" : "polite";
 
 		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
 
@@ -384,7 +399,12 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				enterAnimationRef.current = requestAnimationFrame(() => {
 					enterAnimationRef.current = requestAnimationFrame(() => {
 						setAnimationState("entered");
-						setTimeout(setFocusToToast, ANIMATION_CONFIG.ENTER_DURATION * 1000);
+						if (action) {
+							setTimeout(
+								setFocusToToast,
+								ANIMATION_CONFIG.ENTER_DURATION * 1000,
+							);
+						}
 					});
 				});
 			} else if (hasAnimatedIn.current) {
@@ -408,7 +428,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					);
 				}
 			}
-		}, [index, position, id, onRemove, getFocusableElements, animationState]);
+		}, [index, id, onRemove, getFocusableElements, animationState, action]);
 
 		useEffect(() => {
 			if (shouldClose || !hasAnimatedIn.current) return;
@@ -485,7 +505,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 		const transformStyle = useMemo(() => {
 			if (isGroupHovered && animationState !== "exiting") {
-				const expandedTranslate = isTopPosition ? `${expandedOffset}` : `${-expandedOffset}`;
+				const expandedTranslate = isTopPosition
+					? `${expandedOffset}`
+					: `${-expandedOffset}`;
 				return {
 					transform: `translate(0px, ${expandedTranslate}px) scale(1)`,
 					opacity: 1,
@@ -508,7 +530,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						transform: `translate(${config.animateOut.x}px, ${config.animateOut.y}px)`,
 						opacity: 0,
 					};
-				case "stacking":
 				default:
 					return {
 						transform: `translate(0px, ${offset}px) scale(${isLatest ? 1 : scale})`,
@@ -527,6 +548,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			index,
 			isGroupHovered,
 			expandedOffset,
+			isTopPosition,
 		]);
 
 		const transitionDuration = useMemo(() => {
@@ -536,7 +558,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					return `${ANIMATION_CONFIG.ENTER_DURATION}s`;
 				case "exiting":
 					return `${ANIMATION_CONFIG.EXIT_DURATION}s`;
-				case "stacking":
 				default:
 					return `${ANIMATION_CONFIG.STACK_DURATION}s`;
 			}
@@ -560,74 +581,97 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					transition: `transform ${transitionDuration} ${transitionTimingFunction}, opacity ${transitionDuration} ${transitionTimingFunction}`,
 					...transformStyle,
 				}}
-				role="alert"
-				aria-live="polite"
+				role={liveRole}
+				aria-live={livePoliteness}
+				aria-atomic="true"
+				aria-describedby={descriptionId}
 				tabIndex={-1}
 				onTransitionEnd={handleTransitionEnd}
 				data-toast-id={id}
-				onMouseEnter={() => {
-					setIsItemHovered(true);
-					onGroupHoverEnter?.();
-				}}
-				onMouseLeave={() => setIsItemHovered(false)}
 			>
-				{variant === "default" && (
-					<span
-						aria-hidden
-						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-						style={{
-							maskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-							WebkitMaskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						}}
-					/>
-				)}
-				<div className={cn(toastContentVariants({ variant }))}>
-					<button
-						onClick={handleClose}
-						className={cn(
-							"absolute top-2 right-2 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1",
-							closeIconVariants({ variant })
-						)}
-						aria-label="Close toast"
-					>
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
+				<div
+					role="alert"
+					onMouseEnter={() => {
+						setIsItemHovered(true);
+						onGroupHoverEnter?.();
+					}}
+					onMouseLeave={() => setIsItemHovered(false)}
+					onFocusCapture={() => setIsItemHovered(true)}
+					onBlurCapture={(e) => {
+						const current = toastRef.current;
+						const next = e.relatedTarget as Node | null;
+						if (!current || !next || !current.contains(next)) {
+							setIsItemHovered(false);
+						}
+					}}
+				>
+					{variant === "default" && (
+						<span
+							aria-hidden
+							className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
+							style={{
+								maskImage:
+									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+								WebkitMaskImage:
+									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
+							}}
+						/>
+					)}
+					<div className={cn(toastContentVariants({ variant }))}>
+						<button
+							type="button"
+							onClick={handleClose}
+							className={cn(
+								"absolute top-2 right-2 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1",
+								closeIconVariants({ variant }),
+							)}
+							aria-label="Close toast"
 						>
-							<path d="M18 6L6 18M6 6l12 12" />
-						</svg>
-					</button>
+							<svg
+								aria-hidden="true"
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+							>
+								<path d="M18 6L6 18M6 6l12 12" />
+							</svg>
+						</button>
 
-					<div className="p-4 pr-8">
-						{title && (
-							<div className="font-semibold text-sm mb-1 leading-tight">
-								{title}
-							</div>
-						)}
-						{description && (
-							<div className="text-sm opacity-80 leading-relaxed">
-								{description}
-							</div>
-						)}
-						{action && (
-							<div className="mt-3">
-								<button
-									onClick={() => {
-										action.onClick();
-										handleClose();
-									}}
-									className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50 hover:contrast-115 text-primary-foreground dark:text-primary focus-visible:ring-ring/10 shadow-sm transition-all duration-200 cursor-pointer"
+						<div className="p-4 pr-8">
+							{title && (
+								<div
+									id={titleId}
+									className="font-semibold text-sm mb-1 leading-tight"
 								>
-									{action.label}
-								</button>
-							</div>
-						)}
+									{title}
+								</div>
+							)}
+							{description && (
+								<div
+									id={descriptionId}
+									className="text-sm opacity-80 leading-relaxed"
+								>
+									{description}
+								</div>
+							)}
+							{action && (
+								<div className="mt-3">
+									<button
+										type="button"
+										onClick={() => {
+											action.onClick();
+											handleClose();
+										}}
+										className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-115 text-primary-white focus-visible:ring-ring/50 shadow-sm transition-all duration-200 cursor-pointer"
+									>
+										{action.label}
+									</button>
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -651,198 +695,202 @@ const ToastManager: React.FC<{
 	toasts: ToastData[];
 	onRemove: (id: string) => void;
 	expandedGap?: number;
-}> = React.memo(({ toasts, onRemove, expandedGap = ANIMATION_CONFIG.EXPANDED_GAP }) => {
-	const [heights, setHeights] = useState<Record<string, number>>({});
-	const [hovered, setHovered] = useState<Record<ToastPosition, boolean>>({
-		"top-left": false,
-		"top-center": false,
-		"top-right": false,
-		"bottom-left": false,
-		"bottom-center": false,
-		"bottom-right": false,
-	});
-
-	const toastsByPosition = useMemo(() => {
-		const grouped = toasts.reduce(
-			(acc, toast) => {
-				const pos = toast.position || "bottom-center";
-				if (!acc[pos]) acc[pos] = [];
-				acc[pos].push(toast);
-				return acc;
-			},
-			{} as Record<ToastPosition, ToastData[]>,
-		);
-
-		Object.keys(grouped).forEach((position) => {
-			const positionKey = position as ToastPosition;
-			grouped[positionKey] = grouped[positionKey].map((toast, index) => ({
-				...toast,
-				index,
-				total: grouped[positionKey].length,
-			})) as (ToastData & { index: number; total: number })[];
+}> = React.memo(
+	({ toasts, onRemove, expandedGap = ANIMATION_CONFIG.EXPANDED_GAP }) => {
+		const [heights, setHeights] = useState<Record<string, number>>({});
+		const [hovered, setHovered] = useState<Record<ToastPosition, boolean>>({
+			"top-left": false,
+			"top-center": false,
+			"top-right": false,
+			"bottom-left": false,
+			"bottom-center": false,
+			"bottom-right": false,
 		});
 
-		return grouped as Record<
-			ToastPosition,
-			(ToastData & { index: number; total: number })[]
-		>;
-	}, [toasts]);
+		const toastsByPosition = useMemo(() => {
+			const grouped = toasts.reduce(
+				(acc, toast) => {
+					const pos = toast.position || "bottom-center";
+					if (!acc[pos]) acc[pos] = [];
+					acc[pos].push(toast);
+					return acc;
+				},
+				{} as Record<ToastPosition, ToastData[]>,
+			);
 
-	const positionEntries = useMemo(
-		() => Object.entries(toastsByPosition),
-		[toastsByPosition],
-	);
+			Object.keys(grouped).forEach((position) => {
+				const positionKey = position as ToastPosition;
+				grouped[positionKey] = grouped[positionKey].map((toast, index) => ({
+					...toast,
+					index,
+					total: grouped[positionKey].length,
+				})) as (ToastData & { index: number; total: number })[];
+			});
 
-	const expandedOffsetsByPosition = useMemo(() => {
-		const result: Record<ToastPosition, number[]> = {
-			"top-left": [],
-			"top-center": [],
-			"top-right": [],
-			"bottom-left": [],
-			"bottom-center": [],
-			"bottom-right": [],
-		};
-		for (const [pos, group] of positionEntries as [ToastPosition, (ToastData & { index: number; total: number })[]][]) {
-			const offsets: number[] = [];
-			let acc = 0;
-			for (let i = 0; i < group.length; i++) {
-				if (i === 0) {
-					offsets.push(0);
-					continue;
-				}
-				const prev = group[i - 1];
-				const prevHeight = heights[prev.id] ?? 0;
-				acc += prevHeight + expandedGap;
-				offsets.push(acc);
-			}
-			result[pos] = offsets;
-		}
-		return result;
-	}, [positionEntries, heights, expandedGap]);
+			return grouped as Record<
+				ToastPosition,
+				(ToastData & { index: number; total: number })[]
+			>;
+		}, [toasts]);
 
-	useEffect(() => {
-		if (positionEntries.length === 0) return;
+		const positionEntries = useMemo(
+			() => Object.entries(toastsByPosition),
+			[toastsByPosition],
+		);
 
-		const handler = (e: MouseEvent) => {
-			const { clientX: x, clientY: y } = e;
-			const next: Record<ToastPosition, boolean> = { ...hovered } as Record<ToastPosition, boolean>;
-			for (const [pos, group] of positionEntries as [ToastPosition, (ToastData & { index: number; total: number })[]][]) {
-				let top = Number.POSITIVE_INFINITY;
-				let left = Number.POSITIVE_INFINITY;
-				let right = Number.NEGATIVE_INFINITY;
-				let bottom = Number.NEGATIVE_INFINITY;
-				let any = false;
-				for (const t of group) {
-					const el = document.querySelector(`[data-toast-id="${t.id}"]`) as HTMLElement | null;
-					if (!el) continue;
-					const r = el.getBoundingClientRect();
-					top = Math.min(top, r.top);
-					left = Math.min(left, r.left);
-					right = Math.max(right, r.right);
-					bottom = Math.max(bottom, r.bottom);
-					any = true;
-				}
-
-				if (!any) {
-					next[pos] = false;
-					continue;
-				}
-
-				const inside = x >= left && x <= right && y >= top && y <= bottom;
-				next[pos] = inside;
-			}
-			const changed = Object.keys(next).some((k) => (next as any)[k] !== (hovered as any)[k]);
-			if (changed) setHovered(next);
-		};
-
-		document.addEventListener("mousemove", handler);
-		return () => document.removeEventListener("mousemove", handler);
-	}, [hovered, positionEntries]);
-
-	useEffect(() => {
-		if (positionEntries.length === 0) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			for (const [, group] of positionEntries) {
-				const latest = group?.[0];
-				if (!latest) continue;
-
-				const container = document.querySelector(
-					`[data-toast-id="${latest.id}"]`,
-				) as HTMLElement | null;
-				if (!container) continue;
-
-				if (e.key === "Escape") {
-					const closeBtn = container.querySelector(
-						'[aria-label="Close toast"]',
-					) as HTMLButtonElement | null;
-					if (closeBtn) {
-						e.preventDefault();
-						closeBtn.click();
+		const expandedOffsetsByPosition = useMemo(() => {
+			const result: Record<ToastPosition, number[]> = {
+				"top-left": [],
+				"top-center": [],
+				"top-right": [],
+				"bottom-left": [],
+				"bottom-center": [],
+				"bottom-right": [],
+			};
+			for (const [pos, group] of positionEntries as [
+				ToastPosition,
+				(ToastData & { index: number; total: number })[],
+			][]) {
+				const offsets: number[] = [];
+				let acc = 0;
+				for (let i = 0; i < group.length; i++) {
+					if (i === 0) {
+						offsets.push(0);
+						continue;
 					}
-					return;
+					const prev = group[i - 1];
+					const prevHeight = heights[prev.id] ?? 0;
+					acc += prevHeight + expandedGap;
+					offsets.push(acc);
 				}
-
-				if (e.key === "Tab") {
-					const focusable = Array.from(
-						container.querySelectorAll(FOCUSABLE_SELECTORS),
-					) as HTMLElement[];
-					if (focusable.length === 0) continue;
-
-					const first = focusable[0];
-					const last = focusable[focusable.length - 1];
-					const active = document.activeElement as HTMLElement | null;
-
-					if (e.shiftKey) {
-						if (active === first || (active && !container.contains(active))) {
-							e.preventDefault();
-							last.focus();
-						}
-					} else {
-						if (active === last || (active && !container.contains(active))) {
-							e.preventDefault();
-							first.focus();
-						}
-					}
-				}
+				result[pos] = offsets;
 			}
-		};
+			return result;
+		}, [positionEntries, heights, expandedGap]);
 
-		document.addEventListener("keydown", handleKeyDown);
-		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, [positionEntries]);
+		useEffect(() => {
+			if (positionEntries.length === 0) return;
 
-	if (toasts.length === 0) return null;
+			const handler = (e: MouseEvent) => {
+				const { clientX: x, clientY: y } = e;
+				const next: Record<ToastPosition, boolean> = { ...hovered } as Record<
+					ToastPosition,
+					boolean
+				>;
+				for (const [pos, group] of positionEntries as [
+					ToastPosition,
+					(ToastData & { index: number; total: number })[],
+				][]) {
+					let top = Number.POSITIVE_INFINITY;
+					let left = Number.POSITIVE_INFINITY;
+					let right = Number.NEGATIVE_INFINITY;
+					let bottom = Number.NEGATIVE_INFINITY;
+					let any = false;
+					for (const t of group) {
+						const el = document.querySelector(
+							`[data-toast-id="${t.id}"]`,
+						) as HTMLElement | null;
+						if (!el) continue;
+						const r = el.getBoundingClientRect();
+						top = Math.min(top, r.top);
+						left = Math.min(left, r.left);
+						right = Math.max(right, r.right);
+						bottom = Math.max(bottom, r.bottom);
+						any = true;
+					}
 
-	return (
-		<div className="fixed inset-0 pointer-events-none z-50">
-			{positionEntries.map(([position, positionToasts]) => {
-				const pos = position as ToastPosition;
-				const expandedOffsets = expandedOffsetsByPosition[pos];
-				const isHovered = hovered[pos];
-				return (
-					<React.Fragment key={position}>
-						{positionToasts.map((toast, idx) => (
-							<ToastItem
-								key={toast.id}
-								toast={toast}
-								onRemove={onRemove}
-								isGroupHovered={isHovered}
-								expandedOffset={expandedOffsets?.[idx] ?? 0}
-								onHeightChange={(id, h) => setHeights((prev) => (prev[id] === h ? prev : { ...prev, [id]: h }))}
-								onGroupHoverEnter={() => setHovered((prev) => ({ ...prev, [pos]: true }))}
-							/>
-						))}
-					</React.Fragment>
+					if (!any) {
+						next[pos] = false;
+						continue;
+					}
+
+					const inside = x >= left && x <= right && y >= top && y <= bottom;
+					next[pos] = inside;
+				}
+				const changed = Object.keys(next as Record<string, boolean>).some(
+					(k) =>
+						(next as Record<string, boolean>)[k] !==
+						(hovered as Record<string, boolean>)[k],
 				);
-			})}
-		</div>
-	);
-});
+				if (changed) setHovered(next);
+			};
+
+			document.addEventListener("mousemove", handler);
+			return () => document.removeEventListener("mousemove", handler);
+		}, [hovered, positionEntries]);
+
+		useEffect(() => {
+			if (positionEntries.length === 0) return;
+
+			const handleKeyDown = (e: KeyboardEvent) => {
+				for (const [, group] of positionEntries) {
+					const latest = group?.[0];
+					if (!latest) continue;
+
+					const container = document.querySelector(
+						`[data-toast-id="${latest.id}"]`,
+					) as HTMLElement | null;
+					if (!container) continue;
+
+					if (e.key === "Escape") {
+						const active = document.activeElement as HTMLElement | null;
+						if (active && container.contains(active)) {
+							const closeBtn = container.querySelector(
+								'[aria-label="Close toast"]',
+							) as HTMLButtonElement | null;
+							if (closeBtn) {
+								e.preventDefault();
+								closeBtn.click();
+							}
+						}
+					}
+				}
+			};
+
+			document.addEventListener("keydown", handleKeyDown);
+			return () => document.removeEventListener("keydown", handleKeyDown);
+		}, [positionEntries]);
+
+		if (toasts.length === 0) return null;
+
+		return (
+			<div className="fixed inset-0 pointer-events-none z-50">
+				{positionEntries.map(([position, positionToasts]) => {
+					const pos = position as ToastPosition;
+					const expandedOffsets = expandedOffsetsByPosition[pos];
+					const isHovered = hovered[pos];
+					return (
+						<React.Fragment key={position}>
+							{positionToasts.map((toast, idx) => (
+								<ToastItem
+									key={toast.id}
+									toast={toast}
+									onRemove={onRemove}
+									isGroupHovered={isHovered}
+									expandedOffset={expandedOffsets?.[idx] ?? 0}
+									onHeightChange={(id, h) =>
+										setHeights((prev) =>
+											prev[id] === h ? prev : { ...prev, [id]: h },
+										)
+									}
+									onGroupHoverEnter={() =>
+										setHovered((prev) => ({ ...prev, [pos]: true }))
+									}
+								/>
+							))}
+						</React.Fragment>
+					);
+				})}
+			</div>
+		);
+	},
+);
 
 ToastManager.displayName = "ToastManager";
 
-export const Toaster: React.FC<{ expandedGap?: number }> = ({ expandedGap }) => {
+export const Toaster: React.FC<{ expandedGap?: number }> = ({
+	expandedGap,
+}) => {
 	const [toasts, setToasts] = useState<ToastData[]>([]);
 	const [instanceId] = useState(() =>
 		toasterInstanceManager.registerInstance(),
@@ -864,5 +912,11 @@ export const Toaster: React.FC<{ expandedGap?: number }> = ({ expandedGap }) => 
 		return null;
 	}
 
-	return <ToastManager toasts={toasts} onRemove={handleRemove} expandedGap={expandedGap} />;
+	return (
+		<ToastManager
+			toasts={toasts}
+			onRemove={handleRemove}
+			expandedGap={expandedGap}
+		/>
+	);
 };

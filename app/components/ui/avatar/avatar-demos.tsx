@@ -129,11 +129,8 @@ export const GroupDemo: React.FC = () => {
 				alt="Mike Johnson"
 				className="-ml-2 ring-1 ring-ring-offset"
 			/>
-			<Avatar
-				fallback="AB"
-				className="-ml-2 ring-1 ring-ring-offset"
-			/>
-			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
+			<Avatar fallback="AB" className="-ml-2 ring-1 ring-ring-offset" />
+			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-primary-muted">
 				+5
 			</div>
 		</div>

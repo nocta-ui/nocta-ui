@@ -1,17 +1,13 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import type React from "react";
-import { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-
-const hasBackgroundColor = (className: string = "") => {
-	return /bg-(?!linear|gradient|none)\w+/.test(className);
-};
 
 const calendarVariants = cva(
 	[
-		"rounded-xl",
+		"rounded-xl bg-background",
 		"shadow-lg",
 		"transition-all duration-200 ease-out",
 		"overflow-hidden",
@@ -25,15 +21,10 @@ const calendarVariants = cva(
 			disabled: {
 				true: "opacity-50 cursor-not-allowed",
 				false: "",
-			},
-			hasCustomBackground: {
-				true: "",
-				false: "bg-background",
-			},
+			}
 		},
 		defaultVariants: {
 			disabled: false,
-			hasCustomBackground: false,
 		},
 	},
 );
@@ -43,8 +34,7 @@ const dayButtonVariants = cva(
 		"text-center",
 		"rounded-md",
 		"transition-colors",
-		"focus:outline-none, focus-visible:ring-1",
-		"focus-visible:ring-ring/10",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10",
 		"w-8",
 		"h-8",
 		"text-xs",
@@ -55,12 +45,9 @@ const dayButtonVariants = cva(
 	{
 		variants: {
 			state: {
-				default:
-					"hover:bg-background-elevated text-foreground-muted",
-				selected:
-					"bg-primary text-primary-foreground",
-				today:
-					"bg-background-muted text-foreground",
+				default: "hover:bg-background-elevated text-primary-muted",
+				selected: "bg-primary text-primary-foreground",
+				today: "bg-background-muted text-foreground",
 				disabled: "opacity-50 cursor-not-allowed",
 				outsideMonth: "text-foreground-subtle",
 			},
@@ -108,7 +95,7 @@ export interface CalendarProps
 	maxDate?: Date;
 	showWeekNumbers?: boolean;
 	showOutsideDays?: boolean;
-	weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6; // 0 = Sunday, 1 = Monday, etc.
+	weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 	formatMonth?: (date: Date) => string;
 	formatWeekday?: (date: Date) => string;
 	"aria-label"?: string;
@@ -140,7 +127,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 
 	const isControlled = controlledValue !== undefined;
 	const selectedDate = isControlled ? controlledValue : internalValue;
-	const shouldOverrideBackground = hasBackgroundColor(className);
+	const headingId = React.useId();
 
 	const isSameDay = useCallback((date1: Date, date2: Date) => {
 		return (
@@ -245,85 +232,74 @@ export const Calendar: React.FC<CalendarProps> = ({
 		[isDateDisabled, isControlled, onChange],
 	);
 
-	const handleKeyDown = useCallback(
-		(event: React.KeyboardEvent, date: Date) => {
-			if (disabled) return;
-
-			let newDate: Date | null = null;
-
-			switch (event.key) {
-				case "ArrowLeft":
-					event.preventDefault();
-					newDate = new Date(date);
-					newDate.setDate(date.getDate() - 1);
-					break;
-				case "ArrowRight":
-					event.preventDefault();
-					newDate = new Date(date);
-					newDate.setDate(date.getDate() + 1);
-					break;
-				case "ArrowUp":
-					event.preventDefault();
-					newDate = new Date(date);
-					newDate.setDate(date.getDate() - 7);
-					break;
-				case "ArrowDown":
-					event.preventDefault();
-					newDate = new Date(date);
-					newDate.setDate(date.getDate() + 7);
-					break;
-				case "Home":
-					event.preventDefault();
-					newDate = new Date(date.getFullYear(), date.getMonth(), 1);
-					break;
-				case "End":
-					event.preventDefault();
-					newDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-					break;
-				case "Enter":
-				case " ":
-					event.preventDefault();
-					handleDateSelect(date);
-					return;
-			}
-
-			if (newDate && !isDateDisabled(newDate)) {
-				if (!isSameMonth(newDate, currentMonth)) {
-					setCurrentMonth(newDate);
-				}
-
-				const newDateButton = document.querySelector(
-					`[data-date="${newDate.toISOString().split("T")[0]}"]`,
-				) as HTMLButtonElement;
-				newDateButton?.focus();
-			}
-		},
-		[disabled, handleDateSelect, isDateDisabled, isSameMonth, currentMonth],
-	);
-
 	const weekdays = useMemo(() => {
 		const days = [];
 		for (let i = 0; i < DAYS_IN_WEEK; i++) {
 			const dayIndex = (weekStartsOn + i) % DAYS_IN_WEEK;
-			const date = new Date(2023, 0, dayIndex + 1); // Use a known Sunday (Jan 1, 2023)
+			const date = new Date(2023, 0, dayIndex + 1);
 			const dayName = formatWeekday(date);
 			days.push(dayName.slice(0, 2));
 		}
 		return days;
 	}, [weekStartsOn, formatWeekday]);
 
+	const focusDateISO = useMemo(() => {
+		const toISO = (d: Date) => d.toISOString().split("T")[0];
+		const isVisible = (d: Date) =>
+			showOutsideDays || isSameMonth(d, currentMonth);
+
+		if (selectedDate) {
+			const found = calendarDays.find(
+				(d) => isVisible(d) && isSameDay(d, selectedDate) && !isDateDisabled(d),
+			);
+			if (found) return toISO(found);
+		}
+
+		const today = new Date();
+		const todayInView = calendarDays.find(
+			(d) => isVisible(d) && isSameDay(d, today) && !isDateDisabled(d),
+		);
+		if (todayInView) return toISO(todayInView);
+
+		const firstEnabledCurrentMonth = calendarDays.find(
+			(d) => isSameMonth(d, currentMonth) && isVisible(d) && !isDateDisabled(d),
+		);
+		if (firstEnabledCurrentMonth) return toISO(firstEnabledCurrentMonth);
+
+		const firstEnabledAny = calendarDays.find(
+			(d) => isVisible(d) && !isDateDisabled(d),
+		);
+		return firstEnabledAny ? toISO(firstEnabledAny) : undefined;
+	}, [
+		calendarDays,
+		currentMonth,
+		isDateDisabled,
+		isSameDay,
+		isSameMonth,
+		selectedDate,
+		showOutsideDays,
+	]);
+
+	const composite = Ariakit.useCompositeStore({
+		orientation: "horizontal",
+		focusLoop: false,
+	});
+
+	React.useEffect(() => {
+		if (focusDateISO) {
+			composite.setActiveId(`d-${focusDateISO}`);
+		}
+	}, [composite, focusDateISO]);
+
 	return (
 		<div
 			className={cn(
 				calendarVariants({
 					disabled,
-					hasCustomBackground: shouldOverrideBackground,
 				}),
 				"relative border border-border-muted overflow-hidden",
 				className,
 			)}
-			role="application"
-			aria-label={ariaLabel || "Calendar"}
 			{...props}
 		>
 			<span
@@ -338,7 +314,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			/>
 			<div
 				className={cn(
-					"flex items-center justify-between border-b border-border-muted/30",
+					"flex items-center justify-between border-b border-border-muted",
 					"px-4 py-3",
 				)}
 			>
@@ -347,12 +323,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToPreviousMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"rounded-md text-primary-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Previous month"
 				>
 					<svg
+						aria-hidden="true"
+						focusable="false"
 						className="w-4 h-4"
 						fill="none"
 						stroke="currentColor"
@@ -369,10 +347,10 @@ export const Calendar: React.FC<CalendarProps> = ({
 
 				<div className="flex items-center space-x-3">
 					<h2
-						className={cn(
-							"font-semibold text-foreground",
-							"text-sm",
-						)}
+						id={headingId}
+						aria-live="polite"
+						aria-atomic="true"
+						className={cn("font-semibold text-foreground", "text-sm")}
 					>
 						{formatMonth(currentMonth)}
 					</h2>
@@ -381,7 +359,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 transition-colors",
 							"px-2 py-1 text-xs",
 						)}
 					>
@@ -394,12 +372,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToNextMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed transition-colors",
+						"rounded-md text-primary-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Next month"
 				>
 					<svg
+						aria-hidden="true"
+						focusable="false"
 						className="w-4 h-4"
 						fill="none"
 						stroke="currentColor"
@@ -433,25 +413,38 @@ export const Calendar: React.FC<CalendarProps> = ({
 							Wk
 						</div>
 					)}
-					{weekdays.map((day, index) => (
-						<div
-							key={index}
-							className={cn(
-								"font-medium text-foreground-subtle text-center flex items-center justify-center",
-								"text-xs w-8 h-8",
-							)}
-						>
-							{day}
-						</div>
-					))}
+					{weekdays.map((day) => {
+						return (
+							<div
+								key={day}
+								className={cn(
+									"font-medium text-foreground-subtle text-center flex items-center justify-center",
+									"text-xs w-8 h-8",
+								)}
+							>
+								{day}
+							</div>
+						);
+					})}
 				</div>
 
-				<div className="space-y-1">
+					<Ariakit.Composite
+						store={composite}
+						role="grid"
+						{...(ariaLabel
+							? { ["aria-label"]: ariaLabel }
+							: { ["aria-labelledby"]: headingId })}
+						className="space-y-1"
+					>
 					{Array.from(
 						{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
 						(_, weekIndex) => (
-							<div
-								key={weekIndex}
+							<Ariakit.CompositeRow
+								key={
+									calendarDays[weekIndex * DAYS_IN_WEEK]
+										.toISOString()
+										.split("T")[0]
+								}
 								className={cn(
 									"grid",
 									showWeekNumbers ? "grid-cols-8" : "grid-cols-7",
@@ -473,7 +466,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 										weekIndex * DAYS_IN_WEEK,
 										(weekIndex + 1) * DAYS_IN_WEEK,
 									)
-									.map((date, dayIndex) => {
+									.map((date, _dayIndex) => {
 										const isSelected =
 											selectedDate && isSameDay(date, selectedDate);
 										const isCurrentMonth = isSameMonth(date, currentMonth);
@@ -482,16 +475,25 @@ export const Calendar: React.FC<CalendarProps> = ({
 										const shouldShow = showOutsideDays || isCurrentMonth;
 
 										if (!shouldShow) {
-											return <div key={dayIndex} className="w-8 h-8" />;
+											return (
+												<div key={date.toISOString()} className="w-8 h-8" />
+											);
 										}
 
 										return (
-											<button
-												key={dayIndex}
-												type="button"
+											<Ariakit.CompositeItem
+												id={`d-${date.toISOString().split("T")[0]}`}
+												key={date.toISOString()}
 												onClick={() => handleDateSelect(date)}
-												onKeyDown={(e) => handleKeyDown(e, date)}
-												disabled={isDisabled}
+												onKeyDown={(e) => {
+													if (e.key === "Enter" || e.key === " ") {
+														e.preventDefault();
+														handleDateSelect(date);
+													}
+												}}
+												role="gridcell"
+												aria-selected={Boolean(isSelected)}
+												aria-disabled={isDisabled || undefined}
 												data-date={date.toISOString().split("T")[0]}
 												className={cn(
 													dayButtonVariants({
@@ -508,17 +510,16 @@ export const Calendar: React.FC<CalendarProps> = ({
 													}),
 												)}
 												aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
-												aria-pressed={isSelected}
 												aria-current={isToday ? "date" : undefined}
 											>
 												{date.getDate()}
-											</button>
+											</Ariakit.CompositeItem>
 										);
 									})}
-							</div>
+							</Ariakit.CompositeRow>
 						),
 					)}
-				</div>
+				</Ariakit.Composite>
 			</div>
 		</div>
 	);

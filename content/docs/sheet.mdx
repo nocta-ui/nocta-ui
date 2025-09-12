@@ -43,7 +43,7 @@ import {
 </Step>
 </Steps>
 
-## Basic Usage
+## Example
 
 The Sheet component provides a slide-out panel that can appear from any side of the screen.
 
@@ -64,8 +64,8 @@ The Sheet component provides a slide-out panel that can appear from any side of 
             This is a basic sheet panel that slides in from the right side of the screen.
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-foreground-muted">
+        <div className="p-4 flex-1">
+          <p className="text-sm text-primary-muted">
             Sheet content goes here. You can add any components or content you need.
           </p>
         </div>
@@ -100,8 +100,8 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
             This sheet slides in from the left side.
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-foreground-muted">
+        <div className="p-4 flex-1">
+          <p className="text-sm text-primary-muted">
             Content for left-side sheet.
           </p>
         </div>
@@ -120,8 +120,8 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
             This sheet slides in from the right side.
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-foreground-muted">
+        <div className="p-4 flex-1">
+          <p className="text-sm text-primary-muted">
             Content for right-side sheet.
           </p>
         </div>
@@ -154,8 +154,8 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
             This is a small-sized sheet (320px width).
           </SheetDescription>
         </SheetHeader>
-        <div className="px-6 py-4 flex-1">
-          <p className="text-sm text-foreground-muted">
+        <div className="p-4 flex-1">
+          <p className="text-sm text-primary-muted">
             Compact content for small sheet.
           </p>
         </div>
@@ -165,7 +165,7 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
   </DocsTab>
 </DocsTabs>
 
-## Props
+## Api Reference
 
 ### Sheet
 
@@ -207,14 +207,3 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
 | `children` | `React.ReactNode` | `'Close'` | Button content |
 | `className` | `string` | `''` | Additional CSS classes |
 | `asChild` | `boolean` | `false` | Render as child element |
-
-## Accessibility
-
-The Sheet component follows WAI-ARIA guidelines:
-
-- Uses proper `dialog` role and `aria-modal` attributes
-- Implements focus trapping within the sheet
-- Supports keyboard navigation (Tab, Shift+Tab, Escape)
-- Maintains focus management when opening/closing
-- Provides screen reader announcements
-- Supports click-outside-to-close functionality

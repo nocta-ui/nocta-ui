@@ -49,7 +49,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Simple Chat
 
@@ -136,47 +136,6 @@ interface Message {
   avatar?: string;
   name?: string;
 }
-```
-
-## Sizing and Layout
-
-The Chat component's size is controlled through the `className` prop, giving you full flexibility over dimensions:
-
-```tsx lineNumbers title="Size Control Examples"
-// Small chat window
-<Chat
-  messages={messages}
-  onSendMessage={handleSendMessage}
-  className="w-80 h-64"
-/>
-
-// Medium chat (default-like)
-<Chat
-  messages={messages}
-  onSendMessage={handleSendMessage}
-  className="w-96 h-96"
-/>
-
-// Large chat
-<Chat
-  messages={messages}
-  onSendMessage={handleSendMessage}
-  className="w-full max-w-2xl h-[500px]"
-/>
-
-// Full width with responsive height
-<Chat
-  messages={messages}
-  onSendMessage={handleSendMessage}
-  className="w-full h-screen max-h-[600px]"
-/>
-
-// Custom breakpoint sizing
-<Chat
-  messages={messages}
-  onSendMessage={handleSendMessage}
-  className="w-full sm:w-96 md:w-[500px] lg:w-[600px] h-80 md:h-96"
-/>
 ```
 
 ## Features
@@ -327,23 +286,6 @@ Display real-time typing indicators to show when users are composing messages.
   </DocsTab>
 </DocsTabs>
 
-#### TypingUser Interface
-
-```tsx lineNumbers title="TypingUser Interface"
-interface TypingUser {
-  id: string;           // Unique user identifier
-  name?: string;        // Optional user name
-  avatar?: string;      // Optional avatar URL
-}
-```
-
-#### Features:
-- **Single User Typing**: Shows "[Name] is typing"
-- **Multiple Users**: Shows "[Name] and [Name] are typing" or "[Name] and X others are typing"
-- **Animated Dots**: Bouncing animation with staggered timing
-- **Avatar Integration**: Works seamlessly with chat avatars
-- **Auto-scroll**: Automatically scrolls when typing indicators appear
-
 ## Input Configuration
 
 ### Message Length Limit
@@ -398,78 +340,7 @@ Disable the chat input when needed:
 />
 ```
 
-## Customization
-
-### Custom Styling
-
-All components accept a `className` prop for custom styling:
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomStyledChatDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Styling"
-    <Chat
-      messages={messages}
-      onSendMessage={handleSendMessage}
-      showAvatars
-      className="w-full max-w-lg border-2 border-purple-200 dark:border-purple-800 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
-      placeholder="Type with style..."
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Individual Component Styling
-
-Style individual chat components:
-
-```tsx lineNumbers title="Individual Component Styling"
-<Chat 
-  messages={messages} 
-  onSendMessage={handleSendMessage}
-  className="w-full max-w-2xl"
->
-  <ChatHeader className="bg-blue-50 dark:bg-blue-950">
-    <ChatTitle className="text-blue-900 dark:text-blue-100">
-      Custom Chat
-    </ChatTitle>
-    <ChatDescription className="text-blue-700 dark:text-blue-300">
-      With custom header styling
-    </ChatDescription>
-  </ChatHeader>
-</Chat>
-```
-
-## Component Architecture
-
-The Chat component is built with a modular architecture:
-
-- **Chat**: Main container component
-- **ChatHeader**: Optional header with title and description
-- **ChatTitle**: Title component with customizable element type
-- **ChatDescription**: Description text component
-- **ChatMessages**: Messages container with auto-scroll
-- **ChatMessage**: Individual message component
-- **ChatInput**: Input component with auto-resize textarea
-- **ChatActions**: Container for action buttons
-- **TypingIndicator**: Real-time typing indicator with animated dots
-
-## Accessibility
-
-The Chat component includes several accessibility features:
-
-- **Keyboard Navigation**: Full keyboard support for input and actions
-- **Screen Reader Support**: Proper ARIA labels and semantic HTML
-- **Focus Management**: Proper focus handling for interactive elements
-- **Auto-scroll**: Automatic scrolling to new messages and typing indicators
-- **Message Timestamps**: Available for screen readers
-- **Typing Indicators**: Accessible real-time feedback for ongoing conversations
-
 ## API Reference
-
-### Chat Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|

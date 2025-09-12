@@ -47,21 +47,15 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4 w-64">
 			<div>
-				<span className="text-sm text-foreground-muted mb-2 block">
-					Small
-				</span>
+				<span className="text-sm text-primary-muted mb-2 block">Small</span>
 				<Progress value={50} size="sm" />
 			</div>
 			<div>
-				<span className="text-sm text-foreground-muted mb-2 block">
-					Medium
-				</span>
+				<span className="text-sm text-primary-muted mb-2 block">Medium</span>
 				<Progress value={65} size="md" />
 			</div>
 			<div>
-				<span className="text-sm text-foreground-muted mb-2 block">
-					Large
-				</span>
+				<span className="text-sm text-primary-muted mb-2 block">Large</span>
 				<Progress value={80} size="lg" />
 			</div>
 		</div>

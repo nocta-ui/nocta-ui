@@ -9,10 +9,7 @@ import {
   SecondaryButtonDemo, 
   GhostButtonDemo, 
   IconButtonDemo,
-  VariantsDemo, 
   SizesDemo, 
-  DisabledStateDemo, 
-  WithIconsDemo 
 } from '@/app/components/ui/button/button-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 
@@ -30,7 +27,7 @@ Then import the component:
 import { Button } from '@/components/ui/button';
 ```
 
-## Basic Usage
+## Examples
 
 ### Primary Button
 
@@ -79,34 +76,15 @@ import { Button } from '@/components/ui/button';
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Icon Button"
-    <Button variant="icon" size="sm">
+    {/* Icon-only buttons should provide an accessible name */}
+    <Button variant="icon" size="sm" aria-label="Add">
       <PlusIcon className="w-4 h-4" />
     </Button>
-    <Button variant="icon" size="md">
+    <Button variant="icon" size="md" aria-label="Download">
       <DownloadIcon className="w-5 h-5" />
     </Button>
-    <Button variant="icon" size="lg">
+    <Button variant="icon" size="lg" aria-label="Settings">
       <SettingsIcon className="w-6 h-6" />
-    </Button>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Variants
-
-The Button component supports four variants: `primary`, `secondary`, `ghost`, and `icon`.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Button Variants"
-    <Button variant="primary">Primary</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="icon">
-      <PlusIcon className="w-5 h-5" />
     </Button>
     ```
   </DocsTab>
@@ -129,70 +107,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Button States
-
-### Disabled State
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <DisabledStateDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Disabled State"
-    <Button disabled>Disabled Primary</Button>
-    <Button variant="secondary" disabled>Disabled Secondary</Button>
-    <Button variant="ghost" disabled>Disabled Ghost</Button>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Customization
-
-### Custom Styling
-
-The Button component accepts a `className` prop for custom styling:
-
-```tsx lineNumbers title="Custom Styling"
-<Button className="w-full shadow-lg">
-  Full Width Button
-</Button>
-
-<Button className="rounded-full px-8">
-  Rounded Button
-</Button>
-
-<Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-  Gradient Button
-</Button>
-```
-
-### With Icons
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <WithIconsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Buttons with Icons"
-    <Button>
-      <PlusIcon className="w-4 h-4 mr-2" />
-      Add Item
-    </Button>
-
-    <Button variant="secondary">
-      <DownloadIcon className="w-4 h-4 mr-2" />
-      Download
-    </Button>
-
-    <Button variant="ghost">
-      <SettingsIcon className="w-4 h-4 mr-2" />
-      Settings
-    </Button>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Props
+## Api Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -201,6 +116,8 @@ The Button component accepts a `className` prop for custom styling:
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
 | `className` | `string` | `''` | Additional CSS classes |
 | `disabled` | `boolean` | `false` | Disable the button |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type (defaults to button to avoid accidental form submit) |
+| `aria-label` | `string` | — | Accessible name for icon-only buttons |
 | `onClick` | `() => void` | — | Click handler |
 
-The Button component also accepts all standard HTML button attributes.
+The Button component also accepts all standard HTML button attributes. When `disabled` is set, the component also exposes `aria-disabled` for assistive technologies.

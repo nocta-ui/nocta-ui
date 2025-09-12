@@ -26,6 +26,7 @@ export const Check: React.FC<IconProps> = ({
 }) => {
 	return (
 		<svg
+			aria-hidden={true}
 			xmlns="http://www.w3.org/2000/svg"
 			width={size}
 			height={size}
@@ -50,6 +51,7 @@ export const Copy: React.FC<IconProps> = ({
 }) => {
 	return (
 		<svg
+			aria-hidden={true}
 			xmlns="http://www.w3.org/2000/svg"
 			width={size}
 			height={size}
@@ -100,14 +102,7 @@ interface CodeBlockProps extends HTMLAttributes<HTMLElement> {
 }
 
 export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
-	(
-		{
-			viewportProps,
-			children,
-			...props
-		},
-		ref,
-	) => {
+	({ viewportProps, children, ...props }, ref) => {
 		const areaRef = useRef<HTMLDivElement>(null);
 
 		const onCopy = () => {
@@ -140,7 +135,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						"text-[13px] py-3.5 rounded-xl overflow-auto bg-neutral-200/50 dark:bg-neutral-950/50 m-1 border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
+						"text-[13px] py-3.5 rounded-xl overflow-auto bg-neutral-50 dark:bg-neutral-950/50 m-1 border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
 						props["data-line-numbers"] && "[&_.line]:pl-3",
 						viewportProps?.className,
 					)}

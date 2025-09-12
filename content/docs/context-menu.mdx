@@ -48,7 +48,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Simple Context Menu
 
@@ -232,44 +232,7 @@ Both the entire context menu and individual items can be disabled.
   </DocsTab>
 </DocsTabs>
 
-## Positioning
-
-The context menu automatically positions itself relative to the cursor position and avoids viewport collisions.
-
-```tsx
-<ContextMenuContent
-  side="bottom"        // 'top' | 'right' | 'bottom' | 'left'
-  align="start"        // 'start' | 'center' | 'end'
-  sideOffset={4}       // Distance from cursor
-  alignOffset={0}      // Alignment offset
-  avoidCollisions={true} // Prevent viewport overflow
->
-  {/* Menu items */}
-</ContextMenuContent>
-```
-
-## Keyboard Navigation
-
-The Context Menu component supports full keyboard navigation:
-
-- **Right-click**: Open context menu
-- **Arrow Keys**: Navigate between menu items
-- **Enter**: Activate selected item
-- **Escape**: Close menu
-- **Tab**: Navigate through focusable elements
-- **Home/End**: Jump to first/last item
-
-## Accessibility
-
-The Context Menu component is built with accessibility in mind:
-
-- **ARIA Attributes**: Proper `role="menu"`, `aria-expanded`, `aria-haspopup`
-- **Keyboard Navigation**: Full keyboard support with arrow keys
-- **Focus Management**: Proper focus handling and restoration
-- **Screen Reader Support**: Announces menu state and items
-- **Portal Rendering**: Renders outside component tree to avoid z-index issues
-
-## Props
+## API Reference
 
 ### ContextMenu
 
@@ -291,10 +254,46 @@ The Context Menu component is built with accessibility in mind:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `React.ReactNode` | — | Menu items and separators |
-| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side relative to cursor |
-| `align` | `'start' \| 'center' \| 'end'` | `'start'` | Alignment relative to cursor |
-| `sideOffset` | `number` | `0` | Distance from cursor |
-| `alignOffset` | `number` | `0` | Offset for alignment |
-| `avoidCollisions` | `boolean` | `true` | Prevent viewport overflow |
-| `onEscapeKeyDown` | `(event: KeyboardEvent) => void` | — | Escape key handler |
-| `
+| `className` | `string` | — | Additional CSS classes |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min‑width |
+
+### ContextMenuItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Item content |
+| `disabled` | `boolean` | `false` | Disable the item |
+| `inset` | `boolean` | `false` | Indent the item content |
+| `destructive` | `boolean` | `false` | Destructive styling (e.g., delete) |
+| `className` | `string` | — | Additional CSS classes |
+| `onClick` | `() => void` | — | Click handler |
+
+### ContextMenuSeparator
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### ContextMenuSub
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger and content |
+
+### ContextMenuSubTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger content |
+| `disabled` | `boolean` | `false` | Disable the submenu trigger |
+| `inset` | `boolean` | `false` | Indent the trigger content |
+| `destructive` | `boolean` | `false` | Destructive styling (not typical) |
+| `className` | `string` | — | Additional CSS classes |
+
+### ContextMenuSubContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu items and separators |
+| `className` | `string` | — | Additional CSS classes |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min‑width |

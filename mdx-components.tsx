@@ -50,6 +50,7 @@ import {
 	CodeBlock as YourCustomCodeBlock,
 } from "@/app/components/ui/codeblock/codeblock";
 import { Combobox } from "@/app/components/ui/combobox";
+import { CommandK } from "@/app/components/ui/command-k";
 import {
 	ContextMenu,
 	ContextMenuContent,
@@ -138,11 +139,10 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/app/components/ui/tooltip";
-import { CommandK } from "@/app/components/ui/command-k";
 
-const wrap = (Tag: any, className?: string) =>
-  (props: any) => <Tag className={className} {...props} />;
-
+const wrap = (Tag: any, className?: string) => (props: any) => (
+	<Tag className={className} {...props} />
+);
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {

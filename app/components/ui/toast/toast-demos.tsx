@@ -4,14 +4,11 @@ import type React from "react";
 import { Button } from "../button";
 import { type ToastPosition, toast } from "./toast";
 
-// Basic demo - single toast example
 export const BasicToastDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<BasicToastExample />
-			</div>
-		</>
+		<div className="my-6">
+			<BasicToastExample />
+		</div>
 	);
 };
 
@@ -26,14 +23,11 @@ const BasicToastExample: React.FC = () => {
 	return <Button onClick={showToast}>Show Toast</Button>;
 };
 
-// Toast variants demo
 export const ToastVariantsDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<ToastVariantsExample />
-			</div>
-		</>
+		<div className="my-6">
+			<ToastVariantsExample />
+		</div>
 	);
 };
 
@@ -84,14 +78,11 @@ const ToastVariantsExample: React.FC = () => {
 	);
 };
 
-// Toast with actions demo
 export const ToastWithActionsDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<ToastWithActionsExample />
-			</div>
-		</>
+		<div className="my-6">
+			<ToastWithActionsExample />
+		</div>
 	);
 };
 
@@ -110,14 +101,11 @@ const ToastWithActionsExample: React.FC = () => {
 	return <Button onClick={showToast}>Show Toast with Action</Button>;
 };
 
-// Multiple stacked toasts demo
 export const StackedToastsDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<StackedToastsExample />
-			</div>
-		</>
+		<div className="my-6">
+			<StackedToastsExample />
+		</div>
 	);
 };
 
@@ -157,14 +145,11 @@ const StackedToastsExample: React.FC = () => {
 	);
 };
 
-// Persistent toast demo
 export const PersistentToastDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<PersistentToastExample />
-			</div>
-		</>
+		<div className="my-6">
+			<PersistentToastExample />
+		</div>
 	);
 };
 
@@ -173,7 +158,7 @@ const PersistentToastExample: React.FC = () => {
 		toast({
 			title: "Important Notice",
 			description: "This toast will remain visible until manually closed.",
-			duration: 0, // Persistent
+			duration: 0,
 		});
 	};
 
@@ -184,14 +169,11 @@ const PersistentToastExample: React.FC = () => {
 	);
 };
 
-// Custom duration demo
 export const CustomDurationDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<CustomDurationExample />
-			</div>
-		</>
+		<div className="my-6">
+			<CustomDurationExample />
+		</div>
 	);
 };
 
@@ -211,14 +193,11 @@ const CustomDurationExample: React.FC = () => {
 	);
 };
 
-// Dismiss all demo
 export const DismissAllDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<DismissAllExample />
-			</div>
-		</>
+		<div className="my-6">
+			<DismissAllExample />
+		</div>
 	);
 };
 
@@ -247,14 +226,11 @@ const DismissAllExample: React.FC = () => {
 	);
 };
 
-// Toast positions demo
 export const ToastPositionsDemo: React.FC = () => {
 	return (
-		<>
-			<div className="my-6">
-				<ToastPositionsExample />
-			</div>
-		</>
+		<div className="my-6">
+			<ToastPositionsExample />
+		</div>
 	);
 };
 
@@ -270,7 +246,7 @@ const ToastPositionsExample: React.FC = () => {
 
 	return (
 		<div className="space-y-4 flex flex-col items-center">
-			<div className="text-sm text-foreground-muted mb-4">
+			<div className="text-sm text-primary-muted mb-4">
 				Click the buttons to see toasts appear in different positions:
 			</div>
 

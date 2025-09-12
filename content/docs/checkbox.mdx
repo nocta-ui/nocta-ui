@@ -9,7 +9,6 @@ import {
   VariantsDemo, 
   SizesDemo, 
   LabeledCheckboxDemo,
-  DisabledStateDemo,
   CustomStylingDemo
 } from '@/app/components/ui/checkbox/checkbox-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -34,7 +33,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Default Checkbox
 
@@ -95,108 +94,12 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Checkbox States
-
-### Disabled State
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <DisabledStateDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Disabled Checkbox State"
-    <Checkbox disabled={false} />
-    <Checkbox checked={true} disabled={false} />
-    <Checkbox disabled={true} />
-    <Checkbox checked={true} disabled={true} />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Customization
-
-### Custom Styling
-
-The Checkbox component accepts a `className` prop for custom styling:
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <div className="my-6">
-      <CustomStylingDemo />
-    </div>
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Checkbox Styling"
-    <Checkbox className="scale-125" checked={true} />
-    <Checkbox className="rounded-full" checked={true} />
-    <Checkbox className="shadow-lg" checked={false} />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### With Labels
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <div className="my-6">
-      <LabeledCheckboxDemo />
-    </div>
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Checkbox with Labels"
-    const [states, setStates] = useState({
-      notifications: false,
-      marketing: true,
-    });
-
-    const handleChange = (field: string) => (checked: boolean) => {
-      setStates(prev => ({ ...prev, [field]: checked }));
-    };
-
-    <div className="space-y-4">
-      <div className="flex items-start gap-3">
-        <Checkbox 
-          id="option1" 
-          checked={states.notifications}
-          onCheckedChange={handleChange('notifications')}
-        />
-        <div>
-          <label htmlFor="option1" className="text-sm font-medium cursor-pointer">
-            Enable notifications
-          </label>
-          <p className="text-xs text-foreground-muted mt-1">
-            Receive email notifications about your account activity
-          </p>
-        </div>
-      </div>
-      <div className="flex items-start gap-3">
-        <Checkbox 
-          id="option2" 
-          variant="success" 
-          checked={states.marketing}
-          onCheckedChange={handleChange('marketing')}
-        />
-        <div>
-          <label htmlFor="option2" className="text-sm font-medium cursor-pointer">
-            Marketing emails
-          </label>
-          <p className="text-xs text-foreground-muted mt-1">
-            Get updates about new features and special offers
-          </p>
-        </div>
-      </div>
-    </div>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## API Reference
-
-### Checkbox Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `checked` | `boolean` | `false` | Whether the checkbox is checked |
+| `defaultChecked` | `boolean` | `false` | Initial checked state (uncontrolled) |
 | `onCheckedChange` | `(checked: boolean) => void` | - | Callback fired when the checkbox state changes |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the checkbox |
 | `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | The visual style variant |
@@ -205,13 +108,3 @@ The Checkbox component accepts a `className` prop for custom styling:
 | `id` | `string` | - | The id attribute for the checkbox input |
 
 The Checkbox component also accepts all standard HTML input element props through the `...props` spread operator.
-
-## Accessibility
-
-The Checkbox component is built with accessibility in mind:
-
-- Uses semantic HTML with proper ARIA attributes
-- Supports keyboard navigation (Space to toggle)
-- Screen reader compatible
-- Focus management with visible focus indicators
-- Proper labeling support

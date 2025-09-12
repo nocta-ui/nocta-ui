@@ -2,14 +2,15 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 const skeletonVariants = cva("bg-background-muted not-prose", {
 	variants: {
 		variant: {
 			default: "",
-			shimmer: "relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:animate-[shimmer_2s_ease-in-out_infinite] after:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]",
+			shimmer:
+				"relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:animate-[shimmer_2s_ease-in-out_infinite] after:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]",
 		},
 		shape: {
 			rectangle: "rounded",
@@ -107,22 +108,37 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 	className = "",
 	...props
 }) => {
-  useEffect(() => {
-    if (variant !== "shimmer") return;
-    if (!document.getElementById("shimmer-keyframes")) {
-      const style = document.createElement("style");
-      style.id = "shimmer-keyframes";
-      style.innerHTML = `@keyframes shimmer {\n  0% {\n    transform: translateX(-100%);\n  }\n  100% {\n    transform: translateX(100%);\n  }\n}`;
-      document.head.appendChild(style);
-    }
-  }, [variant]);
+	useEffect(() => {
+		if (variant !== "shimmer") return;
+		if (!document.getElementById("shimmer-keyframes")) {
+			const style = document.createElement("style");
+			style.id = "shimmer-keyframes";
+			style.innerHTML = `@keyframes shimmer {\n  0% {\n    transform: translateX(-100%);\n  }\n  100% {\n    transform: translateX(100%);\n  }\n}`;
+			document.head.appendChild(style);
+		}
+	}, [variant]);
+
+	const lineKeys = useMemo(
+		() =>
+			Array.from({ length: lines }, () =>
+				typeof crypto !== "undefined" && "randomUUID" in crypto
+					? (crypto as Crypto).randomUUID()
+					: Math.random().toString(36).slice(2),
+			),
+		[lines],
+	);
 
 	if (shape === "text" && lines > 1) {
 		return (
-			<div className={cn("space-y-2", className)} {...props}>
-				{Array.from({ length: lines }, (_, index) => (
+			<div
+				aria-hidden="true"
+				role="presentation"
+				className={cn("space-y-2", className)}
+				{...props}
+			>
+				{lineKeys.map((key, index) => (
 					<div
-						key={index}
+						key={key}
 						className={cn(
 							skeletonVariants({ variant, shape, size }),
 							lastTextLineVariants({ isLast: index === lines - 1 }),
@@ -143,6 +159,8 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
 	return (
 		<div
+			aria-hidden="true"
+			role="presentation"
 			className={cn(
 				skeletonVariants({ variant, shape, size }),
 				shape === "circle" ? "" : "w-full",

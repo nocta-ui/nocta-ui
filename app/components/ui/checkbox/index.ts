@@ -6,7 +6,6 @@ export {
 export {
 	BasicCheckboxDemo,
 	CustomStylingDemo,
-	DisabledStateDemo,
 	LabeledCheckboxDemo,
 	SizesDemo,
 	VariantsDemo,

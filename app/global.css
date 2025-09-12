@@ -18,9 +18,10 @@
 	--color-primary: oklch(0.205 0 0);
 	--color-primary-foreground: oklch(0.97 0 0);
 	--color-primary-muted: oklch(0.371 0 0);
-	--color-overlay: oklch(0.145 0 0);
-	--color-gradient-primary-start: oklch(0.205 0 0);
-	--color-gradient-primary-end: oklch(0.371 0 0);
+	--color-overlay: oklch(0.97 0 0);
+	--color-gradient-primary-start: oklch(0.371 0 0);
+	--color-gradient-primary-end: oklch(0.205 0 0);
+	--color-primary-white: oklch(0.97 0 0);
 }
 
 .dark {
@@ -40,10 +41,11 @@
 	--color-primary-muted: oklch(0.87 0 0);
 	--color-overlay: oklch(0.145 0 0);
 	--color-gradient-primary-start: oklch(0.371 0 0);
-	--color-gradient-primary-end: oklch(0.371 0 0);
+	--color-gradient-primary-end: oklch(0.2768 0 0);
+	--color-primary-white: oklch(0.922 0 0);
 }
-  
-@theme  {
+
+@theme {
 	--font-sfpro: var(--font-sfpro);
 	--color-background: var(--background);
 	--color-background-muted: var(--background-muted);
@@ -62,6 +64,7 @@
 	--color-gradient-primary-start: var(--gradient-primary-start);
 	--color-gradient-primary-end: var(--gradient-primary-end);
 	--color-overlay: var(--overlay);
+	--color-primary-white: var(--primary-white);
 }
 
 @layer base {

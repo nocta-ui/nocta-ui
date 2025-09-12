@@ -18,7 +18,8 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": [
 				"Accordion",
@@ -69,7 +70,8 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Alert", "AlertTitle", "AlertDescription", "AlertIcon"],
 			"props": {
@@ -160,7 +162,8 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Button"],
 			"props": {
@@ -221,7 +224,9 @@
 			"dependencies": {
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
-				"clsx": "^2.1.1"
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Calendar"],
 			"props": {
@@ -274,12 +279,14 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Checkbox"],
 			"props": {
 				"Checkbox": [
 					"checked",
+					"defaultChecked",
 					"onCheckedChange",
 					"size",
 					"variant",
@@ -311,10 +318,10 @@
 			],
 			"dependencies": {
 				"react": "^18.0.0",
-				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": [
 				"Dialog",
@@ -330,7 +337,7 @@
 			"props": {
 				"Dialog": ["children", "open", "onOpenChange"],
 				"DialogTrigger": ["children", "asChild", "className"],
-				"DialogContent": ["children", "className", "size", "showClose"],
+				"DialogContent": ["children", "className", "size", "showClose", "portal"],
 				"DialogHeader": ["children", "className"],
 				"DialogTitle": ["children", "className", "as"],
 				"DialogDescription": ["children", "className"],
@@ -460,25 +467,17 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Popover", "PopoverTrigger", "PopoverContent"],
 			"props": {
 				"Popover": ["open", "defaultOpen", "onOpenChange"],
-				"PopoverTrigger": ["asChild", "className"],
-				"PopoverContent": [
-					"side",
-					"align",
-					"sideOffset",
-					"alignOffset",
-					"avoidCollisions",
-					"className",
-					"onEscapeKeyDown",
-					"onPointerDownOutside"
-				]
+				"PopoverTrigger": ["variant", "size", "asChild", "className"],
+				"PopoverContent": ["size", "className", "portal", "fixed"]
 			},
-			"variants": [],
-			"sizes": [],
+			"variants": ["default"],
+			"sizes": ["sm", "md", "lg"],
 			"features": [
 				"controlled-uncontrolled-state",
 				"positioning-system",
@@ -530,7 +529,7 @@
 					"size"
 				],
 				"SelectTrigger": ["children", "className", "size"],
-				"SelectContent": ["children", "className", "position"],
+				"SelectContent": ["children", "className", "portal", "fixed"],
 				"SelectItem": ["value", "children", "className", "disabled"],
 				"SelectValue": ["placeholder", "className"]
 			},
@@ -638,12 +637,14 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Switch"],
 			"props": {
 				"Switch": [
 					"checked",
+					"defaultChecked",
 					"onCheckedChange",
 					"size",
 					"variant",
@@ -821,7 +822,6 @@
 					"variant",
 					"className",
 					"popoverClassName",
-					"searchable",
 					"clearable"
 				],
 				"ComboboxOption": ["value", "label", "disabled"]
@@ -844,53 +844,59 @@
 				"client-component"
 			]
 		},
-		"form": {
-			"name": "Form",
-			"description": "Composable form component with field validation, labels, and actions",
-			"category": "form",
-			"files": [
-				{
-					"name": "form.tsx",
-					"path": "app/components/ui/form/form.tsx",
-					"type": "component"
-				}
-			],
-			"dependencies": {
-				"react": "^18.0.0"
-			},
-			"exports": [
-				"Form",
-				"FormField",
-				"FormLabel",
-				"FormControl",
-				"FormDescription",
-				"FormMessage",
-				"FormActions"
-			],
-			"props": {
-				"Form": ["children", "className", "onSubmit"],
-				"FormField": ["children", "name", "error", "description", "className"],
-				"FormLabel": ["children", "className", "required"],
-				"FormControl": ["children", "className"],
-				"FormDescription": ["children", "className"],
-				"FormMessage": ["children", "className", "type"],
-				"FormActions": ["children", "className", "align"]
-			},
-			"messageTypes": ["error", "success", "warning"],
-			"alignments": ["left", "center", "right"],
-			"features": [
-				"composable-architecture",
-				"context-based-field-state",
-				"accessibility-built-in",
-				"error-validation-support",
-				"field-descriptions",
-				"required-field-indicators",
-				"flexible-action-alignment",
-				"dark-mode",
-				"semantic-html",
-				"screen-reader-support"
-			]
-		},
+        "form": {
+            "name": "Form",
+            "description": "Composable Ariakit-based form with fields, labels, validation, and actions",
+            "category": "form",
+            "files": [
+                {
+                    "name": "form.tsx",
+                    "path": "app/components/ui/form/form.tsx",
+                    "type": "component"
+                }
+            ],
+            "dependencies": {
+                "react": "^18.0.0",
+                "@ariakit/react": "^0.4.18"
+            },
+            "exports": [
+                "Form",
+                "FormField",
+                "FormLabel",
+                "FormControl",
+                "FormDescription",
+                "FormMessage",
+                "FormActions",
+                "FormInput",
+                "FormSubmit"
+            ],
+            "props": {
+                "Form": ["children", "className", "onSubmit", "store"],
+                "FormField": ["children", "name", "error", "description", "className"],
+                "FormLabel": ["children", "className", "required"],
+                "FormControl": ["children", "className"],
+                "FormDescription": ["children", "className"],
+                "FormMessage": ["children", "className", "type"],
+                "FormActions": ["children", "className", "align"],
+                "FormInput": ["className", "...inputProps"],
+                "FormSubmit": ["children", "className", "...buttonProps"]
+            },
+            "messageTypes": ["error", "success", "warning"],
+            "alignments": ["left", "center", "right"],
+            "features": [
+                "ariakit-store",
+                "composable-architecture",
+                "context-based-field-state",
+                "accessibility-built-in",
+                "error-validation-support",
+                "field-descriptions",
+                "required-field-indicators",
+                "flexible-action-alignment",
+                "dark-mode",
+                "semantic-html",
+                "screen-reader-support"
+            ]
+        },
 		"tabs": {
 			"name": "Tabs",
 			"description": "Accessible tabs component with multiple variants, orientations, and keyboard navigation",
@@ -906,7 +912,8 @@
 				"react": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Tabs", "TabsList", "TabsTrigger", "TabsContent"],
 			"props": {
@@ -958,32 +965,24 @@
 				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": ["Tooltip", "TooltipTrigger", "TooltipContent"],
 			"props": {
-				"Tooltip": ["children", "open", "onOpenChange", "delayDuration"],
-				"TooltipTrigger": ["children", "asChild", "className"],
+				"Tooltip": ["children", "delayDuration"],
+				"TooltipTrigger": ["children", "className"],
 				"TooltipContent": [
 					"children",
 					"className",
-					"side",
-					"align",
-					"sideOffset",
-					"alignOffset"
+					"variant"
 				]
 			},
-			"sides": ["top", "bottom", "left", "right"],
-			"alignments": ["start", "center", "end"],
 			"features": [
 				"portal-rendering",
-				"smart-positioning",
-				"viewport-detection",
 				"hover-delay",
 				"keyboard-support",
-				"animations",
 				"composable",
-				"controlled-uncontrolled",
 				"dark-mode",
 				"client-component"
 			]
@@ -1004,7 +1003,8 @@
 				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
 			},
 			"exports": [
 				"ContextMenu",
@@ -1019,28 +1019,19 @@
 			"props": {
 				"ContextMenu": ["children", "className"],
 				"ContextMenuTrigger": ["children", "disabled", "className"],
-				"ContextMenuContent": [
-					"children",
-					"side",
-					"align",
-					"sideOffset",
-					"alignOffset",
-					"avoidCollisions",
-					"onEscapeKeyDown",
-					"onPointerDownOutside",
-					"className"
-				],
+				"ContextMenuContent": ["children", "className", "size"],
 				"ContextMenuItem": [
 					"children",
 					"disabled",
 					"inset",
+					"destructive",
 					"className",
 					"onClick"
 				],
 				"ContextMenuSeparator": ["className"],
-				"ContextMenuSub": ["children", "open", "onOpenChange"],
-				"ContextMenuSubTrigger": ["children", "disabled", "inset", "className"],
-				"ContextMenuSubContent": ["children", "className"]
+				"ContextMenuSub": ["children"],
+				"ContextMenuSubTrigger": ["children", "disabled", "inset", "destructive", "className"],
+				"ContextMenuSubContent": ["children", "className", "size"]
 			},
 			"features": [
 				"right-click-trigger",
@@ -1321,7 +1312,6 @@
 				"BreadcrumbLink": [
 					"variant",
 					"size",
-					"asChild",
 					"className",
 					"children"
 				],

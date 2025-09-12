@@ -1,5 +1,15 @@
 "use client";
 
+import {
+	Form as AriakitForm,
+	FormDescription as AriakitFormDescription,
+	FormError as AriakitFormError,
+	FormInput as AriakitFormInput,
+	FormLabel as AriakitFormLabel,
+	FormSubmit as AriakitFormSubmit,
+	type FormStore,
+	useFormStore,
+} from "@ariakit/react";
 import React, { createContext, useContext, useId } from "react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +34,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 	children: React.ReactNode;
 	className?: string;
 	onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+	store?: FormStore;
 }
 
 export interface FormFieldProps {
@@ -69,8 +80,12 @@ export const Form: React.FC<FormProps> = ({
 	children,
 	className = "",
 	onSubmit,
+	store: providedStore,
 	...props
 }) => {
+	const internalStore = useFormStore({});
+	const store = providedStore ?? internalStore;
+
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		if (onSubmit) {
 			event.preventDefault();
@@ -79,13 +94,14 @@ export const Form: React.FC<FormProps> = ({
 	};
 
 	return (
-		<form
+		<AriakitForm
+			store={store}
 			className={cn("space-y-6 not-prose", className)}
 			onSubmit={handleSubmit}
 			{...props}
 		>
 			{children}
-		</form>
+		</AriakitForm>
 	);
 };
 
@@ -118,27 +134,22 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 	required = false,
 	...props
 }) => {
-	const { id } = useFormField();
+	const { name } = useFormField();
 
 	return (
-		<label
-			htmlFor={id}
+		<AriakitFormLabel
+			name={name}
 			className={cn(
-				"block text-sm font-medium text-foreground-muted leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+				"block text-sm font-medium text-primary-muted leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 				className,
 			)}
 			{...props}
 		>
 			{children}
 			{required && (
-				<span
-					className="text-red-600 dark:text-red-400 ml-1"
-					aria-label="required"
-				>
-					*
-				</span>
+				<span className="text-red-600 dark:text-red-400 ml-1">*</span>
 			)}
-		</label>
+		</AriakitFormLabel>
 	);
 };
 
@@ -146,25 +157,7 @@ export const FormControl: React.FC<FormControlProps> = ({
 	children,
 	className = "",
 }) => {
-	const { id, error } = useFormField();
-
-	return (
-		<div className={cn("relative", className)}>
-			{React.Children.map(children, (child) => {
-				if (React.isValidElement(child)) {
-					return React.cloneElement(
-						child as React.ReactElement<React.HTMLAttributes<HTMLElement>>,
-						{
-							id,
-							"aria-invalid": error ? "true" : "false",
-							"aria-describedby": error ? `${id}-error` : undefined,
-						},
-					);
-				}
-				return child;
-			})}
-		</div>
-	);
+	return <div className={cn("relative", className)}>{children}</div>;
 };
 
 export const FormDescription: React.FC<FormDescriptionProps> = ({
@@ -172,11 +165,10 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
 	className = "",
 	...props
 }) => {
-	const { id } = useFormField();
-
+	const { name } = useFormField();
 	return (
-		<p
-			id={`${id}-description`}
+		<AriakitFormDescription
+			name={name}
 			className={cn(
 				"text-sm text-foreground-subtle leading-relaxed",
 				className,
@@ -184,7 +176,7 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
 			{...props}
 		>
 			{children}
-		</p>
+		</AriakitFormDescription>
 	);
 };
 
@@ -194,26 +186,83 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	type = "error",
 	...props
 }) => {
-	const { id, error } = useFormField();
-	const message = children || error;
-
-	if (!message) return null;
+	const { name, error: ctxError } = useFormField();
+	const message = children ?? ctxError;
 
 	const variants = {
 		error: "text-red-600 dark:text-red-400",
 		success: "text-green-600 dark:text-green-400",
 		warning: "text-yellow-600 dark:text-yellow-400",
-	};
+	} as const;
+
+	if (type !== "error") {
+		if (!message) return null;
+		return (
+			<p
+				className={cn("text-sm leading-none", variants[type], className)}
+				{...props}
+			>
+				{message}
+			</p>
+		);
+	}
+
+	if (message) {
+		return (
+			<p
+				className={cn("text-sm leading-none", variants.error, className)}
+				role="alert"
+				{...props}
+			>
+				{message}
+			</p>
+		);
+	}
 
 	return (
-		<p
-			id={`${id}-${type}`}
-			className={cn("text-sm leading-none", variants[type], className)}
-			role={type === "error" ? "alert" : undefined}
+		<AriakitFormError
+			name={name}
+			className={cn("text-sm leading-none", variants.error, className)}
+			role="alert"
 			{...props}
-		>
-			{message}
-		</p>
+		/>
+	);
+};
+
+export interface FormInputProps
+	extends React.InputHTMLAttributes<HTMLInputElement> {
+	className?: string;
+}
+
+export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
+	({ className = "", ...props }, ref) => {
+		const { name } = useFormField();
+		return (
+			<AriakitFormInput
+				ref={ref}
+				name={name}
+				className={className}
+				{...props}
+			/>
+		);
+	},
+);
+FormInput.displayName = "FormInput";
+
+export interface FormSubmitProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	className?: string;
+}
+
+export const FormSubmit: React.FC<FormSubmitProps> = ({
+	className = "",
+	children,
+	...props
+}) => {
+	return (
+		<AriakitFormSubmit className={className} {...props}>
+			{children}
+		</AriakitFormSubmit>
 	);
 };
 

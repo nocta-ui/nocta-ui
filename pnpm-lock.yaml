@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ariakit/react':
+        specifier: ^0.4.18
+        version: 0.4.18(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@react-three/drei':
         specifier: ^10.3.0
         version: 10.7.4(@react-three/fiber@9.3.0(@types/react@19.1.12)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(three@0.177.0))(@types/react@19.1.12)(@types/three@0.177.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(three@0.177.0)
@@ -60,6 +63,9 @@ importers:
         specifier: ^0.177.0
         version: 0.177.0
     devDependencies:
+      '@biomejs/biome':
+        specifier: 2.2.4
+        version: 2.2.4
       '@eslint/eslintrc':
         specifier: ^3.3.1
         version: 3.3.1
@@ -115,9 +121,77 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
+  '@ariakit/core@0.4.15':
+    resolution: {integrity: sha512-vvxmZvkNhiisKM+Y1TbGMUfVVchV/sWu9F0xw0RYADXcimWPK31dd9JnIZs/OQ5pwAryAHmERHwuGQVESkSjwQ==}
+
+  '@ariakit/react-core@0.4.18':
+    resolution: {integrity: sha512-wHtojXF7KPRwGTSbPg50l203Qngg2aGYCzCut+mYEwe3S0ZzuYVpiY+2Yh15HssnQ/S5yiDGRL4q94UEXsyO+w==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@ariakit/react@0.4.18':
+    resolution: {integrity: sha512-r38DFvdv6JzjC/8mHekTaJEXO6hmx+YPIiyjq9oL7DckLmqGkAKbFrmQd2CeKZZ1c372DDVw7lLhYjj/VYCBZQ==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@babel/runtime@7.28.4':
     resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
     engines: {node: '>=6.9.0'}
+
+  '@biomejs/biome@2.2.4':
+    resolution: {integrity: sha512-TBHU5bUy/Ok6m8c0y3pZiuO/BZoY/OcGxoLlrfQof5s8ISVwbVBdFINPQZyFfKwil8XibYWb7JMwnT8wT4WVPg==}
+    engines: {node: '>=14.21.3'}
+    hasBin: true
+
+  '@biomejs/cli-darwin-arm64@2.2.4':
+    resolution: {integrity: sha512-RJe2uiyaloN4hne4d2+qVj3d3gFJFbmrr5PYtkkjei1O9c+BjGXgpUPVbi8Pl8syumhzJjFsSIYkcLt2VlVLMA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@biomejs/cli-darwin-x64@2.2.4':
+    resolution: {integrity: sha512-cFsdB4ePanVWfTnPVaUX+yr8qV8ifxjBKMkZwN7gKb20qXPxd/PmwqUH8mY5wnM9+U0QwM76CxFyBRJhC9tQwg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@biomejs/cli-linux-arm64-musl@2.2.4':
+    resolution: {integrity: sha512-7TNPkMQEWfjvJDaZRSkDCPT/2r5ESFPKx+TEev+I2BXDGIjfCZk2+b88FOhnJNHtksbOZv8ZWnxrA5gyTYhSsQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@biomejs/cli-linux-arm64@2.2.4':
+    resolution: {integrity: sha512-M/Iz48p4NAzMXOuH+tsn5BvG/Jb07KOMTdSVwJpicmhN309BeEyRyQX+n1XDF0JVSlu28+hiTQ2L4rZPvu7nMw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@biomejs/cli-linux-x64-musl@2.2.4':
+    resolution: {integrity: sha512-m41nFDS0ksXK2gwXL6W6yZTYPMH0LughqbsxInSKetoH6morVj43szqKx79Iudkp8WRT5SxSh7qVb8KCUiewGg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+
+  '@biomejs/cli-linux-x64@2.2.4':
+    resolution: {integrity: sha512-orr3nnf2Dpb2ssl6aihQtvcKtLySLta4E2UcXdp7+RTa7mfJjBgIsbS0B9GC8gVu0hjOu021aU8b3/I1tn+pVQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+
+  '@biomejs/cli-win32-arm64@2.2.4':
+    resolution: {integrity: sha512-NXnfTeKHDFUWfxAefa57DiGmu9VyKi0cDqFpdI+1hJWQjGJhJutHPX0b5m+eXvTKOaf+brU+P0JrQAZMb5yYaQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@biomejs/cli-win32-x64@2.2.4':
+    resolution: {integrity: sha512-3Y4V4zVRarVh/B/eSHczR4LYoSVyv3Dfuvm3cWs5w/HScccS0+Wt/lHOcDTRYeHjQmMYVC3rIRWqyN2EI52+zg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [win32]
 
   '@dimforge/rapier3d-compat@0.12.0':
     resolution: {integrity: sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow==}
@@ -3510,7 +3584,58 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
+  '@ariakit/core@0.4.15': {}
+
+  '@ariakit/react-core@0.4.18(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+    dependencies:
+      '@ariakit/core': 0.4.15
+      '@floating-ui/dom': 1.7.4
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+      use-sync-external-store: 1.5.0(react@19.1.1)
+
+  '@ariakit/react@0.4.18(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+    dependencies:
+      '@ariakit/react-core': 0.4.18(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+
   '@babel/runtime@7.28.4': {}
+
+  '@biomejs/biome@2.2.4':
+    optionalDependencies:
+      '@biomejs/cli-darwin-arm64': 2.2.4
+      '@biomejs/cli-darwin-x64': 2.2.4
+      '@biomejs/cli-linux-arm64': 2.2.4
+      '@biomejs/cli-linux-arm64-musl': 2.2.4
+      '@biomejs/cli-linux-x64': 2.2.4
+      '@biomejs/cli-linux-x64-musl': 2.2.4
+      '@biomejs/cli-win32-arm64': 2.2.4
+      '@biomejs/cli-win32-x64': 2.2.4
+
+  '@biomejs/cli-darwin-arm64@2.2.4':
+    optional: true
+
+  '@biomejs/cli-darwin-x64@2.2.4':
+    optional: true
+
+  '@biomejs/cli-linux-arm64-musl@2.2.4':
+    optional: true
+
+  '@biomejs/cli-linux-arm64@2.2.4':
+    optional: true
+
+  '@biomejs/cli-linux-x64-musl@2.2.4':
+    optional: true
+
+  '@biomejs/cli-linux-x64@2.2.4':
+    optional: true
+
+  '@biomejs/cli-win32-arm64@2.2.4':
+    optional: true
+
+  '@biomejs/cli-win32-x64@2.2.4':
+    optional: true
 
   '@dimforge/rapier3d-compat@0.12.0': {}
 

@@ -160,7 +160,11 @@ export function ViewOptions({
 				Open
 				<CaretDown className="size-3.5 text-fd-muted-foreground" />
 			</PopoverTrigger>
-			<PopoverContent align="start" className="flex flex-col overflow-auto !p-1 bg-neutral-100">
+			<PopoverContent
+			portal
+			fixed
+				className="flex flex-col overflow-auto !p-1 bg-background-muted"
+			>
 				{items.map((item) => (
 					<a
 						key={item.href}

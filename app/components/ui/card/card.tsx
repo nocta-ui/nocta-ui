@@ -74,10 +74,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				"px-4 py-4 border-b border-border-muted/30 not-prose",
-				className,
-			)}
+			className={cn("p-4 not-prose border-b border-border-muted", className)}
 			{...props}
 		>
 			{children}
@@ -112,7 +109,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				"text-sm text-foreground-subtle leading-relaxed mt-1 not-prose",
+				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
 				className,
 			)}
 			{...props}
@@ -128,7 +125,10 @@ export const CardContent: React.FC<CardContentProps> = ({
 	...props
 }) => {
 	return (
-		<div className={cn("px-4 py-4 not-prose text-sm text-foreground-muted/", className)} {...props}>
+		<div
+			className={cn("p-4 not-prose text-sm text-primary-muted", className)}
+			{...props}
+		>
 			{children}
 		</div>
 	);
@@ -142,7 +142,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				"px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end not-prose",
+				"p-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-end not-prose",
 				className,
 			)}
 			{...props}

@@ -5,7 +5,6 @@ import { Badge } from "../badge";
 import { Button } from "../button";
 import { Table, type TableColumn } from "./table";
 
-// Sample data types
 interface User extends Record<string, unknown> {
 	id: number;
 	name: string;
@@ -34,7 +33,6 @@ interface Order extends Record<string, unknown> {
 	date: string;
 }
 
-// Sample data
 const sampleUsers: User[] = [
 	{
 		id: 1,
@@ -152,7 +150,6 @@ const sampleOrders: Order[] = [
 	},
 ];
 
-// Basic Table Demo
 export const BasicTableDemo: React.FC = () => {
 	const columns: TableColumn<User>[] = [
 		{ key: "name", title: "Name" },
@@ -168,7 +165,6 @@ export const BasicTableDemo: React.FC = () => {
 	);
 };
 
-// Advanced Table with Custom Rendering
 export const AdvancedTableDemo: React.FC = () => {
 	const getStatusBadgeVariant = (status: string) => {
 		switch (status) {
@@ -243,7 +239,6 @@ export const AdvancedTableDemo: React.FC = () => {
 	);
 };
 
-// Table Variants Demo
 export const TableVariantsDemo: React.FC = () => {
 	const columns: TableColumn<Product>[] = [
 		{ key: "name", title: "Product" },
@@ -260,16 +255,12 @@ export const TableVariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-8">
 			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">
-					Default
-				</h4>
+				<h4 className="text-sm font-semibold text-foreground mb-3">Default</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 3)} />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">
-					Striped
-				</h4>
+				<h4 className="text-sm font-semibold text-foreground mb-3">Striped</h4>
 				<Table
 					columns={columns}
 					data={sampleProducts.slice(0, 3)}
@@ -280,7 +271,6 @@ export const TableVariantsDemo: React.FC = () => {
 	);
 };
 
-// Table Sizes Demo
 export const TableSizesDemo: React.FC = () => {
 	const columns: TableColumn<Product>[] = [
 		{ key: "name", title: "Product" },
@@ -296,30 +286,23 @@ export const TableSizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-8">
 			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">
-					Small
-				</h4>
+				<h4 className="text-sm font-semibold text-foreground mb-3">Small</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="sm" />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">
-					Medium
-				</h4>
+				<h4 className="text-sm font-semibold text-foreground mb-3">Medium</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="md" />
 			</div>
 
 			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">
-					Large
-				</h4>
+				<h4 className="text-sm font-semibold text-foreground mb-3">Large</h4>
 				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="lg" />
 			</div>
 		</div>
 	);
 };
 
-// Pagination Demo
 export const PaginationTableDemo: React.FC = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const pageSize = 2;
@@ -385,7 +368,6 @@ export const PaginationTableDemo: React.FC = () => {
 	);
 };
 
-// Loading State Demo
 export const LoadingTableDemo: React.FC = () => {
 	const [loading, setLoading] = useState(true);
 
@@ -421,7 +403,6 @@ export const LoadingTableDemo: React.FC = () => {
 	);
 };
 
-// Empty State Demo
 export const EmptyTableDemo: React.FC = () => {
 	const columns: TableColumn<User>[] = [
 		{ key: "name", title: "Name" },

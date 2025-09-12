@@ -3,13 +3,13 @@ title: Form
 description: A composable form component with field validation, labels, and actions for building accessible forms
 ---
 
-import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions } from '@/app/components/ui/form';
+import { Form, FormField, FormLabel, FormControl, FormDescription, FormMessage, FormActions, FormInput, FormSubmit } from '@/app/components/ui/form';
 import { 
   BasicFormDemo, 
   FormWithErrorsDemo, 
   ComplexFormDemo, 
   FormActionsVariantsDemo,
-  FormMessageTypesDemo
+  FormMessageTypesDemo,
 } from '@/app/components/ui/form/form-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -18,7 +18,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <Steps>
   <Step>
-    Install the Form component using the nocta-ui CLI:
+    Install the Form component component using the nocta-ui CLI:
 
     ```bash lineNumbers title="Terminal"
     npx nocta-ui add form
@@ -35,13 +35,15 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       FormControl, 
       FormDescription, 
       FormMessage, 
-      FormActions 
+      FormActions,
+      FormInput,
+      FormSubmit,
     } from '@/components/ui/form';
     ```
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 The Form component follows a composable architecture where you build forms by combining smaller components together.
 
@@ -79,17 +81,21 @@ The Form component follows a composable architecture where you build forms by co
 
 The Form component is built with a composable architecture:
 
-- **Form**: The main form container
+- **Form**: The main form container (Ariakit Form)
 - **FormField**: Wraps individual form fields and provides context
-- **FormLabel**: Accessible labels with required field indicators
+- **FormLabel**: Accessible labels with required field indicators (Ariakit Label)
 - **FormControl**: Wrapper that connects inputs to the field context
 - **FormDescription**: Helper text for additional guidance
-- **FormMessage**: Error, success, and warning messages
+- **FormMessage**: Error, success, and warning messages (uses Ariakit FormError when no explicit message provided)
 - **FormActions**: Container for form action buttons
+- **FormInput**: Input bound to the current field name (Ariakit FormInput)
+- **FormSubmit**: Submit button integrated with Ariakit (Ariakit FormSubmit)
 
 ## Error Handling
 
-Handle form validation errors by passing an `error` prop to `FormField`. The error message will automatically be displayed using `FormMessage`.
+Handle validation in two ways:
+- Pass an `error` prop to `FormField` and place `<FormMessage />` to display it.
+- Or use an Ariakit form store with `validate`/`setError` and place `<FormMessage type="error" />` to read errors from the store.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -271,73 +277,7 @@ Form messages support different types for various validation states.
   </DocsTab>
 </DocsTabs>
 
-## Accessibility Features
-
-The Form component is built with accessibility in mind:
-
-- **Semantic HTML**: Uses proper form elements and ARIA attributes
-- **Label Association**: Labels are automatically associated with their inputs
-- **Error Announcements**: Error messages are announced to screen readers
-- **Required Field Indicators**: Visual and accessible indicators for required fields
-- **Focus Management**: Proper focus order and visual focus indicators
-- **Descriptive Content**: Helper text is properly associated with form controls
-
-## Customization
-
-### Custom Styling
-
-All form components accept a `className` prop for custom styling:
-
-```tsx
-<Form className="max-w-2xl mx-auto">
-  <FormField name="custom" className="mb-8">
-    <FormLabel className="text-lg font-bold">Custom Label</FormLabel>
-    <FormControl className="mt-3">
-      <Input className="border-2 border-blue-500" />
-    </FormControl>
-    <FormDescription className="text-blue-600">
-      Custom helper text styling
-    </FormDescription>
-  </FormField>
-</Form>
-```
-
-### Integration with Form Libraries
-
-The Form component works well with form libraries like React Hook Form:
-
-```tsx
-import { useForm, Controller } from 'react-hook-form';
-
-function MyForm() {
-  const { control, handleSubmit, formState: { errors } } = useForm();
-
-  return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="email"
-        control={control}
-        rules={{ required: 'Email is required' }}
-        render={({ field }) => (
-          <FormField name="email" error={errors.email?.message}>
-            <FormLabel required>Email</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormField>
-        )}
-      />
-      
-      <FormActions>
-        <Button type="submit">Submit</Button>
-      </FormActions>
-    </Form>
-  );
-}
-```
-
-## Props
+## Api Reference
 
 ### Form
 
@@ -346,6 +286,7 @@ function MyForm() {
 | `children` | `React.ReactNode` | — | Form content |
 | `className` | `string` | `''` | Additional CSS classes |
 | `onSubmit` | `(event: React.FormEvent) => void` | — | Form submit handler |
+| `store` | `FormStore` | `useFormStore({})` | Optional Ariakit form store |
 
 ### FormField
 
@@ -382,3 +323,18 @@ function MyForm() {
 | `align` | `'left' \| 'center' \| 'right'` | `'right'` | Button alignment |
 
 The Form components also accept all standard HTML attributes for their respective elements.
+
+### FormInput
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `''` | Additional CSS classes |
+| `...inputProps` | `InputHTMLAttributes<HTMLInputElement>` | — | Native input props forwarded to Ariakit FormInput |
+
+### FormSubmit
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Button content |
+| `className` | `string` | `''` | Additional CSS classes |
+| `...buttonProps` | `ButtonHTMLAttributes<HTMLButtonElement>` | — | Native button props forwarded to Ariakit FormSubmit |

@@ -126,7 +126,7 @@ export const LabeledCheckboxDemo: React.FC = () => {
 					>
 						Enable notifications
 					</label>
-					<p className="text-xs text-foreground-muted mt-1">
+					<p className="text-xs text-primary-muted mt-1">
 						Receive email notifications about your account activity
 					</p>
 				</div>
@@ -145,33 +145,10 @@ export const LabeledCheckboxDemo: React.FC = () => {
 					>
 						Marketing emails
 					</label>
-					<p className="text-xs text-foreground-muted mt-1">
+					<p className="text-xs text-primary-muted mt-1">
 						Get updates about new features and special offers
 					</p>
 				</div>
-			</div>
-		</div>
-	);
-};
-
-export const DisabledStateDemo: React.FC = () => {
-	return (
-		<div className="my-6 space-y-4">
-			<div className="flex items-center gap-3">
-				<Checkbox disabled={false} />
-				<span className="text-sm">Enabled (unchecked)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Checkbox checked={true} disabled={false} />
-				<span className="text-sm">Enabled (checked)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Checkbox disabled={true} />
-				<span className="text-sm">Disabled (unchecked)</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Checkbox checked={true} disabled={true} />
-				<span className="text-sm">Disabled (checked)</span>
 			</div>
 		</div>
 	);

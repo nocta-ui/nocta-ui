@@ -302,7 +302,6 @@ A navigable link in the breadcrumb trail.
 | --- | --- | --- | --- |
 | `variant` | `"default" \| "ghost"` | `"default"` | The visual style of the link |
 | `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `asChild` | `boolean` | `false` | Render as child component |
 | `className` | `string` | `undefined` | Additional CSS classes |
 
 ### BreadcrumbPage
@@ -331,21 +330,3 @@ An ellipsis indicator for truncated breadcrumb paths.
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `className` | `string` | `undefined` | Additional CSS classes |
-
-## Accessibility
-
-The breadcrumb component is built with accessibility in mind:
-
-- Uses semantic HTML with `nav` and `ol` elements
-- Includes proper ARIA labels and roles
-- Supports keyboard navigation
-- Screen reader friendly with appropriate labels
-- Current page is marked with `aria-current="page"`
-
-## Usage Notes
-
-1. **Current Page**: Always use `BreadcrumbPage` for the current page, never `BreadcrumbLink`
-2. **Separators**: Place `BreadcrumbSeparator` between each breadcrumb item
-3. **Icons**: Icons work best with the `ghost` variant for better visual balance
-4. **Truncation**: Use `BreadcrumbEllipsis` for paths longer than 4-5 items
-5. **Navigation**: Links should use actual navigation (href) for better accessibility

@@ -8,7 +8,6 @@ import {
   BasicComboboxDemo, 
   VariantsDemo, 
   SizesDemo, 
-  SearchableDemo,
   ClearableDemo,
   DisabledOptionsDemo,
   DisabledComboboxDemo,
@@ -37,7 +36,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 The Combobox component provides a searchable dropdown interface for selecting from a list of options.
 
@@ -139,34 +138,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       options={frameworks}
       size="lg"
       placeholder="Large combobox"
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Searchable Options
-
-Control whether users can search through options by typing.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SearchableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Searchable Combobox"
-    {/* Searchable (default) */}
-    <Combobox
-      options={countries}
-      placeholder="Search for a country..."
-      searchPlaceholder="Type to search..."
-      searchable={true}
-    />
-
-    {/* Non-searchable */}
-    <Combobox
-      options={countries}
-      placeholder="Select a country..."
-      searchable={false}
     />
     ```
   </DocsTab>
@@ -300,96 +271,7 @@ Use `value` and `onValueChange` for controlled behavior:
   </DocsTab>
 </DocsTabs>
 
-## Keyboard Navigation
-
-The Combobox component includes comprehensive keyboard support:
-
-- **Arrow Down**: Open dropdown or move to next option
-- **Arrow Up**: Open dropdown or move to previous option
-- **Enter**: Select the highlighted option or open dropdown
-- **Escape**: Close dropdown and clear search
-- **Tab**: Close dropdown and move to next element
-- **Type to search**: Filter options when searchable is enabled
-
-## Accessibility Features
-
-The Combobox component is built with accessibility in mind:
-
-- **ARIA Attributes**: Proper `role`, `aria-expanded`, `aria-controls`, and `aria-haspopup` attributes
-- **Keyboard Navigation**: Full keyboard support with arrow keys and shortcuts
-- **Focus Management**: Proper focus handling and visual focus indicators
-- **Screen Reader Support**: Announces option selection and state changes
-- **Semantic HTML**: Uses proper button and listbox elements
-- **Option Highlighting**: Visual indication of focused options
-
-## Advanced Usage
-
-### Dynamic Options
-
-Create options dynamically from API data:
-
-```tsx lineNumbers title="Dynamic Options Example"
-const [options, setOptions] = useState<ComboboxOption[]>([]);
-
-useEffect(() => {
-  fetch('/api/users')
-    .then(res => res.json())
-    .then(users => {
-      const userOptions = users.map(user => ({
-        value: user.id,
-        label: `${user.name} (${user.email})`,
-        disabled: !user.active
-      }));
-      setOptions(userOptions);
-    });
-}, []);
-
-<Combobox
-  options={options}
-  placeholder="Select a user..."
-  emptyMessage="No users found"
-/>
-```
-
-### Form Integration
-
-Use with form libraries like React Hook Form:
-
-```tsx lineNumbers title="Form Integration Example"
-import { useForm, Controller } from 'react-hook-form';
-
-const { control, handleSubmit } = useForm();
-
-<Controller
-  name="framework"
-  control={control}
-  rules={{ required: 'Please select a framework' }}
-  render={({ field, fieldState }) => (
-    <Combobox
-      options={frameworks}
-      value={field.value}
-      onValueChange={field.onChange}
-      variant={fieldState.error ? 'error' : 'default'}
-      placeholder="Select framework..."
-    />
-  )}
-/>
-```
-
-### Custom Styling
-
-Customize the appearance with className props:
-
-```tsx lineNumbers title="Custom Styling Example"
-<Combobox
-  options={options}
-  className="w-full max-w-xs"
-  popoverClassName="w-96 max-h-48"
-  placeholder="Custom styled combobox"
-/>
-```
-
-## Props
+## Api Reference
 
 ### Combobox
 
@@ -407,7 +289,6 @@ Customize the appearance with className props:
 | `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant |
 | `className` | `string` | `''` | Additional CSS classes for trigger |
 | `popoverClassName` | `string` | `''` | Additional CSS classes for dropdown |
-| `searchable` | `boolean` | `true` | Enable search functionality |
 | `clearable` | `boolean` | `true` | Show clear button when value selected |
 
 ### ComboboxOption

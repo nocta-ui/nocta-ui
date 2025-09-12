@@ -2,15 +2,16 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { useCallback, useState } from "react";
+import { Button } from "@/app/components/ui/button";
 import { Spinner } from "@/app/components/ui/spinner";
 import { cn } from "@/lib/utils";
 
 const fileUploadVariants = cva(
 	[
 		"relative transition-all duration-200 ease-in-out",
-		"focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2",
+		"focus-within:outline-none focus-within:ring-1 focus-within:ring-offset-1",
 		"focus-within:ring-offset-ring-offset/50",
-		"focus-within:ring-ring/10",
+		"focus-within:ring-ring/50",
 		"rounded-lg",
 	],
 	{
@@ -28,11 +29,7 @@ const fileUploadVariants = cva(
 			},
 			state: {
 				idle: "",
-				dragover: [
-					"border-background-subtle",
-					"bg-background",
-					"scale-[1.02]",
-				],
+				dragover: ["border-background-subtle", "bg-background", "scale-[1.02]"],
 				error: [
 					"border-red-300 dark:border-red-700",
 					"bg-red-50 dark:bg-red-900/20",
@@ -48,10 +45,7 @@ const fileUploadVariants = cva(
 );
 
 const fileItemVariants = cva(
-	[
-		"flex items-center gap-3 p-3 rounded-lg border",
-		"border-border-muted",
-	],
+	["flex items-center gap-3 p-3 rounded-lg border", "border-border-muted"],
 	{
 		variants: {
 			status: {
@@ -89,7 +83,7 @@ export interface FileUploadProps
 		VariantProps<typeof fileUploadVariants> {
 	multiple?: boolean;
 	accept?: string;
-	maxSize?: number; // in bytes
+	maxSize?: number;
 	maxFiles?: number;
 	disabled?: boolean;
 	files?: FileUploadFile[];
@@ -103,7 +97,7 @@ export interface FileUploadProps
 }
 
 export interface FileUploadZoneProps
-	extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
+	extends Omit<React.ComponentPropsWithoutRef<"button">, "onChange"> {
 	onFilesSelect: (files: File[]) => void;
 	accept?: string;
 	multiple?: boolean;
@@ -126,6 +120,7 @@ export interface FileUploadProgressProps {
 
 const FileIcon = ({ className }: { className?: string }) => (
 	<svg
+		aria-hidden="true"
 		className={className}
 		fill="none"
 		stroke="currentColor"
@@ -143,6 +138,7 @@ const FileIcon = ({ className }: { className?: string }) => (
 
 const CheckIcon = ({ className }: { className?: string }) => (
 	<svg
+		aria-hidden="true"
 		className={className}
 		fill="none"
 		stroke="currentColor"
@@ -163,7 +159,7 @@ const formatFileSize = (bytes: number): string => {
 	const k = 1024;
 	const sizes = ["Bytes", "KB", "MB", "GB"];
 	const i = Math.floor(Math.log(bytes) / Math.log(k));
-	return parseFloat((bytes / k ** i).toFixed(2)) + " " + sizes[i];
+	return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`;
 };
 
 const createFilePreview = (file: File): Promise<string | null> => {
@@ -207,24 +203,16 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
 		}
 	};
 
-	const handleKeyDown = (e: React.KeyboardEvent) => {
-		if ((e.key === "Enter" || e.key === " ") && !disabled) {
-			e.preventDefault();
-			handleClick();
-		}
-	};
-
 	return (
-		<div
-			role="button"
-			tabIndex={disabled ? -1 : 0}
+		<button
+			type="button"
+			disabled={disabled}
 			className={cn(
-				"cursor-pointer",
+				"cursor-pointer w-full focus-visible:outline-none focus-visible:ring-0",
 				disabled && "cursor-not-allowed opacity-50",
 				className,
 			)}
 			onClick={handleClick}
-			onKeyDown={handleKeyDown}
 			aria-label={multiple ? "Select files to upload" : "Select file to upload"}
 			{...props}
 		>
@@ -236,10 +224,9 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
 				disabled={disabled}
 				onChange={handleFileInput}
 				className="sr-only"
-				aria-hidden="true"
 			/>
 			{children}
-		</div>
+		</button>
 	);
 };
 
@@ -249,10 +236,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				"w-full bg-background-muted rounded-full h-2",
-				className,
-			)}
+			className={cn("w-full bg-background-muted rounded-full h-2", className)}
 		>
 			<div
 				className="bg-foreground h-2 rounded-full transition-all duration-200 ease-out"
@@ -281,11 +265,12 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 		file.status === "uploading" && typeof file.progress === "number";
 
 	return (
-		<div
+		<li
 			className={cn(fileItemVariants({ status: file.status, size }), className)}
 		>
 			<div className="flex-shrink-0">
 				{showPreview && file.preview ? (
+					/* biome-ignore lint/performance/noImgElement: prefer native img here */
 					<img
 						src={file.preview}
 						alt={file.file.name}
@@ -304,12 +289,14 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 						{file.file.name}
 					</p>
 					{onRemove && (
-						<button
+						<Button
+							className="size-6"
+							variant="icon"
 							onClick={handleRemove}
-							className="flex-shrink-0 p-1 text-foreground-subtle hover:text-primary-muted transition-colors"
 							aria-label={`Remove ${file.file.name}`}
 						>
 							<svg
+								aria-hidden="true"
 								className="w-4 h-4"
 								fill="none"
 								stroke="currentColor"
@@ -322,12 +309,12 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 									d="M6 18L18 6M6 6l12 12"
 								/>
 							</svg>
-						</button>
+						</Button>
 					)}
 				</div>
 
 				<div className="flex items-center gap-2 mt-1 min-w-0">
-					<p className="text-xs text-foreground-muted flex-shrink-0">
+					<p className="text-xs text-primary-muted flex-shrink-0">
 						{formatFileSize(file.file.size)}
 					</p>
 
@@ -356,7 +343,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</div>
 				</div>
 			</div>
-		</div>
+		</li>
 	);
 };
 
@@ -520,7 +507,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
 	return (
 		<div className={cn("space-y-4", className)} {...props}>
-			<div
+			<section
+				aria-label="File upload dropzone"
 				className={cn(fileUploadVariants({ variant, size, state }))}
 				onDragEnter={handleDragEnter}
 				onDragLeave={handleDragLeave}
@@ -560,9 +548,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 							<p
 								className={cn(
 									"font-medium",
-									isDragOver
-										? "text-foreground-muted"
-										: "text-foreground-subtle",
+									isDragOver ? "text-foreground-subtle" : "text-primary-muted",
 								)}
 							>
 								{isDragOver ? dragText : uploadText}
@@ -589,7 +575,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 						</div>
 					</div>
 				</FileUploadZone>
-			</div>
+			</section>
 
 			{hasFiles && (
 				<div className="space-y-2">
@@ -599,24 +585,22 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 							{maxFiles ? `/${maxFiles}` : ""})
 						</h4>
 						{(pendingFiles.length > 0 || isUploading) && onUpload && (
-							<button
+							<Button
 								onClick={handleUpload}
+								size="sm"
+								variant="ghost"
+								className="bg-foreground text-primary-foreground hover:bg-foreground-muted hover:text-primary-foreground/80 transition-colors duration-200"
 								disabled={disabled || isUploading}
-								className={cn(
-									"px-3 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-2",
-									"bg-foreground text-primary-foreground hover:bg-foreground-muted",
-									"disabled:opacity-50 disabled:cursor-not-allowed",
-								)}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}
 								{isUploading
 									? `Uploading ${uploadingFiles.length} file${uploadingFiles.length > 1 ? "s" : ""}...`
 									: `Upload ${pendingFiles.length} file${pendingFiles.length > 1 ? "s" : ""}`}
-							</button>
+							</Button>
 						)}
 					</div>
 
-					<div className="space-y-2 max-h-60 overflow-y-auto">
+					<ul className="space-y-2 max-h-60 overflow-y-auto">
 						{files.map((file) => (
 							<FileUploadItem
 								key={file.id}
@@ -626,7 +610,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								size={size || "md"}
 							/>
 						))}
-					</div>
+					</ul>
 				</div>
 			)}
 		</div>

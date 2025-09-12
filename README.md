@@ -1,8 +1,8 @@
-![Nocta UI](screen.jpg)
+![Nocta UI](og-image.jpg)
 
 # Nocta UI
 
-A modern, accessible React component library built with **simplicity**, **performance**, and **developer experience** at its core. Every component is crafted to be beautiful, functional, and accessible by default.
+Nocta UI is a React component library built with a **copy-paste philosophy.** Instead of shipping as a heavy package, it provides source code you add directly to your project. This gives you **full control,** easy customization, and **no versioning headaches.**
 
 ## Philosophy
 
@@ -15,12 +15,16 @@ Clean components with no unnecessary complexity. Every element serves a purpose,
 Copy-paste approach with CLI tooling. Components live in your codebase, giving you full control and customization power. No bundle bloat, no version conflicts.
 
 ### **Accessible**
-WCAG 2.1 AA compliant components with keyboard navigation, screen reader support, and semantic HTML. Accessibility isn't an afterthought—it's built in from the ground up.
+WAI-ARIA compliant components with keyboard navigation, screen reader support, and semantic HTML. Accessibility isn't an afterthought—it's built in from the ground up.
 
 ### **Developer First**
 Full TypeScript support, intuitive APIs, and comprehensive documentation for the best developer experience. Components that just work.
 
 ## Architecture
+
+### Accessibility Foundation
+
+Nocta UI’s interactive components are built on top of `@ariakit/react`, leveraging its proven accessibility primitives (focus management, keyboard navigation, and WAI-ARIA patterns) to deliver a great a11y experience by default.
 
 ### Copy-Paste Philosophy
 
@@ -43,16 +47,6 @@ npx nocta-ui add button card badge
 - **Easy customization** - change styling, behavior, or structure
 - **Minimal dependencies** - lightweight with minimal external dependencies
 - **React focused** - optimized for Next.js and Vite React projects
-
-### Design System
-
-**Color Palette**: Choose from 4 carefully crafted themes (Charcoal, Jade, Copper, Cobalt) that adapt beautifully to both light and dark modes, with colors used sparingly and purposefully.
-
-**Typography**: Clear hierarchy with consistent spacing and readable line heights, optimized for accessibility and reading comfort.
-
-**Spacing**: Based on a 4px base unit with consistent ratios from micro (2px) to large (64px) spacing.
-
-**Accessibility**: Every component meets WCAG 2.1 AA standards with keyboard navigation, screen reader support, and motor accessibility considerations.
 
 ## Quick Start
 
@@ -89,7 +83,7 @@ function App() {
 
 - **React 18+**
 - **TypeScript** (recommended)
-- **Tailwind CSS v3 or v4**
+- **Tailwind CSS v4**
 
 The CLI automatically detects your framework and configures everything for you!
 
@@ -99,43 +93,14 @@ The CLI automatically detects your framework and configures everything for you!
 - **Dark Mode Native** - First-class dark mode support, not an afterthought
 - **Composable Design** - Build complex interfaces by composing simple components
 - **Performance Optimized** - Minimal re-renders and efficient animations
-- **Accessible by Default** - WCAG compliant with comprehensive accessibility features
+- **Accessible by Default** - WAI-ARIA compliant with comprehensive accessibility features
 - **Customizable** - Full source code access means unlimited customization
 - **Modern Styling** - Built on Tailwind CSS with systematic design tokens
-- **Multiple Themes** - Choose from Charcoal, Jade, Copper, or Cobalt themes during initialization
 
-## Customization
-
-Since you own the component source code, customization is limitless:
-
-```tsx
-// Modify the component directly in your codebase
-const CustomButton = ({ ...props }) => {
-  return (
-    <Button 
-      className="bg-purple-500 hover:bg-purple-600 shadow-lg" 
-      {...props} 
-    />
-  )
-}
-
-// Or extend with your own variants
-const variants = {
-  // Add your brand colors
-  brand: "bg-purple-600 text-primary-foreground hover:bg-purple-700",
-  // Modify existing variants  
-  primary: "bg-blue-600 text-primary-foreground hover:bg-blue-700",
-}
-```
 
 ## Documentation
 
 Visit our [documentation site](https://nocta-ui.com) for:
-
-- **Interactive demos** - See components in action
-- **Complete API reference** - All props and customization options
-- **Design guidelines** - Color system, typography, and spacing
-- **Accessibility guide** - How we ensure inclusive design
 
 ## Contributing
 

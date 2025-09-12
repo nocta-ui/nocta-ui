@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const sliderVariants = cva(
-	"relative cursor-pointer select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-offset-ring-offset/50",
+	"relative cursor-pointer rounded-full select-none touch-none focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed not-prose focus-visible:ring-offset-ring-offset/50",
 	{
 		variants: {
 			orientation: {
@@ -61,8 +61,7 @@ const trackVariants = cva(
 const fillVariants = cva("absolute rounded-full ", {
 	variants: {
 		variant: {
-			default:
-				"bg-foreground-subtle",
+			default: "bg-foreground-subtle",
 			secondary: "bg-foreground-subtle/50",
 		},
 		size: {
@@ -104,10 +103,8 @@ const thumbVariants = cva(
 	{
 		variants: {
 			variant: {
-				default:
-					"bg-foreground dark:bg-foreground border border-muted/50",
-				secondary:
-					"bg-background-muted border border-border-subtle/50",
+				default: "bg-foreground dark:bg-foreground border border-muted/50",
+				secondary: "bg-background-muted border border-border-subtle/50",
 			},
 			size: {
 				sm: "w-4 h-4",
@@ -145,6 +142,7 @@ export interface SliderProps
 	variant?: "default" | "secondary";
 	showValue?: boolean;
 	formatValue?: (value: number) => string;
+	getValueText?: (value: number) => string;
 	onChange?: (value: number) => void;
 	onValueCommit?: (value: number) => void;
 	className?: string;
@@ -166,6 +164,7 @@ export const Slider: React.FC<SliderProps> = ({
 	orientation = "horizontal",
 	showValue = false,
 	formatValue = (value) => value.toString(),
+	getValueText,
 	onChange,
 	onValueCommit,
 	className = "",
@@ -251,6 +250,8 @@ export const Slider: React.FC<SliderProps> = ({
 			event.preventDefault();
 			setIsDragging(true);
 
+			sliderRef.current?.focus();
+
 			const percentage = getPositionFromEvent(event.nativeEvent);
 			const newValue = getValueFromPercentage(percentage);
 			handleValueChange(newValue);
@@ -264,6 +265,8 @@ export const Slider: React.FC<SliderProps> = ({
 
 			event.preventDefault();
 			setIsDragging(true);
+
+			sliderRef.current?.focus();
 
 			const percentage = getPositionFromEvent(event.nativeEvent);
 			const newValue = getValueFromPercentage(percentage);
@@ -413,7 +416,7 @@ export const Slider: React.FC<SliderProps> = ({
 			{showValue && (
 				<div
 					className={cn(
-						"mb-2 text-sm text-foreground-muted",
+						"mb-2 text-sm text-primary-muted",
 						currentOrientation === "vertical" ? "mb-0 mr-2" : "",
 					)}
 				>
@@ -428,6 +431,11 @@ export const Slider: React.FC<SliderProps> = ({
 				aria-valuemin={min}
 				aria-valuemax={max}
 				aria-valuenow={currentValue}
+				aria-valuetext={
+					getValueText
+						? getValueText(currentValue)
+						: formatValue?.(currentValue)
+				}
 				aria-orientation={currentOrientation}
 				aria-label={ariaLabel}
 				aria-labelledby={ariaLabelledBy}
@@ -436,6 +444,7 @@ export const Slider: React.FC<SliderProps> = ({
 				onMouseDown={handleMouseDown}
 				onTouchStart={handleTouchStart}
 				onKeyDown={handleKeyDown}
+				onBlur={() => onValueCommit?.(currentValue)}
 			>
 				<div
 					className={cn(

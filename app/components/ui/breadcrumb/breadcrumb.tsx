@@ -46,21 +46,19 @@ const breadcrumbItemVariants = cva("inline-flex items-center", {
 const breadcrumbLinkVariants = cva(
 	[
 		"inline-flex items-center transition-colors duration-200 ease-in-out",
-		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-		"focus-visible:ring-offset-ring-offset/50",
-		"focus-visible:ring-ring/20",
-		"rounded-md",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50",
+		"focus-visible:border-border/10 rounded-md",
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					"text-foreground-subtle",
+					"text-primary-muted/80",
 					"hover:text-foreground",
 					"underline-offset-4 hover:underline",
 				],
 				ghost: [
-					"text-foreground-subtle",
+					"text-primary-muted/80",
 					"hover:text-foreground",
 					"hover:bg-background",
 					"px-2 py-1 rounded-md",
@@ -79,37 +77,31 @@ const breadcrumbLinkVariants = cva(
 	},
 );
 
-const breadcrumbPageVariants = cva(
-	"text-foreground font-medium",
-	{
-		variants: {
-			size: {
-				sm: "text-xs",
-				md: "text-sm",
-				lg: "text-base",
-			},
-		},
-		defaultVariants: {
-			size: "md",
+const breadcrumbPageVariants = cva("text-foreground font-medium", {
+	variants: {
+		size: {
+			sm: "text-xs",
+			md: "text-sm",
+			lg: "text-base",
 		},
 	},
-);
+	defaultVariants: {
+		size: "md",
+	},
+});
 
-const breadcrumbSeparatorVariants = cva(
-	"text-foreground-subtle select-none",
-	{
-		variants: {
-			size: {
-				sm: "text-xs",
-				md: "text-sm",
-				lg: "text-base",
-			},
-		},
-		defaultVariants: {
-			size: "md",
+const breadcrumbSeparatorVariants = cva("text-foreground-subtle select-none", {
+	variants: {
+		size: {
+			sm: "text-xs",
+			md: "text-sm",
+			lg: "text-base",
 		},
 	},
-);
+	defaultVariants: {
+		size: "md",
+	},
+});
 
 export interface BreadcrumbProps
 	extends Omit<React.ComponentPropsWithoutRef<"nav">, "size"> {
@@ -174,7 +166,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 	return (
 		<BreadcrumbContext.Provider value={{ size, separator }}>
 			<nav
-				role="navigation"
 				aria-label="Breadcrumb"
 				className={cn(breadcrumbVariants({ size }), className)}
 				{...props}
@@ -226,26 +217,12 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
 export const BreadcrumbLink: React.FC<BreadcrumbLinkProps> = ({
 	variant = "default",
 	size,
-	asChild = false,
 	className,
 	children,
 	...props
 }) => {
 	const context = React.useContext(BreadcrumbContext);
 	const effectiveSize = size ?? context.size ?? "md";
-
-	if (asChild) {
-		return (
-			<span
-				className={cn(
-					breadcrumbLinkVariants({ variant, size: effectiveSize }),
-					className,
-				)}
-			>
-				{children}
-			</span>
-		);
-	}
 
 	return (
 		<a
@@ -271,7 +248,6 @@ export const BreadcrumbPage: React.FC<BreadcrumbPageProps> = ({
 
 	return (
 		<span
-			role="link"
 			aria-current="page"
 			className={cn(breadcrumbPageVariants({ size: effectiveSize }), className)}
 			{...props}
@@ -312,26 +288,31 @@ export const BreadcrumbEllipsis: React.FC<BreadcrumbEllipsisProps> = ({
 }) => {
 	return (
 		<span
-			role="presentation"
-			aria-hidden="true"
 			className={cn("flex h-9 w-9 items-center justify-center", className)}
 			{...props}
 		>
-			<svg
-				className="h-4 w-4"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M5 12h.01M12 12h.01M19 12h.01"
-				/>
-			</svg>
 			<span className="sr-only">More</span>
+			<span
+				role="presentation"
+				aria-hidden="true"
+				className="flex h-9 w-9 items-center justify-center"
+			>
+				<svg
+					aria-hidden="true"
+					className="h-4 w-4"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeWidth={2}
+						d="M5 12h.01M12 12h.01M19 12h.01"
+					/>
+				</svg>
+			</span>
 		</span>
 	);
 };

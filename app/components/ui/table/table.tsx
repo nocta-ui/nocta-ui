@@ -5,10 +5,6 @@ import React, { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 
-const hasBackgroundColor = (className: string = "") => {
-	return /bg-(?!linear|gradient|none)\w+/.test(className);
-};
-
 const tableContainerVariants = cva("rounded-xl overflow-hidden", {
 	variants: {
 		variant: {
@@ -145,8 +141,6 @@ export const Table = <T extends Record<string, unknown>>({
 	rowClassName,
 	...props
 }: TableProps<T>) => {
-	const shouldOverrrideBackground = hasBackgroundColor(className);
-
 	const getRowKey = useCallback(
 		(record: T, index: number): string => {
 			if (typeof rowKey === "function") {
@@ -176,8 +170,7 @@ export const Table = <T extends Record<string, unknown>>({
 		<div
 			className={cn(
 				tableContainerVariants({ variant }),
-				"not-prose relative border border-border-muted shadow-lg",
-				shouldOverrrideBackground ? "" : "bg-background",
+				"not-prose relative bg-background border border-border-muted shadow-lg",
 				className,
 			)}
 		>
@@ -193,6 +186,7 @@ export const Table = <T extends Record<string, unknown>>({
 			/>
 			<div className="overflow-x-auto">
 				<table className={cn(tableVariants({ size }))} {...props}>
+					<caption className="sr-only">Data table</caption>
 					<TableHeader>
 						<TableRow variant={variant}>
 							{columns.map((column) => (
@@ -264,7 +258,7 @@ export const Table = <T extends Record<string, unknown>>({
 			</div>
 
 			{pagination && (
-				<div className="px-6 py-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-between">
+				<div className="p-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-between">
 					<div className="text-sm text-foreground-subtle">
 						Showing{" "}
 						{Math.min(
@@ -280,19 +274,21 @@ export const Table = <T extends Record<string, unknown>>({
 					</div>
 					<div className="flex items-center gap-2">
 						<button
+							type="button"
 							onClick={() =>
 								pagination.onChange(pagination.current - 1, pagination.pageSize)
 							}
 							disabled={pagination.current <= 1}
-							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted/30 bg-background text-foreground-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted bg-background text-primary-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Previous
 						</button>
-						<span className="px-3 py-1.5 text-sm text-foreground-muted">
+						<span className="px-3 py-1.5 text-sm text-primary-muted">
 							Page {pagination.current} of{" "}
 							{Math.ceil(pagination.total / pagination.pageSize)}
 						</span>
 						<button
+							type="button"
 							onClick={() =>
 								pagination.onChange(pagination.current + 1, pagination.pageSize)
 							}
@@ -300,7 +296,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.current >=
 								Math.ceil(pagination.total / pagination.pageSize)
 							}
-							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted/30 bg-background text-foreground-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted bg-background text-primary-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
 						>
 							Next
 						</button>
@@ -319,7 +315,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 	return (
 		<thead
 			className={cn(
-				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-border-muted/30",
+				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-border-muted",
 				className,
 			)}
 			{...props}
@@ -336,10 +332,7 @@ export const TableBody: React.FC<TableBodyProps> = ({
 }) => {
 	return (
 		<tbody
-			className={cn(
-				"divide-y divide-border-muted/30",
-				className,
-			)}
+			className={cn("divide-y divide-border-muted/30", className)}
 			{...props}
 		>
 			{children}
@@ -384,19 +377,22 @@ export const TableCell: React.FC<TableCellProps> = ({
 		return alignments[align];
 	};
 
+	const extraA11yProps = header ? { scope: "col" as const } : {};
+
 	return React.createElement(
 		Component,
 		{
 			className: cn(
-				"px-6 py-4",
+				"p-4",
 				getAlignmentClass(),
 				header
 					? "font-semibold text-foreground tracking-tight"
-					: "text-foreground-muted",
+					: "text-primary-muted",
 				className,
 			),
 			colSpan,
 			rowSpan,
+			...extraA11yProps,
 			...props,
 		},
 		children,
@@ -428,10 +424,7 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
 }) => {
 	return (
 		<caption
-			className={cn(
-				"py-3 text-sm text-foreground-muted",
-				className,
-			)}
+			className={cn("py-3 text-sm text-primary-muted", className)}
 			{...props}
 		>
 			{children}

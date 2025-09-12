@@ -39,7 +39,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
   </Step>
 </Steps>
 
-## Basic Usage
+## Examples
 
 ### Simple Card
 
@@ -100,26 +100,54 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
   </DocsTab>
 </DocsTabs>
 
-## Customization
+## API Reference
 
-### Custom Styling
+### Card
 
-All components accept a `className` prop for custom styling:
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Card content |
+| `className` | `string` | - | Additional CSS classes |
 
-```tsx lineNumbers title="Custom Styling"
-<Card className="max-w-lg border-2 border-purple-200">
-  <CardHeader className="bg-purple-50">
-    <CardTitle className="text-purple-900">Custom Card</CardTitle>
-  </CardHeader>
-</Card>
-```
+### CardHeader
 
-### Dynamic Title Element
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Header content (usually title/description) |
+| `className` | `string` | - | Additional CSS classes |
 
-Use the `as` prop on CardTitle to change the heading level:
+### CardTitle
 
-```tsx lineNumbers title="Dynamic Title Element"
-<CardTitle as="h1">Main Title</CardTitle>
-<CardTitle as="h2">Section Title</CardTitle>
-<CardTitle as="div">Custom Element</CardTitle>
-```
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Title content |
+| `className` | `string` | - | Additional CSS classes |
+| `as` | `React.ElementType` | `'h3'` | Element/component used to render the title |
+
+### CardDescription
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Description text |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Main card content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Footer content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardActions
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Action controls (buttons, links, etc.) |
+| `className` | `string` | - | Additional CSS classes |

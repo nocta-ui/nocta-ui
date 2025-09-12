@@ -1,7 +1,15 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useId,
+	useRef,
+	useState,
+} from "react";
 import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
@@ -32,8 +40,7 @@ const messageVariants = cva(
 		variants: {
 			variant: {
 				user: "bg-primary-muted text-primary-foreground",
-				assistant:
-					"bg-background-muted text-foreground",
+				assistant: "bg-background-muted text-foreground",
 				system:
 					"bg-background-muted/50 dark:bg-background-muted/30 text-foreground-subtle text-center text-xs mx-auto",
 			},
@@ -47,7 +54,7 @@ const messageVariants = cva(
 const inputVariants = cva(
 	[
 		"flex-1 px-3 py-2 text-sm min-h-[40px] rounded-lg border transition-all duration-200 ease-in-out resize-none",
-		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-foreground-subtle not-prose",
 		"focus-visible:ring-offset-ring-offset/50",
@@ -60,7 +67,7 @@ const inputVariants = cva(
 					"bg-background",
 					"text-foreground",
 					"focus-visible:border-border/10",
-					"focus-visible:ring-ring/10",
+					"focus-visible:ring-ring/50",
 				],
 			},
 		},
@@ -158,6 +165,11 @@ export interface ChatActionsProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
 }
 
+// A11y context to link ChatDescription to Chat container via aria-describedby
+const ChatA11yContext = createContext<{
+	setDescriptionId: (id?: string) => void;
+}>({ setDescriptionId: () => {} });
+
 export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 	typingUsers,
 	showAvatars = false,
@@ -177,10 +189,15 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 	};
 
 	return (
-		<div className={cn("flex items-end gap-2 not-prose", className)} {...props}>
+		<div
+			role="status"
+			className={cn("flex items-end gap-2 not-prose", className)}
+			{...props}
+		>
 			{showAvatars && (
-				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-primary-muted flex-shrink-0">
 					{typingUsers[0].avatar ? (
+						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
 							src={typingUsers[0].avatar}
 							alt={typingUsers[0].name || "typing"}
@@ -199,7 +216,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			<div className="flex flex-col gap-1 w-full items-start">
 				<div className="bg-background-muted text-foreground rounded-lg px-3 py-2 text-sm w-fit max-w-[80%] transition-all duration-200 ease-in-out not-prose">
 					<div className="flex items-center gap-2">
-						<span className="text-xs text-foreground-muted">
+						<span className="text-xs text-primary-muted">
 							{getTypingText()}
 						</span>
 						<div className="flex gap-1">
@@ -230,8 +247,14 @@ export const Chat: React.FC<ChatProps> = ({
 	children,
 	...props
 }) => {
+	const [descriptionId, setDescriptionId] = useState<string | undefined>();
+
 	return (
-		<div className={cn(chatVariants({ variant }), className)} {...props}>
+		<div
+			className={cn(chatVariants({ variant }), className)}
+			aria-describedby={descriptionId}
+			{...props}
+		>
 			<span
 				aria-hidden
 				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
@@ -242,26 +265,28 @@ export const Chat: React.FC<ChatProps> = ({
 						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
 				}}
 			/>
-			<div className="rounded-xl h-full flex flex-col">
-				{children}
-				<ChatMessages
-					messages={messages}
-					showTimestamps={showTimestamps}
-					showAvatars={showAvatars}
-					typingUsers={typingUsers}
-					className="flex-1 min-h-0 max-h-96"
-				/>
-				{onSendMessage && (
-					<ChatInput
-						onSendMessage={onSendMessage}
-						placeholder={placeholder}
-						disabled={disabled}
-						autoFocus={autoFocus}
-						maxLength={maxLength}
-						allowMultiline={allowMultiline}
+			<ChatA11yContext.Provider value={{ setDescriptionId }}>
+				<div className="rounded-xl h-full flex flex-col">
+					{children}
+					<ChatMessages
+						messages={messages}
+						showTimestamps={showTimestamps}
+						showAvatars={showAvatars}
+						typingUsers={typingUsers}
+						className="flex-1 min-h-0 max-h-96"
 					/>
-				)}
-			</div>
+					{onSendMessage && (
+						<ChatInput
+							onSendMessage={onSendMessage}
+							placeholder={placeholder}
+							disabled={disabled}
+							autoFocus={autoFocus}
+							maxLength={maxLength}
+							allowMultiline={allowMultiline}
+						/>
+					)}
+				</div>
+			</ChatA11yContext.Provider>
 		</div>
 	);
 };
@@ -273,10 +298,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				"px-4 py-3 border-b border-border-muted not-prose",
-				className,
-			)}
+			className={cn("p-4 border-b border-border-muted not-prose", className)}
 			{...props}
 		>
 			{children}
@@ -306,12 +328,23 @@ export const ChatTitle: React.FC<ChatTitleProps> = ({
 export const ChatDescription: React.FC<ChatDescriptionProps> = ({
 	children,
 	className = "",
+	id: propId,
 	...props
 }) => {
+	const { setDescriptionId } = useContext(ChatA11yContext);
+	const generatedId = useId();
+	const id = propId ?? `chat-desc-${generatedId}`;
+
+	useEffect(() => {
+		setDescriptionId(id);
+		return () => setDescriptionId(undefined);
+	}, [id, setDescriptionId]);
+
 	return (
 		<p
+			id={id}
 			className={cn(
-				"text-sm text-foreground-muted leading-relaxed mt-1 not-prose",
+				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
 				className,
 			)}
 			{...props}
@@ -332,6 +365,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
+	/* biome-ignore lint/correctness/useExhaustiveDependencies: scroll depends on message content changes */
 	useEffect(() => {
 		if (containerRef.current && messagesEndRef.current) {
 			const container = containerRef.current;
@@ -344,11 +378,15 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 				behavior: "smooth",
 			});
 		}
-	}, [messages, typingUsers]);
+	}, [messages.length, typingUsers.length]);
 
 	return (
 		<div
 			ref={containerRef}
+			role="log"
+			aria-live="polite"
+			aria-relevant="additions text"
+			aria-label="Chat messages"
 			className={cn(
 				"flex-1 overflow-y-auto p-4 space-y-3 not-prose",
 				className,
@@ -381,6 +419,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 
 	return (
 		<div
+			role={isSystem ? "status" : "listitem"}
 			className={cn(
 				"flex items-end gap-2 not-prose",
 				isUser ? "flex-row-reverse" : "flex-row",
@@ -390,8 +429,9 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 			{...props}
 		>
 			{showAvatar && !isSystem && (
-				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-primary-muted flex-shrink-0">
 					{message.avatar ? (
+						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
 							src={message.avatar}
 							alt={message.name || message.sender}
@@ -450,6 +490,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
 	const [message, setMessage] = useState("");
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	useEffect(() => {
+		if (autoFocus) {
+			textareaRef.current?.focus({ preventScroll: true });
+		}
+	}, [autoFocus]);
 
 	const handleSubmit = useCallback(
 		(e: React.FormEvent) => {
@@ -497,7 +542,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 	return (
 		<div
 			className={cn(
-				"p-4 border-t border-border-muted/30 not-prose",
+				"p-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted not-prose",
 				className,
 			)}
 			{...props}
@@ -509,27 +554,28 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					onChange={handleTextareaChange}
 					onKeyDown={handleKeyDown}
 					placeholder={placeholder}
+					aria-label={placeholder || "Type a message"}
+					aria-multiline={allowMultiline}
 					disabled={disabled}
-					autoFocus={autoFocus}
 					rows={1}
 					className={inputVariants({ variant: "default" })}
 				/>
 				<button
 					type="submit"
+					aria-label="Send message"
 					disabled={!message.trim() || disabled}
 					className={cn(
 						"px-3 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out h-full",
-						"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-						"focus-visible:ring-offset-ring-offset/50",
-						"focus-visible:ring-ring",
+						"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:border-border/10",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end dark:from-gradient-primary-start dark:to-gradient-primary-end/50",
+						"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end",
 						"hover:contrast-125",
-						"text-primary-foreground dark:text-primary",
-						"focus-visible:ring-ring shadow-sm",
+						"text-primary-white",
+						"shadow-sm",
 					)}
 				>
 					<svg
+						aria-hidden="true"
 						className="size-5"
 						width="24"
 						height="24"

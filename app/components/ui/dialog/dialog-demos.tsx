@@ -2,14 +2,6 @@
 
 import type React from "react";
 import { Button } from "../button";
-import { Input } from "../input";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "../select";
 import { Spinner } from "../spinner";
 import {
 	Dialog,
@@ -37,8 +29,8 @@ export const SimpleDialogDemo: React.FC = () => {
 							This is a basic dialog example with a title and description.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="px-6 py-4">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
 							Dialog content goes here. You can add any components or content
 							you need.
 						</p>
@@ -60,12 +52,11 @@ export const DialogWithActionsDemo: React.FC = () => {
 					<DialogHeader>
 						<DialogTitle>Confirm Deletion</DialogTitle>
 						<DialogDescription>
-							Are you sure you want to delete this item? This action cannot be
-							undone.
+							Are you sure you want to delete this item?
 						</DialogDescription>
 					</DialogHeader>
-					<div className="px-6 py-4">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
 							This will permanently remove <strong>Project Alpha</strong> and
 							all associated data.
 						</p>
@@ -104,8 +95,8 @@ export const SizesDemo: React.FC = () => {
 							This is a small dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="px-6 py-4">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
 							Compact dialog for simple interactions.
 						</p>
 					</div>
@@ -125,8 +116,8 @@ export const SizesDemo: React.FC = () => {
 							This is a medium dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="px-6 py-4">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
 							Standard dialog size for most use cases.
 						</p>
 					</div>
@@ -146,80 +137,11 @@ export const SizesDemo: React.FC = () => {
 							This is a large dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="px-6 py-4">
-						<p className="text-sm text-foreground-muted">
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
 							Larger dialog for complex forms or detailed content.
 						</p>
 					</div>
-				</DialogContent>
-			</Dialog>
-		</div>
-	);
-};
-
-export const FormDialogDemo: React.FC = () => {
-	return (
-		<div className="my-6">
-			<Dialog>
-				<DialogTrigger asChild>
-					<Button>Add New User</Button>
-				</DialogTrigger>
-				<DialogContent size="lg">
-					<DialogHeader>
-						<DialogTitle>Create New User</DialogTitle>
-						<DialogDescription>
-							Add a new user to your team. Fill in their details below.
-						</DialogDescription>
-					</DialogHeader>
-					<div className="px-6 py-4 space-y-4">
-						<div className="grid grid-cols-2 gap-4">
-							<div>
-								<label className="block text-sm font-medium mb-2 text-foreground-muted">
-									First Name
-								</label>
-								<Input placeholder="John" />
-							</div>
-							<div>
-								<label className="block text-sm font-medium mb-2 text-foreground-muted">
-									Last Name
-								</label>
-								<Input placeholder="Doe" />
-							</div>
-						</div>
-						<div>
-							<label className="block text-sm font-medium mb-2 text-foreground-muted">
-								Email Address
-							</label>
-							<Input type="email" placeholder="john.doe@example.com" />
-						</div>
-						<div>
-							<label className="block text-sm font-medium mb-2 text-foreground-muted">
-								Role
-							</label>
-							<Select defaultValue="viewer">
-								<SelectTrigger className="w-full">
-									<SelectValue placeholder="Select a role" />
-								</SelectTrigger>
-								<SelectContent className="w-full">
-									<SelectItem value="admin">Admin</SelectItem>
-									<SelectItem value="editor">Editor</SelectItem>
-									<SelectItem value="viewer">Viewer</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-					</div>
-					<DialogFooter>
-						<DialogActions>
-							<DialogClose asChild>
-								<Button variant="ghost" size="sm">
-									Cancel
-								</Button>
-							</DialogClose>
-							<Button variant="primary" size="sm">
-								Create User
-							</Button>
-						</DialogActions>
-					</DialogFooter>
 				</DialogContent>
 			</Dialog>
 		</div>

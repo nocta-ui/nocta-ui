@@ -35,7 +35,6 @@ export const BasicChatDemo: React.FC = () => {
 
 		setMessages((prev) => [...prev, newMessage]);
 
-		// Simulate assistant response
 		setTimeout(() => {
 			const assistantMessage: Message = {
 				id: (Date.now() + 1).toString(),
@@ -92,7 +91,6 @@ export const ChatWithHeaderDemo: React.FC = () => {
 
 		setMessages((prev) => [...prev, newMessage]);
 
-		// Simulate assistant response
 		setTimeout(() => {
 			const responses = [
 				"I understand your concern. Let me help you with that.",
@@ -294,7 +292,6 @@ export const ReadOnlyChatDemo: React.FC = () => {
 					messages={messages}
 					showTimestamps
 					showAvatars
-					// No onSendMessage prop = read-only mode
 					className="w-xs md:w-lg "
 				/>
 			</div>
@@ -327,7 +324,6 @@ export const ChatWithActionsDemo: React.FC = () => {
 		setMessages((prev) => [...prev, newMessage]);
 		setTypingUsers([{ id: "assistant", name: "AI Assistant" }]);
 
-		// Simulate assistant response
 		setTimeout(() => {
 			setTypingUsers([]);
 			const assistantMessage: Message = {
@@ -457,7 +453,6 @@ export const TypingIndicatorDemo: React.FC = () => {
 
 		setMessages((prev) => [...prev, newMessage]);
 
-		// Simulate multiple people typing responses
 		setTimeout(() => {
 			setTypingUsers([
 				{
@@ -512,7 +507,6 @@ export const TypingIndicatorDemo: React.FC = () => {
 
 		setSimulationActive(true);
 
-		// Simulate various typing scenarios
 		setTimeout(() => {
 			setTypingUsers([
 				{
@@ -602,7 +596,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 					</Chat>
 				</div>
 
-				<div className="text-sm text-foreground-muted space-y-1">
+				<div className="text-sm text-primary-muted space-y-1">
 					<p>
 						<strong>Features demonstrated:</strong>
 					</p>
