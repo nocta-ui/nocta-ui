@@ -161,8 +161,8 @@ export function ViewOptions({
 				<CaretDown className="size-3.5 text-fd-muted-foreground" />
 			</PopoverTrigger>
 			<PopoverContent
-			portal
-			fixed
+				portal
+				fixed
 				className="flex flex-col overflow-auto !p-1 bg-background-muted"
 			>
 				{items.map((item) => (

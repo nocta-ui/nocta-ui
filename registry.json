@@ -1,7 +1,7 @@
 {
 	"name": "nocta-ui",
 	"description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"components": {
 		"accordion": {
 			"name": "Accordion",
@@ -71,7 +71,7 @@
 				"AlertIcon": ["children", "className"]
 			},
 			"variants": ["default", "error", "warning", "success"]
-				},
+		},
 		"avatar": {
 			"name": "Avatar",
 			"description": "Avatar component with image fallback, status indicator, and multiple sizes",
@@ -127,7 +127,7 @@
 			},
 			"variants": ["default", "secondary", "destructive", "success", "warning"],
 			"sizes": ["sm", "md", "lg"]
-				},
+		},
 		"button": {
 			"name": "Button",
 			"description": "Button component with multiple variants and sizes",
@@ -152,7 +152,7 @@
 			},
 			"variants": ["primary", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"]
-				},
+		},
 		"card": {
 			"name": "Card",
 			"description": "Card component with composable layout sections",
@@ -188,7 +188,7 @@
 				"CardFooter": ["children", "className"],
 				"CardActions": ["children", "className"]
 			}
-				},
+		},
 		"calendar": {
 			"name": "Calendar",
 			"description": "A fully featured date picker with keyboard navigation, accessibility support, and customizable styling",
@@ -264,7 +264,6 @@
 			},
 			"sizes": ["sm", "md", "lg"],
 			"variants": ["default", "success", "warning", "destructive"]
-
 		},
 		"dialog": {
 			"name": "Dialog",
@@ -298,7 +297,13 @@
 			"props": {
 				"Dialog": ["children", "open", "onOpenChange"],
 				"DialogTrigger": ["children", "asChild", "className"],
-				"DialogContent": ["children", "className", "size", "showClose", "portal"],
+				"DialogContent": [
+					"children",
+					"className",
+					"size",
+					"showClose",
+					"portal"
+				],
 				"DialogHeader": ["children", "className"],
 				"DialogTitle": ["children", "className", "as"],
 				"DialogDescription": ["children", "className"],
@@ -675,44 +680,44 @@
 			"variants": ["default", "error", "success"],
 			"sizes": ["sm", "md", "lg"]
 		},
-        "form": {
-            "name": "Form",
-            "description": "Composable Ariakit-based form with fields, labels, validation, and actions",
-            "category": "form",
-            "files": [
-                {
-                    "name": "form.tsx",
-                    "path": "app/components/ui/form/form.tsx",
-                    "type": "component"
-                }
-            ],
-            "dependencies": {
-                "react": "^18.0.0",
-                "@ariakit/react": "^0.4.18"
-            },
-            "exports": [
-                "Form",
-                "FormField",
-                "FormLabel",
-                "FormControl",
-                "FormDescription",
-                "FormMessage",
-                "FormActions",
-                "FormInput",
-                "FormSubmit"
-            ],
-            "props": {
-                "Form": ["children", "className", "onSubmit", "store"],
-                "FormField": ["children", "name", "error", "description", "className"],
-                "FormLabel": ["children", "className", "required"],
-                "FormControl": ["children", "className"],
-                "FormDescription": ["children", "className"],
-                "FormMessage": ["children", "className", "type"],
-                "FormActions": ["children", "className", "align"],
-                "FormInput": ["className", "...inputProps"],
-                "FormSubmit": ["children", "className", "...buttonProps"]
-            }
-        },
+		"form": {
+			"name": "Form",
+			"description": "Composable Ariakit-based form with fields, labels, validation, and actions",
+			"category": "form",
+			"files": [
+				{
+					"name": "form.tsx",
+					"path": "app/components/ui/form/form.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": [
+				"Form",
+				"FormField",
+				"FormLabel",
+				"FormControl",
+				"FormDescription",
+				"FormMessage",
+				"FormActions",
+				"FormInput",
+				"FormSubmit"
+			],
+			"props": {
+				"Form": ["children", "className", "onSubmit", "store"],
+				"FormField": ["children", "name", "error", "description", "className"],
+				"FormLabel": ["children", "className", "required"],
+				"FormControl": ["children", "className"],
+				"FormDescription": ["children", "className"],
+				"FormMessage": ["children", "className", "type"],
+				"FormActions": ["children", "className", "align"],
+				"FormInput": ["className", "...inputProps"],
+				"FormSubmit": ["children", "className", "...buttonProps"]
+			}
+		},
 		"tabs": {
 			"name": "Tabs",
 			"description": "Accessible tabs component with multiple variants, orientations, and keyboard navigation",
@@ -774,11 +779,7 @@
 			"props": {
 				"Tooltip": ["children", "delayDuration"],
 				"TooltipTrigger": ["children", "className"],
-				"TooltipContent": [
-					"children",
-					"className",
-					"variant"
-				]
+				"TooltipContent": ["children", "className", "variant"]
 			}
 		},
 		"context-menu": {
@@ -824,7 +825,13 @@
 				],
 				"ContextMenuSeparator": ["className"],
 				"ContextMenuSub": ["children"],
-				"ContextMenuSubTrigger": ["children", "disabled", "inset", "destructive", "className"],
+				"ContextMenuSubTrigger": [
+					"children",
+					"disabled",
+					"inset",
+					"destructive",
+					"className"
+				],
 				"ContextMenuSubContent": ["children", "className", "size"]
 			}
 		},
@@ -1015,12 +1022,7 @@
 				"Breadcrumb": ["size", "separator", "className", "children"],
 				"BreadcrumbList": ["size", "className", "children"],
 				"BreadcrumbItem": ["size", "className", "children"],
-				"BreadcrumbLink": [
-					"variant",
-					"size",
-					"className",
-					"children"
-				],
+				"BreadcrumbLink": ["variant", "size", "className", "children"],
 				"BreadcrumbPage": ["size", "className", "children"],
 				"BreadcrumbSeparator": ["size", "className", "children"],
 				"BreadcrumbEllipsis": ["className"]
@@ -1197,7 +1199,14 @@
 		"overlay": {
 			"name": "Overlay",
 			"description": "Components that overlay content",
-			"components": ["context-menu", "dialog", "popover", "sheet", "tooltip", "command-k"]
+			"components": [
+				"context-menu",
+				"dialog",
+				"popover",
+				"sheet",
+				"tooltip",
+				"command-k"
+			]
 		},
 		"navigation": {
 			"name": "Navigation",

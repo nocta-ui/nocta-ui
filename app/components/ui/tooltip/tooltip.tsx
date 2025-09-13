@@ -99,7 +99,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	...props
 }) => {
 	// Only render portal on client side to avoid SSR issues
-	if (typeof document === 'undefined') {
+	if (typeof document === "undefined") {
 		return null;
 	}
 

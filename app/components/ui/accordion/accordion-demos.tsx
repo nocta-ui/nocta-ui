@@ -179,9 +179,7 @@ export function ControlledAccordionDemo() {
 					</button>
 				</div>
 
-				<Accordion
-					onValueChange={handleValueChange}
-				>
+				<Accordion onValueChange={handleValueChange}>
 					<AccordionItem value="controlled-1">
 						<AccordionTrigger>Controlled item 1</AccordionTrigger>
 						<AccordionContent>

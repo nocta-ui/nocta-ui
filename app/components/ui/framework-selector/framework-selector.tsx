@@ -84,7 +84,11 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 						key={framework.id}
 						className="no-underline group"
 					>
-						<button type="button" key={framework.id} className={`relative cursor-pointer`}>
+						<button
+							type="button"
+							key={framework.id}
+							className={`relative cursor-pointer`}
+						>
 							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border border-border-muted bg-background-muted/20 transition-colors duration-300 rounded-md p-8">
 								{framework.logo}
 								<div className="mt-3">

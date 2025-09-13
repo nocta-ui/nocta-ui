@@ -22,7 +22,7 @@ export const buttonVariants = cva(
 				sm: "px-3 py-1.5 text-sm",
 				md: "px-4 py-2 text-sm",
 				lg: "px-6 py-3 text-base",
-			}
+			},
 		},
 		compoundVariants: [
 			{
@@ -39,7 +39,7 @@ export const buttonVariants = cva(
 				variant: "icon",
 				size: "lg",
 				class: "w-12 h-12 p-0 text-base",
-			}
+			},
 		],
 		defaultVariants: {
 			variant: "primary",

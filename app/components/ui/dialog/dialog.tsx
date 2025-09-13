@@ -267,23 +267,23 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 };
 
 export const DialogTitle: React.FC<DialogTitleProps> = ({
-    children,
-    className = "",
-    as: Component = "h2",
-    ...props
+	children,
+	className = "",
+	as: Component = "h2",
+	...props
 }) => {
-    return (
-        <AriakitDialogHeading
-            render={(headingProps) => React.createElement(Component, headingProps)}
-            className={cn(
-                "text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
-                className,
-            )}
-            {...props}
-        >
-            {children}
-        </AriakitDialogHeading>
-    );
+	return (
+		<AriakitDialogHeading
+			render={(headingProps) => React.createElement(Component, headingProps)}
+			className={cn(
+				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</AriakitDialogHeading>
+	);
 };
 
 export const DialogDescription: React.FC<DialogDescriptionProps> = ({

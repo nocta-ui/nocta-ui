@@ -21,7 +21,7 @@ const calendarVariants = cva(
 			disabled: {
 				true: "opacity-50 cursor-not-allowed",
 				false: "",
-			}
+			},
 		},
 		defaultVariants: {
 			disabled: false,
@@ -428,14 +428,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 					})}
 				</div>
 
-					<Ariakit.Composite
-						store={composite}
-						role="grid"
-						{...(ariaLabel
-							? { ["aria-label"]: ariaLabel }
-							: { ["aria-labelledby"]: headingId })}
-						className="space-y-1"
-					>
+				<Ariakit.Composite
+					store={composite}
+					role="grid"
+					{...(ariaLabel
+						? { ["aria-label"]: ariaLabel }
+						: { ["aria-labelledby"]: headingId })}
+					className="space-y-1"
+				>
 					{Array.from(
 						{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
 						(_, weekIndex) => (
