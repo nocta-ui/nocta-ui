@@ -42,18 +42,8 @@
 				"AccordionTrigger": ["children", "className"],
 				"AccordionContent": ["children", "className"]
 			},
-			"types": ["single", "multiple"],
 			"variants": ["default", "card"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"keyboard-navigation",
-				"focus-management",
-				"controlled-uncontrolled",
-				"single-multiple-mode",
-				"dark-mode",
-				"accessibility",
-				"composable"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"alert": {
 			"name": "Alert",
@@ -80,9 +70,8 @@
 				"AlertDescription": ["children", "className"],
 				"AlertIcon": ["children", "className"]
 			},
-			"variants": ["default", "error", "warning", "success"],
-			"features": ["accessible", "dark-mode", "composable"]
-		},
+			"variants": ["default", "error", "warning", "success"]
+				},
 		"avatar": {
 			"name": "Avatar",
 			"description": "Avatar component with image fallback, status indicator, and multiple sizes",
@@ -113,14 +102,7 @@
 				]
 			},
 			"sizes": ["xs", "sm", "md", "lg", "xl", "2xl"],
-			"variants": ["circle", "square"],
-			"statuses": ["online", "offline", "away", "busy"],
-			"features": [
-				"image-fallback",
-				"initials-generation",
-				"status-indicator",
-				"dark-mode"
-			]
+			"variants": ["circle", "square"]
 		},
 		"badge": {
 			"name": "Badge",
@@ -144,9 +126,8 @@
 				"Badge": ["children", "variant", "size", "className"]
 			},
 			"variants": ["default", "secondary", "destructive", "success", "warning"],
-			"sizes": ["sm", "md", "lg"],
-			"features": ["hover-effects", "dark-mode"]
-		},
+			"sizes": ["sm", "md", "lg"]
+				},
 		"button": {
 			"name": "Button",
 			"description": "Button component with multiple variants and sizes",
@@ -170,9 +151,8 @@
 				"Button": ["children", "variant", "size", "className", "disabled"]
 			},
 			"variants": ["primary", "secondary", "ghost", "icon"],
-			"sizes": ["sm", "md", "lg"],
-			"features": ["focus-ring", "disabled-state", "dark-mode", "hover-effects"]
-		},
+			"sizes": ["sm", "md", "lg"]
+				},
 		"card": {
 			"name": "Card",
 			"description": "Card component with composable layout sections",
@@ -207,9 +187,8 @@
 				"CardContent": ["children", "className"],
 				"CardFooter": ["children", "className"],
 				"CardActions": ["children", "className"]
-			},
-			"features": ["composable", "dark-mode"]
-		},
+			}
+				},
 		"calendar": {
 			"name": "Calendar",
 			"description": "A fully featured date picker with keyboard navigation, accessibility support, and customizable styling",
@@ -250,19 +229,7 @@
 				]
 			},
 			"variants": ["default"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"keyboard-navigation",
-				"date-selection",
-				"controlled-uncontrolled",
-				"disabled-dates",
-				"date-range-restrictions",
-				"custom-formatting",
-				"week-numbers",
-				"accessibility",
-				"dark-mode",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"checkbox": {
 			"name": "Checkbox",
@@ -296,14 +263,8 @@
 				]
 			},
 			"sizes": ["sm", "md", "lg"],
-			"variants": ["default", "success", "warning", "destructive"],
-			"features": [
-				"custom-icon",
-				"focus-ring",
-				"disabled-state",
-				"dark-mode",
-				"client-component"
-			]
+			"variants": ["default", "success", "warning", "destructive"]
+
 		},
 		"dialog": {
 			"name": "Dialog",
@@ -345,20 +306,7 @@
 				"DialogActions": ["children", "className"],
 				"DialogClose": ["children", "className", "asChild"]
 			},
-			"sizes": ["sm", "md", "lg", "xl", "full"],
-			"features": [
-				"portal-rendering",
-				"keyboard-navigation",
-				"click-outside-close",
-				"escape-key-close",
-				"focus-management",
-				"animations",
-				"body-scroll-lock",
-				"composable",
-				"controlled-uncontrolled",
-				"dark-mode",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg", "xl", "full"]
 		},
 		"command-k": {
 			"name": "CommandK",
@@ -396,17 +344,7 @@
 					"onSelect"
 				]
 			},
-			"sizes": ["sm", "md", "lg", "xl", "full"],
-			"features": [
-				"keyboard-navigation",
-				"focus-management",
-				"search-filtering",
-				"grouping",
-				"hotkey-open",
-				"dark-mode",
-				"accessibility",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg", "xl", "full"]
 		},
 		"input": {
 			"name": "Input",
@@ -441,16 +379,7 @@
 				]
 			},
 			"variants": ["default", "error", "success"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"icon-support",
-				"label-support",
-				"helper-text",
-				"error-handling",
-				"focus-ring",
-				"disabled-state",
-				"dark-mode"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"popover": {
 			"name": "Popover",
@@ -477,23 +406,7 @@
 				"PopoverContent": ["size", "className", "portal", "fixed"]
 			},
 			"variants": ["default"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"controlled-uncontrolled-state",
-				"positioning-system",
-				"collision-detection",
-				"keyboard-navigation",
-				"focus-management",
-				"click-outside-close",
-				"escape-key-close",
-				"smooth-animations",
-				"custom-triggers",
-				"rich-content-support",
-				"viewport-aware",
-				"accessible-aria-attributes",
-				"dark-mode-support",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"select": {
 			"name": "Select",
@@ -533,18 +446,7 @@
 				"SelectItem": ["value", "children", "className", "disabled"],
 				"SelectValue": ["placeholder", "className"]
 			},
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"controlled-uncontrolled",
-				"keyboard-navigation",
-				"click-outside-close",
-				"animations",
-				"custom-styling",
-				"composable",
-				"disabled-state",
-				"dark-mode",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"skeleton": {
 			"name": "Skeleton",
@@ -576,19 +478,7 @@
 				]
 			},
 			"variants": ["default", "shimmer"],
-			"sizes": ["sm", "md", "lg"],
-			"shapes": ["rectangle", "circle", "text"],
-			"features": [
-				"multiple-variants",
-				"custom-dimensions",
-				"shape-options",
-				"text-lines-support",
-				"smooth-animations",
-				"dark-mode",
-				"loading-placeholders",
-				"accessibility",
-				"responsive-design"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"spinner": {
 			"name": "Spinner",
@@ -612,15 +502,7 @@
 				"Spinner": ["size", "variant", "className"]
 			},
 			"sizes": ["sm", "md", "lg"],
-			"variants": ["default"],
-			"features": [
-				"smooth-animations",
-				"dark-mode",
-				"accessible",
-				"custom-colors",
-				"inline-usage",
-				"loading-states"
-			]
+			"variants": ["default"]
 		},
 		"switch": {
 			"name": "Switch",
@@ -654,19 +536,11 @@
 				]
 			},
 			"sizes": ["sm", "md", "lg"],
-			"variants": ["default", "success", "warning", "destructive"],
-			"features": [
-				"smooth-animations",
-				"focus-ring",
-				"disabled-state",
-				"accessible",
-				"dark-mode",
-				"client-component"
-			]
+			"variants": ["default", "success", "warning", "destructive"]
 		},
 		"table": {
 			"name": "Table",
-			"description": "A powerful, highly customizable table component with sorting, filtering, pagination, and advanced features",
+			"description": "A powerful, highly customizable table component.",
 			"category": "data-display",
 			"files": [
 				{
@@ -724,25 +598,7 @@
 				"TableCaption": ["children", "className"]
 			},
 			"variants": ["default", "striped"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"sorting",
-				"filtering",
-				"pagination",
-				"custom-rendering",
-				"row-selection",
-				"column-alignment",
-				"responsive-design",
-				"loading-state",
-				"empty-state",
-				"hover-effects",
-				"click-handlers",
-				"type-safe",
-				"composable",
-				"accessibility",
-				"dark-mode",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"textarea": {
 			"name": "Textarea",
@@ -778,17 +634,7 @@
 				]
 			},
 			"variants": ["default", "error", "success"],
-			"sizes": ["sm", "md", "lg"],
-			"resize": ["none", "vertical", "horizontal", "both"],
-			"features": [
-				"resizable",
-				"label-support",
-				"helper-text",
-				"error-success-handling",
-				"focus-ring",
-				"disabled-state",
-				"dark-mode"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"combobox": {
 			"name": "Combobox",
@@ -827,22 +673,7 @@
 				"ComboboxOption": ["value", "label", "disabled"]
 			},
 			"variants": ["default", "error", "success"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"searchable-filtering",
-				"keyboard-navigation",
-				"accessible-aria-attributes",
-				"controlled-uncontrolled",
-				"clearable-selection",
-				"disabled-options",
-				"custom-messages",
-				"click-outside-close",
-				"auto-scroll-highlight",
-				"focus-management",
-				"dark-mode",
-				"smooth-transitions",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
         "form": {
             "name": "Form",
@@ -880,22 +711,7 @@
                 "FormActions": ["children", "className", "align"],
                 "FormInput": ["className", "...inputProps"],
                 "FormSubmit": ["children", "className", "...buttonProps"]
-            },
-            "messageTypes": ["error", "success", "warning"],
-            "alignments": ["left", "center", "right"],
-            "features": [
-                "ariakit-store",
-                "composable-architecture",
-                "context-based-field-state",
-                "accessibility-built-in",
-                "error-validation-support",
-                "field-descriptions",
-                "required-field-indicators",
-                "flexible-action-alignment",
-                "dark-mode",
-                "semantic-html",
-                "screen-reader-support"
-            ]
+            }
         },
 		"tabs": {
 			"name": "Tabs",
@@ -933,21 +749,7 @@
 				"TabsContent": ["children", "value", "className"]
 			},
 			"variants": ["default", "pills", "underline"],
-			"sizes": ["sm", "md", "lg"],
-			"orientations": ["horizontal", "vertical"],
-			"features": [
-				"controlled-uncontrolled",
-				"keyboard-navigation",
-				"accessible-aria-attributes",
-				"multiple-variants",
-				"horizontal-vertical-orientation",
-				"disabled-state",
-				"smooth-transitions",
-				"focus-management",
-				"dark-mode",
-				"composable-architecture",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"tooltip": {
 			"name": "Tooltip",
@@ -977,15 +779,7 @@
 					"className",
 					"variant"
 				]
-			},
-			"features": [
-				"portal-rendering",
-				"hover-delay",
-				"keyboard-support",
-				"composable",
-				"dark-mode",
-				"client-component"
-			]
+			}
 		},
 		"context-menu": {
 			"name": "Context Menu",
@@ -1032,26 +826,7 @@
 				"ContextMenuSub": ["children"],
 				"ContextMenuSubTrigger": ["children", "disabled", "inset", "destructive", "className"],
 				"ContextMenuSubContent": ["children", "className", "size"]
-			},
-			"features": [
-				"right-click-trigger",
-				"portal-rendering",
-				"smart-positioning",
-				"viewport-collision-detection",
-				"keyboard-navigation",
-				"focus-management",
-				"click-outside-close",
-				"escape-key-close",
-				"submenu-support",
-				"hover-submenu-trigger",
-				"smooth-animations",
-				"disabled-state",
-				"custom-positioning",
-				"accessibility-compliant",
-				"compound-component-pattern",
-				"dark-mode",
-				"client-component"
-			]
+			}
 		},
 		"sheet": {
 			"name": "Sheet",
@@ -1091,25 +866,7 @@
 				"SheetFooter": ["children", "className"],
 				"SheetClose": ["children", "className", "asChild"]
 			},
-			"sides": ["left", "right", "top", "bottom"],
-			"sizes": ["sm", "md", "lg", "xl", "full"],
-			"features": [
-				"portal-rendering",
-				"multi-directional-slide",
-				"keyboard-navigation",
-				"focus-trap",
-				"click-outside-close",
-				"escape-key-close",
-				"smooth-animations",
-				"body-scroll-lock",
-				"composable-architecture",
-				"controlled-uncontrolled",
-				"dark-mode",
-				"backdrop-blur",
-				"customizable-sizes",
-				"accessibility-compliant",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg", "xl", "full"]
 		},
 		"slider": {
 			"name": "Slider",
@@ -1152,23 +909,7 @@
 				]
 			},
 			"variants": ["default", "primary", "secondary"],
-			"sizes": ["sm", "md", "lg"],
-			"orientations": ["horizontal", "vertical"],
-			"features": [
-				"controlled-uncontrolled",
-				"keyboard-navigation",
-				"mouse-touch-support",
-				"custom-step-values",
-				"value-formatting",
-				"range-customization",
-				"orientation-support",
-				"smooth-animations",
-				"focus-management",
-				"accessibility",
-				"dark-mode",
-				"disabled-state",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"progress": {
 			"name": "Progress",
@@ -1201,18 +942,7 @@
 				]
 			},
 			"variants": ["default", "success", "warning", "destructive"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"animated-progress",
-				"accessibility-compliant",
-				"custom-max-value",
-				"percentage-display",
-				"keyboard-navigation",
-				"screen-reader-support",
-				"dark-mode",
-				"smooth-animations",
-				"responsive-design"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"toast": {
 			"name": "Toast",
@@ -1253,31 +983,7 @@
 				"bottom-center",
 				"bottom-right"
 			],
-			"variants": ["default", "success", "warning", "destructive"],
-			"features": [
-				"observer-pattern-architecture",
-				"css-transition-animations",
-				"transitionend-driven-exit",
-				"raf-driven-enter-animations",
-				"multiple-positioning-options",
-				"toast-stacking-system",
-				"auto-stacking-max-3",
-				"scale-and-blur-effects",
-				"auto-close-functionality",
-				"manual-dismiss",
-				"keyboard-navigation",
-				"focus-management",
-				"accessibility-compliant",
-				"screen-reader-support",
-				"dark-mode",
-				"customizable-duration",
-				"action-buttons",
-				"singleton-toaster-instance",
-				"imperative-api",
-				"backdrop-blur-effects",
-				"centralized-animation-config",
-				"client-component"
-			]
+			"variants": ["default", "success", "warning", "destructive"]
 		},
 		"breadcrumb": {
 			"name": "Breadcrumb",
@@ -1322,21 +1028,7 @@
 			"variants": {
 				"link": ["default", "ghost"]
 			},
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"hierarchical-navigation",
-				"customizable-separators",
-				"context-based-sizing",
-				"link-variants",
-				"ellipsis-support",
-				"keyboard-navigation",
-				"accessibility-compliant",
-				"semantic-markup",
-				"composable-architecture",
-				"focus-management",
-				"dark-mode",
-				"responsive-design"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"file-upload": {
 			"name": "File Upload",
@@ -1393,26 +1085,7 @@
 				"FileUploadProgress": ["progress", "className"]
 			},
 			"variants": ["default"],
-			"sizes": ["sm", "md", "lg"],
-			"features": [
-				"drag-and-drop",
-				"file-validation",
-				"progress-tracking",
-				"image-preview",
-				"multiple-files",
-				"size-limits",
-				"type-restrictions",
-				"error-handling",
-				"keyboard-navigation",
-				"accessibility-compliant",
-				"file-removal",
-				"upload-status",
-				"custom-styling",
-				"disabled-state",
-				"dark-mode",
-				"responsive-design",
-				"client-component"
-			]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"chat": {
 			"name": "Chat",
@@ -1485,27 +1158,7 @@
 				"Message": ["id", "content", "sender", "timestamp", "avatar", "name"],
 				"TypingUser": ["id", "name", "avatar"]
 			},
-			"variants": ["default"],
-			"senders": ["user", "assistant", "system"],
-			"features": [
-				"real-time-messaging",
-				"avatar-support",
-				"timestamp-display",
-				"multiline-input",
-				"character-counter",
-				"auto-scroll",
-				"smooth-animations",
-				"typing-indicators",
-				"message-variants",
-				"keyboard-shortcuts",
-				"auto-resize-textarea",
-				"accessibility-compliant",
-				"composable-architecture",
-				"message-history",
-				"custom-styling",
-				"dark-mode",
-				"client-component"
-			]
+			"variants": ["default"]
 		}
 	},
 	"categories": {
@@ -1544,7 +1197,7 @@
 		"overlay": {
 			"name": "Overlay",
 			"description": "Components that overlay content",
-			"components": ["context-menu", "dialog", "popover", "sheet", "tooltip"]
+			"components": ["context-menu", "dialog", "popover", "sheet", "tooltip", "command-k"]
 		},
 		"navigation": {
 			"name": "Navigation",
@@ -1557,21 +1210,10 @@
 			"components": ["chat"]
 		}
 	},
-	"features": [
-		"TypeScript support",
-		"Tailwind CSS styling",
-		"Dark mode support",
-		"Accessibility focused",
-		"Composable components",
-		"Custom variants",
-		"Responsive design",
-		"Animation support",
-		"Tree-shakeable"
-	],
 	"requirements": {
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
 		"@types/react": "^18.0.0",
-		"tailwindcss": "^3.0.0"
+		"tailwindcss": "^4.0.0"
 	}
 }
