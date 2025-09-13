@@ -62,6 +62,7 @@ export interface ComboboxProps extends VariantProps<typeof comboboxVariants> {
 	value?: string;
 	defaultValue?: string;
 	onValueChange?: (value: string) => void;
+	portal?: boolean;
 	placeholder?: string;
 	searchPlaceholder?: string;
 	emptyMessage?: string;
@@ -76,6 +77,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 	value: controlledValue,
 	defaultValue,
 	onValueChange,
+	portal = true,
 	placeholder = "Select option...",
 	searchPlaceholder = "Search...",
 	emptyMessage = "No options found",
@@ -201,6 +203,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 					</Ariakit.MenuButton>
 
 					<Ariakit.Menu
+						portal={portal}
 						sameWidth
 						className={cn(
 							"absolute z-[999] my-1 rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl overflow-hidden",

@@ -66,18 +66,6 @@ The Combobox component provides a searchable dropdown interface for selecting fr
   </DocsTab>
 </DocsTabs>
 
-## Data Structure
-
-The Combobox component expects an array of options with the following structure:
-
-```tsx lineNumbers title="Combobox Option Interface"
-interface ComboboxOption {
-  value: string;        // Unique identifier
-  label: string;        // Display text
-  disabled?: boolean;   // Optional disabled state
-}
-```
-
 ## Variants
 
 The Combobox component supports three visual variants: `default`, `error`, and `success`.
@@ -281,6 +269,7 @@ Use `value` and `onValueChange` for controlled behavior:
 | `value` | `string` | — | Controlled selected value |
 | `defaultValue` | `string` | — | Default selected value |
 | `onValueChange` | `(value: string) => void` | — | Callback when selection changes |
+| `portal` | `boolean` | `true` | Render the combobox in a React portal |
 | `placeholder` | `string` | `'Select option...'` | Placeholder text |
 | `searchPlaceholder` | `string` | `'Search...'` | Search input placeholder |
 | `emptyMessage` | `string` | `'No options found'` | Message when no options match |
