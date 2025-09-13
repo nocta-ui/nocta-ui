@@ -138,7 +138,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 export const SelectContent: React.FC<SelectContentProps> = ({
 	children,
 	className = "",
-	portal = false,
+	portal = true,
 	fixed = false,
 }) => {
 	return (
