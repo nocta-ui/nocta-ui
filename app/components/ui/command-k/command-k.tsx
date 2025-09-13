@@ -76,7 +76,7 @@ const kbdClass = cva(
 		"text-[10px] leading-none font-medium",
 		"border-border/5",
 		"bg-background-muted/50",
-		"text-primary-muted shadow-xs",
+		"text-primary-muted shadow-sm",
 	].join(" "),
 );
 
