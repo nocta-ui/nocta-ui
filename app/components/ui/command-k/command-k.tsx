@@ -74,9 +74,9 @@ const kbdClass = cva(
 		"flex items-center justify-center",
 		"h-5 px-1.5 min-w-[2.2rem] rounded-md border",
 		"text-[10px] leading-none font-medium",
-		"border-border/5",
+		"border-border-muted/30",
 		"bg-background-muted/50",
-		"text-primary-muted shadow-sm",
+		"text-primary-muted shadow-xs",
 	].join(" "),
 );
 

@@ -9,7 +9,7 @@ const calendarVariants = cva(
 	[
 		"rounded-xl bg-background",
 		"shadow-lg",
-		"transition-all duration-200 ease-out",
+		"transition-all duration-200 ease-in-out",
 		"overflow-hidden",
 		"not-prose",
 		"text-xs",
@@ -45,7 +45,7 @@ const dayButtonVariants = cva(
 	{
 		variants: {
 			state: {
-				default: "hover:bg-background-elevated text-primary-muted",
+				default: "hover:bg-background-muted text-primary-muted",
 				selected: "bg-primary text-primary-foreground",
 				today: "bg-background-muted text-foreground",
 				disabled: "opacity-50 cursor-not-allowed",
@@ -349,7 +349,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 transition-colors",
+							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 transition-colors",
 							"px-2 py-1 text-xs",
 						)}
 					>

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const contextMenuContentVariants = cva(
 	`z-50 overflow-hidden rounded-lg border bg-background border-border-muted
    text-foreground shadow-lg dark:shadow-xl not-prose
-   transform transition-all duration-200 ease-out
+   transform transition-all duration-200 ease-in-out
    origin-top -translate-y-1 opacity-0 scale-95
    data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
    data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,
@@ -50,7 +50,7 @@ const contextMenuItemVariants = cva(
 	`w-full relative flex cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm
    outline-none transition-colors focus-visible:bg-background-muted
    focus-visible:text-primary aria-disabled:pointer-events-none
-   aria-disabled:opacity-50 hover:bg-background-muted hover:text-foreground`,
+   aria-disabled:opacity-50 hover:bg-background-muted/60 hover:text-foreground`,
 	{
 		variants: {
 			inset: {

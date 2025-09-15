@@ -122,7 +122,7 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-	"overflow-hidden transition-all duration-200 ease-out not-prose",
+	"overflow-hidden transition-all duration-200 ease-in-out not-prose",
 	{
 		variants: {
 			size: {
@@ -328,7 +328,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="relative bg-background border shadow-lg rounded-lg overflow-hidden transition-all duration-200 ease-out not-prose">
+						<div className="relative bg-background border shadow-lg rounded-lg overflow-hidden transition-all duration-200 ease-in-out not-prose">
 							{children}
 						</div>
 					</div>

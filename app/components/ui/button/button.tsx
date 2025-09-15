@@ -11,12 +11,12 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-115 text-primary-white focus-visible:ring-ring/50 focus-visible:border-border/10 shadow-sm",
+					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-110 text-primary-white focus-visible:ring-ring/50 focus-visible:border-border/10 shadow-sm",
 				secondary:
-					"bg-background text-foreground hover:bg-background-muted focus-visible:ring-ring/50 focus-visible:border-border/10 border border-border-muted dark:border-border-muted shadow-xs",
+					"bg-background text-foreground hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10 border border-border-muted dark:border-border-muted shadow-xs",
 				ghost:
-					"text-primary-muted hover:bg-background-muted focus-visible:ring-ring/50 focus-visible:border-border/10",
-				icon: "text-primary-muted hover:bg-background-muted focus-visible:ring-ring/50 focus-visible:border-border/10",
+					"text-primary-muted hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10",
+				icon: "text-primary-muted hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10",
 			},
 			size: {
 				sm: "px-3 py-1.5 text-sm",

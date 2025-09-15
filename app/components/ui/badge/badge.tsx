@@ -16,13 +16,13 @@ const badgeVariants = cva(
 			variant: {
 				default: [
 					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end",
-					"hover:contrast-115 border-none",
+					"hover:contrast-110 border-none",
 					"text-primary-white",
 				],
 				secondary: [
 					"bg-background",
 					"text-foreground",
-					"hover:bg-background-muted",
+					"hover:bg-background-muted/60",
 					"border-border-muted",
 				],
 				destructive: [

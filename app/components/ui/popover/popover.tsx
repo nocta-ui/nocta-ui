@@ -11,7 +11,7 @@ const popoverTriggerVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-border-muted bg-background text-foreground hover:bg-background-muted",
+					"border-border-muted bg-background text-foreground hover:bg-background-muted/60",
 			},
 			size: {
 				sm: "px-2 py-1 text-xs",

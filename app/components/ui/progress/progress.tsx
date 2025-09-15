@@ -77,7 +77,7 @@ export const Progress: React.FC<ProgressProps> = ({
 
 				<div
 					className={cn(
-						"progress-fill h-full rounded-full transition-all duration-500 ease-out",
+						"progress-fill h-full rounded-full transition-all duration-500 ease-in-out",
 					)}
 					style={{ width: `${percentage}%` }}
 				/>

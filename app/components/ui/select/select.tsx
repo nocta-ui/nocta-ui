@@ -14,7 +14,8 @@ const selectTriggerVariants = cva(
    focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 
    focus-visible:border-border/10
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
-   transition-all duration-200 ease-out
+   transition-all duration-200 ease-in-out
+   hover:bg-background-muted/60
    shadow-xs not-prose`,
 	{
 		variants: {
@@ -148,7 +149,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			fixed={fixed}
 			className={cn(
 				"absolute z-[999] my-1 rounded-lg border border-border-muted bg-background shadow-lg dark:shadow-xl overflow-hidden",
-				"transform transition-all duration-200 ease-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
+				"transform transition-all duration-200 ease-in-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
 				"not-prose",
 				className,
 			)}

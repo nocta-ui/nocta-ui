@@ -239,7 +239,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 			className={cn("w-full bg-background-muted rounded-full h-2", className)}
 		>
 			<div
-				className="bg-foreground h-2 rounded-full transition-all duration-200 ease-out"
+				className="bg-foreground h-2 rounded-full transition-all duration-200 ease-in-out"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}

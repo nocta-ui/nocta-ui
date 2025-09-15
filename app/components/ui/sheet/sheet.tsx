@@ -444,7 +444,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 cursor-pointer",
+				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 cursor-pointer",
 				className,
 			)}
 			type="button"

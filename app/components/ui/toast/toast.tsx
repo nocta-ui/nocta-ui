@@ -653,7 +653,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 											action.onClick();
 											handleClose();
 										}}
-										className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-115 text-primary-white focus-visible:ring-ring/50 shadow-sm transition-all duration-200 cursor-pointer"
+										className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-110 text-primary-white focus-visible:ring-ring/50 shadow-sm transition-all duration-200 cursor-pointer"
 									>
 										{action.label}
 									</button>

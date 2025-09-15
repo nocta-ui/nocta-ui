@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 const dialogContentVariants = cva(
 	`relative bg-background border border-border-muted
    rounded-xl shadow-xl dark:shadow-2xl not-prose overflow-hidden
-   transition-all duration-200 ease-out`,
+   transition-all duration-200 ease-in-out`,
 	{
 		variants: {
 			size: {

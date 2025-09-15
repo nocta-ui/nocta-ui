@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const switchVariants = cva(
 	[
 		"relative inline-flex items-center rounded-full border-2 border-transparent",
-		"transition-all duration-200 ease-out cursor-pointer",
+		"transition-all duration-200 ease-in-out cursor-pointer",
 		"peer-focus-visible:outline-none peer-focus-visible:ring-1",
 		"peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50",
 	],
