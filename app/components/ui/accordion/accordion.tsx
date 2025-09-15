@@ -329,16 +329,6 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						{...props}
 					>
 						<div className="relative bg-background border shadow-lg rounded-lg overflow-hidden transition-all duration-200 ease-out not-prose">
-							<span
-								aria-hidden
-								className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
-								style={{
-									maskImage:
-										"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-									WebkitMaskImage:
-										"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-								}}
-							/>
 							{children}
 						</div>
 					</div>

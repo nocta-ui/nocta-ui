@@ -211,16 +211,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							popoverClassName,
 						)}
 					>
-						<span
-							aria-hidden
-							className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-							style={{
-								maskImage:
-									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-								WebkitMaskImage:
-									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-							}}
-						/>
 
 						<div className="p-1 border-b border-border-muted">
 							<Ariakit.Combobox

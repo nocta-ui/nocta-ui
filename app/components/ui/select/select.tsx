@@ -153,16 +153,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				className,
 			)}
 		>
-			<span
-				aria-hidden
-				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-				style={{
-					maskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					WebkitMaskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-				}}
-			/>
 			<div className="max-h-42 overflow-auto py-1 flex flex-col gap-1 z-50">
 				{children}
 			</div>

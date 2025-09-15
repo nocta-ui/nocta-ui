@@ -144,16 +144,6 @@ export const ContextMenuContent: React.FC<
 		gutter={4}
 		className={cn(contextMenuContentVariants({ size }), className)}
 	>
-		<span
-			aria-hidden
-			className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-			style={{
-				maskImage:
-					"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-				WebkitMaskImage:
-					"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-			}}
-		/>
 		<div className="flex flex-col gap-1">{children}</div>
 	</Ariakit.Menu>
 );

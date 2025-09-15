@@ -101,18 +101,6 @@ export const Alert: React.FC<AlertProps> = ({
 			className={cn(alertVariants({ variant, size }), className)}
 			{...props}
 		>
-			{variant === "default" && (
-				<span
-					aria-hidden
-					className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-					style={{
-						maskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						WebkitMaskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					}}
-				/>
-			)}
 			{React.Children.map(children, (child, index) => {
 				if (React.isValidElement(child) && child.type === AlertIcon) {
 					return child;

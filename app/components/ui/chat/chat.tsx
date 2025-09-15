@@ -255,16 +255,6 @@ export const Chat: React.FC<ChatProps> = ({
 			aria-describedby={descriptionId}
 			{...props}
 		>
-			<span
-				aria-hidden
-				className="pointer-events-none absolute -inset-px rounded-xl bg-gradient-to-b to-transparent opacity-60"
-				style={{
-					maskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					WebkitMaskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-				}}
-			/>
 			<ChatA11yContext.Provider value={{ setDescriptionId }}>
 				<div className="rounded-xl h-full flex flex-col">
 					{children}

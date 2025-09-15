@@ -133,7 +133,7 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 	children,
 	className = "",
 	size = "md",
-	portal = false,
+	portal = true,
 	fixed = false,
 }) => {
 	const store = React.useContext(PopoverStoreContext);
@@ -146,16 +146,6 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 			gutter={8}
 			className={cn(popoverContentVariants({ size }), popoverMotion, className)}
 		>
-			<span
-				aria-hidden
-				className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-				style={{
-					maskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					WebkitMaskImage:
-						"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-				}}
-			/>
 			{children}
 		</Ariakit.Popover>
 	);

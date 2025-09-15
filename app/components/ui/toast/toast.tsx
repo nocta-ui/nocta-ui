@@ -605,18 +605,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						}
 					}}
 				>
-					{variant === "default" && (
-						<span
-							aria-hidden
-							className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-							style={{
-								maskImage:
-									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-								WebkitMaskImage:
-									"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-							}}
-						/>
-					)}
 					<div className={cn(toastContentVariants({ variant }))}>
 						<button
 							type="button"

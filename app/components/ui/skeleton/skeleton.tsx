@@ -10,7 +10,7 @@ const skeletonVariants = cva("bg-background-muted not-prose", {
 		variant: {
 			default: "",
 			shimmer:
-				"relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:animate-[shimmer_2s_ease-in-out_infinite] after:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]",
+				"relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:animate-[shimmer_2s_ease-in-out_infinite] after:bg-[linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.05)_50%,transparent_100%)] dark:after:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.05)_50%,transparent_100%)]",
 		},
 		shape: {
 			rectangle: "rounded",

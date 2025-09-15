@@ -74,16 +74,6 @@ export const Progress: React.FC<ProgressProps> = ({
 				aria-label={ariaLabel || "Progress"}
 				{...props}
 			>
-				<span
-					aria-hidden
-					className="pointer-events-none absolute -inset-px rounded-full bg-gradient-to-b to-transparent opacity-60"
-					style={{
-						maskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						WebkitMaskImage:
-							"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-					}}
-				/>
 
 				<div
 					className={cn(
