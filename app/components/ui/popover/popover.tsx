@@ -6,7 +6,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const popoverTriggerVariants = cva(
-	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 transition-colors duration-200 not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors duration-200 not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
@@ -27,7 +27,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-lg dark:shadow-xl not-prose relative text-foreground overflow-hidden border border-muted",
+	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-sm not-prose relative text-foreground overflow-hidden border border-muted",
 	{
 		variants: {
 			size: {

@@ -27,7 +27,7 @@ const accordionItemVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "border-b border-border/10 last:border-b-0",
+				default: "border-b border-border last:border-b-0",
 				card: "rounded-lg [&:has(:focus-visible)]:outline-none [&:has(:focus-visible)]:ring-1 [&:has(:focus-visible)]:ring-offset-2 [&:has(:focus-visible)]:ring-offset-ring-offset/50 [&:has(:focus-visible)]:ring-ring",
 			},
 			isOpen: {
@@ -39,7 +39,7 @@ const accordionItemVariants = cva(
 			{
 				variant: "card",
 				isOpen: true,
-				class: "shadow-md dark:shadow-md",
+				class: "shadow-xs dark:shadow-xs",
 			},
 		],
 		defaultVariants: {
@@ -328,7 +328,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="relative bg-background border shadow-lg rounded-lg overflow-hidden transition-all duration-200 ease-in-out not-prose">
+						<div className="relative bg-background border shadow-sm rounded-lg overflow-hidden transition-all duration-200 ease-in-out not-prose">
 							{children}
 						</div>
 					</div>

@@ -438,7 +438,7 @@ export const FileContextMenuDemo: React.FC = () => {
 				{files.map((file, index) => (
 					<ContextMenu key={index}>
 						<ContextMenuTrigger>
-							<div className="flex items-center gap-3 p-3 border border-border-muted rounded-lg bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
+							<div className="flex items-center gap-3 p-3 border border-border-muted rounded-md bg-background hover:border-muted transition-all duration-200 ease-in-out cursor-context-menu">
 								<svg
 									className="w-5 h-5 text-foreground-subtle"
 									fill="none"

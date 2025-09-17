@@ -135,7 +135,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						"text-[13px] py-3.5 rounded-xl overflow-auto bg-white dark:bg-neutral-950/50 m-1 border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
+						"text-[13px] py-3.5 overflow-auto bg-fd-background m-1 rounded-lg border border-dashed border-border [&_.line]:px-4 max-h-[600px] fd-scroll-container",
 						props["data-line-numbers"] && "[&_.line]:pl-3",
 						viewportProps?.className,
 					)}
@@ -168,7 +168,7 @@ function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
 			type="button"
 			className={cn(
 				"inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none",
-				"hover:bg-fd-accent/50 hover:text-fd-accent-foreground",
+				"hover:bg-background-muted/50 hover:text-foreground-subtle",
 				"transition-opacity [&_svg]:size-3.5",
 				!checked && "[@media(hover:hover)]:opacity-100",
 				className,

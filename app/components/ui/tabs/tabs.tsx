@@ -40,7 +40,7 @@ const tabsListVariants = cva(
 const tabsTriggerVariants = cva(
 	`inline-flex items-center justify-center whitespace-nowrap
    font-medium transition-all duration-200 ease-in-out
-   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border
    disabled:pointer-events-none disabled:opacity-50 cursor-pointer not-prose`,
 	{
 		variants: {
@@ -222,7 +222,7 @@ export function TabsContent({ children, value, className }: TabsContentProps) {
 		<Ariakit.TabPanel
 			tabId={value}
 			className={cn(
-				"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10",
+				"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border",
 				className,
 			)}
 		>

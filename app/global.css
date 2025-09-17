@@ -1,49 +1,131 @@
 @import "tailwindcss";
-
 @import "fumadocs-ui/css/preset.css";
-@import "fumadocs-ui/css/solar.css";
+
+/* ---FUMADOCS CSS--- */
+@theme {
+	--color-fd-background: oklch(0.97 0.0031 229.76);
+	--color-fd-foreground: oklch(0.205 0.0031 229.76);
+	--color-fd-muted: oklch(0.97 0.0031 229.76);
+	--color-fd-muted-foreground: oklch(0.708 0.0031 229.76);
+	--color-fd-popover: oklch(0.98 0.0031 229.76);
+	--color-fd-popover-foreground: oklch(0.151 0.0031 229.76);
+	--color-fd-card: oklch(0.997 0.0031 229.76);
+	--color-fd-card-foreground: oklch(0.039 0.0031 229.76);
+	--color-fd-border: oklch(0.85 0.0031 229.76 / 0.5);
+	--color-fd-primary: oklch(0.7 0.0031 229.76);
+	--color-fd-primary-foreground: oklch(0.98 0.0031 229.76);
+	--color-fd-secondary: oklch(0.941 0.0031 229.76);
+	--color-fd-secondary-foreground: oklch(0.09 0.0031 229.76);
+	--color-fd-accent: oklch(0.92 0.0031 229.76 / 0.5);
+	--color-fd-accent-foreground: oklch(0.49 0.0031 229.76);
+	--color-fd-ring: oklch(0.639 0.0031 229.76);
+
+	/* accordion */
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
+
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
+}
+
+.dark {
+	--color-fd-background: oklch(0.195 0.0031 229.76);
+	--color-fd-foreground: oklch(0.97 0.0031 229.76);
+	--color-fd-muted: oklch(0.195 0.0031 229.76);
+	--color-fd-muted-foreground: oklch(0.556 0.0031 229.76);
+	--color-fd-popover: oklch(0.116 0.0031 229.76);
+	--color-fd-popover-foreground: oklch(0.869 0.0031 229.76);
+	--color-fd-card: oklch(0.205 0.0031 229.76);
+	--color-fd-card-foreground: oklch(0.98 0.0031 229.76);
+	--color-fd-border: oklch(0.5 0.0031 229.76 / 0.2);
+	--color-fd-primary: oklch(0.5 0.0031 229.76);
+	--color-fd-primary-foreground: oklch(0.09 0.0031 229.76);
+	--color-fd-secondary: oklch(0.309 0.0031 229.76);
+	--color-fd-secondary-foreground: oklch(0.92 0.0031 229.76);
+	--color-fd-accent: oklch(0.359 0.0031 229.76 / 0.3);
+	--color-fd-accent-foreground: oklch(0.7 0.0031 229.76);
+	--color-fd-ring: oklch(0.549 0.0031 229.76);
+}
 
 :root {
-	--color-background: oklch(0.99 0 0);
-	--color-background-muted: oklch(0.952 0 0);
-	--color-background-elevated: oklch(0.87 0 0);
-	--color-foreground: oklch(0.205 0 0);
-	--color-foreground-muted: oklch(0.371 0 0);
-	--color-foreground-subtle: oklch(0.708 0 0);
-	--color-border: oklch(0.205 0 0);
-	--color-border-muted: oklch(0.952 0 0);
-	--color-border-subtle: oklch(0.708 0 0);
-	--color-ring: oklch(0.205 0 0);
-	--color-ring-offset: oklch(0.97 0 0);
-	--color-primary: oklch(0.205 0 0);
-	--color-primary-foreground: oklch(0.97 0 0);
-	--color-primary-muted: oklch(0.371 0 0);
-	--color-overlay: oklch(0.97 0 0);
-	--color-gradient-primary-start: oklch(0.391 0 0);
-	--color-gradient-primary-end: oklch(0.205 0 0);
-	--color-primary-white: oklch(0.97 0 0);
+	letter-spacing: -0.25px;
+	--fd-layout-width: 1600px;
+	--fd-page-width: 1400px;
+}
+
+@utility container {
+	margin-inline: auto;
+	padding-inline: 0rem;
+
+	@apply 2xl:max-w-[1400px];
+}
+
+@layer utilities {
+	.bg-dashed {
+		background-image: linear-gradient(
+			45deg,
+			var(--color-border) 12.50%,
+			transparent 12.50%,
+			transparent 50%,
+			var(--color-border) 50%,
+			var(--color-border) 62.50%,
+			transparent 62.50%,
+			transparent 100%
+		);
+		background-size: 0.25rem 0.25rem;
+	}
+}
+
+/* ---NOCTA CSS--- */
+:root {
+	--color-background: oklch(0.997 0.0031 229.76);
+	--color-background-muted: oklch(0.972 0.0031 229.76);
+	--color-background-elevated: oklch(0.92 0.0031 229.76);
+	--color-foreground: oklch(0.205 0.0031 229.76);
+	--color-foreground-muted: oklch(0.371 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.708 0.0031 229.76);
+	--color-border: oklch(0.205 0.0031 229.76 / 0.1);
+	--color-border-muted: oklch(0.942 0.0031 229.76);
+	--color-border-subtle: oklch(0.708 0.0031 229.76);
+	--color-ring: oklch(0.205 0.0031 229.76);
+	--color-ring-offset: oklch(0.97 0.0031 229.76);
+	--color-primary: oklch(0.205 0.0031 229.76);
+	--color-primary-foreground: oklch(0.97 0.0031 229.76);
+	--color-primary-muted: oklch(0.371 0.0031 229.76);
+	--color-overlay: oklch(0.97 0.0031 229.76);
 	--radius-base: 0.125rem;
 }
 
 .dark {
-	--color-background: oklch(0.205 0 0);
-	--color-background-muted: oklch(0.259 0 0);
-	--color-background-elevated: oklch(0.371 0 0);
-	--color-foreground: oklch(0.97 0 0);
-	--color-foreground-muted: oklch(0.87 0 0);
-	--color-foreground-subtle: oklch(0.556 0 0);
-	--color-border: oklch(0.97 0 0);
-	--color-border-muted: oklch(0.259 0 0);
-	--color-border-subtle: oklch(0.371 0 0);
-	--color-ring: oklch(0.97 0 0);
-	--color-ring-offset: oklch(0.205 0 0);
-	--color-primary: oklch(0.97 0 0);
-	--color-primary-foreground: oklch(0.205 0 0);
-	--color-primary-muted: oklch(0.87 0 0);
-	--color-overlay: oklch(0.145 0 0);
-	--color-gradient-primary-start: oklch(0.391 0 0);
-	--color-gradient-primary-end: oklch(0.2768 0 0);
-	--color-primary-white: oklch(0.952 0 0);
+	--color-background: oklch(0.205 0.0031 229.76);
+	--color-background-muted: oklch(0.249 0.0031 229.76);
+	--color-background-elevated: oklch(0.351 0.0031 229.76);
+	--color-foreground: oklch(0.97 0.0031 229.76);
+	--color-foreground-muted: oklch(0.87 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.556 0.0031 229.76);
+	--color-border: oklch(0.97 0.0031 229.76 / 0.1);
+	--color-border-muted: oklch(0.269 0.0031 229.76);
+	--color-border-subtle: oklch(0.371 0.0031 229.76);
+	--color-ring: oklch(0.97 0.0031 229.76);
+	--color-ring-offset: oklch(0.205 0.0031 229.76);
+	--color-primary: oklch(0.97 0.0031 229.76);
+	--color-primary-foreground: oklch(0.205 0.0031 229.76);
+	--color-primary-muted: oklch(0.87 0.0031 229.76);
+	--color-overlay: oklch(0.145 0.0031 229.76);
 	--radius-base: 0.125rem;
 }
 
@@ -63,10 +145,7 @@
 	--color-ring: var(--ring);
 	--color-ring-offset: var(--ring-offset);
 	--color-primary-foreground: var(--primary-foreground);
-	--color-gradient-primary-start: var(--gradient-primary-start);
-	--color-gradient-primary-end: var(--gradient-primary-end);
 	--color-overlay: var(--overlay);
-	--color-primary-white: var(--primary-white);
 	--radius-sm: calc(var(--radius) * 0.5);
 	--radius-xs: calc(var(--radius-base) * 1);
 	--radius-sm: calc(var(--radius-base) * 2);
@@ -82,25 +161,5 @@
 @layer base {
 	body {
 		@apply font-sfpro;
-	}
-}
-
-@layer utilities {
-	/* Light mode */
-	.bg-custom-radial {
-		background-image: radial-gradient(
-			125% 125% at 50% 0%,
-			hsl(0, 0%, 92%),
-			hsl(0, 0%, 70%)
-		);
-	}
-
-	/* Dark mode */
-	.dark .bg-custom-radial {
-		background-image: radial-gradient(
-			125% 125% at 50% 0%,
-			hsl(0, 0%, 7%),
-			hsl(0, 0%, 10%)
-		);
 	}
 }

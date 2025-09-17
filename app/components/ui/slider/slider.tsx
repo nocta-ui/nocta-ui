@@ -99,7 +99,7 @@ const fillVariants = cva("absolute rounded-full ", {
 });
 
 const thumbVariants = cva(
-	"absolute rounded-full transform origin-center shadow-sm hover:shadow-md",
+	"absolute rounded-full transform origin-center shadow-sm hover:shadow-xs",
 	{
 		variants: {
 			variant: {

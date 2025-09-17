@@ -55,7 +55,7 @@ export function LLMCopyButton({
 			disabled={isLoading}
 			variant="primary"
 			size="sm"
-			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-fd-muted-foreground"
+			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-primary-foreground"
 			onClick={onClick}
 		>
 			{checked ? <Check /> : <Copy />}
@@ -65,7 +65,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	"text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground/80 hover:bg-neutral-200 dark:hover:bg-neutral-700 [&_svg]:size-4",
+	"text-sm p-2 rounded-lg inline-flex items-center gap-2 text-primary-muted hover:text-primary hover:bg-background-muted [&_svg]:size-4",
 );
 
 export function ViewOptions({
@@ -158,12 +158,12 @@ export function ViewOptions({
 				)}
 			>
 				Open
-				<CaretDown className="size-3.5 text-fd-muted-foreground" />
+				<CaretDown className="size-3.5 text-foreground-muted" />
 			</PopoverTrigger>
 			<PopoverContent
 				portal
 				fixed
-				className="flex flex-col overflow-auto !p-1 bg-background-muted"
+				className="flex flex-col overflow-auto !p-1 bg-background"
 			>
 				{items.map((item) => (
 					<a
@@ -175,7 +175,7 @@ export function ViewOptions({
 					>
 						{item.icon}
 						{item.title}
-						<ArrowSquareOut className="text-fd-muted-foreground size-3.5 ms-auto" />
+						<ArrowSquareOut className="text-foreground-muted size-3.5 ms-auto" />
 					</a>
 				))}
 			</PopoverContent>

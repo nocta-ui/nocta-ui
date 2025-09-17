@@ -170,7 +170,7 @@ export const Table = <T extends Record<string, unknown>>({
 		<div
 			className={cn(
 				tableContainerVariants({ variant }),
-				"not-prose relative bg-background border border-border-muted shadow-lg",
+				"not-prose relative bg-background border border-border-muted shadow-sm",
 				className,
 			)}
 		>

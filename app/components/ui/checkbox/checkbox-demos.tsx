@@ -185,7 +185,7 @@ export const CustomStylingDemo: React.FC = () => {
 			</div>
 			<div className="flex items-center gap-2">
 				<Checkbox
-					className="shadow-lg"
+					className="shadow-sm"
 					checked={states.shadow}
 					onCheckedChange={handleChange("shadow")}
 				/>

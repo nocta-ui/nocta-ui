@@ -14,14 +14,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-background border-border-muted  shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
+	"fixed flex flex-col bg-background border-border-muted shadow-sm border transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
-				left: "left-0 top-0 h-full rounded-r-2xl",
-				right: "right-0 top-0 h-full rounded-l-2xl",
-				top: "top-0 left-0 w-full rounded-b-2xl",
-				bottom: "bottom-0 left-0 w-full rounded-t-2xl",
+				left: "left-0 top-0 h-full rounded-r-lg",
+				right: "right-0 top-0 h-full rounded-l-lg",
+				top: "top-0 left-0 w-full rounded-b-lg",
+				bottom: "bottom-0 left-0 w-full rounded-t-lg",
 			},
 			size: {
 				sm: "",
@@ -257,7 +257,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 not-prose cursor-pointer",
+				"inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border not-prose cursor-pointer",
 				className,
 			)}
 			type="button"
@@ -545,7 +545,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 							onKeyDown={handleKeyDown}
 							onMouseDown={beginResize}
 							onTouchStart={beginResize}
-							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10"
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border"
 						/>
 						<div className="pointer-events-none w-2 h-8 rounded-[2px] bg-border-muted flex flex-col items-center justify-center">
 							<div className="flex flex-col gap-1">
@@ -577,9 +577,8 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 							onKeyDown={handleKeyDown}
 							onMouseDown={beginResize}
 							onTouchStart={beginResize}
-							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10"
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border"
 						/>
-						{/* "łapka" */}
 						<div className="pointer-events-none h-2 w-8 rounded-[2px] bg-border-muted flex items-center justify-center">
 							<div className="flex gap-1">
 								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
@@ -591,7 +590,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				)}
 
 			{showClose && (
-				<AriakitDialogDismiss className="absolute right-4 top-4 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 cursor-pointer">
+				<AriakitDialogDismiss className="absolute right-4 top-4 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer">
 					<svg
 						aria-hidden="true"
 						className="h-4 w-4"
@@ -713,7 +712,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 cursor-pointer",
+				"inline-flex items-center justify-center rounded-md font-medium px-4 py-2 text-sm bg-transparent text-foreground hover:bg-background-muted/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 cursor-pointer",
 				className,
 			)}
 			type="button"

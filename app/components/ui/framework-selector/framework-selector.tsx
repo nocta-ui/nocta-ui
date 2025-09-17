@@ -89,7 +89,7 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 							key={framework.id}
 							className={`relative cursor-pointer`}
 						>
-							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border border-border-muted bg-background-muted/20 transition-colors duration-300 rounded-md p-8">
+							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border border-border-muted bg-background hover:bg-background-muted/50 hover:text-foreground-muted transition-colors duration-300 rounded-md p-8 shadow-sm">
 								{framework.logo}
 								<div className="mt-3">
 									<span className="block text-lg font-medium text-primary-muted">

@@ -20,7 +20,7 @@ const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
 				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out group",
 				isActive
 					? "hover:contrast-110 text-foreground"
-					: "text-fd-muted-foreground hover:text-fd-foreground",
+					: "text-foreground-muted hover:text-foreground",
 			)}
 		>
 			<span className="relative z-10">{title}</span>
@@ -72,7 +72,7 @@ const DocsTabs = ({
 
 			<div ref={contentRef} className="relative">
 				{activeTab !== "code" && (
-					<div className="absolute inset-2 border rounded-xl bg-white dark:bg-neutral-950/50 z-0"></div>
+					<div className="absolute inset-2 border border-border rounded-lg border-dashed bg-fd-background z-0"></div>
 				)}
 				<div
 					ref={wrapperRef}

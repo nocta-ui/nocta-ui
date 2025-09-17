@@ -44,13 +44,13 @@ const checkboxVariants = cva(
 				variant: "default",
 				checked: true,
 				class:
-					"bg-foreground-muted border-border/30 has-[:focus-visible]:ring-ring/50",
+					"bg-foreground-muted border-border has-[:focus-visible]:ring-ring/50",
 			},
 			{
 				variant: "default",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 has-[:focus-visible]:ring-ring/50",
+					"bg-background-muted border-border has-[:focus-visible]:ring-ring/50",
 			},
 			{
 				variant: "success",
@@ -62,7 +62,7 @@ const checkboxVariants = cva(
 				variant: "success",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 has-[:focus-visible]:ring-green-500/50",
+					"bg-background-muted border-border has-[:focus-visible]:ring-green-500/50",
 			},
 			{
 				variant: "warning",
@@ -74,7 +74,7 @@ const checkboxVariants = cva(
 				variant: "warning",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 has-[:focus-visible]:ring-yellow-500/50",
+					"bg-background-muted border-border has-[:focus-visible]:ring-yellow-500/50",
 			},
 			{
 				variant: "destructive",
@@ -86,7 +86,7 @@ const checkboxVariants = cva(
 				variant: "destructive",
 				checked: false,
 				class:
-					"bg-background-muted border-border/10 has-[:focus-visible]:ring-red-500/50",
+					"bg-background-muted border-border has-[:focus-visible]:ring-red-500/50",
 			},
 		],
 		defaultVariants: {

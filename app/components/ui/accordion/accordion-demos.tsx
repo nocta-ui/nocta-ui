@@ -159,21 +159,21 @@ export function ControlledAccordionDemo() {
 					<button
 						type="button"
 						onClick={() => setOpenItems(["controlled-1"])}
-						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-primary-white rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-white rounded text-sm whitespace-nowrap"
 					>
 						Open First
 					</button>
 					<button
 						type="button"
 						onClick={() => setOpenItems(["controlled-2"])}
-						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-primary-white rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-white rounded text-sm whitespace-nowrap"
 					>
 						Open Second
 					</button>
 					<button
 						type="button"
 						onClick={() => setOpenItems([])}
-						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-primary-white rounded text-sm whitespace-nowrap"
+						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-white rounded text-sm whitespace-nowrap"
 					>
 						Close All
 					</button>

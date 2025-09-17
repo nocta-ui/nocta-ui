@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const chatVariants = cva(
 	[
 		"relative bg-background border border-border-muted",
-		"rounded-xl shadow-lg transition-all duration-200 ease-in-out",
+		"rounded-xl shadow-sm transition-all duration-200 ease-in-out",
 		"overflow-hidden not-prose",
 	],
 	{
@@ -66,7 +66,7 @@ const inputVariants = cva(
 					"border-border-muted",
 					"bg-background",
 					"text-foreground",
-					"focus-visible:border-border/10",
+					"focus-visible:border-border",
 					"focus-visible:ring-ring/50",
 				],
 			},
@@ -556,11 +556,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					disabled={!message.trim() || disabled}
 					className={cn(
 						"px-3 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out h-full",
-						"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:border-border/10",
+						"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:border-border",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end",
-						"hover:contrast-125",
-						"text-primary-white",
+						"bg-primary",
+						"hover:bg-primary-muted",
+						"text-primary-foreground",
 						"shadow-sm",
 					)}
 				>

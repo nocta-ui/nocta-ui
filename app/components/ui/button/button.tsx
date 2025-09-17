@@ -6,17 +6,17 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-	"relative inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
+	"relative inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 disabled:opacity-50 disabled:cursor-not-allowed not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
 				primary:
-					"bg-linear-to-b from-gradient-primary-start to-gradient-primary-end hover:contrast-110 text-primary-white focus-visible:ring-ring/50 focus-visible:border-border/10 shadow-sm",
+					"bg-primary hover:bg-primary-muted text-primary-foreground focus-visible:ring-ring/50 focus-visible:border-border shadow-sm",
 				secondary:
-					"bg-background text-foreground hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10 border border-border-muted dark:border-border-muted shadow-xs",
+					"bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border-muted shadow-xs",
 				ghost:
-					"text-primary-muted hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10",
-				icon: "text-primary-muted hover:bg-background-muted/60 focus-visible:ring-ring/50 focus-visible:border-border/10",
+					"text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
+				icon: "text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
 			},
 			size: {
 				sm: "px-3 py-1.5 text-sm",

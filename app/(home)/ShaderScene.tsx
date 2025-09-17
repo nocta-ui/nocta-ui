@@ -78,46 +78,46 @@ export default function MoonShaderBackground({
 	fragmentShader = `
     precision highp float;
 
-    varying vec2 vUv;
-    uniform float iTime;
-    uniform vec3 iResolution;
-    uniform sampler2D iChannel0;
-    uniform float iInvert; // 0.0 = normal, 1.0 = inverted
-    uniform float iMobile; // 0.0 = desktop, 1.0 = mobile
+varying vec2 vUv;
+uniform float iTime;
+uniform vec3 iResolution;
+uniform float iInvert;
+uniform float iMobile;
 
-    void mainImage(out vec4 fragColor, in vec2 fragCoord)
-    {
-        float scale = mix(1.5, 2.5, iMobile); // 1.5 for desktop, 2.5 for mobile
-        vec2 uv = scale * (2.0 * fragCoord.xy - iResolution.xy) / iResolution.y;
-        vec2 offset = vec2(cos(iTime / 4.0), sin(iTime / 2.0));
+void mainImage(out vec4 fragColor, in vec2 fragCoord)
+{
+    float scale = mix(1.5, 1.5, iMobile);
+    vec2 uv = scale * (2.0 * fragCoord.xy - iResolution.xy) / iResolution.y;
+    vec2 offset = vec2(cos(iTime / 4.0), sin(iTime / 2.0));
 
-        vec3 light_color = vec3(1.0, 1.0, 1.0);
-        float light = 0.1 / distance(normalize(uv), uv);
+    // różne zestawy kolorów
+    vec3 light_color_dark = vec3(0.9, 0.9, 1.0); 
+    vec3 light_color_light = vec3(0.01, 0.01, 0.03);
 
-        if (length(uv) < 1.0) {
-            light *= 0.1 / distance(normalize(uv - offset), uv - offset);
-        }
+    vec3 light_color = mix(light_color_dark, light_color_light, iInvert);
 
-        float alpha = clamp(light, 0.0, 1.0);
+    float light = 0.1 / distance(normalize(uv), uv);
 
-        fragColor = vec4(light_color * alpha, alpha);
+    if (length(uv) < 1.0) {
+        light *= 0.1 / distance(normalize(uv - offset), uv - offset);
     }
 
-    void main()
-    {
-        vec4 fragColor;
-        vec2 fragCoord = vUv * iResolution.xy;
-        mainImage(fragColor, fragCoord);
+    float alpha = clamp(light, 0.0, 1.0);
 
-        if (iInvert > 0.5) {
-            fragColor.rgb = 1.0 - fragColor.rgb;
-        }
+    fragColor = vec4(light_color * alpha, alpha);
+}
 
-        gl_FragColor = fragColor;
-    }
+void main()
+{
+    vec4 fragColor;
+    vec2 fragCoord = vUv * iResolution.xy;
+    mainImage(fragColor, fragCoord);
+    gl_FragColor = fragColor;
+}
+
 `,
 	uniforms = {},
-	className = "w-full h-svh pointer-events-none",
+	className = "w-full h-full pointer-events-none",
 }: ShaderBackgroundProps) {
 	const { resolvedTheme } = useTheme();
 	const isMobile = useIsMobile();

@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
 	`relative bg-background border border-border-muted
-   rounded-xl shadow-xl dark:shadow-2xl not-prose overflow-hidden
+   rounded-xl shadow-sm not-prose overflow-hidden
    transition-all duration-200 ease-in-out`,
 	{
 		variants: {
@@ -159,7 +159,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 not-prose",
+				"inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border not-prose",
 				className,
 			)}
 			onClick={handleClick}
@@ -356,7 +356,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 cursor-pointer not-prose",
+				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer not-prose",
 				className,
 			)}
 			type="button"

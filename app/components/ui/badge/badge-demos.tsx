@@ -49,7 +49,7 @@ export const CustomStylingDemo: React.FC = () => {
 			</Badge>
 			<Badge
 				variant="secondary"
-				className="bg-blue-500 dark:bg-blue-500/50 text-primary-foreground dark:text-foreground shadow-lg"
+				className="bg-blue-500 dark:bg-blue-500/50 text-primary-foreground dark:text-foreground shadow-sm"
 			>
 				Custom Color
 			</Badge>

@@ -1,7 +1,7 @@
 import { createRelativeLink } from "fumadocs-ui/mdx";
-import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import { LLMCopyButton, ViewOptions } from "@/app/page-options";
+import { DocsBody, DocsPage } from "@/components/layout/page";
+import { LLMCopyButton, ViewOptions } from "@/components/page-options";
 import { source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
@@ -21,14 +21,14 @@ export default async function Page(props: {
 			toc={toc}
 			lastUpdate={lastModified ? new Date(lastModified) : undefined}
 			tableOfContent={{
-				style: "normal",
+				style: "clerk",
 			}}
 		>
-			<h1 className="text-[1.75em] font-semibold -mb-4">{page.data.title}</h1>
-			<p className="text-lg text-fd-muted-foreground">
+			<h1 className="text-[1.75em] font-regular -mb-4">{page.data.title}</h1>
+			<p className="text-lg font-light text-foreground-muted/75">
 				{page.data.description}
 			</p>
-			<div className="flex flex-row gap-2 items-center border-b pt-2 pb-6">
+			<div className="flex flex-row gap-2 items-center border-b border-dashed pt-2 pb-6">
 				<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
 				<ViewOptions
 					markdownUrl={`/api/mdx?path=${page.url}`}
