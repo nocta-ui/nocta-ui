@@ -74,7 +74,6 @@ export const Progress: React.FC<ProgressProps> = ({
 				aria-label={ariaLabel || "Progress"}
 				{...props}
 			>
-
 				<div
 					className={cn(
 						"progress-fill h-full rounded-full transition-all duration-500 ease-in-out",

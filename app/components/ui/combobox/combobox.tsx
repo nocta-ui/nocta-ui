@@ -212,7 +212,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							popoverClassName,
 						)}
 					>
-
 						<div className="p-1 border-b border-border-muted">
 							<Ariakit.Combobox
 								autoSelect

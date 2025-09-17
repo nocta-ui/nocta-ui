@@ -44,7 +44,8 @@
 	--color-gradient-primary-start: oklch(0.391 0 0);
 	--color-gradient-primary-end: oklch(0.2768 0 0);
 	--color-primary-white: oklch(0.952 0 0);
-  	--radius-base: 0.125rem;}
+	--radius-base: 0.125rem;
+}
 
 @theme {
 	--font-sfpro: var(--font-sfpro);

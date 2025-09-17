@@ -215,6 +215,67 @@ export const SheetSizesDemo: React.FC = () => {
 	);
 };
 
+export const ResizableSheetDemo: React.FC = () => {
+	return (
+		<div className="my-6 flex gap-4">
+			<Sheet>
+				<SheetTrigger asChild>
+					<Button variant="secondary">Resizable Sheet</Button>
+				</SheetTrigger>
+				<SheetContent resizable size="lg">
+					<SheetHeader>
+						<SheetTitle>Resizable Panel</SheetTitle>
+						<SheetDescription>
+							Drag the edge of the sheet to adjust its width.
+						</SheetDescription>
+					</SheetHeader>
+					<div className="p-4 flex-1 space-y-3">
+						<p className="text-sm text-primary-muted">
+							Resizable sheets are great for side panels that need more room
+							when working with complex forms or data views.
+						</p>
+						<div className="rounded-lg border border-border-muted bg-background p-3 text-xs text-primary-muted/80">
+							Try dragging the divider to find the width that works for your
+							layout.
+						</div>
+					</div>
+					<SheetFooter>
+						<SheetClose>Close</SheetClose>
+						<Button>Save layout</Button>
+					</SheetFooter>
+				</SheetContent>
+			</Sheet>
+			<Sheet>
+				<SheetTrigger asChild>
+					<Button variant="secondary">Resizable / AllowShrink Sheet</Button>
+				</SheetTrigger>
+				<SheetContent resizable allowShrink size="lg">
+					<SheetHeader>
+						<SheetTitle>Resizable Panel</SheetTitle>
+						<SheetDescription>
+							Drag the edge of the sheet to adjust its width.
+						</SheetDescription>
+					</SheetHeader>
+					<div className="p-4 flex-1 space-y-3">
+						<p className="text-sm text-primary-muted">
+							Resizable sheets are great for side panels that need more room
+							when working with complex forms or data views.
+						</p>
+						<div className="rounded-lg border border-border-muted bg-background p-3 text-xs text-primary-muted/80">
+							Try dragging the divider to find the width that works for your
+							layout.
+						</div>
+					</div>
+					<SheetFooter>
+						<SheetClose>Close</SheetClose>
+						<Button>Save layout</Button>
+					</SheetFooter>
+				</SheetContent>
+			</Sheet>
+		</div>
+	);
+};
+
 export const FormSheetDemo: React.FC = () => {
 	return (
 		<div className="my-6">

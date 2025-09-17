@@ -866,7 +866,15 @@
 			"props": {
 				"Sheet": ["children", "open", "onOpenChange"],
 				"SheetTrigger": ["children", "asChild", "className"],
-				"SheetContent": ["children", "className", "side", "size", "showClose"],
+				"SheetContent": [
+					"children",
+					"className",
+					"side",
+					"size",
+					"showClose",
+					"resizable",
+					"allowShrink"
+				],
 				"SheetHeader": ["children", "className"],
 				"SheetTitle": ["children", "className", "as"],
 				"SheetDescription": ["children", "className"],

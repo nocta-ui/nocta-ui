@@ -14,7 +14,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-background border-border-muted overflow-hidden shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
+	"fixed flex flex-col bg-background border-border-muted  shadow-xl dark:shadow-2xl border transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
@@ -159,6 +159,8 @@ export interface SheetContentProps
 	children: React.ReactNode;
 	className?: string;
 	showClose?: boolean;
+	resizable?: boolean;
+	allowShrink?: boolean;
 }
 
 export interface SheetHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -275,11 +277,21 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 	side = "right",
 	size = "md",
 	showClose = true,
+	resizable = false,
+	allowShrink = false,
+	style: inlineStyle,
 	...props
 }) => {
 	const { store } = useSheet();
 	const open = useStoreState(store, "open");
 	const [mounted, setMounted] = React.useState(open);
+	const contentRef = React.useRef<HTMLDivElement>(null);
+	const [customSize, setCustomSize] = React.useState<number | null>(null);
+	const baseSizeRef = React.useRef(0);
+	const startPosRef = React.useRef(0);
+	const startSizeRef = React.useRef(0);
+	const isResizingRef = React.useRef(false);
+
 	React.useEffect(() => {
 		if (open) {
 			setMounted(true);
@@ -289,7 +301,118 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 		return () => window.clearTimeout(t);
 	}, [open]);
 
-	if (!mounted) return null;
+	const applySizeFromPointer = React.useCallback(
+		(point: { clientX: number; clientY: number }) => {
+			if (!isResizingRef.current) return;
+			let delta = 0;
+			if (side === "left") {
+				delta = point.clientX - startPosRef.current;
+			} else if (side === "right") {
+				delta = startPosRef.current - point.clientX;
+			} else if (side === "top") {
+				delta = point.clientY - startPosRef.current;
+			} else {
+				delta = startPosRef.current - point.clientY;
+			}
+
+			const base = baseSizeRef.current || 0;
+			const next = startSizeRef.current + delta;
+			const min = allowShrink ? 100 : base;
+			const max =
+				side === "left" || side === "right"
+					? Math.round(window.innerWidth * 0.95)
+					: Math.round(window.innerHeight * 0.95);
+			const clamped = Math.max(min, Math.min(next, max));
+			setCustomSize(clamped);
+		},
+		[allowShrink, side],
+	);
+
+	const onMouseMove = React.useCallback(
+		(event: MouseEvent) => {
+			if (!isResizingRef.current) return;
+			applySizeFromPointer(event);
+		},
+		[applySizeFromPointer],
+	);
+
+	const onTouchMove = React.useCallback(
+		(event: TouchEvent) => {
+			if (!isResizingRef.current) return;
+			const touch = event.touches[0];
+			if (!touch) return;
+			applySizeFromPointer(touch);
+			event.preventDefault();
+		},
+		[applySizeFromPointer],
+	);
+
+	const endResize = React.useCallback(() => {
+		if (!isResizingRef.current) return;
+		isResizingRef.current = false;
+		document.removeEventListener("mousemove", onMouseMove);
+		document.removeEventListener("mouseup", endResize);
+		document.removeEventListener("touchmove", onTouchMove);
+		document.removeEventListener("touchend", endResize);
+		document.removeEventListener("touchcancel", endResize);
+		document.body.style.cursor = "";
+		document.body.style.userSelect = "";
+	}, [onMouseMove, onTouchMove]);
+
+	const beginResize = (event: React.MouseEvent | React.TouchEvent) => {
+		if (!resizable || size === "full") return;
+		const point = "touches" in event ? event.touches[0] : event;
+		if (!point) return;
+
+		isResizingRef.current = true;
+		startPosRef.current =
+			side === "left" || side === "right" ? point.clientX : point.clientY;
+		const fallbackSize = (() => {
+			if (!contentRef.current) return 0;
+			const rect = contentRef.current.getBoundingClientRect();
+			return side === "left" || side === "right" ? rect.width : rect.height;
+		})();
+		const baseSize = baseSizeRef.current || fallbackSize;
+		baseSizeRef.current = baseSize;
+		startSizeRef.current = customSize ?? baseSize;
+
+		document.addEventListener("mousemove", onMouseMove);
+		document.addEventListener("mouseup", endResize);
+		document.addEventListener("touchmove", onTouchMove, { passive: false });
+		document.addEventListener("touchend", endResize);
+		document.addEventListener("touchcancel", endResize);
+		document.body.style.cursor =
+			side === "left" || side === "right" ? "col-resize" : "row-resize";
+		document.body.style.userSelect = "none";
+		event.preventDefault();
+		event.stopPropagation();
+	};
+
+	React.useEffect(() => {
+		if (!open) {
+			endResize();
+			setCustomSize(null);
+			baseSizeRef.current = 0;
+			return;
+		}
+
+		const frame = window.requestAnimationFrame(() => {
+			if (!contentRef.current) return;
+			const rect = contentRef.current.getBoundingClientRect();
+			baseSizeRef.current =
+				side === "left" || side === "right" ? rect.width : rect.height;
+			setCustomSize(null);
+		});
+
+		return () => window.cancelAnimationFrame(frame);
+	}, [open, side, endResize]);
+
+	React.useEffect(
+		() => () => {
+			endResize();
+		},
+		[endResize],
+	);
 
 	const sideTransform =
 		side === "left"
@@ -299,6 +422,85 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				: side === "top"
 					? "-translate-y-full data-[enter]:translate-y-0 data-[leave]:-translate-y-full"
 					: "translate-y-full data-[enter]:translate-y-0 data-[leave]:translate-y-full";
+	const isHorizontal = side === "left" || side === "right";
+	const resizerLabel = isHorizontal
+		? "Resize sheet width"
+		: "Resize sheet height";
+	const baseSize = baseSizeRef.current || 0;
+	const currentSize = customSize ?? baseSize;
+	const minSize = allowShrink ? 100 : baseSize;
+	const maxSize = Math.max(
+		minSize,
+		typeof window === "undefined"
+			? currentSize
+			: isHorizontal
+				? Math.round(window.innerWidth * 0.95)
+				: Math.round(window.innerHeight * 0.95),
+	);
+
+	const adjustSize = React.useCallback(
+		(delta: number) => {
+			if (!resizable || size === "full") return;
+			setCustomSize((previous) => {
+				const base = baseSizeRef.current || 0;
+				const currentValue = previous ?? base;
+				const minimum = allowShrink ? 100 : base;
+				const windowMaximum =
+					typeof window === "undefined"
+						? currentValue
+						: isHorizontal
+							? Math.round(window.innerWidth * 0.95)
+							: Math.round(window.innerHeight * 0.95);
+				const maximum = Math.max(minimum, windowMaximum);
+				const next = Math.max(minimum, Math.min(currentValue + delta, maximum));
+				if (next === currentValue) return previous;
+				return next;
+			});
+		},
+		[allowShrink, isHorizontal, resizable, size],
+	);
+
+	const handleKeyDown = React.useCallback(
+		(event: React.KeyboardEvent<HTMLDivElement>) => {
+			if (!resizable || size === "full") return;
+			const step = event.shiftKey ? 50 : 10;
+			if (isHorizontal) {
+				if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+					event.preventDefault();
+					const direction =
+						side === "right"
+							? event.key === "ArrowLeft"
+								? 1
+								: -1
+							: event.key === "ArrowRight"
+								? 1
+								: -1;
+					adjustSize(direction * step);
+				}
+			} else if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+				event.preventDefault();
+				const direction =
+					side === "bottom"
+						? event.key === "ArrowUp"
+							? 1
+							: -1
+						: event.key === "ArrowDown"
+							? 1
+							: -1;
+				adjustSize(direction * step);
+			}
+		},
+		[adjustSize, isHorizontal, resizable, side, size],
+	);
+
+	if (!mounted) return null;
+
+	const sizeStyle: React.CSSProperties | undefined =
+		customSize == null
+			? undefined
+			: side === "left" || side === "right"
+				? { width: `${customSize}px` }
+				: { height: `${customSize}px` };
 
 	return (
 		<AriakitDialog
@@ -313,14 +515,81 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 					)}
 				/>
 			}
+			ref={contentRef}
 			className={cn(
 				sheetContentVariants({ side, size }),
 				"z-50",
 				sideTransform,
 				className,
 			)}
+			style={{ ...(inlineStyle || {}), ...(sizeStyle || {}) }}
 			{...props}
 		>
+			{resizable &&
+				size !== "full" &&
+				(side === "left" || side === "right") && (
+					<div
+						className={cn(
+							"absolute top-1/2 -translate-y-1/2 w-2 cursor-col-resize z-20 flex items-center justify-center",
+							side === "right" ? "-left-1" : "-right-1",
+							"relative",
+						)}
+					>
+						<hr
+							aria-orientation="vertical"
+							aria-valuenow={currentSize}
+							aria-valuemin={minSize}
+							aria-valuemax={maxSize}
+							aria-label={resizerLabel}
+							tabIndex={0}
+							onKeyDown={handleKeyDown}
+							onMouseDown={beginResize}
+							onTouchStart={beginResize}
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10"
+						/>
+						<div className="pointer-events-none w-2 h-8 rounded-[2px] bg-border-muted flex flex-col items-center justify-center">
+							<div className="flex flex-col gap-1">
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+							</div>
+						</div>
+					</div>
+				)}
+
+			{resizable &&
+				size !== "full" &&
+				(side === "top" || side === "bottom") && (
+					<div
+						className={cn(
+							"absolute left-1/2 -translate-x-1/2 h-2 cursor-row-resize z-20 flex items-center justify-center",
+							side === "bottom" ? "-top-1" : "-bottom-1",
+							"relative",
+						)}
+					>
+						<hr
+							aria-orientation="horizontal"
+							aria-valuenow={currentSize}
+							aria-valuemin={minSize}
+							aria-valuemax={maxSize}
+							aria-label={resizerLabel}
+							tabIndex={0}
+							onKeyDown={handleKeyDown}
+							onMouseDown={beginResize}
+							onTouchStart={beginResize}
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border-none bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10"
+						/>
+						{/* "łapka" */}
+						<div className="pointer-events-none h-2 w-8 rounded-[2px] bg-border-muted flex items-center justify-center">
+							<div className="flex gap-1">
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+								<span className="w-0.5 h-0.5 rounded-full bg-foreground/60"></span>
+							</div>
+						</div>
+					</div>
+				)}
+
 			{showClose && (
 				<AriakitDialogDismiss className="absolute right-4 top-4 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border/10 cursor-pointer">
 					<svg

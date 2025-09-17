@@ -72,7 +72,7 @@ const DocsTabs = ({
 
 			<div ref={contentRef} className="relative">
 				{activeTab !== "code" && (
-					<div className="absolute inset-1 border rounded-xl bg-white dark:bg-neutral-950/50 z-0"></div>
+					<div className="absolute inset-2 border rounded-xl bg-white dark:bg-neutral-950/50 z-0"></div>
 				)}
 				<div
 					ref={wrapperRef}

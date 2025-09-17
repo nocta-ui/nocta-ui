@@ -8,6 +8,7 @@ import {
   BasicSheetDemo, 
   SheetSidesDemo, 
   SheetSizesDemo, 
+  ResizableSheetDemo,
   FormSheetDemo, 
   ControlledSheetDemo,
 } from '@/app/components/ui/sheet/sheet-demos';
@@ -135,7 +136,7 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
 
 ## Sizes
 
-Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
+Six size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -159,6 +160,42 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
             Compact content for small sheet.
           </p>
         </div>
+      </SheetContent>
+    </Sheet>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Resizable
+
+Enable the `resizable` prop to let users drag the sheet edge. Combine it with `allowShrink` if the sheet should shrink below its initial size.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ResizableSheetDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Resizable Sheet"
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Resizable Sheet</Button>
+      </SheetTrigger>
+      <SheetContent resizable allowShrink size="lg">
+        <SheetHeader>
+          <SheetTitle>Resizable Panel</SheetTitle>
+          <SheetDescription>
+            Drag the divider to change the width.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="p-4 flex-1">
+          <p className="text-sm text-primary-muted">
+            Resizable sheets give power users extra control over the layout.
+          </p>
+        </div>
+        <SheetFooter>
+          <SheetClose>Close</SheetClose>
+          <Button>Save layout</Button>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
     ```
@@ -192,6 +229,8 @@ Five size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default
 | `side` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Side from which sheet slides in |
 | `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'` | Sheet size |
 | `showClose` | `boolean` | `true` | Show default close button |
+| `resizable` | `boolean` | `false` | Display resize handles on the sheet edge |
+| `allowShrink` | `boolean` | `false` | Permit resizing below the initial layout size |
 
 ### SheetHeader, SheetTitle, SheetDescription, SheetFooter
 

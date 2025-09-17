@@ -455,7 +455,6 @@ export const Slider: React.FC<SliderProps> = ({
 						trackClassName,
 					)}
 				>
-
 					<div
 						className={cn(
 							fillVariants({
