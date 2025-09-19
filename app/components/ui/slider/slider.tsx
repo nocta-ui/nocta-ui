@@ -103,8 +103,8 @@ const thumbVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "bg-foreground dark:bg-foreground border border-muted/50",
-				secondary: "bg-background-muted border border-border-subtle/50",
+				default: "bg-foreground-muted dark:bg-foreground border border-muted/50",
+				secondary: "bg-background-muted border border-border",
 			},
 			size: {
 				sm: "w-4 h-4",
