@@ -1,8 +1,8 @@
+import { BookOpen, Github } from "lucide-react"; // <--- ikony
 import Link from "next/link";
 import type React from "react";
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/shadcnbutton";
-import { BookOpen, Github } from "lucide-react"; // <--- ikony
 
 export default function CTA(): React.ReactElement {
 	return (

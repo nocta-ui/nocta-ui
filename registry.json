@@ -782,6 +782,59 @@
 				"TooltipContent": ["children", "className", "variant"]
 			}
 		},
+		"dropdown-menu": {
+			"name": "Dropdown Menu",
+			"description": "A dropdown menu component triggered on click with keyboard navigation and submenu support",
+			"category": "overlay",
+			"files": [
+				{
+					"name": "dropdown-menu.tsx",
+					"path": "app/components/ui/dropdown-menu/dropdown-menu.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"react-dom": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": [
+				"DropdownMenu",
+				"DropdownMenuTrigger",
+				"DropdownMenuContent",
+				"DropdownMenuItem",
+				"DropdownMenuSeparator",
+				"DropdownMenuSub",
+				"DropdownMenuSubTrigger",
+				"DropdownMenuSubContent"
+			],
+			"props": {
+				"DropdownMenu": ["children", "className"],
+				"DropdownMenuTrigger": ["children", "disabled", "className"],
+				"DropdownMenuContent": ["children", "className", "size"],
+				"DropdownMenuItem": [
+					"children",
+					"disabled",
+					"inset",
+					"destructive",
+					"className",
+					"onClick"
+				],
+				"DropdownMenuSeparator": ["className"],
+				"DropdownMenuSub": ["children"],
+				"DropdownMenuSubTrigger": [
+					"children",
+					"disabled",
+					"inset",
+					"destructive",
+					"className"
+				],
+				"DropdownMenuSubContent": ["children", "className", "size"]
+			}
+		},
 		"context-menu": {
 			"name": "Context Menu",
 			"description": "A context menu component that appears on right-click with full keyboard navigation and submenu support",
@@ -1209,6 +1262,7 @@
 			"description": "Components that overlay content",
 			"components": [
 				"context-menu",
+				"dropdown-menu",
 				"dialog",
 				"popover",
 				"sheet",

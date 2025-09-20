@@ -1,0 +1,288 @@
+---
+title: Dropdown Menu
+description: A dropdown menu component triggered with a standard click, featuring separators, submenus, and disabled states
+---
+
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from '@/app/components/ui/dropdown-menu';
+import {
+  BasicDropdownMenuDemo,
+  DropdownMenuWithSeparatorDemo,
+  DropdownMenuWithSubmenuDemo,
+  DisabledDropdownMenuDemo,
+} from '@/app/components/ui/dropdown-menu/dropdown-menu-demos';
+import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Dropdown Menu component using the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add dropdown-menu
+    ```
+  </Step>
+  <Step>
+    Import the component:
+
+    ```tsx lineNumbers title="Import"
+    import {
+      DropdownMenu,
+      DropdownMenuTrigger,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuSeparator,
+    } from '@/components/ui/dropdown-menu';
+    ```
+  </Step>
+</Steps>
+
+## Examples
+
+### Simple Dropdown Menu
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicDropdownMenuDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Dropdown Menu"
+    const [lastAction, setLastAction] = useState('');
+
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+          Open dropdown
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem onClick={() => setLastAction('Profile')}>
+            <UserIcon className="w-4 h-4 mr-2" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLastAction('Billing')}>
+            <CreditCardIcon className="w-4 h-4 mr-2" />
+            Billing
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setLastAction('Settings')}>
+            <SettingsIcon className="w-4 h-4 mr-2" />
+            Settings
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## With Separators
+
+Use `DropdownMenuSeparator` to group related menu items.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <DropdownMenuWithSeparatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dropdown Menu with Separators"
+    <DropdownMenu>
+      <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+        Open menu with separators
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>
+          <EditIcon className="w-4 h-4 mr-2" />
+          Edit
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <DuplicateIcon className="w-4 h-4 mr-2" />
+          Duplicate
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem>
+          <BookmarkIcon className="w-4 h-4 mr-2" />
+          Bookmark
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <ShareIcon className="w-4 h-4 mr-2" />
+          Share
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem destructive>
+          <DeleteIcon className="w-4 h-4 mr-2" />
+          Delete
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## With Submenu
+
+Create nested menus using `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `DropdownMenuSubContent`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <DropdownMenuWithSubmenuDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Dropdown Menu with Submenu"
+    <DropdownMenu>
+      <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+        Open submenu example
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>
+          <PlusIcon className="w-4 h-4 mr-2" />
+          New item
+        </DropdownMenuItem>
+
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <ExportIcon className="w-4 h-4 mr-2" />
+            Export as
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>
+              <PdfIcon className="w-4 h-4 mr-2" />
+              PDF
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <ExcelIcon className="w-4 h-4 mr-2" />
+              Excel
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <ImageIcon className="w-4 h-4 mr-2" />
+              Image
+            </DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem>
+          <SettingsIcon className="w-4 h-4 mr-2" />
+          Preferences
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled State
+
+Both the entire dropdown menu and individual items can be disabled.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <DisabledDropdownMenuDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Dropdown Menu"
+    {/* Disabled dropdown */}
+    <DropdownMenu>
+      <DropdownMenuTrigger disabled className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+        Dropdown disabled
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>This will not show</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+
+    {/* Disabled menu items */}
+    <DropdownMenu>
+      <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+        Partially disabled items
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Enabled item</DropdownMenuItem>
+        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Another enabled item</DropdownMenuItem>
+        <DropdownMenuItem disabled>Another disabled item</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### DropdownMenu
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | The trigger and content components |
+| `className` | `string` | — | Additional CSS classes |
+
+### DropdownMenuTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Content that toggles the menu on click |
+| `disabled` | `boolean` | `false` | Disable the dropdown trigger |
+| `className` | `string` | — | Additional CSS classes |
+
+### DropdownMenuContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Menu items and separators |
+| `className` | `string` | — | Additional CSS classes |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min-width |
+
+### DropdownMenuItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Item content |
+| `disabled` | `boolean` | `false` | Disable the item |
+| `inset` | `boolean` | `false` | Indent the item content |
+| `destructive` | `boolean` | `false` | Apply destructive styling |
+| `className` | `string` | — | Additional CSS classes |
+| `onClick` | `() => void` | — | Click handler |
+
+### DropdownMenuSeparator
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional CSS classes |
+
+### DropdownMenuSub
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger and content |
+
+### DropdownMenuSubTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger content |
+| `disabled` | `boolean` | `false` | Disable the submenu trigger |
+| `inset` | `boolean` | `false` | Indent the trigger content |
+| `destructive` | `boolean` | `false` | Destructive styling (not typical) |
+| `className` | `string` | — | Additional CSS classes |
+
+### DropdownMenuSubContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu items and separators |
+| `className` | `string` | — | Additional CSS classes |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min-width |

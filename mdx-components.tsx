@@ -74,6 +74,16 @@ import {
 } from "@/app/components/ui/dialog";
 import { DocsTabs } from "@/app/components/ui/docs-tab";
 import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuTrigger,
+} from "@/app/components/ui/dropdown-menu";
+import {
 	FileUpload,
 	FileUploadItem,
 	FileUploadProgress,
@@ -264,6 +274,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		FileUploadItem,
 		FileUploadProgress,
 		CommandK,
+		DropdownMenu,
+		DropdownMenuTrigger,
+		DropdownMenuContent,
+		DropdownMenuItem,
+		DropdownMenuSeparator,
+		DropdownMenuSub,
+		DropdownMenuSubTrigger,
+		DropdownMenuSubContent,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

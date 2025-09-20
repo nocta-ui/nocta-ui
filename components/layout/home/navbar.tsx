@@ -21,7 +21,7 @@ import { buttonVariants } from "../../ui/button";
 import { BaseLinkItem } from "../shared/index";
 
 const navItemVariants = cva(
-	"inline-flex items-center gap-1 p-2 text-foreground-muted/75 transition-colors hover:text-foreground data-[active=true]:text-primary [&_svg]:size-4",
+	"inline-flex items-center gap-1 p-2 text-foreground-muted/75 transition-colors hover:text-foreground duration-300 ease-in-out data-[active=true]:text-primary [&_svg]:size-4",
 );
 
 export function Navbar(props: ComponentProps<"div">) {

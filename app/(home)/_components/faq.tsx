@@ -8,32 +8,31 @@ import {
 
 const faq = [
 	{
-	  question: "What is Nocta UI?",
-	  answer:
-		"Nocta UI is a React component library built with a copy-paste philosophy. Instead of shipping as a package, it provides source code you add directly to your project via a CLI.",
+		question: "What is Nocta UI?",
+		answer:
+			"Nocta UI is a React component library built with a copy-paste philosophy. Instead of shipping as a package, it provides source code you add directly to your project via a CLI.",
 	},
 	{
-	  question: "Is Nocta UI accessible?",
-	  answer:
-		"Yes. Accessibility is a core principle of Nocta UI. Interactive components are built on top of @ariakit/react, ensuring proper focus management, keyboard navigation, and WAI-ARIA compliance.",
+		question: "Is Nocta UI accessible?",
+		answer:
+			"Yes. Accessibility is a core principle of Nocta UI. Interactive components are built on top of @ariakit/react, ensuring proper focus management, keyboard navigation, and WAI-ARIA compliance.",
 	},
 	{
-	  question: "Can I customize the components?",
-	  answer:
-		"Absolutely. Since components are copied into your project, you have full control to adjust styling, behavior, or structure however you like.",
+		question: "Can I customize the components?",
+		answer:
+			"Absolutely. Since components are copied into your project, you have full control to adjust styling, behavior, or structure however you like.",
 	},
 	{
-	  question: "Does Nocta UI work with my framework?",
-	  answer:
-		"Yes. It is React-focused and optimized for Next.js, Vite and React Router projects. The CLI automatically detects your framework and configures everything for you.",
+		question: "Does Nocta UI work with my framework?",
+		answer:
+			"Yes. It is React-focused and optimized for Next.js, Vite and React Router projects. The CLI automatically detects your framework and configures everything for you.",
 	},
 	{
-	  question: "What kind of support is available?",
-	  answer:
-		"You can find clear documentation, usage guides, and examples on the official website. Contributions and issue tracking are available on GitHub.",
+		question: "What kind of support is available?",
+		answer:
+			"You can find clear documentation, usage guides, and examples on the official website. Contributions and issue tracking are available on GitHub.",
 	},
-  ];
-  
+];
 
 export const FAQ = () => (
 	<Section className="grid divide-y divide-dashed divide-border lg:grid-cols-2 lg:divide-x lg:divide-y-0">

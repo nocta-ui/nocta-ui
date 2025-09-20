@@ -57,19 +57,22 @@ const frameworks: FrameworkOption[] = [
 	{
 		id: "vite",
 		name: "Vite",
-		description: "React with Vite for a fast and lightweight development workflow",
+		description:
+			"React with Vite for a fast and lightweight development workflow",
 		logo: <ViteLogo />,
 	},
 	{
 		id: "nextjs",
 		name: "Next.js",
-		description: "React framework with server-side rendering, static generation, and API routes",
+		description:
+			"React framework with server-side rendering, static generation, and API routes",
 		logo: <NextJsLogo />,
 	},
 	{
 		id: "reactrouter",
 		name: "React Router",
-		description: "React Router 7 in framework mode with type-safe routes, SPA, SSR, and static rendering",
+		description:
+			"React Router 7 in framework mode with type-safe routes, SPA, SSR, and static rendering",
 		logo: <ReactRouterLogo />,
 	},
 ];
