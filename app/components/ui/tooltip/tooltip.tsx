@@ -20,7 +20,7 @@ const tooltipContentVariants = cva(
    data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,
 	{
 		variants: {
-			variant: { default: `bg-background-muted text-foreground border-muted` },
+			variant: { default: `bg-background-muted text-foreground border-border` },
 		},
 		defaultVariants: { variant: "default" },
 	},

@@ -14,17 +14,16 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
-	`relative bg-background border border-border-muted
-   rounded-xl shadow-sm not-prose overflow-hidden
+	`relative max-h-[70vh] bg-background border border-border
+   rounded-xl shadow-sm not-prose overflow-y-auto
    transition-all duration-200 ease-in-out`,
 	{
 		variants: {
 			size: {
-				sm: "max-w-sm",
-				md: "max-w-md",
-				lg: "max-w-lg",
-				xl: "max-w-xl",
-				full: "max-w-full mx-4",
+				sm: "w-[50vw] md:max-w-sm",
+				md: "w-[65vw] md:max-w-md",
+				lg: "w-[80vw] md:max-w-lg",
+				xl: "w-[95vw] md:max-w-xl",
 			},
 		},
 		defaultVariants: {

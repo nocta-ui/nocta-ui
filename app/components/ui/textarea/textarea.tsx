@@ -15,7 +15,7 @@ const textareaVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"border-border-muted",
+					"border-border",
 					"bg-background",
 					"text-foreground",
 					"focus-visible:border-border",

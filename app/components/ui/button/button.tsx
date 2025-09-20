@@ -13,7 +13,7 @@ export const buttonVariants = cva(
 				primary:
 					"bg-primary hover:bg-primary-muted text-primary-foreground focus-visible:ring-ring/50 focus-visible:border-border shadow-sm",
 				secondary:
-					"bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border-muted shadow-xs",
+					"bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border shadow-xs",
 				ghost:
 					"text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
 				icon: "text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",

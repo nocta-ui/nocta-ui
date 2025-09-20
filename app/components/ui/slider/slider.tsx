@@ -21,7 +21,7 @@ const sliderVariants = cva(
 );
 
 const trackVariants = cva(
-	"relative rounded-full overflow-hidden bg-background-muted border border-border-muted shadow-inner",
+	"relative rounded-full overflow-hidden bg-background-muted border border-border shadow-inner",
 	{
 		variants: {
 			size: {

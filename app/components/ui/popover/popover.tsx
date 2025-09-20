@@ -11,7 +11,7 @@ const popoverTriggerVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-border-muted bg-background text-foreground hover:bg-background-muted/60",
+					"border-border bg-background text-foreground hover:bg-background-muted/60",
 			},
 			size: {
 				sm: "px-2 py-1 text-xs",
@@ -27,7 +27,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-sm not-prose relative text-foreground overflow-hidden border border-muted",
+	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-sm not-prose relative text-foreground overflow-hidden border border-border",
 	{
 		variants: {
 			size: {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type React from "react";
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/shadcnbutton";
+import { BookOpen, Github } from "lucide-react"; // <--- ikony
 
 export default function CTA(): React.ReactElement {
 	return (
@@ -18,15 +19,19 @@ export default function CTA(): React.ReactElement {
 					</p>
 					<div className="flex flex-row gap-3">
 						<Button size="lg" asChild>
-							<Link href="/docs">Read Documentation</Link>
+							<Link href="/docs">
+								<BookOpen className="mr-2 h-5 w-5" /> {/* Ikona */}
+								Read Documentation
+							</Link>
 						</Button>
 						<Button
 							size="lg"
-							className="group gap-4 bg-transparent shadow-none"
+							className="group gap-2 bg-transparent shadow-none"
 							variant="outline"
 							asChild
 						>
 							<Link href="https://github.com/66HEX/nocta-ui" target="_blank">
+								<Github className="mr-2 h-5 w-5" /> {/* Ikona */}
 								View on GitHub
 							</Link>
 						</Button>

@@ -3,12 +3,12 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-	"relative rounded-lg border border-border-muted px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit shadow-sm not-prose",
+	"relative rounded-lg border px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit shadow-sm not-prose",
 	{
 		variants: {
 			variant: {
 				default:
-					"border-border-muted bg-background text-primary-muted [&>svg]:text-primary-muted overflow-hidden",
+					"border-border bg-background text-primary-muted [&>svg]:text-primary-muted overflow-hidden",
 				destructive:
 					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
 				warning:

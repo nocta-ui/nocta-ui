@@ -14,7 +14,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-background border-border-muted shadow-sm border transform transition-transform duration-200 ease-in-out",
+	"fixed flex flex-col bg-background border-border shadow-sm border transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {

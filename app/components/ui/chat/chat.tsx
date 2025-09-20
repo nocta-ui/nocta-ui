@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
 	[
-		"relative bg-background border border-border-muted",
+		"relative bg-background border border-border",
 		"rounded-xl shadow-sm transition-all duration-200 ease-in-out",
 		"overflow-hidden not-prose",
 	],

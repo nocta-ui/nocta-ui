@@ -18,7 +18,7 @@ const comboboxVariants = cva(
 		variants: {
 			variant: {
 				default: `
-          border-border-muted
+          border-border
           bg-background
           text-foreground
 			    focus-visible:border-border
@@ -207,7 +207,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						portal={portal}
 						sameWidth
 						className={cn(
-							"absolute z-[999] my-1 rounded-md border border-border-muted bg-background shadow-sm overflow-hidden",
+							"absolute z-[999] my-1 rounded-md border border-border bg-background shadow-sm overflow-hidden",
 							"transform transition-all duration-200 ease-in-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
 							popoverClassName,
 						)}

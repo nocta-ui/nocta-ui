@@ -18,7 +18,7 @@ const fileUploadVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"border border-dashed border-border-muted shadow-sm",
+					"border border-dashed border-border shadow-sm",
 					"bg-background",
 				],
 			},
@@ -45,7 +45,7 @@ const fileUploadVariants = cva(
 );
 
 const fileItemVariants = cva(
-	["flex items-center gap-3 p-3 rounded-lg border", "border-border-muted"],
+	["flex items-center gap-3 p-3 rounded-lg border", "border-border"],
 	{
 		variants: {
 			status: {

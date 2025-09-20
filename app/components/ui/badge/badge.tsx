@@ -23,7 +23,7 @@ const badgeVariants = cva(
 					"bg-background",
 					"text-foreground",
 					"hover:bg-background-muted/50",
-					"border-border-muted",
+					"border-border",
 				],
 				destructive: [
 					"bg-red-50 dark:bg-red-950/50",

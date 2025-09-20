@@ -162,7 +162,7 @@ const toastContainerVariants = cva(
 			},
 			variant: {
 				default:
-					"border-muted bg-background-muted text-foreground overflow-hidden",
+					"border-border bg-background-muted text-foreground overflow-hidden",
 				success:
 					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
 				warning:
@@ -196,7 +196,7 @@ const closeIconVariants = cva("transition-colors duration-200", {
 	variants: {
 		variant: {
 			default:
-				"text-foreground-subtle hover:bg-background-elevated/50 focus-visible:ring-ring/50",
+				"text-foreground-muted hover:bg-background-elevated/50 focus-visible:ring-ring/50",
 			success:
 				"text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
 			warning:

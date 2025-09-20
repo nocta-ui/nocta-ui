@@ -311,7 +311,7 @@
 				"DialogActions": ["children", "className"],
 				"DialogClose": ["children", "className", "asChild"]
 			},
-			"sizes": ["sm", "md", "lg", "xl", "full"]
+			"sizes": ["sm", "md", "lg", "xl"]
 		},
 		"command-k": {
 			"name": "CommandK",

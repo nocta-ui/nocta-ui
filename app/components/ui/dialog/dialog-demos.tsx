@@ -144,6 +144,26 @@ export const SizesDemo: React.FC = () => {
 					</div>
 				</DialogContent>
 			</Dialog>
+			<Dialog>
+				<DialogTrigger asChild>
+					<Button size="sm" variant="ghost">
+						Extra Large
+					</Button>
+				</DialogTrigger>
+				<DialogContent size="xl">
+					<DialogHeader>
+						<DialogTitle>Extra Large Dialog</DialogTitle>
+						<DialogDescription>
+							This is an extra large dialog example.
+						</DialogDescription>
+					</DialogHeader>
+					<div className="p-4">
+						<p className="text-sm text-primary-muted">
+							Extra Large dialog for complex content.
+						</p>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 };

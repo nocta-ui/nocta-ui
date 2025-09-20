@@ -170,7 +170,7 @@ export const Table = <T extends Record<string, unknown>>({
 		<div
 			className={cn(
 				tableContainerVariants({ variant }),
-				"not-prose relative bg-background border border-border-muted shadow-sm",
+				"not-prose relative bg-background border border-border shadow-sm",
 				className,
 			)}
 		>
@@ -269,7 +269,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.onChange(pagination.current - 1, pagination.pageSize)
 							}
 							disabled={pagination.current <= 1}
-							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted bg-background text-primary-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-md bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border shadow-xs transition-colors duration-200 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							Previous
 						</button>
@@ -286,7 +286,7 @@ export const Table = <T extends Record<string, unknown>>({
 								pagination.current >=
 								Math.ceil(pagination.total / pagination.pageSize)
 							}
-							className="px-3 py-1.5 text-sm rounded-lg border border-border-muted bg-background text-primary-muted disabled:opacity-50 disabled:cursor-not-allowed hover:background-muted transition-colors duration-200 ease-in-out cursor-pointer"
+							className="px-3 py-1.5 text-sm rounded-md bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border shadow-xs transition-colors duration-200 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
 						>
 							Next
 						</button>
@@ -305,7 +305,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({
 	return (
 		<thead
 			className={cn(
-				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-border-muted",
+				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-muted",
 				className,
 			)}
 			{...props}
@@ -397,7 +397,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
 	return (
 		<tfoot
 			className={cn(
-				"bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-border-muted font-semibold",
+				"bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted font-semibold",
 				className,
 			)}
 			{...props}
