@@ -721,6 +721,22 @@ const ToastManager: React.FC<{
 			>;
 		}, [toasts]);
 
+		useEffect(() => {
+			setHovered((prev) => {
+				let changed = false;
+				const next = { ...prev };
+				const positions = Object.keys(prev) as ToastPosition[];
+				for (const pos of positions) {
+					const hasToast = (toastsByPosition[pos]?.length ?? 0) > 0;
+					if (!hasToast && next[pos]) {
+						next[pos] = false;
+						changed = true;
+					}
+				}
+				return changed ? next : prev;
+			});
+		}, [toastsByPosition]);
+
 		const positionEntries = useMemo(
 			() => Object.entries(toastsByPosition),
 			[toastsByPosition],
