@@ -57,27 +57,27 @@ const frameworks: FrameworkOption[] = [
 	{
 		id: "vite",
 		name: "Vite",
-		description: "Vite with React for fast development",
+		description: "React with Vite for a fast and lightweight development workflow",
 		logo: <ViteLogo />,
 	},
 	{
 		id: "nextjs",
 		name: "Next.js",
-		description: "Next.js React framework for production",
+		description: "React framework with server-side rendering, static generation, and API routes",
 		logo: <NextJsLogo />,
 	},
 	{
 		id: "reactrouter",
 		name: "React Router",
-		description: "React Router 7 in framework mode",
+		description: "React Router 7 in framework mode with type-safe routes, SPA, SSR, and static rendering",
 		logo: <ReactRouterLogo />,
 	},
 ];
 
-const FrameworkSelector = ({}: FrameworkSelectorProps) => {
+const FrameworkSelector = () => {
 	return (
 		<div>
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 				{frameworks.map((framework) => (
 					<Link
 						href={`/docs/${framework.id}`}
@@ -87,7 +87,7 @@ const FrameworkSelector = ({}: FrameworkSelectorProps) => {
 						<button
 							type="button"
 							key={framework.id}
-							className={`relative cursor-pointer`}
+							className={`relative cursor-pointer w-full h-full`}
 						>
 							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border border-border bg-background hover:bg-background-muted/50 hover:text-foreground-muted transition-colors duration-300 rounded-md p-8 shadow-sm">
 								{framework.logo}
