@@ -98,7 +98,6 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	variant = "default",
 	...props
 }) => {
-	// Only render portal on client side to avoid SSR issues
 	if (typeof document === "undefined") {
 		return null;
 	}

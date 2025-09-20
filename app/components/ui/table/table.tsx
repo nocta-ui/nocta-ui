@@ -5,7 +5,7 @@ import React, { useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Spinner } from "../spinner";
 
-const tableContainerVariants = cva("rounded-xl overflow-hidden", {
+const tableContainerVariants = cva("rounded-lg overflow-hidden", {
 	variants: {
 		variant: {
 			default: "",

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const calendarVariants = cva(
 	[
-		"rounded-xl bg-background",
+		"rounded-lg bg-background",
 		"shadow-sm",
 		"transition-all duration-200 ease-in-out",
 		"overflow-hidden",

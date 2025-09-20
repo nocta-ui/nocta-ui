@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const chatVariants = cva(
 	[
 		"relative bg-background border border-border",
-		"rounded-xl shadow-sm transition-all duration-200 ease-in-out",
+		"rounded-lg shadow-sm transition-all duration-200 ease-in-out",
 		"overflow-hidden not-prose",
 	],
 	{
@@ -256,7 +256,7 @@ export const Chat: React.FC<ChatProps> = ({
 			{...props}
 		>
 			<ChatA11yContext.Provider value={{ setDescriptionId }}>
-				<div className="rounded-xl h-full flex flex-col">
+				<div className="rounded-lg h-full flex flex-col">
 					{children}
 					<ChatMessages
 						messages={messages}
