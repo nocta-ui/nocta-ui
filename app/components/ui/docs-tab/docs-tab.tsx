@@ -79,7 +79,7 @@ const DocsTabs = ({
 					className={`relative p-1 transition-opacity duration-300 ease-in-out ${activeTab === "code" ? " overflow-y-visible" : ""}`}
 				>
 					<div
-						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-x-visible ${activeTab !== "code" ? "py-0 px-4 md:py-16 md:px-8" : ""} ${activeTab === "code" ? " -mb-16" : ""}`}
+						className={`w-full flex justify-${justify} md:justify-center items-center overflow-x-auto md:overflow-x-visible ${activeTab !== "code" ? "p-4 md:p-8" : ""} ${activeTab === "code" ? " -mb-16" : ""}`}
 					>
 						{activeContent?.props.children}
 					</div>
