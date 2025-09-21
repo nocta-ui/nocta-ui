@@ -4,6 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React, { useCallback, useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Spinner } from "@/app/components/ui/spinner";
+import { Icons } from "@/app/components/ui/icons/icons";
+
 import { cn } from "@/lib/utils";
 
 const fileUploadVariants = cva(
@@ -117,42 +119,6 @@ export interface FileUploadProgressProps {
 	progress: number;
 	className?: string;
 }
-
-const FileIcon = ({ className }: { className?: string }) => (
-	<svg
-		aria-hidden="true"
-		className={className}
-		fill="none"
-		stroke="currentColor"
-		viewBox="0 0 24 24"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-		/>
-	</svg>
-);
-
-const CheckIcon = ({ className }: { className?: string }) => (
-	<svg
-		aria-hidden="true"
-		className={className}
-		fill="none"
-		stroke="currentColor"
-		viewBox="0 0 24 24"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="M5 13l4 4L19 7"
-		/>
-	</svg>
-);
 
 const formatFileSize = (bytes: number): string => {
 	if (bytes === 0) return "0 Bytes";
@@ -277,8 +243,8 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 						className="w-10 h-10 rounded object-cover"
 					/>
 				) : (
-					<div className="w-10 h-10 flex items-center justify-center text-foreground-subtle">
-						<FileIcon className="w-6 h-6" />
+					<div className="w-10 h-10 flex items-center justify-center">
+						<Icons.FileUpload aria-hidden="true" className="h-6 w-6" />
 					</div>
 				)}
 			</div>
@@ -290,25 +256,12 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="size-6"
+							className="size-6 text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
 						>
-							<svg
-								aria-hidden="true"
-								className="w-4 h-4"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
+							<Icons.X aria-hidden="true" className="h-4 w-4" />
 						</Button>
 					)}
 				</div>
@@ -326,7 +279,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 
 					{file.status === "success" && (
 						<span className="text-xs text-green-600 dark:text-green-400 flex-shrink-0 flex items-center gap-1">
-							<CheckIcon className="w-3 h-3" />
+							<Icons.Check aria-hidden="true" className="h-3 w-3" />
 							Uploaded
 						</span>
 					)}
@@ -523,25 +476,20 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 				>
 					<div className="flex flex-col items-center justify-center text-center">
 						<div className="mb-3">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
+							<Icons.FileUpload
+								aria-hidden="true"
 								className={cn(
 									"mx-auto transition-colors",
 									size === "sm"
-										? "h-8 w-8"
+										? "h-6 w-6"
 										: size === "lg"
-											? "h-16 w-16"
-											: "h-12 w-12",
+											? "h-10 w-10"
+											: "h-8 w-8",
 									isDragOver
 										? "text-foreground-subtle"
 										: "text-foreground-subtle",
 								)}
-								fill="currentColor"
-								viewBox="0 0 256 256"
-								aria-hidden="true"
-							>
-								<path d="M238,136v64a14,14,0,0,1-14,14H32a14,14,0,0,1-14-14V136a14,14,0,0,1,14-14H80a6,6,0,0,1,0,12H32a2,2,0,0,0-2,2v64a2,2,0,0,0,2,2H224a2,2,0,0,0,2-2V136a2,2,0,0,0-2-2H176a6,6,0,0,1,0-12h48A14,14,0,0,1,238,136ZM84.24,76.24,122,38.49V128a6,6,0,0,0,12,0V38.49l37.76,37.75a6,6,0,0,0,8.48-8.48l-48-48a6,6,0,0,0-8.48,0l-48,48a6,6,0,0,0,8.48,8.48ZM198,168a10,10,0,1,0-10,10A10,10,0,0,0,198,168Z"></path>
-							</svg>
+							/>
 						</div>
 
 						<div className="text-sm">

@@ -10,7 +10,7 @@ import {
 import { NavigationMenuList } from "fumadocs-ui/components/ui/navigation-menu";
 import type { LinkItemType } from "fumadocs-ui/layouts/links";
 import { SearchOnly } from "fumadocs-ui/provider";
-import { ChevronDown, Languages } from "lucide-react";
+import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import type { HomeLayoutProps } from "@/components/layout/home";
 import {
 	NavbarLink,
@@ -71,7 +71,10 @@ export const Header = ({
 				))}
 				<Menu className="lg:hidden">
 					<MenuTrigger className="group -me-2">
-						<ChevronDown className="size-3 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+						<ChevronDownIcon
+							aria-hidden="true"
+							className="size-3 transition-transform duration-300 group-data-[state=open]:rotate-180"
+						/>
 					</MenuTrigger>
 					<MenuContent className="sm:flex-row sm:items-center sm:justify-end">
 						{menuItems
@@ -94,9 +97,12 @@ export const Header = ({
 							<div className="flex-1" />
 							{i18n ? (
 								<LanguageToggle>
-									<Languages className="size-5" />
+									<GlobeIcon aria-hidden="true" className="size-5" />
 									<LanguageToggleText />
-									<ChevronDown className="size-3 text-foreground-muted" />
+									<ChevronDownIcon
+										aria-hidden="true"
+										className="size-3 text-foreground-muted"
+									/>
 								</LanguageToggle>
 							) : null}
 						</div>

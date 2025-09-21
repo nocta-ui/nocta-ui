@@ -1,5 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
+
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
@@ -8,13 +10,13 @@ const alertVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-border bg-background text-primary-muted [&>svg]:text-primary-muted overflow-hidden",
+					"border-border bg-background text-primary-muted [&_[data-slot=alert-icon]]:text-primary-muted overflow-hidden",
 				destructive:
-					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&>svg]:text-red-600 dark:[&>svg]:text-red-400",
+					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&_[data-slot=alert-icon]]:text-red-500 dark:[&_[data-slot=alert-icon]]:text-red-500",
 				warning:
-					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950/50 text-yellow-900 dark:text-yellow-100 [&>svg]:text-yellow-600 dark:[&>svg]:text-yellow-400",
+					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950/50 text-yellow-900 dark:text-yellow-100 [&_[data-slot=alert-icon]]:text-yellow-500 dark:[&_[data-slot=alert-icon]]:text-yellow-500",
 				success:
-					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/50 text-green-900 dark:text-green-100 [&>svg]:text-green-600 dark:[&>svg]:text-green-400",
+					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/50 text-green-900 dark:text-green-100 [&_[data-slot=alert-icon]]:text-green-500 dark:[&_[data-slot=alert-icon]]:text-green-500",
 			},
 			size: {
 				default: "px-4 py-3",
@@ -61,11 +63,23 @@ const alertDescriptionVariants = cva(
 	},
 );
 
+type AlertVariant = NonNullable<VariantProps<typeof alertVariants>["variant"]>;
+
+type IconComponent = typeof Icons.Info;
+
+const variantIconMap: Record<AlertVariant, IconComponent> = {
+	default: Icons.Info,
+	destructive: Icons.X,
+	warning: Icons.Warning,
+	success: Icons.Success,
+};
+
 export interface AlertProps
-	extends React.HTMLAttributes<HTMLDivElement>,
-		VariantProps<typeof alertVariants> {
+extends React.HTMLAttributes<HTMLDivElement>,
+	VariantProps<typeof alertVariants> {
 	className?: string;
 	children: React.ReactNode;
+	showIcon?: boolean;
 }
 
 export interface AlertTitleProps
@@ -88,39 +102,50 @@ export interface AlertIconProps {
 	className?: string;
 }
 
+
 export const Alert: React.FC<AlertProps> = ({
 	variant,
 	size,
 	className,
 	children,
+	showIcon = true,
 	...props
 }) => {
+	const variantKey = (variant ?? "default") as AlertVariant;
+	const DefaultIcon = variantIconMap[variantKey] ?? Icons.Info;
+
+	const childrenArray = React.Children.toArray(children);
+	const iconIndex = childrenArray.findIndex(
+		(child) => React.isValidElement(child) && child.type === AlertIcon,
+	);
+
+	const contentChildren = childrenArray.filter((_, index) => index !== iconIndex);
+
+	let iconElement: React.ReactNode | null = null;
+
+	if (showIcon && iconIndex !== -1) {
+		iconElement = childrenArray[iconIndex];
+	} else if (showIcon && DefaultIcon) {
+		iconElement = (
+			<div
+				aria-hidden="true"
+				data-slot="alert-icon"
+				className="mt-0.5 flex h-4 w-4 shrink-0 text-current"
+			>
+				<DefaultIcon aria-hidden="true" className="h-4 w-4" />
+			</div>
+		);
+	}
+
 	return (
 		<div
 			role="alert"
 			className={cn(alertVariants({ variant, size }), className)}
 			{...props}
 		>
-			{React.Children.map(children, (child, index) => {
-				if (React.isValidElement(child) && child.type === AlertIcon) {
-					return child;
-				}
-				if (
-					index === 0 &&
-					React.isValidElement(child) &&
-					child.type === AlertIcon
-				) {
-					return child;
-				}
-				return null;
-			})}
-			<div className="flex flex-col min-w-0 flex-1">
-				{React.Children.map(children, (child) => {
-					if (React.isValidElement(child) && child.type !== AlertIcon) {
-						return child;
-					}
-					return null;
-				})}
+			{iconElement}
+			<div className="flex min-w-0 flex-1 flex-col">
+				{contentChildren}
 			</div>
 		</div>
 	);
@@ -159,14 +184,12 @@ export const AlertDescription: React.FC<AlertDescriptionProps> = ({
 	);
 };
 
-export const AlertIcon: React.FC<AlertIconProps> = ({
-	children,
-	className = "",
-}) => {
+export const AlertIcon: React.FC<AlertIconProps> = ({ children, className = "" }) => {
 	return (
 		<div
 			aria-hidden="true"
-			className={cn("w-4 h-4 flex-shrink-0 mt-0.5", className)}
+			data-slot="alert-icon"
+			className={cn("mt-0.5 flex h-4 w-4 shrink-0 text-current", className)}
 		>
 			{children}
 		</div>

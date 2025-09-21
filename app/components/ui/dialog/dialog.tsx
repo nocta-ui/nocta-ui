@@ -11,6 +11,7 @@ import {
 } from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
@@ -216,25 +217,12 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			)}
 			{...props}
 		>
-			{showClose && (
-				<DialogClose className="absolute right-4 top-4 z-10">
-					<svg
-						aria-hidden="true"
-						className="h-4 w-4"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M6 18L18 6M6 6l12 12"
-						/>
-					</svg>
-					<span className="sr-only">Close</span>
-				</DialogClose>
-			)}
+		{showClose && (
+			<DialogClose className="absolute right-1 top-1 z-10">
+				<Icons.X aria-hidden="true" className="h-4 w-4" />
+				<span className="sr-only">Close</span>
+			</DialogClose>
+		)}
 			{children}
 		</AriakitDialog>
 	);

@@ -1,25 +1,30 @@
 "use client";
 
 import { cva } from "class-variance-authority";
-import { Airplay, Moon, Sun } from "lucide-react";
+import {
+	DesktopIcon,
+	MoonIcon,
+	SunIcon,
+} from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { type HTMLAttributes, useLayoutEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
 
 const themes = [
 	{
 		key: "light",
-		icon: Sun,
+		icon: SunIcon,
 		label: "Light theme",
 	},
 	{
 		key: "dark",
-		icon: Moon,
+		icon: MoonIcon,
 		label: "Dark theme",
 	},
 	{
 		key: "system",
-		icon: Airplay,
+		icon: DesktopIcon,
 		label: "System theme",
 	},
 ];

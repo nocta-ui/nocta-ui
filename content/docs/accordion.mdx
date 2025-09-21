@@ -93,48 +93,32 @@ Use the card variant for a more elevated appearance with individual cards for ea
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Card Accordion"
     import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
-    import { User, Shield, Gear } from 'phosphor-react';
 
     export function CardAccordionDemo() {
       return (
         <div className="w-full max-w-lg mx-auto">
           <Accordion variant="card" className="space-y-3">
-            <AccordionItem value="account">
-              <AccordionTrigger>
-                <div className="flex items-center">
-                  <User size={18} className="mr-2" />
-                  Account Settings
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                Manage your profile, change email address and password.
-              </AccordionContent>
-            </AccordionItem>
+				<AccordionItem value="account">
+					<AccordionTrigger>Account Settings</AccordionTrigger>
+					<AccordionContent>
+						Manage your profile, change email address and password.
+					</AccordionContent>
+				</AccordionItem>
 
-            <AccordionItem value="security">
-              <AccordionTrigger>
-                <div className="flex items-center">
-                  <Shield size={18} className="mr-2" />
-                  Security
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                Enable two-factor authentication and manage your login sessions.
-              </AccordionContent>
-            </AccordionItem>
+				<AccordionItem value="security">
+					<AccordionTrigger>Security</AccordionTrigger>
+					<AccordionContent>
+						Enable two-factor authentication and manage your login sessions.
+					</AccordionContent>
+				</AccordionItem>
 
-            <AccordionItem value="preferences">
-              <AccordionTrigger>
-                <div className="flex items-center">
-                  <Gear size={18} className="mr-2" />
-                  Preferences
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                Customize the interface theme, language, and notification settings.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+				<AccordionItem value="preferences">
+					<AccordionTrigger>Preferences</AccordionTrigger>
+					<AccordionContent>
+						Customize the interface theme, language, and notification settings.
+					</AccordionContent>
+				</AccordionItem>
+			</Accordion>
         </div>
       );
     }

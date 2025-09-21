@@ -8,6 +8,7 @@ import {
 } from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { createContext, useContext, useMemo } from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const accordionVariants = cva("w-full not-prose", {
@@ -94,17 +95,17 @@ const accordionTriggerVariants = cva(
 			{
 				variant: "card",
 				size: "sm",
-				class: "px-4 py-2",
+				class: "px-3 py-2",
 			},
 			{
 				variant: "card",
 				size: "md",
-				class: "px-5 py-3",
+				class: "px-4 py-3",
 			},
 			{
 				variant: "card",
 				size: "lg",
-				class: "px-6 py-4",
+				class: "px-5 py-4",
 			},
 			{
 				variant: "card",
@@ -170,17 +171,17 @@ const accordionContentInnerVariants = cva(
 			{
 				variant: "card",
 				size: "sm",
-				class: "px-4 py-2",
+				class: "px-3 py-2",
 			},
 			{
 				variant: "card",
 				size: "md",
-				class: "px-5 py-3",
+				class: "px-4 py-3",
 			},
 			{
 				variant: "card",
 				size: "lg",
-				class: "px-6 py-4",
+				class: "px-5 py-4",
 			},
 		],
 		defaultVariants: {
@@ -385,24 +386,14 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					{...props}
 				>
 					<span className="font-medium">{children}</span>
-					<svg
+					<Icons.ChevronDown
 						aria-hidden="true"
-						focusable="false"
-						width={iconSize}
-						height={iconSize}
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth={2}
-						strokeLinecap="round"
-						strokeLinejoin="round"
 						className={cn(
-							"transition-transform duration-200 ease-in-out flex-shrink-0 ml-2 text-foreground-subtle will-change-transform",
+							"ml-2 flex-shrink-0 text-foreground-subtle transition-transform duration-200 ease-in-out will-change-transform",
 							isOpen ? "rotate-180" : "rotate-0",
 						)}
-					>
-						<path d="m6 9 6 6 6-6" />
-					</svg>
+						style={{ width: iconSize, height: iconSize }}
+					/>
 				</Disclosure>
 			</h3>
 		);

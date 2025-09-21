@@ -65,10 +65,9 @@
 			},
 			"exports": ["Alert", "AlertTitle", "AlertDescription", "AlertIcon"],
 			"props": {
-				"Alert": ["variant", "className", "children"],
+				"Alert": ["variant", "showIcon", "className", "children"],
 				"AlertTitle": ["children", "className", "as"],
-				"AlertDescription": ["children", "className"],
-				"AlertIcon": ["children", "className"]
+				"AlertDescription": ["children", "className"]
 			},
 			"variants": ["default", "error", "warning", "success"]
 		},

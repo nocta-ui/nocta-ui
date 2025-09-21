@@ -13,7 +13,10 @@ import { useMediaQuery } from "fumadocs-core/utils/use-media-query";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import {
+	ChevronDownIcon,
+	ExternalLinkIcon,
+} from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	createContext,
@@ -288,7 +291,7 @@ export function SidebarItem({
 			className={cn(itemVariants({ active }), props.className)}
 			prefetch={prefetch}
 		>
-			{icon ?? (props.external ? <ExternalLink /> : null)}
+			{icon ?? (props.external ? <ExternalLinkIcon aria-hidden="true" /> : null)}
 			{props.children}
 		</Link>
 	);
@@ -329,7 +332,7 @@ export function SidebarFolderTrigger({
 			{...props}
 		>
 			{props.children}
-			<ChevronDown
+			<ChevronDownIcon
 				data-icon
 				className={cn("ms-auto transition-transform", !open && "-rotate-90")}
 			/>
@@ -364,7 +367,7 @@ export function SidebarFolderLink(props: LinkProps) {
 			prefetch={prefetch}
 		>
 			{props.children}
-			<ChevronDown
+			<ChevronDownIcon
 				data-icon
 				className={cn("ms-auto transition-transform", !open && "-rotate-90")}
 			/>

@@ -11,6 +11,7 @@ import {
 } from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
@@ -589,25 +590,12 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 					</div>
 				)}
 
-			{showClose && (
-				<AriakitDialogDismiss className="absolute right-4 top-4 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer">
-					<svg
-						aria-hidden="true"
-						className="h-4 w-4"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M6 18L18 6M6 6l12 12"
-						/>
-					</svg>
-					<span className="sr-only">Close</span>
-				</AriakitDialogDismiss>
-			)}
+		{showClose && (
+			<AriakitDialogDismiss className="absolute right-1 top-1 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer">
+				<Icons.X aria-hidden="true" className="h-4 w-4" />
+				<span className="sr-only">Close</span>
+			</AriakitDialogDismiss>
+		)}
 			{children}
 		</AriakitDialog>
 	);

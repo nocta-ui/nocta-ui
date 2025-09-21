@@ -1,8 +1,10 @@
 "use client";
+
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
 import { useSearchContext } from "fumadocs-ui/contexts/search";
-import { Search } from "lucide-react";
 import type { ComponentProps } from "react";
+
 import { cn } from "../lib/cn";
 import { type ButtonProps, buttonVariants } from "./ui/button";
 
@@ -37,7 +39,7 @@ export function SearchToggle({
 				setOpenSearch(true);
 			}}
 		>
-			<Search />
+			<MagnifyingGlassIcon aria-hidden="true" />
 		</button>
 	);
 }
@@ -65,7 +67,7 @@ export function LargeSearchToggle({
 				setOpenSearch(true);
 			}}
 		>
-			<Search className="size-4" />
+			<MagnifyingGlassIcon aria-hidden="true" className="size-4" />
 			{text.search}
 			<div className="ms-auto inline-flex gap-0.5">
 				{hotKey.map((k, i) => (

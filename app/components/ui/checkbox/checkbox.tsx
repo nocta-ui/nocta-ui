@@ -7,6 +7,7 @@ import {
 } from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const checkboxVariants = cva(
@@ -56,7 +57,7 @@ const checkboxVariants = cva(
 				variant: "success",
 				checked: true,
 				class:
-					"bg-green-600/30 dark:bg-green-600/50 border-green-500 dark:border-green-600/50 has-[:focus-visible]:ring-green-500/50",
+					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/50 has-[:focus-visible]:ring-green-500/50",
 			},
 			{
 				variant: "success",
@@ -68,7 +69,7 @@ const checkboxVariants = cva(
 				variant: "warning",
 				checked: true,
 				class:
-					"bg-yellow-600/30 dark:bg-yellow-600/50 border-yellow-500 dark:border-yellow-600/50 has-[:focus-visible]:ring-yellow-500/50",
+					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950/50 text-yellow-900 dark:text-yellow-100 has-[:focus-visible]:ring-yellow-500/50",
 			},
 			{
 				variant: "warning",
@@ -80,7 +81,7 @@ const checkboxVariants = cva(
 				variant: "destructive",
 				checked: true,
 				class:
-					"bg-red-600/30 dark:bg-red-600/50 border-red-500 dark:border-red-600/50 has-[:focus-visible]:ring-red-500/50",
+					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 has-[:focus-visible]:ring-red-500/50",
 			},
 			{
 				variant: "destructive",
@@ -99,7 +100,7 @@ const checkboxVariants = cva(
 );
 
 const iconVariants = cva(
-	["stroke-[3]", "transition-opacity duration-200 ease-in-out"],
+	["transition-opacity duration-200 ease-in-out"],
 	{
 		variants: {
 			variant: {
@@ -109,9 +110,9 @@ const iconVariants = cva(
 				destructive: "text-red-500 dark:text-red-500",
 			},
 			size: {
-				sm: "h-2.5 w-2.5",
-				md: "h-3 w-3",
-				lg: "h-3.5 w-3.5",
+				sm: "h-3 w-3",
+				md: "h-4 w-4",
+				lg: "h-4.5 w-4.5",
 			},
 			checked: {
 				true: "opacity-100",
@@ -124,27 +125,6 @@ const iconVariants = cva(
 			checked: false,
 		},
 	},
-);
-
-interface CheckIconProps {
-	variant?: VariantProps<typeof iconVariants>["variant"];
-	size?: VariantProps<typeof iconVariants>["size"];
-	checked: boolean;
-}
-
-const CheckIcon: React.FC<CheckIconProps> = ({ variant, size, checked }) => (
-	<svg
-		aria-hidden="true"
-		focusable="false"
-		className={iconVariants({ variant, size, checked })}
-		fill="none"
-		viewBox="0 0 24 24"
-		stroke="currentColor"
-		strokeLinecap="round"
-		strokeLinejoin="round"
-	>
-		<polyline points="20,6 9,17 4,12" />
-	</svg>
 );
 
 export interface CheckboxProps
@@ -207,7 +187,10 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 				id={id}
 				{...props}
 			/>
-			<CheckIcon variant={variant} size={size} checked={isChecked} />
+			<Icons.Check
+				aria-hidden="true"
+				className={iconVariants({ variant, size, checked: isChecked })}
+			/>
 		</label>
 	);
 };

@@ -10,6 +10,7 @@ import React, {
 	useState,
 } from "react";
 import { cn } from "@/lib/utils";
+import { Icons } from "@/app/components/ui/icons/icons";
 
 const POSITION_CONFIGS = {
 	"top-left": {
@@ -198,11 +199,11 @@ const closeIconVariants = cva("transition-colors duration-200", {
 			default:
 				"text-foreground-muted hover:bg-background-elevated/50 focus-visible:ring-ring/50",
 			success:
-				"text-green-500 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
+				"text-green-500 dark:text-green-500 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
 			warning:
-				"text-yellow-500 dark:text-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-300 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
+				"text-yellow-500 dark:text-yellow-500 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
 			destructive:
-				"text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
+				"text-red-500 dark:text-red-500 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
 		},
 	},
 	defaultVariants: {
@@ -615,17 +616,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							)}
 							aria-label="Close toast"
 						>
-							<svg
-								aria-hidden="true"
-								width="14"
-								height="14"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-							>
-								<path d="M18 6L6 18M6 6l12 12" />
-							</svg>
+								<Icons.X aria-hidden="true" className="h-4 w-4" />
 						</button>
 
 						<div className="p-4 pr-8">

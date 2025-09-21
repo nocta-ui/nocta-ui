@@ -1,8 +1,9 @@
+import { Pencil1Icon } from "@radix-ui/react-icons";
 import type { TOCItemType } from "fumadocs-core/server";
 import type { AnchorProviderProps } from "fumadocs-core/toc";
 import { I18nLabel } from "fumadocs-ui/contexts/i18n";
-import { Edit } from "lucide-react";
 import { type ComponentProps, forwardRef, type ReactNode } from "react";
+
 import { cn } from "../../lib/cn";
 import { buttonVariants } from "../ui/button";
 import {
@@ -219,7 +220,7 @@ export function EditOnGitHub(props: ComponentProps<"a">) {
 		>
 			{props.children ?? (
 				<>
-					<Edit className="size-3.5" />
+					<Pencil1Icon aria-hidden="true" className="size-3.5" />
 					<I18nLabel label="editOnGithub" />
 				</>
 			)}

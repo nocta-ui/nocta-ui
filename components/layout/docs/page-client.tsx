@@ -13,7 +13,11 @@ import { useI18n } from "fumadocs-ui/contexts/i18n";
 import { useNav } from "fumadocs-ui/contexts/layout";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+	ChevronDownIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+} from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	Fragment,
@@ -80,9 +84,10 @@ export function PageTOCPopoverTrigger(props: ComponentProps<"button">) {
 					{items[selected]?.title}
 				</span>
 			</span>
-			<ChevronDown
+			<ChevronDownIcon
+				aria-hidden="true"
 				className={cn(
-					"shrink-0 transition-transform mx-0.5",
+					"mx-0.5 shrink-0 transition-transform",
 					open && "rotate-180",
 				)}
 			/>
@@ -311,7 +316,7 @@ export function PageFooter({ items, ...props }: FooterProps) {
 
 function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 	const { text } = useI18n();
-	const Icon = index === 0 ? ChevronLeft : ChevronRight;
+	const Icon = index === 0 ? ChevronLeftIcon : ChevronRightIcon;
 
 	return (
 		<Link
@@ -327,7 +332,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 					index === 1 && "flex-row-reverse",
 				)}
 			>
-				<Icon className="-mx-1 size-4 shrink-0 rtl:rotate-180" />
+				<Icon aria-hidden="true" className="-mx-1 size-4 shrink-0 rtl:rotate-180" />
 				<p>{item.name}</p>
 			</div>
 			<p className="text-foreground-subtle truncate">
@@ -373,7 +378,9 @@ export function PageBreadcrumb({
 
 				return (
 					<Fragment key={i}>
-						{i !== 0 && <ChevronRight className="size-3.5 shrink-0" />}
+					{i !== 0 && (
+						<ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0" />
+					)}
 						{item.url ? (
 							<Link
 								href={item.url}

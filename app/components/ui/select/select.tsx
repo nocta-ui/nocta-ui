@@ -3,6 +3,7 @@
 import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const selectTriggerVariants = cva(
@@ -114,24 +115,14 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 			className={cn(selectTriggerVariants({ size }), className)}
 			{...props}
 		>
-			{children}
-			<svg
-				aria-hidden="true"
-				className={cn(
-					"ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out",
-					isOpen && "rotate-180",
-				)}
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M19 9l-7 7-7-7"
-				/>
-			</svg>
+		{children}
+		<Icons.ChevronDown
+			aria-hidden="true"
+			className={cn(
+				"ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out",
+				isOpen && "rotate-180",
+			)}
+		/>
 		</Ariakit.Select>
 	);
 };
@@ -183,20 +174,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 		>
 			<span className="flex-1">{children}</span>
 			{isSelected && (
-				<svg
-					aria-hidden="true"
-					className="ml-2 h-4 w-4 text-primary-muted"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={2}
-						d="M5 13l4 4L19 7"
-					/>
-				</svg>
+				<Icons.Check aria-hidden="true" className="ml-2 h-4 w-4 text-primary-muted" />
 			)}
 		</Ariakit.SelectItem>
 	);

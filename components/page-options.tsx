@@ -1,14 +1,15 @@
 "use client";
 import { cva } from "class-variance-authority";
-import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import {
-	ArrowSquareOut,
-	CaretDown,
-	ChatCircle,
-	Check,
-	Copy,
-} from "phosphor-react";
+	ArrowTopRightIcon,
+	CaretDownIcon,
+	ChatBubbleIcon,
+	CheckIcon,
+	ClipboardCopyIcon,
+} from "@radix-ui/react-icons";
+import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import { useMemo, useState } from "react";
+
 import { Button, buttonVariants } from "@/app/components/ui/button";
 import {
 	Popover,
@@ -58,7 +59,7 @@ export function LLMCopyButton({
 			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-primary-foreground"
 			onClick={onClick}
 		>
-			{checked ? <Check /> : <Copy />}
+		{checked ? <CheckIcon aria-hidden="true" /> : <ClipboardCopyIcon aria-hidden="true" />}
 			Copy Markdown
 		</Button>
 	);
@@ -141,7 +142,7 @@ export function ViewOptions({
 				href: `https://t3.chat/new?${new URLSearchParams({
 					q,
 				})}`,
-				icon: <ChatCircle />,
+				icon: <ChatBubbleIcon aria-hidden="true" />,
 			},
 		];
 	}, [githubUrl, markdownUrl]);
@@ -158,7 +159,7 @@ export function ViewOptions({
 				)}
 			>
 				Open
-				<CaretDown className="size-3.5 text-foreground-muted" />
+				<CaretDownIcon className="size-3.5 text-foreground-muted" />
 			</PopoverTrigger>
 			<PopoverContent
 				portal
@@ -175,7 +176,7 @@ export function ViewOptions({
 					>
 						{item.icon}
 						{item.title}
-						<ArrowSquareOut className="text-foreground-muted size-3.5 ms-auto" />
+						<ArrowTopRightIcon aria-hidden="true" className="ms-auto size-3.5 text-foreground-muted" />
 					</a>
 				))}
 			</PopoverContent>

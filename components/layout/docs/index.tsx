@@ -7,7 +7,7 @@ import {
 	type GetSidebarTabsOptions,
 	getSidebarTabs,
 } from "fumadocs-ui/utils/get-sidebar-tabs";
-import { Languages, Sidebar as SidebarIcon } from "lucide-react";
+import { GlobeIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	type HTMLAttributes,
@@ -168,7 +168,7 @@ export function DocsLayout({
 						</div>
 						{i18n ? (
 							<LanguageToggle>
-								<Languages className="size-4.5" />
+								<GlobeIcon aria-hidden="true" className="size-4.5" />
 								<LanguageToggleText />
 							</LanguageToggle>
 						) : null}
@@ -185,7 +185,7 @@ export function DocsLayout({
 								}),
 							)}
 						>
-							<SidebarIcon />
+							<HamburgerMenuIcon aria-hidden="true" />
 						</SidebarTrigger>
 					</div>
 					{tabs.length > 0 && <RootToggle options={tabs} />}
@@ -217,7 +217,7 @@ export function DocsLayout({
 									}),
 								)}
 							>
-								<SidebarIcon />
+						<HamburgerMenuIcon aria-hidden="true" />
 							</SidebarCollapseTrigger>
 						)}
 					</div>
@@ -234,7 +234,7 @@ export function DocsLayout({
 					<div className="flex text-foreground-muted items-center empty:hidden">
 						{i18n ? (
 							<LanguageToggle>
-								<Languages className="size-4.5" />
+								<GlobeIcon aria-hidden="true" className="size-4.5" />
 							</LanguageToggle>
 						) : null}
 						{iconLinks.map((item, i) => (
@@ -301,7 +301,7 @@ export function DocsLayout({
 										}),
 									)}
 								>
-									<SidebarIcon />
+									<HamburgerMenuIcon aria-hidden="true" />
 								</SidebarTrigger>
 							)}
 						</Navbar>

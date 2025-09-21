@@ -1,4 +1,4 @@
-import { PlusIcon } from "lucide-react";
+import { PlusIcon } from "@radix-ui/react-icons";
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ const Cross = () => (
 		<div className="absolute top-3 h-px w-6 bg-background" />
 
 		<div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2">
-			<PlusIcon size={20} className="text-border/70 dark:text-border" />
+			<PlusIcon className="text-border/70 dark:text-border size-5" />
 		</div>
 	</div>
 );

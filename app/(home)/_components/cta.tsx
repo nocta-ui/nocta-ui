@@ -1,4 +1,4 @@
-import { BookOpen, Github } from "lucide-react"; // <--- ikony
+import { GitHubLogoIcon, ReaderIcon } from "@radix-ui/react-icons"; // <--- ikony
 import Link from "next/link";
 import type React from "react";
 import { Section } from "@/components/section";
@@ -20,7 +20,7 @@ export default function CTA(): React.ReactElement {
 					<div className="flex flex-row gap-3">
 						<Button size="lg" asChild>
 							<Link href="/docs">
-								<BookOpen className="mr-2 h-5 w-5" /> {/* Ikona */}
+								<ReaderIcon aria-hidden="true" className="mr-2 h-5 w-5" /> {/* Ikona */}
 								Read Documentation
 							</Link>
 						</Button>
@@ -31,7 +31,7 @@ export default function CTA(): React.ReactElement {
 							asChild
 						>
 							<Link href="https://github.com/66HEX/nocta-ui" target="_blank">
-								<Github className="mr-2 h-5 w-5" /> {/* Ikona */}
+								<GitHubLogoIcon aria-hidden="true" className="mr-2 h-5 w-5" /> {/* Ikona */}
 								View on GitHub
 							</Link>
 						</Button>

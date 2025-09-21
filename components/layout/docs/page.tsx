@@ -1,7 +1,8 @@
+import { TextAlignJustifyIcon } from "@radix-ui/react-icons";
 import type { AnchorProviderProps } from "fumadocs-core/toc";
 import { I18nLabel } from "fumadocs-ui/contexts/i18n";
-import { Text } from "lucide-react";
 import type { ComponentProps } from "react";
+
 import { cn } from "../../../lib/cn";
 import { TOCItems, TOCProvider, TOCScrollArea } from "../../ui/toc";
 import ClerkTOCItems from "../../ui/toc-clerk";
@@ -26,7 +27,7 @@ export function PageTOCTitle(props: ComponentProps<"h2">) {
 				props.className,
 			)}
 		>
-			<Text className="size-4" />
+			<TextAlignJustifyIcon aria-hidden="true" className="size-4" />
 			<I18nLabel label="toc" />
 		</h3>
 	);

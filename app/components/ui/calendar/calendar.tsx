@@ -3,6 +3,7 @@
 import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { useCallback, useMemo, useState } from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const calendarVariants = cva(
@@ -305,7 +306,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			<div
 				className={cn(
 					"flex items-center justify-between border-b border-border-muted",
-					"px-4 py-3",
+					"p-4",
 				)}
 			>
 				<button
@@ -318,21 +319,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					)}
 					aria-label="Previous month"
 				>
-					<svg
-						aria-hidden="true"
-						focusable="false"
-						className="w-4 h-4"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M15 19l-7-7 7-7"
-						/>
-					</svg>
+					<Icons.ChevronLeft aria-hidden="true" className="h-4 w-4" />
 				</button>
 
 				<div className="flex items-center space-x-3">
@@ -367,25 +354,11 @@ export const Calendar: React.FC<CalendarProps> = ({
 					)}
 					aria-label="Next month"
 				>
-					<svg
-						aria-hidden="true"
-						focusable="false"
-						className="w-4 h-4"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M9 5l7 7-7 7"
-						/>
-					</svg>
+					<Icons.ChevronRight aria-hidden="true" className="h-4 w-4" />
 				</button>
 			</div>
 
-			<div className="px-4 py-3">
+			<div className="p-4">
 				<div
 					className={cn(
 						"grid mb-3",

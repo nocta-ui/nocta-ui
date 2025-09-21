@@ -3,7 +3,7 @@ title: Alert
 description: A flexible alert component for displaying important messages with multiple variants and dark mode support
 ---
 
-import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@/app/components/ui/alert';
+import { Alert, AlertTitle, AlertDescription } from '@/app/components/ui/alert';
 import { 
   DefaultAlertDemo,
   SimpleAlertDemo,
@@ -30,7 +30,6 @@ import {
   Alert,
   AlertTitle,
   AlertDescription,
-  AlertIcon,
 } from '@/components/ui/alert';
 ```
 </Step>
@@ -47,9 +46,6 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Default Alert"
     <Alert>
-      <AlertIcon>
-        <InfoIcon />
-      </AlertIcon>
       <AlertTitle>Information</AlertTitle>
       <AlertDescription>
         This is a default alert with an information message.
@@ -67,7 +63,7 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Simple Alert"
-    <Alert>
+    <Alert showIcon="false">
       <AlertDescription>
         A simple alert without title or icon.
       </AlertDescription>
@@ -87,7 +83,6 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Alert Variants"
     <Alert variant="default">
-      <AlertIcon><InfoIcon /></AlertIcon>
       <AlertTitle>Default Alert</AlertTitle>
       <AlertDescription>
         This is the default variant for general information.
@@ -95,7 +90,6 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     </Alert>
 
     <Alert variant="destructive">
-      <AlertIcon><ErrorIcon /></AlertIcon>
       <AlertTitle>Error</AlertTitle>
       <AlertDescription>
         Something went wrong. Please try again later.
@@ -103,7 +97,6 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     </Alert>
 
     <Alert variant="warning">
-      <AlertIcon><WarningIcon /></AlertIcon>
       <AlertTitle>Warning</AlertTitle>
       <AlertDescription>
         Please review your settings before proceeding.
@@ -111,7 +104,6 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
     </Alert>
 
     <Alert variant="success">
-      <AlertIcon><CheckIcon /></AlertIcon>
       <AlertTitle>Success</AlertTitle>
       <AlertDescription>
         Your changes have been saved successfully.
@@ -127,7 +119,8 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'default' \| 'destructive' \| 'warning' \| 'success'` | `'default'` | Alert style variant |
+| `variant` | `'default' \| 'destructive' \| 'warning' \| 'success'` | `'default'` | Alert style variant and icon |
+| `showIcon` | `boolean` | `true` | Whether to display the variant icon |
 | `className` | `string` | `''` | Additional CSS classes |
 | `children` | `React.ReactNode` | — | Alert content |
 
@@ -145,12 +138,5 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
 |------|------|---------|-------------|
 | `className` | `string` | `''` | Additional CSS classes |
 | `children` | `React.ReactNode` | — | Description content |
-
-### AlertIcon
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
-| `children` | `React.ReactNode` | — | Icon content |
 
 All components also accept their respective HTML element attributes.

@@ -1,7 +1,8 @@
 import Link from "fumadocs-core/link";
 import { NavProvider } from "fumadocs-ui/contexts/layout";
-import { ChevronDown, Languages } from "lucide-react";
+import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import { Fragment, type HTMLAttributes, useMemo } from "react";
+
 import { cn } from "../../../lib/cn";
 import { LanguageToggle, LanguageToggleText } from "../../language-toggle";
 import { LargeSearchToggle, SearchToggle } from "../../search-toggle";
@@ -119,9 +120,9 @@ export function Header({
 				{themeSwitch.enabled !== false &&
 					(themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
 				{i18n ? (
-					<LanguageToggle>
-						<Languages className="size-5" />
-					</LanguageToggle>
+						<LanguageToggle>
+							<GlobeIcon aria-hidden="true" className="size-5" />
+						</LanguageToggle>
 				) : null}
 				<div className="flex flex-row items-center empty:hidden">
 					{navItems.filter(isSecondary).map((item, i) => (
@@ -146,7 +147,10 @@ export function Header({
 						)}
 						enableHover={nav.enableHoverToOpen}
 					>
-						<ChevronDown className="!size-5.5 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+							<ChevronDownIcon
+								aria-hidden="true"
+								className="!size-5.5 transition-transform duration-300 group-data-[state=open]:rotate-180"
+							/>
 					</MenuTrigger>
 					<MenuContent className="sm:flex-row sm:items-center sm:justify-end">
 						{menuItems
@@ -161,9 +165,12 @@ export function Header({
 							<div role="separator" className="flex-1" />
 							{i18n ? (
 								<LanguageToggle>
-									<Languages className="size-5" />
+									<GlobeIcon aria-hidden="true" className="size-5" />
 									<LanguageToggleText />
-									<ChevronDown className="size-3 text-foreground-muted" />
+									<ChevronDownIcon
+										aria-hidden="true"
+										className="size-3 text-foreground-muted"
+									/>
 								</LanguageToggle>
 							) : null}
 							{themeSwitch.enabled !== false &&

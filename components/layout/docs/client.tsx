@@ -1,9 +1,10 @@
 "use client";
 
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useNav } from "fumadocs-ui/contexts/layout";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
-import { Sidebar as SidebarIcon } from "lucide-react";
 import type { ComponentProps } from "react";
+
 import { cn } from "../../../lib/cn";
 import { SearchToggle } from "../../search-toggle";
 import { SidebarCollapseTrigger } from "../../sidebar";
@@ -64,17 +65,17 @@ export function CollapsibleControl() {
 				top: "calc(var(--fd-banner-height) + var(--fd-tocnav-height) + var(--spacing) * 4)",
 			}}
 		>
-			<SidebarCollapseTrigger
-				className={cn(
-					buttonVariants({
-						color: "ghost",
-						size: "icon-sm",
-						className: "rounded-lg",
-					}),
-				)}
-			>
-				<SidebarIcon />
-			</SidebarCollapseTrigger>
+				<SidebarCollapseTrigger
+					className={cn(
+						buttonVariants({
+							color: "ghost",
+							size: "icon-sm",
+							className: "rounded-lg",
+						}),
+					)}
+				>
+					<HamburgerMenuIcon aria-hidden="true" />
+				</SidebarCollapseTrigger>
 			<SearchToggle className="rounded-lg" hideIfDisabled />
 		</div>
 	);

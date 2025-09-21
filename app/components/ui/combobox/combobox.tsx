@@ -4,6 +4,7 @@ import * as Ariakit from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import type React from "react";
 import { useId, useMemo, useState } from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const comboboxVariants = cva(
@@ -162,44 +163,10 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									title="Clear selection"
 									aria-label="Clear selection"
 								>
-									<svg
-										aria-hidden="true"
-										focusable="false"
-										className="w-3 h-3"
-										fill="none"
-										stroke="currentColor"
-										viewBox="0 0 24 24"
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M6 18L18 6M6 6l12 12"
-										/>
-									</svg>
+									<Icons.X aria-hidden="true" className="h-3 w-3" />
 								</span>
 							)}
-							<svg
-								aria-hidden="true"
-								focusable="false"
-								className="w-4 h-4 text-foreground-subtle"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="m7 15 5 5 5-5"
-								/>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="m7 9 5-5 5 5"
-								/>
-							</svg>
+							<Icons.CaretSort aria-hidden="true" className="h-4.5 w-4.5 text-foreground-subtle" />
 						</div>
 					</Ariakit.MenuButton>
 
@@ -274,21 +241,10 @@ export const Combobox: React.FC<ComboboxProps> = ({
 										>
 											<span className="flex-1">{option.label}</span>
 											{isSelected && (
-												<svg
+												<Icons.Check
 													aria-hidden="true"
-													focusable="false"
-													className="w-4 h-4 text-primary-muted"
-													fill="none"
-													stroke="currentColor"
-													viewBox="0 0 24 24"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth={2}
-														d="M5 13l4 4L19 7"
-													/>
-												</svg>
+													className="h-4 w-4 text-primary-muted"
+												/>
 											)}
 										</Ariakit.ComboboxItem>
 									);

@@ -331,9 +331,9 @@ export const CommandK: React.FC<CommandKProps> = ({
 			<DialogContent
 				size={size}
 				showClose={false}
-				className={cn("p-0", className)}
+				className={cn("!p-0", className)}
 			>
-				<div className="px-2 pt-3" ref={searchContainerRef}>
+				<div className="px-0.5 pt-2" ref={searchContainerRef}>
 					<div className="relative">
 						<Input
 							role="combobox"

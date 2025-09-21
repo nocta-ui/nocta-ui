@@ -2,11 +2,11 @@
 
 import { cva } from "class-variance-authority";
 import {
-	Accessibility as AccessibilityIcon,
-	Terminal as CliIcon,
-	Layers as ComponentsIcon,
-	Sparkles as DesignIcon,
-} from "lucide-react";
+	AccessibilityIcon,
+	CodeIcon,
+	LayersIcon,
+	MagicWandIcon,
+} from "@radix-ui/react-icons";
 import { Section } from "@/components/section";
 
 const featureItemVariants = cva(
@@ -27,7 +27,7 @@ const featureItemVariants = cva(
 const features = [
 	{
 		id: 1,
-		Icon: AccessibilityIcon,
+	Icon: AccessibilityIcon,
 		title: "Accessible by Default",
 		description:
 			"Every component is built with accessibility in mind, following best practices and standards.",
@@ -35,7 +35,7 @@ const features = [
 	},
 	{
 		id: 2,
-		Icon: CliIcon,
+	Icon: CodeIcon,
 		title: "Dedicated CLI",
 		description:
 			"Set up and customize your project quickly with a simple, developer-friendly command line tool.",
@@ -43,7 +43,7 @@ const features = [
 	},
 	{
 		id: 3,
-		Icon: ComponentsIcon,
+	Icon: LayersIcon,
 		title: "Composable Components",
 		description:
 			"A collection of flexible components designed to be combined and extended for any project.",
@@ -51,7 +51,7 @@ const features = [
 	},
 	{
 		id: 4,
-		Icon: DesignIcon,
+	Icon: MagicWandIcon,
 		title: "Modern Design",
 		description:
 			"Clean, minimal and consistent UI elements ready to use in modern applications.",

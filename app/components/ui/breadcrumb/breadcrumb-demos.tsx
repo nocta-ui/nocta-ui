@@ -7,6 +7,7 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "./breadcrumb";
+import { ChevronRightIcon, HomeIcon } from "@radix-ui/react-icons";
 
 export function BasicBreadcrumbDemo() {
 	return (
@@ -61,37 +62,13 @@ export function ChevronSeparatorDemo() {
 						<BreadcrumbLink href="/">Home</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator>
-						<svg
-							className="h-4 w-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M9 5l7 7-7 7"
-							/>
-						</svg>
+						<ChevronRightIcon aria-hidden="true" className="h-4 w-4" />
 					</BreadcrumbSeparator>
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/products">Products</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator>
-						<svg
-							className="h-4 w-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M9 5l7 7-7 7"
-							/>
-						</svg>
+						<ChevronRightIcon aria-hidden="true" className="h-4 w-4" />
 					</BreadcrumbSeparator>
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/products/electronics">
@@ -99,19 +76,7 @@ export function ChevronSeparatorDemo() {
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator>
-						<svg
-							className="h-4 w-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M9 5l7 7-7 7"
-							/>
-						</svg>
+						<ChevronRightIcon aria-hidden="true" className="h-4 w-4" />
 					</BreadcrumbSeparator>
 					<BreadcrumbItem>
 						<BreadcrumbPage>Laptops</BreadcrumbPage>
@@ -251,33 +216,9 @@ export function ComplexNavigationDemo() {
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
-						<BreadcrumbLink href="/" variant="ghost">
-							<svg
-								className="w-4 h-4 mr-1"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
-								/>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M8 1v6"
-								/>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M16 1v6"
-								/>
-							</svg>
-							Dashboard
+					<BreadcrumbLink href="/" variant="ghost">
+						<HomeIcon aria-hidden="true" className="mr-1 h-4 w-4" />
+						Dashboard
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />
