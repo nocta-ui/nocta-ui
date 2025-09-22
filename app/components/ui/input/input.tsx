@@ -22,7 +22,7 @@ const inputVariants = cva(
 					"focus-visible:ring-ring/50",
 				],
 				error: [
-					"border-red-300 dark:border-red-700/50",
+					"border-red-200 dark:border-red-800/50",
 					"bg-background",
 					"text-foreground",
 					"focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50",

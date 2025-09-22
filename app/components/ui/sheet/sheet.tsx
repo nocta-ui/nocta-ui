@@ -625,7 +625,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 	return (
 		<AriakitDialogHeading
 			className={cn(
-				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
+				"text-base font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			)}
 			{...props}
@@ -643,7 +643,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 	return (
 		<AriakitDialogDescription
 			className={cn(
-				"text-xs text-primary-muted/80 leading-relaxed mt-1 not-prose",
+				"text-sm text-primary-muted/80 leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
