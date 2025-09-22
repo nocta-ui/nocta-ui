@@ -47,7 +47,7 @@ const contextSubMenuContentVariants = cva(
 );
 
 const contextMenuItemVariants = cva(
-	`w-full relative flex cursor-pointer select-none items-center rounded px-3 py-2 text-sm
+	`w-full relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm
    outline-none transition-colors focus-visible:bg-background-muted
    focus-visible:text-primary aria-disabled:pointer-events-none
    aria-disabled:opacity-50 hover:bg-background-muted hover:text-primary`,

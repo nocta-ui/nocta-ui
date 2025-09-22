@@ -271,7 +271,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 	return (
 		<AriakitDialogDescription
 			className={cn(
-				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
+				"text-xs text-primary-muted/80 leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}

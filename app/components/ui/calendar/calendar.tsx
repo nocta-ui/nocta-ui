@@ -49,7 +49,7 @@ const dayButtonVariants = cva(
 				default: "hover:bg-background-muted text-primary-muted",
 				selected: "bg-primary text-primary-foreground",
 				today: "bg-background-muted text-foreground",
-				disabled: "opacity-50 cursor-not-allowed",
+				disabled: "opacity-50 cursor-not-allowed line-through",
 				outsideMonth: "text-foreground-subtle",
 			},
 			interaction: {
