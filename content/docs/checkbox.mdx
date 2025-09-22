@@ -6,7 +6,6 @@ description: A versatile checkbox component for forms and selections with multip
 import { Checkbox } from '@/app/components/ui/checkbox';
 import { 
   BasicCheckboxDemo, 
-  VariantsDemo, 
   SizesDemo, 
   LabeledCheckboxDemo,
   CustomStylingDemo
@@ -55,26 +54,6 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Checkbox component supports four variants: `default`, `success`, `warning`, and `destructive`.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <div className="my-6">
-      <VariantsDemo />
-    </div>
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Checkbox Variants"
-    <Checkbox variant="default" checked={true} />
-    <Checkbox variant="success" checked={true} />
-    <Checkbox variant="warning" checked={true} />
-    <Checkbox variant="destructive" checked={true} />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Sizes
 
 Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
@@ -102,7 +81,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 | `defaultChecked` | `boolean` | `false` | Initial checked state (uncontrolled) |
 | `onCheckedChange` | `(checked: boolean) => void` | - | Callback fired when the checkbox state changes |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the checkbox |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | The visual style variant |
 | `disabled` | `boolean` | `false` | Whether the checkbox is disabled |
 | `className` | `string` | `''` | Additional CSS classes to apply |
 | `id` | `string` | - | The id attribute for the checkbox input |

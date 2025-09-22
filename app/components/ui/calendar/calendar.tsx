@@ -306,7 +306,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			<div
 				className={cn(
 					"flex items-center justify-between border-b border-border-muted",
-					"p-4",
+					"px-4 py-3",
 				)}
 			>
 				<button

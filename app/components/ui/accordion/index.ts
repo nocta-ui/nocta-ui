@@ -12,7 +12,6 @@ export {
 export {
 	BasicAccordionDemo,
 	CardAccordionDemo,
-	ControlledAccordionDemo,
 	MultipleAccordionDemo,
 	SizeAccordionDemo,
 } from "./accordion-demos";

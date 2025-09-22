@@ -74,8 +74,8 @@ export const CustomColorDemo: React.FC = () => {
 	return (
 		<div className="my-6 flex flex-wrap items-center gap-4">
 			<Spinner className="text-blue-500 dark:text-blue-500/50" />
-			<Spinner className="text-green-500 dark:text-green-500/50" />
-			<Spinner className="text-red-500 dark:text-red-500/50" />
+			<Spinner className="text-success/90/50" />
+			<Spinner className="text-error/90/50" />
 			<Spinner className="text-purple-500 dark:text-purple-500/50" />
 			<Spinner className="text-orange-500 dark:text-orange-500/50" />
 		</div>

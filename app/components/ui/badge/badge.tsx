@@ -14,34 +14,30 @@ const badgeVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: [
-					"bg-primary",
-					"hover:bg-primary-muted",
-					"text-primary-foreground",
-				],
+				default: ["bg-primary", "hover:opacity-80", "text-primary-foreground"],
 				secondary: [
 					"bg-background",
 					"text-foreground",
-					"hover:bg-background-muted/50",
+					"hover:opacity-80",
 					"border-border",
 				],
 				destructive: [
-					"bg-red-50 dark:bg-red-950/50",
-					"text-red-900 dark:text-red-100",
-					"hover:bg-red-100 dark:hover:bg-red-900/50",
-					"border-red-200 dark:border-red-800/50",
+					"bg-error/10",
+					"text-error/90",
+					"hover:opacity-80",
+					"border-error/40",
 				],
 				success: [
-					"bg-green-50 dark:bg-green-950/50",
-					"text-green-900 dark:text-green-100",
-					"hover:bg-green-100 dark:hover:bg-green-900/50",
-					"border-green-200 dark:border-green-800/50",
+					"bg-success/10",
+					"text-success/90",
+					"hover:opacity-80",
+					"border-success/40",
 				],
 				warning: [
-					"bg-yellow-50 dark:bg-yellow-950/50",
-					"text-yellow-900 dark:text-yellow-100",
-					"hover:bg-yellow-100 dark:hover:bg-yellow-900/50",
-					"border-yellow-200 dark:border-yellow-800/50",
+					"bg-warning/10",
+					"text-warning/90",
+					"hover:opacity-80",
+					"border-warning/40",
 				],
 			},
 			size: {

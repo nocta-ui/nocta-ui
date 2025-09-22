@@ -1,4 +1,4 @@
-import { GlobeIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { GlobeIcon, ViewVerticalIcon } from "@radix-ui/react-icons";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
 import type { PageTree } from "fumadocs-core/server";
@@ -185,7 +185,7 @@ export function DocsLayout({
 								}),
 							)}
 						>
-							<HamburgerMenuIcon aria-hidden="true" />
+							<ViewVerticalIcon aria-hidden="true" />
 						</SidebarTrigger>
 					</div>
 					{tabs.length > 0 && <RootToggle options={tabs} />}
@@ -217,7 +217,7 @@ export function DocsLayout({
 									}),
 								)}
 							>
-								<HamburgerMenuIcon aria-hidden="true" />
+								<ViewVerticalIcon aria-hidden="true" />
 							</SidebarCollapseTrigger>
 						)}
 					</div>
@@ -301,7 +301,7 @@ export function DocsLayout({
 										}),
 									)}
 								>
-									<HamburgerMenuIcon aria-hidden="true" />
+									<ViewVerticalIcon aria-hidden="true" />
 								</SidebarTrigger>
 							)}
 						</Navbar>

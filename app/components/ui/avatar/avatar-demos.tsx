@@ -182,9 +182,7 @@ export const ClickHandlersDemo: React.FC = () => {
 				/>
 			</div>
 			{message && (
-				<div className="text-sm text-green-600 dark:text-green-400 font-medium">
-					{message}
-				</div>
+				<div className="text-sm text-success/90 font-medium">{message}</div>
 			)}
 		</div>
 	);

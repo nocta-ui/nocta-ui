@@ -6,5 +6,4 @@ export {
 export {
 	BasicSwitchDemo,
 	SizesDemo,
-	VariantsDemo,
 } from "./switch-demos";

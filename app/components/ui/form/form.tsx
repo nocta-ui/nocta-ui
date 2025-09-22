@@ -146,9 +146,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 			{...props}
 		>
 			{children}
-			{required && (
-				<span className="text-red-600 dark:text-red-400 ml-1">*</span>
-			)}
+			{required && <span className="text-error/90 ml-1">*</span>}
 		</AriakitFormLabel>
 	);
 };
@@ -190,9 +188,9 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	const message = children ?? ctxError;
 
 	const variants = {
-		error: "text-red-600 dark:text-red-400",
-		success: "text-green-600 dark:text-green-400",
-		warning: "text-yellow-600 dark:text-yellow-400",
+		error: "text-error/90",
+		success: "text-success/90",
+		warning: "text-warning/90",
 	} as const;
 
 	if (type !== "error") {

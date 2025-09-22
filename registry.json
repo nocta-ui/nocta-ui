@@ -232,7 +232,7 @@
 		},
 		"checkbox": {
 			"name": "Checkbox",
-			"description": "Checkbox component with variants and custom styling",
+			"description": "Form input component for toggling options with checked and unchecked states",
 			"category": "form",
 			"files": [
 				{
@@ -255,14 +255,12 @@
 					"defaultChecked",
 					"onCheckedChange",
 					"size",
-					"variant",
 					"disabled",
 					"className",
 					"id"
 				]
 			},
-			"sizes": ["sm", "md", "lg"],
-			"variants": ["default", "success", "warning", "destructive"]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"dialog": {
 			"name": "Dialog",
@@ -510,7 +508,7 @@
 		},
 		"switch": {
 			"name": "Switch",
-			"description": "Toggle switch component with variants and animations",
+			"description": "Switch component with smooth animations for enabling or disabling options",
 			"category": "form",
 			"files": [
 				{
@@ -533,14 +531,12 @@
 					"defaultChecked",
 					"onCheckedChange",
 					"size",
-					"variant",
 					"disabled",
 					"className",
 					"id"
 				]
 			},
-			"sizes": ["sm", "md", "lg"],
-			"variants": ["default", "success", "warning", "destructive"]
+			"sizes": ["sm", "md", "lg"]
 		},
 		"table": {
 			"name": "Table",

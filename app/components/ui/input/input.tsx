@@ -22,18 +22,18 @@ const inputVariants = cva(
 					"focus-visible:ring-ring/50",
 				],
 				error: [
-					"border-red-200 dark:border-red-800/50",
+					"border-error/40",
 					"bg-background",
 					"text-foreground",
-					"focus-visible:border-red-500/50 dark:focus-visible:border-red-500/50",
-					"focus-visible:ring-red-500/50 dark:focus-visible:ring-red-500/50",
+					"focus-visible:border-error/50",
+					"focus-visible:ring-error/50 dark:focus-visible:ring-error/50",
 				],
 				success: [
-					"border-green-300 dark:border-green-700/50",
+					"border-success/40",
 					"bg-background",
 					"text-foreground",
-					"focus-visible:border-green-500/50 dark:focus-visible:border-green-500/50",
-					"focus-visible:ring-green-500/50 dark:focus-visible:ring-green-500/50",
+					"focus-visible:border-success/50",
+					"focus-visible:ring-success/50 dark:focus-visible:ring-success/50",
 				],
 			},
 			size: {
@@ -100,8 +100,8 @@ const labelVariants = cva("block text-sm font-medium mb-1.5", {
 const messageVariants = cva("mt-1.5 text-sm", {
 	variants: {
 		type: {
-			error: "text-red-600 dark:text-red-400",
-			success: "text-green-600 dark:text-green-400",
+			error: "text-error/90",
+			success: "text-success/90",
 			helper: "text-primary-muted",
 		},
 	},

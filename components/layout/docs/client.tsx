@@ -1,6 +1,6 @@
 "use client";
 
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { ViewVerticalIcon } from "@radix-ui/react-icons";
 import { useNav } from "fumadocs-ui/contexts/layout";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import type { ComponentProps } from "react";
@@ -74,7 +74,7 @@ export function CollapsibleControl() {
 					}),
 				)}
 			>
-				<HamburgerMenuIcon aria-hidden="true" />
+				<ViewVerticalIcon aria-hidden="true" />
 			</SidebarCollapseTrigger>
 			<SearchToggle className="rounded-lg" hideIfDisabled />
 		</div>

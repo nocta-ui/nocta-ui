@@ -12,11 +12,11 @@ const alertVariants = cva(
 				default:
 					"border-border bg-background text-primary-muted [&_[data-slot=alert-icon]]:text-primary-muted overflow-hidden",
 				destructive:
-					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 [&_[data-slot=alert-icon]]:text-red-500 dark:[&_[data-slot=alert-icon]]:text-red-500",
+					"border-border bg-background text-error/90 [&_[data-slot=alert-icon]]:text-error/90",
 				warning:
-					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950/50 text-yellow-900 dark:text-yellow-100 [&_[data-slot=alert-icon]]:text-yellow-500 dark:[&_[data-slot=alert-icon]]:text-yellow-500",
+					"border-border bg-background text-warning/90 [&_[data-slot=alert-icon]]:text-warning/90",
 				success:
-					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/50 text-green-900 dark:text-green-100 [&_[data-slot=alert-icon]]:text-green-500 dark:[&_[data-slot=alert-icon]]:text-green-500",
+					"border-border bg-background text-success/90 [&_[data-slot=alert-icon]]:text-success/90",
 			},
 			size: {
 				default: "px-4 py-3",
@@ -48,7 +48,7 @@ const alertTitleVariants = cva(
 );
 
 const alertDescriptionVariants = cva(
-	"[&_p]:leading-relaxed opacity-90 not-prose",
+	"[&_p]:leading-relaxed opacity-90 not-prose text-primary-muted/80",
 	{
 		variants: {
 			size: {

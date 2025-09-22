@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
 	Accordion,
 	AccordionContent,
@@ -136,65 +135,6 @@ export function SizeAccordionDemo() {
 						</AccordionItem>
 					</Accordion>
 				</div>
-			</div>
-		</div>
-	);
-}
-
-export function ControlledAccordionDemo() {
-	const [, setOpenItems] = React.useState<string[]>(["controlled-1"]);
-
-	const handleValueChange = (value: string | string[]) => {
-		if (Array.isArray(value)) {
-			setOpenItems(value);
-		} else {
-			setOpenItems([value]);
-		}
-	};
-
-	return (
-		<div className="w-full max-w-md mx-auto space-y-4 flex flex-col justify-center items-center relative">
-			<div className="my-6">
-				<div className="flex gap-2 mb-10">
-					<button
-						type="button"
-						onClick={() => setOpenItems(["controlled-1"])}
-						className="px-3 py-1 bg-blue-500 dark:bg-blue-600/50 text-white rounded text-sm whitespace-nowrap"
-					>
-						Open First
-					</button>
-					<button
-						type="button"
-						onClick={() => setOpenItems(["controlled-2"])}
-						className="px-3 py-1 bg-green-500 dark:bg-green-600/50 text-white rounded text-sm whitespace-nowrap"
-					>
-						Open Second
-					</button>
-					<button
-						type="button"
-						onClick={() => setOpenItems([])}
-						className="px-3 py-1 bg-red-500 dark:bg-red-600/50 text-white rounded text-sm whitespace-nowrap"
-					>
-						Close All
-					</button>
-				</div>
-
-				<Accordion onValueChange={handleValueChange}>
-					<AccordionItem value="controlled-1">
-						<AccordionTrigger>Controlled item 1</AccordionTrigger>
-						<AccordionContent>
-							This accordion is controlled externally. You can open and close it
-							programmatically.
-						</AccordionContent>
-					</AccordionItem>
-
-					<AccordionItem value="controlled-2">
-						<AccordionTrigger>Controlled item 2</AccordionTrigger>
-						<AccordionContent>
-							The state of this accordion is managed by the parent component.
-						</AccordionContent>
-					</AccordionItem>
-				</Accordion>
 			</div>
 		</div>
 	);

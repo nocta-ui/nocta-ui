@@ -261,7 +261,7 @@ export function SidebarSeparator(props: ComponentProps<"p">) {
 		<p
 			{...props}
 			className={cn(
-				"!text-xs tracking-widest font-sfmono uppercase inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
+				"!text-xs tracking-wider text-foreground-subtle font-mono uppercase inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
 				props.className,
 			)}
 		>

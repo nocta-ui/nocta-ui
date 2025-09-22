@@ -20,12 +20,6 @@ const checkboxVariants = cva(
 	],
 	{
 		variants: {
-			variant: {
-				default: "",
-				success: "",
-				warning: "",
-				destructive: "",
-			},
 			size: {
 				sm: "h-4 w-4",
 				md: "h-5 w-5",
@@ -42,56 +36,17 @@ const checkboxVariants = cva(
 		},
 		compoundVariants: [
 			{
-				variant: "default",
 				checked: true,
 				class:
 					"bg-foreground-muted border-border has-[:focus-visible]:ring-ring/50",
 			},
 			{
-				variant: "default",
 				checked: false,
 				class:
 					"bg-background-muted border-border has-[:focus-visible]:ring-ring/50",
-			},
-			{
-				variant: "success",
-				checked: true,
-				class:
-					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950/50 has-[:focus-visible]:ring-green-500/50",
-			},
-			{
-				variant: "success",
-				checked: false,
-				class:
-					"bg-background-muted border-border has-[:focus-visible]:ring-green-500/50",
-			},
-			{
-				variant: "warning",
-				checked: true,
-				class:
-					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950/50 text-yellow-900 dark:text-yellow-100 has-[:focus-visible]:ring-yellow-500/50",
-			},
-			{
-				variant: "warning",
-				checked: false,
-				class:
-					"bg-background-muted border-border has-[:focus-visible]:ring-yellow-500/50",
-			},
-			{
-				variant: "destructive",
-				checked: true,
-				class:
-					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950/50 text-red-900 dark:text-red-100 has-[:focus-visible]:ring-red-500/50",
-			},
-			{
-				variant: "destructive",
-				checked: false,
-				class:
-					"bg-background-muted border-border has-[:focus-visible]:ring-red-500/50",
-			},
+			}
 		],
 		defaultVariants: {
-			variant: "default",
 			size: "md",
 			checked: false,
 			disabled: false,
@@ -99,14 +54,8 @@ const checkboxVariants = cva(
 	},
 );
 
-const iconVariants = cva(["transition-opacity duration-200 ease-in-out"], {
+const iconVariants = cva(["transition-opacity duration-200 ease-in-out text-primary-foreground"], {
 	variants: {
-		variant: {
-			default: "text-primary-foreground",
-			success: "text-green-500 dark:text-green-500",
-			warning: "text-yellow-500 dark:text-yellow-500",
-			destructive: "text-red-500 dark:text-red-500",
-		},
 		size: {
 			sm: "h-3 w-3",
 			md: "h-4 w-4",
@@ -118,7 +67,6 @@ const iconVariants = cva(["transition-opacity duration-200 ease-in-out"], {
 		},
 	},
 	defaultVariants: {
-		variant: "default",
 		size: "md",
 		checked: false,
 	},
@@ -143,7 +91,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 	onCheckedChange,
 	defaultChecked,
 	size = "md",
-	variant = "default",
 	disabled = false,
 	className = "",
 	id,
@@ -172,7 +119,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 	return (
 		<label
 			className={cn(
-				checkboxVariants({ variant, size, checked: isChecked, disabled }),
+				checkboxVariants({ size, checked: isChecked, disabled }),
 				className,
 			)}
 			htmlFor={id}
@@ -186,7 +133,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 			/>
 			<Icons.Check
 				aria-hidden="true"
-				className={iconVariants({ variant, size, checked: isChecked })}
+				className={iconVariants({ size, checked: isChecked })}
 			/>
 		</label>
 	);

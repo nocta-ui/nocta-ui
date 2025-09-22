@@ -32,10 +32,7 @@ const fileUploadVariants = cva(
 			state: {
 				idle: "",
 				dragover: ["border-background-subtle", "bg-background", "scale-[1.02]"],
-				error: [
-					"border-red-300 dark:border-red-700",
-					"bg-red-50 dark:bg-red-900/20",
-				],
+				error: ["border-error/40", "bg-red-50 dark:bg-red-900/20"],
 			},
 		},
 		defaultVariants: {
@@ -53,10 +50,8 @@ const fileItemVariants = cva(
 			status: {
 				pending: "bg-background",
 				uploading: "bg-background",
-				success:
-					"bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800",
-				error:
-					"bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800",
+				success: "bg-success/10 border-success/40",
+				error: "bg-error/10 border-error/40",
 			},
 			size: {
 				sm: "max-w-sm",
@@ -272,13 +267,11 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 
 					{file.status === "error" && file.error && (
-						<p className="text-xs text-red-600 dark:text-red-400 truncate">
-							{file.error}
-						</p>
+						<p className="text-xs text-error/90 truncate">{file.error}</p>
 					)}
 
 					{file.status === "success" && (
-						<span className="text-xs text-green-600 dark:text-green-400 flex-shrink-0 flex items-center gap-1">
+						<span className="text-xs text-success/90 flex-shrink-0 flex items-center gap-1">
 							<Icons.Check aria-hidden="true" className="h-3 w-3" />
 							Uploaded
 						</span>

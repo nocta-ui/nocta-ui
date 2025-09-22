@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const progressVariants = cva(
 	[
 		"relative w-full overflow-hidden rounded-full",
-		"bg-background-muted border border-border shadow-inner",
+		"bg-background-muted border border-border-muted shadow-inner",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
 	],
@@ -13,9 +13,9 @@ const progressVariants = cva(
 		variants: {
 			variant: {
 				default: "[&>div]:bg-foreground dark:[&>div]:bg-foreground/50",
-				success: "[&>div]:bg-green-500 dark:[&>div]:bg-green-600/50",
-				warning: "[&>div]:bg-yellow-500 dark:[&>div]:bg-yellow-600/50",
-				destructive: "[&>div]:bg-red-500 dark:[&>div]:bg-red-600/50",
+				success: "[&>div]:bg-success/80 dark:[&>div]:bg-success/40",
+				warning: "[&>div]:bg-warning/80 dark:[&>div]:bg-warning/40",
+				destructive: "[&>div]:bg-error/80 dark:[&>div]:bg-error/40",
 			},
 			size: {
 				sm: "h-2",

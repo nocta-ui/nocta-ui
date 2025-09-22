@@ -73,10 +73,10 @@ const iconVariants = cva("text-foreground-subtle", {
 const statusVariants = cva("absolute rounded-full ring-ring-offset", {
 	variants: {
 		status: {
-			online: "bg-green-500 dark:bg-green-600",
+			online: "bg-success",
 			offline: "bg-foreground-subtle",
-			away: "bg-yellow-500 dark:bg-yellow-600",
-			busy: "bg-red-500 dark:bg-red-600",
+			away: "bg-warning",
+			busy: "bg-error",
 		},
 		size: {
 			xs: "h-1.5 w-1.5 ring-1 bottom-0 right-0",

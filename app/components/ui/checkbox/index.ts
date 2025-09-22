@@ -8,5 +8,4 @@ export {
 	CustomStylingDemo,
 	LabeledCheckboxDemo,
 	SizesDemo,
-	VariantsDemo,
 } from "./checkbox-demos";

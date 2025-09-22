@@ -10,56 +10,6 @@ export const BasicSwitchDemo: React.FC = () => {
 	return <Switch checked={isChecked} onCheckedChange={setIsChecked} />;
 };
 
-export const VariantsDemo: React.FC = () => {
-	const [states, setStates] = useState({
-		default: true,
-		success: true,
-		warning: true,
-		destructive: true,
-	});
-
-	const handleChange = (variant: keyof typeof states) => (checked: boolean) => {
-		setStates((prev) => ({ ...prev, [variant]: checked }));
-	};
-
-	return (
-		<div className="space-y-4">
-			<div className="flex items-center gap-3">
-				<Switch
-					variant="default"
-					checked={states.default}
-					onCheckedChange={handleChange("default")}
-				/>
-				<span className="text-sm">Default</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch
-					variant="success"
-					checked={states.success}
-					onCheckedChange={handleChange("success")}
-				/>
-				<span className="text-sm">Success</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch
-					variant="warning"
-					checked={states.warning}
-					onCheckedChange={handleChange("warning")}
-				/>
-				<span className="text-sm">Warning</span>
-			</div>
-			<div className="flex items-center gap-3">
-				<Switch
-					variant="destructive"
-					checked={states.destructive}
-					onCheckedChange={handleChange("destructive")}
-				/>
-				<span className="text-sm">Destructive</span>
-			</div>
-		</div>
-	);
-};
-
 export const SizesDemo: React.FC = () => {
 	const [states, setStates] = useState({
 		sm: true,

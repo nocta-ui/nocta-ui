@@ -148,7 +148,7 @@ class ToasterInstanceManager {
 const toasterInstanceManager = new ToasterInstanceManager();
 
 const toastContainerVariants = cva(
-	"fixed rounded-lg border shadow-sm not-prose pointer-events-auto will-change-transform transition-all duration-200 ease-in-out",
+	"fixed rounded-lg border shadow-sm not-prose pointer-events-auto will-change-transform backdrop-blur-lg transition-all duration-200 ease-in-out",
 	{
 		variants: {
 			position: {
@@ -164,12 +164,9 @@ const toastContainerVariants = cva(
 			variant: {
 				default:
 					"border-border bg-background-muted text-foreground overflow-hidden",
-				success:
-					"border-green-200 dark:border-green-800/50 bg-green-50 dark:bg-green-950 text-green-900 dark:text-green-100",
-				warning:
-					"border-yellow-200 dark:border-yellow-800/50 bg-yellow-50 dark:bg-yellow-950 text-yellow-900 dark:text-yellow-100",
-				destructive:
-					"border-red-200 dark:border-red-800/50 bg-red-50 dark:bg-red-950 text-red-900 dark:text-red-100",
+				success: "border-border bg-background-muted text-success/90",
+				warning: "border-border bg-background-muted text-warning/90",
+				destructive: "border-border bg-background-muted text-error/90",
 			},
 		},
 		defaultVariants: {
@@ -186,24 +183,6 @@ const toastContentVariants = cva("relative rounded-lg overflow-hidden", {
 			success: "",
 			warning: "",
 			destructive: "",
-		},
-	},
-	defaultVariants: {
-		variant: "default",
-	},
-});
-
-const closeIconVariants = cva("transition-colors duration-200", {
-	variants: {
-		variant: {
-			default:
-				"text-foreground-muted hover:bg-background-elevated/50 focus-visible:ring-ring/50",
-			success:
-				"text-green-500 dark:text-green-500 hover:bg-green-200/50 dark:hover:bg-green-800/50 focus-visible:ring-green-500/50",
-			warning:
-				"text-yellow-500 dark:text-yellow-500 hover:bg-yellow-200/50 dark:hover:bg-yellow-800/50 focus-visible:ring-yellow-500/50",
-			destructive:
-				"text-red-500 dark:text-red-500 hover:bg-red-200/50 dark:hover:bg-red-800/50 focus-visible:ring-red-500/50",
 		},
 	},
 	defaultVariants: {
@@ -611,8 +590,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							type="button"
 							onClick={handleClose}
 							className={cn(
-								"absolute top-2 right-2 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1",
-								closeIconVariants({ variant }),
+								"absolute top-2 right-2 text-foreground-subtle hover:text-primary-muted focus-visible:ring-ring/50 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1 transition-colors duration-200 cursor-pointer",
 							)}
 							aria-label="Close toast"
 						>
@@ -631,7 +609,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{description && (
 								<div
 									id={descriptionId}
-									className="text-sm opacity-80 leading-relaxed"
+									className="text-sm opacity-80 leading-relaxed text-primary-muted/80"
 								>
 									{description}
 								</div>

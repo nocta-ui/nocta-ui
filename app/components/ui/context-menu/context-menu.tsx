@@ -58,7 +58,7 @@ const contextMenuItemVariants = cva(
 				false: "",
 			},
 			destructive: {
-				true: "text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300/90 dark:hover:bg-red-950/40",
+				true: "text-error/90 hover:text-error hover:bg-error/10",
 				false: "",
 			},
 		},

@@ -14,12 +14,6 @@ const switchVariants = cva(
 	],
 	{
 		variants: {
-			variant: {
-				default: "",
-				success: "",
-				warning: "",
-				destructive: "",
-			},
 			size: {
 				sm: "h-5 w-9",
 				md: "h-6 w-11",
@@ -36,51 +30,15 @@ const switchVariants = cva(
 		},
 		compoundVariants: [
 			{
-				variant: "default",
 				checked: true,
 				class: "bg-foreground-subtle peer-focus-visible:ring-ring/50",
 			},
 			{
-				variant: "default",
 				checked: false,
 				class: "bg-background-elevated peer-focus-visible:ring-ring/50",
-			},
-			{
-				variant: "success",
-				checked: true,
-				class:
-					"bg-green-500 dark:bg-green-600/50 peer-focus-visible:ring-green-500/50",
-			},
-			{
-				variant: "success",
-				checked: false,
-				class: "bg-background-elevated peer-focus-visible:ring-green-500/50",
-			},
-			{
-				variant: "warning",
-				checked: true,
-				class:
-					"bg-yellow-500 dark:bg-yellow-600/50 peer-focus-visible:ring-yellow-500/50",
-			},
-			{
-				variant: "warning",
-				checked: false,
-				class: "bg-background-elevated peer-focus-visible:ring-yellow-500/50",
-			},
-			{
-				variant: "destructive",
-				checked: true,
-				class:
-					"bg-red-500 dark:bg-red-600/50 peer-focus-visible:ring-red-500/50",
-			},
-			{
-				variant: "destructive",
-				checked: false,
-				class: "bg-background-elevated peer-focus-visible:ring-red-500/50",
-			},
+			}
 		],
 		defaultVariants: {
-			variant: "default",
 			size: "md",
 			checked: false,
 			disabled: false,
@@ -124,7 +82,6 @@ export interface SwitchProps
 	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>, "size">,
 		Omit<VariantProps<typeof switchVariants>, "checked" | "disabled"> {
 	size?: "sm" | "md" | "lg";
-	variant?: "default" | "success" | "warning" | "destructive";
 	disabled?: boolean;
 	className?: string;
 	onCheckedChange?: (checked: boolean) => void;
@@ -132,7 +89,6 @@ export interface SwitchProps
 
 export const Switch: React.FC<SwitchProps> = ({
 	size = "md",
-	variant = "default",
 	disabled = false,
 	className,
 	onCheckedChange,
@@ -162,7 +118,7 @@ export const Switch: React.FC<SwitchProps> = ({
 			<label
 				htmlFor={id}
 				className={cn(
-					switchVariants({ size, variant, checked: isChecked, disabled }),
+					switchVariants({ size, checked: isChecked, disabled }),
 					className,
 				)}
 			>

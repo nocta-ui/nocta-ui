@@ -78,9 +78,7 @@ export const VariantsDemo: React.FC = () => {
 					variant="error"
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-red-600 dark:text-red-400">
-					This field is required
-				</p>
+				<p className="text-xs text-error/90">This field is required</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">
@@ -93,9 +91,7 @@ export const VariantsDemo: React.FC = () => {
 					variant="success"
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-green-600 dark:text-green-400">
-					Selection confirmed
-				</p>
+				<p className="text-xs text-success/90">Selection confirmed</p>
 			</div>
 		</div>
 	);

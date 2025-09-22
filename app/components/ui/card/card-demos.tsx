@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import { Badge } from "../badge";
 import { Button } from "../button";
 import {
 	Card,
@@ -49,9 +50,9 @@ export const CardWithActionsDemo: React.FC = () => {
 							<span className="text-sm font-medium text-primary-muted">
 								Status
 							</span>
-							<span className="px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full">
+							<Badge size="sm" variant="success">
 								Active
-							</span>
+							</Badge>
 						</div>
 						<div className="flex items-center justify-between">
 							<span className="text-sm font-medium text-primary-muted">
