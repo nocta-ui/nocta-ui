@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-import { useState } from "react";
 import {
 	ArchiveIcon,
 	BookmarkIcon,
@@ -22,6 +20,8 @@ import {
 	TrashIcon,
 	UploadIcon,
 } from "@radix-ui/react-icons";
+import type React from "react";
+import { useState } from "react";
 import { buttonVariants } from "@/app/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -141,24 +141,24 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 					</ContextMenuItem>
 
 					<ContextMenuSub>
-					<ContextMenuSubTrigger>
-						<UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-						Export As
-					</ContextMenuSubTrigger>
-					<ContextMenuSubContent>
-						<ContextMenuItem>
-							<FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-							PDF
-						</ContextMenuItem>
-						<ContextMenuItem>
-							<TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-							Excel
-						</ContextMenuItem>
-						<ContextMenuItem>
-							<ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-							Image
-						</ContextMenuItem>
-					</ContextMenuSubContent>
+						<ContextMenuSubTrigger>
+							<UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							Export As
+						</ContextMenuSubTrigger>
+						<ContextMenuSubContent>
+							<ContextMenuItem>
+								<FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								PDF
+							</ContextMenuItem>
+							<ContextMenuItem>
+								<TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								Excel
+							</ContextMenuItem>
+							<ContextMenuItem>
+								<ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								Image
+							</ContextMenuItem>
+						</ContextMenuSubContent>
 					</ContextMenuSub>
 
 					<ContextMenuSeparator />
@@ -222,13 +222,33 @@ export const FileContextMenuDemo: React.FC = () => {
 	const getFileIcon = (type: string) => {
 		switch (type) {
 			case "pdf":
-				return <FileTextIcon aria-hidden="true" className="h-5 w-5 text-foreground-subtle mr-3" />;
+				return (
+					<FileTextIcon
+						aria-hidden="true"
+						className="h-5 w-5 text-foreground-subtle mr-3"
+					/>
+				);
 			case "image":
-				return <ImageIcon aria-hidden="true" className="h-5 w-5 text-foreground-subtle mr-3" />;
+				return (
+					<ImageIcon
+						aria-hidden="true"
+						className="h-5 w-5 text-foreground-subtle mr-3"
+					/>
+				);
 			case "archive":
-				return <ArchiveIcon aria-hidden="true" className="h-5 w-5 text-foreground-subtle mr-3" />;
+				return (
+					<ArchiveIcon
+						aria-hidden="true"
+						className="h-5 w-5 text-foreground-subtle mr-3"
+					/>
+				);
 			default:
-				return <FileIcon aria-hidden="true" className="h-5 w-5 text-foreground-subtle mr-3" />;
+				return (
+					<FileIcon
+						aria-hidden="true"
+						className="h-5 w-5 text-foreground-subtle mr-3"
+					/>
+				);
 		}
 	};
 

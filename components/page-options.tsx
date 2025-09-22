@@ -1,5 +1,4 @@
 "use client";
-import { cva } from "class-variance-authority";
 import {
 	ArrowTopRightIcon,
 	CaretDownIcon,
@@ -7,6 +6,7 @@ import {
 	CheckIcon,
 	ClipboardCopyIcon,
 } from "@radix-ui/react-icons";
+import { cva } from "class-variance-authority";
 import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import { useMemo, useState } from "react";
 
@@ -59,7 +59,11 @@ export function LLMCopyButton({
 			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-primary-foreground"
 			onClick={onClick}
 		>
-		{checked ? <CheckIcon aria-hidden="true" /> : <ClipboardCopyIcon aria-hidden="true" />}
+			{checked ? (
+				<CheckIcon aria-hidden="true" />
+			) : (
+				<ClipboardCopyIcon aria-hidden="true" />
+			)}
 			Copy Markdown
 		</Button>
 	);
@@ -176,7 +180,10 @@ export function ViewOptions({
 					>
 						{item.icon}
 						{item.title}
-						<ArrowTopRightIcon aria-hidden="true" className="ms-auto size-3.5 text-foreground-muted" />
+						<ArrowTopRightIcon
+							aria-hidden="true"
+							className="ms-auto size-3.5 text-foreground-muted"
+						/>
 					</a>
 				))}
 			</PopoverContent>

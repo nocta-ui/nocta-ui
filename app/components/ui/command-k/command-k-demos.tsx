@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
 import {
-	FileIcon,
 	ArchiveIcon,
+	FileIcon,
 	GearIcon,
 	MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
+import React from "react";
 
 import { Button } from "../button";
 import { toast } from "../toast";

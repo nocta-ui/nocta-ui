@@ -1,8 +1,8 @@
 "use client";
 
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { Icons } from "@/app/components/ui/icons/icons";
 import type * as React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 
 import { cn } from "@/lib/utils";
 

@@ -9,8 +9,8 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import { cn } from "@/lib/utils";
 import { Icons } from "@/app/components/ui/icons/icons";
+import { cn } from "@/lib/utils";
 
 const POSITION_CONFIGS = {
 	"top-left": {
@@ -616,7 +616,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							)}
 							aria-label="Close toast"
 						>
-								<Icons.X aria-hidden="true" className="h-4 w-4" />
+							<Icons.X aria-hidden="true" className="h-4 w-4" />
 						</button>
 
 						<div className="p-4 pr-8">

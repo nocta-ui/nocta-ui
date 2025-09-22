@@ -75,8 +75,8 @@ const variantIconMap: Record<AlertVariant, IconComponent> = {
 };
 
 export interface AlertProps
-extends React.HTMLAttributes<HTMLDivElement>,
-	VariantProps<typeof alertVariants> {
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof alertVariants> {
 	className?: string;
 	children: React.ReactNode;
 	showIcon?: boolean;
@@ -102,7 +102,6 @@ export interface AlertIconProps {
 	className?: string;
 }
 
-
 export const Alert: React.FC<AlertProps> = ({
 	variant,
 	size,
@@ -119,7 +118,9 @@ export const Alert: React.FC<AlertProps> = ({
 		(child) => React.isValidElement(child) && child.type === AlertIcon,
 	);
 
-	const contentChildren = childrenArray.filter((_, index) => index !== iconIndex);
+	const contentChildren = childrenArray.filter(
+		(_, index) => index !== iconIndex,
+	);
 
 	let iconElement: React.ReactNode | null = null;
 
@@ -144,9 +145,7 @@ export const Alert: React.FC<AlertProps> = ({
 			{...props}
 		>
 			{iconElement}
-			<div className="flex min-w-0 flex-1 flex-col">
-				{contentChildren}
-			</div>
+			<div className="flex min-w-0 flex-1 flex-col">{contentChildren}</div>
 		</div>
 	);
 };
@@ -184,7 +183,10 @@ export const AlertDescription: React.FC<AlertDescriptionProps> = ({
 	);
 };
 
-export const AlertIcon: React.FC<AlertIconProps> = ({ children, className = "" }) => {
+export const AlertIcon: React.FC<AlertIconProps> = ({
+	children,
+	className = "",
+}) => {
 	return (
 		<div
 			aria-hidden="true"

@@ -20,7 +20,8 @@ export default function CTA(): React.ReactElement {
 					<div className="flex flex-row gap-3">
 						<Button size="lg" asChild>
 							<Link href="/docs">
-								<ReaderIcon aria-hidden="true" className="mr-2 h-5 w-5" /> {/* Ikona */}
+								<ReaderIcon aria-hidden="true" className="mr-2 h-5 w-5" />{" "}
+								{/* Ikona */}
 								Read Documentation
 							</Link>
 						</Button>
@@ -31,7 +32,8 @@ export default function CTA(): React.ReactElement {
 							asChild
 						>
 							<Link href="https://github.com/66HEX/nocta-ui" target="_blank">
-								<GitHubLogoIcon aria-hidden="true" className="mr-2 h-5 w-5" /> {/* Ikona */}
+								<GitHubLogoIcon aria-hidden="true" className="mr-2 h-5 w-5" />{" "}
+								{/* Ikona */}
 								View on GitHub
 							</Link>
 						</Button>

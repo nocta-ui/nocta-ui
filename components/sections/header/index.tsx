@@ -1,3 +1,4 @@
+import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import Link from "fumadocs-core/link";
 import {
 	LanguageToggle,
@@ -10,7 +11,6 @@ import {
 import { NavigationMenuList } from "fumadocs-ui/components/ui/navigation-menu";
 import type { LinkItemType } from "fumadocs-ui/layouts/links";
 import { SearchOnly } from "fumadocs-ui/provider";
-import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import type { HomeLayoutProps } from "@/components/layout/home";
 import {
 	NavbarLink,

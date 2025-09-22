@@ -217,12 +217,12 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			)}
 			{...props}
 		>
-		{showClose && (
-			<DialogClose className="absolute right-1 top-1 z-10">
-				<Icons.X aria-hidden="true" className="h-4 w-4" />
-				<span className="sr-only">Close</span>
-			</DialogClose>
-		)}
+			{showClose && (
+				<DialogClose className="absolute right-1 top-1 z-10">
+					<Icons.X aria-hidden="true" className="h-4 w-4" />
+					<span className="sr-only">Close</span>
+				</DialogClose>
+			)}
 			{children}
 		</AriakitDialog>
 	);

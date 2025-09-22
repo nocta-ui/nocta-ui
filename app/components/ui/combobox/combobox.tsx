@@ -166,7 +166,10 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									<Icons.X aria-hidden="true" className="h-3 w-3" />
 								</span>
 							)}
-							<Icons.CaretSort aria-hidden="true" className="h-4.5 w-4.5 text-foreground-subtle" />
+							<Icons.CaretSort
+								aria-hidden="true"
+								className="h-4.5 w-4.5 text-foreground-subtle"
+							/>
 						</div>
 					</Ariakit.MenuButton>
 

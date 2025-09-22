@@ -590,12 +590,12 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 					</div>
 				)}
 
-		{showClose && (
-			<AriakitDialogDismiss className="absolute right-1 top-1 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer">
-				<Icons.X aria-hidden="true" className="h-4 w-4" />
-				<span className="sr-only">Close</span>
-			</AriakitDialogDismiss>
-		)}
+			{showClose && (
+				<AriakitDialogDismiss className="absolute right-1 top-1 z-10 inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer">
+					<Icons.X aria-hidden="true" className="h-4 w-4" />
+					<span className="sr-only">Close</span>
+				</AriakitDialogDismiss>
+			)}
 			{children}
 		</AriakitDialog>
 	);

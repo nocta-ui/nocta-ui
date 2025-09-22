@@ -65,17 +65,17 @@ export function CollapsibleControl() {
 				top: "calc(var(--fd-banner-height) + var(--fd-tocnav-height) + var(--spacing) * 4)",
 			}}
 		>
-				<SidebarCollapseTrigger
-					className={cn(
-						buttonVariants({
-							color: "ghost",
-							size: "icon-sm",
-							className: "rounded-lg",
-						}),
-					)}
-				>
-					<HamburgerMenuIcon aria-hidden="true" />
-				</SidebarCollapseTrigger>
+			<SidebarCollapseTrigger
+				className={cn(
+					buttonVariants({
+						color: "ghost",
+						size: "icon-sm",
+						className: "rounded-lg",
+					}),
+				)}
+			>
+				<HamburgerMenuIcon aria-hidden="true" />
+			</SidebarCollapseTrigger>
 			<SearchToggle className="rounded-lg" hideIfDisabled />
 		</div>
 	);

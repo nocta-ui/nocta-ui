@@ -10,6 +10,11 @@ const sfpro = localFont({
 	variable: "--font-sfpro",
 });
 
+const sfmono = localFont({
+	src: "./assets/fonts/SFMono-Regular.woff2",
+	variable: "--font-sfmono",
+});
+
 export const metadata: Metadata = {
 	title: {
 		template: "%s | Nocta UI",
@@ -102,7 +107,7 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
 	return (
-		<html lang="en" className={`${sfpro.variable}`} suppressHydrationWarning>
+		<html lang="en" className={`${sfpro.variable} ${sfmono.variable}`} suppressHydrationWarning>
 			<body className="flex flex-col">
 				<RootProvider>
 					{children}

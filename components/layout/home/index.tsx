@@ -1,6 +1,6 @@
+import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import Link from "fumadocs-core/link";
 import { NavProvider } from "fumadocs-ui/contexts/layout";
-import { ChevronDownIcon, GlobeIcon } from "@radix-ui/react-icons";
 import { Fragment, type HTMLAttributes, useMemo } from "react";
 
 import { cn } from "../../../lib/cn";
@@ -120,9 +120,9 @@ export function Header({
 				{themeSwitch.enabled !== false &&
 					(themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
 				{i18n ? (
-						<LanguageToggle>
-							<GlobeIcon aria-hidden="true" className="size-5" />
-						</LanguageToggle>
+					<LanguageToggle>
+						<GlobeIcon aria-hidden="true" className="size-5" />
+					</LanguageToggle>
 				) : null}
 				<div className="flex flex-row items-center empty:hidden">
 					{navItems.filter(isSecondary).map((item, i) => (
@@ -147,10 +147,10 @@ export function Header({
 						)}
 						enableHover={nav.enableHoverToOpen}
 					>
-							<ChevronDownIcon
-								aria-hidden="true"
-								className="!size-5.5 transition-transform duration-300 group-data-[state=open]:rotate-180"
-							/>
+						<ChevronDownIcon
+							aria-hidden="true"
+							className="!size-5.5 transition-transform duration-300 group-data-[state=open]:rotate-180"
+						/>
 					</MenuTrigger>
 					<MenuContent className="sm:flex-row sm:items-center sm:justify-end">
 						{menuItems

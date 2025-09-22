@@ -1,9 +1,9 @@
 "use client";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { usePathname } from "fumadocs-core/framework";
 import Link from "fumadocs-core/link";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import type { SidebarTab } from "fumadocs-ui/utils/get-sidebar-tabs";
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { type ComponentProps, type ReactNode, useMemo, useState } from "react";
 import { cn } from "../lib/cn";
 import { isTabActive } from "../lib/is-active";
@@ -59,7 +59,10 @@ export function RootToggle({
 					)}
 				>
 					{item}
-					<CaretSortIcon aria-hidden="true" className="ms-auto size-4 shrink-0 text-foreground-muted" />
+					<CaretSortIcon
+						aria-hidden="true"
+						className="ms-auto size-4 shrink-0 text-foreground-muted"
+					/>
 				</PopoverTrigger>
 			)}
 			<PopoverContent className="flex flex-col gap-1 w-(--radix-popover-trigger-width) overflow-hidden p-1">
@@ -88,13 +91,13 @@ export function RootToggle({
 								</p>
 							</div>
 
-						<CheckIcon
-							aria-hidden="true"
-							className={cn(
-								"shrink-0 ms-auto size-3.5 text-primary",
-								!isActive && "invisible",
-							)}
-						/>
+							<CheckIcon
+								aria-hidden="true"
+								className={cn(
+									"shrink-0 ms-auto size-3.5 text-primary",
+									!isActive && "invisible",
+								)}
+							/>
 						</Link>
 					);
 				})}

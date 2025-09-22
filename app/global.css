@@ -129,6 +129,7 @@
 
 @theme {
 	--font-sfpro: var(--font-sfpro);
+	--font-sfmono: var(--font-sfmono);
 	--color-background: var(--background);
 	--color-background-muted: var(--background-muted);
 	--color-background-elevated: var(--background-elevated);

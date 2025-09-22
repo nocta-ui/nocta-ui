@@ -1,12 +1,12 @@
 "use client";
 
-import type React from "react";
 import {
 	EnvelopeClosedIcon,
 	EyeOpenIcon,
 	MagnifyingGlassIcon,
 	PersonIcon,
 } from "@radix-ui/react-icons";
+import type React from "react";
 
 import { Input } from "./input";
 
@@ -82,7 +82,9 @@ export const LeftIconDemo: React.FC = () => {
 			<Input
 				label="Search"
 				placeholder="Search for anything..."
-				leftIcon={<MagnifyingGlassIcon aria-hidden="true" className="h-4 w-4" />}
+				leftIcon={
+					<MagnifyingGlassIcon aria-hidden="true" className="h-4 w-4" />
+				}
 			/>
 			<Input
 				label="Email"

@@ -1,3 +1,4 @@
+import { GlobeIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { HideIfEmpty } from "fumadocs-core/hide-if-empty";
 import Link from "fumadocs-core/link";
 import type { PageTree } from "fumadocs-core/server";
@@ -7,7 +8,6 @@ import {
 	type GetSidebarTabsOptions,
 	getSidebarTabs,
 } from "fumadocs-ui/utils/get-sidebar-tabs";
-import { GlobeIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	type HTMLAttributes,
@@ -217,7 +217,7 @@ export function DocsLayout({
 									}),
 								)}
 							>
-						<HamburgerMenuIcon aria-hidden="true" />
+								<HamburgerMenuIcon aria-hidden="true" />
 							</SidebarCollapseTrigger>
 						)}
 					</div>

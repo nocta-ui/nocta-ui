@@ -1,3 +1,4 @@
+import { ChevronRightIcon, HomeIcon } from "@radix-ui/react-icons";
 import {
 	Breadcrumb,
 	BreadcrumbEllipsis,
@@ -7,7 +8,6 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "./breadcrumb";
-import { ChevronRightIcon, HomeIcon } from "@radix-ui/react-icons";
 
 export function BasicBreadcrumbDemo() {
 	return (
@@ -216,9 +216,9 @@ export function ComplexNavigationDemo() {
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
-					<BreadcrumbLink href="/" variant="ghost">
-						<HomeIcon aria-hidden="true" className="mr-1 h-4 w-4" />
-						Dashboard
+						<BreadcrumbLink href="/" variant="ghost">
+							<HomeIcon aria-hidden="true" className="mr-1 h-4 w-4" />
+							Dashboard
 						</BreadcrumbLink>
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />

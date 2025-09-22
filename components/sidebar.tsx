@@ -3,6 +3,7 @@ import type {
 	CollapsibleContentProps,
 	CollapsibleTriggerProps,
 } from "@radix-ui/react-collapsible";
+import { ChevronDownIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import { Presence } from "@radix-ui/react-presence";
 import type { ScrollAreaProps } from "@radix-ui/react-scroll-area";
 import { cva } from "class-variance-authority";
@@ -13,10 +14,6 @@ import { useMediaQuery } from "fumadocs-core/utils/use-media-query";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
-import {
-	ChevronDownIcon,
-	ExternalLinkIcon,
-} from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	createContext,
@@ -264,7 +261,7 @@ export function SidebarSeparator(props: ComponentProps<"p">) {
 		<p
 			{...props}
 			className={cn(
-				"font-medium inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
+				"!text-xs tracking-widest font-sfmono uppercase inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
 				props.className,
 			)}
 		>
@@ -291,7 +288,8 @@ export function SidebarItem({
 			className={cn(itemVariants({ active }), props.className)}
 			prefetch={prefetch}
 		>
-			{icon ?? (props.external ? <ExternalLinkIcon aria-hidden="true" /> : null)}
+			{icon ??
+				(props.external ? <ExternalLinkIcon aria-hidden="true" /> : null)}
 			{props.children}
 		</Link>
 	);

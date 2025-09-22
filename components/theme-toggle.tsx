@@ -1,11 +1,7 @@
 "use client";
 
+import { DesktopIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { cva } from "class-variance-authority";
-import {
-	DesktopIcon,
-	MoonIcon,
-	SunIcon,
-} from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { type HTMLAttributes, useLayoutEffect, useState } from "react";
 

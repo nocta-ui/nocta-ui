@@ -1,6 +1,11 @@
 "use client";
 
 import {
+	ChevronDownIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+} from "@radix-ui/react-icons";
+import {
 	type BreadcrumbOptions,
 	getBreadcrumbItemsFromPath,
 } from "fumadocs-core/breadcrumb";
@@ -13,11 +18,6 @@ import { useI18n } from "fumadocs-ui/contexts/i18n";
 import { useNav } from "fumadocs-ui/contexts/layout";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
-import {
-	ChevronDownIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-} from "@radix-ui/react-icons";
 import {
 	type ComponentProps,
 	Fragment,
@@ -332,7 +332,10 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 					index === 1 && "flex-row-reverse",
 				)}
 			>
-				<Icon aria-hidden="true" className="-mx-1 size-4 shrink-0 rtl:rotate-180" />
+				<Icon
+					aria-hidden="true"
+					className="-mx-1 size-4 shrink-0 rtl:rotate-180"
+				/>
 				<p>{item.name}</p>
 			</div>
 			<p className="text-foreground-subtle truncate">
@@ -378,9 +381,12 @@ export function PageBreadcrumb({
 
 				return (
 					<Fragment key={i}>
-					{i !== 0 && (
-						<ChevronRightIcon aria-hidden="true" className="size-3.5 shrink-0" />
-					)}
+						{i !== 0 && (
+							<ChevronRightIcon
+								aria-hidden="true"
+								className="size-3.5 shrink-0"
+							/>
+						)}
 						{item.url ? (
 							<Link
 								href={item.url}

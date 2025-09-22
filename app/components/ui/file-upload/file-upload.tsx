@@ -3,8 +3,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { useCallback, useState } from "react";
 import { Button } from "@/app/components/ui/button";
-import { Spinner } from "@/app/components/ui/spinner";
 import { Icons } from "@/app/components/ui/icons/icons";
+import { Spinner } from "@/app/components/ui/spinner";
 
 import { cn } from "@/lib/utils";
 

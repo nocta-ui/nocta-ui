@@ -115,14 +115,14 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 			className={cn(selectTriggerVariants({ size }), className)}
 			{...props}
 		>
-		{children}
-		<Icons.ChevronDown
-			aria-hidden="true"
-			className={cn(
-				"ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out",
-				isOpen && "rotate-180",
-			)}
-		/>
+			{children}
+			<Icons.ChevronDown
+				aria-hidden="true"
+				className={cn(
+					"ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out",
+					isOpen && "rotate-180",
+				)}
+			/>
 		</Ariakit.Select>
 	);
 };
@@ -174,7 +174,10 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 		>
 			<span className="flex-1">{children}</span>
 			{isSelected && (
-				<Icons.Check aria-hidden="true" className="ml-2 h-4 w-4 text-primary-muted" />
+				<Icons.Check
+					aria-hidden="true"
+					className="ml-2 h-4 w-4 text-primary-muted"
+				/>
 			)}
 		</Ariakit.SelectItem>
 	);

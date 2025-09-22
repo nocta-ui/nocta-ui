@@ -565,7 +565,10 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 						"shadow-sm",
 					)}
 				>
-						<Icons.SendMessage aria-hidden="true" className="ml-1 mb-0.5 size-5 -rotate-45" />
+					<Icons.SendMessage
+						aria-hidden="true"
+						className="ml-1 mb-0.5 size-5 -rotate-45"
+					/>
 				</button>
 			</form>
 			{maxLength && (
