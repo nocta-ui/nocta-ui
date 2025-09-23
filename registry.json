@@ -441,14 +441,16 @@
 					"onValueChange",
 					"disabled",
 					"children",
-					"size"
+					"size",
+					"variant"
 				],
-				"SelectTrigger": ["children", "className", "size"],
+				"SelectTrigger": ["children", "className", "size", "variant"],
 				"SelectContent": ["children", "className", "portal", "fixed"],
 				"SelectItem": ["value", "children", "className", "disabled"],
 				"SelectValue": ["placeholder", "className"]
 			},
-			"sizes": ["sm", "md", "lg"]
+			"sizes": ["sm", "md", "lg"],
+			"variants": ["default", "error", "success"]
 		},
 		"skeleton": {
 			"name": "Skeleton",

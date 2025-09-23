@@ -28,6 +28,60 @@ export const DefaultSelectDemo: React.FC = () => {
 	);
 };
 
+export const VariantsDemo: React.FC = () => {
+	return (
+		<div className="my-6 space-y-6">
+			<div className="flex flex-col space-y-2">
+				<label className="text-sm font-medium text-primary-muted">
+					Default
+				</label>
+				<Select variant="default">
+					<SelectTrigger className="w-[180px]">
+						<SelectValue placeholder="Default variant" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="apple">Apple</SelectItem>
+						<SelectItem value="banana">Banana</SelectItem>
+						<SelectItem value="orange">Orange</SelectItem>
+					</SelectContent>
+				</Select>
+			</div>
+
+			<div className="flex flex-col space-y-2">
+				<label className="text-sm font-medium text-primary-muted">Error</label>
+				<Select variant="error">
+					<SelectTrigger className="w-[180px]">
+						<SelectValue placeholder="Error variant" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="apple">Apple</SelectItem>
+						<SelectItem value="banana">Banana</SelectItem>
+						<SelectItem value="orange">Orange</SelectItem>
+					</SelectContent>
+				</Select>
+				<p className="text-xs text-error/90">Please select an option</p>
+			</div>
+
+			<div className="flex flex-col space-y-2">
+				<label className="text-sm font-medium text-primary-muted">
+					Success
+				</label>
+				<Select variant="success" defaultValue="orange">
+					<SelectTrigger className="w-[180px]">
+						<SelectValue placeholder="Success variant" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="apple">Apple</SelectItem>
+						<SelectItem value="banana">Banana</SelectItem>
+						<SelectItem value="orange">Orange</SelectItem>
+					</SelectContent>
+				</Select>
+				<p className="text-xs text-success/90">Looks good!</p>
+			</div>
+		</div>
+	);
+};
+
 export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4">

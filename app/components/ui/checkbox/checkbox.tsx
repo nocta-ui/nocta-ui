@@ -44,7 +44,7 @@ const checkboxVariants = cva(
 				checked: false,
 				class:
 					"bg-background-muted border-border has-[:focus-visible]:ring-ring/50",
-			}
+			},
 		],
 		defaultVariants: {
 			size: "md",
@@ -54,23 +54,26 @@ const checkboxVariants = cva(
 	},
 );
 
-const iconVariants = cva(["transition-opacity duration-200 ease-in-out text-primary-foreground"], {
-	variants: {
-		size: {
-			sm: "h-3 w-3",
-			md: "h-4 w-4",
-			lg: "h-4.5 w-4.5",
+const iconVariants = cva(
+	["transition-opacity duration-200 ease-in-out text-primary-foreground"],
+	{
+		variants: {
+			size: {
+				sm: "h-3 w-3",
+				md: "h-4 w-4",
+				lg: "h-4.5 w-4.5",
+			},
+			checked: {
+				true: "opacity-100",
+				false: "opacity-0",
+			},
 		},
-		checked: {
-			true: "opacity-100",
-			false: "opacity-0",
+		defaultVariants: {
+			size: "md",
+			checked: false,
 		},
 	},
-	defaultVariants: {
-		size: "md",
-		checked: false,
-	},
-});
+);
 
 export interface CheckboxProps
 	extends Omit<

@@ -10,7 +10,7 @@ export function Footer() {
 				"gap-16 px-8 py-16",
 			)}
 		>
-			<p className="whitespace-nowrap text-foreground-muted text-sm font-mono">
+			<p className="whitespace-nowrap text-foreground-muted text-xs md:text-sm font-mono">
 				&copy; {new Date().getFullYear()} {owner}. Released under the MIT
 				License.
 			</p>

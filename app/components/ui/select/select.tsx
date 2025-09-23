@@ -8,18 +8,39 @@ import { cn } from "@/lib/utils";
 
 const selectTriggerVariants = cva(
 	`flex w-fit items-center justify-between
-   rounded-md border border-border
-   bg-background
+   rounded-md border
    placeholder:text-foreground-subtle
    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 
-   focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 
-   focus-visible:border-border
+   focus-visible:ring-offset-ring-offset/50 not-prose
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
    transition-all duration-200 ease-in-out
    hover:bg-background-muted/50
    shadow-xs not-prose`,
 	{
 		variants: {
+			variant: {
+				default: `
+          border-border
+          bg-background
+          text-foreground
+          focus-visible:border-border
+          focus-visible:ring-ring/50
+        `,
+				error: `
+          border-error/40
+          bg-background
+          text-foreground
+          focus-visible:border-error/50
+          focus-visible:ring-error/50 dark:focus-visible:ring-error/50
+        `,
+				success: `
+          border-success/40
+          bg-background
+          text-foreground
+          focus-visible:border-success/50
+          focus-visible:ring-success/50 dark:focus-visible:ring-success/50
+        `,
+			},
 			size: {
 				sm: "h-8 px-2 text-xs",
 				md: "h-10 px-3 text-sm",
@@ -27,18 +48,19 @@ const selectTriggerVariants = cva(
 			},
 		},
 		defaultVariants: {
+			variant: "default",
 			size: "md",
 		},
 	},
 );
 
-export interface SelectProps {
+export interface SelectProps
+	extends VariantProps<typeof selectTriggerVariants> {
 	value?: string;
 	defaultValue?: string;
 	onValueChange?: (value: string) => void;
 	disabled?: boolean;
 	children: React.ReactNode;
-	size?: "sm" | "md" | "lg";
 }
 
 export interface SelectTriggerProps
@@ -67,12 +89,23 @@ export interface SelectValueProps {
 	className?: string;
 }
 
+type SelectSize = NonNullable<
+	VariantProps<typeof selectTriggerVariants>["size"]
+>;
+type SelectVariant = NonNullable<
+	VariantProps<typeof selectTriggerVariants>["variant"]
+>;
+
 type InternalCtx = {
-	size: "sm" | "md" | "lg";
+	size: SelectSize;
+	variant: SelectVariant;
 	disabled?: boolean;
 };
 
-const InternalContext = React.createContext<InternalCtx>({ size: "md" });
+const InternalContext = React.createContext<InternalCtx>({
+	size: "md",
+	variant: "default",
+});
 
 export const Select: React.FC<SelectProps> = ({
 	value: controlledValue,
@@ -81,6 +114,7 @@ export const Select: React.FC<SelectProps> = ({
 	disabled = false,
 	children,
 	size = "md",
+	variant = "default",
 }) => {
 	const store = Ariakit.useSelectStore({
 		value: controlledValue,
@@ -89,9 +123,16 @@ export const Select: React.FC<SelectProps> = ({
 		animated: true,
 	});
 
+	const normalizedSize: SelectSize = size ?? "md";
+	const normalizedVariant: SelectVariant = variant ?? "default";
+	const contextValue = React.useMemo<InternalCtx>(
+		() => ({ size: normalizedSize, variant: normalizedVariant, disabled }),
+		[normalizedSize, normalizedVariant, disabled],
+	);
+
 	return (
 		<Ariakit.SelectProvider store={store}>
-			<InternalContext.Provider value={{ size, disabled }}>
+			<InternalContext.Provider value={contextValue}>
 				<div className="relative not-prose">{children}</div>
 			</InternalContext.Provider>
 		</Ariakit.SelectProvider>
@@ -102,17 +143,19 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 	children,
 	className = "",
 	size: propSize,
+	variant: propVariant,
 	...props
 }) => {
 	const ctx = React.useContext(InternalContext);
 	const select = Ariakit.useSelectContext();
 	const isOpen = Ariakit.useStoreState(select, (s) => s?.open ?? false);
-	const size = propSize || ctx.size || "md";
+	const size: SelectSize = propSize ?? ctx.size ?? "md";
+	const variant: SelectVariant = propVariant ?? ctx.variant ?? "default";
 
 	return (
 		<Ariakit.Select
 			disabled={ctx.disabled}
-			className={cn(selectTriggerVariants({ size }), className)}
+			className={cn(selectTriggerVariants({ size, variant }), className)}
 			{...props}
 		>
 			{children}

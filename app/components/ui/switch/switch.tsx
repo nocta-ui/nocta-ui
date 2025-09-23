@@ -36,7 +36,7 @@ const switchVariants = cva(
 			{
 				checked: false,
 				class: "bg-background-elevated peer-focus-visible:ring-ring/50",
-			}
+			},
 		],
 		defaultVariants: {
 			size: "md",

@@ -67,7 +67,7 @@ const tabsTriggerVariants = cva(
           text-primary-muted
           hover:text-foreground
           border-muted
-          data-[active-item]:border-border
+          data-[active-item]:border-primary-muted
           data-[active-item]:text-foreground
         `,
 			},

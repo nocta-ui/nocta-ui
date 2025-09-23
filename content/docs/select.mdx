@@ -6,6 +6,7 @@ description: A flexible select component for choosing from a list of options wit
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
 import { 
   DefaultSelectDemo,
+  VariantsDemo,
   SizesDemo,
 } from '@/app/components/ui/select/select-demos';
 import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
@@ -57,6 +58,52 @@ import {
         <SelectItem value="orange">Orange</SelectItem>
         <SelectItem value="grape">Grape</SelectItem>
         <SelectItem value="pineapple">Pineapple</SelectItem>
+      </SelectContent>
+    </Select>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Variants
+
+Visual variants help represent error and success states alongside the default appearance.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <VariantsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Select Variants"
+    <Select variant="default">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Default variant" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="orange">Orange</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <Select variant="error">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Error variant" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="orange">Orange</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <Select variant="success" defaultValue="orange">
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Success variant" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="orange">Orange</SelectItem>
       </SelectContent>
     </Select>
     ```
@@ -120,6 +167,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 | `onValueChange` | `(value: string) => void` | — | Callback when value changes |
 | `disabled` | `boolean` | `false` | Disable the select |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Select size |
+| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant |
 | `children` | `React.ReactNode` | — | Select content |
 
 ### SelectTrigger
@@ -128,6 +176,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 |------|------|---------|-------------|
 | `className` | `string` | `''` | Additional CSS classes |
 | `size` | `'sm' \| 'md' \| 'lg'` | — | Override size from context |
+| `variant` | `'default' \| 'error' \| 'success'` | — | Override variant from context |
 | `children` | `React.ReactNode` | — | Trigger content |
 
 ### SelectContent
