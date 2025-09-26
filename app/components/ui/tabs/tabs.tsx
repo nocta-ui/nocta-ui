@@ -47,7 +47,7 @@ const tabsTriggerVariants = cva(
 			variant: {
 				default: `
           w-full rounded-md
-          text-primary-muted
+          text-foreground-muted
           hover:text-foreground
           data-[active-item]:bg-background-muted
           data-[active-item]:text-foreground
@@ -55,19 +55,19 @@ const tabsTriggerVariants = cva(
         `,
 				pills: `
           rounded-lg
-          text-primary-muted
+          text-foreground-muted
           hover:bg-background
           hover:text-foreground
           data-[active-item]:bg-foreground-muted
-          data-[active-item]:text-primary-foreground
+          data-[active-item]:text-background
           data-[active-item]:shadow-sm
         `,
 				underline: `
           border-b-2 border-transparent
-          text-primary-muted
+          text-foreground-muted
           hover:text-foreground
           border-muted
-          data-[active-item]:border-primary-muted
+          data-[active-item]:border-foreground-muted
           data-[active-item]:text-foreground
         `,
 			},

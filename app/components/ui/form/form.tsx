@@ -140,7 +140,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 		<AriakitFormLabel
 			name={name}
 			className={cn(
-				"block text-sm font-medium text-primary-muted leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+				"block text-sm font-medium text-foreground-muted leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 				className,
 			)}
 			{...props}

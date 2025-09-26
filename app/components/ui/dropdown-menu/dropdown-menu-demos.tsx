@@ -36,7 +36,7 @@ export const BasicDropdownMenuDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Click the button below to open the dropdown menu
 			</div>
 
@@ -63,7 +63,7 @@ export const BasicDropdownMenuDemo: React.FC = () => {
 			</DropdownMenu>
 
 			{lastAction && (
-				<div className="text-sm text-primary-muted text-center">
+				<div className="text-sm text-foreground-muted text-center">
 					Last action: <span className="font-medium">{lastAction}</span>
 				</div>
 			)}
@@ -74,7 +74,7 @@ export const BasicDropdownMenuDemo: React.FC = () => {
 export const DropdownMenuWithSeparatorDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Dropdown menu with separators
 			</div>
 
@@ -120,7 +120,7 @@ export const DropdownMenuWithSeparatorDemo: React.FC = () => {
 export const DropdownMenuWithSubmenuDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Dropdown menu with submenu
 			</div>
 
@@ -172,7 +172,7 @@ export const DropdownMenuWithSubmenuDemo: React.FC = () => {
 export const DisabledDropdownMenuDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Disabled dropdown menu and items
 			</div>
 

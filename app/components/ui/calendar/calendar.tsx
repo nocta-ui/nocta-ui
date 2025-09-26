@@ -46,8 +46,8 @@ const dayButtonVariants = cva(
 	{
 		variants: {
 			state: {
-				default: "hover:bg-background-muted text-primary-muted",
-				selected: "bg-primary text-primary-foreground",
+				default: "hover:bg-background-muted text-foreground-muted",
+				selected: "bg-foreground text-background",
 				today: "bg-background-muted text-foreground",
 				disabled: "opacity-50 cursor-not-allowed line-through",
 				outsideMonth: "text-foreground-subtle",
@@ -314,7 +314,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToPreviousMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md text-primary-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
+						"rounded-md text-foreground-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Previous month"
@@ -336,7 +336,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							"rounded-md bg-background hover:bg-background-muted text-primary-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
+							"rounded-md bg-background hover:bg-background-muted text-foreground-muted disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
 							"px-2 py-1 text-xs",
 						)}
 					>
@@ -349,7 +349,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToNextMonth}
 					disabled={disabled}
 					className={cn(
-						"rounded-md text-primary-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
+						"rounded-md text-foreground-muted hover:bg-background disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors",
 						"p-1.5",
 					)}
 					aria-label="Next month"

@@ -246,7 +246,7 @@ const ToastPositionsExample: React.FC = () => {
 
 	return (
 		<div className="space-y-4 flex flex-col items-center">
-			<div className="text-sm text-primary-muted mb-4">
+			<div className="text-sm text-foreground-muted mb-4">
 				Click the buttons to see toasts appear in different positions:
 			</div>
 

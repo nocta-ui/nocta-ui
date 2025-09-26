@@ -12,7 +12,7 @@ export const BasicPopoverDemo: React.FC = () => {
 				<PopoverContent>
 					<div className="flex flex-col space-y-2">
 						<h4 className="font-medium text-sm">About this feature</h4>
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							This is a popover component that can contain any content you want.
 						</p>
 					</div>
@@ -52,7 +52,7 @@ export const ControlledDemo: React.FC = () => {
 					<PopoverContent>
 						<div className="flex flex-col space-y-2">
 							<h4 className="font-medium text-sm">Controlled State</h4>
-							<p className="text-sm text-primary-muted">
+							<p className="text-sm text-foreground-muted">
 								This popover&apos;s state is controlled externally.
 							</p>
 							<button

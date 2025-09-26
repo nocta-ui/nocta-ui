@@ -94,7 +94,7 @@ export default function ClerkTOCItems({
 				>
 					<TocThumb
 						containerRef={containerRef}
-						className="mt-(--fd-top) h-(--fd-height) bg-primary transition-all"
+						className="mt-(--fd-top) h-(--fd-height) bg-foreground transition-all"
 					/>
 				</div>
 			) : null}

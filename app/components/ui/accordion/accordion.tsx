@@ -55,8 +55,8 @@ const accordionTriggerVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "text-primary hover:text-primary-muted",
-				card: "text-primary hover:text-primary-muted",
+				default: "text-foreground hover:text-foreground-muted",
+				card: "text-foreground hover:text-foreground-muted",
 			},
 			size: {
 				sm: "text-xs",
@@ -139,7 +139,7 @@ const accordionContentVariants = cva(
 );
 
 const accordionContentInnerVariants = cva(
-	"text-primary-muted leading-relaxed",
+	"text-foreground-muted leading-relaxed",
 	{
 		variants: {
 			variant: {

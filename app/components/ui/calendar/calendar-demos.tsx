@@ -20,7 +20,7 @@ export const WeekStartsOnMondayDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Week Starts on Monday
 				</label>
 				<Calendar
@@ -39,7 +39,7 @@ export const WithWeekNumbersDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					With Week Numbers
 				</label>
 				<Calendar
@@ -63,7 +63,7 @@ export const DisabledDatesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-8">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Disabled Weekends
 				</label>
 				<Calendar
@@ -94,7 +94,7 @@ export const DateRangeDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Date Range (Today to +2 months)
 				</label>
 				<Calendar
@@ -124,7 +124,7 @@ export const CustomFormattingDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Custom Formatting
 				</label>
 				<Calendar
@@ -169,14 +169,14 @@ export const EventCalendarDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex flex-col space-y-2">
-					<label className="text-sm font-medium text-primary-muted">
+					<label className="text-sm font-medium text-foreground-muted">
 						Event Calendar
 					</label>
 					<Calendar value={selectedDate} onChange={handleDateSelect} />
 				</div>
 				{selectedDate && (
 					<div className="p-3 bg-background rounded-lg">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Selected:{" "}
 							<span className="font-medium">
 								{selectedDate.toLocaleDateString()}

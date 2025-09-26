@@ -66,7 +66,7 @@ export function TOCItems({ ref, className, ...props }: ComponentProps<"div">) {
 		<>
 			<TocThumb
 				containerRef={containerRef}
-				className="absolute top-(--fd-top) h-(--fd-height) w-px bg-primary transition-all"
+				className="absolute top-(--fd-top) h-(--fd-height) w-px bg-foreground transition-all"
 			/>
 			<div
 				ref={mergeRefs(ref, containerRef)}

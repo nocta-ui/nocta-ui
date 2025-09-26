@@ -251,7 +251,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="size-6 text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer"
+							className="size-6 text-foreground-subtle hover:text-foreground-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
@@ -262,7 +262,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 				</div>
 
 				<div className="flex items-center gap-2 mt-1 min-w-0">
-					<p className="text-xs text-primary-muted flex-shrink-0">
+					<p className="text-xs text-foreground-muted flex-shrink-0">
 						{formatFileSize(file.file.size)}
 					</p>
 
@@ -489,7 +489,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 							<p
 								className={cn(
 									"font-medium",
-									isDragOver ? "text-foreground-subtle" : "text-primary-muted",
+									isDragOver
+										? "text-foreground-subtle"
+										: "text-foreground-muted",
 								)}
 							>
 								{isDragOver ? dragText : uploadText}
@@ -530,7 +532,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								onClick={handleUpload}
 								size="sm"
 								variant="ghost"
-								className="bg-foreground text-primary-foreground hover:bg-foreground-muted hover:text-primary-foreground/80 transition-colors duration-200"
+								className="bg-foreground text-background hover:bg-foreground-muted hover:text-background/80 transition-colors duration-200"
 								disabled={disabled || isUploading}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}

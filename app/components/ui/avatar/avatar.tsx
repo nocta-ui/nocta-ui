@@ -11,7 +11,7 @@ const avatarVariants = cva(
 	[
 		"relative inline-flex items-center justify-center",
 		"bg-background-muted",
-		"text-primary-muted",
+		"text-foreground-muted",
 		"font-medium select-none",
 		"transition-all duration-200 ease-in-out",
 		"not-prose",
@@ -38,7 +38,7 @@ const avatarVariants = cva(
 	},
 );
 
-const textVariants = cva("font-medium text-primary-muted", {
+const textVariants = cva("font-medium text-foreground-muted", {
 	variants: {
 		size: {
 			xs: "text-xs",

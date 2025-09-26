@@ -76,7 +76,7 @@ const kbdClass = cva(
 		"text-[10px] leading-none font-medium",
 		"border-border",
 		"bg-background-muted/50",
-		"text-primary-muted shadow-sm",
+		"text-foreground-muted shadow-sm",
 	].join(" "),
 );
 
@@ -449,7 +449,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 														{entry.item.label}
 													</div>
 													{entry.item.description && (
-														<div className="hidden md:block truncate text-xs text-primary-muted/80 mt-0.5">
+														<div className="hidden md:block truncate text-xs text-foreground-muted/80 mt-0.5">
 															{entry.item.description}
 														</div>
 													)}

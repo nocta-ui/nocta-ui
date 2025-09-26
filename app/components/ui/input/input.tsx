@@ -87,9 +87,9 @@ const iconVariants = cva(
 const labelVariants = cva("block text-sm font-medium mb-1.5", {
 	variants: {
 		variant: {
-			default: "text-primary-muted",
-			error: "text-primary-muted",
-			success: "text-primary-muted",
+			default: "text-foreground-muted",
+			error: "text-foreground-muted",
+			success: "text-foreground-muted",
 		},
 	},
 	defaultVariants: {
@@ -102,7 +102,7 @@ const messageVariants = cva("mt-1.5 text-sm", {
 		type: {
 			error: "text-error/90",
 			success: "text-success/90",
-			helper: "text-primary-muted",
+			helper: "text-foreground-muted",
 		},
 	},
 });

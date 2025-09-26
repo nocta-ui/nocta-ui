@@ -30,7 +30,7 @@ export const SimpleDialogDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Dialog content goes here. You can add any components or content
 							you need.
 						</p>
@@ -56,7 +56,7 @@ export const DialogWithActionsDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							This will permanently remove <strong>Project Alpha</strong> and
 							all associated data.
 						</p>
@@ -96,7 +96,7 @@ export const SizesDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Compact dialog for simple interactions.
 						</p>
 					</div>
@@ -117,7 +117,7 @@ export const SizesDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Standard dialog size for most use cases.
 						</p>
 					</div>
@@ -138,7 +138,7 @@ export const SizesDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Larger dialog for complex forms or detailed content.
 						</p>
 					</div>
@@ -158,7 +158,7 @@ export const SizesDemo: React.FC = () => {
 						</DialogDescription>
 					</DialogHeader>
 					<div className="p-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Extra Large dialog for complex content.
 						</p>
 					</div>

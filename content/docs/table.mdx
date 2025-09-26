@@ -4,7 +4,7 @@ description: A powerful, highly customizable table component with pagination and
 ---
 
 import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
-import { 
+import {
   BasicTableDemo,
   AdvancedTableDemo,
   TableVariantsDemo,
@@ -61,8 +61,8 @@ import {
       { key: 'joinDate', title: 'Join Date' }
     ];
 
-    <Table 
-      columns={columns} 
+    <Table
+      columns={columns}
       data={users}
     />
     ```
@@ -84,12 +84,12 @@ Use the `render` function in column definitions for custom cell content.
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Custom Rendering & Actions"
     const columns: TableColumn<User>[] = [
-      { 
-        key: 'name', 
+      {
+        key: 'name',
         title: 'User',
         render: (value, record) => (
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-primary-foreground text-sm font-medium">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-background text-sm font-medium">
               {String(value).charAt(0)}
             </div>
             <div className="min-w-0">
@@ -99,8 +99,8 @@ Use the `render` function in column definitions for custom cell content.
           </div>
         )
       },
-      { 
-        key: 'status', 
+      {
+        key: 'status',
         title: 'Status',
         align: 'left',
         render: (value) => (
@@ -124,8 +124,8 @@ Use the `render` function in column definitions for custom cell content.
       }
     ];
 
-    <Table 
-      columns={columns} 
+    <Table
+      columns={columns}
       data={users}
       onRowClick={(record) => console.log('Clicked:', record)}
     />
@@ -150,8 +150,8 @@ Add pagination support with the `pagination` prop.
       setCurrentPage(page);
     };
 
-    <Table 
-      columns={columns} 
+    <Table
+      columns={columns}
       data={paginatedData}
       pagination={{
         current: currentPage,
@@ -210,8 +210,8 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Loading Table State"
-    <Table 
-      columns={columns} 
+    <Table
+      columns={columns}
       data={data}
       loading={isLoading}
     />
@@ -227,8 +227,8 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Empty Table State"
-    <Table 
-      columns={columns} 
+    <Table
+      columns={columns}
       data={[]}
       emptyText="No users found. Add some users to get started."
     />

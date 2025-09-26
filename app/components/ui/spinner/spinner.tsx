@@ -10,7 +10,7 @@ const spinnerVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: "text-primary-muted",
+				default: "text-foreground-muted",
 			},
 			size: {
 				sm: "w-4 h-4 border-2",

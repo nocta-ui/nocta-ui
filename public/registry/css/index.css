@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ================================
+   NOCTA CSS THEME VARIABLES
+   ================================ */
+
+/* --- Light Mode (Default) --- */
+:root {
+	/* Background colors */
+	--color-background: oklch(0.997 0.0031 229.76);
+	--color-background-muted: oklch(0.972 0.0031 229.76);
+	--color-background-elevated: oklch(0.92 0.0031 229.76);
+
+	/* Foreground (text) colors */
+	--color-foreground: oklch(0.205 0.0031 229.76);
+	--color-foreground-muted: oklch(0.371 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.708 0.0031 229.76);
+
+	/* Borders & Rings */
+	--color-border: oklch(0.205 0.0031 229.76 / 0.1);
+	--color-border-muted: oklch(0.942 0.0031 229.76 / 0.8);
+	--color-ring: oklch(0.205 0.0031 229.76);
+	--color-ring-offset: oklch(0.97 0.0031 229.76);
+
+	/* UI Accents */
+	--color-overlay: oklch(0.97 0.0031 229.76);
+
+	/* Semantic colors */
+	--color-error: oklch(0.65 0.17 25);
+	--color-warning: oklch(0.82 0.15 75);
+	--color-success: oklch(0.72 0.15 150);
+
+	/* Base radius unit */
+	--radius-base: 0.125rem;
+}
+
+/* --- Dark Mode --- */
+.dark {
+	/* Background colors */
+	--color-background: oklch(0.205 0.0031 229.76);
+	--color-background-muted: oklch(0.249 0.0031 229.76);
+	--color-background-elevated: oklch(0.351 0.0031 229.76);
+
+	/* Foreground (text) colors */
+	--color-foreground: oklch(0.97 0.0031 229.76);
+	--color-foreground-muted: oklch(0.87 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.556 0.0031 229.76);
+
+	/* Borders & Rings */
+	--color-border: oklch(0.97 0.0031 229.76 / 0.1);
+	--color-border-muted: oklch(0.269 0.0031 229.76 / 0.8);
+	--color-ring: oklch(0.97 0.0031 229.76);
+	--color-ring-offset: oklch(0.205 0.0031 229.76);
+
+	/* UI Accents */
+	--color-overlay: oklch(0.145 0.0031 229.76);
+
+	/* Semantic colors */
+	--color-error: oklch(0.58 0.19 25);
+	--color-warning: oklch(0.74 0.15 75);
+	--color-success: oklch(0.64 0.15 150);
+
+	/* Base radius unit */
+	--radius-base: 0.125rem;
+}
+
+/* --- Tailwind Theme Mapping --- */
+@theme {
+	/* Colors */
+	--color-background: var(--background);
+	--color-background-muted: var(--background-muted);
+	--color-background-elevated: var(--background-elevated);
+	--color-foreground: var(--foreground);
+	--color-foreground-muted: var(--foreground-muted);
+	--color-foreground-subtle: var(--foreground-subtle);
+	--color-border: var(--border);
+	--color-border-muted: var(--border-muted);
+	--color-ring: var(--ring);
+	--color-ring-offset: var(--ring-offset);
+	--color-overlay: var(--overlay);
+
+	/* Semantic colors */
+	--color-error: var(--error);
+	--color-warning: var(--warning);
+	--color-success: var(--success);
+
+	/* Radius scale */
+	--radius-xs: calc(var(--radius-base) * 1);
+	--radius-sm: calc(var(--radius-base) * 2);
+	--radius-md: calc(var(--radius-base) * 3);
+	--radius-lg: calc(var(--radius-base) * 4);
+	--radius-xl: calc(var(--radius-base) * 6);
+	--radius-2xl: calc(var(--radius-base) * 8);
+	--radius-3xl: calc(var(--radius-base) * 12);
+	--radius-4xl: calc(var(--radius-base) * 16);
+	--radius-full: 9999px;
+}

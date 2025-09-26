@@ -596,7 +596,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 					</Chat>
 				</div>
 
-				<div className="text-sm text-primary-muted space-y-1">
+				<div className="text-sm text-foreground-muted space-y-1">
 					<p>
 						<strong>Features demonstrated:</strong>
 					</p>

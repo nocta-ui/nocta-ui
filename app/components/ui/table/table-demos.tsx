@@ -185,7 +185,7 @@ export const AdvancedTableDemo: React.FC = () => {
 			title: "User",
 			render: (value, record) => (
 				<div className="flex items-center gap-3">
-					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-primary-foreground text-sm font-medium">
+					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-background text-sm font-medium">
 						{String(value).charAt(0)}
 					</div>
 					<div className="min-w-0">

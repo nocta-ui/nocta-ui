@@ -110,7 +110,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 			{label && (
 				<label
 					htmlFor={textareaId}
-					className="block text-sm font-medium text-primary-muted mb-1.5"
+					className="block text-sm font-medium text-foreground-muted mb-1.5"
 				>
 					{label}
 				</label>

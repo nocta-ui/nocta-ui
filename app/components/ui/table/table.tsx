@@ -273,7 +273,7 @@ export const Table = <T extends Record<string, unknown>>({
 						>
 							Previous
 						</button>
-						<span className="px-3 py-1.5 text-sm text-primary-muted">
+						<span className="px-3 py-1.5 text-sm text-foreground-muted">
 							Page {pagination.current} of{" "}
 							{Math.ceil(pagination.total / pagination.pageSize)}
 						</span>
@@ -377,7 +377,7 @@ export const TableCell: React.FC<TableCellProps> = ({
 				getAlignmentClass(),
 				header
 					? "font-semibold text-foreground tracking-tight"
-					: "text-primary-muted",
+					: "text-foreground-muted",
 				className,
 			),
 			colSpan,
@@ -414,7 +414,7 @@ export const TableCaption: React.FC<TableCaptionProps> = ({
 }) => {
 	return (
 		<caption
-			className={cn("py-3 text-sm text-primary-muted", className)}
+			className={cn("py-3 text-sm text-foreground-muted", className)}
 			{...props}
 		>
 			{children}

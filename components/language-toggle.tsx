@@ -37,7 +37,7 @@ export function LanguageToggle(props: LanguageSelectProps): React.ReactElement {
 						className={cn(
 							"p-2 text-start text-sm",
 							item.locale === context.locale
-								? "bg-primary/10 font-medium text-primary"
+								? "bg-foreground/10 font-medium text-primary"
 								: "hover:bg-background-muted hover:text-foreground-subtle",
 						)}
 						onClick={() => {

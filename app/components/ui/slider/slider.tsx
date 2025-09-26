@@ -417,7 +417,7 @@ export const Slider: React.FC<SliderProps> = ({
 			{showValue && (
 				<div
 					className={cn(
-						"mb-2 text-sm text-primary-muted",
+						"mb-2 text-sm text-foreground-muted",
 						currentOrientation === "vertical" ? "mb-0 mr-2" : "",
 					)}
 				>

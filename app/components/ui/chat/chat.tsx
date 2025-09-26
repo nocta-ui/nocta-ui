@@ -40,7 +40,7 @@ const messageVariants = cva(
 	{
 		variants: {
 			variant: {
-				user: "bg-primary-muted text-primary-foreground",
+				user: "bg-foreground-muted text-background",
 				assistant: "bg-background-muted text-foreground",
 				system:
 					"bg-background-muted/50 dark:bg-background-muted/30 text-foreground-subtle text-center text-xs mx-auto",
@@ -196,7 +196,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			{...props}
 		>
 			{showAvatars && (
-				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-primary-muted flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
 					{typingUsers[0].avatar ? (
 						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
@@ -217,7 +217,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			<div className="flex flex-col gap-1 w-full items-start">
 				<div className="bg-background-muted text-foreground rounded-lg px-3 py-2 text-sm w-fit max-w-[80%] transition-all duration-200 ease-in-out not-prose">
 					<div className="flex items-center gap-2">
-						<span className="text-xs text-primary-muted">
+						<span className="text-xs text-foreground-muted">
 							{getTypingText()}
 						</span>
 						<div className="flex gap-1">
@@ -335,7 +335,7 @@ export const ChatDescription: React.FC<ChatDescriptionProps> = ({
 		<p
 			id={id}
 			className={cn(
-				"text-sm text-primary-muted/80 leading-relaxed mt-2 not-prose",
+				"text-sm text-foreground-muted/80 leading-relaxed mt-2 not-prose",
 				className,
 			)}
 			{...props}
@@ -420,7 +420,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 			{...props}
 		>
 			{showAvatar && !isSystem && (
-				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-primary-muted flex-shrink-0">
+				<div className="w-8 h-8 rounded-full bg-background-muted flex items-center justify-center text-xs font-medium text-foreground-muted flex-shrink-0">
 					{message.avatar ? (
 						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
@@ -559,9 +559,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 						"px-3 py-2 rounded-lg font-medium transition-all duration-200 ease-in-out h-full",
 						"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:border-border",
 						"disabled:opacity-50 disabled:cursor-not-allowed not-prose",
-						"bg-primary",
-						"hover:bg-primary-muted",
-						"text-primary-foreground",
+						"bg-foreground",
+						"hover:bg-foreground-muted",
+						"text-background",
 						"shadow-sm",
 					)}
 				>

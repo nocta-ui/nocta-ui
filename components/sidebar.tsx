@@ -72,9 +72,9 @@ const itemVariants = cva(
 	{
 		variants: {
 			active: {
-				true: "bg-primary/10 text-primary",
+				true: "bg-foreground/10 text-primary",
 				false:
-					"transition-colors hover:bg-primary/5 hover:text-foreground hover:transition-none",
+					"transition-colors hover:bg-foreground/5 hover:text-foreground hover:transition-none",
 			},
 		},
 	},
@@ -383,7 +383,7 @@ export function SidebarFolderContent(props: CollapsibleContentProps) {
 				"relative",
 				level === 1 && [
 					"before:content-[''] before:absolute before:w-px before:inset-y-1 before:bg-border before:start-2.5",
-					"**:data-[active=true]:before:content-[''] **:data-[active=true]:before:bg-primary **:data-[active=true]:before:absolute **:data-[active=true]:before:w-px **:data-[active=true]:before:inset-y-2.5 **:data-[active=true]:before:start-2.5",
+					"**:data-[active=true]:before:content-[''] **:data-[active=true]:before:bg-foreground **:data-[active=true]:before:absolute **:data-[active=true]:before:w-px **:data-[active=true]:before:inset-y-2.5 **:data-[active=true]:before:start-2.5",
 				],
 				props.className,
 			)}

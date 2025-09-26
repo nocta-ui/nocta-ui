@@ -5,7 +5,7 @@ description: Advanced popover component with smart positioning, collision detect
 
 import { Popover, PopoverTrigger, PopoverContent } from '@/app/components/ui/popover';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
-import { 
+import {
   BasicPopoverDemo,
   SidesDemo,
   AlignmentDemo,
@@ -31,10 +31,10 @@ npx nocta-ui add popover
 Import the component:
 
 ```tsx lineNumbers title="Import"
-import { 
-  Popover, 
-  PopoverTrigger, 
-  PopoverContent 
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent
 } from '@/components/ui/popover';
 ```
 </Step>
@@ -57,7 +57,7 @@ The Popover component provides a floating panel that appears on demand, perfect 
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-primary-muted">
+          <p className="text-sm text-foreground-muted">
             This is a popover component that can contain any content you want.
           </p>
         </div>
@@ -84,7 +84,7 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-primary-muted">
+          <p className="text-sm text-foreground-muted">
             This popover's state is controlled externally.
           </p>
           <button

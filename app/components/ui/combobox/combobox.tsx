@@ -11,7 +11,7 @@ const comboboxVariants = cva(
 	`relative w-fit inline-flex items-center justify-between
 	hover:bg-background-muted/50
    rounded-md border transition-all duration-200 ease-in-out
-   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1
    focus-visible:ring-offset-ring-offset/50
    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
    shadow-xs not-prose`,
@@ -159,7 +159,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									}}
 									role="button"
 									tabIndex={0}
-									className="p-0.5 hover:bg-background rounded text-foreground-subtle hover:text-primary-muted cursor-pointer duration-200 ease-in-out"
+									className="p-0.5 hover:bg-background rounded text-foreground-subtle hover:text-foreground-muted cursor-pointer duration-200 ease-in-out"
 									title="Clear selection"
 									aria-label="Clear selection"
 								>
@@ -214,7 +214,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							{matches.length === 0 ? (
 								<output
 									aria-live="polite"
-									className="px-3 py-2 text-sm text-primary-muted text-center mx-1"
+									className="px-3 py-2 text-sm text-foreground-muted text-center mx-1"
 								>
 									{emptyMessage}
 								</output>
@@ -231,9 +231,9 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											disabled={option.disabled}
 											aria-disabled={option.disabled || undefined}
 											className={cn(
-												"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-sm text-primary-muted hover:text-primary hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
+												"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-sm text-foreground-muted hover:text-foreground hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
 												isSelected &&
-													"bg-background-muted text-primary font-medium",
+													"bg-background-muted text-foreground font-medium",
 												option.disabled &&
 													"opacity-50 cursor-not-allowed pointer-events-none",
 											)}
@@ -246,7 +246,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											{isSelected && (
 												<Icons.Check
 													aria-hidden="true"
-													className="h-4 w-4 text-primary-muted"
+													className="h-4 w-4 text-foreground-muted"
 												/>
 											)}
 										</Ariakit.ComboboxItem>

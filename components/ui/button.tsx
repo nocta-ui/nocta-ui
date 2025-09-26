@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 const variants = {
-	primary: "bg-primary text-primary-foreground hover:bg-primary/80",
+	primary: "bg-foreground text-background hover:bg-foreground/80",
 	outline: "border hover:bg-background-muted hover:text-foreground-subtle",
 	ghost: "hover:bg-background-muted hover:text-foreground-subtle",
 	secondary:

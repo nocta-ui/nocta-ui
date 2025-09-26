@@ -271,7 +271,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 	return (
 		<AriakitDialogDescription
 			className={cn(
-				"text-sm text-primary-muted/80 leading-relaxed mt-1 not-prose",
+				"text-sm text-foreground-muted/80 leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}
@@ -343,7 +343,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-primary-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer not-prose",
+				"inline-flex items-center justify-center w-8 h-8 rounded-md text-foreground-subtle hover:text-foreground-muted hover:bg-background transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border cursor-pointer not-prose",
 				className,
 			)}
 			type="button"

@@ -10,7 +10,7 @@ const alertVariants = cva(
 		variants: {
 			variant: {
 				default:
-					"border-border bg-background text-primary-muted [&_[data-slot=alert-icon]]:text-primary-muted overflow-hidden",
+					"border-border bg-background text-foreground-muted [&_[data-slot=alert-icon]]:text-foreground-muted overflow-hidden",
 				destructive:
 					"border-border bg-background text-error/90 [&_[data-slot=alert-icon]]:text-error/90",
 				warning:
@@ -48,7 +48,7 @@ const alertTitleVariants = cva(
 );
 
 const alertDescriptionVariants = cva(
-	"[&_p]:leading-relaxed opacity-90 not-prose text-primary-muted/80",
+	"[&_p]:leading-relaxed opacity-90 not-prose text-foreground-muted/80",
 	{
 		variants: {
 			size: {

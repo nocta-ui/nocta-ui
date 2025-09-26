@@ -49,7 +49,9 @@ export const BasicCommandKDemo: React.FC = () => {
 	return (
 		<div className="my-6 flex items-center gap-3">
 			<Button onClick={() => setOpen(true)}>Open Command Palette</Button>
-			<span className="text-sm text-primary-muted">Or press ⌘K / Ctrl+K</span>
+			<span className="text-sm text-foreground-muted">
+				Or press ⌘K / Ctrl+K
+			</span>
 
 			<CommandK
 				items={items}

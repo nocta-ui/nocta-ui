@@ -32,7 +32,7 @@ export const VariantsDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Default
 				</label>
 				<Select variant="default">
@@ -48,7 +48,9 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">Error</label>
+				<label className="text-sm font-medium text-foreground-muted">
+					Error
+				</label>
 				<Select variant="error">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Error variant" />
@@ -63,7 +65,7 @@ export const VariantsDemo: React.FC = () => {
 			</div>
 
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-primary-muted">
+				<label className="text-sm font-medium text-foreground-muted">
 					Success
 				</label>
 				<Select variant="success" defaultValue="orange">
@@ -86,7 +88,7 @@ export const SizesDemo: React.FC = () => {
 	return (
 		<div className="my-6 space-y-4">
 			<div>
-				<label className="block text-sm font-medium text-primary-muted mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Small
 				</label>
 				<Select size="sm">
@@ -102,7 +104,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-primary-muted mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Medium
 				</label>
 				<Select size="md">
@@ -118,7 +120,7 @@ export const SizesDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<label className="block text-sm font-medium text-primary-muted mb-1.5">
+				<label className="block text-sm font-medium text-foreground-muted mb-1.5">
 					Large
 				</label>
 				<Select size="lg">

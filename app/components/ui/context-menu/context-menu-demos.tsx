@@ -40,7 +40,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Right-click on the area below to open the context menu
 			</div>
 
@@ -67,7 +67,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 			</ContextMenu>
 
 			{lastAction && (
-				<div className="text-sm text-primary-muted text-center">
+				<div className="text-sm text-foreground-muted text-center">
 					Last action: <span className="font-medium">{lastAction}</span>
 				</div>
 			)}
@@ -78,7 +78,7 @@ export const BasicContextMenuDemo: React.FC = () => {
 export const ContextMenuWithSeparatorDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Context menu with separators
 			</div>
 
@@ -124,7 +124,7 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 export const ContextMenuWithSubmenuDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Context menu with submenu
 			</div>
 
@@ -176,7 +176,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 export const DisabledContextMenuDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-full max-w-md flex flex-col justify-center items-center space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				Disabled context menu and items
 			</div>
 
@@ -254,7 +254,7 @@ export const FileContextMenuDemo: React.FC = () => {
 
 	return (
 		<div className="my-6 w-full max-w-md mx-auto space-y-4">
-			<div className="text-sm text-primary-muted text-center">
+			<div className="text-sm text-foreground-muted text-center">
 				File manager context menu example
 			</div>
 

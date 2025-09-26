@@ -11,12 +11,12 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					"bg-primary hover:bg-primary-muted text-primary-foreground focus-visible:ring-ring/50 focus-visible:border-border shadow-sm",
+					"bg-foreground hover:bg-foreground-muted text-background focus-visible:ring-ring/50 focus-visible:border-border shadow-sm",
 				secondary:
 					"bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-border shadow-xs",
 				ghost:
-					"text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
-				icon: "text-primary-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
+					"text-foreground-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
+				icon: "text-foreground-muted hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border",
 			},
 			size: {
 				sm: "px-3 py-1.5 text-sm",
@@ -63,8 +63,6 @@ export const Button: React.FC<ButtonProps> = ({
 	type,
 	...props
 }) => {
-	const isPrimary = variant === "primary";
-
 	return (
 		<AriakitButton
 			className={cn(
@@ -77,29 +75,6 @@ export const Button: React.FC<ButtonProps> = ({
 			type={type ?? "button"}
 			{...props}
 		>
-			{isPrimary && (
-				<>
-					<span
-						aria-hidden
-						className="pointer-events-none absolute -inset-px rounded-lg bg-gradient-to-b to-transparent opacity-60"
-						style={{
-							maskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-							WebkitMaskImage:
-								"radial-gradient(120% 100% at 50% 0%, black 30%, transparent 70%)",
-						}}
-					/>
-
-					<span
-						aria-hidden
-						className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-lg opacity-60"
-						style={{
-							background:
-								"linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
-						}}
-					/>
-				</>
-			)}
 			{children}
 		</AriakitButton>
 	);

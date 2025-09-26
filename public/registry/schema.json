@@ -1,0 +1,100 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Nocta UI Schema",
+	"type": "object",
+	"required": [
+		"name",
+		"description",
+		"version",
+		"components",
+		"categories",
+		"requirements"
+	],
+	"properties": {
+		"name": { "type": "string" },
+		"description": { "type": "string" },
+		"version": { "type": "string" },
+		"components": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-z0-9\\-]+$": {
+					"type": "object",
+					"required": [
+						"name",
+						"description",
+						"category",
+						"files",
+						"dependencies",
+						"exports",
+						"props"
+					],
+					"properties": {
+						"name": { "type": "string" },
+						"description": { "type": "string" },
+						"category": { "type": "string" },
+						"files": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": ["name", "path", "type"],
+								"properties": {
+									"name": { "type": "string" },
+									"path": { "type": "string" },
+									"type": { "type": "string" }
+								}
+							}
+						},
+						"dependencies": {
+							"type": "object",
+							"additionalProperties": { "type": "string" }
+						},
+						"internalDependencies": {
+							"type": "array",
+							"items": { "type": "string" }
+						},
+						"exports": {
+							"type": "array",
+							"items": { "type": "string" }
+						},
+						"props": {
+							"type": "object",
+							"additionalProperties": {
+								"type": "array",
+								"items": { "type": "string" }
+							}
+						},
+						"variants": {
+							"type": "array",
+							"items": { "type": ["string", "object"] }
+						},
+						"sizes": {
+							"type": "array",
+							"items": { "type": "string" }
+						}
+					}
+				}
+			}
+		},
+		"categories": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-z0-9\\-]+$": {
+					"type": "object",
+					"required": ["name", "description", "components"],
+					"properties": {
+						"name": { "type": "string" },
+						"description": { "type": "string" },
+						"components": {
+							"type": "array",
+							"items": { "type": "string" }
+						}
+					}
+				}
+			}
+		},
+		"requirements": {
+			"type": "object",
+			"additionalProperties": { "type": "string" }
+		}
+	}
+}

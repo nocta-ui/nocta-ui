@@ -55,7 +55,7 @@ const checkboxVariants = cva(
 );
 
 const iconVariants = cva(
-	["transition-opacity duration-200 ease-in-out text-primary-foreground"],
+	["transition-opacity duration-200 ease-in-out text-background"],
 	{
 		variants: {
 			size: {

@@ -47,7 +47,7 @@ export const CardWithActionsDemo: React.FC = () => {
 				<CardContent>
 					<div className="space-y-3">
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-primary-muted">
+							<span className="text-sm font-medium text-foreground-muted">
 								Status
 							</span>
 							<Badge size="sm" variant="success">
@@ -55,10 +55,10 @@ export const CardWithActionsDemo: React.FC = () => {
 							</Badge>
 						</div>
 						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-primary-muted">
+							<span className="text-sm font-medium text-foreground-muted">
 								Members
 							</span>
-							<span className="text-sm text-primary-muted">12</span>
+							<span className="text-sm text-foreground-muted">12</span>
 						</div>
 					</div>
 				</CardContent>

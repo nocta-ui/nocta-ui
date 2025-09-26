@@ -376,7 +376,7 @@ export function PageBreadcrumb({
 			{items.map((item, i) => {
 				const className = cn(
 					"truncate",
-					i === items.length - 1 && "text-primary font-medium",
+					i === items.length - 1 && "text-foreground font-medium",
 				);
 
 				return (

@@ -30,7 +30,7 @@ export const BasicTabsDemo: React.FC = () => {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<p className="text-sm text-primary-muted">
+							<p className="text-sm text-foreground-muted">
 								This is the overview tab content. You can add any components
 								here.
 							</p>
@@ -97,17 +97,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Settings</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Account settings and profile information.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Change your password and security settings.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Application preferences and configurations.
 						</p>
 					</TabsContent>
@@ -124,17 +124,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">About</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Welcome to the home page content.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Browse our product catalog.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Learn more about our company.
 						</p>
 					</TabsContent>
@@ -151,17 +151,17 @@ export const VariantsDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Projects</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Your dashboard overview and quick stats.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							Manage your team members and permissions.
 						</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">
+						<p className="text-sm text-foreground-muted">
 							View and manage your active projects.
 						</p>
 					</TabsContent>
@@ -184,13 +184,13 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">Small tab content.</p>
+						<p className="text-sm text-foreground-muted">Small tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">Small tab content.</p>
+						<p className="text-sm text-foreground-muted">Small tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">Small tab content.</p>
+						<p className="text-sm text-foreground-muted">Small tab content.</p>
 					</TabsContent>
 				</Tabs>
 			</div>
@@ -205,13 +205,13 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">Medium tab content.</p>
+						<p className="text-sm text-foreground-muted">Medium tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">Medium tab content.</p>
+						<p className="text-sm text-foreground-muted">Medium tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">Medium tab content.</p>
+						<p className="text-sm text-foreground-muted">Medium tab content.</p>
 					</TabsContent>
 				</Tabs>
 			</div>
@@ -226,13 +226,13 @@ export const SizesDemo: React.FC = () => {
 						<TabsTrigger value="tab3">Tab 3</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1" className="mt-4">
-						<p className="text-sm text-primary-muted">Large tab content.</p>
+						<p className="text-sm text-foreground-muted">Large tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab2" className="mt-4">
-						<p className="text-sm text-primary-muted">Large tab content.</p>
+						<p className="text-sm text-foreground-muted">Large tab content.</p>
 					</TabsContent>
 					<TabsContent value="tab3" className="mt-4">
-						<p className="text-sm text-primary-muted">Large tab content.</p>
+						<p className="text-sm text-foreground-muted">Large tab content.</p>
 					</TabsContent>
 				</Tabs>
 			</div>
@@ -263,13 +263,13 @@ export const VerticalTabsDemo: React.FC = () => {
 								<div className="space-y-4">
 									<div>
 										<label className="text-sm font-medium">Display Name</label>
-										<p className="text-sm text-primary-muted mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											This is your public display name.
 										</p>
 									</div>
 									<div>
 										<label className="text-sm font-medium">Email</label>
-										<p className="text-sm text-primary-muted mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											Your email address for notifications.
 										</p>
 									</div>
@@ -291,7 +291,7 @@ export const VerticalTabsDemo: React.FC = () => {
 										<label className="text-sm font-medium">
 											Two-Factor Authentication
 										</label>
-										<p className="text-sm text-primary-muted mt-1">
+										<p className="text-sm text-foreground-muted mt-1">
 											Add an extra layer of security to your account.
 										</p>
 									</div>
@@ -309,7 +309,7 @@ export const VerticalTabsDemo: React.FC = () => {
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
-								<p className="text-sm text-primary-muted">
+								<p className="text-sm text-foreground-muted">
 									No integrations configured yet.
 								</p>
 							</CardContent>
@@ -324,7 +324,7 @@ export const VerticalTabsDemo: React.FC = () => {
 								</CardDescription>
 							</CardHeader>
 							<CardContent>
-								<p className="text-sm text-primary-muted">
+								<p className="text-sm text-foreground-muted">
 									Advanced settings and developer options.
 								</p>
 							</CardContent>
@@ -352,7 +352,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="available" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-primary-muted">
+							<p className="text-sm text-foreground-muted">
 								This tab is available and can be accessed.
 							</p>
 						</CardContent>
@@ -361,7 +361,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="disabled" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-primary-muted">
+							<p className="text-sm text-foreground-muted">
 								This content won&apos;t be shown as the tab is disabled.
 							</p>
 						</CardContent>
@@ -370,7 +370,7 @@ export const DisabledTabsDemo: React.FC = () => {
 				<TabsContent value="coming-soon" className="mt-4">
 					<Card>
 						<CardContent className="pt-6">
-							<p className="text-sm text-primary-muted">
+							<p className="text-sm text-foreground-muted">
 								Coming soon feature content.
 							</p>
 						</CardContent>

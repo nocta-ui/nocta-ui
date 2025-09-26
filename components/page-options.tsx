@@ -56,7 +56,7 @@ export function LLMCopyButton({
 			disabled={isLoading}
 			variant="primary"
 			size="sm"
-			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-primary-foreground [&_svg]:dark:text-primary-foreground"
+			className="gap-2 [&_svg]:size-3.5 [&_svg]:text-background [&_svg]:dark:text-background"
 			onClick={onClick}
 		>
 			{checked ? (
@@ -70,7 +70,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	"text-sm p-2 rounded-lg inline-flex items-center gap-2 text-primary-muted hover:text-primary hover:bg-background-muted [&_svg]:size-4",
+	"text-sm p-2 rounded-lg inline-flex items-center gap-2 text-foreground-muted hover:text-foreground hover:bg-background-muted [&_svg]:size-4",
 );
 
 export function ViewOptions({

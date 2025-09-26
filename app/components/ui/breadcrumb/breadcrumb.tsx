@@ -53,12 +53,12 @@ const breadcrumbLinkVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"text-primary-muted/80",
+					"text-foreground-muted/80",
 					"hover:text-foreground",
 					"underline-offset-4 hover:underline",
 				],
 				ghost: [
-					"text-primary-muted/80",
+					"text-foreground-muted/80",
 					"hover:text-foreground",
 					"hover:bg-background",
 					"px-2 py-1 rounded-md",

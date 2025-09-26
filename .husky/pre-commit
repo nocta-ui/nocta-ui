@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+bash ./scripts/build-components.sh
+
+git add public/registry/components.json

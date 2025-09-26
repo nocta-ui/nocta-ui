@@ -4,7 +4,7 @@ description: A vertically stacked set of interactive headings that each reveal a
 ---
 
 import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
-import { 
+import {
   BasicAccordionDemo,
   CardAccordionDemo,
   MultipleAccordionDemo,
@@ -25,7 +25,7 @@ npx nocta-ui add accordion
 Then import the components you need:
 
 ```tsx lineNumbers title="Import"
-import { 
+import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
@@ -59,14 +59,14 @@ A simple accordion with collapsible content sections.
                 Nocta UI is a modern React component library built with performance and accessibility in mind.
               </AccordionContent>
             </AccordionItem>
-            
+
             <AccordionItem value="item-2">
               <AccordionTrigger>How to install?</AccordionTrigger>
               <AccordionContent>
                 You can install components using our CLI: <code>npx nocta-ui add accordion</code>
               </AccordionContent>
             </AccordionItem>
-            
+
             <AccordionItem value="item-3">
               <AccordionTrigger>Does it support dark mode?</AccordionTrigger>
               <AccordionContent>
@@ -141,7 +141,7 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
       return (
         <div className="w-full max-w-2xl mx-auto space-y-8">
           <div>
-            <h3 className="text-sm font-medium text-primary-muted mb-2">Small</h3>
+            <h3 className="text-sm font-medium text-foreground-muted mb-2">Small</h3>
             <Accordion size="sm">
               <AccordionItem value="small">
                 <AccordionTrigger>Small question</AccordionTrigger>
@@ -151,7 +151,7 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-primary-muted mb-2">Medium (Default)</h3>
+            <h3 className="text-sm font-medium text-foreground-muted mb-2">Medium (Default)</h3>
             <Accordion size="md">
               <AccordionItem value="medium">
                 <AccordionTrigger>Standard question</AccordionTrigger>
@@ -161,12 +161,12 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-primary-muted mb-2">Large</h3>
+            <h3 className="text-sm font-medium text-foreground-muted mb-2">Large</h3>
             <Accordion size="lg">
               <AccordionItem value="large">
                 <AccordionTrigger>Large question requiring more space</AccordionTrigger>
                 <AccordionContent>
-                  More detailed answer in larger size, which can contain more content 
+                  More detailed answer in larger size, which can contain more content
                   and details requiring additional space.
                 </AccordionContent>
               </AccordionItem>

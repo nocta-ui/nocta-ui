@@ -590,7 +590,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							type="button"
 							onClick={handleClose}
 							className={cn(
-								"absolute top-2 right-2 text-foreground-subtle hover:text-primary-muted focus-visible:ring-ring/50 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1 transition-colors duration-200 cursor-pointer",
+								"absolute top-2 right-2 text-foreground-subtle hover:text-foreground-muted focus-visible:ring-ring/50 p-1 rounded-md focus-visible:outline-none focus-visible:ring-1 transition-colors duration-200 cursor-pointer",
 							)}
 							aria-label="Close toast"
 						>
@@ -609,7 +609,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{description && (
 								<div
 									id={descriptionId}
-									className="text-sm opacity-80 leading-relaxed text-primary-muted/80"
+									className="text-sm opacity-80 leading-relaxed text-foreground-muted/80"
 								>
 									{description}
 								</div>
@@ -622,7 +622,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 											action.onClick();
 											handleClose();
 										}}
-										className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-primary hover:bg-primary-muted text-primary-foreground focus-visible:ring-ring/50 shadow-sm transition-all duration-200 cursor-pointer"
+										className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-foreground hover:bg-foreground-muted text-background focus-visible:ring-ring/50 shadow-sm transition-all duration-200 cursor-pointer"
 									>
 										{action.label}
 									</button>

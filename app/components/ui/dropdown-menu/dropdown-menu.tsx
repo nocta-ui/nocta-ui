@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const dropdownMenuContentVariants = cva(
 	`z-50 overflow-hidden rounded-md border bg-background border-border
-   text-primary-muted shadow-sm not-prose
+   text-foreground-muted shadow-sm not-prose
    transform transition-all duration-200 ease-in-out
    origin-top -translate-y-1 opacity-0 scale-95
    data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
@@ -49,7 +49,7 @@ const dropdownSubMenuContentVariants = cva(
 const dropdownMenuItemVariants = cva(
 	`w-full relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm
    outline-none transition-colors focus-visible:bg-background-muted
-   focus-visible:text-primary aria-disabled:pointer-events-none
+   focus-visible:text-foreground aria-disabled:pointer-events-none
    aria-disabled:opacity-50 hover:bg-background-muted hover:text-primary`,
 	{
 		variants: {

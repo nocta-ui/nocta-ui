@@ -10,7 +10,7 @@ const selectTriggerVariants = cva(
 	`flex w-fit items-center justify-between
    rounded-md border
    placeholder:text-foreground-subtle
-   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 
+   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1
    focus-visible:ring-offset-ring-offset/50 not-prose
    disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer
    transition-all duration-200 ease-in-out
@@ -209,8 +209,8 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-sm text-primary-muted hover:text-primary hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
-				isSelected && "bg-background-muted text-primary font-medium",
+				"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-sm text-foreground-muted hover:text-foreground hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
+				isSelected && "bg-background-muted text-foreground font-medium",
 				disabled && "opacity-50 cursor-not-allowed pointer-events-none",
 				className,
 			)}
@@ -219,7 +219,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			{isSelected && (
 				<Icons.Check
 					aria-hidden="true"
-					className="ml-2 h-4 w-4 text-primary-muted"
+					className="ml-2 h-4 w-4 text-foreground-muted"
 				/>
 			)}
 		</Ariakit.SelectItem>
@@ -238,7 +238,7 @@ export const SelectValue: React.FC<SelectValueProps> = ({
 	return (
 		<span
 			className={cn(
-				"block text-left text-primary truncate whitespace-pre-wrap",
+				"block text-left text-foreground truncate whitespace-pre-wrap",
 				className,
 			)}
 		>

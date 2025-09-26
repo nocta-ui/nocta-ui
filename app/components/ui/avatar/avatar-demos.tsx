@@ -130,7 +130,7 @@ export const GroupDemo: React.FC = () => {
 				className="-ml-2 ring-1 ring-ring-offset"
 			/>
 			<Avatar fallback="AB" className="-ml-2 ring-1 ring-ring-offset" />
-			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-primary-muted">
+			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
 				+5
 			</div>
 		</div>
@@ -147,7 +147,7 @@ export const CustomStylingDemo: React.FC = () => {
 			/>
 			<Avatar
 				fallback="JD"
-				className="bg-gradient-to-br from-purple-500 to-pink-500 text-primary-foreground"
+				className="bg-gradient-to-br from-purple-500 to-pink-500 text-background"
 			/>
 			<Avatar
 				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"

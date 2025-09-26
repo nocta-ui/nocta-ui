@@ -4,10 +4,10 @@ description: A versatile avatar component for displaying user profile images, in
 ---
 
 import { Avatar } from '@/app/components/ui/avatar';
-import { 
-  BasicAvatarDemo, 
-  SizesDemo, 
-  VariantsDemo, 
+import {
+  BasicAvatarDemo,
+  SizesDemo,
+  VariantsDemo,
   StatusDemo,
   FallbackDemo,
   GroupDemo,
@@ -48,14 +48,14 @@ import { Avatar } from '@/components/ui/avatar';
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Avatar"
     // With image
-    <Avatar 
-      src="https://example.com/avatar.jpg" 
-      alt="John Doe" 
+    <Avatar
+      src="https://example.com/avatar.jpg"
+      alt="John Doe"
     />
-    
+
     // With initials fallback
     <Avatar fallback="JD" />
-    
+
     // Default fallback (user icon)
     <Avatar />
     ```
@@ -138,16 +138,16 @@ The Avatar component gracefully handles image loading failures with multiple fal
     ```tsx lineNumbers title="Fallback Handling"
     // Valid image
     <Avatar src="valid-image.jpg" alt="John Doe" />
-    
+
     // Invalid image with initials fallback
     <Avatar src="invalid-image.jpg" fallback="JD" alt="John Doe" />
-    
+
     // Initials from name (auto-generated)
     <Avatar fallback="Sarah Connor" />
-    
+
     // Simple initials
     <Avatar fallback="AB" />
-    
+
     // Default user icon fallback
     <Avatar />
     ```
@@ -167,26 +167,26 @@ Stack multiple avatars to show groups or teams.
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Avatar Groups"
     <div className="flex items-center">
-      <Avatar 
-        src="avatar1.jpg" 
-        alt="John Doe" 
+      <Avatar
+        src="avatar1.jpg"
+        alt="John Doe"
         className="ring-1 ring-ring-offset"
       />
-      <Avatar 
-        src="avatar2.jpg" 
-        alt="Jane Smith" 
+      <Avatar
+        src="avatar2.jpg"
+        alt="Jane Smith"
         className="-ml-2 ring-1 ring-ring-offset"
       />
-      <Avatar 
-        src="avatar3.jpg" 
-        alt="Mike Johnson" 
+      <Avatar
+        src="avatar3.jpg"
+        alt="Mike Johnson"
         className="-ml-2 ring-1 ring-ring-offset"
       />
-      <Avatar 
-        fallback="AB" 
+      <Avatar
+        fallback="AB"
         className="-ml-2 ring-1 ring-ring-offset"
       />
-      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-primary-muted">
+      <div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-background ring-1 ring-ring-offset text-xs font-medium text-foreground-muted">
         +5
       </div>
     </div>

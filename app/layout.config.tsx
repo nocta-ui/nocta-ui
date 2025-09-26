@@ -8,7 +8,7 @@ export const owner = "Nocta UI";
 export const baseOptions: BaseLayoutProps = {
 	nav: {
 		title: (
-			<div className="flex gap-1 items-center justify-center text-primary-muted">
+			<div className="flex gap-1 items-center justify-center text-foreground-muted">
 				<svg
 					aria-hidden="true"
 					width="24"

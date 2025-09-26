@@ -95,7 +95,7 @@ const FrameworkSelector = () => {
 							<div className="flex h-full gap-4 w-full flex-col items-center justify-center border border-border bg-background hover:bg-background-muted/50 hover:text-foreground-muted transition-colors duration-300 rounded-md p-8 shadow-sm">
 								{framework.logo}
 								<div className="mt-3">
-									<span className="block text-lg font-medium text-primary-muted">
+									<span className="block text-lg font-medium text-foreground-muted">
 										{framework.name}
 									</span>
 									<span className="block text-sm text-foreground-subtle dark:text-foreground-subtle">
