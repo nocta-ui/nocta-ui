@@ -208,7 +208,14 @@ export const Calendar: React.FC<CalendarProps> = ({
 	const goToToday = useCallback(() => {
 		const today = new Date();
 		setCurrentMonth(today);
-	}, []);
+
+		if (!isDateDisabled(today)) {
+			if (!isControlled) {
+				setInternalValue(today);
+			}
+			onChange?.(today);
+		}
+	}, [isControlled, isDateDisabled, onChange]);
 
 	const getISOWeekNumber = useCallback((date: Date) => {
 		const d = new Date(
