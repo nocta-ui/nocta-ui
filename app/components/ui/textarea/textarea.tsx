@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 
 const textareaVariants = cva(
 	[
-		"w-full flex rounded-lg border transition-all duration-200 ease-in-out",
+		"w-full flex rounded-lg border border-none dark:border-solid transition-all duration-200 ease-in-out",
 		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1",
 		"focus-visible:ring-offset-ring-offset/50",
 		"disabled:opacity-50 disabled:cursor-not-allowed",
 		"placeholder:text-foreground-subtle",
-		"shadow-xs not-prose",
+		"shadow-sm not-prose",
 	],
 	{
 		variants: {

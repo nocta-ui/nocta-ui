@@ -9,7 +9,7 @@ const badgeVariants = cva(
 		"inline-flex items-center justify-center rounded-full font-medium",
 		"transition-all duration-200 ease-in-out",
 		"whitespace-nowrap",
-		"not-prose border shadow-sm",
+		"not-prose border border-none dark:border-solid shadow-sm",
 	],
 	{
 		variants: {

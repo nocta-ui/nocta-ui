@@ -5,7 +5,7 @@ import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-	"relative rounded-lg border px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit shadow-sm not-prose",
+	"relative rounded-lg border border-none dark:border-solid px-4 py-3 flex items-start gap-3 transition-all duration-200 ease-in-out w-fit shadow-sm not-prose",
 	{
 		variants: {
 			variant: {

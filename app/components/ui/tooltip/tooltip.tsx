@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 type Side = "top" | "bottom" | "left" | "right";
 
 const tooltipContentVariants = cva(
-	`z-50 px-3 py-2 text-sm border rounded-lg shadow-sm pointer-events-auto not-prose overflow-hidden
+	`z-50 px-3 py-2 text-sm border border-none dark:border-solid rounded-md shadow-md pointer-events-auto not-prose overflow-hidden
    transform transition-all duration-200 ease-in-out origin-top -translate-y-1 opacity-0 scale-95
    data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
    data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,

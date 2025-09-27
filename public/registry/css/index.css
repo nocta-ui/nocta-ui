@@ -1,12 +1,10 @@
-@import "tailwindcss";
-
 /* ================================
    NOCTA CSS THEME VARIABLES
    ================================ */
 
-/* --- Light Mode (Default) --- */
+/* --- Light Mode --- */
 :root {
-	/* Background colors */
+	/* Backgrounds */
 	--color-background: oklch(0.997 0.0031 229.76);
 	--color-background-muted: oklch(0.972 0.0031 229.76);
 	--color-background-elevated: oklch(0.92 0.0031 229.76);
@@ -19,16 +17,53 @@
 	/* Borders & Rings */
 	--color-border: oklch(0.205 0.0031 229.76 / 0.1);
 	--color-border-muted: oklch(0.942 0.0031 229.76 / 0.8);
-	--color-ring: oklch(0.205 0.0031 229.76);
+	--color-ring: oklch(0.205 0.0031 229.76); /* Focus ring */
 	--color-ring-offset: oklch(0.97 0.0031 229.76);
-
-	/* UI Accents */
-	--color-overlay: oklch(0.97 0.0031 229.76);
+	--color-overlay: oklch(0.95 0.0031 229.76);
 
 	/* Semantic colors */
 	--color-error: oklch(0.65 0.17 25);
 	--color-warning: oklch(0.82 0.15 75);
 	--color-success: oklch(0.72 0.15 150);
+
+	/* Shadows (elevation levels) */
+	--shadow-xs:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 1px -0.5px rgba(0, 0, 0, 0.06);
+	--shadow-sm:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.08);
+	--shadow-md:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 12px 12px -6px rgba(0, 0, 0, 0.06),
+		0px 24px 24px -12px rgba(0, 0, 0, 0);
+	--shadow-lg:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 16px 16px -8px rgba(0, 0, 0, 0.06),
+		0px 32px 32px -16px rgba(0, 0, 0, 0.06);
+	--shadow-xl:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 20px 20px -10px rgba(0, 0, 0, 0.06),
+		0px 40px 40px -20px rgba(0, 0, 0, 0.06);
+	--shadow-2xl:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 24px 24px -12px rgba(0, 0, 0, 0.06),
+		0px 48px 48px -24px rgba(0, 0, 0, 0.06);
+	--shadow-inner:
+		inset 0px 1px 2px rgba(0, 0, 0, 0.06), inset 0px -1px 2px
+		rgba(0, 0, 0, 0.03);
 
 	/* Base radius unit */
 	--radius-base: 0.125rem;
@@ -36,12 +71,12 @@
 
 /* --- Dark Mode --- */
 .dark {
-	/* Background colors */
+	/* Backgrounds */
 	--color-background: oklch(0.205 0.0031 229.76);
 	--color-background-muted: oklch(0.249 0.0031 229.76);
 	--color-background-elevated: oklch(0.351 0.0031 229.76);
 
-	/* Foreground (text) colors */
+	/* Foreground (text) */
 	--color-foreground: oklch(0.97 0.0031 229.76);
 	--color-foreground-muted: oklch(0.87 0.0031 229.76);
 	--color-foreground-subtle: oklch(0.556 0.0031 229.76);
@@ -51,8 +86,6 @@
 	--color-border-muted: oklch(0.269 0.0031 229.76 / 0.8);
 	--color-ring: oklch(0.97 0.0031 229.76);
 	--color-ring-offset: oklch(0.205 0.0031 229.76);
-
-	/* UI Accents */
 	--color-overlay: oklch(0.145 0.0031 229.76);
 
 	/* Semantic colors */
@@ -60,7 +93,46 @@
 	--color-warning: oklch(0.74 0.15 75);
 	--color-success: oklch(0.64 0.15 150);
 
-	/* Base radius unit */
+	/* Shadows (same system as light mode) */
+	--shadow-xs:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 1px -0.5px rgba(0, 0, 0, 0.06);
+	--shadow-sm:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06);
+	--shadow-md:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 12px 12px -6px rgba(0, 0, 0, 0.06),
+		0px 24px 24px -12px rgba(0, 0, 0, 0.06);
+	--shadow-lg:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 16px 16px -8px rgba(0, 0, 0, 0.06),
+		0px 32px 32px -16px rgba(0, 0, 0, 0.06);
+	--shadow-xl:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 20px 20px -10px rgba(0, 0, 0, 0.06),
+		0px 40px 40px -20px rgba(0, 0, 0, 0.06);
+	--shadow-2xl:
+		0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.06),
+		0px 24px 24px -12px rgba(0, 0, 0, 0.06),
+		0px 48px 48px -24px rgba(0, 0, 0, 0.06);
+	--shadow-inner:
+		inset 0px 1px 2px rgba(0, 0, 0, 0.06), inset 0px -1px 2px
+		rgba(0, 0, 0, 0.03);
+
+	/* Base radius */
 	--radius-base: 0.125rem;
 }
 
@@ -83,6 +155,15 @@
 	--color-error: var(--error);
 	--color-warning: var(--warning);
 	--color-success: var(--success);
+
+	/* Shadows */
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
+	--shadow-inner: var(--shadow-inner);
 
 	/* Radius scale */
 	--radius-xs: calc(var(--radius-base) * 1);

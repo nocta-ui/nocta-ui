@@ -15,8 +15,8 @@ import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const dialogContentVariants = cva(
-	`relative max-h-[70vh] bg-background border border-border
-   rounded-lg shadow-sm not-prose overflow-y-auto
+	`relative max-h-[70vh] bg-background border border-none dark:border-solid border-border
+   rounded-lg shadow-2xl not-prose overflow-y-auto
    transition-all duration-200 ease-in-out`,
 	{
 		variants: {

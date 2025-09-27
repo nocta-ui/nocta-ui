@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 const chatVariants = cva(
 	[
-		"relative bg-background border border-border",
+		"relative bg-background border border-none dark:border-solid border-border",
 		"rounded-lg shadow-sm transition-all duration-200 ease-in-out",
 		"overflow-hidden not-prose",
 	],
@@ -307,7 +307,7 @@ export const ChatTitle: React.FC<ChatTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				"text-lg font-semibold text-foreground tracking-tight leading-tight not-prose",
+				"text-base font-semibold text-foreground tracking-tight leading-tight not-prose",
 				className,
 			),
 			...props,
@@ -335,7 +335,7 @@ export const ChatDescription: React.FC<ChatDescriptionProps> = ({
 		<p
 			id={id}
 			className={cn(
-				"text-sm text-foreground-muted/80 leading-relaxed mt-2 not-prose",
+				"text-sm text-foreground-muted/80 leading-relaxed mt-1 not-prose",
 				className,
 			)}
 			{...props}

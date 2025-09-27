@@ -6,8 +6,8 @@ import type React from "react";
 import { cn } from "@/lib/utils";
 
 const contextMenuContentVariants = cva(
-	`z-50 overflow-hidden rounded-md border bg-background border-border
-   text-foreground-muted shadow-sm not-prose
+	`z-50 overflow-hidden rounded-md border border-none dark:border-solid bg-background border-border
+   text-foreground-muted shadow-md not-prose
    transform transition-all duration-200 ease-in-out
    origin-top -translate-y-1 opacity-0 scale-95
    data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
@@ -27,8 +27,8 @@ const contextMenuContentVariants = cva(
 );
 
 const contextSubMenuContentVariants = cva(
-	`z-50 overflow-hidden rounded-md border bg-background border-border
-   text-foreground shadow-sm not-prose transform transition-all duration-200
+	`z-50 rounded-md border border-none dark:border-solid bg-background border-border
+   text-foreground shadow-md not-prose transform transition-all duration-200
    origin-top-left -translate-y-1 opacity-0 scale-95
    data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100
    data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95`,

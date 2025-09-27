@@ -72,7 +72,7 @@ const itemVariants = cva(
 	{
 		variants: {
 			active: {
-				true: "bg-foreground/10 text-primary",
+				true: "bg-foreground/5 text-primary",
 				false:
 					"transition-colors hover:bg-foreground/5 hover:text-foreground hover:transition-none",
 			},

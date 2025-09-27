@@ -10,11 +10,11 @@ import { cn } from "@/lib/utils";
 const comboboxVariants = cva(
 	`relative w-fit inline-flex items-center justify-between
 	hover:bg-background-muted/50
-   rounded-md border transition-all duration-200 ease-in-out
+   rounded-md border border-none dark:border-solid transition-all duration-200 ease-in-out
    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1
    focus-visible:ring-offset-ring-offset/50
    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-   shadow-xs not-prose`,
+   shadow-sm not-prose`,
 	{
 		variants: {
 			variant: {
@@ -177,7 +177,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						portal={portal}
 						sameWidth
 						className={cn(
-							"absolute z-[999] my-1 rounded-md border border-border bg-background shadow-sm overflow-hidden",
+							"absolute z-[999] my-1 rounded-md border border-none dark:border-solid border-border bg-background shadow-md overflow-hidden",
 							"transform transition-all duration-200 ease-in-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
 							popoverClassName,
 						)}

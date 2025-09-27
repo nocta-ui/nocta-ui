@@ -6,12 +6,12 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 const popoverTriggerVariants = cva(
-	"inline-flex items-center justify-center rounded-lg border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors duration-200 not-prose cursor-pointer",
+	"inline-flex items-center justify-center rounded-md shadow-sm border border-none dark:border-solid focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border transition-colors duration-200 not-prose cursor-pointer",
 	{
 		variants: {
 			variant: {
 				default:
-					"border-border bg-background text-foreground hover:bg-background-muted/60",
+					"border-border bg-background text-foreground hover:bg-background-muted/50",
 			},
 			size: {
 				sm: "px-2 py-1 text-xs",
@@ -27,7 +27,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-sm not-prose relative text-foreground overflow-hidden border border-border",
+	"w-fit min-w-[8rem] max-w-[var(--popover-available-width,_theme(spacing.80))] rounded-lg bg-background-muted p-4 shadow-md not-prose relative text-foreground overflow-hidden border border-none dark:border-solid border-border",
 	{
 		variants: {
 			size: {

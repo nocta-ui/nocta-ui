@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const calendarVariants = cva(
 	[
 		"rounded-lg bg-background",
-		"shadow-sm",
+		"shadow-md",
 		"transition-all duration-200 ease-in-out",
 		"overflow-hidden",
 		"not-prose",
@@ -298,7 +298,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 				calendarVariants({
 					disabled,
 				}),
-				"relative border border-border overflow-hidden",
+				"relative border border-none dark:border-solid border-border overflow-hidden",
 				className,
 			)}
 			{...props}

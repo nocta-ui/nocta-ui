@@ -21,7 +21,7 @@ const sliderVariants = cva(
 );
 
 const trackVariants = cva(
-	"relative rounded-full overflow-hidden bg-background-muted border border-border-muted shadow-inner",
+	"relative rounded-full overflow-hidden bg-background-muted border border-none dark:border-solid border-border-muted shadow-inner",
 	{
 		variants: {
 			size: {
@@ -99,7 +99,7 @@ const fillVariants = cva("absolute rounded-full ", {
 });
 
 const thumbVariants = cva(
-	"absolute rounded-full transform origin-center shadow-sm hover:shadow-xs",
+	"absolute rounded-full transform origin-center shadow-md hover:shadow-sm",
 	{
 		variants: {
 			variant: {

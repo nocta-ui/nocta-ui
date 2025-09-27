@@ -20,7 +20,7 @@ const fileUploadVariants = cva(
 		variants: {
 			variant: {
 				default: [
-					"border border-dashed border-border shadow-sm",
+					"border border-none dark:border-solid border-border shadow-md",
 					"bg-background",
 				],
 			},
