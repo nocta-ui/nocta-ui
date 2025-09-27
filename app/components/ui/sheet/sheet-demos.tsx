@@ -25,10 +25,7 @@ export const BasicSheetDemo: React.FC = () => {
 				<SheetContent>
 					<SheetHeader>
 						<SheetTitle>Sheet Title</SheetTitle>
-						<SheetDescription>
-							This is a basic sheet panel that slides in from the right side of
-							the screen.
-						</SheetDescription>
+						<SheetDescription>This is a basic sheet panel.</SheetDescription>
 					</SheetHeader>
 					<div className="p-4 flex-1">
 						<p className="text-sm text-foreground-muted">

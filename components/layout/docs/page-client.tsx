@@ -63,7 +63,7 @@ export function PageTOCPopoverTrigger(props: ComponentProps<"button">) {
 			<ProgressCircle
 				value={(selected + 1) / Math.max(1, items.length)}
 				max={1}
-				className={cn("shrink-0", open && "text-primary")}
+				className={cn("shrink-0", open && "text-foreground")}
 			/>
 			<span className="grid flex-1 *:my-auto *:row-start-1 *:col-start-1">
 				<span

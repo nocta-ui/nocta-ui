@@ -303,12 +303,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 			)}
 			{...props}
 		>
-			<div
-				className={cn(
-					"flex items-center justify-between border-b border-border-muted",
-					"px-4 py-3",
-				)}
-			>
+			<div className={cn("flex items-center justify-between", "px-4 pt-4")}>
 				<button
 					type="button"
 					onClick={goToPreviousMonth}

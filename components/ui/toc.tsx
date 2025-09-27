@@ -86,7 +86,7 @@ function TOCItem({ item }: { item: TOCItemType }) {
 		<Primitive.TOCItem
 			href={item.url}
 			className={cn(
-				"prose py-1.5 text-sm text-foreground-muted transition-colors [overflow-wrap:anywhere] first:pt-0 last:pb-0 data-[active=true]:text-primary",
+				"prose py-1.5 text-sm text-foreground-muted transition-colors [overflow-wrap:anywhere] first:pt-0 last:pb-0 data-[active=true]:text-foreground",
 				item.depth <= 2 && "ps-3",
 				item.depth === 3 && "ps-6",
 				item.depth >= 4 && "ps-8",

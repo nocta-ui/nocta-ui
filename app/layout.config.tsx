@@ -25,7 +25,7 @@ export const baseOptions: BaseLayoutProps = {
 					/>
 				</svg>
 
-				<p className="font-regular text-sm leading-relaxed">NOCTA UI</p>
+				<p className="font-bold text-sm leading-relaxed">NOCTA UI</p>
 			</div>
 		),
 	},

@@ -234,10 +234,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={cn("p-4 not-prose border-b border-border-muted", className)}
-			{...props}
-		>
+		<div className={cn("px-4 pt-4 not-prose", className)} {...props}>
 			{children}
 		</div>
 	);
@@ -253,7 +250,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
 		<AriakitDialogHeading
 			render={(headingProps) => React.createElement(Component, headingProps)}
 			className={cn(
-				"text-base font-semibold text-foreground tracking-tight leading-tight not-prose",
+				"text-base font-semibold text-foreground leading-tight not-prose",
 				className,
 			)}
 			{...props}

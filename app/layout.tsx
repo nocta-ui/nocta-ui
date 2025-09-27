@@ -5,14 +5,118 @@ import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import ThemeReloadWatcher from "../components/theme-reload-watcher";
 
-const sfpro = localFont({
-	src: "./assets/fonts/SF-Pro.woff2",
-	variable: "--font-sfpro",
+export const ppNeueMontreal = localFont({
+	src: [
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Thin.woff2",
+			weight: "200",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-ThinItalic.woff2",
+			weight: "200",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Light.woff2",
+			weight: "300",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-LightItalic.woff2",
+			weight: "300",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Regular.woff2",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Italic.woff2",
+			weight: "400",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Medium.woff2",
+			weight: "500",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-MediumItalic.woff2",
+			weight: "500",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBold.woff2",
+			weight: "700",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBoldItalic.woff2",
+			weight: "700",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-Bold.woff2",
+			weight: "800",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontreal/PPNeueMontreal-BoldItalic.woff2",
+			weight: "800",
+			style: "italic",
+		},
+	],
+	variable: "--font-ppneuemontreal",
+	display: "swap",
 });
 
-const sfmono = localFont({
-	src: "./assets/fonts/SFMono-Regular.woff2",
-	variable: "--font-sfmono",
+export const ppNeueMontrealMono = localFont({
+	src: [
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Thin.woff2",
+			weight: "100",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-ThinItalic.woff2",
+			weight: "100",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Light.woff2",
+			weight: "300",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Regular.woff2",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-RegularItalic.woff2",
+			weight: "400",
+			style: "italic",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Medium.woff2",
+			weight: "500",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Bold.woff2",
+			weight: "700",
+			style: "normal",
+		},
+		{
+			path: "./assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-BoldItalic.woff2",
+			weight: "700",
+			style: "italic",
+		},
+	],
+	variable: "--font-ppneuemontrealmono",
+	display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -109,7 +213,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${sfpro.variable} ${sfmono.variable}`}
+			className={`${ppNeueMontreal.variable} ${ppNeueMontrealMono.variable}`}
 			suppressHydrationWarning
 		>
 			<body className="flex flex-col">

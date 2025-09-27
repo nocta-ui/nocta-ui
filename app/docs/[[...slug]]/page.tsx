@@ -24,8 +24,10 @@ export default async function Page(props: {
 				style: "clerk",
 			}}
 		>
-			<h1 className="text-[1.75em] font-regular -mb-4">{page.data.title}</h1>
-			<p className="text-lg font-light text-foreground-muted/75">
+			<h1 className="text-[1.75em] text-foreground font-semibold -mb-4">
+				{page.data.title}
+			</h1>
+			<p className="text-lg font-normal text-foreground-muted/75">
 				{page.data.description}
 			</p>
 			<div className="flex flex-row gap-2 items-center border-b border-dashed pt-2 pb-6">

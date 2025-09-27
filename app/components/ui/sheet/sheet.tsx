@@ -15,7 +15,7 @@ import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
 const sheetContentVariants = cva(
-	"fixed flex flex-col bg-background border-border shadow-md border border-none dark:border-solid transform transition-transform duration-200 ease-in-out",
+	"fixed flex flex-col bg-background border-border shadow-2xl border border-none dark:border-solid transform transition-transform duration-200 ease-in-out",
 	{
 		variants: {
 			side: {
@@ -607,10 +607,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={cn("p-4 not-prose border-b border-border-muted", className)}
-			{...props}
-		>
+		<div className={cn("px-4 pt-4 not-prose", className)} {...props}>
 			{children}
 		</div>
 	);
@@ -625,7 +622,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 	return (
 		<AriakitDialogHeading
 			className={cn(
-				"text-base font-semibold text-foreground tracking-tight leading-tight not-prose",
+				"text-base font-semibold text-foreground leading-tight not-prose",
 				className,
 			)}
 			{...props}

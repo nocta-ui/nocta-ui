@@ -31,21 +31,18 @@ const alertVariants = cva(
 	},
 );
 
-const alertTitleVariants = cva(
-	"mb-1 font-medium leading-none tracking-tight not-prose",
-	{
-		variants: {
-			size: {
-				default: "text-sm",
-				sm: "text-xs",
-				lg: "text-base",
-			},
-		},
-		defaultVariants: {
-			size: "default",
+const alertTitleVariants = cva("mb-1 font-semibold leading-none not-prose", {
+	variants: {
+		size: {
+			default: "text-sm",
+			sm: "text-xs",
+			lg: "text-base",
 		},
 	},
-);
+	defaultVariants: {
+		size: "default",
+	},
+});
 
 const alertDescriptionVariants = cva(
 	"[&_p]:leading-relaxed opacity-90 not-prose text-foreground-muted/80",

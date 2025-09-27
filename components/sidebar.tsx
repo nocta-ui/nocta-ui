@@ -68,11 +68,11 @@ interface InternalContext {
 }
 
 const itemVariants = cva(
-	"relative flex flex-row items-center gap-2 rounded-lg p-1.5 ps-(--sidebar-item-offset) text-start text-foreground-muted/75 [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0",
+	"relative flex flex-row items-center gap-2 rounded-lg font-normal p-1.5 ps-(--sidebar-item-offset) text-start text-foreground-muted/75 [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0",
 	{
 		variants: {
 			active: {
-				true: "bg-foreground/5 text-primary",
+				true: "bg-foreground/5 text-foreground",
 				false:
 					"transition-colors hover:bg-foreground/5 hover:text-foreground hover:transition-none",
 			},
@@ -261,7 +261,7 @@ export function SidebarSeparator(props: ComponentProps<"p">) {
 		<p
 			{...props}
 			className={cn(
-				"!text-xs tracking-wider text-foreground-subtle font-mono uppercase inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
+				"!text-xs tracking-wider text-foreground-subtle uppercase inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
 				props.className,
 			)}
 		>

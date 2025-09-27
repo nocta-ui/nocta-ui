@@ -158,16 +158,6 @@ const wrap = (Tag: any, className?: string) => (props: any) => (
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
 	return {
 		...defaultMdxComponents,
-		p: wrap("p", " !text-foreground-muted/75 leading-relaxed font-light"),
-		code: wrap("code", " !text-foreground-muted"),
-		li: wrap("li", ""),
-		blockquote: wrap("blockquote", "!text-foreground italic border-l-2 pl-4"),
-		h1: wrap("h1", "!text-foreground !font-regular text-3xl mt-6 mb-3"),
-		h2: wrap("h2", "!text-foreground !font-normal text-2xl mt-5 mb-2"),
-		h3: wrap("h3", "!text-foreground/80 !font-normal text-lg mt-4 mb-1"),
-		h4: wrap("h4", "!text-foreground/50 !font-normal !text-lg mt-3 mb-1"),
-		h5: wrap("h5", "!text-foreground/50 !font-normal !text-base mt-2 mb-1"),
-		h6: wrap("h6", "!text-foreground/50 !font-normal text-sm mt-1 mb-1"),
 		Card,
 		CardHeader,
 		CardTitle,

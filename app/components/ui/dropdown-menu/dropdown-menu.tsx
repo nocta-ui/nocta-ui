@@ -50,7 +50,7 @@ const dropdownMenuItemVariants = cva(
 	`w-full relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm
    outline-none transition-colors focus-visible:bg-background-muted
    focus-visible:text-foreground aria-disabled:pointer-events-none
-   aria-disabled:opacity-50 hover:bg-background-muted hover:text-primary`,
+   aria-disabled:opacity-50 hover:bg-background-muted hover:text-foreground`,
 	{
 		variants: {
 			inset: {

@@ -94,7 +94,7 @@ export function RootToggle({
 							<CheckIcon
 								aria-hidden="true"
 								className={cn(
-									"shrink-0 ms-auto size-3.5 text-primary",
+									"shrink-0 ms-auto size-3.5 text-foreground",
 									!isActive && "invisible",
 								)}
 							/>

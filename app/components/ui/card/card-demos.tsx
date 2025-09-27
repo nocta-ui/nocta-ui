@@ -36,8 +36,8 @@ export const SimpleCardDemo: React.FC = () => {
 
 export const CardWithActionsDemo: React.FC = () => {
 	return (
-		<div className="my-6">
-			<Card className="max-w-md">
+		<div className="my-6 w-100">
+			<Card className="w-full max-w-100">
 				<CardHeader>
 					<CardTitle>Project Settings</CardTitle>
 					<CardDescription>

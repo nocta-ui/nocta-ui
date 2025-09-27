@@ -375,9 +375,7 @@ export const TableCell: React.FC<TableCellProps> = ({
 			className: cn(
 				"p-4",
 				getAlignmentClass(),
-				header
-					? "font-semibold text-foreground tracking-tight"
-					: "text-foreground-muted",
+				header ? "font-semibold text-foreground" : "text-foreground-muted",
 				className,
 			),
 			colSpan,

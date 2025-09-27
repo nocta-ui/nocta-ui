@@ -17,10 +17,10 @@ const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
 			type="button"
 			onClick={() => onClick?.(value)}
 			className={cn(
-				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out group",
+				"relative py-1.5 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out group cursor-pointer",
 				isActive
 					? "hover:contrast-110 text-foreground"
-					: "text-foreground-muted hover:text-foreground",
+					: "text-foreground-subtle hover:text-foreground-muted",
 			)}
 		>
 			<span className="relative z-10">{title}</span>
