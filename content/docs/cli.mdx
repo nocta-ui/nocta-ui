@@ -74,24 +74,32 @@ npx nocta-ui add button card badge
 
 ## Configuration
 
-`nocta.config.json` controls where files are written and which CSS file receives design tokens. Edit it if your project uses custom folders.
+`nocta.config.json` controls where files are written, which CSS file receives design tokens, and how import aliases are prefixed. Edit it if your project uses custom folders or alias conventions.
 
-```json5 lineNumbers title="nocta.config.json"
+```json lineNumbers title="nocta.config.json"
 {
+  "$schema": "http://nocta-ui.com/registry/config-schema.json",
   "style": "default",
   "tailwind": {
-    "css": "app/globals.css" // Next.js App Router default; other frameworks use their own paths
+    "css": "app/globals.css"
   },
   "aliases": {
-    "components": "components", // components/ui/* files are written here
-    "utils": "lib/utils"       // shared utility helpers live here
+    "components": "components",
+    "utils": "lib/utils"
+  },
+  "aliasPrefixes": {
+    "components": "@",
+    "utils": "@"
   }
 }
 ```
 
-- For Vite + React projects the defaults resolve to `src/App.css`, `src/components`, and `src/lib/utils`
-- For React Router 7 (framework mode) the defaults resolve to `app/app.css`, `app/components`, and `app/lib/utils`
-- Change `aliases.components` if you want files placed elsewhere; the CLI always writes into `<alias>/ui/`
+- Next.js App Router defaults to `app/globals.css`, `components/ui`, and `lib/utils`
+- Next.js Pages Router uses `styles/globals.css`, `components/ui`, and `lib/utils`
+- Vite + React resolves to `src/App.css`, `src/components/ui`, and `src/lib/utils`
+- React Router 7 resolves to `app/app.css`, `app/components/ui`, and `app/lib/utils`
+- Update `aliases.components` if you want files written somewhere else; the CLI always writes into `<alias>/`
+- Update `aliasPrefixes` if you use custom import prefixes (for example `@ui` instead of `@/components`)
 
 ## Networking & Requirements
 
