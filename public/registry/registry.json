@@ -1,5 +1,5 @@
 {
-	"$schema": "http://nocta-ui.com/registry/schema.json",
+	"$schema": "http://nocta-ui.com/registry/registry-schema.json",
 	"name": "nocta-ui",
 	"description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
 	"version": "1.1.0",
