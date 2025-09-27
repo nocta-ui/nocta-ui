@@ -1,422 +1,329 @@
 "use client";
 
-import React, { useState } from "react";
+import * as React from "react";
 import { Badge } from "../badge";
 import { Button } from "../button";
-import { Table, type TableColumn } from "./table";
+import { type ColumnDef, type Row, Table } from "./table";
 
-interface User extends Record<string, unknown> {
-	id: number;
-	name: string;
-	email: string;
-	role: string;
-	status: "active" | "inactive" | "pending";
-	joinDate: string;
-	lastSeen: string;
-}
-
-interface Product extends Record<string, unknown> {
-	id: number;
-	name: string;
-	category: string;
-	price: number;
-	stock: number;
-	rating: number;
-}
-
-interface Order extends Record<string, unknown> {
-	id: string;
+interface Invoice {
+	invoice: string;
 	customer: string;
-	product: string;
+	status: "paid" | "processing" | "overdue";
+	issuedOn: Date;
 	amount: number;
-	status: "pending" | "completed" | "cancelled";
-	date: string;
 }
 
-const sampleUsers: User[] = [
+interface TeamMember {
+	name: string;
+	role: string;
+	location: string;
+	projects: number;
+	availability: "available" | "busy" | "offline";
+}
+
+const invoiceData: Invoice[] = [
 	{
-		id: 1,
-		name: "Alice Johnson",
-		email: "alice@example.com",
-		role: "Admin",
-		status: "active",
-		joinDate: "2024-01-15",
-		lastSeen: "2024-03-10",
+		invoice: "INV-2041",
+		customer: "Lumen Studio",
+		status: "paid",
+		issuedOn: new Date("2024-02-14"),
+		amount: 2450,
 	},
 	{
-		id: 2,
-		name: "Bob Smith",
-		email: "bob@example.com",
-		role: "User",
-		status: "active",
-		joinDate: "2024-02-01",
-		lastSeen: "2024-03-09",
+		invoice: "INV-2042",
+		customer: "Orbit Labs",
+		status: "processing",
+		issuedOn: new Date("2024-02-19"),
+		amount: 1860,
 	},
 	{
-		id: 3,
-		name: "Carol Williams",
-		email: "carol@example.com",
-		role: "Editor",
-		status: "inactive",
-		joinDate: "2024-01-20",
-		lastSeen: "2024-03-05",
+		invoice: "INV-2043",
+		customer: "Nova Retail",
+		status: "overdue",
+		issuedOn: new Date("2024-02-09"),
+		amount: 1320,
 	},
 	{
-		id: 4,
-		name: "David Brown",
-		email: "david@example.com",
-		role: "User",
-		status: "pending",
-		joinDate: "2024-03-01",
-		lastSeen: "2024-03-08",
+		invoice: "INV-2044",
+		customer: "Neon Systems",
+		status: "paid",
+		issuedOn: new Date("2024-02-23"),
+		amount: 3150,
+	},
+	{
+		invoice: "INV-2045",
+		customer: "Zenith Ventures",
+		status: "processing",
+		issuedOn: new Date("2024-02-26"),
+		amount: 980,
 	},
 ];
 
-const sampleProducts: Product[] = [
+const teamMembers: TeamMember[] = [
 	{
-		id: 1,
-		name: 'MacBook Pro 16"',
-		category: "Laptops",
-		price: 2499,
-		stock: 5,
-		rating: 4.8,
+		name: "Olivia Stone",
+		role: "Product Designer",
+		location: "Berlin, DE",
+		projects: 4,
+		availability: "available",
 	},
 	{
-		id: 2,
-		name: "iPhone 15 Pro",
-		category: "Phones",
-		price: 999,
-		stock: 12,
-		rating: 4.7,
+		name: "Kai Nakamura",
+		role: "Frontend Engineer",
+		location: "Tokyo, JP",
+		projects: 3,
+		availability: "busy",
 	},
 	{
-		id: 3,
-		name: "Sony WH-1000XM5",
-		category: "Audio",
-		price: 399,
-		stock: 8,
-		rating: 4.6,
+		name: "Sofia Rivera",
+		role: "UX Researcher",
+		location: "Madrid, ES",
+		projects: 2,
+		availability: "available",
 	},
 	{
-		id: 4,
-		name: "iPad Air",
-		category: "Tablets",
-		price: 599,
-		stock: 3,
-		rating: 4.5,
-	},
-	{
-		id: 5,
-		name: "Dell XPS 13",
-		category: "Laptops",
-		price: 1299,
-		stock: 0,
-		rating: 4.4,
+		name: "Milan Novak",
+		role: "Design Ops",
+		location: "Prague, CZ",
+		projects: 1,
+		availability: "offline",
 	},
 ];
 
-const sampleOrders: Order[] = [
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+	style: "currency",
+	currency: "USD",
+	minimumFractionDigits: 0,
+});
+
+const availabilityBadge: Record<
+	TeamMember["availability"],
+	{ label: string; variant: "success" | "warning" | "secondary" }
+> = {
+	available: { label: "Available", variant: "success" },
+	busy: { label: "In a meeting", variant: "warning" },
+	offline: { label: "Offline", variant: "secondary" },
+};
+
+const invoiceColumns: ColumnDef<Invoice>[] = [
 	{
-		id: "ORD-001",
-		customer: "Alice Johnson",
-		product: 'MacBook Pro 16"',
-		amount: 2499,
-		status: "completed",
-		date: "2024-03-08",
+		accessorKey: "invoice",
+		header: "Invoice",
+		cell: ({ getValue }) => (
+			<span className="font-medium text-foreground">{getValue<string>()}</span>
+		),
+		meta: {
+			width: "140px",
+			align: "left",
+		},
 	},
 	{
-		id: "ORD-002",
-		customer: "Bob Smith",
-		product: "iPhone 15 Pro",
-		amount: 999,
-		status: "pending",
-		date: "2024-03-09",
+		accessorKey: "customer",
+		header: "Customer",
+		cell: ({ getValue }) => (
+			<span className="truncate">{getValue<string>()}</span>
+		),
+		meta: {
+			width: "140px",
+			align: "left",
+		},
 	},
 	{
-		id: "ORD-003",
-		customer: "Carol Williams",
-		product: "Sony WH-1000XM5",
-		amount: 399,
-		status: "completed",
-		date: "2024-03-07",
+		accessorKey: "status",
+		header: "Status",
+		enableSorting: false,
+		cell: ({ getValue }) => {
+			const value = getValue<Invoice["status"]>();
+			const variant =
+				value === "paid"
+					? "success"
+					: value === "processing"
+						? "warning"
+						: "destructive";
+			const label =
+				value === "paid"
+					? "Paid"
+					: value === "processing"
+						? "Processing"
+						: "Overdue";
+			return (
+				<Badge variant={variant} size="sm">
+					{label}
+				</Badge>
+			);
+		},
+		meta: {
+			align: "center",
+			width: "140px",
+		},
 	},
 	{
-		id: "ORD-004",
-		customer: "David Brown",
-		product: "iPad Air",
-		amount: 599,
-		status: "cancelled",
-		date: "2024-03-06",
+		accessorKey: "issuedOn",
+		header: "Issued",
+		cell: ({ getValue }) => {
+			const date = getValue<Date>();
+			return (
+				<span className="text-foreground-subtle">
+					{date.toLocaleDateString("en-US", {
+						month: "short",
+						day: "numeric",
+						year: "numeric",
+					})}
+				</span>
+			);
+		},
+		meta: {
+			align: "right",
+			width: "160px",
+		},
+	},
+	{
+		accessorKey: "amount",
+		header: "Amount",
+		cell: ({ getValue }) => (
+			<span className="font-semibold text-foreground">
+				{currencyFormatter.format(getValue<number>())}
+			</span>
+		),
+		enableSorting: true,
+		meta: {
+			align: "right",
+			width: "140px",
+		},
+	},
+];
+
+const teamColumns: ColumnDef<TeamMember>[] = [
+	{
+		accessorKey: "name",
+		header: "Name",
+		cell: ({ getValue }) => (
+			<div className="flex flex-col">
+				<span className="font-medium text-foreground">
+					{getValue<string>()}
+				</span>
+			</div>
+		),
+		meta: {
+			align: "left",
+			width: "120px",
+		},
+	},
+	{
+		accessorKey: "role",
+		header: "Role",
+		cell: ({ getValue }) => (
+			<span className="text-foreground-subtle">{getValue<string>()}</span>
+		),
+		meta: {
+			align: "left",
+			width: "120px",
+		},
+	},
+	{
+		accessorKey: "location",
+		header: "Location",
+		meta: { align: "center", width: "120px" },
+	},
+	{
+		accessorKey: "projects",
+		header: "Projects",
+		cell: ({ getValue }) => (
+			<span className="font-semibold text-foreground">
+				{getValue<number>()}
+			</span>
+		),
+		meta: { align: "right", width: "120px" },
+	},
+	{
+		accessorKey: "availability",
+		header: "Availability",
+		enableSorting: false,
+		cell: ({ getValue }) => {
+			const value = getValue<TeamMember["availability"]>();
+			const { label, variant } = availabilityBadge[value];
+			return (
+				<Badge variant={variant} size="sm">
+					{label}
+				</Badge>
+			);
+		},
+		meta: { align: "right", width: "120px" },
 	},
 ];
 
 export const BasicTableDemo: React.FC = () => {
-	const columns: TableColumn<User>[] = [
-		{ key: "name", title: "Name" },
-		{ key: "email", title: "Email" },
-		{ key: "role", title: "Role" },
-		{ key: "joinDate", title: "Join Date" },
-	];
-
 	return (
-		<div className="my-6 px-2">
-			<Table columns={columns} data={sampleUsers} className="max-w-4xl" />
-		</div>
-	);
-};
-
-export const AdvancedTableDemo: React.FC = () => {
-	const getStatusBadgeVariant = (status: string) => {
-		switch (status) {
-			case "active":
-				return "success";
-			case "inactive":
-				return "secondary";
-			case "pending":
-				return "warning";
-			default:
-				return "default";
-		}
-	};
-
-	const columns: TableColumn<User>[] = [
-		{
-			key: "name",
-			title: "User",
-			render: (value, record) => (
-				<div className="flex items-center gap-3">
-					<div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-background text-sm font-medium">
-						{String(value).charAt(0)}
-					</div>
-					<div className="min-w-0">
-						<div className="font-medium text-foreground truncate">
-							{String(value)}
-						</div>
-						<div className="text-xs text-foreground-subtle truncate">
-							{record.email}
-						</div>
-					</div>
+		<div className="space-y-4">
+			<div className="flex items-center justify-between">
+				<div>
+					<h3 className="text-sm font-semibold text-foreground">
+						Recent invoices
+					</h3>
+					<p className="text-xs text-foreground-subtle">
+						Track billing activity across your customers.
+					</p>
 				</div>
-			),
-		},
-		{
-			key: "status",
-			title: "Status",
-			align: "left",
-			render: (value) => (
-				<div className="flex items-center justify-center">
-					<Badge variant={getStatusBadgeVariant(String(value))} size="sm">
-						{String(value).charAt(0).toUpperCase() + String(value).slice(1)}
-					</Badge>
-				</div>
-			),
-		},
-		{
-			key: "actions",
-			title: "Actions",
-			align: "right",
-			render: (_) => (
-				<div className="flex items-center justify-end gap-1">
-					<Button variant="ghost" size="sm">
-						Edit
-					</Button>
-					<Button variant="ghost" size="sm">
-						Delete
-					</Button>
-				</div>
-			),
-		},
-	];
-
-	return (
-		<div className="my-6">
-			<Table
-				columns={columns}
-				data={sampleUsers}
-				onRowClick={(record) => console.log("Clicked user:", record.name)}
-			/>
-		</div>
-	);
-};
-
-export const TableVariantsDemo: React.FC = () => {
-	const columns: TableColumn<Product>[] = [
-		{ key: "name", title: "Product" },
-		{ key: "category", title: "Category" },
-		{
-			key: "price",
-			title: "Price",
-			align: "right",
-			render: (value) => `$${value}`,
-		},
-		{ key: "stock", title: "Stock", align: "right" },
-	];
-
-	return (
-		<div className="my-6 space-y-8">
-			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">Default</h4>
-				<Table columns={columns} data={sampleProducts.slice(0, 3)} />
-			</div>
-
-			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">Striped</h4>
-				<Table
-					columns={columns}
-					data={sampleProducts.slice(0, 3)}
-					variant="striped"
-				/>
-			</div>
-		</div>
-	);
-};
-
-export const TableSizesDemo: React.FC = () => {
-	const columns: TableColumn<Product>[] = [
-		{ key: "name", title: "Product" },
-		{
-			key: "price",
-			title: "Price",
-			align: "right",
-			render: (value) => `$${value}`,
-		},
-		{ key: "stock", title: "Stock", align: "right" },
-	];
-
-	return (
-		<div className="my-6 space-y-8">
-			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">Small</h4>
-				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="sm" />
-			</div>
-
-			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">Medium</h4>
-				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="md" />
-			</div>
-
-			<div>
-				<h4 className="text-sm font-semibold text-foreground mb-3">Large</h4>
-				<Table columns={columns} data={sampleProducts.slice(0, 2)} size="lg" />
-			</div>
-		</div>
-	);
-};
-
-export const PaginationTableDemo: React.FC = () => {
-	const [currentPage, setCurrentPage] = useState(1);
-	const pageSize = 2;
-
-	const columns: TableColumn<Order>[] = [
-		{ key: "id", title: "Order ID" },
-		{ key: "customer", title: "Customer" },
-		{ key: "product", title: "Product" },
-		{
-			key: "amount",
-			title: "Amount",
-			align: "right",
-			render: (value) => `$${String(value).toLocaleString()}`,
-		},
-		{
-			key: "status",
-			title: "Status",
-			render: (value) => {
-				const colors = {
-					pending: "warning",
-					completed: "success",
-					cancelled: "destructive",
-				};
-				return (
-					<Badge
-						variant={
-							colors[value as keyof typeof colors] as
-								| "warning"
-								| "success"
-								| "destructive"
-						}
-					>
-						{String(value)}
-					</Badge>
-				);
-			},
-		},
-	];
-
-	const handlePageChange = (page: number, _size: number) => {
-		setCurrentPage(page);
-	};
-
-	const paginatedData = sampleOrders.slice(
-		(currentPage - 1) * pageSize,
-		currentPage * pageSize,
-	);
-
-	return (
-		<div className="my-6">
-			<Table
-				columns={columns}
-				data={paginatedData}
-				pagination={{
-					current: currentPage,
-					pageSize: pageSize,
-					total: sampleOrders.length,
-					onChange: handlePageChange,
-				}}
-				className="max-w-4xl"
-			/>
-		</div>
-	);
-};
-
-export const LoadingTableDemo: React.FC = () => {
-	const [loading, setLoading] = useState(true);
-
-	const columns: TableColumn<User>[] = [
-		{ key: "name", title: "Name" },
-		{ key: "email", title: "Email" },
-		{ key: "role", title: "Role" },
-	];
-
-	React.useEffect(() => {
-		const timer = setTimeout(() => setLoading(false), 2000);
-		return () => clearTimeout(timer);
-	}, []);
-
-	return (
-		<div className="my-6">
-			<div className="mb-4">
-				<Button
-					onClick={() => setLoading(!loading)}
-					variant="secondary"
-					size="sm"
-				>
-					Toggle Loading
+				<Button size="sm" variant="ghost">
+					Download CSV
 				</Button>
 			</div>
-			<Table
-				columns={columns}
-				data={sampleUsers}
-				loading={loading}
-				className="w-2xl"
+			<Table<Invoice>
+				columns={invoiceColumns}
+				data={invoiceData}
+				getRowId={(invoice) => invoice.invoice}
+				density="comfortable"
 			/>
 		</div>
 	);
 };
 
-export const EmptyTableDemo: React.FC = () => {
-	const columns: TableColumn<User>[] = [
-		{ key: "name", title: "Name" },
-		{ key: "email", title: "Email" },
-		{ key: "role", title: "Role" },
-	];
+export const SelectableTableDemo: React.FC = () => {
+	const [selectedRows, setSelectedRows] = React.useState<Row<Invoice>[]>([]);
 
 	return (
-		<div className="my-6">
-			<Table
-				columns={columns}
-				data={[]}
-				emptyText="No users found. Add some users to get started."
-				className="max-w-4xl"
+		<div className="space-y-3">
+			<div className="flex items-center justify-between">
+				<div>
+					<h3 className="text-sm font-semibold text-foreground">
+						Invoice selection
+					</h3>
+					<p className="text-xs text-foreground-subtle">
+						Select invoices to update their payment status in bulk.
+					</p>
+				</div>
+				<span className="text-xs text-foreground-muted">
+					{selectedRows.length} selected
+				</span>
+			</div>
+			<Table<Invoice>
+				columns={invoiceColumns}
+				data={invoiceData}
+				getRowId={(invoice) => invoice.invoice}
+				enableRowSelection
+				onSelectedRowsChange={setSelectedRows}
+				emptyState="No invoices yet"
+			/>
+		</div>
+	);
+};
+
+export const CompactTableDemo: React.FC = () => {
+	return (
+		<div className="space-y-4">
+			<div>
+				<h3 className="text-sm font-semibold text-foreground">
+					Team availability
+				</h3>
+				<p className="text-xs text-foreground-subtle">
+					A compact view optimised for dense information.
+				</p>
+			</div>
+			<Table<TeamMember>
+				columns={teamColumns}
+				data={teamMembers}
+				getRowId={(member) => member.name}
+				density="compact"
 			/>
 		</div>
 	);

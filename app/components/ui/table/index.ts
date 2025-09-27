@@ -1,21 +1,15 @@
 export type {
-	TableBodyProps,
-	TableCaptionProps,
-	TableCellProps,
-	TableColumn,
-	TableFooterProps,
-	TableHeaderProps,
+	ColumnDef,
+	Row,
 	TableProps,
-	TableRowProps,
-	TableSize,
-	TableVariant,
 } from "./table";
 export {
 	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHeader,
-	TableRow,
+	tableVariants,
 } from "./table";
+
+export {
+	BasicTableDemo,
+	CompactTableDemo,
+	SelectableTableDemo,
+} from "./table-demos";

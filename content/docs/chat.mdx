@@ -3,11 +3,10 @@ title: Chat
 description: A comprehensive chat component system with message display, input handling, avatars, timestamps, and real-time messaging capabilities
 ---
 
-import { Chat, ChatHeader, ChatTitle, ChatDescription, ChatMessages, ChatMessage, ChatInput, ChatActions, TypingIndicator } from '@/app/components/ui/chat';
+import { Chat, ChatMessages, ChatMessage, ChatInput, ChatActions, TypingIndicator } from '@/app/components/ui/chat';
 import { Button } from "@/app/components/ui/button"
 import { 
   BasicChatDemo,
-  ChatWithHeaderDemo,
   ChatWithAvatarsDemo,
   ChatWithTimestampsDemo,
   ReadOnlyChatDemo,
@@ -34,9 +33,6 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     ```tsx lineNumbers title="Import"
     import {
       Chat,
-      ChatHeader,
-      ChatTitle,
-      ChatDescription,
       ChatMessages,
       ChatMessage,
       ChatInput,
@@ -91,34 +87,6 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         />
       </div>
     );
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Chat with Header
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ChatWithHeaderDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Chat with Header"
-    <div className="h-96">
-      <Chat
-        messages={messages}
-        onSendMessage={handleSendMessage}
-        showTimestamps
-        showAvatars
-        className="max-w-lg"
-      >
-        <ChatHeader>
-          <ChatTitle>Customer Support</ChatTitle>
-          <ChatDescription>
-            We're here to help! Chat with our support team.
-          </ChatDescription>
-        </ChatHeader>
-      </Chat>
-    </div>
     ```
   </DocsTab>
 </DocsTabs>
@@ -258,14 +226,7 @@ Display real-time typing indicators to show when users are composing messages.
         showAvatars
         placeholder="Send a message to see typing indicators..."
         className="w-full max-w-lg h-96"
-      >
-        <ChatHeader>
-          <ChatTitle>Team Chat</ChatTitle>
-          <ChatDescription>
-            Real-time typing indicators show when team members are responding
-          </ChatDescription>
-        </ChatHeader>
-      </Chat>
+      />
     );
     ```
   </DocsTab>

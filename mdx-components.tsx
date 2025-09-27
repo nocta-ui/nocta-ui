@@ -37,12 +37,9 @@ import {
 import {
 	Chat,
 	ChatActions,
-	ChatDescription,
-	ChatHeader,
 	ChatInput,
 	ChatMessage,
 	ChatMessages,
-	ChatTitle,
 } from "@/app/components/ui/chat";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import {
@@ -128,15 +125,6 @@ import { Slider } from "@/app/components/ui/slider";
 import { Spinner } from "@/app/components/ui/spinner";
 import { Switch } from "@/app/components/ui/switch";
 import {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHeader,
-	TableRow,
-} from "@/app/components/ui/table";
-import {
 	Tabs,
 	TabsContent,
 	TabsList,
@@ -149,6 +137,15 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/app/components/ui/tooltip";
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
 
 const wrap = (Tag: any, className?: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -245,9 +242,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		Calendar,
 		FrameworkSelector,
 		Chat,
-		ChatHeader,
-		ChatTitle,
-		ChatDescription,
 		ChatMessages,
 		ChatMessage,
 		ChatInput,

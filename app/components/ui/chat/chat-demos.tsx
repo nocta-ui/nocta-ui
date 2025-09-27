@@ -3,15 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { Button } from "../button";
-import {
-	Chat,
-	ChatActions,
-	ChatDescription,
-	ChatHeader,
-	ChatTitle,
-	type Message,
-	type TypingUser,
-} from "./chat";
+import { Chat, ChatActions, type Message, type TypingUser } from "./chat";
 
 export const BasicChatDemo: React.FC = () => {
 	const [messages, setMessages] = useState<Message[]>([
@@ -56,79 +48,6 @@ export const BasicChatDemo: React.FC = () => {
 					placeholder="Type your message here..."
 					className="w-xs md:w-lg h-64"
 				/>
-			</div>
-		</div>
-	);
-};
-
-export const ChatWithHeaderDemo: React.FC = () => {
-	const [messages, setMessages] = useState<Message[]>([
-		{
-			id: "1",
-			content: "Welcome to our support chat!",
-			sender: "system",
-			timestamp: new Date(),
-		},
-		{
-			id: "2",
-			content: "Hello! I'm here to help you with any questions.",
-			sender: "assistant",
-			timestamp: new Date(),
-			name: "Support Agent",
-			avatar:
-				"https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png",
-		},
-	]);
-
-	const handleSendMessage = (message: string) => {
-		const newMessage: Message = {
-			id: Date.now().toString(),
-			content: message,
-			sender: "user",
-			timestamp: new Date(),
-			name: "You",
-		};
-
-		setMessages((prev) => [...prev, newMessage]);
-
-		setTimeout(() => {
-			const responses = [
-				"I understand your concern. Let me help you with that.",
-				"That's a great question! Here's what I can tell you...",
-				"I'll need to check that for you. Give me a moment.",
-				"Thanks for providing that information. Let me assist you further.",
-			];
-
-			const assistantMessage: Message = {
-				id: (Date.now() + 1).toString(),
-				content: responses[Math.floor(Math.random() * responses.length)],
-				sender: "assistant",
-				timestamp: new Date(),
-				name: "Support Agent",
-				avatar:
-					"https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png",
-			};
-			setMessages((prev) => [...prev, assistantMessage]);
-		}, 1500);
-	};
-
-	return (
-		<div className="my-6">
-			<div className="">
-				<Chat
-					messages={messages}
-					onSendMessage={handleSendMessage}
-					showTimestamps
-					showAvatars
-					className="w-xs md:w-lg h-96"
-				>
-					<ChatHeader>
-						<ChatTitle>Customer Support</ChatTitle>
-						<ChatDescription>
-							We're here to help! Chat with our support team.
-						</ChatDescription>
-					</ChatHeader>
-				</Chat>
 			</div>
 		</div>
 	);
@@ -585,15 +504,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 						showAvatars
 						placeholder="Send a message to see typing indicators..."
 						className="w-xs md:w-lg h-96"
-					>
-						<ChatHeader>
-							<ChatTitle>Team Chat</ChatTitle>
-							<ChatDescription>
-								Real-time typing indicators show when team members are
-								responding
-							</ChatDescription>
-						</ChatHeader>
-					</Chat>
+					/>
 				</div>
 
 				<div className="text-sm text-foreground-muted space-y-1">

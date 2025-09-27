@@ -128,6 +128,49 @@
 			"variants": ["default", "secondary", "destructive", "success", "warning"],
 			"sizes": ["sm", "md", "lg"]
 		},
+		"table": {
+			"name": "Table",
+			"description": "Data table with TanStack Table integration, row selection, keyboard navigation, and customizable presentation",
+			"category": "data-display",
+			"files": [
+				{
+					"name": "table.tsx",
+					"path": "app/components/ui/table/table.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18",
+				"@tanstack/react-table": "^8.21.3"
+			},
+			"internalDependencies": ["checkbox"],
+			"exports": ["Table", "TableProps", "tableVariants", "ColumnDef", "Row"],
+			"props": {
+				"Table": [
+					"columns",
+					"data",
+					"enableSorting",
+					"enableRowSelection",
+					"density",
+					"activeRowId",
+					"onActiveRowChange",
+					"onRowClick",
+					"initialSorting",
+					"sortingState",
+					"onSortingChange",
+					"rowSelectionState",
+					"onRowSelectionChange",
+					"onSelectedRowsChange",
+					"emptyState",
+					"getRowId",
+					"className"
+				]
+			}
+		},
 		"button": {
 			"name": "Button",
 			"description": "Button component with multiple variants and sizes",
@@ -539,68 +582,6 @@
 					"id"
 				]
 			},
-			"sizes": ["sm", "md", "lg"]
-		},
-		"table": {
-			"name": "Table",
-			"description": "A powerful, highly customizable table component.",
-			"category": "data-display",
-			"files": [
-				{
-					"name": "table.tsx",
-					"path": "app/components/ui/table/table.tsx",
-					"type": "component"
-				}
-			],
-			"dependencies": {
-				"react": "^18.0.0",
-				"tailwind-merge": "^3.3.1",
-				"clsx": "^2.1.1",
-				"class-variance-authority": "^0.7.1"
-			},
-			"internalDependencies": ["spinner"],
-			"exports": [
-				"Table",
-				"TableHeader",
-				"TableBody",
-				"TableRow",
-				"TableCell",
-				"TableFooter",
-				"TableCaption"
-			],
-			"props": {
-				"Table": [
-					"columns",
-					"data",
-					"variant",
-					"size",
-					"loading",
-					"emptyText",
-					"pagination",
-					"onSort",
-					"onFilter",
-					"className",
-					"rowKey",
-					"rowClassName"
-				],
-				"TableHeader": ["children", "className"],
-				"TableBody": ["children", "className"],
-				"TableRow": ["children", "className"],
-				"TableCell": [
-					"children",
-					"className",
-					"align",
-					"header",
-					"sortable",
-					"sortDirection",
-					"onSort",
-					"colSpan",
-					"rowSpan"
-				],
-				"TableFooter": ["children", "className"],
-				"TableCaption": ["children", "className"]
-			},
-			"variants": ["default", "striped"],
 			"sizes": ["sm", "md", "lg"]
 		},
 		"textarea": {
@@ -1078,9 +1059,7 @@
 				"BreadcrumbSeparator": ["size", "className", "children"],
 				"BreadcrumbEllipsis": ["className"]
 			},
-			"variants": {
-				"link": ["default", "ghost"]
-			},
+			"variants": ["default", "ghost"],
 			"sizes": ["sm", "md", "lg"]
 		},
 		"file-upload": {
@@ -1159,9 +1138,6 @@
 			},
 			"exports": [
 				"Chat",
-				"ChatHeader",
-				"ChatTitle",
-				"ChatDescription",
 				"ChatMessages",
 				"ChatMessage",
 				"ChatInput",
@@ -1183,12 +1159,8 @@
 					"allowMultiline",
 					"typingUsers",
 					"variant",
-					"className",
-					"children"
+					"className"
 				],
-				"ChatHeader": ["children", "className"],
-				"ChatTitle": ["children", "className", "as"],
-				"ChatDescription": ["children", "className"],
 				"ChatMessages": [
 					"messages",
 					"showTimestamps",

@@ -1,421 +1,541 @@
 "use client";
 
+import * as Ariakit from "@ariakit/react";
+import {
+	type ColumnDef,
+	type ColumnMeta,
+	flexRender,
+	getCoreRowModel,
+	getSortedRowModel,
+	type Row,
+	type RowSelectionState,
+	type SortingState,
+	useReactTable,
+} from "@tanstack/react-table";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { useCallback } from "react";
+import * as React from "react";
+import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
-import { Spinner } from "../spinner";
+import { Checkbox } from "../checkbox";
 
-const tableContainerVariants = cva("rounded-lg overflow-hidden", {
-	variants: {
-		variant: {
-			default: "",
-			striped: "",
-		},
-	},
-	defaultVariants: {
-		variant: "default",
-	},
-});
+declare module "@tanstack/react-table" {
+	// Allow consumers to configure presentation details on column definitions.
+	// biome-ignore lint/correctness/noUnusedVariables: Generics must match TanStack types for augmentation
+	interface ColumnMeta<TData, TValue> {
+		align?: "left" | "center" | "right";
+		width?: number | string;
+		minWidth?: number | string;
+		maxWidth?: number | string;
+		className?: string;
+		headerClassName?: string;
+		headerTooltip?: string;
+	}
+}
 
-const tableVariants = cva("w-full border-collapse", {
-	variants: {
-		size: {
-			sm: "text-xs",
-			md: "text-sm",
-			lg: "text-base",
-		},
-	},
-	defaultVariants: {
-		size: "md",
-	},
-});
-
-const tableRowVariants = cva("", {
-	variants: {
-		variant: {
-			default: "",
-			striped: "",
-		},
-		isOdd: {
-			true: "",
-			false: "",
-		},
-	},
-	compoundVariants: [
-		{
-			variant: "striped",
-			isOdd: true,
-			class: "bg-background-muted/50 dark:bg-background-muted/30",
-		},
+const tableVariants = cva(
+	[
+		"relative bg-background border border-none dark:border-solid border-border",
+		"rounded-lg shadow-md",
+		"not-prose",
 	],
-	defaultVariants: {
-		variant: "default",
-		isOdd: false,
+	{
+		variants: {
+			density: {
+				comfortable: "text-sm",
+				compact: "text-xs",
+			},
+		},
+		defaultVariants: {
+			density: "comfortable",
+		},
 	},
-});
+);
 
-export type TableVariant = "default" | "striped";
-export type TableSize = "sm" | "md" | "lg";
-
-export interface TableColumn<T = Record<string, unknown>> {
-	key: string;
-	title: string;
-	render?: (value: unknown, record: T, index: number) => React.ReactNode;
-	width?: string | number;
-	align?: "left" | "center" | "right";
-	className?: string;
-}
-
-export interface TableProps<T = Record<string, unknown>>
-	extends Omit<React.TableHTMLAttributes<HTMLTableElement>, "size">,
-		VariantProps<typeof tableContainerVariants>,
-		VariantProps<typeof tableVariants> {
-	columns: TableColumn<T>[];
-	data: T[];
-	loading?: boolean;
-	emptyText?: string;
-	pagination?: {
-		current: number;
-		pageSize: number;
-		total: number;
-		onChange: (page: number, pageSize: number) => void;
-	};
-	className?: string;
-	rowKey?: string | ((record: T) => string);
-	onRowClick?: (record: T, index: number) => void;
-	rowClassName?: string | ((record: T, index: number) => string);
-}
-
-export interface TableHeaderProps
-	extends React.HTMLAttributes<HTMLTableSectionElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface TableBodyProps
-	extends React.HTMLAttributes<HTMLTableSectionElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface TableRowProps
-	extends React.HTMLAttributes<HTMLTableRowElement>,
-		VariantProps<typeof tableRowVariants> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface TableCellProps
-	extends React.HTMLAttributes<HTMLTableCellElement> {
-	children: React.ReactNode;
-	className?: string;
-	align?: "left" | "center" | "right";
-	header?: boolean;
-	colSpan?: number;
-	rowSpan?: number;
-}
-
-export interface TableFooterProps
-	extends React.HTMLAttributes<HTMLTableSectionElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface TableCaptionProps
-	extends React.HTMLAttributes<HTMLTableCaptionElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export const Table = <T extends Record<string, unknown>>({
-	columns,
-	data,
-	variant = "default",
-	size = "md",
-	loading = false,
-	emptyText = "No data available",
-	pagination,
-	className = "",
-	rowKey = "id",
-	onRowClick,
-	rowClassName,
-	...props
-}: TableProps<T>) => {
-	const getRowKey = useCallback(
-		(record: T, index: number): string => {
-			if (typeof rowKey === "function") {
-				return rowKey(record);
-			}
-			return String(record[rowKey] || index);
+const headerCellVariants = cva(
+	[
+		"flex items-center p-4 uppercase tracking-wide text-xs font-medium rounded-lg",
+		"text-foreground-muted",
+		"transition-colors duration-200 ease-in-out",
+		"focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1",
+		"focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border",
+	],
+	{
+		variants: {
+			align: {
+				left: "justify-start text-left",
+				center: "justify-center text-center",
+				right: "justify-end text-right",
+			},
+			sortable: {
+				true: "cursor-pointer hover:text-foreground",
+				false: "",
+			},
+			sorted: {
+				asc: "text-foreground",
+				desc: "text-foreground",
+				none: "",
+			},
 		},
-		[rowKey],
-	);
-
-	const getRowClassName = useCallback(
-		(record: T, index: number): string => {
-			let baseClassName = "";
-
-			if (typeof rowClassName === "function") {
-				baseClassName += rowClassName(record, index);
-			} else if (rowClassName) {
-				baseClassName += rowClassName;
-			}
-
-			return baseClassName.trim();
+		defaultVariants: {
+			align: "left",
+			sortable: false,
+			sorted: "none",
 		},
-		[rowClassName],
-	);
+	},
+);
 
-	return (
-		<div
-			className={cn(
-				tableContainerVariants({ variant }),
-				"not-prose relative bg-background border border-none dark:border-solid border-border shadow-md",
-				className,
-			)}
-		>
-			<div className="overflow-x-auto">
-				<table className={cn(tableVariants({ size }))} {...props}>
-					<caption className="sr-only">Data table</caption>
-					<TableHeader>
-						<TableRow variant={variant}>
-							{columns.map((column) => (
-								<TableCell
-									key={column.key}
-									header
-									align={column.align}
-									className={column.className}
-									style={{ width: column.width }}
-								>
-									{column.title}
-								</TableCell>
-							))}
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						{loading ? (
-							<TableRow variant={variant}>
-								<TableCell
-									colSpan={columns.length}
-									align="center"
-									className="py-12"
-								>
-									<div className="flex items-center justify-center">
-										<Spinner size="lg" variant="default" />
-									</div>
-								</TableCell>
-							</TableRow>
-						) : data.length === 0 ? (
-							<TableRow variant={variant}>
-								<TableCell
-									colSpan={columns.length}
-									align="center"
-									className="py-12 text-foreground-subtle"
-								>
-									{emptyText}
-								</TableCell>
-							</TableRow>
-						) : (
-							data.map((record, index) => (
-								<TableRow
-									key={getRowKey(record, index)}
-									variant={variant}
-									isOdd={index % 2 === 1}
-									className={getRowClassName(record, index)}
-									onClick={() => onRowClick?.(record, index)}
-								>
-									{columns.map((column) => {
-										const value = record[column.key];
-										const content = column.render
-											? column.render(value, record, index)
-											: value?.toString() || "";
-
-										return (
-											<TableCell
-												key={column.key}
-												align={column.align}
-												className={column.className}
-											>
-												{content}
-											</TableCell>
-										);
-									})}
-								</TableRow>
-							))
-						)}
-					</TableBody>
-				</table>
-			</div>
-
-			{pagination && (
-				<div className="p-4 bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted flex items-center justify-between">
-					<div className="text-sm text-foreground-subtle">
-						Showing{" "}
-						{Math.min(
-							(pagination.current - 1) * pagination.pageSize + 1,
-							pagination.total,
-						)}{" "}
-						to{" "}
-						{Math.min(
-							pagination.current * pagination.pageSize,
-							pagination.total,
-						)}{" "}
-						of {pagination.total} entries
-					</div>
-					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							onClick={() =>
-								pagination.onChange(pagination.current - 1, pagination.pageSize)
-							}
-							disabled={pagination.current <= 1}
-							className="px-3 py-1.5 text-sm rounded-md bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-none dark:border-solid border-border shadow-sm transition-colors duration-200 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-						>
-							Previous
-						</button>
-						<span className="px-3 py-1.5 text-sm text-foreground-muted">
-							Page {pagination.current} of{" "}
-							{Math.ceil(pagination.total / pagination.pageSize)}
-						</span>
-						<button
-							type="button"
-							onClick={() =>
-								pagination.onChange(pagination.current + 1, pagination.pageSize)
-							}
-							disabled={
-								pagination.current >=
-								Math.ceil(pagination.total / pagination.pageSize)
-							}
-							className="px-3 py-1.5 text-sm rounded-md bg-background text-foreground hover:bg-background-muted/50 focus-visible:ring-ring/50 focus-visible:border-border border border-none dark:border-solid border-border shadow-sm transition-colors duration-200 ease-in-out cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-						>
-							Next
-						</button>
-					</div>
-				</div>
-			)}
-		</div>
-	);
-};
-
-export const TableHeader: React.FC<TableHeaderProps> = ({
-	children,
-	className = "",
-	...props
-}) => {
-	return (
-		<thead
-			className={cn(
-				"bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-muted",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-		</thead>
-	);
-};
-
-export const TableBody: React.FC<TableBodyProps> = ({
-	children,
-	className = "",
-	...props
-}) => {
-	return (
-		<tbody
-			className={cn("divide-y divide-border-muted/30", className)}
-			{...props}
-		>
-			{children}
-		</tbody>
-	);
-};
-
-export const TableRow: React.FC<TableRowProps> = ({
-	children,
-	className = "",
-	variant = "default",
-	isOdd = false,
-	...props
-}) => {
-	return (
-		<tr
-			className={cn(tableRowVariants({ variant, isOdd }), className)}
-			{...props}
-		>
-			{children}
-		</tr>
-	);
-};
-
-export const TableCell: React.FC<TableCellProps> = ({
-	children,
-	className = "",
-	align = "left",
-	header = false,
-	colSpan,
-	rowSpan,
-	...props
-}) => {
-	const Component = header ? "th" : "td";
-
-	const getAlignmentClass = () => {
-		const alignments = {
+const cellVariants = cva(["px-4 py-3 text-foreground", "whitespace-nowrap"], {
+	variants: {
+		align: {
 			left: "text-left",
 			center: "text-center",
 			right: "text-right",
-		};
-		return alignments[align];
-	};
-
-	const extraA11yProps = header ? { scope: "col" as const } : {};
-
-	return React.createElement(
-		Component,
-		{
-			className: cn(
-				"p-4",
-				getAlignmentClass(),
-				header ? "font-semibold text-foreground" : "text-foreground-muted",
-				className,
-			),
-			colSpan,
-			rowSpan,
-			...extraA11yProps,
-			...props,
 		},
-		children,
-	);
+	},
+	defaultVariants: {
+		align: "left",
+	},
+});
+
+const rowVariants = cva(
+	[
+		"grid items-center relative",
+		"transition-colors duration-200 ease-in-out",
+		"border-b border-border-muted last:border-0",
+	],
+	{
+		variants: {
+			selected: {
+				true: "bg-background-muted",
+				false: "",
+			},
+			active: {
+				true: "focus-visible:outline-none focus-visible:z-10 focus-visible:rounded-lg focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 rounded-lg z-10",
+				false: "",
+			},
+		},
+		defaultVariants: {
+			selected: false,
+			active: false,
+		},
+	},
+);
+
+const compositeOptions = {
+	orientation: "vertical" as const,
+	focusLoop: false,
 };
 
-export const TableFooter: React.FC<TableFooterProps> = ({
-	children,
-	className = "",
-	...props
-}) => {
-	return (
-		<tfoot
-			className={cn(
-				"bg-background-muted/50 dark:bg-background-muted/30 border-t border-border-muted font-semibold",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-		</tfoot>
-	);
-};
+function resolveUpdater<T>(updater: T | ((old: T) => T), previous: T): T {
+	return typeof updater === "function"
+		? (updater as (old: T) => T)(previous)
+		: updater;
+}
 
-export const TableCaption: React.FC<TableCaptionProps> = ({
-	children,
+export interface TableProps<TData>
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof tableVariants> {
+	columns: ColumnDef<TData, unknown>[];
+	data: TData[];
+	enableSorting?: boolean;
+	enableRowSelection?: boolean;
+	activeRowId?: string;
+	onActiveRowChange?: (rowId: string | undefined) => void;
+	onRowClick?: (row: Row<TData>) => void;
+	initialSorting?: SortingState;
+	sortingState?: SortingState;
+	onSortingChange?: (sorting: SortingState) => void;
+	rowSelectionState?: RowSelectionState;
+	onRowSelectionChange?: (state: RowSelectionState) => void;
+	onSelectedRowsChange?: (rows: Row<TData>[]) => void;
+	emptyState?: React.ReactNode;
+	getRowId?: (originalRow: TData, index: number, parent?: Row<TData>) => string;
+}
+
+export function Table<TData>({
+	columns,
+	data,
+	enableSorting = true,
+	enableRowSelection = false,
+	density,
 	className = "",
+	onRowClick,
+	initialSorting = [],
+	sortingState,
+	onSortingChange,
+	rowSelectionState,
+	onRowSelectionChange,
+	onSelectedRowsChange,
+	emptyState,
+	activeRowId,
+	onActiveRowChange,
+	getRowId,
 	...props
-}) => {
+}: TableProps<TData>) {
+	const isSortingControlled = sortingState !== undefined;
+	const [internalSorting, setInternalSorting] =
+		React.useState<SortingState>(initialSorting);
+	const sorting = isSortingControlled ? sortingState : internalSorting;
+
+	const isRowSelectionControlled = rowSelectionState !== undefined;
+	const [internalRowSelection, setInternalRowSelection] =
+		React.useState<RowSelectionState>({});
+	const rowSelection = isRowSelectionControlled
+		? rowSelectionState
+		: internalRowSelection;
+
+	const augmentedColumns = React.useMemo(() => {
+		if (!enableRowSelection) {
+			return columns;
+		}
+
+		const selectionColumn: ColumnDef<TData, unknown> = {
+			id: "__selection__",
+			enableSorting: false,
+			enableHiding: false,
+			header: ({ table }) => {
+				return (
+					<div className="flex justify-center p-1">
+						<Checkbox
+							aria-label="Select all rows"
+							size="sm"
+							checked={table.getIsAllRowsSelected()}
+							onCheckedChange={(value) =>
+								table.toggleAllRowsSelected(Boolean(value))
+							}
+						/>
+					</div>
+				);
+			},
+			cell: ({ row }) => {
+				return (
+					<div className="flex justify-center p-1">
+						<Checkbox
+							aria-label="Select row"
+							size="sm"
+							disabled={!row.getCanSelect()}
+							checked={row.getIsSelected()}
+							onCheckedChange={(value) => row.toggleSelected(Boolean(value))}
+						/>
+					</div>
+				);
+			},
+			meta: {
+				align: "center",
+				width: "48px",
+				headerClassName: "px-2",
+				className: "px-2",
+			},
+		};
+
+		return [selectionColumn, ...columns];
+	}, [columns, enableRowSelection]);
+
+	const table = useReactTable({
+		columns: augmentedColumns,
+		data,
+		state: {
+			sorting,
+			rowSelection,
+		},
+		enableSorting,
+		enableRowSelection,
+		onSortingChange: (updater) => {
+			const next = resolveUpdater(updater, sorting);
+			if (!isSortingControlled) {
+				setInternalSorting(next);
+			}
+			onSortingChange?.(next);
+		},
+		onRowSelectionChange: (updater) => {
+			const next = resolveUpdater(updater, rowSelection);
+			if (!isRowSelectionControlled) {
+				setInternalRowSelection(next);
+			}
+			onRowSelectionChange?.(next);
+		},
+		getRowId,
+		getCoreRowModel: getCoreRowModel(),
+		getSortedRowModel: enableSorting ? getSortedRowModel() : undefined,
+	});
+
+	/* biome-ignore lint/correctness/useExhaustiveDependencies: row selection callback must run when selection changes */
+	React.useEffect(() => {
+		if (!onSelectedRowsChange) return;
+		const selectedRows = table
+			.getSelectedRowModel()
+			.rows.map((tableRow) => tableRow);
+		onSelectedRowsChange(selectedRows);
+	}, [table, onSelectedRowsChange, rowSelection]);
+
+	const composite = Ariakit.useCompositeStore({
+		...compositeOptions,
+		defaultActiveId: null,
+	});
+	const activeCompositeId = Ariakit.useStoreState(composite, "activeId");
+	const tableRef = React.useRef<HTMLDivElement>(null);
+
+	const visibleColumns = table.getVisibleLeafColumns();
+	const gridTemplateColumns = React.useMemo(() => {
+		return visibleColumns
+			.map((column) => {
+				const meta = column.columnDef.meta as
+					| ColumnMeta<TData, unknown>
+					| undefined;
+				const width = meta?.width;
+				if (typeof width === "number") {
+					return `minmax(${width}px, ${width}px)`;
+				}
+				if (typeof width === "string") {
+					return width;
+				}
+				return "minmax(0, 1fr)";
+			})
+			.join(" ");
+	}, [visibleColumns]);
+
+	const rows = table.getRowModel().rows;
+
+	React.useEffect(() => {
+		if (activeRowId !== undefined) {
+			return;
+		}
+
+		composite.setActiveId(null);
+	}, [activeRowId, composite]);
+
+	React.useEffect(() => {
+		if (rows.length === 0) {
+			return;
+		}
+
+		const resolveCompositeId = (rowId: string) => `row-${rowId}`;
+
+		if (activeRowId !== undefined) {
+			const controlledId = resolveCompositeId(activeRowId);
+			if (activeCompositeId !== controlledId) {
+				composite.setActiveId(controlledId);
+			}
+			return;
+		}
+
+		const fallbackId = rows[0]?.id;
+		if (!fallbackId) {
+			return;
+		}
+
+		if (!activeCompositeId) {
+			return;
+		}
+
+		const isActiveRowPresent = rows.some(
+			(row) => resolveCompositeId(row.id) === activeCompositeId,
+		);
+		if (!isActiveRowPresent) {
+			composite.setActiveId(resolveCompositeId(fallbackId));
+		}
+	}, [activeRowId, rows, composite, activeCompositeId]);
+
+	React.useEffect(() => {
+		if (!onActiveRowChange) return;
+		const resolvedId = activeCompositeId?.replace(/^row-/, "");
+		onActiveRowChange(resolvedId);
+	}, [activeCompositeId, onActiveRowChange]);
+
+	React.useEffect(() => {
+		if (activeRowId !== undefined) {
+			return;
+		}
+
+		const handlePointerDown = (event: PointerEvent) => {
+			const target = event.target as Node | null;
+			if (!target) return;
+			if (!tableRef.current?.contains(target)) {
+				composite.setActiveId(null);
+			}
+		};
+
+		document.addEventListener("pointerdown", handlePointerDown);
+		return () => {
+			document.removeEventListener("pointerdown", handlePointerDown);
+		};
+	}, [activeRowId, composite]);
+
 	return (
-		<caption
-			className={cn("py-3 text-sm text-foreground-muted", className)}
+		<div
+			ref={tableRef}
+			className={cn(tableVariants({ density }), className)}
 			{...props}
 		>
-			{children}
-		</caption>
+			{table.getHeaderGroups().map((headerGroup) => (
+				/* biome-ignore lint/a11y/useSemanticElements: Using div-based grid structure for responsive layout */
+				<div
+					key={headerGroup.id}
+					role="row"
+					className="grid bg-background-muted/50 dark:bg-background-muted/30 border-b border-border-muted"
+					style={{ gridTemplateColumns }}
+					tabIndex={-1}
+				>
+					{headerGroup.headers.map((header) => {
+						if (header.isPlaceholder) {
+							return <div key={header.id} />;
+						}
+
+						const column = header.column;
+						const meta = column.columnDef.meta as
+							| ColumnMeta<TData, unknown>
+							| undefined;
+						const align = meta?.align ?? "left";
+						const headerClassName = meta?.headerClassName;
+						const sortStateRaw = column.getIsSorted();
+						const sortStateVariant: "asc" | "desc" | "none" =
+							sortStateRaw === "asc" || sortStateRaw === "desc"
+								? sortStateRaw
+								: "none";
+						const canSort = enableSorting && column.getCanSort();
+
+						if (!canSort) {
+							return (
+								/* biome-ignore lint/a11y/useSemanticElements: Using div for flexible column header layout */
+								<div
+									key={header.id}
+									role="columnheader"
+									title={meta?.headerTooltip}
+									className={cn(
+										headerCellVariants({
+											align,
+											sortable: false,
+											sorted: "none",
+										}),
+										headerClassName,
+									)}
+									tabIndex={-1}
+								>
+									<span className="truncate text-xs font-medium">
+										{flexRender(
+											header.column.columnDef.header,
+											header.getContext(),
+										)}
+									</span>
+								</div>
+							);
+						}
+
+						return (
+							/* biome-ignore lint/a11y/useSemanticElements: Sorting toggle needs button semantics */
+							<button
+								key={header.id}
+								type="button"
+								role="columnheader"
+								title={meta?.headerTooltip}
+								onClick={column.getToggleSortingHandler()}
+								aria-sort={
+									sortStateRaw === "asc"
+										? "ascending"
+										: sortStateRaw === "desc"
+											? "descending"
+											: "none"
+								}
+								className={cn(
+									headerCellVariants({
+										align,
+										sortable: true,
+										sorted: sortStateVariant,
+									}),
+									headerClassName,
+								)}
+							>
+								<span className="truncate text-xs font-medium">
+									{flexRender(
+										header.column.columnDef.header,
+										header.getContext(),
+									)}
+								</span>
+								<span className="flex items-center justify-center ml-1">
+									<Icons.CaretSort
+										aria-hidden="true"
+										className="h-3.5 w-3.5 text-foreground-muted"
+									/>
+								</span>
+							</button>
+						);
+					})}
+				</div>
+			))}
+
+			<Ariakit.Composite
+				store={composite}
+				role="grid"
+				aria-rowcount={rows.length}
+				aria-colcount={visibleColumns.length}
+				className="rounded-lg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50"
+			>
+				{rows.length === 0 && (
+					<div className="px-6 py-10 text-center text-foreground-muted">
+						{emptyState ?? "No data available"}
+					</div>
+				)}
+
+				{rows.map((row) => {
+					const rowMetaId = `row-${row.id}`;
+					const isActive = activeCompositeId === rowMetaId;
+					return (
+						<Ariakit.CompositeItem
+							key={row.id}
+							id={rowMetaId}
+							role="row"
+							focusable
+							data-row-id={row.id}
+							aria-selected={row.getIsSelected() || undefined}
+							className={cn(
+								rowVariants({
+									selected: row.getIsSelected(),
+									active: isActive,
+								}),
+							)}
+							onClick={() => onRowClick?.(row)}
+							onKeyDown={(event) => {
+								if (!onRowClick) return;
+								if (event.key === "Enter" || event.key === " ") {
+									event.preventDefault();
+									onRowClick(row);
+								}
+							}}
+							render={(itemProps) => (
+								<div
+									{...itemProps}
+									style={{ ...itemProps.style, gridTemplateColumns }}
+								>
+									{row.getVisibleCells().map((cell) => {
+										const meta = cell.column.columnDef.meta as
+											| ColumnMeta<TData, unknown>
+											| undefined;
+										const align = meta?.align ?? "left";
+
+										return (
+											/* biome-ignore lint/a11y/useSemanticElements: Using div gridcells for layout flexibility */
+											<div
+												key={cell.id}
+												role="gridcell"
+												className={cn(cellVariants({ align }), meta?.className)}
+												tabIndex={-1}
+											>
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext(),
+												)}
+											</div>
+										);
+									})}
+								</div>
+							)}
+						/>
+					);
+				})}
+			</Ariakit.Composite>
+		</div>
 	);
-};
+}
+
+export { tableVariants };
+export type { ColumnDef, Row };

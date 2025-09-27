@@ -1,6 +1,8 @@
+@import "tailwindcss";
+
 /* ================================
    NOCTA CSS THEME VARIABLES
-   ================================ */
+   ================================*/
 
 /* --- Light Mode --- */
 :root {
@@ -10,14 +12,14 @@
 	--color-background-elevated: oklch(0.92 0 0);
 
 	/* Foreground (text) colors */
-	--color-foreground: oklch(0.205 0 0);
+	--color-foreground: oklch(0.327 0 0);
 	--color-foreground-muted: oklch(0.371 0 0);
 	--color-foreground-subtle: oklch(0.708 0 0);
 
 	/* Borders & Rings */
 	--color-border: oklch(0.205 0 0 / 0.1);
 	--color-border-muted: oklch(0.942 0 0 / 0.8);
-	--color-ring: oklch(0.205 0 0); /* Focus ring */
+	--color-ring: oklch(0.205 0 0);
 	--color-ring-offset: oklch(0.97 0 0);
 	--color-overlay: oklch(0.95 0 0);
 

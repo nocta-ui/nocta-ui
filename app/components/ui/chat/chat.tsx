@@ -1,15 +1,7 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import React, {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useId,
-	useRef,
-	useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
@@ -43,7 +35,7 @@ const messageVariants = cva(
 				user: "bg-foreground-muted text-background",
 				assistant: "bg-background-muted text-foreground",
 				system:
-					"bg-background-muted/50 dark:bg-background-muted/30 text-foreground-subtle text-center text-xs mx-auto",
+					"bg-background-muted text-foreground-subtle text-center text-xs mx-auto",
 			},
 		},
 		defaultVariants: {
@@ -107,25 +99,6 @@ export interface ChatProps
 	allowMultiline?: boolean;
 	typingUsers?: TypingUser[];
 	className?: string;
-	children?: React.ReactNode;
-}
-
-export interface ChatHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactNode;
-	className?: string;
-}
-
-export interface ChatTitleProps
-	extends React.HTMLAttributes<HTMLHeadingElement> {
-	children: React.ReactNode;
-	className?: string;
-	as?: React.ElementType;
-}
-
-export interface ChatDescriptionProps
-	extends React.HTMLAttributes<HTMLParagraphElement> {
-	children: React.ReactNode;
-	className?: string;
 }
 
 export interface ChatMessagesProps
@@ -165,11 +138,6 @@ export interface ChatActionsProps extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
 	className?: string;
 }
-
-// A11y context to link ChatDescription to Chat container via aria-describedby
-const ChatA11yContext = createContext<{
-	setDescriptionId: (id?: string) => void;
-}>({ setDescriptionId: () => {} });
 
 export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 	typingUsers,
@@ -245,103 +213,30 @@ export const Chat: React.FC<ChatProps> = ({
 	typingUsers = [],
 	variant = "default",
 	className = "",
-	children,
 	...props
 }) => {
-	const [descriptionId, setDescriptionId] = useState<string | undefined>();
-
 	return (
-		<div
-			className={cn(chatVariants({ variant }), className)}
-			aria-describedby={descriptionId}
-			{...props}
-		>
-			<ChatA11yContext.Provider value={{ setDescriptionId }}>
-				<div className="rounded-lg h-full flex flex-col">
-					{children}
-					<ChatMessages
-						messages={messages}
-						showTimestamps={showTimestamps}
-						showAvatars={showAvatars}
-						typingUsers={typingUsers}
-						className="flex-1 min-h-0 max-h-96"
+		<div className={cn(chatVariants({ variant }), className)} {...props}>
+			<div className="rounded-lg h-full flex flex-col">
+				<ChatMessages
+					messages={messages}
+					showTimestamps={showTimestamps}
+					showAvatars={showAvatars}
+					typingUsers={typingUsers}
+					className="flex-1 min-h-0 max-h-96"
+				/>
+				{onSendMessage && (
+					<ChatInput
+						onSendMessage={onSendMessage}
+						placeholder={placeholder}
+						disabled={disabled}
+						autoFocus={autoFocus}
+						maxLength={maxLength}
+						allowMultiline={allowMultiline}
 					/>
-					{onSendMessage && (
-						<ChatInput
-							onSendMessage={onSendMessage}
-							placeholder={placeholder}
-							disabled={disabled}
-							autoFocus={autoFocus}
-							maxLength={maxLength}
-							allowMultiline={allowMultiline}
-						/>
-					)}
-				</div>
-			</ChatA11yContext.Provider>
+				)}
+			</div>
 		</div>
-	);
-};
-
-export const ChatHeader: React.FC<ChatHeaderProps> = ({
-	children,
-	className = "",
-	...props
-}) => {
-	return (
-		<div
-			className={cn("p-4 border-b border-border-muted not-prose", className)}
-			{...props}
-		>
-			{children}
-		</div>
-	);
-};
-
-export const ChatTitle: React.FC<ChatTitleProps> = ({
-	children,
-	className = "",
-	as: Component = "h3",
-	...props
-}) => {
-	return React.createElement(
-		Component,
-		{
-			className: cn(
-				"text-base font-medium text-foreground leading-tight not-prose",
-				className,
-			),
-			...props,
-		},
-		children,
-	);
-};
-
-export const ChatDescription: React.FC<ChatDescriptionProps> = ({
-	children,
-	className = "",
-	id: propId,
-	...props
-}) => {
-	const { setDescriptionId } = useContext(ChatA11yContext);
-	const generatedId = useId();
-	const id = propId ?? `chat-desc-${generatedId}`;
-
-	useEffect(() => {
-		setDescriptionId(id);
-		return () => setDescriptionId(undefined);
-	}, [id, setDescriptionId]);
-
-	return (
-		<p
-			id={id}
-			className={cn(
-				"text-sm text-foreground-muted/80 leading-relaxed mt-1 not-prose",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-		</p>
 	);
 };
 

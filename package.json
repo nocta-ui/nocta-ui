@@ -26,6 +26,7 @@
 		"@radix-ui/react-slot": "^1.2.3",
 		"@react-three/drei": "^10.3.0",
 		"@react-three/fiber": "^9.1.4",
+		"@tanstack/react-table": "^8.21.3",
 		"@types/three": "^0.177.0",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",

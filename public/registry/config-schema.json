@@ -1,50 +1,50 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Config schema",
-  "type": "object",
-  "properties": {
-    "style": {
-      "type": "string",
-      "enum": ["default"],
-      "description": "Defines the style of the application."
-    },
-    "tailwind": {
-      "type": "object",
-      "properties": {
-        "css": {
-          "type": "string",
-          "description": "Path to the Tailwind CSS file."
-        }
-      },
-      "required": ["css"],
-      "additionalProperties": false,
-      "description": "Tailwind configuration settings."
-    },
-    "aliases": {
-      "type": "object",
-      "patternProperties": {
-        "^[a-zA-Z0-9_-]+$": {
-          "type": "string",
-          "description": "File path associated with the alias."
-        }
-      },
-      "minProperties": 1,
-      "additionalProperties": false,
-      "description": "Defines alias mappings for project directories."
-    },
-    "aliasPrefixes": {
-      "type": "object",
-      "patternProperties": {
-        "^[a-zA-Z0-9_-]+$": {
-          "type": "string",
-          "description": "Prefix string used for the alias."
-        }
-      },
-      "minProperties": 1,
-      "additionalProperties": false,
-      "description": "Defines prefix mappings corresponding to the aliases."
-    }
-  },
-  "required": ["style", "tailwind", "aliases", "aliasPrefixes"],
-  "additionalProperties": false
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Config schema",
+	"type": "object",
+	"properties": {
+		"style": {
+			"type": "string",
+			"enum": ["default"],
+			"description": "Defines the style of the application."
+		},
+		"tailwind": {
+			"type": "object",
+			"properties": {
+				"css": {
+					"type": "string",
+					"description": "Path to the Tailwind CSS file."
+				}
+			},
+			"required": ["css"],
+			"additionalProperties": false,
+			"description": "Tailwind configuration settings."
+		},
+		"aliases": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-zA-Z0-9_-]+$": {
+					"type": "string",
+					"description": "File path associated with the alias."
+				}
+			},
+			"minProperties": 1,
+			"additionalProperties": false,
+			"description": "Defines alias mappings for project directories."
+		},
+		"aliasPrefixes": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-zA-Z0-9_-]+$": {
+					"type": "string",
+					"description": "Prefix string used for the alias."
+				}
+			},
+			"minProperties": 1,
+			"additionalProperties": false,
+			"description": "Defines prefix mappings corresponding to the aliases."
+		}
+	},
+	"required": ["style", "tailwind", "aliases", "aliasPrefixes"],
+	"additionalProperties": false
 }

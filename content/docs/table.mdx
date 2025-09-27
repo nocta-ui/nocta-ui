@@ -1,311 +1,223 @@
 ---
 title: Table
-description: A powerful, highly customizable table component with pagination and advanced rendering features
+description: Fully accessible data table powered by TanStack Table and Ariakit composites.
 ---
 
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableFooter, TableCaption } from '@/app/components/ui/table';
+import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
 import {
   BasicTableDemo,
-  AdvancedTableDemo,
-  TableVariantsDemo,
-  TableSizesDemo,
-  PaginationTableDemo,
-  LoadingTableDemo,
-  EmptyTableDemo
-} from '@/app/components/ui/table/table-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+  SelectableTableDemo,
+  CompactTableDemo
+} from '@/app/components/ui/table';
 
 ## Installation
 
-import { Step, Steps } from 'fumadocs-ui/components/steps';
-
 <Steps>
-<Step>
-Install the Table component using the nocta-ui CLI:
+  <Step>
+    Install the Table component using the nocta-ui CLI:
 
-```bash lineNumbers title="Terminal"
-npx nocta-ui add table
-```
-</Step>
-<Step>
-Import the components you need:
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add table
+    ```
+  </Step>
+  <Step>
+    Then import the component and supporting types:
 
-```tsx lineNumbers title="Import"
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableFooter,
-  TableCaption,
-} from '@/components/ui/table';
-```
-</Step>
+    ```tsx lineNumbers title="Import"
+    import { Table, type ColumnDef } from '@/components/ui/table';
+    ```
+  </Step>
 </Steps>
 
 ## Examples
 
-### Simple Table
+### Basic Table
 
-<DocsTabs justify="start" defaultValue="preview">
+Display structured data with sorting and custom cell rendering.
+
+<DocsTabs justify="start"  defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <BasicTableDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Simple Table"
-    const columns = [
-      { key: 'name', title: 'Name' },
-      { key: 'email', title: 'Email' },
-      { key: 'role', title: 'Role' },
-      { key: 'joinDate', title: 'Join Date' }
-    ];
+    ```tsx lineNumbers title="Basic Table"
+    import { Table, type ColumnDef } from '@/components/ui/table';
 
-    <Table
-      columns={columns}
-      data={users}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
+    interface Invoice {
+      invoice: string;
+      customer: string;
+      status: 'paid' | 'processing' | 'overdue';
+      issuedOn: Date;
+      amount: number;
+    }
 
+    const currency = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+    });
 
-
-## Advanced Features
-
-### Custom Rendering & Actions
-
-Use the `render` function in column definitions for custom cell content.
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <AdvancedTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Rendering & Actions"
-    const columns: TableColumn<User>[] = [
+    const columns: ColumnDef<Invoice>[] = [
       {
-        key: 'name',
-        title: 'User',
-        render: (value, record) => (
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-background text-sm font-medium">
-              {String(value).charAt(0)}
-            </div>
-            <div className="min-w-0">
-              <div className="font-medium text-foreground truncate">{String(value)}</div>
-              <div className="text-xs text-foreground-subtle truncate">{record.email}</div>
-            </div>
-          </div>
-        )
+        accessorKey: 'invoice',
+        header: 'Invoice',
+        cell: ({ row }) => (
+          <span className="font-medium">{row.getValue('invoice')}</span>
+        ),
+        meta: { width: '140px' },
       },
       {
-        key: 'status',
-        title: 'Status',
-        align: 'left',
-        render: (value) => (
-          <div className="flex items-center justify-center">
-            <Badge variant={getStatusBadgeVariant(String(value))} size="sm">
-            {String(value).charAt(0).toUpperCase() + String(value).slice(1)}
-          </Badge>
-          </div>
-        )
+        accessorKey: 'customer',
+        header: 'Customer',
       },
       {
-        key: 'actions',
-        title: 'Actions',
-        align: 'right',
-        render: (_) => (
-          <div className="flex items-center justify-end gap-1">
-            <Button variant="ghost" size="sm">Edit</Button>
-            <Button variant="ghost" size="sm">Delete</Button>
-          </div>
-        )
-      }
+        accessorKey: 'issuedOn',
+        header: 'Issued',
+        cell: ({ getValue }) => {
+          const date = getValue<Date>();
+          return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          });
+        },
+        meta: { align: 'right', width: '160px' },
+      },
+      {
+        accessorKey: 'amount',
+        header: 'Amount',
+        cell: ({ getValue }) => (
+          <span className="font-semibold">
+            {currency.format(getValue<number>())}
+          </span>
+        ),
+        meta: { align: 'right', width: '140px' },
+      },
     ];
 
+    const data: Invoice[] = [
+      {
+        invoice: 'INV-2041',
+        customer: 'Lumen Studio',
+        status: 'paid',
+        issuedOn: new Date('2024-02-14'),
+        amount: 2450,
+      },
+      // ...
+    ];
+
+    export default function BasicTableExample() {
+      return (
+        <Table<Invoice>
+          columns={invoiceColumns}
+          data={invoiceData}
+          getRowId={(invoice) => invoice.invoice}
+          density="comfortable"
+		/>
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Row Selection
+
+Enable checkbox selection with controlled state for bulk actions.
+
+<DocsTabs justify="start" defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <SelectableTableDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Row Selection"
+    import * as React from 'react';
+    import {
+      Table,
+      type ColumnDef,
+      type Row,
+    } from '@/components/ui/table';
+
+    // columns and data defined as in the previous example
+    const [selectedRows, setSelectedRows] = React.useState<Row<Invoice>[]>([]);
+
     <Table
-      columns={columns}
-      data={users}
-      onRowClick={(record) => console.log('Clicked:', record)}
+			columns={invoiceColumns}
+			data={invoiceData}
+			getRowId={(invoice) => invoice.invoice}
+			enableRowSelection
+			onSelectedRowsChange={setSelectedRows}
+			emptyState="No invoices yet"
+    />;
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Compact Density
+
+Switch the visual density for dashboards or sidebars.
+
+<DocsTabs justify="start" defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <CompactTableDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Compact Table"
+    // Reuse your existing column and data definitions
+    const teamColumns: ColumnDef<TeamMember>[] = [...];
+    const teamMembers: TeamMember[] = [...];
+
+    <Table
+      columns={teamColumns}
+      data={teamMembers}
+      getRowId={(member) => member.name}
+      density="compact"
     />
     ```
   </DocsTab>
 </DocsTabs>
 
-### Pagination
+## Column metadata
 
-Add pagination support with the `pagination` prop.
+Set column-level `meta` options to align content or pin widths:
 
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <PaginationTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Pagination Table"
-    const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 10;
-
-    const handlePageChange = (page, size) => {
-      setCurrentPage(page);
-    };
-
-    <Table
-      columns={columns}
-      data={paginatedData}
-      pagination={{
-        current: currentPage,
-        pageSize: pageSize,
-        total: totalRecords,
-        onChange: handlePageChange
-      }}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Variants
-
-The Table component supports different visual variants.
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <TableVariantsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Table Variants"
-    // Default variant
-    <Table columns={columns} data={data} />
-
-    // Striped variant
-    <Table columns={columns} data={data} variant="striped" />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <TableSizesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Table Sizes"
-    <Table columns={columns} data={data} size="sm" />
-    <Table columns={columns} data={data} size="md" />
-    <Table columns={columns} data={data} size="lg" />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## States
-
-### Loading State
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <LoadingTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Loading Table State"
-    <Table
-      columns={columns}
-      data={data}
-      loading={isLoading}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Empty State
-
-<DocsTabs justify="start" defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <EmptyTableDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Empty Table State"
-    <Table
-      columns={columns}
-      data={[]}
-      emptyText="No users found. Add some users to get started."
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Composable Components
-
-For more control, you can use the individual table components:
-
-```tsx lineNumbers title="Composable Table Components"
-<Table>
-  <TableCaption>A list of your recent invoices.</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableCell header>Invoice</TableCell>
-      <TableCell header>Status</TableCell>
-      <TableCell header>Method</TableCell>
-      <TableCell header align="right">Amount</TableCell>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell>INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell align="right">$250.00</TableCell>
-    </TableRow>
-  </TableBody>
-  <TableFooter>
-    <TableRow>
-      <TableCell colSpan={3}>Total</TableCell>
-      <TableCell align="right">$2,500.00</TableCell>
-    </TableRow>
-  </TableFooter>
-</Table>
+```tsx lineNumbers title="Column Meta"
+const columns: ColumnDef<Invoice>[] = [
+  {
+    accessorKey: 'amount',
+    header: 'Amount',
+    meta: {
+      align: 'right',
+      width: '140px',
+      headerTooltip: 'Total amount due',
+    },
+  },
+];
 ```
 
-## Api Reference
+`Table` exposes fully typed helpers from TanStack Table so you can compose advanced features like column visibility, custom filter functions, or pagination while keeping the default Nocta UI styling and keyboard support powered by Ariakit Composite.
 
-### Table Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `columns` | `TableColumn[]` | — | Column definitions |
-| `data` | `T[]` | — | Table data |
-| `variant` | `'default' \| 'striped'` | `'default'` | Table style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Table size |
-| `loading` | `boolean` | `false` | Show loading state |
-| `emptyText` | `string` | `'No data available'` | Text shown when data is empty |
-| `pagination` | `PaginationConfig` | — | Pagination configuration |
-| `onRowClick` | `(record: T, index: number) => void` | — | Row click handler |
-| `rowKey` | `string \| ((record: T) => string)` | `'id'` | Row key accessor |
-| `rowClassName` | `string \| ((record: T, index: number) => string)` | — | Row class name |
-| `className` | `string` | `''` | Additional CSS classes |
-
-### TableColumn Props
+## API Reference
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `key` | `string` | — | Data key |
-| `title` | `string` | — | Column header |
-| `render` | `(value: any, record: T, index: number) => ReactNode` | — | Custom render function |
-| `width` | `string \| number` | — | Column width |
-| `align` | `'left' \| 'center' \| 'right'` | `'left'` | Text alignment |
-| `className` | `string` | — | Additional CSS classes |
+| `columns` | `ColumnDef<TData, unknown>[]` | - | Column definitions that describe the table structure. |
+| `data` | `TData[]` | - | Data records to render with the provided columns. |
+| `density` | `'comfortable' \| 'compact'` | `'comfortable'` | Controls overall padding and typography density. |
+| `enableSorting` | `boolean` | `true` | Toggles TanStack Table's sorting features. |
+| `enableRowSelection` | `boolean` | `false` | Adds a selection column with Ariakit-powered checkboxes. |
+| `activeRowId` | `string` | - | Marks a row as active for focus and highlighting. |
+| `onActiveRowChange` | `(rowId: string \| undefined) => void` | - | Called when the active row changes. |
+| `onRowClick` | `(row: Row<TData>) => void` | - | Fired when a table row is clicked. |
+| `initialSorting` | `SortingState` | `[]` | Default sorting state when uncontrolled. |
+| `sortingState` | `SortingState` | - | Controlled sorting state. |
+| `onSortingChange` | `(sorting: SortingState) => void` | - | Handler used with controlled sorting. |
+| `rowSelectionState` | `RowSelectionState` | - | Controlled selection state keyed by row id. |
+| `onRowSelectionChange` | `(state: RowSelectionState) => void` | - | Handler used with controlled selection. |
+| `onSelectedRowsChange` | `(rows: Row<TData>[]) => void` | - | Emits the currently selected rows array. |
+| `emptyState` | `React.ReactNode` | - | Custom UI shown when there are no rows. |
+| `getRowId` | `(originalRow: TData, index: number, parent?: Row<TData>) => string` | - | Supplies custom logic for deriving stable row ids. |
+| `className` | `string` | `''` | Additional Tailwind classes merged with the component styles. |
 
-### Individual Component Props
-
-All individual components (`TableHeader`, `TableBody`, `TableRow`, `TableCell`, `TableFooter`, `TableCaption`) accept their respective HTML attributes plus:
-
-- `className` - Additional CSS classes
-- `children` - Component content
-
-`TableCell` additionally supports:
-- `header` - Whether this is a header cell
-- `align` - Text alignment
-- `colSpan` - Column span
-- `rowSpan` - Row span
+The Table component also accepts all standard HTML `div` attributes.
