@@ -1,81 +1,81 @@
-'use client'
+'use client';
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useTheme } from 'next-themes'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import * as THREE from 'three'
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useTheme } from 'next-themes';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import * as THREE from 'three';
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
+	const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+	useEffect(() => {
+		const checkIsMobile = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
 
-    checkIsMobile()
-    window.addEventListener('resize', checkIsMobile)
+		checkIsMobile();
+		window.addEventListener('resize', checkIsMobile);
 
-    return () => window.removeEventListener('resize', checkIsMobile)
-  }, [])
+		return () => window.removeEventListener('resize', checkIsMobile);
+	}, []);
 
-  return isMobile
+	return isMobile;
 }
 
 interface ShaderPlaneProps {
-  vertexShader: string
-  fragmentShader: string
-  uniforms: { [key: string]: { value: unknown } }
+	vertexShader: string;
+	fragmentShader: string;
+	uniforms: { [key: string]: { value: unknown } };
 }
 
 function ShaderPlane({
-  vertexShader,
-  fragmentShader,
-  uniforms,
+	vertexShader,
+	fragmentShader,
+	uniforms,
 }: ShaderPlaneProps) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const { size } = useThree()
+	const meshRef = useRef<THREE.Mesh>(null);
+	const { size } = useThree();
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      const material = meshRef.current.material as THREE.ShaderMaterial
-      material.uniforms.iTime.value = state.clock.elapsedTime * 0.5
-      material.uniforms.iResolution.value.set(size.width, size.height, 1.0)
-    }
-  })
+	useFrame((state) => {
+		if (meshRef.current) {
+			const material = meshRef.current.material as THREE.ShaderMaterial;
+			material.uniforms.iTime.value = state.clock.elapsedTime * 0.5;
+			material.uniforms.iResolution.value.set(size.width, size.height, 1.0);
+		}
+	});
 
-  return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        side={THREE.DoubleSide}
-        depthTest={false}
-        depthWrite={false}
-        transparent={true}
-      />
-    </mesh>
-  )
+	return (
+		<mesh ref={meshRef}>
+			<planeGeometry args={[2, 2]} />
+			<shaderMaterial
+				vertexShader={vertexShader}
+				fragmentShader={fragmentShader}
+				uniforms={uniforms}
+				side={THREE.DoubleSide}
+				depthTest={false}
+				depthWrite={false}
+				transparent={true}
+			/>
+		</mesh>
+	);
 }
 
 interface ShaderBackgroundProps {
-  vertexShader?: string
-  fragmentShader?: string
-  uniforms?: { [key: string]: { value: unknown } }
-  className?: string
+	vertexShader?: string;
+	fragmentShader?: string;
+	uniforms?: { [key: string]: { value: unknown } };
+	className?: string;
 }
 
 export default function MoonShaderBackground({
-  vertexShader = `
+	vertexShader = `
     varying vec2 vUv;
     void main() {
       vUv = uv;
     gl_Position = vec4(position, 1.0);
     }
   `,
-  fragmentShader = `
+	fragmentShader = `
     precision highp float;
 
 varying vec2 vUv;
@@ -116,64 +116,64 @@ void main()
 }
 
 `,
-  uniforms = {},
-  className = 'w-full h-full pointer-events-none',
+	uniforms = {},
+	className = 'w-full h-full pointer-events-none',
 }: ShaderBackgroundProps) {
-  const { resolvedTheme } = useTheme()
-  const isMobile = useIsMobile()
+	const { resolvedTheme } = useTheme();
+	const isMobile = useIsMobile();
 
-  const [isLight, setIsLight] = useState(false)
-  useEffect(() => {
-    if (resolvedTheme) {
-      setIsLight(resolvedTheme === 'light')
-      return
-    }
-    const root = document.documentElement
-    const compute = () => setIsLight(!root.classList.contains('dark'))
-    compute()
-    const observer = new MutationObserver(compute)
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] })
-    return () => observer.disconnect()
-  }, [resolvedTheme])
+	const [isLight, setIsLight] = useState(false);
+	useEffect(() => {
+		if (resolvedTheme) {
+			setIsLight(resolvedTheme === 'light');
+			return;
+		}
+		const root = document.documentElement;
+		const compute = () => setIsLight(!root.classList.contains('dark'));
+		compute();
+		const observer = new MutationObserver(compute);
+		observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+		return () => observer.disconnect();
+	}, [resolvedTheme]);
 
-  const shaderUniforms = useMemo(
-    () => ({
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector3(1, 1, 1) },
-      iInvert: { value: 0 },
-      iMobile: { value: 0 },
-      ...uniforms,
-    }),
-    [uniforms]
-  )
+	const shaderUniforms = useMemo(
+		() => ({
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector3(1, 1, 1) },
+			iInvert: { value: 0 },
+			iMobile: { value: 0 },
+			...uniforms,
+		}),
+		[uniforms],
+	);
 
-  useEffect(() => {
-    const invertUniform = shaderUniforms.iInvert as
-      | { value: number }
-      | undefined
-    if (invertUniform) {
-      invertUniform.value = isLight ? 1.0 : 0.0
-    }
-  }, [isLight, shaderUniforms])
+	useEffect(() => {
+		const invertUniform = shaderUniforms.iInvert as
+			| { value: number }
+			| undefined;
+		if (invertUniform) {
+			invertUniform.value = isLight ? 1.0 : 0.0;
+		}
+	}, [isLight, shaderUniforms]);
 
-  useEffect(() => {
-    const mobileUniform = shaderUniforms.iMobile as
-      | { value: number }
-      | undefined
-    if (mobileUniform) {
-      mobileUniform.value = isMobile ? 1.0 : 0.0
-    }
-  }, [isMobile, shaderUniforms])
+	useEffect(() => {
+		const mobileUniform = shaderUniforms.iMobile as
+			| { value: number }
+			| undefined;
+		if (mobileUniform) {
+			mobileUniform.value = isMobile ? 1.0 : 0.0;
+		}
+	}, [isMobile, shaderUniforms]);
 
-  return (
-    <div className={className}>
-      <Canvas className={className} gl={{ alpha: true }} frameloop="always">
-        <ShaderPlane
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
-          uniforms={shaderUniforms}
-        />
-      </Canvas>
-    </div>
-  )
+	return (
+		<div className={className}>
+			<Canvas className={className} gl={{ alpha: true }} frameloop="always">
+				<ShaderPlane
+					vertexShader={vertexShader}
+					fragmentShader={fragmentShader}
+					uniforms={shaderUniforms}
+				/>
+			</Canvas>
+		</div>
+	);
 }

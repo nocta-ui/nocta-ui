@@ -1,3 +1,3 @@
-export { Combobox, type ComboboxOption, type ComboboxProps } from './combobox'
+export { Combobox, type ComboboxOption, type ComboboxProps } from './combobox';
 
-export * from './combobox-demos'
+export * from './combobox-demos';

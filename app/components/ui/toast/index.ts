@@ -1,2 +1,2 @@
-export type { ToastData, ToastPosition } from './toast'
-export { Toaster, toast } from './toast'
+export type { ToastData, ToastPosition } from './toast';
+export { Toaster, toast } from './toast';

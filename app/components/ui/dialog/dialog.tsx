@@ -1,353 +1,351 @@
-'use client'
+'use client';
 
 import {
-  Dialog as AriakitDialog,
-  DialogDescription as AriakitDialogDescription,
-  DialogDismiss as AriakitDialogDismiss,
-  DialogHeading as AriakitDialogHeading,
-  type DialogStore,
-  useDialogStore,
-  useStoreState,
-} from '@ariakit/react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import React from 'react'
-import { Icons } from '@/app/components/ui/icons/icons'
-import { cn } from '@/lib/utils'
+	Dialog as AriakitDialog,
+	DialogDescription as AriakitDialogDescription,
+	DialogDismiss as AriakitDialogDismiss,
+	DialogHeading as AriakitDialogHeading,
+	type DialogStore,
+	useDialogStore,
+	useStoreState,
+} from '@ariakit/react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import React from 'react';
+import { Icons } from '@/app/components/ui/icons/icons';
+import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-  `relative max-h-[70vh] bg-background border border-none dark:border-solid border-border
-   rounded-lg shadow-2xl not-prose overflow-y-auto
-   transition-all duration-200 ease-in-out`,
-  {
-    variants: {
-      size: {
-        sm: 'w-[50vw] md:max-w-sm',
-        md: 'w-[65vw] md:max-w-md',
-        lg: 'w-[80vw] md:max-w-lg',
-        xl: 'w-[95vw] md:max-w-xl',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-    },
-  }
-)
+	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-none border-border bg-background shadow-2xl transition-all duration-200 ease-in-out dark:border-solid`,
+	{
+		variants: {
+			size: {
+				sm: 'w-[50vw] md:max-w-sm',
+				md: 'w-[65vw] md:max-w-md',
+				lg: 'w-[80vw] md:max-w-lg',
+				xl: 'w-[95vw] md:max-w-xl',
+			},
+		},
+		defaultVariants: {
+			size: 'md',
+		},
+	},
+);
 
 export interface DialogProps {
-  children: React.ReactNode
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
+	children: React.ReactNode;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
 }
 
 export interface DialogTriggerProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode
-  asChild?: boolean
-  className?: string
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	children: React.ReactNode;
+	asChild?: boolean;
+	className?: string;
 }
 
 export interface DialogContentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof dialogContentVariants> {
-  children: React.ReactNode
-  className?: string
-  showClose?: boolean
-  portal?: boolean
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof dialogContentVariants> {
+	children: React.ReactNode;
+	className?: string;
+	showClose?: boolean;
+	portal?: boolean;
 }
 
 export interface DialogHeaderProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  className?: string
+	extends React.HTMLAttributes<HTMLDivElement> {
+	children: React.ReactNode;
+	className?: string;
 }
 
 export interface DialogTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {
-  children: React.ReactNode
-  className?: string
-  as?: React.ElementType
+	extends React.HTMLAttributes<HTMLHeadingElement> {
+	children: React.ReactNode;
+	className?: string;
+	as?: React.ElementType;
 }
 
 export interface DialogDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {
-  children: React.ReactNode
-  className?: string
+	extends React.HTMLAttributes<HTMLParagraphElement> {
+	children: React.ReactNode;
+	className?: string;
 }
 
 export interface DialogFooterProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  className?: string
+	extends React.HTMLAttributes<HTMLDivElement> {
+	children: React.ReactNode;
+	className?: string;
 }
 
 export interface DialogActionsProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  className?: string
+	extends React.HTMLAttributes<HTMLDivElement> {
+	children: React.ReactNode;
+	className?: string;
 }
 
 export interface DialogCloseProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode
-  className?: string
-  asChild?: boolean
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	children?: React.ReactNode;
+	className?: string;
+	asChild?: boolean;
 }
 
 interface DialogContextType {
-  store: DialogStore
+	store: DialogStore;
 }
 
 const DialogContext = React.createContext<DialogContextType | undefined>(
-  undefined
-)
+	undefined,
+);
 
 const useDialog = () => {
-  const context = React.useContext(DialogContext)
-  if (!context) {
-    throw new Error('Dialog components must be used within a Dialog')
-  }
-  return context
-}
+	const context = React.useContext(DialogContext);
+	if (!context) {
+		throw new Error('Dialog components must be used within a Dialog');
+	}
+	return context;
+};
 
 export const Dialog: React.FC<DialogProps> = ({
-  children,
-  open: controlledOpen,
-  onOpenChange,
+	children,
+	open: controlledOpen,
+	onOpenChange,
 }) => {
-  const store = useDialogStore(
-    controlledOpen !== undefined
-      ? { open: controlledOpen, setOpen: onOpenChange }
-      : undefined
-  )
+	const store = useDialogStore(
+		controlledOpen !== undefined
+			? { open: controlledOpen, setOpen: onOpenChange }
+			: undefined,
+	);
 
-  return (
-    <DialogContext.Provider value={{ store }}>
-      {children}
-    </DialogContext.Provider>
-  )
-}
+	return (
+		<DialogContext.Provider value={{ store }}>
+			{children}
+		</DialogContext.Provider>
+	);
+};
 
 export const DialogTrigger: React.FC<DialogTriggerProps> = ({
-  children,
-  className = '',
-  asChild = false,
-  onClick,
-  ...props
+	children,
+	className = '',
+	asChild = false,
+	onClick,
+	...props
 }) => {
-  const { store } = useDialog()
-  const isOpen = useStoreState(store, 'open')
+	const { store } = useDialog();
+	const isOpen = useStoreState(store, 'open');
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    store.show()
-    onClick?.(e)
-  }
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		store.show();
+		onClick?.(e);
+	};
 
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children as React.ReactElement<
-        React.ButtonHTMLAttributes<HTMLButtonElement>
-      >,
-      {
-        onClick: handleClick,
-        'aria-haspopup': 'dialog',
-        'aria-expanded': isOpen,
-        ...(children.props || {}),
-      }
-    )
-  }
+	if (asChild && React.isValidElement(children)) {
+		return React.cloneElement(
+			children as React.ReactElement<
+				React.ButtonHTMLAttributes<HTMLButtonElement>
+			>,
+			{
+				onClick: handleClick,
+				'aria-haspopup': 'dialog',
+				'aria-expanded': isOpen,
+				...(children.props || {}),
+			},
+		);
+	}
 
-  return (
-    <button
-      className={cn(
-        'focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border not-prose inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
-        className
-      )}
-      onClick={handleClick}
-      aria-haspopup="dialog"
-      aria-expanded={isOpen}
-      {...props}
-    >
-      {children}
-    </button>
-  )
-}
+	return (
+		<button
+			className={cn(
+				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				className,
+			)}
+			onClick={handleClick}
+			aria-haspopup="dialog"
+			aria-expanded={isOpen}
+			{...props}
+		>
+			{children}
+		</button>
+	);
+};
 
 export const DialogContent: React.FC<DialogContentProps> = ({
-  children,
-  className = '',
-  size = 'md',
-  showClose = true,
-  portal = true,
-  ...props
+	children,
+	className = '',
+	size = 'md',
+	showClose = true,
+	portal = true,
+	...props
 }) => {
-  const { store } = useDialog()
-  const open = useStoreState(store, 'open')
-  const [mounted, setMounted] = React.useState(open)
-  React.useEffect(() => {
-    if (open) {
-      setMounted(true)
-      return
-    }
-    const t = window.setTimeout(() => setMounted(false), 200)
-    return () => window.clearTimeout(t)
-  }, [open])
+	const { store } = useDialog();
+	const open = useStoreState(store, 'open');
+	const [mounted, setMounted] = React.useState(open);
+	React.useEffect(() => {
+		if (open) {
+			setMounted(true);
+			return;
+		}
+		const t = window.setTimeout(() => setMounted(false), 200);
+		return () => window.clearTimeout(t);
+	}, [open]);
 
-  if (!mounted) return null
+	if (!mounted) return null;
 
-  return (
-    <AriakitDialog
-      store={store}
-      portal={portal}
-      backdrop={
-        <div
-          className={cn(
-            'bg-overlay/50 fixed inset-0 z-40 backdrop-blur-sm',
-            'opacity-0 transition-opacity duration-200 ease-in-out',
-            'data-[enter]:opacity-100 data-[leave]:opacity-0'
-          )}
-        />
-      }
-      className={cn(
-        dialogContentVariants({ size }),
-        'fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform',
-        'scale-105 opacity-0 blur-sm transition-all duration-200 ease-in-out',
-        'data-[enter]:scale-100 data-[enter]:opacity-100 data-[enter]:blur-none',
-        'data-[leave]:scale-105 data-[leave]:opacity-0 data-[leave]:blur-sm',
-        className
-      )}
-      {...props}
-    >
-      {showClose && (
-        <DialogClose className="absolute top-1 right-1 z-10">
-          <Icons.X aria-hidden="true" className="h-4 w-4" />
-          <span className="sr-only">Close</span>
-        </DialogClose>
-      )}
-      {children}
-    </AriakitDialog>
-  )
-}
+	return (
+		<AriakitDialog
+			store={store}
+			portal={portal}
+			backdrop={
+				<div
+					className={cn(
+						'fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm',
+						'opacity-0 transition-opacity duration-200 ease-in-out',
+						'data-[enter]:opacity-100 data-[leave]:opacity-0',
+					)}
+				/>
+			}
+			className={cn(
+				dialogContentVariants({ size }),
+				'fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform',
+				'scale-105 opacity-0 blur-sm transition-all duration-200 ease-in-out',
+				'data-[enter]:scale-100 data-[enter]:opacity-100 data-[enter]:blur-none',
+				'data-[leave]:scale-105 data-[leave]:opacity-0 data-[leave]:blur-sm',
+				className,
+			)}
+			{...props}
+		>
+			{showClose && (
+				<DialogClose className="absolute top-1 right-1 z-10">
+					<Icons.X aria-hidden="true" className="h-4 w-4" />
+					<span className="sr-only">Close</span>
+				</DialogClose>
+			)}
+			{children}
+		</AriakitDialog>
+	);
+};
 
 export const DialogHeader: React.FC<DialogHeaderProps> = ({
-  children,
-  className = '',
-  ...props
+	children,
+	className = '',
+	...props
 }) => {
-  return (
-    <div className={cn('not-prose px-4 pt-4', className)} {...props}>
-      {children}
-    </div>
-  )
-}
+	return (
+		<div className={cn('not-prose px-4 pt-4', className)} {...props}>
+			{children}
+		</div>
+	);
+};
 
 export const DialogTitle: React.FC<DialogTitleProps> = ({
-  children,
-  className = '',
-  as: Component = 'h2',
-  ...props
+	children,
+	className = '',
+	as: Component = 'h2',
+	...props
 }) => {
-  return (
-    <AriakitDialogHeading
-      render={(headingProps) => React.createElement(Component, headingProps)}
-      className={cn(
-        'text-foreground not-prose text-base leading-tight font-semibold',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </AriakitDialogHeading>
-  )
-}
+	return (
+		<AriakitDialogHeading
+			render={(headingProps) => React.createElement(Component, headingProps)}
+			className={cn(
+				'not-prose text-base leading-tight font-semibold text-foreground',
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</AriakitDialogHeading>
+	);
+};
 
 export const DialogDescription: React.FC<DialogDescriptionProps> = ({
-  children,
-  className = '',
-  ...props
+	children,
+	className = '',
+	...props
 }) => {
-  return (
-    <AriakitDialogDescription
-      className={cn(
-        'text-foreground-muted/80 not-prose mt-1 text-sm leading-relaxed',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </AriakitDialogDescription>
-  )
-}
+	return (
+		<AriakitDialogDescription
+			className={cn(
+				'not-prose mt-1 text-sm leading-relaxed text-foreground-muted/80',
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</AriakitDialogDescription>
+	);
+};
 
 export const DialogFooter: React.FC<DialogFooterProps> = ({
-  children,
-  className = '',
-  ...props
+	children,
+	className = '',
+	...props
 }) => {
-  return (
-    <div
-      className={cn(
-        'bg-background-muted/50 dark:bg-background-muted/30 border-border-muted not-prose flex items-center justify-end rounded-b-xl border-t p-4',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+	return (
+		<div
+			className={cn(
+				'not-prose flex items-center justify-end rounded-b-xl border-t border-border/60 bg-background-muted/50 p-4 dark:bg-background-muted/30',
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</div>
+	);
+};
 
 export const DialogActions: React.FC<DialogActionsProps> = ({
-  children,
-  className = '',
-  ...props
+	children,
+	className = '',
+	...props
 }) => {
-  return (
-    <div
-      className={cn('not-prose flex items-center gap-2', className)}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
+	return (
+		<div
+			className={cn('not-prose flex items-center gap-2', className)}
+			{...props}
+		>
+			{children}
+		</div>
+	);
+};
 
 export const DialogClose: React.FC<DialogCloseProps> = ({
-  children,
-  className = '',
-  asChild = false,
-  onClick,
-  ...props
+	children,
+	className = '',
+	asChild = false,
+	onClick,
+	...props
 }) => {
-  const { store } = useDialog()
+	const { store } = useDialog();
 
-  if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<
-      React.ButtonHTMLAttributes<HTMLButtonElement>
-    >
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-      store.hide()
-      child.props?.onClick?.(e)
-      onClick?.(e)
-    }
-    return React.cloneElement(child, {
-      onClick: handleClick,
-      ...props,
-      ...(child.props || {}),
-    })
-  }
+	if (asChild && React.isValidElement(children)) {
+		const child = children as React.ReactElement<
+			React.ButtonHTMLAttributes<HTMLButtonElement>
+		>;
+		const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+			store.hide();
+			child.props?.onClick?.(e);
+			onClick?.(e);
+		};
+		return React.cloneElement(child, {
+			onClick: handleClick,
+			...props,
+			...(child.props || {}),
+		});
+	}
 
-  return (
-    <AriakitDialogDismiss
-      store={store}
-      className={cn(
-        'text-foreground-subtle hover:text-foreground-muted hover:bg-background focus-visible:ring-offset-ring-offset/50 not-prose focus-visible:ring-ring/50 focus-visible:border-border not-prose inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
-        className
-      )}
-      type="button"
-      onClick={onClick}
-      {...props}
-    >
-      {children}
-    </AriakitDialogDismiss>
-  )
-}
+	return (
+		<AriakitDialogDismiss
+			store={store}
+			className={cn(
+				'not-prose not-prose inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-foreground-subtle transition-colors duration-200 hover:bg-background hover:text-foreground-muted focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				className,
+			)}
+			type="button"
+			onClick={onClick}
+			{...props}
+		>
+			{children}
+		</AriakitDialogDismiss>
+	);
+};

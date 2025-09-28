@@ -18,7 +18,6 @@
 
 	/* Borders & Rings */
 	--color-border: oklch(0.205 0.0031 229.76 / 0.1);
-	--color-border-muted: oklch(0.942 0 0 / 0.8);
 	--color-ring: oklch(0.205 0.0031 229.76);
 	--color-ring-offset: oklch(0.97 0.0031 229.76);
 	--color-overlay: oklch(0.95 0.0031 229.76);
@@ -85,7 +84,6 @@
 
 	/* Borders & Rings */
 	--color-border: oklch(0.97 0.0031 229.76 / 0.1);
-	--color-border-muted: oklch(0.269 0 0 / 0.8);
 	--color-ring: oklch(0.97 0.0031 229.76);
 	--color-ring-offset: oklch(0.205 0.0031 229.76);
 	--color-overlay: oklch(0.145 0.0031 229.76);
@@ -148,7 +146,6 @@
 	--color-foreground-muted: var(--foreground-muted);
 	--color-foreground-subtle: var(--foreground-subtle);
 	--color-border: var(--border);
-	--color-border-muted: var(--border-muted);
 	--color-ring: var(--ring);
 	--color-ring-offset: var(--ring-offset);
 	--color-overlay: var(--overlay);

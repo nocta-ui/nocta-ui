@@ -1,8 +1,8 @@
-export { Checkbox, type CheckboxProps } from './checkbox'
+export { Checkbox, type CheckboxProps } from './checkbox';
 
 export {
-  BasicCheckboxDemo,
-  CustomStylingDemo,
-  LabeledCheckboxDemo,
-  SizesDemo,
-} from './checkbox-demos'
+	BasicCheckboxDemo,
+	CustomStylingDemo,
+	LabeledCheckboxDemo,
+	SizesDemo,
+} from './checkbox-demos';

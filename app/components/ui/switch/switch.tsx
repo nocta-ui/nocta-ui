@@ -1,129 +1,129 @@
-'use client'
+'use client';
 
-import * as Ariakit from '@ariakit/react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import * as React from 'react'
-import { cn } from '@/lib/utils'
+import * as Ariakit from '@ariakit/react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import * as React from 'react';
+import { cn } from '@/lib/utils';
 
 const switchVariants = cva(
-  [
-    'relative inline-flex items-center rounded-full border-2 border-transparent',
-    'transition-all duration-200 ease-in-out cursor-pointer',
-    'peer-focus-visible:outline-none peer-focus-visible:ring-1',
-    'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50',
-  ],
-  {
-    variants: {
-      size: {
-        sm: 'h-5 w-9',
-        md: 'h-6 w-11',
-        lg: 'h-7 w-12',
-      },
-      checked: {
-        true: '',
-        false: '',
-      },
-      disabled: {
-        true: 'opacity-50 cursor-not-allowed',
-        false: '',
-      },
-    },
-    compoundVariants: [
-      {
-        checked: true,
-        class: 'bg-foreground-subtle peer-focus-visible:ring-ring/50',
-      },
-      {
-        checked: false,
-        class: 'bg-background-elevated peer-focus-visible:ring-ring/50',
-      },
-    ],
-    defaultVariants: {
-      size: 'md',
-      checked: false,
-      disabled: false,
-    },
-  }
-)
+	[
+		'relative inline-flex items-center rounded-full border-2 border-transparent',
+		'cursor-pointer transition-all duration-200 ease-in-out',
+		'peer-focus-visible:ring-1 peer-focus-visible:outline-none',
+		'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50',
+	],
+	{
+		variants: {
+			size: {
+				sm: 'h-5 w-9',
+				md: 'h-6 w-11',
+				lg: 'h-7 w-12',
+			},
+			checked: {
+				true: '',
+				false: '',
+			},
+			disabled: {
+				true: 'cursor-not-allowed opacity-50',
+				false: '',
+			},
+		},
+		compoundVariants: [
+			{
+				checked: true,
+				class: 'bg-foreground-subtle peer-focus-visible:ring-ring/50',
+			},
+			{
+				checked: false,
+				class: 'bg-background-elevated peer-focus-visible:ring-ring/50',
+			},
+		],
+		defaultVariants: {
+			size: 'md',
+			checked: false,
+			disabled: false,
+		},
+	},
+);
 
 const thumbVariants = cva(
-  [
-    'inline-block rounded-full bg-background dark:bg-foreground',
-    'shadow-sm transform transition-transform duration-200 ease-in-out',
-  ],
-  {
-    variants: {
-      size: {
-        sm: 'h-3 w-3',
-        md: 'h-4 w-4',
-        lg: 'h-5 w-5',
-      },
-      checked: {
-        true: '',
-        false: '',
-      },
-    },
-    compoundVariants: [
-      { size: 'sm', checked: true, class: 'translate-x-4' },
-      { size: 'sm', checked: false, class: 'translate-x-1' },
-      { size: 'md', checked: true, class: 'translate-x-5' },
-      { size: 'md', checked: false, class: 'translate-x-1' },
-      { size: 'lg', checked: true, class: 'translate-x-5' },
-      { size: 'lg', checked: false, class: 'translate-x-1' },
-    ],
-    defaultVariants: {
-      size: 'md',
-      checked: false,
-    },
-  }
-)
+	[
+		'inline-block rounded-full bg-background dark:bg-foreground',
+		'transform shadow-sm transition-transform duration-200 ease-in-out',
+	],
+	{
+		variants: {
+			size: {
+				sm: 'h-3 w-3',
+				md: 'h-4 w-4',
+				lg: 'h-5 w-5',
+			},
+			checked: {
+				true: '',
+				false: '',
+			},
+		},
+		compoundVariants: [
+			{ size: 'sm', checked: true, class: 'translate-x-4' },
+			{ size: 'sm', checked: false, class: 'translate-x-1' },
+			{ size: 'md', checked: true, class: 'translate-x-5' },
+			{ size: 'md', checked: false, class: 'translate-x-1' },
+			{ size: 'lg', checked: true, class: 'translate-x-5' },
+			{ size: 'lg', checked: false, class: 'translate-x-1' },
+		],
+		defaultVariants: {
+			size: 'md',
+			checked: false,
+		},
+	},
+);
 
 export interface SwitchProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>, 'size'>,
-    Omit<VariantProps<typeof switchVariants>, 'checked' | 'disabled'> {
-  size?: 'sm' | 'md' | 'lg'
-  disabled?: boolean
-  className?: string
-  onCheckedChange?: (checked: boolean) => void
+	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>, 'size'>,
+		Omit<VariantProps<typeof switchVariants>, 'checked' | 'disabled'> {
+	size?: 'sm' | 'md' | 'lg';
+	disabled?: boolean;
+	className?: string;
+	onCheckedChange?: (checked: boolean) => void;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
-  size = 'md',
-  disabled = false,
-  className,
-  onCheckedChange,
-  checked,
-  defaultChecked,
-  ...props
+	size = 'md',
+	disabled = false,
+	className,
+	onCheckedChange,
+	checked,
+	defaultChecked,
+	...props
 }) => {
-  const id = React.useId()
-  const store = Ariakit.useCheckboxStore({
-    value: checked,
-    setValue: (val) => onCheckedChange?.(val === true),
-    defaultValue: defaultChecked ?? false,
-  })
-  const value = Ariakit.useStoreState(store, 'value')
-  const isChecked = value === true
+	const id = React.useId();
+	const store = Ariakit.useCheckboxStore({
+		value: checked,
+		setValue: (val) => onCheckedChange?.(val === true),
+		defaultValue: defaultChecked ?? false,
+	});
+	const value = Ariakit.useStoreState(store, 'value');
+	const isChecked = value === true;
 
-  return (
-    <>
-      <Ariakit.Checkbox
-        id={id}
-        store={store}
-        role="switch"
-        disabled={disabled}
-        className="peer sr-only"
-        {...props}
-      />
-      <label
-        htmlFor={id}
-        className={cn(
-          switchVariants({ size, checked: isChecked, disabled }),
-          className
-        )}
-      >
-        <span className={thumbVariants({ size, checked: isChecked })} />
-      </label>
-    </>
-  )
-}
+	return (
+		<>
+			<Ariakit.Checkbox
+				id={id}
+				store={store}
+				role="switch"
+				disabled={disabled}
+				className="peer sr-only"
+				{...props}
+			/>
+			<label
+				htmlFor={id}
+				className={cn(
+					switchVariants({ size, checked: isChecked, disabled }),
+					className,
+				)}
+			>
+				<span className={thumbVariants({ size, checked: isChecked })} />
+			</label>
+		</>
+	);
+};
