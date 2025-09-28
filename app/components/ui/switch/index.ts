@@ -1,9 +1,3 @@
-export {
-	Switch,
-	type SwitchProps,
-} from "./switch";
+export { Switch, type SwitchProps } from './switch'
 
-export {
-	BasicSwitchDemo,
-	SizesDemo,
-} from "./switch-demos";
+export { BasicSwitchDemo, SizesDemo } from './switch-demos'

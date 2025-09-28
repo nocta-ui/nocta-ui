@@ -1,82 +1,82 @@
-"use client";
+'use client'
 
-import { ViewVerticalIcon } from "@radix-ui/react-icons";
-import { useNav } from "fumadocs-ui/contexts/layout";
-import { useSidebar } from "fumadocs-ui/contexts/sidebar";
-import type { ComponentProps } from "react";
+import { ViewVerticalIcon } from '@radix-ui/react-icons'
+import { useNav } from 'fumadocs-ui/contexts/layout'
+import { useSidebar } from 'fumadocs-ui/contexts/sidebar'
+import type { ComponentProps } from 'react'
 
-import { cn } from "../../../lib/cn";
-import { SearchToggle } from "../../search-toggle";
-import { SidebarCollapseTrigger } from "../../sidebar";
-import { buttonVariants } from "../../ui/button";
+import { cn } from '../../../lib/cn'
+import { SearchToggle } from '../../search-toggle'
+import { SidebarCollapseTrigger } from '../../sidebar'
+import { buttonVariants } from '../../ui/button'
 
-export function Navbar(props: ComponentProps<"header">) {
-	const { isTransparent } = useNav();
+export function Navbar(props: ComponentProps<'header'>) {
+  const { isTransparent } = useNav()
 
-	return (
-		<header
-			id="nd-subnav"
-			{...props}
-			className={cn(
-				"fixed top-(--fd-banner-height) left-0 right-(--removed-body-scroll-bar-size,0) z-30 flex items-center ps-4 pe-2.5 border-b transition-colors backdrop-blur-sm",
-				!isTransparent && "bg-background/80",
-				props.className,
-			)}
-		>
-			{props.children}
-		</header>
-	);
+  return (
+    <header
+      id="nd-subnav"
+      {...props}
+      className={cn(
+        'fixed top-(--fd-banner-height) right-(--removed-body-scroll-bar-size,0) left-0 z-30 flex items-center border-b ps-4 pe-2.5 backdrop-blur-sm transition-colors',
+        !isTransparent && 'bg-background/80',
+        props.className
+      )}
+    >
+      {props.children}
+    </header>
+  )
 }
 
-export function LayoutBody(props: ComponentProps<"main">) {
-	const { collapsed } = useSidebar();
+export function LayoutBody(props: ComponentProps<'main'>) {
+  const { collapsed } = useSidebar()
 
-	return (
-		<main
-			id="nd-docs-layout"
-			{...props}
-			className={cn(
-				"flex flex-1 flex-col pt-(--fd-nav-height) transition-[padding] fd-default-layout",
-				!collapsed && "mx-(--fd-layout-offset)",
-				props.className,
-			)}
-			style={{
-				...props.style,
-				paddingInlineStart: collapsed
-					? "min(calc(100vw - var(--fd-page-width)), var(--fd-sidebar-width))"
-					: "var(--fd-sidebar-width)",
-			}}
-		>
-			{props.children}
-		</main>
-	);
+  return (
+    <main
+      id="nd-docs-layout"
+      {...props}
+      className={cn(
+        'fd-default-layout flex flex-1 flex-col pt-(--fd-nav-height) transition-[padding]',
+        !collapsed && 'mx-(--fd-layout-offset)',
+        props.className
+      )}
+      style={{
+        ...props.style,
+        paddingInlineStart: collapsed
+          ? 'min(calc(100vw - var(--fd-page-width)), var(--fd-sidebar-width))'
+          : 'var(--fd-sidebar-width)',
+      }}
+    >
+      {props.children}
+    </main>
+  )
 }
 
 export function CollapsibleControl() {
-	const { collapsed } = useSidebar();
+  const { collapsed } = useSidebar()
 
-	return (
-		<div
-			className={cn(
-				"fixed flex shadow-lg transition-opacity rounded-xl p-0.5 border bg-background-muted text-foreground-muted z-10 max-md:hidden xl:start-4 max-xl:end-4",
-				!collapsed && "pointer-events-none opacity-0",
-			)}
-			style={{
-				top: "calc(var(--fd-banner-height) + var(--fd-tocnav-height) + var(--spacing) * 4)",
-			}}
-		>
-			<SidebarCollapseTrigger
-				className={cn(
-					buttonVariants({
-						color: "ghost",
-						size: "icon-sm",
-						className: "rounded-lg",
-					}),
-				)}
-			>
-				<ViewVerticalIcon aria-hidden="true" />
-			</SidebarCollapseTrigger>
-			<SearchToggle className="rounded-lg" hideIfDisabled />
-		</div>
-	);
+  return (
+    <div
+      className={cn(
+        'bg-background-muted text-foreground-muted fixed z-10 flex rounded-xl border p-0.5 shadow-lg transition-opacity max-xl:end-4 max-md:hidden xl:start-4',
+        !collapsed && 'pointer-events-none opacity-0'
+      )}
+      style={{
+        top: 'calc(var(--fd-banner-height) + var(--fd-tocnav-height) + var(--spacing) * 4)',
+      }}
+    >
+      <SidebarCollapseTrigger
+        className={cn(
+          buttonVariants({
+            color: 'ghost',
+            size: 'icon-sm',
+            className: 'rounded-lg',
+          })
+        )}
+      >
+        <ViewVerticalIcon aria-hidden="true" />
+      </SidebarCollapseTrigger>
+      <SearchToggle className="rounded-lg" hideIfDisabled />
+    </div>
+  )
 }

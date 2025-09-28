@@ -1,6 +1,3 @@
-export {
-	Skeleton,
-	type SkeletonProps,
-} from "./skeleton";
+export { Skeleton, type SkeletonProps } from './skeleton'
 
-export * from "./skeleton-demos";
+export * from './skeleton-demos'

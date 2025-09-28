@@ -1,13 +1,13 @@
-"use client";
+'use client'
 
-import * as Ariakit from "@ariakit/react";
-import { cva, type VariantProps } from "class-variance-authority";
-import React from "react";
-import { Icons } from "@/app/components/ui/icons/icons";
-import { cn } from "@/lib/utils";
+import * as Ariakit from '@ariakit/react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import React from 'react'
+import { Icons } from '@/app/components/ui/icons/icons'
+import { cn } from '@/lib/utils'
 
 const selectTriggerVariants = cva(
-	`flex w-fit items-center justify-between
+  `flex w-fit items-center justify-between
    rounded-md border border-none dark:border-solid
    placeholder:text-foreground-subtle
    focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1
@@ -16,239 +16,239 @@ const selectTriggerVariants = cva(
    transition-all duration-200 ease-in-out
    hover:bg-background-muted/50
    shadow-sm not-prose`,
-	{
-		variants: {
-			variant: {
-				default: `
+  {
+    variants: {
+      variant: {
+        default: `
           border-border
           bg-background
           text-foreground
           focus-visible:border-border
           focus-visible:ring-ring/50
         `,
-				error: `
+        error: `
           border-error/40
           bg-background
           text-foreground
           focus-visible:border-error/50
           focus-visible:ring-error/50 dark:focus-visible:ring-error/50
         `,
-				success: `
+        success: `
           border-success/40
           bg-background
           text-foreground
           focus-visible:border-success/50
           focus-visible:ring-success/50 dark:focus-visible:ring-success/50
         `,
-			},
-			size: {
-				sm: "h-8 px-2 text-xs",
-				md: "h-10 px-3 text-sm",
-				lg: "h-12 px-4 text-base",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-			size: "md",
-		},
-	},
-);
+      },
+      size: {
+        sm: 'h-8 px-2 text-xs',
+        md: 'h-10 px-3 text-sm',
+        lg: 'h-12 px-4 text-base',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+    },
+  }
+)
 
 export interface SelectProps
-	extends VariantProps<typeof selectTriggerVariants> {
-	value?: string;
-	defaultValue?: string;
-	onValueChange?: (value: string) => void;
-	disabled?: boolean;
-	children: React.ReactNode;
+  extends VariantProps<typeof selectTriggerVariants> {
+  value?: string
+  defaultValue?: string
+  onValueChange?: (value: string) => void
+  disabled?: boolean
+  children: React.ReactNode
 }
 
 export interface SelectTriggerProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof selectTriggerVariants> {
-	children: React.ReactNode;
-	className?: string;
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof selectTriggerVariants> {
+  children: React.ReactNode
+  className?: string
 }
 
 export interface SelectContentProps {
-	children: React.ReactNode;
-	className?: string;
-	portal?: boolean;
-	fixed?: boolean;
+  children: React.ReactNode
+  className?: string
+  portal?: boolean
+  fixed?: boolean
 }
 
 export interface SelectItemProps {
-	value: string;
-	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
+  value: string
+  children: React.ReactNode
+  className?: string
+  disabled?: boolean
 }
 
 export interface SelectValueProps {
-	placeholder?: string;
-	className?: string;
+  placeholder?: string
+  className?: string
 }
 
 type SelectSize = NonNullable<
-	VariantProps<typeof selectTriggerVariants>["size"]
->;
+  VariantProps<typeof selectTriggerVariants>['size']
+>
 type SelectVariant = NonNullable<
-	VariantProps<typeof selectTriggerVariants>["variant"]
->;
+  VariantProps<typeof selectTriggerVariants>['variant']
+>
 
 type InternalCtx = {
-	size: SelectSize;
-	variant: SelectVariant;
-	disabled?: boolean;
-};
+  size: SelectSize
+  variant: SelectVariant
+  disabled?: boolean
+}
 
 const InternalContext = React.createContext<InternalCtx>({
-	size: "md",
-	variant: "default",
-});
+  size: 'md',
+  variant: 'default',
+})
 
 export const Select: React.FC<SelectProps> = ({
-	value: controlledValue,
-	defaultValue,
-	onValueChange,
-	disabled = false,
-	children,
-	size = "md",
-	variant = "default",
+  value: controlledValue,
+  defaultValue,
+  onValueChange,
+  disabled = false,
+  children,
+  size = 'md',
+  variant = 'default',
 }) => {
-	const store = Ariakit.useSelectStore({
-		value: controlledValue,
-		defaultValue,
-		setValue: (v) => onValueChange?.(String(v ?? "")),
-		animated: true,
-	});
+  const store = Ariakit.useSelectStore({
+    value: controlledValue,
+    defaultValue,
+    setValue: (v) => onValueChange?.(String(v ?? '')),
+    animated: true,
+  })
 
-	const normalizedSize: SelectSize = size ?? "md";
-	const normalizedVariant: SelectVariant = variant ?? "default";
-	const contextValue = React.useMemo<InternalCtx>(
-		() => ({ size: normalizedSize, variant: normalizedVariant, disabled }),
-		[normalizedSize, normalizedVariant, disabled],
-	);
+  const normalizedSize: SelectSize = size ?? 'md'
+  const normalizedVariant: SelectVariant = variant ?? 'default'
+  const contextValue = React.useMemo<InternalCtx>(
+    () => ({ size: normalizedSize, variant: normalizedVariant, disabled }),
+    [normalizedSize, normalizedVariant, disabled]
+  )
 
-	return (
-		<Ariakit.SelectProvider store={store}>
-			<InternalContext.Provider value={contextValue}>
-				<div className="relative not-prose">{children}</div>
-			</InternalContext.Provider>
-		</Ariakit.SelectProvider>
-	);
-};
+  return (
+    <Ariakit.SelectProvider store={store}>
+      <InternalContext.Provider value={contextValue}>
+        <div className="not-prose relative">{children}</div>
+      </InternalContext.Provider>
+    </Ariakit.SelectProvider>
+  )
+}
 
 export const SelectTrigger: React.FC<SelectTriggerProps> = ({
-	children,
-	className = "",
-	size: propSize,
-	variant: propVariant,
-	...props
+  children,
+  className = '',
+  size: propSize,
+  variant: propVariant,
+  ...props
 }) => {
-	const ctx = React.useContext(InternalContext);
-	const select = Ariakit.useSelectContext();
-	const isOpen = Ariakit.useStoreState(select, (s) => s?.open ?? false);
-	const size: SelectSize = propSize ?? ctx.size ?? "md";
-	const variant: SelectVariant = propVariant ?? ctx.variant ?? "default";
+  const ctx = React.useContext(InternalContext)
+  const select = Ariakit.useSelectContext()
+  const isOpen = Ariakit.useStoreState(select, (s) => s?.open ?? false)
+  const size: SelectSize = propSize ?? ctx.size ?? 'md'
+  const variant: SelectVariant = propVariant ?? ctx.variant ?? 'default'
 
-	return (
-		<Ariakit.Select
-			disabled={ctx.disabled}
-			className={cn(selectTriggerVariants({ size, variant }), className)}
-			{...props}
-		>
-			{children}
-			<Icons.ChevronDown
-				aria-hidden="true"
-				className={cn(
-					"ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out",
-					isOpen && "rotate-180",
-				)}
-			/>
-		</Ariakit.Select>
-	);
-};
+  return (
+    <Ariakit.Select
+      disabled={ctx.disabled}
+      className={cn(selectTriggerVariants({ size, variant }), className)}
+      {...props}
+    >
+      {children}
+      <Icons.ChevronDown
+        aria-hidden="true"
+        className={cn(
+          'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200 ease-in-out',
+          isOpen && 'rotate-180'
+        )}
+      />
+    </Ariakit.Select>
+  )
+}
 
 export const SelectContent: React.FC<SelectContentProps> = ({
-	children,
-	className = "",
-	portal = true,
-	fixed = false,
+  children,
+  className = '',
+  portal = true,
+  fixed = false,
 }) => {
-	return (
-		<Ariakit.SelectPopover
-			sameWidth
-			portal={portal}
-			fixed={fixed}
-			className={cn(
-				"absolute z-[999] my-1 rounded-md border border-none dark:border-solid border-border bg-background shadow-md overflow-hidden",
-				"transform transition-all duration-200 ease-in-out origin-top -translate-y-1 opacity-0 scale-95 data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[enter]:scale-100 data-[leave]:-translate-y-1 data-[leave]:opacity-0 data-[leave]:scale-95",
-				"not-prose",
-				className,
-			)}
-		>
-			<div className="max-h-42 overflow-auto py-1 flex flex-col gap-1 z-50">
-				{children}
-			</div>
-		</Ariakit.SelectPopover>
-	);
-};
+  return (
+    <Ariakit.SelectPopover
+      sameWidth
+      portal={portal}
+      fixed={fixed}
+      className={cn(
+        'border-border bg-background absolute z-[999] my-1 overflow-hidden rounded-md border border-none shadow-md dark:border-solid',
+        'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:-translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0',
+        'not-prose',
+        className
+      )}
+    >
+      <div className="z-50 flex max-h-42 flex-col gap-1 overflow-auto py-1">
+        {children}
+      </div>
+    </Ariakit.SelectPopover>
+  )
+}
 
 export const SelectItem: React.FC<SelectItemProps> = ({
-	value,
-	children,
-	className = "",
-	disabled = false,
+  value,
+  children,
+  className = '',
+  disabled = false,
 }) => {
-	const select = Ariakit.useSelectContext();
-	const isSelected = Ariakit.useStoreState(select, (s) => s?.value === value);
+  const select = Ariakit.useSelectContext()
+  const isSelected = Ariakit.useStoreState(select, (s) => s?.value === value)
 
-	return (
-		<Ariakit.SelectItem
-			value={value}
-			disabled={disabled}
-			className={cn(
-				"relative flex cursor-pointer select-none items-center justify-between px-3 py-2 text-sm outline-none mx-1 rounded-sm text-foreground-muted hover:text-foreground hover:bg-background-muted focus-visible:bg-background-muted transition-colors duration-150",
-				isSelected && "bg-background-muted text-foreground font-medium",
-				disabled && "opacity-50 cursor-not-allowed pointer-events-none",
-				className,
-			)}
-		>
-			<span className="flex-1">{children}</span>
-			{isSelected && (
-				<Icons.Check
-					aria-hidden="true"
-					className="ml-2 h-4 w-4 text-foreground-muted"
-				/>
-			)}
-		</Ariakit.SelectItem>
-	);
-};
+  return (
+    <Ariakit.SelectItem
+      value={value}
+      disabled={disabled}
+      className={cn(
+        'text-foreground-muted hover:text-foreground hover:bg-background-muted focus-visible:bg-background-muted relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm transition-colors duration-150 outline-none select-none',
+        isSelected && 'bg-background-muted text-foreground font-medium',
+        disabled && 'pointer-events-none cursor-not-allowed opacity-50',
+        className
+      )}
+    >
+      <span className="flex-1">{children}</span>
+      {isSelected && (
+        <Icons.Check
+          aria-hidden="true"
+          className="text-foreground-muted ml-2 h-4 w-4"
+        />
+      )}
+    </Ariakit.SelectItem>
+  )
+}
 
 export const SelectValue: React.FC<SelectValueProps> = ({
-	placeholder = "Select an option...",
-	className = "",
+  placeholder = 'Select an option...',
+  className = '',
 }) => {
-	const select = Ariakit.useSelectContext();
-	const currentValue = Ariakit.useStoreState(select, (s) => s?.value ?? "");
-	const items = Ariakit.useStoreState(select, (s) => s?.items ?? []);
-	const currentItem = items.find((item) => item.value === currentValue);
+  const select = Ariakit.useSelectContext()
+  const currentValue = Ariakit.useStoreState(select, (s) => s?.value ?? '')
+  const items = Ariakit.useStoreState(select, (s) => s?.items ?? [])
+  const currentItem = items.find((item) => item.value === currentValue)
 
-	return (
-		<span
-			className={cn(
-				"block text-left text-foreground truncate whitespace-pre-wrap",
-				className,
-			)}
-		>
-			{currentItem ? (
-				currentItem.element?.textContent
-			) : (
-				<span className="text-foreground-subtle whitespace-pre-wrap">
-					{placeholder}
-				</span>
-			)}
-		</span>
-	);
-};
+  return (
+    <span
+      className={cn(
+        'text-foreground block truncate text-left whitespace-pre-wrap',
+        className
+      )}
+    >
+      {currentItem ? (
+        currentItem.element?.textContent
+      ) : (
+        <span className="text-foreground-subtle whitespace-pre-wrap">
+          {placeholder}
+        </span>
+      )}
+    </span>
+  )
+}
