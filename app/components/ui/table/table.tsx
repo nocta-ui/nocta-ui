@@ -20,7 +20,6 @@ import { Checkbox } from '../checkbox'
 
 declare module '@tanstack/react-table' {
   // Allow consumers to configure presentation details on column definitions.
-  // biome-ignore lint/correctness/noUnusedVariables: Generics must match TanStack types for augmentation
   interface ColumnMeta<TData, TValue> {
     align?: 'left' | 'center' | 'right'
     width?: number | string
@@ -29,6 +28,14 @@ declare module '@tanstack/react-table' {
     className?: string
     headerClassName?: string
     headerTooltip?: string
+    /**
+     * Phantom brand to reference generics and satisfy type checkers.
+     * Not for public use.
+     */
+    readonly __metaGenericsBrand__?: {
+      readonly data?: TData
+      readonly value?: TValue
+    }
   }
 }
 

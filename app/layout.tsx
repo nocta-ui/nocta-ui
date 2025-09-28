@@ -5,7 +5,7 @@ import localFont from 'next/font/local'
 import type { ReactNode } from 'react'
 import ThemeReloadWatcher from '../components/theme-reload-watcher'
 
-export const ppNeueMontreal = localFont({
+const ppNeueMontreal = localFont({
   src: [
     {
       path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Thin.woff2',
@@ -72,7 +72,7 @@ export const ppNeueMontreal = localFont({
   display: 'swap',
 })
 
-export const ppNeueMontrealMono = localFont({
+const ppNeueMontrealMono = localFont({
   src: [
     {
       path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Thin.woff2',

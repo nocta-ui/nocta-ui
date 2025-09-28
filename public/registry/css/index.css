@@ -7,21 +7,21 @@
 /* --- Light Mode --- */
 :root {
 	/* Backgrounds */
-	--color-background: oklch(0.997 0 0);
-	--color-background-muted: oklch(0.972 0 0);
-	--color-background-elevated: oklch(0.92 0 0);
+	--color-background: oklch(0.997 0.0031 229.76);
+	--color-background-muted: oklch(0.972 0.0031 229.76);
+	--color-background-elevated: oklch(0.92 0.0031 229.76);
 
 	/* Foreground (text) colors */
-	--color-foreground: oklch(0.327 0 0);
-	--color-foreground-muted: oklch(0.371 0 0);
-	--color-foreground-subtle: oklch(0.708 0 0);
+	--color-foreground: oklch(0.327 0.0031 229.76);
+	--color-foreground-muted: oklch(0.371 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.708 0.0031 229.76);
 
 	/* Borders & Rings */
-	--color-border: oklch(0.205 0 0 / 0.1);
+	--color-border: oklch(0.205 0.0031 229.76 / 0.1);
 	--color-border-muted: oklch(0.942 0 0 / 0.8);
-	--color-ring: oklch(0.205 0 0);
-	--color-ring-offset: oklch(0.97 0 0);
-	--color-overlay: oklch(0.95 0 0);
+	--color-ring: oklch(0.205 0.0031 229.76);
+	--color-ring-offset: oklch(0.97 0.0031 229.76);
+	--color-overlay: oklch(0.95 0.0031 229.76);
 
 	/* Semantic colors */
 	--color-error: oklch(0.65 0.17 25);
@@ -74,21 +74,21 @@
 /* --- Dark Mode --- */
 .dark {
 	/* Backgrounds */
-	--color-background: oklch(0.205 0 0);
-	--color-background-muted: oklch(0.249 0 0);
-	--color-background-elevated: oklch(0.351 0 0);
+	--color-background: oklch(0.205 0.0031 229.76);
+	--color-background-muted: oklch(0.249 0.0031 229.76);
+	--color-background-elevated: oklch(0.351 0.0031 229.76);
 
 	/* Foreground (text) */
-	--color-foreground: oklch(0.97 0 0);
-	--color-foreground-muted: oklch(0.87 0 0);
-	--color-foreground-subtle: oklch(0.556 0 0);
+	--color-foreground: oklch(0.97 0.0031 229.76);
+	--color-foreground-muted: oklch(0.87 0.0031 229.76);
+	--color-foreground-subtle: oklch(0.556 0.0031 229.76);
 
 	/* Borders & Rings */
-	--color-border: oklch(0.97 0 0 / 0.1);
+	--color-border: oklch(0.97 0.0031 229.76 / 0.1);
 	--color-border-muted: oklch(0.269 0 0 / 0.8);
-	--color-ring: oklch(0.97 0 0);
-	--color-ring-offset: oklch(0.205 0 0);
-	--color-overlay: oklch(0.145 0 0);
+	--color-ring: oklch(0.97 0.0031 229.76);
+	--color-ring-offset: oklch(0.205 0.0031 229.76);
+	--color-overlay: oklch(0.145 0.0031 229.76);
 
 	/* Semantic colors */
 	--color-error: oklch(0.58 0.19 25);
