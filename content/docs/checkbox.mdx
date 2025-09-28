@@ -4,13 +4,13 @@ description: A versatile checkbox component for forms and selections with multip
 ---
 
 import { Checkbox } from '@/app/components/ui/checkbox';
-import { 
-  BasicCheckboxDemo, 
-  SizesDemo, 
+import {
+  BasicCheckboxDemo,
+  SizesDemo,
   LabeledCheckboxDemo,
   CustomStylingDemo
 } from '@/app/components/ui/checkbox/checkbox-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -45,10 +45,10 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Checkbox"
     const [isChecked, setIsChecked] = useState(false);
-    
-    <Checkbox 
-      checked={isChecked} 
-      onCheckedChange={setIsChecked} 
+
+    <Checkbox
+      checked={isChecked}
+      onCheckedChange={setIsChecked}
     />
     ```
   </DocsTab>

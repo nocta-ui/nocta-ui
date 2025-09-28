@@ -5,7 +5,7 @@ description: A comprehensive chat component system with message display, input h
 
 import { Chat, ChatMessages, ChatMessage, ChatInput, ChatActions, TypingIndicator } from '@/app/components/ui/chat';
 import { Button } from "@/app/components/ui/button"
-import { 
+import {
   BasicChatDemo,
   ChatWithAvatarsDemo,
   ChatWithTimestampsDemo,
@@ -14,7 +14,7 @@ import {
   CustomStyledChatDemo,
   TypingIndicatorDemo
 } from '@/app/components/ui/chat/chat-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -73,7 +73,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         timestamp: new Date(),
         name: 'You'
       };
-      
+
       setMessages(prev => [...prev, newMessage]);
     };
 
@@ -196,12 +196,12 @@ Display real-time typing indicators to show when users are composing messages.
         timestamp: new Date(),
         name: 'You'
       };
-      
+
       setMessages(prev => [...prev, newMessage]);
-      
+
       // Simulate typing indicator
       setTypingUsers([{ id: 'sarah', name: 'Sarah', avatar: 'avatar-url' }]);
-      
+
       // Remove typing indicator and add response
       setTimeout(() => {
         setTypingUsers([]);

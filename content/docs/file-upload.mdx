@@ -4,14 +4,14 @@ description: Advanced file upload component with drag & drop, progress tracking,
 ---
 
 import { FileUpload } from '@/app/components/ui/file-upload';
-import { 
+import {
   FileUploadDemo,
   FileUploadSizesDemo,
   FileUploadImageOnlyDemo,
   FileUploadSingleFileDemo,
   FileUploadDisabledDemo,
 } from '@/app/components/ui/file-upload/file-upload-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -51,9 +51,9 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
         // Simulate progress
         for (let progress = 0; progress <= 100; progress += 10) {
           await new Promise(resolve => setTimeout(resolve, 100));
-          setFiles(prevFiles => 
-            prevFiles.map(f => 
-              f.id === file.id 
+          setFiles(prevFiles =>
+            prevFiles.map(f =>
+              f.id === file.id
                 ? { ...f, progress, status: progress === 100 ? 'success' : 'uploading' }
                 : f
             )

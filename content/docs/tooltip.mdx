@@ -6,12 +6,12 @@ description: A floating tooltip component that displays additional information o
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/app/components/ui/tooltip';
 import { Button } from '@/app/components/ui/button';
 import { Badge } from '@/app/components/ui/badge';
-import { 
+import {
   SimpleTooltipDemo,
   WithTextTriggerDemo,
   DelayDurationDemo,
 } from '@/app/components/ui/tooltip/tooltip-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 
 ## Installation
 
@@ -69,7 +69,7 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Tooltip with Text Trigger"
     <span>
-      This text has a 
+      This text has a
       <Tooltip>
         <TooltipTrigger className="underline decoration-dotted underline-offset-4 cursor-help mx-1">
           tooltip
@@ -102,7 +102,7 @@ Control how long the user must hover before the tooltip appears using the `delay
         Appears immediately
       </TooltipContent>
     </Tooltip>
-    
+
     <Tooltip delayDuration={1000}>
       <TooltipTrigger>
         <Button size="sm" variant="ghost">Slow</Button>

@@ -15,7 +15,7 @@ import {
   RichContentDemo,
   CollisionDetectionDemo
 } from '@/app/components/ui/popover/popover-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 
 ## Installation
 
@@ -57,7 +57,7 @@ The Popover component provides a floating panel that appears on demand, perfect 
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-foreground-muted">
+          <p className="text-sm text-foreground/70">
             This is a popover component that can contain any content you want.
           </p>
         </div>
@@ -84,12 +84,12 @@ Control the popover's open state programmatically using the `open` and `onOpenCh
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-foreground-muted">
+          <p className="text-sm text-foreground/70">
             This popover's state is controlled externally.
           </p>
           <button
             onClick={() => setOpen(false)}
-            className="px-2 py-1 text-xs bg-background rounded"
+            className="px-2 py-1 text-xs bg-card rounded"
           >
             Close from inside
           </button>

@@ -4,7 +4,7 @@ description: A versatile input component with multiple variants, sizes, icons, a
 ---
 
 import { Input } from '@/app/components/ui/input';
-import { 
+import {
   DefaultInputDemo,
   InputWithLabelDemo,
   InputWithHelperTextDemo,
@@ -16,7 +16,7 @@ import {
   ReadOnlyStateDemo,
   CustomContainerDemo
 } from '@/app/components/ui/input/input-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -61,8 +61,8 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input with Label"
-    <Input 
-      label="Email Address" 
+    <Input
+      label="Email Address"
       placeholder="Enter your email"
       type="email"
     />
@@ -78,8 +78,8 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input with Helper Text"
-    <Input 
-      label="Username" 
+    <Input
+      label="Username"
       placeholder="Choose a unique username between 3-20 characters"
       helperText="Choose a unique username between 3-20 characters"
     />
@@ -97,20 +97,20 @@ The Input component supports three variants: `default`, `error`, and `success`.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input Variants"
-    <Input 
+    <Input
       label="Default Input"
       placeholder="Default variant"
       variant="default"
     />
-    
-    <Input 
+
+    <Input
       label="Error Input"
       placeholder="Error variant"
       variant="error"
       errorMessage="This field is required"
     />
-    
-    <Input 
+
+    <Input
       label="Success Input"
       placeholder="Success variant"
       variant="success"
@@ -130,19 +130,19 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input Sizes"
-    <Input 
+    <Input
       label="Small Input"
       placeholder="Small size"
       size="sm"
     />
-    
-    <Input 
+
+    <Input
       label="Medium Input"
       placeholder="Medium size"
       size="md"
     />
-    
-    <Input 
+
+    <Input
       label="Large Input"
       placeholder="Large size"
       size="lg"
@@ -161,13 +161,13 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input with Left Icon"
-    <Input 
+    <Input
       label="Search"
       placeholder="Search for anything..."
       leftIcon={<SearchIcon />}
     />
-    
-    <Input 
+
+    <Input
       label="Email"
       placeholder="Enter your email"
       type="email"
@@ -185,7 +185,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input with Right Icon"
-    <Input 
+    <Input
       label="Password"
       placeholder="Enter your password"
       type="password"
@@ -205,13 +205,13 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled Input"
-    <Input 
+    <Input
       label="Disabled Input"
       placeholder="This input is disabled"
       disabled
     />
-    
-    <Input 
+
+    <Input
       label="Disabled with Icon"
       placeholder="Disabled with icon"
       disabled
@@ -229,7 +229,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Read Only Input"
-    <Input 
+    <Input
       label="Read Only Input"
       value="This value cannot be changed"
       readOnly

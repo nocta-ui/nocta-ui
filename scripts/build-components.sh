@@ -22,10 +22,7 @@ PERL
 
 echo "[3/4] Encoding TSX components to Base64 JSON..."
 find app/components/ui -type f -name '*.tsx' \
-  ! -name '*-demos*' \
-  ! -name 'docs-tab.tsx' \
-  ! -name 'framework-selector.tsx' \
-  ! -name 'codeblock.tsx' | while read -r file; do
+  ! -name '*-demos*' | while read -r file; do
     filename=$(basename "$file")
 
     fixed_content=$(perl -p "$fix_icons_script" "$file" | perl -p "$fix_rel_script")

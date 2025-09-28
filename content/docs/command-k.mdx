@@ -5,7 +5,7 @@ description: A command palette modal (Cmd/Ctrl+K) for quick actions and navigati
 
 import { CommandK } from '@/app/components/ui/command-k';
 import { BasicCommandKDemo } from '@/app/components/ui/command-k/command-k-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -163,4 +163,3 @@ const [open, setOpen] = useState(false);
 | `shortcut` | `string[]` | `[]` | Visual shortcut hints |
 | `disabled` | `boolean` | `false` | Disable selection |
 | `action` | `() => void` | — | Action executed on select |
-

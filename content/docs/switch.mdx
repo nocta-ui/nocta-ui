@@ -4,11 +4,11 @@ description: A toggle switch component for binary choices with multiple variants
 ---
 
 import { Switch } from '@/app/components/ui/switch';
-import { 
-  BasicSwitchDemo, 
-  SizesDemo, 
+import {
+  BasicSwitchDemo,
+  SizesDemo,
 } from '@/app/components/ui/switch/switch-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 
 ## Installation
 
@@ -44,10 +44,10 @@ import { Switch } from '@/components/ui/switch';
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Switch"
     const [isChecked, setIsChecked] = useState(false);
-    
-    <Switch 
-      checked={isChecked} 
-      onCheckedChange={setIsChecked} 
+
+    <Switch
+      checked={isChecked}
+      onCheckedChange={setIsChecked}
     />
     ```
   </DocsTab>

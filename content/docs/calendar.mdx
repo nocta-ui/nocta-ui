@@ -3,7 +3,7 @@ title: Calendar
 description: A fully featured date picker with keyboard navigation, accessibility support, and customizable styling.
 ---
 
-import { DocsTabs, DocsTab } from '@/app/components/ui/docs-tab';
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
@@ -56,7 +56,7 @@ A simple calendar with date selection functionality.
       const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
       return (
-        <Calendar 
+        <Calendar
           value={selectedDate}
           onChange={setSelectedDate}
         />
@@ -78,9 +78,6 @@ Customize the first day of the week and show week numbers.
     ```tsx lineNumbers title="Week Configuration"
     // Week starts on Monday
     <Calendar weekStartsOn={1} />
-
-    // Show week numbers
-    <Calendar showWeekNumbers />
     ```
   </DocsTab>
 </DocsTabs>
@@ -135,7 +132,7 @@ Set minimum and maximum selectable dates.
     const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
 
-    <Calendar 
+    <Calendar
       minDate={minDate}
       maxDate={maxDate}
     />
@@ -163,7 +160,7 @@ Customize how months and weekdays are displayed.
       return date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
     };
 
-    <Calendar 
+    <Calendar
       formatMonth={formatMonth}
       formatWeekday={formatWeekday}
     />
@@ -207,13 +204,13 @@ Handle date selection with custom logic.
 
     return (
       <div>
-        <Calendar 
+        <Calendar
           variant="compact"
           value={selectedDate}
           onChange={handleDateSelect}
         />
         {selectedDate && (
-          <div className="mt-4 p-3 bg-background rounded-lg">
+          <div className="mt-4 p-3 bg-card rounded-lg">
             <p className="text-sm">
               Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
             </p>

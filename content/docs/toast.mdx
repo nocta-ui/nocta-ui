@@ -5,7 +5,7 @@ description: Sonner-inspired toast notification system with GSAP animations, sma
 
 import { toast, Toaster } from '@/app/components/ui/toast';
 import { Button } from '@/app/components/ui/button';
-import { 
+import {
   BasicToastDemo,
   ToastVariantsDemo,
   ToastWithActionsDemo,
@@ -15,7 +15,7 @@ import {
   DismissAllDemo,
   ToastPositionsDemo
 } from '@/app/components/ui/toast/toast-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 
 ## Installation
 
@@ -139,7 +139,7 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
     // Available positions
     const positions = [
       'top-left',
-      'top-center', 
+      'top-center',
       'top-right',
       'bottom-left',
       'bottom-center',
@@ -203,21 +203,21 @@ The toast system supports smart stacking with a maximum of 3 visible toasts. New
     ```tsx lineNumbers title="Stacked Toasts"
     const showMultiple = () => {
       toast({ title: 'First Toast', description: 'This is the first notification.' });
-      
+
       setTimeout(() => {
         toast.success({
           title: 'Second Toast',
           description: 'This is the second notification.',
         });
       }, 500);
-      
+
       setTimeout(() => {
         toast.warning({
           title: 'Third Toast',
           description: 'This is the third notification.',
         });
       }, 1000);
-      
+
       setTimeout(() => {
         toast.error({
           title: 'Fourth Toast',

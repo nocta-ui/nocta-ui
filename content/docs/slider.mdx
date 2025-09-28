@@ -4,7 +4,7 @@ description: A customizable range slider component with variants, orientations, 
 ---
 
 import { Slider } from '@/app/components/ui/slider';
-import { 
+import {
   BasicSliderDemo,
   SecondarySliderDemo,
   VariantsDemo,
@@ -16,7 +16,7 @@ import {
   VerticalDemo,
   PriceRangeDemo
 } from '@/app/components/ui/slider/slider-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 
 ## Installation
 
@@ -52,8 +52,8 @@ import { Slider } from '@/components/ui/slider';
     const [value, setValue] = useState(50);
 
     return (
-      <Slider 
-        value={value} 
+      <Slider
+        value={value}
         onChange={setValue}
         aria-label="Basic slider"
       />
@@ -70,9 +70,9 @@ import { Slider } from '@/components/ui/slider';
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Secondary Slider"
-    <Slider 
+    <Slider
       variant="secondary"
-      value={value} 
+      value={value}
       onChange={setValue}
     />
     ```
@@ -122,8 +122,8 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Show Value"
-    <Slider 
-      value={value} 
+    <Slider
+      value={value}
       onChange={setValue}
       showValue
       variant="default"
@@ -141,22 +141,22 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Custom Range & Formatting"
     // Temperature slider
-    <Slider 
+    <Slider
       min={16}
       max={30}
       step={0.5}
-      value={temperature} 
+      value={temperature}
       onChange={setTemperature}
       showValue
       formatValue={(val) => `${val}°C`}
       variant="default"
     />
 
-    // Volume slider  
-    <Slider 
+    // Volume slider
+    <Slider
       min={0}
       max={10}
-      value={volume} 
+      value={volume}
       onChange={setVolume}
       showValue
       variant="secondary"
@@ -173,11 +173,11 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Step Values"
-    <Slider 
+    <Slider
       min={0}
       max={100}
       step={5}
-      value={value} 
+      value={value}
       onChange={setValue}
       showValue
       variant="default"
@@ -194,9 +194,9 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Vertical Orientation"
-    <Slider 
+    <Slider
       orientation="vertical"
-      value={value} 
+      value={value}
       onChange={setValue}
       variant="default"
       className="h-48"
@@ -215,7 +215,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled State"
-    <Slider 
+    <Slider
       value={60}
       disabled
     />
@@ -230,8 +230,8 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 const [value, setValue] = useState(50);
 
 return (
-  <Slider 
-    value={value} 
+  <Slider
+    value={value}
     onChange={setValue}
   />
 );
@@ -240,7 +240,7 @@ return (
 ### Uncontrolled Slider
 ```tsx
 return (
-  <Slider 
+  <Slider
     defaultValue={50}
     onChange={(value) => console.log('Value changed:', value)}
   />

@@ -13,14 +13,14 @@ import {
   ContextMenuSubTrigger,
   ContextMenuSubContent,
 } from '@/app/components/ui/context-menu';
-import { 
+import {
   BasicContextMenuDemo,
   ContextMenuWithSeparatorDemo,
   ContextMenuWithSubmenuDemo,
   DisabledContextMenuDemo,
   FileContextMenuDemo
 } from '@/app/components/ui/context-menu/context-menu-demos';
-import { DocsTabs, DocsTab } from "@/app/components/ui/docs-tab"
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -37,9 +37,9 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     Import the component:
 
     ```tsx lineNumbers title="Import"
-    import { 
-      ContextMenu, 
-      ContextMenuTrigger, 
+    import {
+      ContextMenu,
+      ContextMenuTrigger,
       ContextMenuContent,
       ContextMenuItem,
       ContextMenuSeparator
@@ -62,10 +62,10 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
     return (
       <ContextMenu>
-        <ContextMenuTrigger>
-          <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
-            <span>Right-click here</span>
-          </div>
+        <ContextMenuTrigger
+          className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+        >
+          Right-click here
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem onClick={() => setLastAction('Cut')}>
@@ -98,10 +98,10 @@ Use `ContextMenuSeparator` to group related menu items.
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Context Menu with Separators"
     <ContextMenu>
-      <ContextMenuTrigger>
-        <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
-          <span>Right-click for menu with separators</span>
-        </div>
+        <ContextMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+        >
+            Right-click for menu with separators
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>
@@ -112,9 +112,9 @@ Use `ContextMenuSeparator` to group related menu items.
           <DuplicateIcon className="w-4 h-4 mr-2" />
           Duplicate
         </ContextMenuItem>
-        
+
         <ContextMenuSeparator />
-        
+
         <ContextMenuItem>
           <BookmarkIcon className="w-4 h-4 mr-2" />
           Bookmark
@@ -123,9 +123,9 @@ Use `ContextMenuSeparator` to group related menu items.
           <ShareIcon className="w-4 h-4 mr-2" />
           Share
         </ContextMenuItem>
-        
+
         <ContextMenuSeparator />
-        
+
         <ContextMenuItem className="text-red-600">
           <DeleteIcon className="w-4 h-4 mr-2" />
           Delete
@@ -147,17 +147,17 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Context Menu with Submenu"
     <ContextMenu>
-      <ContextMenuTrigger>
-        <div className="w-full h-32 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
-          <span>Right-click for submenu example</span>
-        </div>
+        <ContextMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+        >
+        Right-click for submenu example
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>
           <NewIcon className="w-4 h-4 mr-2" />
           New
         </ContextMenuItem>
-        
+
         <ContextMenuSub>
           <ContextMenuSubTrigger>
             <ExportIcon className="w-4 h-4 mr-2" />
@@ -178,9 +178,9 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
             </ContextMenuItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
-        
+
         <ContextMenuSeparator />
-        
+
         <ContextMenuItem>
           <SettingsIcon className="w-4 h-4 mr-2" />
           Settings
@@ -204,9 +204,7 @@ Both the entire context menu and individual items can be disabled.
     {/* Disabled context menu */}
     <ContextMenu>
       <ContextMenuTrigger disabled>
-        <div className="w-full h-24 border border-dashed rounded-lg flex items-center justify-center opacity-50">
-          <span>Context menu disabled</span>
-        </div>
+          Context menu disabled
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>This won't show</ContextMenuItem>
