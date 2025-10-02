@@ -86,7 +86,7 @@ uniform float iMobile;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-    float scale = mix(1.5, 1.5, iMobile);
+    float scale = mix(1.2, 1.5, iMobile);
     vec2 uv = scale * (2.0 * fragCoord.xy - iResolution.xy) / iResolution.y;
     vec2 offset = vec2(cos(iTime / 4.0), sin(iTime / 2.0));
 

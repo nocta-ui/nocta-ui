@@ -81,6 +81,50 @@ A simple accordion with collapsible content sections.
   </DocsTab>
 </DocsTabs>
 
+### Multiple
+
+Allow opening multiple sections at the same time by setting `type="multiple"`.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <MultipleAccordionDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Multiple Accordion"
+    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+
+    export function MultipleAccordionDemo() {
+      return (
+        <div className="w-full max-w-md mx-auto">
+          <Accordion type="multiple">
+            <AccordionItem value="react">
+              <AccordionTrigger>React Basics</AccordionTrigger>
+              <AccordionContent>
+                Learn the fundamentals of React - components, props, state and lifecycle.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="typescript">
+              <AccordionTrigger>TypeScript Integration</AccordionTrigger>
+              <AccordionContent>
+                How to use TypeScript with React for better type safety.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="testing">
+              <AccordionTrigger>Testing Components</AccordionTrigger>
+              <AccordionContent>
+                Writing unit and integration tests for React components.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
 ### Card Variant
 
 Use the card variant for a more elevated appearance with individual cards for each item.
@@ -185,6 +229,7 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `type` | `'single' \| 'multiple'` | `'single'` | Behavior mode: open one vs many at once |
 | `variant` | `'default' \| 'card'` | `'default'` | Visual variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the accordion |
 | `className` | `string` | `''` | Additional CSS classes |

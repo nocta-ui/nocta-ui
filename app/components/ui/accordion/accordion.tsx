@@ -7,7 +7,7 @@ import {
   useStoreState,
 } from "@ariakit/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useMemo, useCallback } from "react";
 import { Icons } from "@/app/components/ui/icons/icons";
 import { cn } from "@/lib/utils";
 
@@ -186,6 +186,7 @@ export interface AccordionProps
   children: React.ReactNode;
   size?: "sm" | "md" | "lg";
   className?: string;
+  type?: "single" | "multiple";
 
   onValueChange?: (value: string | string[]) => void;
 }
@@ -232,6 +233,25 @@ const useAccordionStyle = () => {
   return context;
 };
 
+type AccordionBehaviorContextType = {
+  type: "single" | "multiple";
+  registerItem: (value: string, store: DisclosureStore) => void;
+  unregisterItem: (value: string) => void;
+  notifyItemOpen: (value: string) => void;
+};
+
+const AccordionBehaviorContext = createContext<
+  AccordionBehaviorContextType | undefined
+>(undefined);
+
+const useAccordionBehavior = () => {
+  const context = useContext(AccordionBehaviorContext);
+  if (!context) {
+    throw new Error("Accordion components must be used within an Accordion");
+  }
+  return context;
+};
+
 type AccordionItemContextType = {
   store: DisclosureStore;
   disabled: boolean;
@@ -254,27 +274,79 @@ const useAccordionItem = () => {
 };
 
 export const Accordion: React.FC<AccordionProps> = React.memo(
-  ({ children, variant = "default", size = "md", className, ...props }) => {
+  ({
+    children,
+    variant = "default",
+    size = "md",
+    className,
+    type = "single",
+    onValueChange,
+    ...props
+  }) => {
     const resolvedVariant: "default" | "card" = variant ?? "default";
     const resolvedSize: "sm" | "md" | "lg" = size ?? "md";
+    const resolvedType: "single" | "multiple" = type ?? "single";
 
     const styleValue = useMemo(
       () => ({ variant: resolvedVariant, size: resolvedSize }),
       [resolvedVariant, resolvedSize],
     );
 
+    const itemsRef = React.useRef<Map<string, DisclosureStore>>(new Map());
+
+    const registerItem = useCallback((value: string, store: DisclosureStore) => {
+      itemsRef.current.set(value, store);
+    }, []);
+
+    const unregisterItem = useCallback((value: string) => {
+      itemsRef.current.delete(value);
+    }, []);
+
+    const notifyItemOpen = useCallback(
+      (value: string) => {
+        if (resolvedType === "single") {
+          itemsRef.current.forEach((store, key) => {
+            if (key !== value) {
+              // Close all other items
+              // @ts-expect-error: Ariakit store should have setOpen
+              if (typeof store.setOpen === "function") {
+                // @ts-ignore
+                store.setOpen(false);
+              }
+            }
+          });
+        }
+        if (typeof onValueChange === "function") {
+          onValueChange(value);
+        }
+      },
+      [resolvedType, onValueChange],
+    );
+
+    const behaviorValue = useMemo<AccordionBehaviorContextType>(
+      () => ({
+        type: resolvedType,
+        registerItem,
+        unregisterItem,
+        notifyItemOpen,
+      }),
+      [resolvedType, registerItem, unregisterItem, notifyItemOpen],
+    );
+
     return (
       <AccordionStyleContext.Provider value={styleValue}>
-        <div
-          data-accordion-root
-          className={cn(
-            accordionVariants({ variant: resolvedVariant }),
-            className,
-          )}
-          {...props}
-        >
-          {children}
-        </div>
+        <AccordionBehaviorContext.Provider value={behaviorValue}>
+          <div
+            data-accordion-root
+            className={cn(
+              accordionVariants({ variant: resolvedVariant }),
+              className,
+            )}
+            {...props}
+          >
+            {children}
+          </div>
+        </AccordionBehaviorContext.Provider>
       </AccordionStyleContext.Provider>
     );
   },
@@ -293,6 +365,8 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
     ...props
   }) => {
     const { variant } = useAccordionStyle();
+    const { registerItem, unregisterItem, notifyItemOpen } =
+      useAccordionBehavior();
     const reactId = React.useId();
     const baseId = (id || value || reactId).toString();
 
@@ -307,6 +381,17 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
     );
 
     const open = useStoreState(store, "open");
+
+    React.useEffect(() => {
+      registerItem(baseId, store);
+      return () => unregisterItem(baseId);
+    }, [baseId, registerItem, unregisterItem, store]);
+
+    React.useEffect(() => {
+      if (open) {
+        notifyItemOpen(baseId);
+      }
+    }, [open, baseId, notifyItemOpen]);
 
     if (variant === "card") {
       return (
