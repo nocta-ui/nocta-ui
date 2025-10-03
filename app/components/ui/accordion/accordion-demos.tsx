@@ -69,14 +69,14 @@ export function CardAccordionDemo() {
 }
 
 export function MultipleAccordionDemo() {
-    return (
-        <div className="relative mx-auto my-6 w-full max-w-md">
-            <Accordion type="multiple">
-                <AccordionItem value="react">
-                    <AccordionTrigger>React Basics</AccordionTrigger>
-                    <AccordionContent>
-                        Learn the fundamentals of React - components, props, state and
-                        lifecycle.
+	return (
+		<div className="relative mx-auto my-6 w-full max-w-md">
+			<Accordion type="multiple">
+				<AccordionItem value="react">
+					<AccordionTrigger>React Basics</AccordionTrigger>
+					<AccordionContent>
+						Learn the fundamentals of React - components, props, state and
+						lifecycle.
 					</AccordionContent>
 				</AccordionItem>
 

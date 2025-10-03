@@ -1,45 +1,45 @@
-import type { LinkItemType } from "fumadocs-ui/layouts/links";
-import type { BaseLayoutProps } from "@/components/layout/shared";
+import type { LinkItemType } from 'fumadocs-ui/layouts/links';
+import type { BaseLayoutProps } from '@/components/layout/shared';
 
-export const title = "Nocta UI";
-export const description = "Modern React Component Library";
-export const owner = "Nocta UI";
+export const title = 'Nocta UI';
+export const description = 'Modern React Component Library';
+export const owner = 'Nocta UI';
 
 export const baseOptions: BaseLayoutProps = {
-  nav: {
-    title: (
-      <div className="flex items-center justify-center gap-1 text-foreground">
-        <svg
-          aria-hidden="true"
-          width="24"
-          height="24"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M8 1C4.13408 1 1.00012 4.13411 1 8C1 11.866 4.13401 15 8 15C8.81667 15 9.60038 14.8595 10.3289 14.6021C10.6768 14.4792 10.7285 14.0263 10.4623 13.7709C8.9452 12.3153 8 10.2685 8 8C8.00006 5.73136 8.94501 3.68395 10.4622 2.22819C10.7285 1.97271 10.6768 1.51981 10.3288 1.39703C9.60025 1.13997 8.81649 1 8 1ZM12.281 2.4625C12.1153 2.3342 11.8847 2.3342 11.719 2.4625C10.0652 3.74281 9.00007 5.74678 9 8C9 10.2531 10.0654 12.2562 11.7189 13.5365C11.8847 13.6648 12.1153 13.6648 12.2811 13.5365C13.9346 12.2562 15 10.2531 15 8C14.9999 5.74678 13.9348 3.74281 12.281 2.4625Z"
-            fill="currentColor"
-          />
-        </svg>
+	nav: {
+		title: (
+			<div className="flex items-center justify-center gap-1 text-foreground">
+				<svg
+					aria-hidden="true"
+					width="24"
+					height="24"
+					viewBox="0 0 16 16"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M8 1C4.13408 1 1.00012 4.13411 1 8C1 11.866 4.13401 15 8 15C8.81667 15 9.60038 14.8595 10.3289 14.6021C10.6768 14.4792 10.7285 14.0263 10.4623 13.7709C8.9452 12.3153 8 10.2685 8 8C8.00006 5.73136 8.94501 3.68395 10.4622 2.22819C10.7285 1.97271 10.6768 1.51981 10.3288 1.39703C9.60025 1.13997 8.81649 1 8 1ZM12.281 2.4625C12.1153 2.3342 11.8847 2.3342 11.719 2.4625C10.0652 3.74281 9.00007 5.74678 9 8C9 10.2531 10.0654 12.2562 11.7189 13.5365C11.8847 13.6648 12.1153 13.6648 12.2811 13.5365C13.9346 12.2562 15 10.2531 15 8C14.9999 5.74678 13.9348 3.74281 12.281 2.4625Z"
+						fill="currentColor"
+					/>
+				</svg>
 
-        <p className="text-foreground text-sm leading-relaxed font-bold">
-          NOCTA UI
-        </p>
-      </div>
-    ),
-  },
-  githubUrl: "https://github.com/66HEX/nocta-ui",
+				<p className="text-foreground text-sm leading-relaxed font-bold">
+					NOCTA UI
+				</p>
+			</div>
+		),
+	},
+	githubUrl: 'https://github.com/66HEX/nocta-ui',
 };
 
 export const linkItems: LinkItemType[] = [
-  {
-    text: "Documentation",
-    url: "/docs",
-    active: "url",
-  },
+	{
+		text: 'Documentation',
+		url: '/docs',
+		active: 'url',
+	},
 ];
 
 export const postsPerPage = 5;
