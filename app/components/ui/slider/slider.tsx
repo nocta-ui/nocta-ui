@@ -116,7 +116,7 @@ const thumbVariants = cva(
 				vertical: 'left-1/2 -translate-x-1/2',
 			},
 			disabled: {
-				true: 'cursor-not-allowed opacity-60',
+				true: 'cursor-not-allowed opacity-50',
 				false: 'cursor-grab active:cursor-grabbing',
 			},
 		},

@@ -196,6 +196,46 @@
 			"variants": ["primary", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"]
 		},
+		"wheel-picker": {
+			"name": "WheelPicker",
+			"description": "iOS-style wheel picker built on Ariakit Composite with smooth scroll-snapping and keyboard navigation",
+			"category": "form",
+			"files": [
+				{
+					"name": "wheel-picker.tsx",
+					"path": "app/components/ui/wheel-picker/wheel-picker.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": ["WheelPicker", "WheelPickerItem"],
+			"props": {
+				"WheelPicker": [
+					"value",
+					"defaultValue",
+					"onValueChange",
+					"disabled",
+					"size",
+					"visibleCount",
+					"infinite",
+					"className",
+					"aria-label",
+					"children"
+				],
+				"WheelPickerItem": [
+					"value",
+					"className",
+					"children"
+				]
+			},
+			"sizes": ["sm", "md", "lg"]
+		},
 		"card": {
 			"name": "Card",
 			"description": "Card component with composable layout sections",

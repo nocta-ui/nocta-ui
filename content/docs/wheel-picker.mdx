@@ -1,0 +1,203 @@
+---
+title: Wheel Picker
+description: iOS-style wheel picker built on Ariakit Composite with smooth scroll-snapping and keyboard navigation
+---
+
+import { WheelPicker, WheelPickerGroup, WheelPickerItem } from '@/app/components/ui/wheel-picker';
+import {
+  DefaultWheelPickerDemo,
+  SizesWheelPickerDemo,
+  InfiniteWheelPickerDemo,
+  GroupedWheelPickerDemo,
+} from '@/app/components/ui/wheel-picker/wheel-picker-demos';
+import { DocsTabs, DocsTab } from '@/components/docs-tab'
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+
+<Steps>
+<Step>
+Install the Wheel Picker via the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add wheel-picker
+```
+</Step>
+<Step>
+Import the components you need:
+
+```tsx lineNumbers title="Import"
+import {
+  WheelPicker,
+  WheelPickerGroup,
+  WheelPickerItem,
+} from '@/components/ui/wheel-picker';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <DefaultWheelPickerDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default"
+    const months = [
+      'January','February','March','April','May','June',
+      'July','August','September','October','November','December',
+    ];
+    const [value, setValue] = React.useState('June');
+
+    <WheelPicker value={value} onValueChange={setValue} aria-label="Month">
+      {months.map((m) => (
+        <WheelPickerItem key={m} value={m}>
+          {m}
+        </WheelPickerItem>
+      ))}
+    </WheelPicker>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Sizes
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <SizesWheelPickerDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Sizes"
+    const numbers = Array.from({ length: 16 }, (_, i) => (i + 1).toString());
+
+    <WheelPicker size="sm" defaultValue={numbers[5]}>
+      {numbers.map((n) => (
+        <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
+      ))}
+    </WheelPicker>
+
+    <WheelPicker size="md" defaultValue={numbers[7]}>
+      {numbers.map((n) => (
+        <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
+      ))}
+    </WheelPicker>
+
+    <WheelPicker size="lg" defaultValue={numbers[9]}>
+      {numbers.map((n) => (
+        <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
+      ))}
+    </WheelPicker>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Infinite
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <InfiniteWheelPickerDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Infinite"
+    const hours = Array.from({ length: 12 }, (_, i) => ((i + 1) % 12 || 12).toString().padStart(2, '0'));
+    const [hour, setHour] = React.useState('08');
+
+    <div className="flex gap-6">
+      <WheelPicker infinite value={hour} onValueChange={setHour} aria-label="Hour">
+        {hours.map((h) => (
+          <WheelPickerItem key={h} value={h}>
+            {h}
+          </WheelPickerItem>
+        ))}
+      </WheelPicker>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Grouped
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <GroupedWheelPickerDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Grouped"
+    const months = [
+      'January','February','March','April','May','June',
+      'July','August','September','October','November','December',
+    ];
+    const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
+    const years = Array.from({ length: 11 }, (_, i) => (2024 + i).toString());
+    const [month, setMonth] = React.useState(months[5]);
+    const [day, setDay] = React.useState(days[9]);
+    const [year, setYear] = React.useState(years[0]);
+
+    <WheelPickerGroup>
+      <WheelPicker value={month} onValueChange={setMonth} aria-label="Month">
+        {months.map((m) => (
+          <WheelPickerItem key={m} value={m}>
+            {m}
+          </WheelPickerItem>
+        ))}
+      </WheelPicker>
+
+      <WheelPicker value={day} onValueChange={setDay} aria-label="Day">
+        {days.map((d) => (
+          <WheelPickerItem key={d} value={d}>
+            {d}
+          </WheelPickerItem>
+        ))}
+      </WheelPicker>
+
+      <WheelPicker value={year} onValueChange={setYear} aria-label="Year">
+        {years.map((y) => (
+          <WheelPickerItem key={y} value={y}>
+            {y}
+          </WheelPickerItem>
+        ))}
+      </WheelPicker>
+    </WheelPickerGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### WheelPicker
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Default value when uncontrolled |
+| `onValueChange` | `(value: string) => void` | — | Fired after the selection changes |
+| `disabled` | `boolean` | `false` | Disables focus and gesture interactions |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls item height and component width |
+| `visibleCount` | `number` | `20` | Number of virtual segments used for the 3D wheel layout |
+| `infinite` | `boolean` | `false` | Enables looping scroll that wraps around |
+| `className` | `string` | `''` | Additional CSS classes |
+| `aria-label` | `string` | — | Accessible label when no visible label present |
+| `children` | `React.ReactNode` | — | Picker options rendered as `WheelPickerItem` children |
+
+### WheelPickerItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Item value |
+| `children` | `React.ReactNode` | — | Custom item content (label) |
+| `className` | `string` | `''` | Additional CSS classes |
+
+### WheelPickerGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Shared size passed to nested pickers |
+| `disabled` | `boolean` | `false` | Disables interactions for all nested pickers |
+| `contentClassName` | `string` | `''` | Classes for the inner flex container that holds each picker |
+| `className` | `string` | `''` | Additional CSS classes applied to the group frame |
+| `children` | `React.ReactNode` | — | Typically multiple `WheelPicker` instances |
+
+All components also accept their respective HTML element attributes.

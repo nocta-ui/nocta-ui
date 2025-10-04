@@ -126,6 +126,7 @@ import {
 } from '@/app/components/ui/tabs';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Toaster, toast } from '@/app/components/ui/toast';
+import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import {
 	Tooltip,
 	TooltipContent,
@@ -237,6 +238,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		Slider,
 		Skeleton,
 		Calendar,
+        WheelPicker,
+        WheelPickerItem,
 		FrameworkSelector,
 		Chat,
 		ChatMessages,
