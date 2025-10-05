@@ -10,7 +10,7 @@ import { cva } from 'class-variance-authority';
 import { Section } from '@/components/section';
 
 const featureItemVariants = cva(
-	'group flex flex-col justify-between gap-10 p-6 transition-colors duration-300 ease-in-out last:border-b last:border-dashed last:border-border hover:bg-card-muted dark:hover:bg-card sm:gap-22 md:gap-34 lg:gap-46',
+	'group flex flex-col justify-between gap-10 p-6 transition-colors duration-300 ease-in-out hover:bg-card-muted dark:hover:bg-card sm:gap-22 md:gap-34 lg:gap-46',
 	{
 		variants: {
 			size: {
@@ -73,7 +73,7 @@ const Features = () => (
 			</div>
 
 			<div className="w-full border-t border-dashed border-border">
-				<div className="grid grid-cols-1 divide-x divide-y divide-dashed divide-border text-left sm:grid-cols-2 lg:grid-cols-3">
+				<div className="grid grid-cols-1 divide-x divide-y divide-dashed divide-border text-left sm:grid-cols-2 lg:grid-cols-3 [&>*:last-child]:border-b-0 sm:[&>*:nth-last-child(-n+2)]:border-b-0 lg:[&>*:nth-last-child(-n+2)]:border-b-0 [&>*:nth-child(n)]:sm:[&>*:nth-child(2n)]:border-r-0 [&>*:nth-child(n)]:lg:[&>*:nth-child(3n)]:border-r-0 [&>*:nth-child(2)]:border-r-0">
 					{features.map((feature) => (
 						<div
 							key={feature.id}

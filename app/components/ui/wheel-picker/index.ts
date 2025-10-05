@@ -1,8 +1,8 @@
 export {
 	WheelPicker,
-	type WheelPickerProps,
-	WheelPickerItem,
-	type WheelPickerItemProps,
 	WheelPickerGroup,
 	type WheelPickerGroupProps,
+	WheelPickerItem,
+	type WheelPickerItemProps,
+	type WheelPickerProps,
 } from './wheel-picker';

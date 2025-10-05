@@ -228,11 +228,7 @@
 					"aria-label",
 					"children"
 				],
-				"WheelPickerItem": [
-					"value",
-					"className",
-					"children"
-				]
+				"WheelPickerItem": ["value", "className", "children"]
 			},
 			"sizes": ["sm", "md", "lg"]
 		},

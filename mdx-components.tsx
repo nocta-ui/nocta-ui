@@ -126,12 +126,12 @@ import {
 } from '@/app/components/ui/tabs';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Toaster, toast } from '@/app/components/ui/toast';
-import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
 } from '@/app/components/ui/tooltip';
+import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import { Pre, CodeBlock as YourCustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
@@ -238,8 +238,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		Slider,
 		Skeleton,
 		Calendar,
-        WheelPicker,
-        WheelPickerItem,
+		WheelPicker,
+		WheelPickerItem,
 		FrameworkSelector,
 		Chat,
 		ChatMessages,

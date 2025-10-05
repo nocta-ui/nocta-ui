@@ -70,13 +70,13 @@ const DocsTabs = ({
 				))}
 			</div>
 
-			<div ref={contentRef} className="relative">
+			<div ref={contentRef} className="relative overflow-hidden">
 				{activeTab !== 'code' && (
-					<div className="absolute inset-2 z-0 rounded-lg border border-fd-border bg-background"></div>
+					<div className="absolute inset-0 z-0 rounded-lg border border-fd-border bg-background"></div>
 				)}
 				<div
 					ref={wrapperRef}
-					className={`relative p-1 transition-opacity duration-300 ease-in-out ${activeTab === 'code' ? 'overflow-y-visible' : ''}`}
+					className={`relative transition-opacity duration-300 ease-in-out ${activeTab === 'code' ? 'overflow-y-visible' : ''}`}
 				>
 					<div
 						className={`flex w-full justify-${justify} items-center overflow-x-auto md:justify-center ${activeTab !== 'code' ? 'p-4 md:p-8' : ''} ${activeTab === 'code' ? '-mb-16' : 'lg:h-200'}`}
