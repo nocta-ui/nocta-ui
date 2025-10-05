@@ -78,7 +78,7 @@ const wheelPickerHighlightBand = cva(
 	),
 	{
 		variants: {
-			size: { sm: 'h-5', md: 'h-7', lg: 'h-9' },
+			size: { sm: 'h-5', md: 'h-6', lg: 'h-7' },
 		},
 		defaultVariants: { size: 'md' },
 	},
@@ -926,7 +926,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				<div
 					className={cn(
 						wheelPickerHighlightBand({ size }),
-						grouped && 'left-1 right-1 rounded-sm  z-40',
+						grouped && 'left-1 right-1 rounded-sm z-40',
 					)}
 					style={{
 						overflow: 'clip',
@@ -940,7 +940,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 						style={{
 							position: 'absolute',
 							width: '100%',
-							top: infinite ? -itemHeight : 0,
+							top: infinite ? -itemHeight - 1 : -1,
 							left: 0,
 							pointerEvents: 'none',
 							overflow: 'visible',
