@@ -30,7 +30,7 @@ const wheelPickerSizeConfig: Record<
 const wheelPickerVariants = cva(
 	[
 		'not-prose relative isolate overflow-hidden rounded-md border border-none border-border bg-card shadow-sm transition-colors duration-200',
-		'focus-within:ring-1 focus-within:ring-ring/50 focus-within:ring-offset-1 focus-within:ring-offset-ring-offset/50 dark:border-solid',
+		'dark:border-solid',
 	],
 	{
 		variants: {
@@ -49,7 +49,7 @@ const wheelPickerVariants = cva(
 );
 
 const wheelPickerTrackText = cva(
-	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-150',
+	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-200',
 	{
 		variants: {
 			size: { sm: 'text-xs', md: 'text-sm', lg: 'text-base' },
@@ -68,8 +68,14 @@ const wheelPickerHighlightText = cva(
 	},
 );
 
+const wheelPickerFocusRingClasses =
+	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:border-border group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50';
+
 const wheelPickerHighlightBand = cva(
-	'absolute left-1 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center bg-card-muted rounded-sm transition-colors duration-150 pointer-events-none',
+	cn(
+		'absolute left-1 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center bg-card-muted rounded-sm border border-transparent transition-colors duration-200 pointer-events-none',
+		wheelPickerFocusRingClasses,
+	),
 	{
 		variants: {
 			size: { sm: 'h-5', md: 'h-7', lg: 'h-9' },
@@ -121,9 +127,7 @@ export const WheelPickerGroup: React.FC<WheelPickerGroupProps> = ({
 				{...props}
 				className={cn(
 					'not-prose relative isolate flex overflow-hidden rounded-md border border-none border-border dark:border-solid bg-card shadow-sm transition-colors duration-200',
-					disabled
-						? 'pointer-events-none cursor-not-allowed opacity-50'
-						: 'focus-within:ring-1 focus-within:ring-ring/50 focus-within:ring-offset-1 focus-within:ring-offset-ring-offset/50',
+					disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
 					className,
 				)}
 				aria-disabled={disabled || undefined}
@@ -872,7 +876,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				aria-label={ariaLabel}
 				tabIndex={disabled ? -1 : 0}
 				className={cn(
-					'relative flex h-full w-full select-none outline-none focus-visible:outline-none',
+					'group/wheelpicker relative flex h-full w-full select-none outline-none focus-visible:outline-none',
 					disabled
 						? 'cursor-not-allowed'
 						: isDragging
@@ -910,10 +914,9 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 					{renderWheelItems}
 				</ul>
 
-				{/* Mask the central band so background (small) text doesn't bleed under highlight */}
 				<div
 					className={cn(
-						'pointer-events-none absolute left-0 top-1/2 w-full -translate-y-1/2 rounded-md bg-card',
+						'pointer-events-none absolute left-0 top-1/2 w-full -translate-y-1/2 rounded-none bg-card',
 						grouped && 'rounded-none bg-transparent',
 					)}
 					style={{ height: itemHeight, borderRadius: grouped ? 0 : 'inherit' }}
@@ -923,12 +926,11 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				<div
 					className={cn(
 						wheelPickerHighlightBand({ size }),
-						grouped && 'left-0 right-0 rounded-none  z-40',
+						grouped && 'left-1 right-1 rounded-sm  z-40',
 					)}
 					style={{
 						overflow: 'clip',
 						height: itemHeight,
-						borderRadius: grouped ? 0 : undefined,
 					}}
 					ref={highlightBandRef}
 				>
