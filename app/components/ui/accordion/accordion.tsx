@@ -28,7 +28,7 @@ const accordionItemVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: 'border-b border-border last:border-b-0',
+				default: 'border-b border-border/60 last:border-b-0',
 				card: 'rounded-lg [&:has(:focus-visible)]:ring-1 [&:has(:focus-visible)]:ring-ring/50 [&:has(:focus-visible)]:ring-offset-1 [&:has(:focus-visible)]:ring-offset-ring-offset/50 [&:has(:focus-visible)]:outline-none',
 			},
 			isOpen: {

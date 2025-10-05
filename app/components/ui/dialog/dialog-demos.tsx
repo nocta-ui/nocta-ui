@@ -48,7 +48,7 @@ export const DialogWithActionsDemo: React.FC = () => {
 				<DialogTrigger asChild>
 					<Button variant="secondary">Delete Item</Button>
 				</DialogTrigger>
-				<DialogContent>
+				<DialogContent showClose={false}>
 					<DialogHeader>
 						<DialogTitle>Confirm Deletion</DialogTitle>
 						<DialogDescription>
@@ -161,29 +161,6 @@ export const SizesDemo: React.FC = () => {
 						<p className="text-sm text-foreground/70">
 							Extra Large dialog for complex content.
 						</p>
-					</div>
-				</DialogContent>
-			</Dialog>
-		</div>
-	);
-};
-
-export const WithoutCloseButtonDemo: React.FC = () => {
-	return (
-		<div className="my-6">
-			<Dialog>
-				<DialogTrigger asChild>
-					<Button variant="secondary">Processing...</Button>
-				</DialogTrigger>
-				<DialogContent showClose={false} size="sm">
-					<DialogHeader>
-						<DialogTitle>Processing Request</DialogTitle>
-						<DialogDescription>
-							Please wait while we process your request...
-						</DialogDescription>
-					</DialogHeader>
-					<div className="px-6 py-8 text-center">
-						<Spinner />
 					</div>
 				</DialogContent>
 			</Dialog>

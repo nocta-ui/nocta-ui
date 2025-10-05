@@ -203,7 +203,7 @@ export function PageTOCPopover(props: ComponentProps<'div'>) {
 					{...props}
 					className={cn(
 						'fixed z-10 border-b pr-(--removed-body-scroll-bar-size,0) backdrop-blur-sm transition-colors xl:hidden max-xl:on-root:[--fd-tocnav-height:40px]',
-						(!isTransparent || open) && 'bg-card/80',
+						(!isTransparent || open) && 'bg-background/80',
 						open && 'shadow-lg',
 						props.className,
 					)}
@@ -319,7 +319,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 		<Link
 			href={item.url}
 			className={cn(
-				'group flex flex-col gap-2 rounded-lg border border-none bg-card shadow-md dark:border-solid p-4 text-sm transition-colors duration-200 hover:bg-card-muted @max-lg:col-span-full',
+				'group flex flex-col gap-2 rounded-lg border border-none bg-card shadow-sm dark:border-solid p-4 text-sm transition-colors duration-200 hover:bg-card-muted @max-lg:col-span-full',
 				index === 1 && 'text-end',
 			)}
 		>

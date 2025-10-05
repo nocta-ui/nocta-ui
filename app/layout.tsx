@@ -215,7 +215,14 @@ export default function Layout({ children }: { children: ReactNode }) {
 			className={`${ppNeueMontreal.variable} ${ppNeueMontrealMono.variable}`}
 			suppressHydrationWarning
 		>
-			<body className="flex flex-col">
+			<body
+				className="
+				flex flex-col
+				min-h-screen
+				bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.98_0.01_280)_0%,oklch(0.94_0.015_290)_35%,var(--color-background)_100%)]
+				dark:bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.22_0.008_286)_0%,oklch(0.20_0.006_286)_42%,var(--color-background)_100%)]
+			"
+			>
 				<RootProvider>{children}</RootProvider>
 			</body>
 		</html>

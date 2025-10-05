@@ -36,7 +36,7 @@ export function Navbar(props: ComponentProps<'div'>) {
 				className={cn(
 					'fixed top-(--fd-banner-height) right-(--removed-body-scroll-bar-size,0) left-0 z-40 border-b backdrop-blur-lg transition-colors *:mx-auto *:max-w-fd-container',
 					value.length > 0 && 'max-lg:rounded-b-2xl max-lg:shadow-lg',
-					(!isTransparent || value.length > 0) && 'bg-card/80',
+					(!isTransparent || value.length > 0) && 'bg-background/80',
 					props.className,
 				)}
 			>

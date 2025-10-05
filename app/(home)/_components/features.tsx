@@ -63,10 +63,10 @@ const Features = () => (
 	<Section className="relative w-full pt-10">
 		<div className="flex flex-col gap-10">
 			<div className="flex flex-col gap-2 px-6">
-				<h2 className="font-regular max-w-xl text-left text-3xl tracking-tighter md:text-5xl text-foreground">
+				<h2 className="font-regular max-w-xl text-left text-3xl md:text-5xl text-foreground">
 					Why Nocta UI?
 				</h2>
-				<p className="max-w-xl text-left text-lg leading-relaxed tracking-tight text-foreground/70 lg:max-w-lg">
+				<p className="max-w-xl text-left text-lg leading-relaxed text-foreground/70 lg:max-w-lg">
 					A modern and accessible UI library with tools that help you build
 					beautiful interfaces faster.
 				</p>
@@ -83,9 +83,7 @@ const Features = () => (
 						>
 							<feature.Icon className="h-8 w-8 stroke-1" />
 							<div className="flex flex-col">
-								<h3 className="text-xl tracking-tight text-foreground">
-									{feature.title}
-								</h3>
+								<h3 className="text-xl text-foreground">{feature.title}</h3>
 								<p className="max-w-xs text-base text-foreground/70">
 									{feature.description}
 								</p>

@@ -145,14 +145,29 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 
-const wrap = (Tag: any, className?: string) => (props: any) => (
+const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
 );
 
-// use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
 	return {
 		...defaultMdxComponents,
+		h1: Wrap('h1', 'scroll-m-20 text-3xl font-medium mt-6 mb-4'),
+		h2: Wrap(
+			'h2',
+			'scroll-m-20 pb-2 text-2xl font-medium first:mt-0 mt-8 mb-3',
+		),
+		h3: Wrap('h3', 'scroll-m-20 text-xl font-normal mt-6 mb-2'),
+		h4: Wrap('h4', 'scroll-m-20 text-xl font-normal mt-4 mb-2'),
+		h5: Wrap('h5', 'scroll-m-20 text-lg font-normal mt-3 mb-1'),
+		h6: Wrap('h6', 'scroll-m-20 text-base font-normal mt-2 mb-1'),
+		p: Wrap('p', 'leading-7 [&:not(:first-child)]:mt-4 text-foreground/70'),
+		ul: Wrap('ul', 'my-6 ml-6 list-disc [&>li]:mt-2 marker:text-foreground/70'),
+		ol: Wrap(
+			'ol',
+			'my-6 ml-6 list-decimal [&>li]:mt-2 marker:text-foreground/70',
+		),
+		li: Wrap('li', 'leading-7 text-foreground/70'),
 		Card,
 		CardHeader,
 		CardTitle,

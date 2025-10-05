@@ -37,7 +37,7 @@ const faq = [
 export const FAQ = () => (
 	<Section className="grid divide-y divide-dashed divide-border lg:grid-cols-2 lg:divide-x lg:divide-y-0">
 		<div className="px-6 py-10 md:py-14">
-			<h4 className="font-regular max-w-xl text-left text-3xl tracking-tighter md:text-5xl">
+			<h4 className="font-regular max-w-xl text-left text-3xl md:text-5xl">
 				Frequently Asked Questions
 			</h4>
 		</div>

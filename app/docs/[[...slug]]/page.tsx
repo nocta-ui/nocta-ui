@@ -24,13 +24,13 @@ export default async function Page(props: {
 				style: 'clerk',
 			}}
 		>
-			<h1 className="-mb-4 text-[1.75em] font-semibold text-foreground">
+			<h1 className="mb-0 text-3xl font-medium text-foreground">
 				{page.data.title}
 			</h1>
 			<p className="text-lg font-normal text-foreground/70">
 				{page.data.description}
 			</p>
-			<div className="flex flex-row items-center gap-2 border-b pt-2 pb-6">
+			<div className="flex flex-row items-center gap-2 border-b border-dashed pt-2 pb-6">
 				<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
 				<ViewOptions
 					markdownUrl={`/api/mdx?path=${page.url}`}

@@ -10,8 +10,7 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@
 import {
   SimpleDialogDemo,
   DialogWithActionsDemo,
-  SizesDemo,
-  WithoutCloseButtonDemo
+  SizesDemo
 } from '@/app/components/ui/dialog/dialog-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -87,7 +86,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       <DialogTrigger asChild>
         <Button variant="secondary">Delete Item</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent showClose={false}>
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>
           <DialogDescription>

@@ -47,7 +47,7 @@ export function ThemeToggle({
 	const [mounted, setMounted] = useState(false);
 
 	const container = cn(
-		'relative flex items-center rounded-full p-1 ring-1 ring-border bg-card',
+		'relative flex items-center rounded-full p-1 ring-1 ring-border bg-transparent',
 		className,
 	);
 
@@ -102,7 +102,7 @@ export function ThemeToggle({
 						aria-label={label}
 					>
 						{isActive && (
-							<div className="bg-card-muted absolute inset-0.5 rounded-full" />
+							<div className="bg-foreground/10 dark:bg-card-muted absolute inset-0.5 rounded-full" />
 						)}
 						<Icon
 							className={'relative m-auto size-full'}

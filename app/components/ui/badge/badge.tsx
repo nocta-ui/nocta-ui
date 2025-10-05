@@ -14,14 +14,9 @@ const badgeVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: [
-					'bg-linear-to-b from-gradient-1 to-gradient-2',
-					'text-foreground',
-					'hover:contrast-110',
-					'inset-shadow-[0_1px_rgb(255_255_255/0.15)]',
-				],
+				default: ['bg-foreground', 'text-background', 'hover:opacity-80'],
 				secondary: [
-					'bg-card',
+					'bg-linear-to-b from-foreground/5 to-foreground/10',
 					'text-foreground',
 					'hover:opacity-80',
 					'border border-none shadow-sm dark:border-solid border-border',

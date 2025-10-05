@@ -10,6 +10,7 @@ import {
 	useRef,
 	useState,
 } from 'react';
+import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent } from '../dialog';
 import { Input } from '../input';
@@ -55,7 +56,7 @@ const listItemClass = cva(
 		'relative flex cursor-pointer items-center gap-3 rounded-md px-3 py-2',
 		'text-sm text-foreground',
 		'hover:bg-card-muted',
-		'transition-colors duration-150',
+		'transition-colors duration-200',
 	].join(' '),
 	{
 		variants: {
@@ -72,7 +73,7 @@ const listItemClass = cva(
 const kbdClass = cva(
 	[
 		'flex items-center justify-center',
-		'h-5 min-w-[2.2rem] rounded-md border border-none px-1.5 dark:border-solid',
+		'h-5 min-w-[2.2rem] rounded-sm border border-none px-1.5 dark:border-solid',
 		'text-[10px] leading-none font-medium',
 		'border-border',
 		'bg-card-muted/50',
@@ -352,22 +353,12 @@ export const CommandK: React.FC<CommandKProps> = ({
 							}}
 							onKeyDown={onKeyNav}
 							placeholder={placeholder}
-							className="w-full border-none pr-12 !shadow-none focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+							className="w-full !border-none pr-12 !shadow-none focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 							leftIcon={
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
+								<Icons.Search
 									aria-hidden="true"
-									focusable="false"
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth={2}
-										d="m21 21-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"
-									/>
-								</svg>
+									className="!h-5 !w-5 -mt-0.5 -ml-0.5"
+								/>
 							}
 						/>
 						<div className="pointer-events-none absolute top-1/2 right-3 h-fit -translate-y-1/2">

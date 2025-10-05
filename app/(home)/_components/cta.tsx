@@ -1,8 +1,8 @@
-import { GitHubLogoIcon, ReaderIcon } from '@radix-ui/react-icons'; // <--- ikony
+import { GitHubLogoIcon, ReaderIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import type React from 'react';
+import { Button } from '@/app/components/ui/button';
 import { Section } from '@/components/section';
-import { Button } from '@/components/ui/shadcnbutton';
 
 export default function CTA(): React.ReactElement {
 	return (
@@ -18,19 +18,22 @@ export default function CTA(): React.ReactElement {
 						designed to help you create modern interfaces with ease.
 					</p>
 					<div className="flex flex-row gap-3">
-						<Button size="lg" asChild>
-							<Link href="/docs">
+						<Button size="md">
+							<Link className="flex gap-2" href="/docs">
 								<ReaderIcon aria-hidden="true" className="mr-2 h-5 w-5" /> Read
 								Documentation
 							</Link>
 						</Button>
 						<Button
-							size="lg"
-							className="group gap-2 bg-transparent shadow-none hover:bg-card-muted dark:hover:bg-card"
-							variant="outline"
-							asChild
+							size="md"
+							className="group gap-2  hover:bg-card-muted dark:bg-background dark:hover:bg-card"
+							variant="secondary"
 						>
-							<Link href="https://github.com/66HEX/nocta-ui" target="_blank">
+							<Link
+								className="flex gap-2"
+								href="https://github.com/66HEX/nocta-ui"
+								target="_blank"
+							>
 								<GitHubLogoIcon aria-hidden="true" className="mr-2 h-5 w-5" />{' '}
 								View on GitHub
 							</Link>

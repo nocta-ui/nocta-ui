@@ -7,14 +7,14 @@
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
 	--color-fd-muted-foreground: oklch(0.45 0.002 250);
-	--color-fd-popover: var(--color-card-elevated);
+	--color-fd-popover: var(--color-card-muted);
 	--color-fd-popover-foreground: var(--color-foreground);
-	--color-fd-card: var(--color-card);
+	--color-fd-card: var(--color-background);
 	--color-fd-card-foreground: var(--color-foreground);
 	--color-fd-border: var(--color-border);
 	--color-fd-primary: var(--color-ring);
 	--color-fd-primary-foreground: var(--color-foreground);
-	--color-fd-secondary: var(--color-card-muted);
+	--color-fd-secondary: var(--color-card);
 	--color-fd-secondary-foreground: var(--color-foreground);
 	--color-fd-accent: var(--color-card-elevated);
 	--color-fd-accent-foreground: var(--color-foreground);
@@ -44,11 +44,11 @@
 .dark {
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
-	--color-fd-muted: var(--color-card-muted);
+	--color-fd-muted: var(--color-card);
 	--color-fd-muted-foreground: oklch(0.65 0.007 248);
-	--color-fd-popover: var(--color-card-elevated);
+	--color-fd-popover: var(--color-card-muted);
 	--color-fd-popover-foreground: var(--color-foreground);
-	--color-fd-card: var(--color-card);
+	--color-fd-card: var(--color-background);
 	--color-fd-card-foreground: var(--color-foreground);
 	--color-fd-border: var(--color-border);
 	--color-fd-primary: var(--color-ring);
@@ -63,36 +63,6 @@
 :root {
 	--fd-layout-width: 1600px;
 	--fd-page-width: 1400px;
-}
-
-@variant md {
-	#nd-page article {
-		@apply rounded-xl border my-4;
-	}
-
-	#nd-tocnav,
-	#nd-subnav > div {
-		border: none;
-	}
-
-	.fd-default-layout #nd-page article {
-		@apply mx-4;
-	}
-
-	.fd-notebook-layout #nd-page article {
-		@apply mx-6;
-	}
-}
-
-#nd-sidebar {
-	@apply bg-fd-background;
-}
-
-#nd-sidebar[data-collapsed="false"] {
-	border: none;
-	--color-fd-muted: inherit;
-	--color-fd-secondary: inherit;
-	--color-fd-muted-foreground: inherit;
 }
 
 @utility container {
@@ -121,11 +91,9 @@
 :root {
 	--color-background: oklch(0.97 0.004 285.89);
 	--color-card: oklch(0.985 0.003 285.89);
-	--color-card-muted: oklch(0.94 0.004 285.89);
-	--color-gradient-1: oklch(0.93 0.007 285.89);
-	--color-gradient-2: oklch(0.88 0.007 285.89);
+	--color-card-muted: oklch(0.94 0.01 285.89);
 	--color-foreground: oklch(0.18 0.005 285.89);
-	--color-border: oklch(0.7 0.006 285.89 / 0.2);
+	--color-border: oklch(0.7 0.006 285.89 / 0.35);
 	--color-ring: oklch(0.55 0.012 285.89);
 	--color-ring-offset: oklch(0.96 0.002 285.89);
 	--color-overlay: oklch(0.92 0.003 285.89 / 0.65);
@@ -182,9 +150,7 @@
 .dark {
 	--color-background: oklch(0.18 0.0045 285.89);
 	--color-card: oklch(0.2103 0.0059 285.89);
-	--color-card-muted: oklch(0.2739 0.0055 286.03);
-	--color-gradient-1: oklch(0.32 0.007 285.89);
-	--color-gradient-2: oklch(0.26 0.0065 285.89);
+	--color-card-muted: oklch(0.27 0.01 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
 	--color-border: oklch(0.34 0.006 285.89 / 0.5);
 	--color-ring: oklch(0.58 0.012 285.89);
@@ -246,8 +212,6 @@
 	--color-background: var(--background);
 	--color-card: var(--card);
 	--color-card-muted: var(--card-muted);
-	--color-gradient-1: var(--gradient-1);
-	--color-gradient-2: var(--gradient-2);
 	--color-foreground: var(--foreground);
 	--color-border: var(--border);
 	--color-ring: var(--ring);

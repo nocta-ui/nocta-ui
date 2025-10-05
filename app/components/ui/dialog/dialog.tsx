@@ -216,7 +216,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			{...props}
 		>
 			{showClose && (
-				<DialogClose className="absolute top-1 right-1 z-10">
+				<DialogClose className="absolute top-2 right-2 z-10">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<span className="sr-only">Close</span>
 				</DialogClose>
@@ -338,7 +338,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				'not-prose not-prose inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-foreground/45 transition-colors duration-200 hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-200 hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"

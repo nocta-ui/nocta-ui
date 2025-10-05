@@ -50,8 +50,8 @@ const fileItemVariants = cva(
 			status: {
 				pending: 'bg-card',
 				uploading: 'bg-card',
-				success: 'border-success/40 bg-success/10',
-				error: 'border-error/40 bg-error/10',
+				success: 'bg-card',
+				error: 'bg-card',
 			},
 			size: {
 				sm: 'max-w-sm',
@@ -249,7 +249,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="not-prose size-6 cursor-pointer text-foreground/45 transition-colors duration-200 hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="not-prose size-6 cursor-pointer text-foreground/45 transition-colors duration-200 hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
@@ -265,12 +265,14 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 
 					{file.status === 'error' && file.error && (
-						<p className="truncate text-xs text-error/90">{file.error}</p>
+						<p className="truncate text-xs text-error/90 font-medium">
+							{file.error}
+						</p>
 					)}
 
 					{file.status === 'success' && (
-						<span className="flex flex-shrink-0 items-center gap-1 text-xs text-success/90">
-							<Icons.Check aria-hidden="true" className="h-3 w-3" />
+						<span className="flex flex-shrink-0 items-center gap-1 text-xs font-medium text-success/90">
+							<Icons.Check aria-hidden="true" className="h-4 w-4" />
 							Uploaded
 						</span>
 					)}

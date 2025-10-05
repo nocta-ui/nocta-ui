@@ -11,7 +11,7 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					'bg-linear-to-b from-gradient-1 to-gradient-2 inset-shadow-[0_1px_rgb(255_255_255/0.15)] hover:contrast-110 text-foreground shadow-md focus-visible:border-border focus-visible:ring-ring/50',
+					'bg-foreground hover:bg-foreground/80 text-background shadow-sm focus-visible:border-border focus-visible:ring-ring/50',
 				secondary:
 					'border border-none border-border bg-card text-foreground shadow-sm hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50 dark:border-solid',
 				ghost:
