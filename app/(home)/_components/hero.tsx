@@ -17,7 +17,7 @@ const Hero = () => (
 			<Badge
 				variant="default"
 				size="md"
-				className="group gap-4 bg-background border border-border rounded-sm text-foreground/70"
+				className="group gap-4 bg-background border border-border rounded-sm text-foreground"
 			>
 				A lightweight React component library
 			</Badge>

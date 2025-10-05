@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { Badge } from '../badge';
-import { Button } from '../button';
 import { type ColumnDef, type Row, Table } from './table';
 
 interface Invoice {
@@ -266,7 +265,7 @@ export const BasicTableDemo: React.FC = () => {
 };
 
 export const SelectableTableDemo: React.FC = () => {
-	const [_, setSelectedRows] = React.useState<Row<Invoice>[]>([]);
+	const [, setSelectedRows] = React.useState<Row<Invoice>[]>([]);
 
 	return (
 		<div className="space-y-3">

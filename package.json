@@ -7,8 +7,8 @@
 		"dev": "next dev --turbo",
 		"start": "next start",
 		"postinstall": "fumadocs-mdx",
-		"lint": "next lint",
-		"lint:fix": "next lint --fix",
+		"lint": "biome check .",
+		"lint:fix": "biome check --apply .",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -43,10 +43,6 @@
 		"@types/node": "22.15.28",
 		"@types/react": "^19.1.6",
 		"@types/react-dom": "^19.1.5",
-		"@typescript-eslint/eslint-plugin": "^8.34.1",
-		"@typescript-eslint/parser": "^8.34.1",
-		"eslint": "^8.57.1",
-		"eslint-config-next": "15.3.3",
 		"husky": "^9.1.7",
 		"postcss": "^8.5.4",
 		"tailwindcss": "^4.1.8",

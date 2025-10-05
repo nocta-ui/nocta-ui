@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M8 1C4.13408 1 1.00012 4.13411 1 8C1 11.866 4.13401 15 8 15C8.81667 15 9.60038 14.8595 10.3289 14.6021C10.6768 14.4792 10.7285 14.0263 10.4623 13.7709C8.9452 12.3153 8 10.2685 8 8C8.00006 5.73136 8.94501 3.68395 10.4622 2.22819C10.7285 1.97271 10.6768 1.51981 10.3288 1.39703C9.60025 1.13997 8.81649 1 8 1ZM12.281 2.4625C12.1153 2.3342 11.8847 2.3342 11.719 2.4625C10.0652 3.74281 9.00007 5.74678 9 8C9 10.2531 10.0654 12.2562 11.7189 13.5365C11.8847 13.6648 12.1153 13.6648 12.2811 13.5365C13.9346 12.2562 15 10.2531 15 8C14.9999 5.74678 13.9348 3.74281 12.281 2.4625Z" fill="black"></path>
-</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
-@media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C13.1157 0 14.1948 0.155574 15.2197 0.44043L19.5 9V2.63574C22.2423 4.83496 24 8.21128 24 12C24 18.6274 18.6274 24 12 24C11.0893 24 10.2032 23.8944 9.35059 23.7021L5 15V21.7432C1.97313 19.5647 0 16.0141 0 12C0 5.37258 5.37258 0 12 0ZM12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5Z" fill="white"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: contrast(1) brightness(0.1); } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
 </style></svg>

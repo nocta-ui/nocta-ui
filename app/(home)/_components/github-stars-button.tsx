@@ -18,7 +18,7 @@ export const GithubStarsButton = async () => {
 
 	return (
 		<Button
-			className="group bg-background hover:bg-card transition-colors"
+			className="bg-background hover:bg-card transition-colors"
 			size="md"
 			variant="secondary"
 		>
@@ -33,7 +33,7 @@ export const GithubStarsButton = async () => {
 
 				<span className="h-4 w-px bg-border" aria-hidden="true" />
 
-				<span className="rounded-sm border border-border bg-card px-2 py-0.5 text-xs font-medium text-foreground/80 transition-colors group-hover:bg-card-muted">
+				<span className="text-xs font-medium text-foreground/80">
 					{formatStars(stars)}
 				</span>
 			</Link>
