@@ -76,10 +76,10 @@ const DocsTabs = ({
 				)}
 				<div
 					ref={wrapperRef}
-					className={`relative transition-opacity duration-200 ease-in-out ${activeTab === 'code' ? 'overflow-y-visible' : ''}`}
+					className={`relative transition-opacity duration-200 ease-in-out ${activeTab === 'code' ? 'overflow-y-visible [&_figure]:my-0' : ''}`}
 				>
 					<div
-						className={`flex w-full justify-${justify} items-center overflow-x-auto md:justify-center ${activeTab !== 'code' ? 'p-4 md:p-16' : ''} ${activeTab === 'code' ? '-mb-16' : ''}`}
+						className={`flex w-full justify-${justify} items-center overflow-x-auto md:justify-center ${activeTab !== 'code' ? 'p-4 md:p-16' : ''}`}
 					>
 						{activeContent?.props.children}
 					</div>
