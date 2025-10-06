@@ -6,9 +6,9 @@ import { Section } from '@/components/section';
 import { GithubStarsButton } from './github-stars-button';
 
 const Hero = () => (
-	<Section className="relative h-[60vh] w-full overflow-hidden px-4 py-16 sm:px-16 sm:py-24 md:h-[70vh] md:py-32">
+	<Section className="relative h-[65vh] w-full overflow-hidden px-4 py-16 sm:px-16 sm:py-24 md:h-[70vh] md:py-32">
 		<div
-			className="absolute inset-0 h-[600px] md:h-[800px] w-full
+			className="absolute inset-0 h-[650px] md:h-[800px] w-full
 		[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.78_0.22_290)_300%)]
 		dark:[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.42_0.2_290)_300%)]
 		"
@@ -33,7 +33,7 @@ const Hero = () => (
 					modifiable code built for React and Tailwind.
 				</p>
 			</div>
-			<div className="flex flex-col md:flex-row gap-3">
+			<div className="flex flex-col-reverse md:flex-row gap-3">
 				<GithubStarsButton />
 				<Button className="group gap-4">
 					<Link className="flex gap-2" href="/docs">

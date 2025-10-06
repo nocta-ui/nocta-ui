@@ -123,7 +123,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 				dir="ltr"
 				{...props}
 				className={cn(
-					'not-prose group relative z-0 my-0 mb-16 w-full text-sm outline-none',
+					'not-prose group relative z-0 my-4 w-full text-sm outline-none',
 					props.className,
 				)}
 			>

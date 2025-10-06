@@ -319,7 +319,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 		<Link
 			href={item.url}
 			className={cn(
-				'group flex flex-col gap-2 rounded-lg border border-none bg-card shadow-sm dark:border-solid p-4 text-sm transition-colors duration-200 hover:bg-card-muted @max-lg:col-span-full',
+				'group mt-16 flex flex-col gap-2 rounded-lg border border-none bg-card shadow-sm dark:border-solid p-4 text-sm transition-colors duration-200 hover:bg-card-muted @max-lg:col-span-full',
 				index === 1 && 'text-end',
 			)}
 		>
