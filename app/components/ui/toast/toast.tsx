@@ -600,7 +600,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{title && (
 								<div
 									id={titleId}
-									className="mb-1 text-sm leading-tight font-semibold"
+									className="mb-1 text-sm leading-tight font-medium"
 								>
 									{title}
 								</div>

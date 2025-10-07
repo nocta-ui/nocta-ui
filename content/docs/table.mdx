@@ -89,7 +89,7 @@ Display structured data with sorting and custom cell rendering.
         accessorKey: 'amount',
         header: 'Amount',
         cell: ({ getValue }) => (
-          <span className="font-semibold">
+          <span className="font-medium">
             {currency.format(getValue<number>())}
           </span>
         ),

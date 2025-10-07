@@ -180,7 +180,7 @@ const invoiceColumns: ColumnDef<Invoice>[] = [
 		accessorKey: 'amount',
 		header: 'Amount',
 		cell: ({ getValue }) => (
-			<span className="font-semibold text-foreground">
+			<span className="font-medium text-foreground">
 				{currencyFormatter.format(getValue<number>())}
 			</span>
 		),
@@ -228,9 +228,7 @@ const teamColumns: ColumnDef<TeamMember>[] = [
 		accessorKey: 'projects',
 		header: 'Projects',
 		cell: ({ getValue }) => (
-			<span className="font-semibold text-foreground">
-				{getValue<number>()}
-			</span>
+			<span className="font-medium text-foreground">{getValue<number>()}</span>
 		),
 		meta: { align: 'right', width: '120px' },
 	},

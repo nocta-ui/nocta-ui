@@ -31,7 +31,7 @@ const alertVariants = cva(
 	},
 );
 
-const alertTitleVariants = cva('not-prose mb-1 leading-none font-semibold', {
+const alertTitleVariants = cva('not-prose mb-1 leading-none font-medium', {
 	variants: {
 		size: {
 			default: 'text-sm',

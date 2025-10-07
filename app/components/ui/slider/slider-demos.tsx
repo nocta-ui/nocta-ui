@@ -205,7 +205,7 @@ export const PriceRangeDemo: React.FC = () => {
 			<div className="rounded-lg bg-card p-4">
 				<div className="space-y-4">
 					<div className="flex items-center justify-between">
-						<h3 className="text-sm font-semibold text-foreground">
+						<h3 className="text-sm font-medium text-foreground">
 							Budget Range
 						</h3>
 						<span className="text-sm font-medium text-foreground/70">

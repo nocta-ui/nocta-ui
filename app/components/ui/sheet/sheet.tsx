@@ -620,7 +620,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 	return (
 		<AriakitDialogHeading
 			className={cn(
-				'not-prose text-base leading-tight font-semibold text-foreground',
+				'not-prose text-base leading-tight font-medium text-foreground',
 				className,
 			)}
 			{...props}

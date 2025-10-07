@@ -329,7 +329,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						id={headingId}
 						aria-live="polite"
 						aria-atomic="true"
-						className={cn('font-semibold text-foreground', 'text-sm')}
+						className={cn('font-medium text-foreground', 'text-sm')}
 					>
 						{formatMonth(currentMonth)}
 					</h2>
