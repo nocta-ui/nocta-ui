@@ -1,0 +1,116 @@
+---
+title: Checkbox Card
+description: A selectable card that pairs rich summaries with checkbox behaviour for multi-select interfaces.
+---
+
+import { CheckboxCard } from '@/app/components/ui/checkbox-card';
+import {
+  BasicCheckboxCardDemo,
+  CheckboxCardGroupDemo,
+} from '@/app/components/ui/checkbox-card/checkbox-card-demos';
+import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Checkbox Card component using the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add checkbox-card
+    ```
+  </Step>
+  <Step>
+    Then import the component where you need it:
+
+    ```tsx lineNumbers title="Import"
+    import { CheckboxCard } from '@/components/ui/checkbox-card';
+    ```
+  </Step>
+</Steps>
+
+## Examples
+
+### Basic Checkbox Card
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6 flex justify-center">
+      <BasicCheckboxCardDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Checkbox Card"
+    const [isChecked, setIsChecked] = useState(true);
+
+    <CheckboxCard
+      title="Weekly product summary"
+      description="Receive a concise recap of the most important product metrics every Monday at 9:00 AM."
+      helper="Adjust delivery preferences anytime in notification settings."
+      checked={isChecked}
+      onCheckedChange={setIsChecked}
+    />
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Integrations Grid
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <CheckboxCardGroupDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Integrations Grid"
+    const [selectedIntegrations, setSelectedIntegrations] = useState<string[]>(['slack']);
+
+    const integrations = [
+      { id: 'notion', title: 'Notion', description: 'Push tasks and project updates directly into linked workspaces.', meta: 'Beta' },
+      { id: 'slack', title: 'Slack', description: 'Send channel notifications whenever critical events happen.', helper: 'Requires workspace admin permissions.' },
+      { id: 'figma', title: 'Figma', description: 'Keep your design system components in sync with your product data.' },
+      { id: 'github', title: 'GitHub', description: 'Mirror issues, pull requests and code reviews from selected repositories.' }
+    ];
+
+    const handleToggle = (id: string) => (next: boolean) => {
+      setSelectedIntegrations((prev) => {
+        const isSelected = prev.includes(id);
+        if (next && !isSelected) return [...prev, id];
+        if (!next && isSelected) return prev.filter((item) => item !== id);
+        return prev;
+      });
+    };
+
+    <div className="grid gap-4 md:grid-cols-2">
+      {integrations.map((integration) => (
+        <CheckboxCard
+          key={integration.id}
+          title={integration.title}
+          description={integration.description}
+          meta={integration.meta}
+          helper={integration.helper}
+          checked={selectedIntegrations.includes(integration.id)}
+          onCheckedChange={handleToggle(integration.id)}
+        />
+      ))}
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `React.ReactNode` | - | Primary heading displayed inside the card |
+| `description` | `React.ReactNode` | - | Supporting text shown under the title |
+| `meta` | `React.ReactNode` | - | Optional element rendered next to the selection indicator |
+| `helper` | `React.ReactNode` | - | Helper text displayed at the bottom of the card |
+| `children` | `React.ReactNode` | - | Extra content rendered between description and helper |
+| `checked` | `boolean` | `false` | Controlled checked state |
+| `defaultChecked` | `boolean` | `false` | Initial checked state for uncontrolled usage |
+| `onCheckedChange` | `(checked: boolean) => void` | - | Called when the selection state changes |
+| `disabled` | `boolean` | `false` | Disables interaction and visually dims the card |
+| `className` | `string` | `''` | Additional classes for the container |
+
+All other props are forwarded to the underlying checkbox element, allowing usage of native attributes like `name`, `value`, `required`, or `aria-*`.
