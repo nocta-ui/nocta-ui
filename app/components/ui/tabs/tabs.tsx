@@ -14,7 +14,7 @@ const tabsListVariants = cva(
 				vertical: 'w-fit flex-col',
 			},
 			variant: {
-				default: 'rounded-lg bg-card shadow-sm',
+				default: 'rounded-md bg-card shadow-sm',
 				pills: 'gap-1',
 				underline: 'border-border/60 gap-0 border-b',
 			},
@@ -43,7 +43,7 @@ const tabsTriggerVariants = cva(
 		variants: {
 			variant: {
 				default: `w-full rounded-md text-foreground/70 hover:text-foreground data-[active-item]:bg-card-muted data-[active-item]:text-foreground data-[active-item]:shadow-sm`,
-				pills: `rounded-lg text-foreground/70 hover:text-foreground data-[active-item]:bg-foreground data-[active-item]:text-card data-[active-item]:shadow-sm`,
+				pills: `rounded-md text-foreground/70 hover:text-foreground data-[active-item]:bg-foreground data-[active-item]:text-card data-[active-item]:shadow-sm`,
 				underline: `border-b-2 border-transparent text-foreground/70 hover:text-foreground data-[active-item]:border-foreground/75 data-[active-item]:text-foreground`,
 			},
 			size: {
