@@ -343,6 +343,40 @@
 			},
 			"sizes": ["sm", "md", "lg"]
 		},
+		"checkbox-card": {
+			"name": "CheckboxCard",
+			"description": "A selectable card that pairs rich summaries with checkbox behaviour for multi-select interfaces",
+			"category": "form",
+			"files": [
+				{
+					"name": "checkbox-card.tsx",
+					"path": "app/components/ui/checkbox-card/checkbox-card.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": ["CheckboxCard"],
+			"props": {
+				"CheckboxCard": [
+					"title",
+					"description",
+					"meta",
+					"helper",
+					"children",
+					"checked",
+					"defaultChecked",
+					"onCheckedChange",
+					"disabled",
+					"className"
+				]
+			}
+		},
 		"dialog": {
 			"name": "Dialog",
 			"description": "Modal dialog component with overlay and animations",
@@ -1230,6 +1264,7 @@
 			"components": [
 				"button",
 				"checkbox",
+				"checkbox-card",
 				"combobox",
 				"file-upload",
 				"form",

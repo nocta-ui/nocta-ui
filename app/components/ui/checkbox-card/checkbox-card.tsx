@@ -33,7 +33,7 @@ const checkboxCardVariants = cva(
 );
 
 const indicatorVariants = cva(
-	'flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-colors duration-200 ease-in-out',
+	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-colors duration-200 ease-in-out',
 	{
 		variants: {
 			checked: {
@@ -53,7 +53,10 @@ const indicatorVariants = cva(
 );
 
 export interface CheckboxCardProps
-	extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+	extends Omit<
+			Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+			'title'
+		>,
 		Omit<VariantProps<typeof checkboxCardVariants>, 'checked' | 'disabled'> {
 	title: React.ReactNode;
 	description?: React.ReactNode;
@@ -158,8 +161,8 @@ export const CheckboxCard = React.forwardRef<
 								>
 									<span
 										aria-hidden="true"
-									className={cn(
-										'h-2.5 w-2.5 rounded-full bg-white transition-all duration-200 ease-in-out transform',
+										className={cn(
+											'h-2 w-2 rounded-full bg-foreground transition-all duration-200 ease-in-out transform',
 											isChecked ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
 											disabled ? 'opacity-60' : '',
 										)}
