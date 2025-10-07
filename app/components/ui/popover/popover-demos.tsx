@@ -10,7 +10,7 @@ export const BasicPopoverDemo: React.FC = () => {
 			<Popover>
 				<PopoverTrigger>Open Popover</PopoverTrigger>
 				<PopoverContent>
-					<div className="flex flex-col space-y-2">
+					<div className="flex flex-col space-y-1 max-w-xs">
 						<h4 className="text-sm font-medium">About this feature</h4>
 						<p className="text-sm text-foreground/70">
 							This is a popover component that can contain any content you want.

@@ -184,7 +184,7 @@ export function FileUploadCustomizationDemo() {
 	return (
 		<div className="my-6">
 			<div>
-				<h3 className="mb-2 text-lg font-semibold">
+				<h3 className="mb-2 text-lg font-medium">
 					Advanced Upload with Progress
 				</h3>
 				<FileUpload
@@ -258,9 +258,7 @@ export function FileUploadWithErrorDemo() {
 	return (
 		<div className="space-y-6">
 			<div>
-				<h3 className="mb-2 text-lg font-semibold">
-					Upload with Random Errors
-				</h3>
+				<h3 className="mb-2 text-lg font-medium">Upload with Random Errors</h3>
 				<p className="mb-4 text-sm text-foreground/70">
 					This demo simulates random upload failures to show error handling
 				</p>
