@@ -19,14 +19,14 @@ const alertVariants = cva(
 					'border-border bg-card text-success/90 [&_[data-slot=alert-icon]]:text-success/90',
 			},
 			size: {
-				default: 'px-4 py-3',
+				md: 'px-4 py-3',
 				sm: 'px-3 py-2',
 				lg: 'px-6 py-4',
 			},
 		},
 		defaultVariants: {
 			variant: 'default',
-			size: 'default',
+			size: 'md',
 		},
 	},
 );
@@ -34,13 +34,13 @@ const alertVariants = cva(
 const alertTitleVariants = cva('not-prose mb-1 leading-none font-medium', {
 	variants: {
 		size: {
-			default: 'text-sm',
+			md: 'text-sm',
 			sm: 'text-xs',
 			lg: 'text-base',
 		},
 	},
 	defaultVariants: {
-		size: 'default',
+		size: 'md',
 	},
 });
 
@@ -49,13 +49,13 @@ const alertDescriptionVariants = cva(
 	{
 		variants: {
 			size: {
-				default: 'text-xs',
+				md: 'text-xs',
 				sm: 'text-xs',
 				lg: 'text-sm',
 			},
 		},
 		defaultVariants: {
-			size: 'default',
+			size: 'md',
 		},
 	},
 );

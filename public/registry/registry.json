@@ -66,11 +66,12 @@
 			},
 			"exports": ["Alert", "AlertTitle", "AlertDescription", "AlertIcon"],
 			"props": {
-				"Alert": ["variant", "showIcon", "className", "children"],
-				"AlertTitle": ["children", "className", "as"],
-				"AlertDescription": ["children", "className"]
+				"Alert": ["variant", "size", "showIcon", "className", "children"],
+				"AlertTitle": ["children", "size", "className", "as"],
+				"AlertDescription": ["children", "size", "className"]
 			},
-			"variants": ["default", "error", "warning", "success"]
+			"variants": ["default", "destructive", "warning", "success"],
+			"sizes": ["sm", "md", "lg"]
 		},
 		"avatar": {
 			"name": "Avatar",
