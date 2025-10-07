@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const chatVariants = cva(
 	[
-		'relative border border-none border-border bg-card dark:border-solid',
+		'relative border border-border bg-card',
 		'rounded-lg shadow-md transition-all duration-200 ease-in-out',
 		'not-prose overflow-hidden',
 	],

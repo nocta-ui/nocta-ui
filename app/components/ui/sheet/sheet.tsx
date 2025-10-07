@@ -15,7 +15,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const sheetContentVariants = cva(
-	'fixed flex transform flex-col border border-none border-border bg-card shadow-2xl transition-transform duration-200 ease-in-out dark:border-solid',
+	'fixed flex transform flex-col border border-border bg-card shadow-2xl transition-transform duration-200 ease-in-out',
 	{
 		variants: {
 			side: {

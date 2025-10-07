@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 const progressVariants = cva(
 	[
 		'relative w-full overflow-hidden rounded-full',
-		'border border-none border-border/60 bg-card-muted shadow-inner dark:border-solid',
+		'border border-border/60 bg-card-muted shadow-inner',
 		'transition-all duration-200 ease-in-out',
 		'not-prose',
 	],

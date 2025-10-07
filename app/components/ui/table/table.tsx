@@ -41,7 +41,7 @@ declare module '@tanstack/react-table' {
 
 const tableVariants = cva(
 	[
-		'relative border border-none border-border bg-card dark:border-solid',
+		'relative border border-border bg-card',
 		'rounded-lg shadow-md',
 		'not-prose',
 	],

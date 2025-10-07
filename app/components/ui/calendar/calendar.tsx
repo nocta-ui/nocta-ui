@@ -305,7 +305,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 				calendarVariants({
 					disabled,
 				}),
-				'relative overflow-hidden border border-none border-border dark:border-solid',
+				'relative overflow-hidden border border-border',
 				className,
 			)}
 			{...props}

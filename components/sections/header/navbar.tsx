@@ -18,14 +18,14 @@ export const Navbar = (props: HTMLAttributes<HTMLElement>) => {
 				{...props}
 				className={cn(
 					'sticky top-[var(--fd-banner-height)] z-30 box-content w-full bg-background/80 backdrop-blur-lg transition-colors',
-					'border-b border-dashed border-border',
+					'border-b border-border',
 					props.className,
 				)}
 			>
 				<div
 					className={cn(
 						'container mx-auto flex size-full h-14 flex-row items-center px-4 md:gap-1.5 lg:px-6',
-						'border-dashed border-border sm:border-x',
+						'border-border sm:border-x',
 					)}
 				>
 					{props.children}

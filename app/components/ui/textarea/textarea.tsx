@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 const textareaVariants = cva(
 	[
-		'flex w-full rounded-md border border-none transition-all duration-200 ease-in-out dark:border-solid',
+		'flex w-full rounded-md border transition-all duration-200 ease-in-out',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'focus-visible:ring-offset-ring-offset/50',
 		'disabled:cursor-not-allowed disabled:opacity-50',

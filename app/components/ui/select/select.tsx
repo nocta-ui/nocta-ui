@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md border border-none shadow-sm transition-all duration-200 ease-in-out placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-solid`,
+	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-200 ease-in-out placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -156,7 +156,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			portal={portal}
 			fixed={fixed}
 			className={cn(
-				'absolute z-[999] my-1 overflow-hidden rounded-md border border-none border-border bg-card shadow-md dark:border-solid',
+				'absolute z-[999] my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
 				'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:-translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0',
 				'not-prose',
 				className,

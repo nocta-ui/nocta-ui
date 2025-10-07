@@ -72,7 +72,7 @@ const DocsTabs = ({
 
 			<div ref={contentRef} className="relative overflow-hidden">
 				{activeTab !== 'code' && (
-					<div className="absolute inset-0 z-0 rounded-lg border border-fd-border border-dashed bg-background"></div>
+					<div className="absolute inset-0 z-0 rounded-lg border border-fd-border bg-background"></div>
 				)}
 				<div
 					ref={wrapperRef}

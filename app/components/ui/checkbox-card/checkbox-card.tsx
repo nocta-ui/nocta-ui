@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 
 const checkboxCardVariants = cva(
 	[
-		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-none border-border bg-card px-4 py-3 text-left shadow-sm transition-all duration-200 ease-in-out dark:border-solid',
+		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-sm transition-all duration-200 ease-in-out',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:outline-none',
 	],
 	{

@@ -73,7 +73,7 @@ const listItemClass = cva(
 const kbdClass = cva(
 	[
 		'flex items-center justify-center',
-		'h-5 min-w-[2.2rem] rounded-sm border border-none px-1.5 dark:border-solid',
+		'h-5 min-w-[2.2rem] rounded-sm border px-1.5',
 		'text-[10px] leading-none font-medium',
 		'border-border',
 		'bg-card-muted/50',
