@@ -47,7 +47,8 @@ const dayButtonVariants = cva(
 		variants: {
 			state: {
 				default: 'text-foreground/70 hover:bg-card-muted',
-				selected: 'bg-foreground text-card',
+				selected:
+					'relative bg-foreground text-card before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.sm)-0.5px)] before:border-[0.5px] before:border-background/35 before:pointer-events-none',
 				today: 'bg-card-muted text-foreground',
 				disabled: 'cursor-not-allowed line-through opacity-50',
 				outsideMonth: 'text-foreground/45',

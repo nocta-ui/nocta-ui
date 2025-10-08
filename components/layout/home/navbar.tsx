@@ -86,7 +86,7 @@ export function NavbarMenuLink(props: LinkProps) {
 			<Link
 				{...props}
 				className={cn(
-					'flex flex-col gap-2 rounded-lg border bg-card-muted p-3 transition-colors hover:bg-foreground/80 hover:text-foreground',
+					'flex flex-col gap-2 rounded-lg border bg-card-muted p-3 transition-colors hover:bg-foreground/75 hover:text-foreground',
 					props.className,
 				)}
 			>

@@ -452,10 +452,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					aria-label="Send message"
 					disabled={!message.trim() || disabled}
 					className={cn(
-						'h-full rounded-md px-3 py-2 font-medium transition-all duration-200 ease-in-out',
+						'relative h-full rounded-md px-3 py-2 font-medium transition-all duration-200 ease-in-out cursor-pointer',
 						'focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 						'not-prose disabled:cursor-not-allowed disabled:opacity-50',
-						'bg-foreground hover:bg-foreground/80 text-background shadow-sm',
+						'bg-foreground/90 hover:bg-foreground/75 text-background shadow-sm',
+						'before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.md)-0.5px)] before:border-[0.5px] before:border-background/35 before:pointer-events-none',
 					)}
 				>
 					<Icons.SendMessage
