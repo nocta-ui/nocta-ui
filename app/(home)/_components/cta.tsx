@@ -6,18 +6,18 @@ import { Section } from '@/components/section';
 
 export default function CTA(): React.ReactElement {
 	return (
-		<Section className="relative grid gap-8 px-4 py-10 sm:grid-cols-2 md:py-14 lg:px-6 lg:py-16">
-			<h2 className="font-regular max-w-xl text-3xl md:text-5xl text-foreground">
-				Build Faster with Nocta UI
+		<Section className="relative grid gap-2 md:gap-0 px-4 py-10 sm:grid-cols-2 md:py-14 lg:px-6 lg:py-16">
+			<h2 className="font-regular max-w-[22rem] md:max-w-md text-3xl md:text-4xl text-foreground">
+				Ready to build something that just works?
 			</h2>
 
 			<div className="flex w-full items-center">
 				<div className="max-w-xl space-y-4">
-					<p className="text-sm text-foreground/70 md:text-base">
-						Nocta UI is an accessible component library with a dedicated CLI,
-						designed to help you create modern interfaces with ease.
+					<p className="text-base text-foreground/70">
+						Nocta UI gives you accessible, polished components and a CLI that
+						saves you hours — no hacks, no headaches.
 					</p>
-					<div className="flex flex-row gap-3">
+					<div className="flex flex-row md:flex-col lg:flex-row gap-3">
 						<Button size="md">
 							<Link className="flex gap-2" href="/docs">
 								<ReaderIcon aria-hidden="true" className="mr-2 h-5 w-5" /> Read

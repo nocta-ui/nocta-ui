@@ -10,36 +10,40 @@ const faq = [
 	{
 		question: 'What is Nocta UI?',
 		answer:
-			'Nocta UI is a React component library built with a copy-paste philosophy. Instead of shipping as a package, it provides source code you add directly to your project via a CLI.',
+			'A React component library built on a copy-paste philosophy. Instead of installing packages, you get clean, accessible source code — added straight to your project via the CLI.',
 	},
 	{
 		question: 'Is Nocta UI accessible?',
 		answer:
-			'Yes. Accessibility is a core principle of Nocta UI. Interactive components are built on top of @ariakit/react, ensuring proper focus management, keyboard navigation, and WAI-ARIA compliance.',
+			'Yep. Accessibility isn’t an afterthought here. Components are built on top of @ariakit/react, so focus, keyboard navigation, and ARIA are all taken care of.',
 	},
 	{
 		question: 'Can I customize the components?',
 		answer:
-			'Absolutely. Since components are copied into your project, you have full control to adjust styling, behavior, or structure however you like.',
+			'Completely. Since everything lives in your codebase, you can tweak styles, behavior, or structure however you want — no overrides or weird hacks.',
 	},
 	{
 		question: 'Does Nocta UI work with my framework?',
 		answer:
-			'Yes. It is React-focused and optimized for Next.js, Vite and React Router projects. The CLI automatically detects your framework and configures everything for you.',
+			'If you’re using React — absolutely. It’s optimized for Next.js, Vite, and React Router, and the CLI auto-detects your setup so you can start fast.',
 	},
 	{
 		question: 'What kind of support is available?',
 		answer:
-			'You can find clear documentation, usage guides, and examples on the official website. Contributions and issue tracking are available on GitHub.',
+			'You’ll find clear documentation, usage guides, and examples on the official website. Issues and feedback are welcome on GitHub.',
 	},
 ];
 
 export const FAQ = () => (
 	<Section className="grid divide-y divide-dashed divide-border lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-		<div className="px-6 py-10 md:py-14">
-			<h4 className="font-regular max-w-xl text-left text-3xl md:text-5xl">
+		<div className="px-6 py-10 md:py-14 gap-2">
+			<h4 className="font-regular max-w-xl text-left text-3xl md:text-4xl">
 				Frequently Asked Questions
 			</h4>
+			<p className="text-foreground/70 mt-4 max-w-md text-lg">
+				We know you’ve got questions — probably the same ones everyone else had.
+				Let’s save you some time.
+			</p>
 		</div>
 
 		<Accordion
