@@ -1,30 +1,53 @@
 'use client';
 
 import { cn } from 'fumadocs-ui/utils/cn';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { CodeIcon, EyeOpenIcon } from '@radix-ui/react-icons';
+import { Tabs, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
 
 interface DocsTabProps {
 	children?: React.ReactNode;
 	title: string;
 	value: string;
 	isActive?: boolean;
-	onClick?: (value: string) => void;
 }
 
-const DocsTab = ({ title, value, isActive = false, onClick }: DocsTabProps) => {
+const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
+	let icon: React.ReactNode = null;
+	if (value === 'preview') icon = <EyeOpenIcon className="h-4 w-4" />;
+	if (value === 'code') icon = <CodeIcon className="h-4 w-4" />;
+
 	return (
-		<button
-			type="button"
-			onClick={() => onClick?.(value)}
+		<TabsTrigger
+			value={value}
 			className={cn(
-				'group relative cursor-pointer rounded-lg py-1.5 text-sm font-medium transition-all duration-200 ease-in-out',
-				isActive
-					? 'text-foreground hover:contrast-110'
-					: 'text-foreground/45 hover:text-foreground/70',
+				'group relative flex !w-auto items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-200 ease-in-out sm:text-sm',
+				'bg-transparent border border-transparent !text-foreground/60 hover:!text-foreground data-[active-item]:border-border/60 data-[active-item]:!bg-[#F6F6F8] dark:data-[active-item]:!bg-[#18181A] data-[active-item]:!text-foreground data-[active-item]:!shadow-none',
 			)}
 		>
-			<span className="relative z-10">{title}</span>
-		</button>
+			{icon && (
+				<span
+					className={cn(
+						'transition-colors',
+						isActive
+							? 'text-foreground'
+							: 'text-foreground/60 group-hover:text-foreground',
+					)}
+				>
+					{icon}
+				</span>
+			)}
+			<span
+				className={cn(
+					'relative z-10 transition-colors',
+					isActive
+						? 'text-foreground'
+						: 'text-foreground/60 group-hover:text-foreground',
+				)}
+			>
+				{title}
+			</span>
+		</TabsTrigger>
 	);
 };
 
@@ -37,11 +60,9 @@ interface DocsTabsProps {
 const DocsTabs = ({
 	children,
 	defaultValue = 'preview',
-	justify = 'center',
+	justify = 'start',
 }: DocsTabsProps) => {
 	const [activeTab, setActiveTab] = useState(defaultValue);
-	const wrapperRef = useRef<HTMLDivElement>(null);
-	const contentRef = useRef<HTMLDivElement>(null);
 
 	const tabs = React.Children.toArray(children).filter(
 		(child): child is React.ReactElement<DocsTabProps> =>
@@ -57,34 +78,51 @@ const DocsTabs = ({
 	};
 
 	return (
-		<div className="not-prose group relative z-0 mb-16 text-sm outline-none">
-			<div className="relative flex items-center gap-4 px-1.5 py-1.5">
-				{tabs.map((tab) => (
-					<DocsTab
-						key={tab.props.value}
-						title={tab.props.title}
-						value={tab.props.value}
-						isActive={activeTab === tab.props.value}
-						onClick={handleTabChange}
-					/>
-				))}
-			</div>
-
-			<div ref={contentRef} className="relative overflow-hidden">
-				{activeTab !== 'code' && (
-					<div className="absolute inset-0 z-0 rounded-lg border border-fd-border bg-background"></div>
-				)}
-				<div
-					ref={wrapperRef}
-					className={`relative transition-opacity duration-200 ease-in-out ${activeTab === 'code' ? 'overflow-y-visible [&_figure]:my-0' : ''}`}
+		<div className="not-prose relative z-0 mb-16 text-sm outline-none">
+			<Tabs
+				value={activeTab}
+				onValueChange={handleTabChange}
+				size="sm"
+				className="relative overflow-hidden rounded-lg border border-fd-border bg-background"
+			>
+				<TabsList
+					className={cn(
+						'flex w-full items-center gap-3 border-b border-fd-border bg-card-muted/50 dark:bg-card-muted/30 px-4 py-2',
+						justify === 'center' ? 'justify-center' : 'justify-start',
+						'!flex !rounded-none !shadow-none',
+					)}
 				>
+					<div className="bg-background border border-border/60 flex gap-2 p-1 rounded-md">
+						{tabs.map((tab) => (
+							<DocsTab
+								key={tab.props.value}
+								title={tab.props.title}
+								value={tab.props.value}
+								isActive={activeTab === tab.props.value}
+							/>
+						))}
+					</div>
+				</TabsList>
+
+				<div className="relative overflow-hidden">
 					<div
-						className={`flex w-full justify-${justify} items-center overflow-x-auto md:justify-center ${activeTab !== 'code' ? 'p-4 md:p-16' : ''}`}
+						className={cn(
+							'relative transition-opacity duration-200 ease-in-out',
+							activeTab === 'code' &&
+								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-none',
+						)}
 					>
-						{activeContent?.props.children}
+						<div
+							className={cn(
+								'flex w-full items-center overflow-x-auto md:justify-center',
+								activeTab !== 'code' ? 'p-4 md:p-16' : '',
+							)}
+						>
+							{activeContent?.props.children}
+						</div>
 					</div>
 				</div>
-			</div>
+			</Tabs>
 		</div>
 	);
 };

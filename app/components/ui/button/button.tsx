@@ -11,7 +11,7 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary:
-					'relative bg-foreground/90 hover:bg-foreground/75 text-background shadow-sm focus-visible:border-border focus-visible:ring-ring/50 before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.md)-0.5px)] before:border-[0.5px] before:border-background/35 before:pointer-events-none',
+					'relative bg-foreground/90 hover:bg-foreground/75 text-background shadow-sm focus-visible:border-border focus-visible:ring-ring/50 before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.md)-1px)] before:border-[0.5px] before:border-background/35 before:pointer-events-none',
 				secondary:
 					'border border-border bg-card text-foreground shadow-sm hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
 				ghost:

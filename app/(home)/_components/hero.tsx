@@ -9,8 +9,8 @@ const Hero = () => (
 	<Section className="relative h-[65vh] w-full overflow-hidden px-4 py-16 sm:px-16 sm:py-24 md:h-[70vh] md:py-32">
 		<div
 			className="absolute inset-0 h-[650px] md:h-[850px] w-full
-		[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.78_0.005_290)_300%)]
-		dark:[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.92_0.05_290)_300%)]
+		[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.28_0.005_290)_300%)]
+		dark:[background:radial-gradient(125%_125%_at_50%_10%,var(--color-background)_40%,oklch(0.997_0.05_290)_300%)]
 		"
 		></div>
 		<div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-8 z-10 p-6 bg-dashed">
