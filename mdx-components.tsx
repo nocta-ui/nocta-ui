@@ -97,6 +97,7 @@ import {
 	PopoverTrigger,
 } from '@/app/components/ui/popover';
 import { Progress } from '@/app/components/ui/progress';
+import { RadioGroup, RadioGroupItem } from '@/app/components/ui/radio-group';
 import {
 	Select,
 	SelectContent,
@@ -240,6 +241,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		ContextMenuSubTrigger,
 		ContextMenuSubContent,
 		Progress,
+		RadioGroup,
+		RadioGroupItem,
 		toast,
 		Toaster,
 		Table,

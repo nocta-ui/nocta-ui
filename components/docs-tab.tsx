@@ -1,8 +1,8 @@
 'use client';
 
+import { CodeIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { cn } from 'fumadocs-ui/utils/cn';
 import React, { useState } from 'react';
-import { CodeIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { Tabs, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
 
 interface DocsTabProps {

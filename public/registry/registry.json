@@ -525,6 +525,45 @@
 			"variants": ["default"],
 			"sizes": ["sm", "md", "lg"]
 		},
+		"radio-group": {
+			"name": "RadioGroup",
+			"description": "Grouped radio buttons with custom styling, orientation control, and descriptions",
+			"category": "form",
+			"files": [
+				{
+					"name": "radio-group.tsx",
+					"path": "app/components/ui/radio-group/radio-group.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": ["RadioGroup", "RadioGroupItem"],
+			"props": {
+				"RadioGroup": [
+					"value",
+					"defaultValue",
+					"onValueChange",
+					"disabled",
+					"className",
+					"children"
+				],
+				"RadioGroupItem": [
+					"value",
+					"label",
+					"description",
+					"disabled",
+					"className"
+				]
+			},
+			"sizes": ["sm", "md", "lg"],
+			"orientations": ["vertical", "horizontal"]
+		},
 		"select": {
 			"name": "Select",
 			"description": "Custom select component with dropdown and animations",
@@ -1269,6 +1308,7 @@
 				"file-upload",
 				"form",
 				"input",
+				"radio-group",
 				"select",
 				"slider",
 				"switch",
