@@ -25,14 +25,17 @@ const themes = [
 	},
 ];
 
-const itemVariants = cva('relative size-6.5 rounded-full p-1.5', {
-	variants: {
-		active: {
-			true: 'text-foreground',
-			false: 'text-foreground/45',
+const itemVariants = cva(
+	'relative size-6.5 rounded-full p-1.5 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:border-border focus-visible:ring-ring/50',
+	{
+		variants: {
+			active: {
+				true: 'text-foreground',
+				false: 'text-foreground/45',
+			},
 		},
 	},
-});
+);
 
 type Theme = 'light' | 'dark' | 'system';
 

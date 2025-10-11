@@ -179,7 +179,7 @@ export function DocsPage({
 				{breadcrumbEnabled &&
 					(breadcrumb ?? <PageBreadcrumb {...breadcrumbProps} />)}
 				{children}
-				<div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
+				<div className=" items-center justify-between gap-4 hidden">
 					{editOnGithub && (
 						<EditOnGitHub
 							href={`https://github.com/${editOnGithub.owner}/${editOnGithub.repo}/blob/${editOnGithub.sha}/${editOnGithub.path.startsWith('/') ? editOnGithub.path.slice(1) : editOnGithub.path}`}

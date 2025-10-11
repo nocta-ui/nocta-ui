@@ -13,8 +13,15 @@ export default async function Page(props: {
 	if (!page) notFound();
 
 	const MDXContent = page.data.body;
-
 	const { toc, lastModified } = page.data;
+
+	const formattedDate = lastModified
+		? new Date(lastModified).toLocaleDateString('en-EN', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
+			})
+		: null;
 
 	return (
 		<DocsPage
@@ -24,20 +31,29 @@ export default async function Page(props: {
 				style: 'clerk',
 			}}
 		>
+			{formattedDate && (
+				<p className="text-sm text-foreground/35">
+					Last Modified: {formattedDate}
+				</p>
+			)}
 			<h1 className="mb-0 text-3xl font-medium text-foreground">
 				{page.data.title}
 			</h1>
 			<p className="text-lg font-normal text-foreground/70">
 				{page.data.description}
 			</p>
-			<div className="flex flex-row items-center gap-2 border-b border-fd-border pt-2 pb-6">
-				<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
-				<ViewOptions
-					markdownUrl={`/api/mdx?path=${page.url}`}
-					githubUrl={`https://github.com/66HEX/nocta-ui/tree/main/content/docs/${page.file.path}`}
-				/>
+
+			<div className="flex flex-wrap items-center justify-between border-b border-fd-border pt-2 pb-6">
+				<div className="flex flex-row items-center gap-2">
+					<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
+					<ViewOptions
+						markdownUrl={`/api/mdx?path=${page.url}`}
+						githubUrl={`https://github.com/66HEX/nocta-ui/tree/main/content/docs/${page.file.path}`}
+					/>
+				</div>
 			</div>
-			<DocsBody className="">
+
+			<DocsBody>
 				<MDXContent
 					components={getMDXComponents({
 						a: createRelativeLink(source, page),

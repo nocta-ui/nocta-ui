@@ -61,6 +61,7 @@ export function LargeSearchToggle({
 			{...props}
 			className={cn(
 				'inline-flex items-center gap-2 rounded-md border bg-card p-1.5 ps-2 text-sm text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground',
+				'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:border-border focus-visible:ring-ring/50',
 				props.className,
 			)}
 			onClick={() => {
