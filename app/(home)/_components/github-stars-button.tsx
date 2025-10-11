@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from '@/app/components/ui/button';
 import { fetchGitHubStars } from '@/lib/github';
 
-const GITHUB_REPO_URL = 'https://github.com/66HEX/nocta-ui';
+const GITHUB_REPO_URL = 'https://github.com/nocta-ui/nocta-ui';
 
 const formatStars = (stars: number | null) => {
 	if (stars === null) return '—';

@@ -48,7 +48,7 @@ export default async function Page(props: {
 					<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
 					<ViewOptions
 						markdownUrl={`/api/mdx?path=${page.url}`}
-						githubUrl={`https://github.com/66HEX/nocta-ui/tree/main/content/docs/${page.file.path}`}
+						githubUrl={`https://github.com/nocta-ui/nocta-ui/tree/main/content/docs/${page.file.path}`}
 					/>
 				</div>
 			</div>

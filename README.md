@@ -6,7 +6,7 @@
   <a href="https://nocta-ui.com">
     <img src="https://img.shields.io/badge/docs-available-lightgray?style=flat-square" alt="Docs" />
   </a>
-  <a href="https://github.com/66HEX/nocta-ui/issues">
+  <a href="https://github.com/nocta-ui/nocta-ui/issues">
     <img src="https://img.shields.io/badge/issues-tracker-gray?style=flat-square" alt="Issues" />
   </a>
   <img src="https://img.shields.io/badge/react-18+-lightgray?style=flat-square" alt="React" />
@@ -143,7 +143,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 <div align="center">
   <p>
     <a href="https://nocta-ui.com">Documentation</a> •
-    <a href="https://github.com/66HEX/nocta-ui/issues">Report Bug</a> •
-    <a href="https://github.com/66HEX/nocta-ui/issues">Request Feature</a>
-  </p>  
+    <a href="https://github.com/nocta-ui/nocta-ui/issues">Report Bug</a> •
+    <a href="https://github.com/nocta-ui/nocta-ui/issues">Request Feature</a>
+  </p>
 </div>

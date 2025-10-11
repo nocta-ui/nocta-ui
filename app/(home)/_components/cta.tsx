@@ -31,7 +31,7 @@ export default function CTA(): React.ReactElement {
 						>
 							<Link
 								className="flex gap-2"
-								href="https://github.com/66HEX/nocta-ui"
+								href="https://github.com/nocta-ui/nocta-ui"
 								target="_blank"
 							>
 								<GitHubLogoIcon aria-hidden="true" className="mr-2 h-5 w-5" />{' '}

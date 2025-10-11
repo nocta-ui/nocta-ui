@@ -30,7 +30,7 @@ export const baseOptions: BaseLayoutProps = {
 			</div>
 		),
 	},
-	githubUrl: 'https://github.com/66HEX/nocta-ui',
+	githubUrl: 'https://github.com/nocta-ui/nocta-ui',
 };
 
 export const linkItems: LinkItemType[] = [

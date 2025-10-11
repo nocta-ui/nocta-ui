@@ -1,4 +1,4 @@
-const GITHUB_REPO_URL = 'https://api.github.com/repos/66HEX/nocta-ui';
+const GITHUB_REPO_URL = 'https://api.github.com/repos/nocta-ui/nocta-ui';
 const CACHE_SECONDS = 60 * 60; // 1 hour
 
 export const githubCacheSeconds = CACHE_SECONDS;
