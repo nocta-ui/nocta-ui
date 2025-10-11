@@ -10,7 +10,7 @@ const faq = [
 	{
 		question: 'What is Nocta UI?',
 		answer:
-			'A React component library built on a copy-paste philosophy. Instead of installing packages, you get clean, accessible source code — added straight to your project via the CLI.',
+			'A React component library built on a copy-paste philosophy. Instead of installing packages, you get clean, accessible source code - added straight to your project via the CLI.',
 	},
 	{
 		question: 'Is Nocta UI accessible?',
@@ -20,12 +20,12 @@ const faq = [
 	{
 		question: 'Can I customize the components?',
 		answer:
-			'Completely. Since everything lives in your codebase, you can tweak styles, behavior, or structure however you want — no overrides or weird hacks.',
+			'Completely. Since everything lives in your codebase, you can tweak styles, behavior, or structure however you want - no overrides or weird hacks.',
 	},
 	{
 		question: 'Does Nocta UI work with my framework?',
 		answer:
-			'If you’re using React — absolutely. It’s optimized for Next.js, Vite, and React Router, and the CLI auto-detects your setup so you can start fast.',
+			'If you’re using React - absolutely. It’s optimized for Next.js, Vite, and React Router, and the CLI auto-detects your setup so you can start fast.',
 	},
 	{
 		question: 'What kind of support is available?',
@@ -41,7 +41,7 @@ export const FAQ = () => (
 				Frequently Asked Questions
 			</h4>
 			<p className="text-foreground/70 mt-4 max-w-md text-lg">
-				We know you’ve got questions — probably the same ones everyone else had.
+				We know you’ve got questions - probably the same ones everyone else had.
 				Let’s save you some time.
 			</p>
 		</div>

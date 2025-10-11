@@ -15,7 +15,7 @@ export default function CTA(): React.ReactElement {
 				<div className="max-w-xl space-y-4">
 					<p className="text-base text-foreground/70">
 						Nocta UI gives you accessible, polished components and a CLI that
-						saves you hours — no hacks, no headaches.
+						saves you hours - no hacks, no headaches.
 					</p>
 					<div className="flex flex-row md:flex-col lg:flex-row gap-3">
 						<Button size="md">

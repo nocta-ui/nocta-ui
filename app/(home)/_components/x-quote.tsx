@@ -10,7 +10,7 @@ export const TwitterQuote = () => (
 				Official Cool Now
 			</h4>
 			<p className="text-foreground/70 mt-4 max-w-md text-lg">
-				We built our UI library on top of Ariakit — and when its creator noticed
+				We built our UI library on top of Ariakit - and when its creator noticed
 				it, he had just two words to say. <br className="hidden md:block" />
 				<span className="italic">Sometimes, that’s all you need.</span>
 			</p>

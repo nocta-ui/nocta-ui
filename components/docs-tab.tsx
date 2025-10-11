@@ -60,7 +60,7 @@ interface DocsTabsProps {
 const DocsTabs = ({
 	children,
 	defaultValue = 'preview',
-	justify = 'start',
+	justify = 'center',
 }: DocsTabsProps) => {
 	const [activeTab, setActiveTab] = useState(defaultValue);
 
@@ -87,12 +87,11 @@ const DocsTabs = ({
 			>
 				<TabsList
 					className={cn(
-						'flex w-full items-center gap-3 border-b border-fd-border bg-card-muted/50 dark:bg-card-muted/30 px-4 py-2',
-						justify === 'center' ? 'justify-center' : 'justify-start',
+						'flex w-full items-center justify-start border-b border-fd-border bg-card-muted/50 dark:bg-card-muted/30 px-2 py-2',
 						'!flex !rounded-none !shadow-none',
 					)}
 				>
-					<div className="bg-background border border-border/60 flex gap-2 p-1 rounded-md">
+					<div className="bg-background border border-border/60 flex gap-1 p-1 rounded-md">
 						{tabs.map((tab) => (
 							<DocsTab
 								key={tab.props.value}
@@ -115,6 +114,7 @@ const DocsTabs = ({
 						<div
 							className={cn(
 								'flex w-full items-center overflow-x-auto md:justify-center',
+								justify === 'center' ? 'justify-center' : 'justify-start',
 								activeTab !== 'code' ? 'p-4 md:p-16' : '',
 							)}
 						>

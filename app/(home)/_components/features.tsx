@@ -38,7 +38,7 @@ const features = [
 		Icon: CodeIcon,
 		title: 'Dedicated CLI',
 		description:
-			'Skip the boilerplate. Generate, copy, and customize components in seconds — straight from your terminal.',
+			'Skip the boilerplate. Generate, copy, and customize components in seconds - straight from your terminal.',
 		size: 'sm',
 	},
 	{
@@ -54,7 +54,7 @@ const features = [
 		Icon: MagicWandIcon,
 		title: 'Modern Design',
 		description:
-			'Clean, balanced, and consistent — ready to look great in any modern app without extra tweaking.',
+			'Clean, balanced, and consistent - ready to look great in any modern app without extra tweaking.',
 		size: 'lg',
 	},
 ];

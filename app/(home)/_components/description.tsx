@@ -6,7 +6,7 @@ export const Description = () => {
 	return (
 		<Section className="relative flex flex-col items-start md:items-center justify-between gap-8 p-6 py-8 sm:flex-row sm:gap-16 md:py-10">
 			<p className="text-foreground/70 sm:max-w-sm">
-				Built on Ariakit for accessibility and Tailwind for style — Nocta UI
+				Built on Ariakit for accessibility and Tailwind for style - Nocta UI
 				brings them together with a CLI that actually makes sense.{' '}
 			</p>
 			<div className="flex gap-6 items-center justify-center">

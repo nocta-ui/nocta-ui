@@ -29,7 +29,7 @@ const Hero = () => (
 				</h1>
 				<p className="max-w-2xl text-center text-lg text-foreground/70 leading-relaxed md:text-xl">
 					Stop wrestling with versions and APIs. Nocta UI lets you copy clean,
-					accessible React components built on Ariakit and Tailwind — ready to
+					accessible React components built on Ariakit and Tailwind - ready to
 					ship and easy to make yours.{' '}
 				</p>
 			</div>

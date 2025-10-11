@@ -8,7 +8,6 @@ import {
   BasicRadioGroupDemo,
   DescriptiveRadioGroupDemo,
   HorizontalRadioGroupDemo,
-  SizesRadioGroupDemo
 } from '@/app/components/ui/radio-group/radio-group-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -46,7 +45,11 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     ```tsx lineNumbers title="Basic Radio Group"
     const [theme, setTheme] = useState('system');
 
-    <RadioGroup value={theme} onValueChange={setTheme} aria-label="Theme">
+    <RadioGroup
+      value={theme}
+      onValueChange={(v) => setTheme(v as string)}
+      aria-label="Theme"
+    >
       <RadioGroupItem value="light" label="Light" />
       <RadioGroupItem value="dark" label="Dark" />
       <RadioGroupItem value="system" label="System" />
@@ -67,7 +70,11 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     ```tsx lineNumbers title="Radio Group with Descriptions"
     const [plan, setPlan] = useState('pro');
 
-    <RadioGroup value={plan} onValueChange={setPlan} aria-label="Pricing plans">
+    <RadioGroup
+      value={plan}
+      onValueChange={(v) => setPlan(v as string)}
+      aria-label="Pricing plans"
+    >
       <RadioGroupItem
         value="starter"
         label="Starter"
@@ -104,7 +111,7 @@ Arrange the radio options horizontally using flex utilities.
 
     <RadioGroup
       value={alignment}
-      onValueChange={setAlignment}
+      onValueChange={(v) => setAlignment(v as string)}
       className="flex flex-row gap-4"
       aria-label="Alignment"
     >
@@ -124,7 +131,7 @@ Arrange the radio options horizontally using flex utilities.
 |------|------|---------|-------------|
 | `value` | `string` | — | Controlled value of the selected option |
 | `defaultValue` | `string` | — | Initial selected value for uncontrolled usage |
-| `onValueChange` | `(value: string | number | null) => void)` | — | Callback fired when the selection changes |
+| `onValueChange` | `(value: string | number | null) => void` | — | Callback fired when the selection changes |
 | `disabled` | `boolean` | `false` | Disables selection for all radio items |
 | `className` | `string` | `''` | Additional CSS classes applied to the group wrapper |
 | `children` | `React.ReactNode` | — | One or more `RadioGroupItem` components |
