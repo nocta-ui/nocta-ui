@@ -176,7 +176,7 @@ export const CheckboxCard = React.forwardRef<
 							</div>
 						) : null}
 						{helper ? (
-							<p className="text-xs text-foreground/60">{helper}</p>
+							<p className="text-xs text-foreground/70">{helper}</p>
 						) : null}
 					</div>
 				</div>

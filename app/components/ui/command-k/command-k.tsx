@@ -480,6 +480,24 @@ export const CommandK: React.FC<CommandKProps> = ({
 						))
 					)}
 				</div>
+
+				<div className="flex items-center justify-between gap-2 border-t border-border/60 px-3 py-2 text-xs text-foreground/70">
+					<div className="flex items-center gap-2">
+						<span className="hidden sm:inline">Navigate</span>
+						<div className="flex items-center gap-1" aria-hidden="true">
+							<span className={kbdClass()}>↑</span>
+							<span className={kbdClass()}>↓</span>
+						</div>
+						<span className="sr-only">Navigate with arrow keys</span>
+					</div>
+					<div className="flex items-center gap-2">
+						<span className="hidden sm:inline">Select</span>
+						<div className="flex items-center gap-1" aria-hidden="true">
+							<span className={kbdClass()}>Enter</span>
+						</div>
+						<span className="sr-only">Select with Enter key</span>
+					</div>
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
