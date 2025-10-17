@@ -22,7 +22,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 			value={value}
 			className={cn(
 				'group relative flex !w-auto items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-200 ease-in-out sm:text-sm',
-				'bg-transparent border border-transparent !text-foreground/60 hover:!text-foreground data-[active-item]:border-border/60 data-[active-item]:!bg-[#F6F6F8] dark:data-[active-item]:!bg-[#18181A] data-[active-item]:!text-foreground data-[active-item]:!shadow-none',
+				'bg-transparent border border-transparent !text-foreground/70 hover:!text-foreground data-[active-item]:border-border/60 data-[active-item]:!bg-[#F6F6F8] dark:data-[active-item]:!bg-[#18181A] data-[active-item]:!text-foreground data-[active-item]:!shadow-none',
 			)}
 		>
 			{icon && (

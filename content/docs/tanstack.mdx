@@ -1,0 +1,77 @@
+---
+title: Tanstack Start Installation
+description: Step-by-step guide to install and configure Nocta UI with Tanstack Start
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+## Create Tanstack Start Project
+
+First, create a new Tanstack Start project:
+
+```bash lineNumbers title="Terminal"
+npm create @tanstack/start@latest my-app --tailwind
+cd my-app
+```
+</Step>
+
+<Step>
+## Install Nocta UI
+
+Initialize Nocta UI in your project. This will automatically install all required dependencies:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui init
+```
+</Step>
+
+<Step>
+## Add Components
+
+Now you can add specific components that you need:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add button
+npx nocta-ui add card
+npx nocta-ui add badge
+```
+</Step>
+
+<Step>
+## Usage
+
+Now you can import and use Nocta UI components in your Tanstack Start application:
+
+```tsx lineNumbers title="src/app/page.tsx"
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+
+export default function Home() {
+  return (
+    <div className="p-8">
+      <Card className="max-w-md">
+        <CardHeader>
+          <CardTitle>Welcome to Nocta UI</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <Button variant="default">
+              Get Started
+            </Button>
+            <Badge variant="secondary">
+              Next.js Ready
+            </Badge>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+```
+</Step>
+</Steps>
+
+You're all set! Use the Nocta UI CLI to pull components straight into your Tanstack Start application whenever you need them.
