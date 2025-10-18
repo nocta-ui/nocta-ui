@@ -11,7 +11,7 @@
 	--color-fd-popover-foreground: var(--color-foreground);
 	--color-fd-card: var(--color-background);
 	--color-fd-card-foreground: var(--color-foreground);
-	--color-fd-border: var(--color-border);
+	--color-fd-border: oklch(from var(--color-border) l c h / 0.6);
 	--color-fd-primary: var(--color-ring);
 	--color-fd-primary-foreground: var(--color-foreground);
 	--color-fd-secondary: var(--color-card);
@@ -50,7 +50,7 @@
 	--color-fd-popover-foreground: var(--color-foreground);
 	--color-fd-card: var(--color-background);
 	--color-fd-card-foreground: var(--color-foreground);
-	--color-fd-border: var(--color-border);
+	--color-fd-border: oklch(from var(--color-border) l c h / 0.6);
 	--color-fd-primary: var(--color-ring);
 	--color-fd-primary-foreground: var(--color-foreground);
 	--color-fd-secondary: var(--color-card-muted);
@@ -76,11 +76,11 @@
 	.bg-dashed {
 		background-image: linear-gradient(
 			45deg,
-			var(--color-border) 12.5%,
+			var(--color-fd-border) 12.5%,
 			transparent 12.5%,
 			transparent 50%,
-			var(--color-border) 50%,
-			var(--color-border) 62.5%,
+			var(--color-fd-border) 50%,
+			var(--color-fd-border) 62.5%,
 			transparent 62.5%,
 			transparent 100%
 		);
@@ -143,7 +143,7 @@
 
 .dark {
 	--color-background: oklch(0.18 0.0045 285.89);
-	--color-card: oklch(0.2103 0.0059 285.89);
+	--color-card: oklch(0.2103 0.005 285.89);
 	--color-card-muted: oklch(0.2739 0.005 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
 	--color-border: oklch(0.298 0.006 285.89);

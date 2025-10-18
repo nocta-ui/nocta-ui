@@ -58,7 +58,7 @@
 
 .dark {
 	--color-background: oklch(0.18 0.0045 285.89);
-	--color-card: oklch(0.2103 0.0059 285.89);
+	--color-card: oklch(0.2103 0.005 285.89);
 	--color-card-muted: oklch(0.2739 0.005 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
 	--color-border: oklch(0.298 0.006 285.89);
