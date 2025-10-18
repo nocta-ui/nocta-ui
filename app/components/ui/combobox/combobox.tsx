@@ -135,7 +135,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									}}
 									role="button"
 									tabIndex={0}
-									className="cursor-pointer rounded p-0.5 text-foreground/70 duration-200 ease-in-out hover:text-foreground"
+									className="cursor-pointer rounded p-0.5 text-foreground/70 duration-200 ease-in-out hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 									title="Clear selection"
 									aria-label="Clear selection"
 								>
