@@ -133,33 +133,48 @@ export const GroupedWheelPickerDemo: React.FC = () => {
 	const days = Array.from({ length: 31 }, (_, i) =>
 		(i + 1).toString().padStart(2, '0'),
 	);
-	const years = Array.from({ length: 11 }, (_, i) => (2024 + i).toString());
+	const years = Array.from({ length: 11 }, (_, i) => (2020 + i).toString());
 	const [month, setMonth] = React.useState<string>(
 		months[new Date().getMonth()],
 	);
 	const [day, setDay] = React.useState<string>(
 		days[new Date().getDate() - 1] ?? days[0],
 	);
-	const [year, setYear] = React.useState<string>(years[0]);
+	const [year, setYear] = React.useState<string>(years[4]);
 
 	return (
 		<div className="my-6 flex max-w-[420px] flex-col items-center gap-4">
 			<WheelPickerGroup size="md" className="w-full">
-				<WheelPicker value={month} onValueChange={setMonth} aria-label="Month">
+				<WheelPicker
+					className="w-28"
+					value={month}
+					onValueChange={setMonth}
+					aria-label="Month"
+				>
 					{months.map((m) => (
 						<WheelPickerItem key={m} value={m}>
 							{m}
 						</WheelPickerItem>
 					))}
 				</WheelPicker>
-				<WheelPicker value={day} onValueChange={setDay} aria-label="Day">
+				<WheelPicker
+					className="w-10"
+					value={day}
+					onValueChange={setDay}
+					aria-label="Day"
+				>
 					{days.map((d) => (
 						<WheelPickerItem key={d} value={d}>
 							{d}
 						</WheelPickerItem>
 					))}
 				</WheelPicker>
-				<WheelPicker value={year} onValueChange={setYear} aria-label="Year">
+				<WheelPicker
+					className="w-24"
+					value={year}
+					onValueChange={setYear}
+					aria-label="Year"
+				>
 					{years.map((y) => (
 						<WheelPickerItem key={y} value={y}>
 							{y}

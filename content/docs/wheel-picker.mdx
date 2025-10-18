@@ -131,13 +131,13 @@ import {
       'July','August','September','October','November','December',
     ];
     const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
-    const years = Array.from({ length: 11 }, (_, i) => (2024 + i).toString());
+    const years = Array.from({ length: 11 }, (_, i) => (2020 + i).toString());
     const [month, setMonth] = React.useState(months[5]);
     const [day, setDay] = React.useState(days[9]);
-    const [year, setYear] = React.useState(years[0]);
+    const [year, setYear] = React.useState(years[4]);
 
     <WheelPickerGroup>
-      <WheelPicker value={month} onValueChange={setMonth} aria-label="Month">
+      <WheelPicker className="w-28" value={month} onValueChange={setMonth} aria-label="Month">
         {months.map((m) => (
           <WheelPickerItem key={m} value={m}>
             {m}
@@ -145,7 +145,7 @@ import {
         ))}
       </WheelPicker>
 
-      <WheelPicker value={day} onValueChange={setDay} aria-label="Day">
+      <WheelPicker className="w-10" value={day} onValueChange={setDay} aria-label="Day">
         {days.map((d) => (
           <WheelPickerItem key={d} value={d}>
             {d}
@@ -153,7 +153,7 @@ import {
         ))}
       </WheelPicker>
 
-      <WheelPicker value={year} onValueChange={setYear} aria-label="Year">
+      <WheelPicker className="w-24" value={year} onValueChange={setYear} aria-label="Year">
         {years.map((y) => (
           <WheelPickerItem key={y} value={y}>
             {y}
