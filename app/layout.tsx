@@ -219,8 +219,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 				className="
 				flex flex-col
 				min-h-screen
-				bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.99_0.003_280)_0%,oklch(0.97_0.005_290)_35%,var(--color-background)_100%)]
-				dark:bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.20_0.006_286)_0%,oklch(0.18_0.004_286)_42%,var(--color-background)_100%)]
+				bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.997_0.003_280)_0%,oklch(0.99_0.005_290)_35%,var(--color-background)_100%)]
+				dark:bg-[radial-gradient(120%_120%_at_80%_0%,oklch(0.14_0.006_286)_0%,oklch(0.17_0.004_286)_42%,var(--color-background)_100%)]
 			"
 			>
 				<RootProvider>{children}</RootProvider>

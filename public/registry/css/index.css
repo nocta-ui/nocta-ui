@@ -4,11 +4,11 @@
    NOCTA CSS THEME VARIABLES
    ================================*/
 :root {
-	--color-background: oklch(0.987 0.004 285.89);
+	--color-background: oklch(0.999 0.004 285.89);
 	--color-card: oklch(1 0 0);
 	--color-card-muted: oklch(0.9554 0.003 285.89);
 	--color-foreground: oklch(0.15 0.005 285.89);
-	--color-border: oklch(0.8825 0.0014 285.89);
+	--color-border: oklch(0.9125 0.0014 285.89);
 	--color-ring: oklch(0.55 0.012 285.89);
 	--color-ring-offset: oklch(0.96 0.002 285.89);
 	--color-overlay: oklch(0.92 0.003 285.89 / 0.65);
@@ -57,11 +57,11 @@
 }
 
 .dark {
-	--color-background: oklch(0.18 0.0045 285.89);
-	--color-card: oklch(0.2103 0.005 285.89);
-	--color-card-muted: oklch(0.2739 0.005 286.03);
+	--color-background: oklch(0.14 0.0045 285.89);
+	--color-card: oklch(0.1703 0.005 285.89);
+	--color-card-muted: oklch(0.2339 0.005 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
-	--color-border: oklch(0.298 0.006 285.89);
+	--color-border: oklch(0.278 0.006 285.89);
 	--color-ring: oklch(0.58 0.012 285.89);
 	--color-ring-offset: oklch(0.15 0.005 285.89);
 	--color-overlay: oklch(0.12 0.004 285.89 / 0.65);
