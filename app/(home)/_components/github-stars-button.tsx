@@ -18,7 +18,7 @@ export const GithubStarsButton = async () => {
 
 	return (
 		<Button
-			className="bg-card hover:bg-card-muted transition-colors w-fit mx-auto"
+			className="bg-card hover:bg-card-muted transition-colors w-fit"
 			size="md"
 			variant="secondary"
 		>

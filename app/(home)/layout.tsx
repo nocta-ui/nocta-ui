@@ -4,6 +4,7 @@ import { getLinks } from '@/components/layout/shared';
 import { Footer } from '@/components/sections/footer';
 import { Header } from '@/components/sections/header';
 import { baseOptions, linkItems } from '../layout.config';
+import { Spotlight } from '@/components/spotlight';
 
 const Layout = ({ children }: { children: ReactNode }) => {
 	return (
@@ -20,7 +21,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
 			}}
 			className="pt-0"
 		>
-			<main className="bg-background flex flex-1 flex-col divide-y divide-dashed divide-border border-dashed border-border sm:border-b">
+			<main className="flex flex-1 flex-col divide-y divide-fd-border border-fd-border md:border-x sm:border-b w-full max-w-7xl mx-auto relative overflow-hidden">
+				<Spotlight />
+
 				{children}
 				<Footer />
 			</main>

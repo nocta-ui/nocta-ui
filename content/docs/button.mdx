@@ -12,20 +12,27 @@ import {
   SizesDemo,
 } from '@/app/components/ui/button/button-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
-
+<Steps>
+<Step>
 Install the Button component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
 npx nocta-ui add button
 ```
-
-Then import the component:
+</Step>
+<Step>
+Then import the components you need:
 
 ```tsx lineNumbers title="Import"
-import { Button } from '@/components/ui/button';
+import {
+  Button,
+} from '@/components/ui/button';
 ```
+</Step>
+</Steps>
 
 ## Examples
 

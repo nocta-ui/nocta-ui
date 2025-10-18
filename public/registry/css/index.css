@@ -6,7 +6,7 @@
 :root {
 	--color-background: oklch(0.999 0.004 285.89);
 	--color-card: oklch(1 0 0);
-	--color-card-muted: oklch(0.9554 0.003 285.89);
+	--color-card-muted: oklch(0.9654 0.003 285.89);
 	--color-foreground: oklch(0.15 0.005 285.89);
 	--color-border: oklch(0.9025 0.0014 285.89);
 	--color-ring: oklch(0.55 0.012 285.89);
@@ -59,7 +59,7 @@
 .dark {
 	--color-background: oklch(0.14 0.0045 285.89);
 	--color-card: oklch(0.1703 0.005 285.89);
-	--color-card-muted: oklch(0.2339 0.005 286.03);
+	--color-card-muted: oklch(0.2139 0.005 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
 	--color-border: oklch(0.278 0.006 285.89);
 	--color-ring: oklch(0.58 0.012 285.89);

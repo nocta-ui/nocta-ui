@@ -5,9 +5,8 @@ export function Footer() {
 	return (
 		<footer
 			className={cn(
-				'container flex flex-col items-center justify-end gap-4',
-				'border-b border-dashed border-border',
-				'px-8 py-16',
+				'container flex flex-col items-center justify-end gap-4 max-w-5xl',
+				'p-6',
 				'md:flex-row md:gap-16',
 			)}
 		>
