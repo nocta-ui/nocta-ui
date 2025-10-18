@@ -14,15 +14,15 @@ interface DocsTabProps {
 
 const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 	let icon: React.ReactNode = null;
-	if (value === 'preview') icon = <EyeOpenIcon className="h-4 w-4" />;
-	if (value === 'code') icon = <CodeIcon className="h-4 w-4" />;
+	if (value === 'preview') icon = <EyeOpenIcon className="h-3 w-3" />;
+	if (value === 'code') icon = <CodeIcon className="h-3 w-3" />;
 
 	return (
 		<TabsTrigger
 			value={value}
 			className={cn(
-				'group relative flex !w-auto items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-200 ease-in-out sm:text-sm',
-				'bg-transparent border border-transparent !text-foreground/70 hover:!text-foreground data-[active-item]:!bg-[#F6F6F8] dark:data-[active-item]:!bg-[#18181A] data-[active-item]:!text-foreground data-[active-item]:!shadow-none',
+				'group relative flex  items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-200 ease-in-out sm:text-sm',
+				'bg-transparent border border-transparent !text-foreground/70 hover:!text-foreground data-[active-item]:!bg-card-muted dark:data-[active-item]:!bg-card-muted/30 data-[active-item]:!text-foreground data-[active-item]:!shadow-none',
 			)}
 		>
 			{icon && (
@@ -87,11 +87,11 @@ const DocsTabs = ({
 			>
 				<TabsList
 					className={cn(
-						'flex w-full items-center justify-start border-b border-fd-border bg-card-muted/50 dark:bg-card-muted/30 px-2 py-2',
+						'flex w-full items-center justify-start border-b p-0 bg-background',
 						'!flex !rounded-none !shadow-none',
 					)}
 				>
-					<div className="bg-background flex gap-1 p-1 rounded-md">
+					<div className="bg-background flex gap-1 p-1 rounded-md w-full justify-evenly">
 						{tabs.map((tab) => (
 							<DocsTab
 								key={tab.props.value}
