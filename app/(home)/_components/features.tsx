@@ -94,7 +94,7 @@ function InstallSnippet() {
 				))}
 			</div>
 
-			<p className="text-sm text-foreground/60">
+			<p className="text-sm text-foreground/70">
 				The CLI pulls accessible, production-ready components straight into your
 				project - no packages, no lock-in.
 			</p>
