@@ -97,6 +97,8 @@
 	--color-ring: oklch(0.55 0.012 285.89);
 	--color-ring-offset: oklch(0.96 0.002 285.89);
 	--color-overlay: oklch(0.92 0.003 285.89 / 0.65);
+	--color-gradient-from: oklch(0.3203 0.0141 285.89);
+	--color-gradient-to: oklch(0.2517 0.0169 285.89);
 	--color-error: oklch(0.62 0.21 25);
 	--color-warning: oklch(0.8 0.2 75);
 	--color-success: oklch(0.7 0.18 155);
@@ -142,7 +144,7 @@
 }
 
 .dark {
-	--color-background: oklch(0.14 0.0045 285.89);
+	--color-background: oklch(0.15 0.0045 285.89);
 	--color-card: oklch(0.1703 0.005 285.89);
 	--color-card-muted: oklch(0.2139 0.005 286.03);
 	--color-foreground: oklch(0.96 0.003 285.89);
@@ -150,6 +152,8 @@
 	--color-ring: oklch(0.58 0.012 285.89);
 	--color-ring-offset: oklch(0.15 0.005 285.89);
 	--color-overlay: oklch(0.12 0.004 285.89 / 0.65);
+	--color-gradient-from: oklch(0.3203 0.0041 285.89);
+	--color-gradient-to: oklch(0.2517 0.0069 285.89);
 	--color-error: oklch(0.58 0.22 25);
 	--color-warning: oklch(0.75 0.18 75);
 	--color-success: oklch(0.68 0.19 155);
@@ -205,6 +209,8 @@
 	--color-ring: var(--ring);
 	--color-ring-offset: var(--ring-offset);
 	--color-overlay: var(--overlay);
+	--color-gradient-from: var(--gradient-from);
+	--color-gradient-to: var(--gradient-to);
 	--color-error: var(--error);
 	--color-warning: var(--warning);
 	--color-success: var(--success);

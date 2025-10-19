@@ -621,7 +621,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 											action.onClick();
 											handleClose();
 										}}
-										className='relative inline-flex cursor-pointer items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-foreground/90 hover:bg-foreground/75 text-background shadow-sm transition-all duration-200 ease-in-out focus-visible:ring-ring/50 before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.md)-1px)] before:border-[0.5px] before:border-background/25 before:pointer-events-none'
+										className="relative inline-flex cursor-pointer items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground transition-all duration-200 ease-in-out focus-visible:ring-ring/50"
 									>
 										{action.label}
 									</button>

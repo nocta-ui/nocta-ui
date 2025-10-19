@@ -455,8 +455,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 						'relative h-full rounded-md px-3 py-2 font-medium transition-all duration-200 ease-in-out cursor-pointer',
 						'focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 						'not-prose disabled:cursor-not-allowed disabled:opacity-50',
-						'bg-foreground/90 hover:bg-foreground/75 text-background shadow-sm',
-						'before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.md)-1px)] before:border-[0.5px] before:border-background/25 before:pointer-events-none',
+						'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground',
 					)}
 				>
 					<Icons.SendMessage

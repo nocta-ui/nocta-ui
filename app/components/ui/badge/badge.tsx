@@ -18,7 +18,6 @@ const badgeVariants = cva(
 					'relative bg-foreground/90',
 					'text-background',
 					'shadow-sm hover:bg-foreground/75',
-					'before:content-[""] before:absolute before:inset-[1px] before:rounded-[calc(theme(borderRadius.full)-0.5px)] before:border-[0.5px] before:border-background/25 before:pointer-events-none',
 				],
 				secondary: [
 					'bg-card',
