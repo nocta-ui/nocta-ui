@@ -157,6 +157,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			fixed={fixed}
 			className={cn(
 				'absolute z-[999] my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
+				'focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none',
 				'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:-translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0',
 				'not-prose',
 				className,
@@ -183,7 +184,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 outline-none select-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 outline-none select-none hover:bg-card-muted hover:text-foreground data-[active-item]:bg-card-muted',
 				isSelected && 'bg-card-muted font-medium text-foreground',
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,
