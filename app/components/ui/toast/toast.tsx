@@ -661,6 +661,13 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				: ANIMATION_CONFIG.EASING_DEFAULT;
 		}, [animationState]);
 
+		const canSwipe = swipeDirections.length > 0;
+		const swipeCursorClass = canSwipe
+			? isSwiping
+				? 'cursor-grabbing'
+				: 'cursor-grab'
+			: undefined;
+
 		const handlePointerDown = useCallback(
 			(event: React.PointerEvent<HTMLDivElement>) => {
 				if (event.pointerType === 'mouse' && event.button !== 0) return;
@@ -822,7 +829,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		return (
 			<div
 				ref={toastRef}
-				className={cn(toastContainerVariants({ position, variant }), className)}
+				className={cn(
+					toastContainerVariants({ position, variant }),
+					className,
+					swipeCursorClass,
+				)}
 				style={{
 					transformOrigin: position?.startsWith('top-')
 						? 'center top'
@@ -843,6 +854,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			>
 				<div
 					role="alert"
+					className={cn(swipeCursorClass)}
 					onPointerDown={handlePointerDown}
 					onPointerMove={handlePointerMove}
 					onPointerUp={handlePointerUp}
