@@ -1,6 +1,9 @@
 'use client';
 
-import { Button as AriakitButton } from '@ariakit/react';
+import {
+	Button as AriakitButton,
+	type ButtonProps as AriakitButtonProps,
+} from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { cn } from '@/lib/utils';
@@ -49,7 +52,7 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+	extends Omit<AriakitButtonProps, 'className' | 'children'>,
 		VariantProps<typeof buttonVariants> {
 	children: React.ReactNode;
 	className?: string;
@@ -61,10 +64,14 @@ export const Button: React.FC<ButtonProps> = ({
 	size = 'md',
 	className = '',
 	type,
+	render,
 	...props
 }) => {
+	const buttonType = type ?? (render ? undefined : 'button');
+
 	return (
 		<AriakitButton
+			render={render}
 			className={cn(
 				buttonVariants({
 					variant,
@@ -72,7 +79,7 @@ export const Button: React.FC<ButtonProps> = ({
 				}),
 				className,
 			)}
-			type={type ?? 'button'}
+			type={buttonType}
 			{...props}
 		>
 			{children}

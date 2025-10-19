@@ -192,7 +192,7 @@
 			},
 			"exports": ["Button"],
 			"props": {
-				"Button": ["children", "variant", "size", "className", "disabled"]
+				"Button": ["children", "variant", "size", "className", "render", "disabled"]
 			},
 			"variants": ["primary", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"]

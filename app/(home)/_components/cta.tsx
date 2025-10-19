@@ -17,26 +17,30 @@ export default function CTA(): React.ReactElement {
 				</p>
 
 				<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-					<Button size="md">
-						<Link href="/docs" className="flex items-center gap-2">
-							<ReaderIcon aria-hidden="true" className="h-5 w-5" />
-							Read Documentation
-						</Link>
+					<Button
+						size="md"
+						render={
+							<Link href="/docs" className="flex items-center gap-2"></Link>
+						}
+					>
+						<ReaderIcon aria-hidden="true" className="h-5 w-5" />
+						Read Documentation
 					</Button>
 
 					<Button
 						size="md"
 						variant="secondary"
 						className="group gap-2 hover:bg-card-muted dark:bg-background dark:hover:bg-card"
+						render={
+							<Link
+								href="https://github.com/nocta-ui/nocta-ui"
+								target="_blank"
+								className="flex items-center gap-2"
+							></Link>
+						}
 					>
-						<Link
-							href="https://github.com/nocta-ui/nocta-ui"
-							target="_blank"
-							className="flex items-center gap-2"
-						>
-							<GitHubLogoIcon aria-hidden="true" className="h-5 w-5" />
-							View on GitHub
-						</Link>
+						<GitHubLogoIcon aria-hidden="true" className="h-5 w-5" />
+						View on GitHub
 					</Button>
 				</div>
 			</div>

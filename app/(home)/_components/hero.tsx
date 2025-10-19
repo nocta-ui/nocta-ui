@@ -23,10 +23,13 @@ export default function Hero() {
 				</p>
 
 				<div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
-					<Button variant="primary" size="md">
-						<Link href="/docs">Get started</Link>
+					<Button
+						variant="primary"
+						size="md"
+						render={<Link href="/docs"></Link>}
+					>
+						Get started
 					</Button>
-
 					<GithubStarsButton />
 				</div>
 			</div>
