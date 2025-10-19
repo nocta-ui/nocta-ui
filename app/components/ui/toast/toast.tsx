@@ -62,6 +62,13 @@ const ANIMATION_CONFIG = {
 	EASING_EXIT: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
 } as const;
 
+const SWIPE_DISMISS_THRESHOLD = 45;
+const SWIPE_DISMISS_VELOCITY = 0.11;
+const SWIPE_EXIT_DISTANCE = 600;
+
+type SwipeDirection = 'top' | 'bottom' | 'left' | 'right';
+type SwipeAxis = 'x' | 'y';
+
 type ToastSubscriber = (toasts: ToastData[]) => void;
 
 class ToastState {
@@ -197,6 +204,34 @@ export type ToastPosition =
 	| 'bottom-center'
 	| 'bottom-right';
 
+const getDefaultSwipeDirections = (
+	position?: ToastPosition | null,
+): SwipeDirection[] => {
+	if (!position) {
+		return ['top', 'bottom', 'left', 'right'];
+	}
+
+	const [vertical, horizontal] = position.split('-') as [
+		string,
+		string | undefined,
+	];
+	const directions: SwipeDirection[] = [];
+
+	if (vertical === 'top' || vertical === 'bottom') {
+		directions.push(vertical);
+	}
+
+	if (horizontal === 'left' || horizontal === 'right') {
+		directions.push(horizontal);
+	}
+
+	if (directions.length === 0) {
+		directions.push('top', 'bottom');
+	}
+
+	return directions;
+};
+
 export interface ToastData extends VariantProps<typeof toastContainerVariants> {
 	id: string;
 	title?: string;
@@ -272,7 +307,14 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const enterAnimationRef = useRef<number | null>(null);
 		const isExiting = useRef(false);
 		const hasAnimatedIn = useRef(false);
+		const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
+		const dragStartTimeRef = useRef<number | null>(null);
+		const swipeAxisRef = useRef<SwipeAxis | null>(null);
+		const lastSwipeRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 		const [isItemHovered, setIsItemHovered] = useState(false);
+		const [isSwiping, setIsSwiping] = useState(false);
+		const [swipeDismissDirection, setSwipeDismissDirection] =
+			useState<SwipeDirection | null>(null);
 		const [animationState, setAnimationState] = useState<
 			'entering' | 'entered' | 'exiting' | 'stacking'
 		>('entering');
@@ -297,6 +339,18 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const livePoliteness = variant === 'destructive' ? 'assertive' : 'polite';
 
 		const config = POSITION_CONFIGS[position as keyof typeof POSITION_CONFIGS];
+
+		const swipeDirections = useMemo(
+			() => getDefaultSwipeDirections(position),
+			[position],
+		);
+
+		const clearSwipeRefs = useCallback(() => {
+			pointerStartRef.current = null;
+			dragStartTimeRef.current = null;
+			swipeAxisRef.current = null;
+			lastSwipeRef.current = { x: 0, y: 0 };
+		}, []);
 
 		useLayoutEffect(() => {
 			if (!toastRef.current) return;
@@ -354,6 +408,15 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				handleClose();
 			}
 		}, [shouldClose, handleClose]);
+
+		useEffect(() => {
+			if (isSwiping) return;
+			if (swipeDismissDirection) return;
+			const node = toastRef.current;
+			if (!node) return;
+			node.style.setProperty('--swipe-translate-x', '0px');
+			node.style.setProperty('--swipe-translate-y', '0px');
+		}, [isSwiping, swipeDismissDirection]);
 
 		useLayoutEffect(() => {
 			if (!toastRef.current || isExiting.current) return;
@@ -417,7 +480,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				remainingRef.current = duration;
 			}
 
-			const isPaused = isGroupHovered || isItemHovered;
+			const isPaused = isGroupHovered || isItemHovered || isSwiping;
 			if (isPaused) {
 				if (timeoutRef.current) {
 					clearTimeout(timeoutRef.current);
@@ -454,7 +517,14 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					timerStartRef.current = null;
 				}
 			};
-		}, [duration, shouldClose, handleClose, isGroupHovered, isItemHovered]);
+		}, [
+			duration,
+			shouldClose,
+			handleClose,
+			isGroupHovered,
+			isItemHovered,
+			isSwiping,
+		]);
 
 		useEffect(() => {
 			remainingRef.current = duration;
@@ -483,51 +553,94 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const isLatest = index === 0;
 
 		const transformStyle = useMemo(() => {
+			const hiddenByStacking = index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
+			const baseOffsetY = offset;
+
+			let translateX = 0;
+			let translateY = baseOffsetY;
+			let scaleValue = isLatest ? 1 : scale;
+			let opacityValue = hiddenByStacking ? 0 : 1;
+
 			if (isGroupHovered && animationState !== 'exiting') {
-				const expandedTranslate = isTopPosition
-					? `${expandedOffset}`
-					: `${-expandedOffset}`;
-				return {
-					transform: `translate(0px, ${expandedTranslate}px) scale(1)`,
-					opacity: 1,
-				};
+				translateX = 0;
+				translateY = isTopPosition ? expandedOffset : -expandedOffset;
+				scaleValue = 1;
+				opacityValue = 1;
+			} else {
+				switch (animationState) {
+					case 'entering':
+						translateX = config.animateIn.x;
+						translateY = config.animateIn.y;
+						scaleValue = 1;
+						opacityValue = 0;
+						break;
+					case 'entered':
+						translateX = 0;
+						translateY = baseOffsetY;
+						scaleValue = 1;
+						opacityValue = 1;
+						break;
+					case 'exiting': {
+						scaleValue = 1;
+						opacityValue = 0;
+						if (swipeDismissDirection) {
+							switch (swipeDismissDirection) {
+								case 'left':
+									translateX = -SWIPE_EXIT_DISTANCE;
+									translateY = 0;
+									break;
+								case 'right':
+									translateX = SWIPE_EXIT_DISTANCE;
+									translateY = 0;
+									break;
+								case 'top':
+									translateX = 0;
+									translateY = -SWIPE_EXIT_DISTANCE;
+									break;
+								case 'bottom':
+									translateX = 0;
+									translateY = SWIPE_EXIT_DISTANCE;
+									break;
+								default:
+									translateX = config.animateOut.x;
+									translateY = config.animateOut.y;
+									break;
+							}
+						} else {
+							translateX = config.animateOut.x;
+							translateY = config.animateOut.y;
+						}
+						break;
+					}
+					default:
+						translateX = 0;
+						translateY = baseOffsetY;
+						scaleValue = isLatest ? 1 : scale;
+						opacityValue = hiddenByStacking ? 0 : 1;
+						break;
+				}
 			}
 
-			switch (animationState) {
-				case 'entering':
-					return {
-						transform: `translate(${config.animateIn.x}px, ${config.animateIn.y}px)`,
-						opacity: 0,
-					};
-				case 'entered':
-					return {
-						transform: `translate(0px, ${offset}px)`,
-						opacity: 1,
-					};
-				case 'exiting':
-					return {
-						transform: `translate(${config.animateOut.x}px, ${config.animateOut.y}px)`,
-						opacity: 0,
-					};
-				default:
-					return {
-						transform: `translate(0px, ${offset}px) scale(${isLatest ? 1 : scale})`,
-						opacity: index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS ? 0 : 1,
-					};
-			}
+			const transform = `translate(calc(${translateX}px + var(--swipe-translate-x, 0px)), calc(${translateY}px + var(--swipe-translate-y, 0px))) scale(${scaleValue})`;
+
+			return {
+				transform,
+				opacity: opacityValue,
+			};
 		}, [
 			animationState,
 			config.animateIn.x,
 			config.animateIn.y,
 			config.animateOut.x,
 			config.animateOut.y,
-			offset,
-			isLatest,
-			scale,
+			expandedOffset,
 			index,
 			isGroupHovered,
-			expandedOffset,
+			isLatest,
 			isTopPosition,
+			offset,
+			scale,
+			swipeDismissDirection,
 		]);
 
 		const transitionDuration = useMemo(() => {
@@ -548,6 +661,164 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				: ANIMATION_CONFIG.EASING_DEFAULT;
 		}, [animationState]);
 
+		const handlePointerDown = useCallback(
+			(event: React.PointerEvent<HTMLDivElement>) => {
+				if (event.pointerType === 'mouse' && event.button !== 0) return;
+				if (event.button === 2) return;
+				if (isExiting.current) return;
+
+				const target = event.target as HTMLElement;
+				if (target.closest('button, a, input, textarea, select')) {
+					return;
+				}
+
+				clearSwipeRefs();
+				pointerStartRef.current = { x: event.clientX, y: event.clientY };
+				dragStartTimeRef.current = Date.now();
+				const node = toastRef.current;
+				if (node) {
+					node.style.setProperty('--swipe-translate-x', '0px');
+					node.style.setProperty('--swipe-translate-y', '0px');
+				}
+				setSwipeDismissDirection(null);
+				setIsSwiping(true);
+				event.currentTarget.setPointerCapture(event.pointerId);
+			},
+			[clearSwipeRefs],
+		);
+
+		const handlePointerMove = useCallback(
+			(event: React.PointerEvent<HTMLDivElement>) => {
+				if (!pointerStartRef.current) return;
+				if (isExiting.current) return;
+
+				if (event.pointerType === 'touch') {
+					event.preventDefault();
+				}
+
+				const xDelta = event.clientX - pointerStartRef.current.x;
+				const yDelta = event.clientY - pointerStartRef.current.y;
+
+				let axis = swipeAxisRef.current;
+				if (!axis) {
+					if (Math.abs(xDelta) > 1 || Math.abs(yDelta) > 1) {
+						axis = Math.abs(xDelta) > Math.abs(yDelta) ? 'x' : 'y';
+						swipeAxisRef.current = axis;
+					} else {
+						return;
+					}
+				}
+
+				const dampen = (delta: number) => {
+					const factor = Math.abs(delta) / 20;
+					return delta * (1 / (1.5 + factor));
+				};
+
+				let nextX = 0;
+				let nextY = 0;
+
+				if (axis === 'x') {
+					const allowLeft = swipeDirections.includes('left');
+					const allowRight = swipeDirections.includes('right');
+					if (!allowLeft && !allowRight) {
+						swipeAxisRef.current = 'y';
+						axis = 'y';
+					} else if ((allowLeft && xDelta < 0) || (allowRight && xDelta > 0)) {
+						nextX = xDelta;
+					} else {
+						nextX = dampen(xDelta);
+					}
+				}
+
+				if (axis === 'y') {
+					const allowTop = swipeDirections.includes('top');
+					const allowBottom = swipeDirections.includes('bottom');
+					if (!allowTop && !allowBottom) {
+						swipeAxisRef.current = 'x';
+						axis = 'x';
+					} else if ((allowTop && yDelta < 0) || (allowBottom && yDelta > 0)) {
+						nextY = yDelta;
+					} else {
+						nextY = dampen(yDelta);
+					}
+				}
+
+				lastSwipeRef.current = { x: nextX, y: nextY };
+				const node = toastRef.current;
+				if (node) {
+					node.style.setProperty('--swipe-translate-x', `${nextX}px`);
+					node.style.setProperty('--swipe-translate-y', `${nextY}px`);
+				}
+			},
+			[swipeDirections],
+		);
+
+		const handlePointerUp = useCallback(
+			(event: React.PointerEvent<HTMLDivElement>) => {
+				if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+					event.currentTarget.releasePointerCapture(event.pointerId);
+				}
+
+				if (!pointerStartRef.current) {
+					setSwipeDismissDirection(null);
+					setIsSwiping(false);
+					clearSwipeRefs();
+					return;
+				}
+
+				const elapsed = dragStartTimeRef.current
+					? Date.now() - dragStartTimeRef.current
+					: 0;
+
+				const axis = swipeAxisRef.current;
+				const { x, y } = lastSwipeRef.current;
+				let dismissed = false;
+
+				if (axis) {
+					const distance = axis === 'x' ? x : y;
+					const velocity = elapsed > 0 ? Math.abs(distance) / elapsed : 0;
+					const meetsThreshold =
+						Math.abs(distance) >= SWIPE_DISMISS_THRESHOLD ||
+						velocity > SWIPE_DISMISS_VELOCITY;
+
+					if (meetsThreshold && Math.abs(distance) > 0) {
+						let direction: SwipeDirection;
+						if (axis === 'x') {
+							direction = distance > 0 ? 'right' : 'left';
+						} else {
+							direction = distance > 0 ? 'bottom' : 'top';
+						}
+
+						if (swipeDirections.includes(direction)) {
+							setSwipeDismissDirection(direction);
+							dismissed = true;
+							handleClose();
+						}
+					}
+				}
+
+				if (!dismissed) {
+					setSwipeDismissDirection(null);
+				}
+
+				setIsSwiping(false);
+				clearSwipeRefs();
+			},
+			[clearSwipeRefs, handleClose, swipeDirections],
+		);
+
+		const handlePointerCancel = useCallback(
+			(event: React.PointerEvent<HTMLDivElement>) => {
+				if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+					event.currentTarget.releasePointerCapture(event.pointerId);
+				}
+				setSwipeDismissDirection(null);
+				setIsSwiping(false);
+				clearSwipeRefs();
+			},
+			[clearSwipeRefs],
+		);
+
 		return (
 			<div
 				ref={toastRef}
@@ -557,7 +828,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						? 'center top'
 						: 'center bottom',
 					zIndex,
-					transition: `transform ${transitionDuration} ${transitionTimingFunction}, opacity ${transitionDuration} ${transitionTimingFunction}`,
+					transition: isSwiping
+						? `transform 0s linear, opacity ${transitionDuration} ${transitionTimingFunction}`
+						: `transform ${transitionDuration} ${transitionTimingFunction}, opacity ${transitionDuration} ${transitionTimingFunction}`,
 					...transformStyle,
 				}}
 				role={liveRole}
@@ -570,6 +843,10 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			>
 				<div
 					role="alert"
+					onPointerDown={handlePointerDown}
+					onPointerMove={handlePointerMove}
+					onPointerUp={handlePointerUp}
+					onPointerCancel={handlePointerCancel}
 					onMouseEnter={() => {
 						setIsItemHovered(true);
 						onGroupHoverEnter?.();
@@ -600,7 +877,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{title && (
 								<div
 									id={titleId}
-									className="mb-1 text-sm leading-tight font-medium"
+									className="mb-1 text-sm leading-tight font-medium select-none"
 								>
 									{title}
 								</div>
@@ -608,7 +885,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{description && (
 								<div
 									id={descriptionId}
-									className="text-sm leading-relaxed text-foreground/70 opacity-80"
+									className="text-sm leading-relaxed text-foreground/70 select-none"
 								>
 									{description}
 								</div>
