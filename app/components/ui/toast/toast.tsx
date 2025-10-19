@@ -287,7 +287,9 @@ interface ToastItemProps {
 	onRemove: (id: string) => void;
 	isGroupHovered?: boolean;
 	expandedOffset?: number;
+	expandedGap?: number;
 	collapsedOffset?: number;
+	hiddenCollapsedOffset?: number;
 	onHeightChange?: (id: string, height: number) => void;
 	onGroupHoverEnter?: () => void;
 }
@@ -298,7 +300,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		onRemove,
 		isGroupHovered = false,
 		expandedOffset = 0,
+		expandedGap = ANIMATION_CONFIG.EXPANDED_GAP,
 		collapsedOffset,
+		hiddenCollapsedOffset,
 		onHeightChange,
 		onGroupHoverEnter,
 	}) => {
@@ -308,6 +312,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const remainingRef = useRef<number>(Number.NaN);
 		const enterAnimationRef = useRef<number | null>(null);
 		const isExiting = useRef(false);
+		const exitAnimationCompleteRef = useRef(false);
 		const hasAnimatedIn = useRef(false);
 		const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
 		const dragStartTimeRef = useRef<number | null>(null);
@@ -377,12 +382,14 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		const handleTransitionEnd = useCallback(
 			(e: React.TransitionEvent) => {
 				if (e.target !== toastRef.current) return;
-				if (e.propertyName !== 'opacity') return;
+				if (e.propertyName !== 'opacity' && e.propertyName !== 'transform')
+					return;
+				if (animationState !== 'exiting') return;
+				if (exitAnimationCompleteRef.current) return;
 
-				if (animationState === 'exiting') {
-					onClose?.();
-					onRemove(id);
-				}
+				exitAnimationCompleteRef.current = true;
+				onClose?.();
+				onRemove(id);
 			},
 			[animationState, id, onRemove, onClose],
 		);
@@ -391,6 +398,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			if (!toastRef.current || isExiting.current) return;
 
 			isExiting.current = true;
+			exitAnimationCompleteRef.current = false;
 
 			if (enterAnimationRef.current) {
 				cancelAnimationFrame(enterAnimationRef.current);
@@ -410,6 +418,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				handleClose();
 			}
 		}, [shouldClose, handleClose]);
+
+		const stackHidden = index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
+		const hiddenByStacking = stackHidden && animationState !== 'exiting';
 
 		useEffect(() => {
 			if (isSwiping) return;
@@ -455,24 +466,10 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				if (animationState !== 'stacking' || index > 0) {
 					setAnimationState('stacking');
 				}
-
-				if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
-					setTimeout(
-						() => onRemove(id),
-						ANIMATION_CONFIG.STACK_DURATION * 1000,
-					);
-				}
 			} else {
 				setAnimationState('stacking');
-
-				if (index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) {
-					setTimeout(
-						() => onRemove(id),
-						ANIMATION_CONFIG.STACK_DURATION * 1000,
-					);
-				}
 			}
-		}, [index, id, onRemove, getFocusableElements, animationState, action]);
+		}, [index, getFocusableElements, animationState, action]);
 
 		useEffect(() => {
 			if (shouldClose || !hasAnimatedIn.current) return;
@@ -482,7 +479,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				remainingRef.current = duration;
 			}
 
-			const isPaused = isGroupHovered || isItemHovered || isSwiping;
+			const isPaused =
+				isGroupHovered || isItemHovered || isSwiping || hiddenByStacking;
 			if (isPaused) {
 				if (timeoutRef.current) {
 					clearTimeout(timeoutRef.current);
@@ -526,6 +524,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			isGroupHovered,
 			isItemHovered,
 			isSwiping,
+			hiddenByStacking,
 		]);
 
 		useEffect(() => {
@@ -544,6 +543,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		}, []);
 
 		const isTopPosition = position?.startsWith('top-');
+		const maxVisibleIndex = Math.max(
+			0,
+			ANIMATION_CONFIG.MAX_VISIBLE_TOASTS - 1,
+		);
+		const visibleIndex = Math.min(index, maxVisibleIndex);
 		const defaultCollapsedOffset = isTopPosition
 			? index * ANIMATION_CONFIG.STACK_OFFSET
 			: -(index * ANIMATION_CONFIG.STACK_OFFSET);
@@ -551,25 +555,55 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			typeof collapsedOffset === 'number' && Number.isFinite(collapsedOffset)
 				? collapsedOffset
 				: defaultCollapsedOffset;
+		const resolvedHiddenCollapsedOffset =
+			typeof hiddenCollapsedOffset === 'number' &&
+			Number.isFinite(hiddenCollapsedOffset)
+				? hiddenCollapsedOffset
+				: resolvedCollapsedOffset;
 		const scale = Math.max(
 			ANIMATION_CONFIG.MIN_SCALE,
 			1 - index * ANIMATION_CONFIG.SCALE_FACTOR,
+		);
+		const visibleScale = Math.max(
+			ANIMATION_CONFIG.MIN_SCALE,
+			1 - visibleIndex * ANIMATION_CONFIG.SCALE_FACTOR,
 		);
 		const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - index;
 		const isLatest = index === 0;
 
 		const transformStyle = useMemo(() => {
-			const hiddenByStacking = index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
-			const baseOffsetY = resolvedCollapsedOffset;
+			const baseOffsetY = stackHidden
+				? resolvedHiddenCollapsedOffset
+				: resolvedCollapsedOffset;
+			const promotionOffset =
+				typeof expandedGap === 'number'
+					? expandedGap
+					: ANIMATION_CONFIG.EXPANDED_GAP;
+			const expandedTranslateY = isTopPosition
+				? expandedOffset
+				: -expandedOffset;
+			const hiddenExpandedTranslateY = expandedTranslateY - promotionOffset;
 
 			let translateX = 0;
 			let translateY = baseOffsetY;
-			let scaleValue = isLatest ? 1 : scale;
-			let opacityValue = hiddenByStacking ? 0 : 1;
+			let scaleValue = stackHidden
+				? visibleIndex === 0
+					? 1
+					: visibleScale
+				: isLatest
+					? 1
+					: scale;
+			let opacityValue = stackHidden ? 0 : 1;
 
-			if (isGroupHovered && animationState !== 'exiting') {
+			if (stackHidden) {
+				if (isGroupHovered && animationState !== 'exiting') {
+					translateX = 0;
+					translateY = hiddenExpandedTranslateY;
+					scaleValue = 1;
+				}
+			} else if (isGroupHovered && animationState !== 'exiting') {
 				translateX = 0;
-				translateY = isTopPosition ? expandedOffset : -expandedOffset;
+				translateY = expandedTranslateY;
 				scaleValue = 1;
 				opacityValue = 1;
 			} else {
@@ -622,7 +656,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						translateX = 0;
 						translateY = baseOffsetY;
 						scaleValue = isLatest ? 1 : scale;
-						opacityValue = hiddenByStacking ? 0 : 1;
+						opacityValue = stackHidden ? 0 : 1;
 						break;
 				}
 			}
@@ -640,11 +674,15 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			config.animateOut.x,
 			config.animateOut.y,
 			expandedOffset,
-			index,
 			isGroupHovered,
 			isLatest,
 			isTopPosition,
+			visibleIndex,
+			visibleScale,
+			stackHidden,
 			resolvedCollapsedOffset,
+			resolvedHiddenCollapsedOffset,
+			expandedGap,
 			scale,
 			swipeDismissDirection,
 		]);
@@ -839,6 +877,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					toastContainerVariants({ position, variant }),
 					className,
 					swipeCursorClass,
+					stackHidden && 'pointer-events-none',
 				)}
 				style={{
 					transformOrigin: position?.startsWith('top-')
@@ -850,10 +889,11 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 						: `transform ${transitionDuration} ${transitionTimingFunction}, opacity ${transitionDuration} ${transitionTimingFunction}`,
 					...transformStyle,
 				}}
-				role={liveRole}
-				aria-live={livePoliteness}
-				aria-atomic="true"
-				aria-describedby={descriptionId}
+				role={stackHidden ? undefined : liveRole}
+				aria-live={stackHidden ? undefined : livePoliteness}
+				aria-atomic={stackHidden ? undefined : 'true'}
+				aria-describedby={stackHidden ? undefined : descriptionId}
+				aria-hidden={stackHidden ? true : undefined}
 				tabIndex={-1}
 				onTransitionEnd={handleTransitionEnd}
 				data-toast-id={id}
@@ -936,7 +976,9 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			prevProps.toast.total === nextProps.toast.total &&
 			prevProps.isGroupHovered === nextProps.isGroupHovered &&
 			prevProps.expandedOffset === nextProps.expandedOffset &&
-			prevProps.collapsedOffset === nextProps.collapsedOffset
+			prevProps.expandedGap === nextProps.expandedGap &&
+			prevProps.collapsedOffset === nextProps.collapsedOffset &&
+			prevProps.hiddenCollapsedOffset === nextProps.hiddenCollapsedOffset
 		);
 	},
 );
@@ -1115,6 +1157,7 @@ const ToastManager: React.FC<{
 					let bottom = Number.NEGATIVE_INFINITY;
 					let any = false;
 					for (const t of group) {
+						if (t.index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS) continue;
 						const el = document.querySelector(
 							`[data-toast-id="${t.id}"]`,
 						) as HTMLElement | null;
@@ -1197,7 +1240,16 @@ const ToastManager: React.FC<{
 									onRemove={onRemove}
 									isGroupHovered={isHovered}
 									expandedOffset={expandedOffsets?.[idx] ?? 0}
+									expandedGap={expandedGap}
 									collapsedOffset={collapsedOffsets?.[idx]}
+									hiddenCollapsedOffset={
+										collapsedOffsets?.[
+											Math.min(
+												idx,
+												Math.max(0, ANIMATION_CONFIG.MAX_VISIBLE_TOASTS - 1),
+											)
+										]
+									}
 									onHeightChange={(id, h) =>
 										setHeights((prev) =>
 											prev[id] === h ? prev : { ...prev, [id]: h },
