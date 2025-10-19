@@ -15,8 +15,8 @@ export const buttonVariants = cva(
 				secondary:
 					'border border-border bg-card text-foreground shadow-sm hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
 				ghost:
-					'text-foreground/70 hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
-				icon: 'text-foreground/70 hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
+					'text-foreground hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
+				icon: 'text-foreground hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
 			},
 			size: {
 				sm: 'px-3 py-1.5 text-sm',

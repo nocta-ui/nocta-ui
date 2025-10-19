@@ -6,7 +6,7 @@
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
-	--color-fd-muted-foreground: oklch(0.45 0.002 250);
+	--color-fd-muted-foreground: oklch(from var(--color-foreground) l c h / 0.35);
 	--color-fd-popover: var(--color-card-muted);
 	--color-fd-popover-foreground: var(--color-foreground);
 	--color-fd-card: var(--color-background);
@@ -16,7 +16,7 @@
 	--color-fd-primary-foreground: var(--color-foreground);
 	--color-fd-secondary: var(--color-card);
 	--color-fd-secondary-foreground: var(--color-foreground);
-	--color-fd-accent: var(--color-card-elevated);
+	--color-fd-accent: var(--color-card-muted);
 	--color-fd-accent-foreground: var(--color-foreground);
 	--color-fd-ring: var(--color-ring);
 
@@ -45,7 +45,7 @@
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card);
-	--color-fd-muted-foreground: oklch(0.65 0.007 248);
+	--color-fd-muted-foreground: oklch(from var(--color-foreground) l c h / 0.35);
 	--color-fd-popover: var(--color-card-muted);
 	--color-fd-popover-foreground: var(--color-foreground);
 	--color-fd-card: var(--color-background);
@@ -55,7 +55,7 @@
 	--color-fd-primary-foreground: var(--color-foreground);
 	--color-fd-secondary: var(--color-card-muted);
 	--color-fd-secondary-foreground: var(--color-foreground);
-	--color-fd-accent: var(--color-card-elevated);
+	--color-fd-accent: var(--color-card-muted);
 	--color-fd-accent-foreground: var(--color-foreground);
 	--color-fd-ring: var(--color-ring);
 }
