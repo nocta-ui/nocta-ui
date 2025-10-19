@@ -3,7 +3,14 @@
 import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
-import { useId, useMemo, useState } from 'react';
+import {
+	startTransition,
+	useCallback,
+	useEffect,
+	useId,
+	useMemo,
+	useState,
+} from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
@@ -67,46 +74,76 @@ export const Combobox: React.FC<ComboboxProps> = ({
 	clearable = true,
 }) => {
 	const baseId = useId();
-	const [uncontrolledValue, setUncontrolledValue] = useState(
-		defaultValue || '',
-	);
-	const selectedValue =
-		controlledValue !== undefined ? controlledValue : uncontrolledValue;
+	const [internalValue, setInternalValue] = useState(defaultValue ?? '');
+	const [searchValue, setSearchValue] = useState('');
+
+	const comboboxStore = Ariakit.useComboboxStore({
+		resetValueOnHide: true,
+	});
+
+	const selectStore = Ariakit.useSelectStore({
+		value: controlledValue ?? internalValue,
+		...(defaultValue !== undefined ? { defaultValue } : {}),
+		animated: true,
+		combobox: comboboxStore,
+		setValue: (value) => {
+			const nextValue = value == null ? '' : String(value);
+			if (controlledValue === undefined) {
+				setInternalValue(nextValue);
+			}
+			if (onValueChange) {
+				onValueChange(nextValue);
+			}
+		},
+	});
+
+	const selectedValue = Ariakit.useStoreState(selectStore, (state) => {
+		const value = state.value;
+		if (Array.isArray(value)) {
+			return String(value[value.length - 1] ?? '');
+		}
+		return value == null ? '' : String(value);
+	});
+
 	const selectedOption = useMemo(
-		() => options.find((o) => o.value === selectedValue),
+		() => options.find((option) => option.value === selectedValue),
 		[options, selectedValue],
 	);
 
-	const [searchValue, setSearchValue] = useState('');
-	const matches = useMemo(
-		() =>
-			options.filter((o) =>
-				o.label.toLowerCase().includes(searchValue.trim().toLowerCase()),
-			),
-		[options, searchValue],
+	const matches = useMemo(() => {
+		const query = searchValue.trim().toLowerCase();
+		if (!query) return options;
+		return options.filter((option) =>
+			option.label.toLowerCase().includes(query),
+		);
+	}, [options, searchValue]);
+
+	const listId = `${baseId}-listbox`;
+	const isOpen = Ariakit.useStoreState(selectStore, (state) => state.open);
+
+	useEffect(() => {
+		if (!isOpen) {
+			comboboxStore.setValue('');
+			startTransition(() => setSearchValue(''));
+		}
+	}, [comboboxStore, isOpen]);
+
+	const handleClear = useCallback(
+		(event: React.SyntheticEvent) => {
+			event.stopPropagation();
+			event.preventDefault();
+			selectStore.setValue('');
+			comboboxStore.setValue('');
+			startTransition(() => setSearchValue(''));
+		},
+		[comboboxStore, selectStore],
 	);
 
-	const menu = Ariakit.useMenuStore({ animated: true });
-
-	const handleSelect = (newValue: string) => {
-		if (disabled) return;
-		if (controlledValue === undefined) setUncontrolledValue(newValue);
-		onValueChange?.(newValue);
-		menu.hide();
-		setSearchValue('');
-	};
-
-	const handleClear = (e: React.SyntheticEvent) => {
-		e.stopPropagation();
-		e.preventDefault();
-		handleSelect('');
-	};
-
 	return (
-		<Ariakit.ComboboxProvider resetValueOnHide>
-			<Ariakit.MenuProvider store={menu}>
+		<Ariakit.ComboboxProvider store={comboboxStore} resetValueOnHide>
+			<Ariakit.SelectProvider store={selectStore}>
 				<div className="not-prose relative">
-					<Ariakit.MenuButton
+					<Ariakit.Select
 						disabled={disabled}
 						className={cn(
 							comboboxVariants({ variant, size }),
@@ -147,9 +184,9 @@ export const Combobox: React.FC<ComboboxProps> = ({
 								className="h-4.5 w-4.5 text-foreground/70"
 							/>
 						</div>
-					</Ariakit.MenuButton>
+					</Ariakit.Select>
 
-					<Ariakit.Menu
+					<Ariakit.SelectPopover
 						portal={portal}
 						sameWidth
 						className={cn(
@@ -162,26 +199,18 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							<Ariakit.Combobox
 								autoSelect
 								placeholder={searchPlaceholder}
-								aria-controls={`${baseId}-listbox`}
-								onChange={(e) => setSearchValue(e.currentTarget.value)}
-								onKeyDown={(e) => {
-									if (e.key === 'Enter') {
-										const inputValue = (e.currentTarget as HTMLInputElement)
-											.value;
-										const exact = options.find((o) => o.label === inputValue);
-										const pick = exact ?? matches[0];
-										if (pick && !pick.disabled) {
-											e.preventDefault();
-											handleSelect(pick.value);
-										}
-									}
-								}}
+								aria-controls={listId}
+								onChange={(event) =>
+									startTransition(() =>
+										setSearchValue(event.currentTarget.value),
+									)
+								}
 								className="w-full border-0 bg-transparent px-3 py-2 text-sm placeholder:text-foreground/45 focus-visible:outline-none"
 							/>
 						</div>
 
 						<Ariakit.ComboboxList
-							id={`${baseId}-listbox`}
+							id={listId}
 							className="z-50 flex max-h-42 flex-col gap-1 overflow-auto py-1"
 						>
 							<div aria-live="polite" className="sr-only">
@@ -195,28 +224,27 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									{emptyMessage}
 								</output>
 							) : (
-								matches.map((option, i) => {
+								matches.map((option) => {
 									const isSelected = option.value === selectedValue;
 									return (
-										<Ariakit.ComboboxItem
+										<Ariakit.SelectItem
 											key={option.value}
-											id={`${baseId}-option-${i}`}
-											value={option.label}
-											focusOnHover
-											setValueOnClick={false}
+											value={option.value}
 											disabled={option.disabled}
-											aria-disabled={option.disabled || undefined}
 											className={cn(
-												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 outline-none select-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
-												isSelected &&
-													'bg-card-muted font-medium text-foreground',
+												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
+												'data-[active-item]:bg-card-muted data-[active-item]:text-foreground',
+												'aria-[selected=true]:bg-card-muted aria-[selected=true]:font-medium aria-[selected=true]:text-foreground',
 												option.disabled &&
 													'pointer-events-none cursor-not-allowed opacity-50',
 											)}
-											onClick={(e) => {
-												e.preventDefault();
-												if (!option.disabled) handleSelect(option.value);
-											}}
+											render={
+												<Ariakit.ComboboxItem
+													value={option.label}
+													focusOnHover
+													setValueOnClick
+												/>
+											}
 										>
 											<span className="flex-1">{option.label}</span>
 											{isSelected && (
@@ -225,14 +253,14 @@ export const Combobox: React.FC<ComboboxProps> = ({
 													className="h-4 w-4 text-foreground/70"
 												/>
 											)}
-										</Ariakit.ComboboxItem>
+										</Ariakit.SelectItem>
 									);
 								})
 							)}
 						</Ariakit.ComboboxList>
-					</Ariakit.Menu>
+					</Ariakit.SelectPopover>
 				</div>
-			</Ariakit.MenuProvider>
+			</Ariakit.SelectProvider>
 		</Ariakit.ComboboxProvider>
 	);
 };
