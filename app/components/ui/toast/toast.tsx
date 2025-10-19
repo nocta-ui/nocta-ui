@@ -287,6 +287,7 @@ interface ToastItemProps {
 	onRemove: (id: string) => void;
 	isGroupHovered?: boolean;
 	expandedOffset?: number;
+	collapsedOffset?: number;
 	onHeightChange?: (id: string, height: number) => void;
 	onGroupHoverEnter?: () => void;
 }
@@ -297,6 +298,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		onRemove,
 		isGroupHovered = false,
 		expandedOffset = 0,
+		collapsedOffset,
 		onHeightChange,
 		onGroupHoverEnter,
 	}) => {
@@ -542,9 +544,13 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 		}, []);
 
 		const isTopPosition = position?.startsWith('top-');
-		const offset = isTopPosition
+		const defaultCollapsedOffset = isTopPosition
 			? index * ANIMATION_CONFIG.STACK_OFFSET
 			: -(index * ANIMATION_CONFIG.STACK_OFFSET);
+		const resolvedCollapsedOffset =
+			typeof collapsedOffset === 'number' && Number.isFinite(collapsedOffset)
+				? collapsedOffset
+				: defaultCollapsedOffset;
 		const scale = Math.max(
 			ANIMATION_CONFIG.MIN_SCALE,
 			1 - index * ANIMATION_CONFIG.SCALE_FACTOR,
@@ -554,7 +560,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 		const transformStyle = useMemo(() => {
 			const hiddenByStacking = index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
-			const baseOffsetY = offset;
+			const baseOffsetY = resolvedCollapsedOffset;
 
 			let translateX = 0;
 			let translateY = baseOffsetY;
@@ -638,7 +644,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			isGroupHovered,
 			isLatest,
 			isTopPosition,
-			offset,
+			resolvedCollapsedOffset,
 			scale,
 			swipeDismissDirection,
 		]);
@@ -929,7 +935,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
 			prevProps.toast.total === nextProps.toast.total &&
 			prevProps.isGroupHovered === nextProps.isGroupHovered &&
-			prevProps.expandedOffset === nextProps.expandedOffset
+			prevProps.expandedOffset === nextProps.expandedOffset &&
+			prevProps.collapsedOffset === nextProps.collapsedOffset
 		);
 	},
 );
@@ -998,6 +1005,66 @@ const ToastManager: React.FC<{
 			() => Object.entries(toastsByPosition),
 			[toastsByPosition],
 		);
+
+		const collapsedOffsetsByPosition = useMemo(() => {
+			const result: Record<ToastPosition, number[]> = {
+				'top-left': [],
+				'top-center': [],
+				'top-right': [],
+				'bottom-left': [],
+				'bottom-center': [],
+				'bottom-right': [],
+			};
+
+			for (const [pos, group] of positionEntries as [
+				ToastPosition,
+				(ToastData & { index: number; total: number })[],
+			][]) {
+				const isTopPosition = pos.startsWith('top-');
+				const offsets: number[] = [];
+
+				for (let i = 0; i < group.length; i++) {
+					if (i === 0) {
+						offsets.push(0);
+						continue;
+					}
+
+					const prev = group[i - 1];
+					const current = group[i];
+					const prevHeight = heights[prev.id];
+					const currentHeight = heights[current.id];
+					const fallbackOffset =
+						(isTopPosition ? 1 : -1) * ANIMATION_CONFIG.STACK_OFFSET +
+						offsets[i - 1];
+
+					if (
+						prevHeight == null ||
+						currentHeight == null ||
+						Number.isNaN(prevHeight) ||
+						Number.isNaN(currentHeight)
+					) {
+						offsets.push(fallbackOffset);
+						continue;
+					}
+
+					if (isTopPosition) {
+						offsets.push(
+							offsets[i - 1] +
+								(prevHeight - currentHeight + ANIMATION_CONFIG.STACK_OFFSET),
+						);
+					} else {
+						offsets.push(
+							offsets[i - 1] +
+								(currentHeight - prevHeight - ANIMATION_CONFIG.STACK_OFFSET),
+						);
+					}
+				}
+
+				result[pos] = offsets;
+			}
+
+			return result;
+		}, [positionEntries, heights]);
 
 		const expandedOffsetsByPosition = useMemo(() => {
 			const result: Record<ToastPosition, number[]> = {
@@ -1119,6 +1186,7 @@ const ToastManager: React.FC<{
 				{positionEntries.map(([position, positionToasts]) => {
 					const pos = position as ToastPosition;
 					const expandedOffsets = expandedOffsetsByPosition[pos];
+					const collapsedOffsets = collapsedOffsetsByPosition[pos];
 					const isHovered = hovered[pos];
 					return (
 						<React.Fragment key={position}>
@@ -1129,6 +1197,7 @@ const ToastManager: React.FC<{
 									onRemove={onRemove}
 									isGroupHovered={isHovered}
 									expandedOffset={expandedOffsets?.[idx] ?? 0}
+									collapsedOffset={collapsedOffsets?.[idx]}
 									onHeightChange={(id, h) =>
 										setHeights((prev) =>
 											prev[id] === h ? prev : { ...prev, [id]: h },
