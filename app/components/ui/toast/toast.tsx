@@ -244,6 +244,7 @@ export interface ToastData extends VariantProps<typeof toastContainerVariants> {
 	};
 	onClose?: () => void;
 	shouldClose?: boolean;
+	isLeaving?: boolean;
 }
 
 export const toast = (data: Omit<ToastData, 'id'> | string): string => {
@@ -282,8 +283,14 @@ toast.dismissAll = (): void => {
 	toastState.dismissAll();
 };
 
+type PositionedToast = ToastData & {
+	index: number;
+	renderIndex: number;
+	total: number;
+};
+
 interface ToastItemProps {
-	toast: ToastData & { index: number; total: number };
+	toast: PositionedToast;
 	onRemove: (id: string) => void;
 	isGroupHovered?: boolean;
 	expandedOffset?: number;
@@ -334,6 +341,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			duration = 5000,
 			action,
 			index,
+			renderIndex,
 			shouldClose,
 			position = 'bottom-center',
 			className = '',
@@ -400,6 +408,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			isExiting.current = true;
 			exitAnimationCompleteRef.current = false;
 
+			toastState.update(id, { shouldClose: true });
+
 			if (enterAnimationRef.current) {
 				cancelAnimationFrame(enterAnimationRef.current);
 				enterAnimationRef.current = null;
@@ -411,7 +421,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			}
 
 			setAnimationState('exiting');
-		}, []);
+			toastState.update(id, { shouldClose: true, isLeaving: true });
+		}, [id]);
 
 		useEffect(() => {
 			if (shouldClose) {
@@ -421,6 +432,8 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 
 		const stackHidden = index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
 		const hiddenByStacking = stackHidden && animationState !== 'exiting';
+		const isStackLeader = index === 0;
+		const isLatest = isStackLeader && !shouldClose;
 
 		useEffect(() => {
 			if (isSwiping) return;
@@ -435,7 +448,6 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			if (!toastRef.current || isExiting.current) return;
 
 			const element = toastRef.current;
-			const isLatest = index === 0;
 
 			const setFocusToToast = () => {
 				if (!isLatest) return;
@@ -469,7 +481,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			} else {
 				setAnimationState('stacking');
 			}
-		}, [index, getFocusableElements, animationState, action]);
+		}, [index, getFocusableElements, animationState, action, isLatest]);
 
 		useEffect(() => {
 			if (shouldClose || !hasAnimatedIn.current) return;
@@ -568,8 +580,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			ANIMATION_CONFIG.MIN_SCALE,
 			1 - visibleIndex * ANIMATION_CONFIG.SCALE_FACTOR,
 		);
-		const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - index;
-		const isLatest = index === 0;
+		const zIndex = ANIMATION_CONFIG.Z_INDEX_BASE - renderIndex;
 
 		const transformStyle = useMemo(() => {
 			const baseOffsetY = stackHidden
@@ -590,7 +601,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 				? visibleIndex === 0
 					? 1
 					: visibleScale
-				: isLatest
+				: isStackLeader
 					? 1
 					: scale;
 			let opacityValue = stackHidden ? 0 : 1;
@@ -655,7 +666,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 					default:
 						translateX = 0;
 						translateY = baseOffsetY;
-						scaleValue = isLatest ? 1 : scale;
+						scaleValue = isStackLeader ? 1 : scale;
 						opacityValue = stackHidden ? 0 : 1;
 						break;
 				}
@@ -675,7 +686,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			config.animateOut.y,
 			expandedOffset,
 			isGroupHovered,
-			isLatest,
+			isStackLeader,
 			isTopPosition,
 			visibleIndex,
 			visibleScale,
@@ -973,6 +984,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			prevProps.toast.id === nextProps.toast.id &&
 			prevProps.toast.index === nextProps.toast.index &&
 			prevProps.toast.shouldClose === nextProps.toast.shouldClose &&
+			prevProps.toast.renderIndex === nextProps.toast.renderIndex &&
 			prevProps.toast.total === nextProps.toast.total &&
 			prevProps.isGroupHovered === nextProps.isGroupHovered &&
 			prevProps.expandedOffset === nextProps.expandedOffset &&
@@ -1000,6 +1012,9 @@ const ToastManager: React.FC<{
 			'bottom-center': false,
 			'bottom-right': false,
 		});
+		const previousStackIndexRef = useRef<Record<string, number>>({});
+		const previousCollapsedOffsetsRef = useRef<Record<string, number>>({});
+		const previousExpandedOffsetsRef = useRef<Record<string, number>>({});
 
 		const toastsByPosition = useMemo(() => {
 			const grouped = toasts.reduce(
@@ -1012,19 +1027,43 @@ const ToastManager: React.FC<{
 				{} as Record<ToastPosition, ToastData[]>,
 			);
 
+			const nextStackIndices: Record<string, number> = {};
+
 			Object.keys(grouped).forEach((position) => {
 				const positionKey = position as ToastPosition;
-				grouped[positionKey] = grouped[positionKey].map((toast, index) => ({
-					...toast,
-					index,
-					total: grouped[positionKey].length,
-				})) as (ToastData & { index: number; total: number })[];
+				const list = grouped[positionKey];
+				const activeToasts = list.filter(
+					(toast) => !toast.isLeaving && !toast.shouldClose,
+				);
+				const activeIndexMap = new Map<string, number>();
+
+				activeToasts.forEach((toast, activeIndex) => {
+					activeIndexMap.set(toast.id, activeIndex);
+				});
+
+				grouped[positionKey] = list.map((toast, orderIndex) => {
+					let stackIndex =
+						activeIndexMap.get(toast.id) ??
+						previousStackIndexRef.current[toast.id];
+
+					if (stackIndex == null || Number.isNaN(stackIndex)) {
+						stackIndex = orderIndex;
+					}
+
+					nextStackIndices[toast.id] = stackIndex;
+
+					return {
+						...toast,
+						index: stackIndex,
+						renderIndex: orderIndex,
+						total: list.length,
+					};
+				}) as PositionedToast[];
 			});
 
-			return grouped as Record<
-				ToastPosition,
-				(ToastData & { index: number; total: number })[]
-			>;
+			previousStackIndexRef.current = nextStackIndices;
+
+			return grouped as Record<ToastPosition, PositionedToast[]>;
 		}, [toasts]);
 
 		useEffect(() => {
@@ -1048,8 +1087,8 @@ const ToastManager: React.FC<{
 			[toastsByPosition],
 		);
 
-		const collapsedOffsetsByPosition = useMemo(() => {
-			const result: Record<ToastPosition, number[]> = {
+		const collapsedOffsetData = useMemo(() => {
+			const byPosition: Record<ToastPosition, number[]> = {
 				'top-left': [],
 				'top-center': [],
 				'top-right': [],
@@ -1057,27 +1096,30 @@ const ToastManager: React.FC<{
 				'bottom-center': [],
 				'bottom-right': [],
 			};
+			const byId: Record<string, number> = {};
 
 			for (const [pos, group] of positionEntries as [
 				ToastPosition,
-				(ToastData & { index: number; total: number })[],
+				PositionedToast[],
 			][]) {
 				const isTopPosition = pos.startsWith('top-');
-				const offsets: number[] = [];
+				const activeToasts = group.filter((toast) => !toast.shouldClose);
+				const offsetsForActive: number[] = [];
 
-				for (let i = 0; i < group.length; i++) {
+				for (let i = 0; i < activeToasts.length; i++) {
 					if (i === 0) {
-						offsets.push(0);
+						offsetsForActive.push(0);
 						continue;
 					}
 
-					const prev = group[i - 1];
-					const current = group[i];
-					const prevHeight = heights[prev.id];
-					const currentHeight = heights[current.id];
+					const prevToast = activeToasts[i - 1];
+					const currentToast = activeToasts[i];
+					const prevHeight = heights[prevToast.id];
+					const currentHeight = heights[currentToast.id];
+					const prevOffset = offsetsForActive[i - 1];
 					const fallbackOffset =
-						(isTopPosition ? 1 : -1) * ANIMATION_CONFIG.STACK_OFFSET +
-						offsets[i - 1];
+						prevOffset +
+						(isTopPosition ? 1 : -1) * ANIMATION_CONFIG.STACK_OFFSET;
 
 					if (
 						prevHeight == null ||
@@ -1085,31 +1127,51 @@ const ToastManager: React.FC<{
 						Number.isNaN(prevHeight) ||
 						Number.isNaN(currentHeight)
 					) {
-						offsets.push(fallbackOffset);
+						offsetsForActive.push(fallbackOffset);
 						continue;
 					}
 
 					if (isTopPosition) {
-						offsets.push(
-							offsets[i - 1] +
+						offsetsForActive.push(
+							prevOffset +
 								(prevHeight - currentHeight + ANIMATION_CONFIG.STACK_OFFSET),
 						);
 					} else {
-						offsets.push(
-							offsets[i - 1] +
+						offsetsForActive.push(
+							prevOffset +
 								(currentHeight - prevHeight - ANIMATION_CONFIG.STACK_OFFSET),
 						);
 					}
 				}
 
-				result[pos] = offsets;
+				for (let i = 0; i < activeToasts.length; i++) {
+					const toast = activeToasts[i];
+					byId[toast.id] = offsetsForActive[i] ?? 0;
+				}
+
+				for (const toast of group) {
+					if (byId[toast.id] != null) continue;
+
+					const previousOffset = previousCollapsedOffsetsRef.current[toast.id];
+					if (typeof previousOffset === 'number') {
+						byId[toast.id] = previousOffset;
+						continue;
+					}
+
+					const defaultOffset = isTopPosition
+						? toast.index * ANIMATION_CONFIG.STACK_OFFSET
+						: -(toast.index * ANIMATION_CONFIG.STACK_OFFSET);
+					byId[toast.id] = defaultOffset;
+				}
+
+				byPosition[pos] = group.map((toast) => byId[toast.id] ?? 0);
 			}
 
-			return result;
+			return { byPosition, byId };
 		}, [positionEntries, heights]);
 
-		const expandedOffsetsByPosition = useMemo(() => {
-			const result: Record<ToastPosition, number[]> = {
+		const expandedOffsetData = useMemo(() => {
+			const byPosition: Record<ToastPosition, number[]> = {
 				'top-left': [],
 				'top-center': [],
 				'top-right': [],
@@ -1117,26 +1179,66 @@ const ToastManager: React.FC<{
 				'bottom-center': [],
 				'bottom-right': [],
 			};
+			const byId: Record<string, number> = {};
+
 			for (const [pos, group] of positionEntries as [
 				ToastPosition,
-				(ToastData & { index: number; total: number })[],
+				PositionedToast[],
 			][]) {
 				const offsets: number[] = [];
+				const activeToasts = group.filter((toast) => !toast.shouldClose);
 				let acc = 0;
-				for (let i = 0; i < group.length; i++) {
+
+				for (let i = 0; i < activeToasts.length; i++) {
 					if (i === 0) {
 						offsets.push(0);
 						continue;
 					}
-					const prev = group[i - 1];
-					const prevHeight = heights[prev.id] ?? 0;
+					const prevToast = activeToasts[i - 1];
+					const prevHeight = heights[prevToast.id] ?? 0;
 					acc += prevHeight + expandedGap;
 					offsets.push(acc);
 				}
-				result[pos] = offsets;
+
+				for (let i = 0; i < activeToasts.length; i++) {
+					const toast = activeToasts[i];
+					byId[toast.id] = offsets[i] ?? 0;
+				}
+
+				for (const toast of group) {
+					if (byId[toast.id] != null) continue;
+
+					const previousOffset = previousExpandedOffsetsRef.current[toast.id];
+					if (typeof previousOffset === 'number') {
+						byId[toast.id] = previousOffset;
+						continue;
+					}
+
+					let fallback = 0;
+					for (const candidate of group) {
+						if (candidate.id === toast.id) break;
+						const height = heights[candidate.id] ?? 0;
+						fallback += height + expandedGap;
+					}
+					byId[toast.id] = fallback;
+				}
+
+				byPosition[pos] = group.map((toast) => byId[toast.id] ?? 0);
 			}
-			return result;
+
+			return { byPosition, byId };
 		}, [positionEntries, heights, expandedGap]);
+
+		useEffect(() => {
+			previousCollapsedOffsetsRef.current = collapsedOffsetData.byId;
+		}, [collapsedOffsetData]);
+
+		useEffect(() => {
+			previousExpandedOffsetsRef.current = expandedOffsetData.byId;
+		}, [expandedOffsetData]);
+
+		const collapsedOffsetsByPosition = collapsedOffsetData.byPosition;
+		const expandedOffsetsByPosition = expandedOffsetData.byPosition;
 
 		useEffect(() => {
 			if (positionEntries.length === 0) return;
@@ -1149,7 +1251,7 @@ const ToastManager: React.FC<{
 				>;
 				for (const [pos, group] of positionEntries as [
 					ToastPosition,
-					(ToastData & { index: number; total: number })[],
+					PositionedToast[],
 				][]) {
 					let top = Number.POSITIVE_INFINITY;
 					let left = Number.POSITIVE_INFINITY;
@@ -1231,35 +1333,57 @@ const ToastManager: React.FC<{
 					const expandedOffsets = expandedOffsetsByPosition[pos];
 					const collapsedOffsets = collapsedOffsetsByPosition[pos];
 					const isHovered = hovered[pos];
+					const activeToasts = positionToasts.filter(
+						(toast) => !toast.shouldClose,
+					);
+					const visibleStackLimit = Math.max(
+						ANIMATION_CONFIG.MAX_VISIBLE_TOASTS - 1,
+						0,
+					);
+					const maxVisibleStackIndex = Math.min(
+						Math.max(activeToasts.length - 1, 0),
+						visibleStackLimit,
+					);
+					const lastVisibleToastId = activeToasts[maxVisibleStackIndex]?.id;
+					const lastVisibleRenderIndex =
+						lastVisibleToastId != null
+							? positionToasts.findIndex(
+									(candidate) => candidate.id === lastVisibleToastId,
+								)
+							: -1;
+					const sharedHiddenCollapsedOffset =
+						lastVisibleRenderIndex >= 0
+							? collapsedOffsets?.[lastVisibleRenderIndex]
+							: undefined;
 					return (
 						<React.Fragment key={position}>
-							{positionToasts.map((toast, idx) => (
-								<ToastItem
-									key={toast.id}
-									toast={toast}
-									onRemove={onRemove}
-									isGroupHovered={isHovered}
-									expandedOffset={expandedOffsets?.[idx] ?? 0}
-									expandedGap={expandedGap}
-									collapsedOffset={collapsedOffsets?.[idx]}
-									hiddenCollapsedOffset={
-										collapsedOffsets?.[
-											Math.min(
-												idx,
-												Math.max(0, ANIMATION_CONFIG.MAX_VISIBLE_TOASTS - 1),
+							{positionToasts.map((toast, idx) => {
+								const toastIsHidden =
+									toast.index >= ANIMATION_CONFIG.MAX_VISIBLE_TOASTS;
+								const hiddenCollapsedOffset = toastIsHidden
+									? (sharedHiddenCollapsedOffset ?? collapsedOffsets?.[idx])
+									: collapsedOffsets?.[idx];
+								return (
+									<ToastItem
+										key={toast.id}
+										toast={toast}
+										onRemove={onRemove}
+										isGroupHovered={isHovered}
+										expandedOffset={expandedOffsets?.[idx] ?? 0}
+										expandedGap={expandedGap}
+										collapsedOffset={collapsedOffsets?.[idx]}
+										hiddenCollapsedOffset={hiddenCollapsedOffset}
+										onHeightChange={(id, h) =>
+											setHeights((prev) =>
+												prev[id] === h ? prev : { ...prev, [id]: h },
 											)
-										]
-									}
-									onHeightChange={(id, h) =>
-										setHeights((prev) =>
-											prev[id] === h ? prev : { ...prev, [id]: h },
-										)
-									}
-									onGroupHoverEnter={() =>
-										setHovered((prev) => ({ ...prev, [pos]: true }))
-									}
-								/>
-							))}
+										}
+										onGroupHoverEnter={() =>
+											setHovered((prev) => ({ ...prev, [pos]: true }))
+										}
+									/>
+								);
+							})}
 						</React.Fragment>
 					);
 				})}
