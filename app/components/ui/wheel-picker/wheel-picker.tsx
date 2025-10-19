@@ -306,8 +306,10 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 			duration: number,
 			onComplete?: () => void,
 		) => {
-			if (startScroll === endScroll || duration === 0) {
-				scrollTo(startScroll);
+			if (duration <= 0 || startScroll === endScroll) {
+				cancelAnimation();
+				scrollRef.current = scrollTo(endScroll);
+				onComplete?.();
 				return;
 			}
 			const startTime = performance.now();
