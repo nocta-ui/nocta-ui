@@ -105,7 +105,7 @@ export function ThemeToggle({
 						aria-label={label}
 					>
 						{isActive && (
-							<div className="bg-foreground/10 dark:bg-card-muted absolute inset-0.5 rounded-full" />
+							<div className="bg-foreground/10 absolute inset-0.5 rounded-full" />
 						)}
 						<Icon
 							className={'relative m-auto size-full'}

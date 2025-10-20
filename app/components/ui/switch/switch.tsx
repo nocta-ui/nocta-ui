@@ -17,7 +17,7 @@ const switchVariants = cva(
 			size: {
 				sm: 'h-5 w-9',
 				md: 'h-6 w-11',
-				lg: 'h-7 w-12',
+				lg: 'h-7 w-13',
 			},
 			checked: {
 				true: '',
@@ -54,9 +54,9 @@ const thumbVariants = cva(
 	{
 		variants: {
 			size: {
-				sm: 'h-3 w-3',
-				md: 'h-4 w-4',
-				lg: 'h-5 w-5',
+				sm: 'size-4',
+				md: 'size-5',
+				lg: 'size-6',
 			},
 			checked: {
 				true: '',
@@ -65,11 +65,11 @@ const thumbVariants = cva(
 		},
 		compoundVariants: [
 			{ size: 'sm', checked: true, class: 'translate-x-4' },
-			{ size: 'sm', checked: false, class: 'translate-x-1' },
+			{ size: 'sm', checked: false, class: 'translate-x-0' },
 			{ size: 'md', checked: true, class: 'translate-x-5' },
-			{ size: 'md', checked: false, class: 'translate-x-1' },
-			{ size: 'lg', checked: true, class: 'translate-x-5' },
-			{ size: 'lg', checked: false, class: 'translate-x-1' },
+			{ size: 'md', checked: false, class: 'translate-x-0' },
+			{ size: 'lg', checked: true, class: 'translate-x-6' },
+			{ size: 'lg', checked: false, class: 'translate-x-0' },
 		],
 		defaultVariants: {
 			size: 'md',
