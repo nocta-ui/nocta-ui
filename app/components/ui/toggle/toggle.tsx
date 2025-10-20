@@ -63,7 +63,6 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
 			setValue: (value) => onPressedChange?.(!!value),
 		});
 
-		// Jeśli komponent jest niekontrolowany, zarządzamy stanem lokalnie
 		const [internalPressed, setInternalPressed] =
 			React.useState(defaultPressed);
 		const isControlled = pressed !== undefined;

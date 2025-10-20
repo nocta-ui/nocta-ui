@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 
 const toggleGroupVariants = cva(
 	[
-		'not-prose inline-flex rounded-md border shadow-sm select-none',
+		'w-fit not-prose inline-flex rounded-md border shadow-sm select-none',
 		'border-border text-sm font-medium transition-all duration-200 ease-in-out',
 		'disabled:pointer-events-none disabled:opacity-50',
 	],
@@ -106,7 +106,7 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 		const [internalValue, setInternalValue] =
 			React.useState<string[]>(defaultValue);
 
-		const currentValue = isControlled ? value! : internalValue;
+		const currentValue = isControlled ? (value ?? []) : internalValue;
 
 		const handleSelect = (val: string) => {
 			let newValue: string[];

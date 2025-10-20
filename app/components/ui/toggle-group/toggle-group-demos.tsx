@@ -33,7 +33,7 @@ export const MultipleToggleGroupDemo: React.FC = () => {
 	const [values, setValues] = React.useState<string[]>(['email']);
 
 	return (
-		<div className="space-y-3">
+		<div className="space-y-3 w-50">
 			<ToggleGroup value={values} onValueChange={setValues}>
 				<ToggleGroupItem value="email">Email</ToggleGroupItem>
 				<ToggleGroupItem value="sms">SMS</ToggleGroupItem>
