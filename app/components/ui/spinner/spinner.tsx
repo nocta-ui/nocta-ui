@@ -36,7 +36,6 @@ export const Spinner: React.FC<SpinnerProps> = ({
 }) => {
 	return (
 		/* biome-ignore lint/a11y/useSemanticElements: spinner intentionally uses a div with role="status" for accessibility */
-
 		<div
 			role="status"
 			aria-live="polite"
