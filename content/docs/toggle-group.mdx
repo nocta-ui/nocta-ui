@@ -1,0 +1,167 @@
+---
+title: Toggle Group
+description: Grouped toggle buttons for single or multiple selection states with shared styling and keyboard support.
+---
+
+import { ToggleGroup, ToggleGroupItem } from '@/app/components/ui/toggle-group';
+import {
+  BasicToggleGroupDemo,
+  MultipleToggleGroupDemo,
+  ToggleGroupSizesDemo,
+  ToggleGroupWithIconsDemo
+} from '@/app/components/ui/toggle-group/toggle-group-demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
+
+## Installation
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+Install the Toggle Group component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add toggle-group
+```
+
+</Step>
+<Step>
+Import the components:
+
+```tsx lineNumbers title="Import"
+import {
+  ToggleGroup,
+  ToggleGroupItem
+} from '@/components/ui/toggle-group';
+```
+
+</Step>
+</Steps>
+
+## Examples
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <BasicToggleGroupDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Toggle Group"
+    const [value, setValue] = useState<string[]>(['daily']);
+
+    <ToggleGroup single value={value} onValueChange={setValue}>
+      <ToggleGroupItem value="daily">Daily</ToggleGroupItem>
+      <ToggleGroupItem value="weekly">Weekly</ToggleGroupItem>
+      <ToggleGroupItem value="monthly">Monthly</ToggleGroupItem>
+    </ToggleGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Multiple Selection
+
+Remove the `single` prop to allow toggling several items at the same time. The component manages an array of selected values.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <MultipleToggleGroupDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Multiple Toggle Group"
+    const [channels, setChannels] = useState<string[]>(['email']);
+
+    <ToggleGroup value={channels} onValueChange={setChannels}>
+      <ToggleGroupItem value="email">Email</ToggleGroupItem>
+      <ToggleGroupItem value="sms">SMS</ToggleGroupItem>
+      <ToggleGroupItem value="push">Push</ToggleGroupItem>
+    </ToggleGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Sizes
+
+Toggle groups support `sm`, `md`, and `lg` sizes. The group and its items inherit the size for consistent spacing.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <ToggleGroupSizesDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Toggle Group Sizes"
+    const [values, setValues] = useState({ sm: ['left'], md: ['center'], lg: ['right'] });
+
+    <ToggleGroup single size="sm" value={values.sm} onValueChange={(next) => setValues(prev => ({ ...prev, sm: next }))}>
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
+    </ToggleGroup>
+    <ToggleGroup single size="md" value={values.md} onValueChange={(next) => setValues(prev => ({ ...prev, md: next }))}>
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
+    </ToggleGroup>
+    <ToggleGroup single size="lg" value={values.lg} onValueChange={(next) => setValues(prev => ({ ...prev, lg: next }))}>
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
+    </ToggleGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Icon Toolbar
+
+Combine toggle group items with icons to build formatting toolbars or segmented controls.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <ToggleGroupWithIconsDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Icon Toggle Group"
+    <ToggleGroup value={formats} onValueChange={setFormats} size="sm">
+      <ToggleGroupItem value="bold" aria-label="Bold">
+        <FontBoldIcon />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Italic">
+        <FontItalicIcon />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Underline">
+        <UnderlineIcon />
+      </ToggleGroupItem>
+    </ToggleGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### ToggleGroup
+
+| Prop            | Type                        | Default     | Description                                                 |
+| --------------- | --------------------------- | ----------- | ----------------------------------------------------------- |
+| `single`        | `boolean`                   | `false`     | Determines whether only one item can be selected at a time. |
+| `value`         | `string[]`                  | `undefined` | Controlled selected values.                                 |
+| `defaultValue`  | `string[]`                  | `[]`        | Initial selection for uncontrolled usage.                   |
+| `onValueChange` | `(value: string[]) => void` | -           | Called when the selection changes.                          |
+| `variant`       | `'default'`                 | `'default'` | Outer container style.                                      |
+| `size`          | `'sm' \| 'md' \| 'lg'`      | `'md'`      | Defines the toggle size and padding.                        |
+| `disabled`      | `boolean`                   | `false`     | Disables all toggle items when true.                        |
+| `className`     | `string`                    | `''`        | Additional classes on the group container.                  |
+
+### ToggleGroupItem
+
+| Prop        | Type              | Default             | Description                                      |
+| ----------- | ----------------- | ------------------- | ------------------------------------------------ |
+| `value`     | `string`          | -                   | Unique identifier for the item within the group. |
+| `disabled`  | `boolean`         | Inherits from group | Disables only this item when true.               |
+| `className` | `string`          | `''`                | Additional classes for custom styling.           |
+| `children`  | `React.ReactNode` | -                   | Content such as text or icons.                   |

@@ -3,8 +3,8 @@ import { HomeLayout } from '@/components/layout/home';
 import { getLinks } from '@/components/layout/shared';
 import { Footer } from '@/components/sections/footer';
 import { Header } from '@/components/sections/header';
-import { baseOptions, linkItems } from '../layout.config';
 import { Spotlight } from '@/components/spotlight';
+import { baseOptions, linkItems } from '../layout.config';
 
 const Layout = ({ children }: { children: ReactNode }) => {
 	return (

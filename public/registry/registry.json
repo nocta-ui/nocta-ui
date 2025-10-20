@@ -192,7 +192,14 @@
 			},
 			"exports": ["Button"],
 			"props": {
-				"Button": ["children", "variant", "size", "className", "render", "disabled"]
+				"Button": [
+					"children",
+					"variant",
+					"size",
+					"className",
+					"render",
+					"disabled"
+				]
 			},
 			"variants": ["primary", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"]
@@ -692,6 +699,75 @@
 					"id"
 				]
 			},
+			"sizes": ["sm", "md", "lg"]
+		},
+		"toggle": {
+			"name": "Toggle",
+			"description": "Single toggle button component supporting pressed state, variants, and sizes",
+			"category": "form",
+			"files": [
+				{
+					"name": "toggle.tsx",
+					"path": "app/components/ui/toggle/toggle.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": ["Toggle"],
+			"props": {
+				"Toggle": [
+					"pressed",
+					"defaultPressed",
+					"onPressedChange",
+					"variant",
+					"size",
+					"disabled",
+					"className",
+					"children"
+				]
+			},
+			"variants": ["default"],
+			"sizes": ["sm", "md", "lg"]
+		},
+		"toggle-group": {
+			"name": "ToggleGroup",
+			"description": "Grouped toggle buttons for single or multiple selection with shared styling",
+			"category": "form",
+			"files": [
+				{
+					"name": "toggle-group.tsx",
+					"path": "app/components/ui/toggle-group/toggle-group.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^18.0.0",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.18"
+			},
+			"exports": ["ToggleGroup", "ToggleGroupItem"],
+			"props": {
+				"ToggleGroup": [
+					"value",
+					"defaultValue",
+					"onValueChange",
+					"single",
+					"variant",
+					"size",
+					"className",
+					"children"
+				],
+				"ToggleGroupItem": ["value", "disabled", "className", "children"]
+			},
+			"variants": ["default"],
 			"sizes": ["sm", "md", "lg"]
 		},
 		"textarea": {
@@ -1313,6 +1389,8 @@
 				"slider",
 				"switch",
 				"textarea",
+				"toggle",
+				"toggle-group",
 				"calendar"
 			]
 		},

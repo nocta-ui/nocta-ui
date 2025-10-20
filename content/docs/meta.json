@@ -26,6 +26,8 @@
 		"slider",
 		"switch",
 		"textarea",
+		"toggle",
+		"toggle-group",
 		"wheel-picker",
 		"---Data Display---",
 		"avatar",

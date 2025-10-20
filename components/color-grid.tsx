@@ -1,9 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Tooltip,
-	TooltipTrigger,
 	TooltipContent,
+	TooltipTrigger,
 } from '@/app/components/ui/tooltip';
 
 interface ColorToken {
