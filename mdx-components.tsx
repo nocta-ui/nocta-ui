@@ -127,6 +127,8 @@ import {
 } from '@/app/components/ui/tabs';
 import { Textarea } from '@/app/components/ui/textarea';
 import { Toaster, toast } from '@/app/components/ui/toast';
+import { Toggle } from '@/app/components/ui/toggle';
+import { ToggleGroup, ToggleGroupItem } from '@/app/components/ui/toggle-group';
 import {
 	Tooltip,
 	TooltipContent,
@@ -190,6 +192,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		SelectValue,
 		Badge,
 		Switch,
+		Toggle,
 		Dialog,
 		DialogTrigger,
 		DialogContent,
@@ -243,6 +246,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		Progress,
 		RadioGroup,
 		RadioGroupItem,
+		ToggleGroup,
+		ToggleGroupItem,
 		toast,
 		Toaster,
 		Table,
