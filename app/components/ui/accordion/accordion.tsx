@@ -44,12 +44,13 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left transition-all duration-200 ease-in-out focus-visible:ring-0 focus-visible:outline-none',
+	'not-prose flex w-full items-center justify-between rounded-lg text-left transition-all duration-200 ease-in-out',
 	{
 		variants: {
 			variant: {
-				default: 'text-foreground hover:text-foreground/70',
-				card: 'text-foreground hover:text-foreground/70',
+				default:
+					'text-foreground hover:text-foreground/70  focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				card: 'text-foreground hover:text-foreground/70  focus-visible:ring-0 focus-visible:outline-none',
 			},
 			size: {
 				sm: 'text-xs',

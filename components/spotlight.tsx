@@ -1,6 +1,5 @@
 'use client';
 import { motion } from 'motion/react';
-import React from 'react';
 
 type SpotlightProps = {
 	gradientFirst?: string;
@@ -36,6 +35,7 @@ export const Spotlight = ({
 			transition={{
 				duration: 1.5,
 			}}
+			style={{ willChange: 'transform, opacity' }}
 			className="pointer-events-none absolute inset-0 h-full w-full"
 		>
 			<motion.div
