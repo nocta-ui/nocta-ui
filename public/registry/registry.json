@@ -20,7 +20,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
 				"Accordion",
@@ -62,7 +62,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Alert", "AlertTitle", "AlertDescription", "AlertIcon"],
 			"props": {
@@ -145,7 +145,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18",
+				"@ariakit/react": "^0.4.19",
 				"@tanstack/react-table": "^8.21.3"
 			},
 			"internalDependencies": ["checkbox"],
@@ -188,7 +188,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Button"],
 			"props": {
@@ -220,7 +220,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["WheelPicker", "WheelPickerItem"],
 			"props": {
@@ -292,7 +292,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Calendar"],
 			"props": {
@@ -334,7 +334,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Checkbox"],
 			"props": {
@@ -366,7 +366,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["CheckboxCard"],
 			"props": {
@@ -400,7 +400,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
 				"Dialog",
@@ -521,7 +521,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Popover", "PopoverTrigger", "PopoverContent"],
 			"props": {
@@ -548,7 +548,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["RadioGroup", "RadioGroupItem"],
 			"props": {
@@ -685,7 +685,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Switch"],
 			"props": {
@@ -717,7 +717,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Toggle"],
 			"props": {
@@ -751,7 +751,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["ToggleGroup", "ToggleGroupItem"],
 			"props": {
@@ -858,7 +858,7 @@
 			],
 			"dependencies": {
 				"react": "^18.0.0",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
 				"Form",
@@ -899,7 +899,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Tabs", "TabsList", "TabsTrigger", "TabsContent"],
 			"props": {
@@ -938,7 +938,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": ["Tooltip", "TooltipTrigger", "TooltipContent"],
 			"props": {
@@ -964,7 +964,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
 				"DropdownMenu",
@@ -1017,7 +1017,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
-				"@ariakit/react": "^0.4.18"
+				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
 				"ContextMenu",
