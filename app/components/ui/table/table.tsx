@@ -16,7 +16,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
-import { Checkbox } from '../checkbox';
+import { Checkbox } from '@/app/components/ui/checkbox';
 
 declare module '@tanstack/react-table' {
 	// Allow consumers to configure presentation details on column definitions.

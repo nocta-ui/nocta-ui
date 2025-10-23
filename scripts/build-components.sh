@@ -14,18 +14,12 @@ cat > "$fix_icons_script" <<'PERL'
 s#import\s+\{[^}]*\bIcons\b[^}]*\}\s+from\s+(["'])@/app/components/ui/icons/icons\1#import { Icons } from \1@/app/components/ui/icons\1#g;
 PERL
 
-fix_rel_script="$(mktemp -t fixrel.XXXXXX.pl)"
-cat > "$fix_rel_script" <<'PERL'
-s#import\s+(\{[^}]*\}\s+from\s+)(["'])\.\.\/([^"']+)\2#import $1\2\./$3\2#g;
-s#import\s+([A-Za-z0-9_]+)\s+from\s+(["'])\.\.\/([^"']+)\2#import $1 from \2\./$3\2#g;
-PERL
-
 echo "[3/4] Encoding TSX components to Base64 JSON..."
 find app/components/ui -type f -name '*.tsx' \
   ! -name '*-demos*' | while read -r file; do
     filename=$(basename "$file")
 
-    fixed_content=$(perl -p "$fix_icons_script" "$file" | perl -p "$fix_rel_script")
+    fixed_content=$(perl -p "$fix_icons_script" "$file")
 
     encoded=$(printf "%s" "$fixed_content" | base64 | tr -d '\n')
 
@@ -40,6 +34,6 @@ done
 echo "" >> "$output_file"
 echo "}" >> "$output_file"
 
-rm -f "$fix_icons_script" "$fix_rel_script"
+rm -f "$fix_icons_script"
 
 echo "[4/4] Done! Components registry written to $output_file"

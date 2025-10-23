@@ -12,8 +12,8 @@ import {
 } from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
-import { Dialog, DialogContent } from '../dialog';
-import { Input } from '../input';
+import { Dialog, DialogContent } from '@/app/components/ui/dialog';
+import { Input } from '@/app/components/ui/input';
 
 export type CommandKItem = {
 	id?: string;
