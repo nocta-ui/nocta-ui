@@ -11,7 +11,7 @@
 	--color-fd-popover-foreground: var(--color-foreground);
 	--color-fd-card: var(--color-background);
 	--color-fd-card-foreground: var(--color-foreground);
-	--color-fd-border: oklch(from var(--color-border) l c h / 0.8);
+	--color-fd-border: oklch(from var(--color-border) l c h / 0.6);
 	--color-fd-primary: var(--color-ring);
 	--color-fd-primary-foreground: var(--color-foreground);
 	--color-fd-secondary: var(--color-card);
@@ -89,11 +89,11 @@
 }
 
 :root {
-	--color-background: oklch(0.999 0.004 285.89);
+	--color-background: oklch(0.99 0.004 285.89);
 	--color-card: oklch(1 0 0);
-	--color-card-muted: oklch(0.9654 0.003 285.89);
+	--color-card-muted: oklch(0.96 0.004 285.89);
 	--color-foreground: oklch(0.15 0.005 285.89);
-	--color-border: oklch(0.9025 0.0014 285.89);
+	--color-border: oklch(0.8925 0.0014 285.89);
 	--color-ring: oklch(0.55 0.012 285.89);
 	--color-ring-offset: oklch(0.96 0.002 285.89);
 	--color-overlay: oklch(0.92 0.003 285.89 / 0.65);
@@ -106,31 +106,31 @@
 
 	--shadow-sm:
 		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05), 0px 3px 3px -1.5px
-		rgba(9, 9, 11, 0.05), 0px 6px 6px -3px rgba(9, 9, 11, 0.05);
+		rgba(9, 9, 11, 0.05), 0px 6px 6px -3px rgba(9, 9, 11, 0.025);
 
 	--shadow-md:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 12px 12px -6px rgba(9, 9, 11, 0.05),
 		0px 24px 24px -12px rgba(9, 9, 11, 0.05);
 
 	--shadow-lg:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 16px 16px -8px rgba(9, 9, 11, 0.05),
 		0px 32px 32px -16px rgba(9, 9, 11, 0.05);
 
 	--shadow-xl:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 20px 20px -10px rgba(9, 9, 11, 0.05),
 		0px 40px 40px -20px rgba(9, 9, 11, 0.05);
 
 	--shadow-2xl:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 24px 24px -12px rgba(9, 9, 11, 0.05),
@@ -161,31 +161,31 @@
 
 	--shadow-sm:
 		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05), 0px 3px 3px -1.5px
-		rgba(9, 9, 11, 0.05), 0px 6px 6px -3px rgba(9, 9, 11, 0.05);
+		rgba(9, 9, 11, 0.05), 0px 6px 6px -3px rgba(9, 9, 11, 0.025);
 
 	--shadow-md:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 12px 12px -6px rgba(9, 9, 11, 0.05),
 		0px 24px 24px -12px rgba(9, 9, 11, 0.05);
 
 	--shadow-lg:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 16px 16px -8px rgba(9, 9, 11, 0.05),
 		0px 32px 32px -16px rgba(9, 9, 11, 0.05);
 
 	--shadow-xl:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 20px 20px -10px rgba(9, 9, 11, 0.05),
 		0px 40px 40px -20px rgba(9, 9, 11, 0.05);
 
 	--shadow-2xl:
-		0px 1px 1px -0.5px rgba(9, 9, 11, 0.05),
+		0px 1px 1px -0.5px rgba(9, 9, 11, 0.025),
 		0px 3px 3px -1.5px rgba(9, 9, 11, 0.05),
 		0px 6px 6px -3px rgba(9, 9, 11, 0.05),
 		0px 24px 24px -12px rgba(9, 9, 11, 0.05),
