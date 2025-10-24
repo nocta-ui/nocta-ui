@@ -245,7 +245,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 		for (let i = 0; i < DAYS_IN_WEEK; i++) {
 			const dayIndex = (weekStartsOn + i) % DAYS_IN_WEEK;
 			const date = new Date(2023, 0, dayIndex + 1);
-			const dayName = formatWeekday(date);
+			const dayName =
+				formatWeekday?.(date) ?? WEEKDAYS[dayIndex] ?? WEEKDAYS[i] ?? '';
 			days.push(dayName.slice(0, 2));
 		}
 		return days;
@@ -403,86 +404,90 @@ export const Calendar: React.FC<CalendarProps> = ({
 				>
 					{Array.from(
 						{ length: Math.ceil(calendarDays.length / DAYS_IN_WEEK) },
-						(_, weekIndex) => (
-							<Ariakit.CompositeRow
-								key={
-									calendarDays[weekIndex * DAYS_IN_WEEK]
-										.toISOString()
-										.split('T')[0]
-								}
-								className={cn(
-									'grid',
-									showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7',
-									'gap-1',
-								)}
-							>
-								{showWeekNumbers && (
-									<div
-										className={cn(
-											'flex items-center justify-center text-center text-foreground/45',
-											'h-8 w-8 text-xs',
-										)}
-									>
-										{getISOWeekNumber(calendarDays[weekIndex * DAYS_IN_WEEK])}
-									</div>
-								)}
-								{calendarDays
-									.slice(
-										weekIndex * DAYS_IN_WEEK,
-										(weekIndex + 1) * DAYS_IN_WEEK,
-									)
-									.map((date, _dayIndex) => {
-										const isSelected =
-											selectedDate && isSameDay(date, selectedDate);
-										const isCurrentMonth = isSameMonth(date, currentMonth);
-										const isToday = isSameDay(date, new Date());
-										const isDisabled = isDateDisabled(date);
-										const shouldShow = showOutsideDays || isCurrentMonth;
+						(_, weekIndex) => {
+							const weekStartDate = calendarDays[weekIndex * DAYS_IN_WEEK];
 
-										if (!shouldShow) {
+							if (!weekStartDate) {
+								return null;
+							}
+
+							return (
+								<Ariakit.CompositeRow
+									key={weekStartDate.toISOString().split('T')[0]}
+									className={cn(
+										'grid',
+										showWeekNumbers ? 'grid-cols-8' : 'grid-cols-7',
+										'gap-1',
+									)}
+								>
+									{showWeekNumbers && (
+										<div
+											className={cn(
+												'flex items-center justify-center text-center text-foreground/45',
+												'h-8 w-8 text-xs',
+											)}
+										>
+											{getISOWeekNumber(weekStartDate)}
+										</div>
+									)}
+									{calendarDays
+										.slice(
+											weekIndex * DAYS_IN_WEEK,
+											(weekIndex + 1) * DAYS_IN_WEEK,
+										)
+										.map((date, _dayIndex) => {
+											const isSelected =
+												selectedDate && isSameDay(date, selectedDate);
+											const isCurrentMonth = isSameMonth(date, currentMonth);
+											const isToday = isSameDay(date, new Date());
+											const isDisabled = isDateDisabled(date);
+											const shouldShow = showOutsideDays || isCurrentMonth;
+
+											if (!shouldShow) {
+												return (
+													<div key={date.toISOString()} className="h-8 w-8" />
+												);
+											}
+
 											return (
-												<div key={date.toISOString()} className="h-8 w-8" />
+												<Ariakit.CompositeItem
+													id={`d-${date.toISOString().split('T')[0]}`}
+													key={date.toISOString()}
+													onClick={() => handleDateSelect(date)}
+													onKeyDown={(e) => {
+														if (e.key === 'Enter' || e.key === ' ') {
+															e.preventDefault();
+															handleDateSelect(date);
+														}
+													}}
+													role="gridcell"
+													aria-selected={Boolean(isSelected)}
+													aria-disabled={isDisabled || undefined}
+													data-date={date.toISOString().split('T')[0]}
+													className={cn(
+														dayButtonVariants({
+															state: isSelected
+																? 'selected'
+																: isToday
+																	? 'today'
+																	: isDisabled
+																		? 'disabled'
+																		: !isCurrentMonth
+																			? 'outsideMonth'
+																			: 'default',
+															interaction: isDisabled ? 'disabled' : 'enabled',
+														}),
+													)}
+													aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
+													aria-current={isToday ? 'date' : undefined}
+												>
+													{date.getDate()}
+												</Ariakit.CompositeItem>
 											);
-										}
-
-										return (
-											<Ariakit.CompositeItem
-												id={`d-${date.toISOString().split('T')[0]}`}
-												key={date.toISOString()}
-												onClick={() => handleDateSelect(date)}
-												onKeyDown={(e) => {
-													if (e.key === 'Enter' || e.key === ' ') {
-														e.preventDefault();
-														handleDateSelect(date);
-													}
-												}}
-												role="gridcell"
-												aria-selected={Boolean(isSelected)}
-												aria-disabled={isDisabled || undefined}
-												data-date={date.toISOString().split('T')[0]}
-												className={cn(
-													dayButtonVariants({
-														state: isSelected
-															? 'selected'
-															: isToday
-																? 'today'
-																: isDisabled
-																	? 'disabled'
-																	: !isCurrentMonth
-																		? 'outsideMonth'
-																		: 'default',
-														interaction: isDisabled ? 'disabled' : 'enabled',
-													}),
-												)}
-												aria-label={`${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`}
-												aria-current={isToday ? 'date' : undefined}
-											>
-												{date.getDate()}
-											</Ariakit.CompositeItem>
-										);
-									})}
-							</Ariakit.CompositeRow>
-						),
+										})}
+								</Ariakit.CompositeRow>
+							);
+						},
 					)}
 				</Ariakit.Composite>
 			</div>
