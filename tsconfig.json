@@ -3,12 +3,20 @@
 		"baseUrl": ".",
 		"target": "ESNext",
 		"lib": ["dom", "dom.iterable", "esnext"],
-		"allowJs": true,
+		"allowJs": false,
+		"checkJs": false,
 		"skipLibCheck": true,
 		"strict": true,
+		"noImplicitAny": true,
+		"exactOptionalPropertyTypes": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"useUnknownInCatchVariables": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
+		"verbatimModuleSyntax": true,
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
@@ -19,12 +27,8 @@
 			"@/.source": ["./.source/index.ts"],
 			"@/*": ["./*"]
 		},
-		"plugins": [
-			{
-				"name": "next"
-			}
-		]
+		"plugins": [{ "name": "next" }]
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", ".next", "dist", "build", "**/*-demos.tsx"]
 }

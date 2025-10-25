@@ -9,6 +9,7 @@
 		"postinstall": "fumadocs-mdx",
 		"lint": "biome check .",
 		"lint:fix": "biome check --apply .",
+		"typecheck:ui": "tsc -p tsconfig.ui.json",
 		"prepare": "husky"
 	},
 	"dependencies": {

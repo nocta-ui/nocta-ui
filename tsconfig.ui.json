@@ -1,0 +1,6 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": { "noEmit": true },
+	"include": ["app/components/ui/**/*.ts", "app/components/ui/**/*.tsx"],
+	"exclude": ["node_modules", ".next", "dist", "build", "**/*-demos.tsx"]
+}
