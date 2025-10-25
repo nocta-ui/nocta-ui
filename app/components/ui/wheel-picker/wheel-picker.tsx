@@ -277,9 +277,9 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				wheelItemsRef.current.style.transform = transform;
 				wheelItemsRef.current.childNodes.forEach((node) => {
 					const li = node as HTMLLIElement;
-					const distance = Math.abs(
-						Number(li.dataset.index) - normalizedScroll,
-					);
+					const rawIndex = li.dataset?.['index'];
+					if (rawIndex === undefined) return;
+					const distance = Math.abs(Number(rawIndex) - normalizedScroll);
 					const hideForDepth = distance > quarterCount;
 					li.style.visibility = hideForDepth ? 'hidden' : 'visible';
 				});
@@ -405,18 +405,20 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 			const angle = i * itemAngle;
 			segmentLengths.push(itemHeight * Math.cos(angle * degToRad));
 		}
-		const totalLength = segmentLengths.reduce((acc, len) => acc + len, 0);
+		const totalLength = segmentLengths.reduce((acc, len) => acc + (len || 0), 0);
 		const startOffset = Math.max(0, (containerHeight - totalLength) / 2);
 		let positionAlongWheel = startOffset;
 		const ranges: [number, number][] = [];
 		for (const length of segmentLengths) {
 			const start = positionAlongWheel;
-			positionAlongWheel += length;
+			positionAlongWheel += length || 0;
 			ranges.push([start, positionAlongWheel]);
 		}
 		if (!ranges.length) return ranges;
-		ranges[0][0] = 0;
-		ranges[ranges.length - 1][1] = containerHeight;
+		const first = ranges[0];
+		const last = ranges[ranges.length - 1];
+		if (first) ranges[0] = [0, first[1]];
+		if (last) ranges[ranges.length - 1] = [last[0], containerHeight];
 		return ranges;
 	}, [itemAngle, itemHeight, quarterCount, containerHeight]);
 
@@ -730,23 +732,35 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 		);
 
 		for (let i = 0; i < options.length; i++) {
-			items.push(renderItem(options[i], i, -itemAngle * i));
+			const option = options[i];
+			if (!option) continue;
+			items.push(renderItem(option, i, -itemAngle * i));
 		}
 
 		if (infinite) {
 			for (let i = 0; i < quarterCount; i++) {
 				const prependIndex = -i - 1;
 				const appendIndex = i + options.length;
-				items.unshift(
-					renderItem(
-						options[options.length - i - 1],
-						prependIndex,
-						itemAngle * (i + 1),
-					),
-				);
-				items.push(
-					renderItem(options[i], appendIndex, -itemAngle * appendIndex),
-				);
+				const prependOption = options[options.length - i - 1];
+				const appendOption = options[i];
+				if (prependOption) {
+					items.unshift(
+						renderItem(
+							prependOption,
+							prependIndex,
+							itemAngle * (i + 1),
+						),
+					);
+				}
+				if (appendOption) {
+					items.push(
+						renderItem(
+							appendOption,
+							appendIndex,
+							-itemAngle * appendIndex,
+						),
+					);
+				}
 			}
 		}
 		return items;
@@ -780,7 +794,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 					className={wheelPickerHighlightText({ size })}
 					style={{ height: itemHeight }}
 				>
-					{options[options.length - 1].node}
+					{options[options.length - 1]?.node}
 				</li>,
 			);
 			items.push(
@@ -789,7 +803,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 					className={wheelPickerHighlightText({ size })}
 					style={{ height: itemHeight }}
 				>
-					{options[0].node}
+					{options[0]?.node}
 				</li>,
 			);
 		}
@@ -810,8 +824,8 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 		[options, selectedValue],
 	);
 	const activeId =
-		activeIndex >= 0
-			? `${instancePrefix}-${options[activeIndex].value}`
+		activeIndex >= 0 && options[activeIndex]
+			? `${instancePrefix}-${options[activeIndex]!.value}`
 			: undefined;
 
 	React.useEffect(() => {
