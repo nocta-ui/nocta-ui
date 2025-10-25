@@ -87,11 +87,14 @@ export const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({
 	disabled,
 }) => {
 	const menu = Ariakit.useMenuContext();
+	if (!menu) {
+		throw new Error('DropdownMenuTrigger must be used within a DropdownMenu.');
+	}
 
 	return (
 		<Ariakit.MenuButton
 			store={menu}
-			disabled={disabled}
+			disabled={Boolean(disabled)}
 			className={cn(
 				'appearance-none bg-transparent p-0 text-left',
 				className,
@@ -130,7 +133,7 @@ export const DropdownMenuItem: React.FC<
 	} & VariantProps<typeof dropdownMenuItemVariants>
 > = ({ children, className, disabled, inset, destructive, onClick }) => (
 	<Ariakit.MenuItem
-		disabled={disabled}
+		disabled={Boolean(disabled)}
 		onClick={onClick}
 		className={cn(dropdownMenuItemVariants({ inset, destructive }), className)}
 	>
@@ -165,7 +168,7 @@ export const DropdownMenuSubTrigger: React.FC<
 	} & VariantProps<typeof dropdownMenuItemVariants>
 > = ({ children, className, disabled, inset, destructive }) => (
 	<Ariakit.MenuButton
-		disabled={disabled}
+		disabled={Boolean(disabled)}
 		className={cn(dropdownMenuItemVariants({ inset, destructive }), className)}
 	>
 		<span className="flex flex-1 items-center justify-start">{children}</span>
