@@ -117,8 +117,8 @@ export const FormField: React.FC<FormFieldProps> = ({
 	const contextValue: FormFieldContextValue = {
 		id: `form-field-${id}`,
 		name,
-		error,
-		description,
+		...(error !== undefined ? { error } : {}),
+		...(description !== undefined ? { description } : {}),
 	};
 
 	return (
@@ -135,6 +135,9 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 	...props
 }) => {
 	const { name } = useFormField();
+	const { id, ...restProps } = props;
+	const labelProps =
+		typeof id === 'undefined' ? restProps : { ...restProps, id };
 
 	return (
 		<AriakitFormLabel
@@ -143,7 +146,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 				'block text-sm leading-none font-medium text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 				className,
 			)}
-			{...props}
+			{...labelProps}
 		>
 			{children}
 			{required && <span className="ml-1 text-error/90">*</span>}
@@ -164,11 +167,14 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
 	...props
 }) => {
 	const { name } = useFormField();
+	const { id, ...restProps } = props;
+	const descriptionProps =
+		typeof id === 'undefined' ? restProps : { ...restProps, id };
 	return (
 		<AriakitFormDescription
 			name={name}
 			className={cn('text-sm leading-relaxed text-foreground/45', className)}
-			{...props}
+			{...descriptionProps}
 		>
 			{children}
 		</AriakitFormDescription>
@@ -179,10 +185,13 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	children,
 	className = '',
 	type = 'error',
-	...props
+	...rest
 }) => {
 	const { name, error: ctxError } = useFormField();
 	const message = children ?? ctxError;
+	const { id, ...props } = rest;
+	const forwardedProps =
+		typeof id === 'undefined' ? props : { ...props, id };
 
 	const variants = {
 		error: 'text-error/90',
@@ -195,7 +204,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 		return (
 			<p
 				className={cn('text-sm leading-none', variants[type], className)}
-				{...props}
+				{...forwardedProps}
 			>
 				{message}
 			</p>
@@ -207,7 +216,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 			<p
 				className={cn('text-sm leading-none', variants.error, className)}
 				role="alert"
-				{...props}
+				{...forwardedProps}
 			>
 				{message}
 			</p>
@@ -219,7 +228,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 			name={name}
 			className={cn('text-sm leading-none', variants.error, className)}
 			role="alert"
-			{...props}
+			{...forwardedProps}
 		/>
 	);
 };
@@ -230,14 +239,17 @@ export interface FormInputProps
 }
 
 export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-	({ className = '', ...props }, ref) => {
+	({ className = '', name: _name, id, disabled, autoFocus, ...rest }, ref) => {
 		const { name } = useFormField();
 		return (
 			<AriakitFormInput
 				ref={ref}
 				name={name}
 				className={className}
-				{...props}
+				{...rest}
+				{...(typeof id === 'undefined' ? {} : { id })}
+				{...(typeof disabled === 'undefined' ? {} : { disabled })}
+				{...(typeof autoFocus === 'undefined' ? {} : { autoFocus })}
 			/>
 		);
 	},
@@ -252,10 +264,17 @@ export interface FormSubmitProps
 export const FormSubmit: React.FC<FormSubmitProps> = ({
 	className = '',
 	children,
-	...props
+	disabled,
+	autoFocus,
+	...rest
 }) => {
+	const submitProps = {
+		...rest,
+		...(typeof disabled === 'undefined' ? {} : { disabled }),
+		...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),
+	};
 	return (
-		<AriakitFormSubmit className={className} {...props}>
+		<AriakitFormSubmit className={className} {...submitProps}>
 			{children}
 		</AriakitFormSubmit>
 	);
