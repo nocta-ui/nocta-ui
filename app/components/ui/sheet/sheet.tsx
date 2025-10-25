@@ -217,7 +217,9 @@ export const Sheet: React.FC<SheetProps> = ({
 }) => {
 	const store = useDialogStore(
 		controlledOpen !== undefined
-			? { open: controlledOpen, setOpen: onOpenChange }
+			? onOpenChange
+				? { open: controlledOpen, setOpen: onOpenChange }
+				: { open: controlledOpen }
 			: undefined,
 	);
 
@@ -281,6 +283,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 	resizable = false,
 	allowShrink = false,
 	style: inlineStyle,
+	autoFocus,
 	...props
 }) => {
 	const { store } = useSheet();
@@ -524,6 +527,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				className,
 			)}
 			style={{ ...(inlineStyle || {}), ...(sizeStyle || {}) }}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
 			{...props}
 		>
 			{resizable &&
@@ -670,10 +674,16 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 	children,
 	className = '',
 	asChild = false,
+	disabled,
+	autoFocus,
 	onClick,
 	...props
 }) => {
 	const { store } = useSheet();
+	const forwardedProps = {
+		...(disabled !== undefined ? { disabled } : {}),
+		...(autoFocus !== undefined ? { autoFocus } : {}),
+	};
 
 	if (asChild && React.isValidElement(children)) {
 		const child = children as React.ReactElement<
@@ -686,6 +696,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		};
 		return React.cloneElement(child, {
 			onClick: handleClick,
+			...forwardedProps,
 			...props,
 			...(child.props || {}),
 		});
@@ -700,6 +711,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 			)}
 			type="button"
 			onClick={onClick}
+			{...forwardedProps}
 			{...props}
 		>
 			{children || 'Close'}
