@@ -57,6 +57,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 	className,
 	...props
 }) => {
+	const { autoFocus, ...restProps } = props;
 	if (React.isValidElement(children)) {
 		return (
 			<TooltipAnchor
@@ -74,7 +75,8 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 						},
 					)
 				}
-				{...props}
+				{...(autoFocus === undefined ? {} : { autoFocus })}
+				{...restProps}
 			/>
 		);
 	}
@@ -82,7 +84,8 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 	return (
 		<TooltipAnchor
 			className={cn('not-prose inline-flex items-center', className)}
-			{...props}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
+			{...restProps}
 		>
 			{children}
 		</TooltipAnchor>
@@ -93,6 +96,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	children,
 	className,
 	variant = 'default',
+	autoFocus,
 	...props
 }) => {
 	if (typeof document === 'undefined') {
@@ -103,6 +107,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 		<AriakitTooltip
 			gutter={-4}
 			className={cn(tooltipContentVariants({ variant }), className)}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
 			{...props}
 		>
 			{children}
