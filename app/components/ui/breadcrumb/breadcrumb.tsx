@@ -151,10 +151,7 @@ export interface BreadcrumbEllipsisProps
 const BreadcrumbContext = React.createContext<{
 	size?: 'sm' | 'md' | 'lg';
 	separator?: React.ReactNode;
-}>({
-	size: undefined,
-	separator: undefined,
-});
+}>({});
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 	size = 'md',
