@@ -97,11 +97,20 @@ export const Switch: React.FC<SwitchProps> = ({
 	...props
 }) => {
 	const id = React.useId();
-	const store = Ariakit.useCheckboxStore({
-		value: checked,
-		setValue: (val) => onCheckedChange?.(val === true),
-		defaultValue: defaultChecked ?? false,
-	});
+	const store = Ariakit.useCheckboxStore(
+		checked !== undefined
+			? onCheckedChange
+				? {
+						value: checked,
+						setValue: (val) => {
+							const next =
+								Array.isArray(val) ? val.some(Boolean) : val === true;
+							onCheckedChange(next);
+						},
+					}
+				: { value: checked }
+			: { defaultValue: defaultChecked ?? false },
+	);
 	const value = Ariakit.useStoreState(store, 'value');
 	const isChecked = value === true;
 
