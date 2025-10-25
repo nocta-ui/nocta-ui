@@ -3,10 +3,10 @@
 import type React from 'react';
 import { useState } from 'react';
 import { Button } from '../button';
-import { Chat, ChatActions, type Message, type TypingUser } from './chat';
+import { Chat, ChatActions, type ChatMessage, type TypingUser } from './chat';
 
 export const BasicChatDemo: React.FC = () => {
-	const [messages, setMessages] = useState<Message[]>([
+	const [messages, setMessages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'Hello! How can I help you today?',
@@ -17,7 +17,7 @@ export const BasicChatDemo: React.FC = () => {
 	]);
 
 	const handleSendMessage = (message: string) => {
-		const newMessage: Message = {
+		const newMessage: ChatMessage = {
 			id: Date.now().toString(),
 			content: message,
 			sender: 'user',
@@ -28,7 +28,7 @@ export const BasicChatDemo: React.FC = () => {
 		setMessages((prev) => [...prev, newMessage]);
 
 		setTimeout(() => {
-			const assistantMessage: Message = {
+			const assistantMessage: ChatMessage = {
 				id: (Date.now() + 1).toString(),
 				content: "Thanks for your message! I'm here to help.",
 				sender: 'assistant',
@@ -54,7 +54,7 @@ export const BasicChatDemo: React.FC = () => {
 };
 
 export const ChatWithAvatarsDemo: React.FC = () => {
-	const [messages, setMessages] = useState<Message[]>([
+	const [messages, setMessages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'Hey everyone! Welcome to the group chat 👋',
@@ -92,7 +92,7 @@ export const ChatWithAvatarsDemo: React.FC = () => {
 	]);
 
 	const handleSendMessage = (message: string) => {
-		const newMessage: Message = {
+		const newMessage: ChatMessage = {
 			id: Date.now().toString(),
 			content: message,
 			sender: 'user',
@@ -120,7 +120,7 @@ export const ChatWithAvatarsDemo: React.FC = () => {
 };
 
 export const ChatWithTimestampsDemo: React.FC = () => {
-	const [messages] = useState<Message[]>([
+	const [messages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'Good morning! How can I assist you today?',
@@ -181,7 +181,7 @@ export const ChatWithTimestampsDemo: React.FC = () => {
 };
 
 export const ReadOnlyChatDemo: React.FC = () => {
-	const [messages] = useState<Message[]>([
+	const [messages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'This is a read-only chat',
@@ -219,7 +219,7 @@ export const ReadOnlyChatDemo: React.FC = () => {
 };
 
 export const ChatWithActionsDemo: React.FC = () => {
-	const [messages, setMessages] = useState<Message[]>([
+	const [messages, setMessages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: "Hello! I'm your AI assistant. How can I help you today?",
@@ -232,7 +232,7 @@ export const ChatWithActionsDemo: React.FC = () => {
 	const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
 
 	const handleSendMessage = (message: string) => {
-		const newMessage: Message = {
+		const newMessage: ChatMessage = {
 			id: Date.now().toString(),
 			content: message,
 			sender: 'user',
@@ -245,7 +245,7 @@ export const ChatWithActionsDemo: React.FC = () => {
 
 		setTimeout(() => {
 			setTypingUsers([]);
-			const assistantMessage: Message = {
+			const assistantMessage: ChatMessage = {
 				id: (Date.now() + 1).toString(),
 				content: "Thanks for your message! I'm processing your request.",
 				sender: 'assistant',
@@ -302,7 +302,7 @@ export const ChatWithActionsDemo: React.FC = () => {
 };
 
 export const CustomStyledChatDemo: React.FC = () => {
-	const [messages] = useState<Message[]>([
+	const [messages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'This chat has custom styling!',
@@ -339,7 +339,7 @@ export const CustomStyledChatDemo: React.FC = () => {
 };
 
 export const TypingIndicatorDemo: React.FC = () => {
-	const [messages, setMessages] = useState<Message[]>([
+	const [messages, setMessages] = useState<ChatMessage[]>([
 		{
 			id: '1',
 			content: 'Hey there! Welcome to the team chat 👋',
@@ -362,7 +362,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 	const [simulationActive, setSimulationActive] = useState(false);
 
 	const handleSendMessage = (message: string) => {
-		const newMessage: Message = {
+		const newMessage: ChatMessage = {
 			id: Date.now().toString(),
 			content: message,
 			sender: 'user',
@@ -408,9 +408,11 @@ export const TypingIndicatorDemo: React.FC = () => {
 				'Welcome to the team! Feel free to ask if you need anything.',
 			];
 
-			const assistantMessage: Message = {
+			const assistantMessage: ChatMessage = {
 				id: (Date.now() + 1).toString(),
-				content: responses[Math.floor(Math.random() * responses.length)],
+				content:
+					responses[Math.floor(Math.random() * responses.length)] ??
+					'Default response',
 				sender: 'assistant',
 				timestamp: new Date(),
 				name: 'Sarah',

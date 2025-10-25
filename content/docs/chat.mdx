@@ -38,7 +38,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
       ChatInput,
       ChatActions,
       TypingIndicator,
-      type Message,
+      type ChatMessage,
       type TypingUser,
     } from '@/components/ui/chat';
     ```
@@ -55,7 +55,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Chat"
-    const [messages, setMessages] = useState<Message[]>([
+    const [messages, setMessages] = useState<ChatMessage[]>([
       {
         id: '1',
         content: 'Hello! How can I help you today?',
@@ -66,7 +66,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     ]);
 
     const handleSendMessage = (message: string) => {
-      const newMessage: Message = {
+      const newMessage: ChatMessage = {
         id: Date.now().toString(),
         content: message,
         sender: 'user',
@@ -103,7 +103,7 @@ Display user avatars alongside messages for better visual identification.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Chat with Avatars"
-    const messages: Message[] = [
+    const messages: ChatMessage[] = [
       {
         id: '1',
         content: 'Hey everyone! Welcome to the group chat 👋',
@@ -185,11 +185,11 @@ Display real-time typing indicators to show when users are composing messages.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Typing Indicators"
-    const [messages, setMessages] = useState<Message[]>([...]);
+    const [messages, setMessages] = useState<ChatMessage[]>([...]);
     const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
 
     const handleSendMessage = (message: string) => {
-      const newMessage: Message = {
+      const newMessage: ChatMessage = {
         id: Date.now().toString(),
         content: message,
         sender: 'user',
@@ -205,7 +205,7 @@ Display real-time typing indicators to show when users are composing messages.
       // Remove typing indicator and add response
       setTimeout(() => {
         setTypingUsers([]);
-        const response: Message = {
+        const response: ChatMessage = {
           id: (Date.now() + 1).toString(),
           content: 'Thanks for your message!',
           sender: 'assistant',
@@ -290,7 +290,7 @@ Disable the chat input when needed:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `messages` | `Message[]` | `[]` | Array of chat messages |
+| `messages` | `ChatMessage[]` | `[]` | Array of chat messages |
 | `onSendMessage` | `(message: string) => void` | `undefined` | Callback when message is sent |
 | `placeholder` | `string` | `"Type a message..."` | Input placeholder text |
 | `disabled` | `boolean` | `false` | Disable chat input |
@@ -305,8 +305,8 @@ Disable the chat input when needed:
 
 ### Message Interface
 
-```tsx lineNumbers title="Message Interface"
-interface Message {
+```tsx lineNumbers title="ChatMessage Interface"
+interface ChatMessage {
   id: string;                    // Unique message identifier
   content: string;               // Message text content
   sender: 'user' | 'assistant' | 'system'; // Message sender type

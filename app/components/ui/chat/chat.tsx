@@ -70,7 +70,7 @@ const inputVariants = cva(
 	},
 );
 
-export interface Message {
+export interface ChatMessage {
 	id: string;
 	content: string;
 	sender: 'user' | 'assistant' | 'system';
@@ -88,7 +88,7 @@ export interface TypingUser {
 export interface ChatProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof chatVariants> {
-	messages?: Message[];
+	messages?: ChatMessage[];
 	onSendMessage?: (message: string) => void;
 	placeholder?: string;
 	disabled?: boolean;
@@ -103,7 +103,7 @@ export interface ChatProps
 
 export interface ChatMessagesProps
 	extends React.HTMLAttributes<HTMLDivElement> {
-	messages: Message[];
+	messages: ChatMessage[];
 	showTimestamps?: boolean;
 	showAvatars?: boolean;
 	typingUsers?: TypingUser[];
@@ -111,7 +111,7 @@ export interface ChatMessagesProps
 }
 
 export interface ChatMessageProps extends React.HTMLAttributes<HTMLDivElement> {
-	message: Message;
+	message: ChatMessage;
 	showTimestamp?: boolean;
 	showAvatar?: boolean;
 	className?: string;
