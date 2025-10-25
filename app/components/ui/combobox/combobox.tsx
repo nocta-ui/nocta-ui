@@ -226,11 +226,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							) : (
 								matches.map((option) => {
 									const isSelected = option.value === selectedValue;
+									const itemDisabled = option.disabled === true;
 									return (
 										<Ariakit.SelectItem
 											key={option.value}
 											value={option.value}
-											disabled={option.disabled}
+											{...(itemDisabled ? { disabled: true } : {})}
 											className={cn(
 												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
 												'data-active-item:bg-card-muted data-active-item:text-foreground',
