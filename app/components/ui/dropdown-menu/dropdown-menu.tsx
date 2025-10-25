@@ -145,7 +145,7 @@ export const DropdownMenuSeparator: React.FC<{ className?: string }> = ({
 	className,
 }) => (
 	<Ariakit.MenuSeparator
-		className={cn('-mx-1 my-1 h-px bg-border opacity/60', className)}
+		className={cn('-mx-1 my-1 h-px bg-border opacity-60', className)}
 	/>
 );
 
