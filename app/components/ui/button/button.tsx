@@ -68,10 +68,11 @@ export const Button: React.FC<ButtonProps> = ({
 	...props
 }) => {
 	const buttonType = type ?? (render ? undefined : 'button');
+	const renderProps = render === undefined ? {} : { render };
 
 	return (
 		<AriakitButton
-			render={render}
+			{...renderProps}
 			className={cn(
 				buttonVariants({
 					variant,
