@@ -119,6 +119,7 @@ import { Skeleton } from '@/app/components/ui/skeleton';
 import { Slider } from '@/app/components/ui/slider';
 import { Spinner } from '@/app/components/ui/spinner';
 import { Switch } from '@/app/components/ui/switch';
+import { Table } from '@/app/components/ui/table';
 import {
 	Tabs,
 	TabsContent,
@@ -138,7 +139,6 @@ import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import { Pre, CodeBlock as YourCustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
-import { Table } from '@/app/components/ui/table';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />

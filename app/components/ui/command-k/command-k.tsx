@@ -10,10 +10,10 @@ import {
 	useRef,
 	useState,
 } from 'react';
-import { Icons } from '@/app/components/ui/icons/icons';
-import { cn } from '@/lib/utils';
 import { Dialog, DialogContent } from '@/app/components/ui/dialog';
+import { Icons } from '@/app/components/ui/icons/icons';
 import { Input } from '@/app/components/ui/input';
+import { cn } from '@/lib/utils';
 
 export type CommandKItem = {
 	id?: string;
