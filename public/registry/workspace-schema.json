@@ -1,0 +1,61 @@
+{
+	"$schema": "https://json-schema.org/draft-07/schema#",
+	"title": "Workspace manifest schema",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"format": "uri",
+			"description": "Optional JSON schema reference to aid editors."
+		},
+		"workspaces": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"minLength": 1,
+						"description": "Display name for the workspace. Defaults to the root folder if omitted."
+					},
+					"kind": {
+						"type": "string",
+						"enum": ["app", "ui", "library"],
+						"description": "Classifies the workspace for CLI behaviour."
+					},
+					"packageName": {
+						"type": "string",
+						"minLength": 1,
+						"description": "Optional npm workspace or package name, used for workspace-aware installs."
+					},
+					"root": {
+						"type": "string",
+						"minLength": 1,
+						"description": "Relative path from the repository root to this workspace."
+					},
+					"config": {
+						"type": "string",
+						"minLength": 1,
+						"description": "Relative path from the repository root to nocta.config.json for this workspace."
+					}
+				},
+				"required": ["name", "kind", "root", "config"],
+				"additionalProperties": false
+			},
+			"minItems": 1,
+			"description": "List of workspaces initialised with the Nocta CLI."
+		},
+		"packageManager": {
+			"type": "string",
+			"enum": ["npm", "pnpm", "yarn", "bun"],
+			"description": "Detected package manager for the repository."
+		},
+		"repoRoot": {
+			"type": "string",
+			"minLength": 1,
+			"description": "Normalised path to the repository root, usually '.'."
+		}
+	},
+	"required": ["workspaces", "packageManager", "repoRoot"],
+	"additionalProperties": false
+}
