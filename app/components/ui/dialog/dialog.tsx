@@ -114,7 +114,9 @@ export const Dialog: React.FC<DialogProps> = ({
 }) => {
 	const store = useDialogStore(
 		controlledOpen !== undefined
-			? { open: controlledOpen, setOpen: onOpenChange }
+			? onOpenChange
+				? { open: controlledOpen, setOpen: onOpenChange }
+				: { open: controlledOpen }
 			: undefined,
 	);
 
@@ -178,6 +180,11 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 	portal = true,
 	...props
 }) => {
+	const { autoFocus, ...restProps } = props;
+	const dialogProps =
+		typeof autoFocus === 'undefined'
+			? restProps
+			: { ...restProps, autoFocus };
 	const { store } = useDialog();
 	const open = useStoreState(store, 'open');
 	const [mounted, setMounted] = React.useState(open);
@@ -213,7 +220,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 				'data-leave:scale-105 data-leave:opacity-0 data-leave:blur-sm',
 				className,
 			)}
-			{...props}
+			{...dialogProps}
 		>
 			{showClose && (
 				<DialogClose className="absolute top-2 right-2 z-10">
@@ -313,6 +320,8 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 	children,
 	className = '',
 	asChild = false,
+	disabled,
+	autoFocus,
 	onClick,
 	...props
 }) => {
@@ -329,6 +338,8 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		};
 		return React.cloneElement(child, {
 			onClick: handleClick,
+			...(disabled !== undefined ? { disabled } : {}),
+			...(autoFocus !== undefined ? { autoFocus } : {}),
 			...props,
 			...(child.props || {}),
 		});
@@ -342,6 +353,8 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 				className,
 			)}
 			type="button"
+			disabled={Boolean(disabled)}
+			autoFocus={Boolean(autoFocus)}
 			onClick={onClick}
 			{...props}
 		>
