@@ -125,9 +125,6 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
       }   // [!code highlight]
     }
     ```
-
-    - `bun run --filter ui build` creates `dist/src/*` and `dist/styles.css`.
-    - `bun run --filter ui dev` launches watch mode for TypeScript, alias rewrites, and Tailwind.
   </Step>
   <Step>
     ### Set up the Next.js app (`apps/web`)
@@ -197,5 +194,19 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     After both workspaces are registered you can run commands such as `npx @nocta-ui/cli add` inside `apps/web` and the CLI will automatically install components into `packages/ui`.
   </Step>
 </Steps>
+
+Once the CLI copies components into `packages/ui`, rebuild the shared UI package so the compiled output stays in sync:
+
+```bash title="Terminal"
+bun run --filter ui build
+# or keep everything hot-reloading in watch mode
+bun run --filter ui dev
+```
+
+Back in your application workspace, consume the freshly published exports as normal:
+
+```tsx title="Example usage"
+import { Button } from "ui";
+```
 
 You now have a Bun-managed monorepo where the shared UI package outputs build artefacts that the Next.js application can consume directly. Adjust scripts or tooling versions to match your team standards, then commit the scaffold baseline.
