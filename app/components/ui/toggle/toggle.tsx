@@ -73,21 +73,21 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
 			onPressedChange?.(checked);
 		};
 
-	const isDisabled = Boolean(disabled);
+		const isDisabled = Boolean(disabled);
 
-	return (
-		<Checkbox
-			store={checkbox}
-			render={<button type="button" ref={ref} disabled={isDisabled} />}
-			checked={isPressed}
-			onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-				handleChange(event.currentTarget.checked)
-			}
-			data-state={isPressed ? 'on' : 'off'}
-			className={cn(toggleVariants({ variant, size }), className)}
-			disabled={isDisabled}
-			{...props}
-		>
+		return (
+			<Checkbox
+				store={checkbox}
+				render={<button type="button" ref={ref} disabled={isDisabled} />}
+				checked={isPressed}
+				onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+					handleChange(event.currentTarget.checked)
+				}
+				data-state={isPressed ? 'on' : 'off'}
+				className={cn(toggleVariants({ variant, size }), className)}
+				disabled={isDisabled}
+				{...props}
+			>
 				{children}
 			</Checkbox>
 		);

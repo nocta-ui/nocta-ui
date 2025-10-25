@@ -123,33 +123,33 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 			onValueChange?.(newValue);
 		};
 
-	const { autoFocus, ...restProps } = props;
-	return (
-		<ToggleGroupContext.Provider
-			value={{
-				store,
-				values: currentValue,
-				onSelect: handleSelect,
-				single,
-				size: size as NonNullable<typeof size>,
-			}}
-		>
-			<Composite
-				ref={ref}
-				store={store}
-				role={single ? 'radiogroup' : 'group'}
-				className={cn(
-					toggleGroupVariants({ variant, size }),
-					'flex divide-x divide-border',
-					className,
-				)}
-				{...(autoFocus === undefined ? {} : { autoFocus })}
-				{...restProps}
+		const { autoFocus, ...restProps } = props;
+		return (
+			<ToggleGroupContext.Provider
+				value={{
+					store,
+					values: currentValue,
+					onSelect: handleSelect,
+					single,
+					size: size as NonNullable<typeof size>,
+				}}
 			>
-				{children}
-			</Composite>
-		</ToggleGroupContext.Provider>
-	);
+				<Composite
+					ref={ref}
+					store={store}
+					role={single ? 'radiogroup' : 'group'}
+					className={cn(
+						toggleGroupVariants({ variant, size }),
+						'flex divide-x divide-border',
+						className,
+					)}
+					{...(autoFocus === undefined ? {} : { autoFocus })}
+					{...restProps}
+				>
+					{children}
+				</Composite>
+			</ToggleGroupContext.Provider>
+		);
 	},
 );
 ToggleGroup.displayName = 'ToggleGroup';

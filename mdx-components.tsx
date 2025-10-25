@@ -38,7 +38,6 @@ import {
 	Chat,
 	ChatActions,
 	ChatInput,
-	ChatMessage,
 	ChatMessages,
 } from '@/app/components/ui/chat';
 import { Checkbox } from '@/app/components/ui/checkbox';
@@ -252,7 +251,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		FrameworkSelector,
 		Chat,
 		ChatMessages,
-		ChatMessage,
 		ChatInput,
 		ChatActions,
 		Breadcrumb,

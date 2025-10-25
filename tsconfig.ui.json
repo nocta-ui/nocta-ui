@@ -1,6 +1,21 @@
 {
 	"extends": "./tsconfig.json",
-	"compilerOptions": { "noEmit": true },
+	"compilerOptions": {
+		"strict": true,
+		"noImplicitAny": true,
+		"exactOptionalPropertyTypes": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"useUnknownInCatchVariables": true,
+		"noEmit": true
+	},
 	"include": ["app/components/ui/**/*.ts", "app/components/ui/**/*.tsx"],
-	"exclude": ["node_modules", ".next", "dist", "build", "**/*-demos.tsx"]
+	"exclude": [
+		"node_modules",
+		".next",
+		"dist",
+		"build",
+		"app/components/ui/**/*-demos.tsx"
+	]
 }

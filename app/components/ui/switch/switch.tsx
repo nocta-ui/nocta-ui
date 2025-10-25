@@ -103,8 +103,9 @@ export const Switch: React.FC<SwitchProps> = ({
 				? {
 						value: checked,
 						setValue: (val) => {
-							const next =
-								Array.isArray(val) ? val.some(Boolean) : val === true;
+							const next = Array.isArray(val)
+								? val.some(Boolean)
+								: val === true;
 							onCheckedChange(next);
 						},
 					}

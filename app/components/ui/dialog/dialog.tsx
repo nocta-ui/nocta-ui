@@ -182,9 +182,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 }) => {
 	const { autoFocus, ...restProps } = props;
 	const dialogProps =
-		typeof autoFocus === 'undefined'
-			? restProps
-			: { ...restProps, autoFocus };
+		typeof autoFocus === 'undefined' ? restProps : { ...restProps, autoFocus };
 	const { store } = useDialog();
 	const open = useStoreState(store, 'open');
 	const [mounted, setMounted] = React.useState(open);

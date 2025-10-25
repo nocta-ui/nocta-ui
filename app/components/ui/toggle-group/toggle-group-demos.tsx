@@ -21,9 +21,9 @@ export const BasicToggleGroupDemo: React.FC = () => {
 
 			<p className="text-sm text-foreground/70">
 				Selected:{' '}
-		{value.length > 0 && value[0]
-			? value[0].charAt(0).toUpperCase() + value[0].slice(1)
-			: 'None'}
+				{value.length > 0 && value[0]
+					? value[0].charAt(0).toUpperCase() + value[0].slice(1)
+					: 'None'}
 			</p>
 		</div>
 	);

@@ -405,7 +405,10 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 			const angle = i * itemAngle;
 			segmentLengths.push(itemHeight * Math.cos(angle * degToRad));
 		}
-		const totalLength = segmentLengths.reduce((acc, len) => acc + (len || 0), 0);
+		const totalLength = segmentLengths.reduce(
+			(acc, len) => acc + (len || 0),
+			0,
+		);
 		const startOffset = Math.max(0, (containerHeight - totalLength) / 2);
 		let positionAlongWheel = startOffset;
 		const ranges: [number, number][] = [];
@@ -745,20 +748,12 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				const appendOption = options[i];
 				if (prependOption) {
 					items.unshift(
-						renderItem(
-							prependOption,
-							prependIndex,
-							itemAngle * (i + 1),
-						),
+						renderItem(prependOption, prependIndex, itemAngle * (i + 1)),
 					);
 				}
 				if (appendOption) {
 					items.push(
-						renderItem(
-							appendOption,
-							appendIndex,
-							-itemAngle * appendIndex,
-						),
+						renderItem(appendOption, appendIndex, -itemAngle * appendIndex),
 					);
 				}
 			}

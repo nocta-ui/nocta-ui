@@ -103,9 +103,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 			propsForStore = {
 				value: checked,
 				setValue: (value) => {
-					const bool = Array.isArray(value)
-						? value.length > 0
-						: Boolean(value);
+					const bool = Array.isArray(value) ? value.length > 0 : Boolean(value);
 					onCheckedChange(bool);
 				},
 			};

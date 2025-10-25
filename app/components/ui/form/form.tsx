@@ -190,8 +190,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	const { name, error: ctxError } = useFormField();
 	const message = children ?? ctxError;
 	const { id, ...props } = rest;
-	const forwardedProps =
-		typeof id === 'undefined' ? props : { ...props, id };
+	const forwardedProps = typeof id === 'undefined' ? props : { ...props, id };
 
 	const variants = {
 		error: 'text-error/90',
