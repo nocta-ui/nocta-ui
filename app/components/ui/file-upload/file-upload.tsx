@@ -224,7 +224,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 		<li
 			className={cn(fileItemVariants({ status: file.status, size }), className)}
 		>
-			<div className="flex-shrink-0">
+			<div className="shrink-0">
 				{showPreview && file.preview ? (
 					/* biome-ignore lint/performance/noImgElement: prefer native img here */
 					<img
@@ -257,7 +257,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 				</div>
 
 				<div className="mt-1 flex min-w-0 items-center gap-2">
-					<p className="flex-shrink-0 text-xs text-foreground/70">
+					<p className="shrink-0 text-xs text-foreground/70">
 						{formatFileSize(file.file.size)}
 					</p>
 
@@ -268,7 +268,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					)}
 
 					{file.status === 'success' && (
-						<span className="flex flex-shrink-0 items-center gap-1 text-xs font-medium text-success/90">
+						<span className="flex shrink-0 items-center gap-1 text-xs font-medium text-success/90">
 							<Icons.Check aria-hidden="true" className="h-4 w-4" />
 							Uploaded
 						</span>
@@ -347,14 +347,14 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 				}
 
 				const error = validateFile(file);
-				const preview = showPreview ? await createFilePreview(file) : undefined;
+				const preview = showPreview ? await createFilePreview(file) : null;
 
 				const fileUpload: FileUploadFile = {
 					id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
 					file,
-					preview: preview || undefined,
 					status: error ? 'error' : 'pending',
-					error: error || undefined,
+					...(preview !== null ? { preview } : {}),
+					...(error ? { error } : {}),
 				};
 
 				validFiles.push(fileUpload);
@@ -460,9 +460,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 			>
 				<FileUploadZone
 					onFilesSelect={handleFilesSelect}
-					accept={accept}
 					multiple={multiple}
 					disabled={disabled}
+					{...(accept !== undefined ? { accept } : {})}
 				>
 					<div className="flex flex-col items-center justify-center text-center">
 						<div className="mb-3">
