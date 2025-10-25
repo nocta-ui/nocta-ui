@@ -147,7 +147,7 @@ export const ContextMenuItem: React.FC<
 	} & VariantProps<typeof contextMenuItemVariants>
 > = ({ children, className, disabled, inset, destructive, onClick }) => (
 	<Ariakit.MenuItem
-		disabled={disabled}
+		disabled={Boolean(disabled)}
 		onClick={onClick}
 		className={cn(contextMenuItemVariants({ inset, destructive }), className)}
 	>
@@ -182,7 +182,7 @@ export const ContextMenuSubTrigger: React.FC<
 	} & VariantProps<typeof contextMenuItemVariants>
 > = ({ children, className, disabled, inset, destructive }) => (
 	<Ariakit.MenuButton
-		disabled={disabled}
+		disabled={Boolean(disabled)}
 		className={cn(contextMenuItemVariants({ inset, destructive }), className)}
 	>
 		<span className="flex flex-1 items-center justify-start">{children}</span>
