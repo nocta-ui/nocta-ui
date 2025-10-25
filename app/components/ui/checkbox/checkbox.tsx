@@ -99,23 +99,31 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
 	let propsForStore: Parameters<typeof useCheckboxStore<boolean>>[0];
 	if (typeof checked !== 'undefined') {
-		propsForStore = {
-			value: checked,
-			setValue: onCheckedChange
-				? (value) => {
-						const bool = Array.isArray(value)
-							? value.length > 0
-							: Boolean(value);
-						onCheckedChange(bool);
-					}
-				: undefined,
-		};
+		if (onCheckedChange) {
+			propsForStore = {
+				value: checked,
+				setValue: (value) => {
+					const bool = Array.isArray(value)
+						? value.length > 0
+						: Boolean(value);
+					onCheckedChange(bool);
+				},
+			};
+		} else {
+			propsForStore = { value: checked };
+		}
 	} else {
 		propsForStore = { defaultValue: Boolean(defaultChecked) };
 	}
 	const store = useCheckboxStore<boolean>(propsForStore);
 
 	const isChecked = useStoreState(store, 'value');
+	const { name, autoFocus, ...restProps } = props;
+	const checkboxProps = {
+		...restProps,
+		...(typeof name === 'undefined' ? {} : { name }),
+		...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),
+	};
 
 	return (
 		<label
@@ -130,7 +138,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 				className="sr-only"
 				disabled={disabled}
 				id={id}
-				{...props}
+				{...checkboxProps}
 			/>
 			<Icons.Check
 				aria-hidden="true"
