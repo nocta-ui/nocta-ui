@@ -203,8 +203,10 @@ export interface AccordionItemProps
 	defaultOpen?: boolean;
 }
 
+type DisclosureButtonProps = React.ComponentPropsWithoutRef<typeof Disclosure>;
+
 export interface AccordionTriggerProps
-	extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'disabled'>,
+	extends Omit<DisclosureButtonProps, 'store'>,
 		VariantProps<typeof accordionTriggerVariants> {
 	children: React.ReactNode;
 	className?: string;
@@ -431,10 +433,19 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 AccordionItem.displayName = 'AccordionItem';
 
 export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
-	({ children, className, ...props }) => {
+	({
+		children,
+		className,
+		disabled: disabledProp,
+		variant: _variantProp,
+		size: _sizeProp,
+		isOpen: _isOpenProp,
+		...props
+	}) => {
 		const { variant, size } = useAccordionStyle();
 		const { store, disabled, triggerId, contentId } = useAccordionItem();
 		const isOpen = useStoreState(store, 'open');
+		const mergedDisabled = Boolean(disabled || disabledProp);
 
 		const iconSize = useMemo(() => {
 			return size === 'sm' ? 14 : size === 'md' ? 16 : 20;
@@ -450,21 +461,21 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 						accordionTriggerVariants({
 							variant,
 							size,
-							disabled: disabled || false,
+							disabled: mergedDisabled,
 							isOpen,
 						}),
 						className,
 					)}
 					aria-controls={contentId}
-					aria-disabled={disabled || undefined}
-					disabled={disabled}
+					aria-disabled={mergedDisabled || undefined}
+					disabled={mergedDisabled}
 					{...props}
 				>
 					<span className="font-medium">{children}</span>
 					<Icons.ChevronDown
 						aria-hidden="true"
 						className={cn(
-							'ml-2 flex-shrink-0 text-foreground/45 transition-transform duration-200 ease-in-out will-change-transform',
+							'ml-2 shrink-0 text-foreground/45 transition-transform duration-200 ease-in-out will-change-transform',
 							isOpen ? 'rotate-180' : 'rotate-0',
 						)}
 						style={{ width: iconSize, height: iconSize }}
