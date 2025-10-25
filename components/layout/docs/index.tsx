@@ -1,7 +1,7 @@
 import { GlobeIcon, ViewVerticalIcon } from '@radix-ui/react-icons';
 import { HideIfEmpty } from 'fumadocs-core/hide-if-empty';
 import Link from 'fumadocs-core/link';
-import type { PageTree } from 'fumadocs-core/server';
+import type * as PageTree from 'fumadocs-core/page-tree';
 import { NavProvider } from 'fumadocs-ui/contexts/layout';
 import { TreeContextProvider } from 'fumadocs-ui/contexts/tree';
 import {

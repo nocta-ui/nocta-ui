@@ -1,5 +1,5 @@
 import './global.css';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';

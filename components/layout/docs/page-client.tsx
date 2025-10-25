@@ -11,7 +11,7 @@ import {
 } from 'fumadocs-core/breadcrumb';
 import { createContext, usePathname } from 'fumadocs-core/framework';
 import Link from 'fumadocs-core/link';
-import type { PageTree } from 'fumadocs-core/server';
+import type * as PageTree from 'fumadocs-core/page-tree';
 import { useActiveAnchor } from 'fumadocs-core/toc';
 import { useEffectEvent } from 'fumadocs-core/utils/use-effect-event';
 import { useI18n } from 'fumadocs-ui/contexts/i18n';

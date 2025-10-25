@@ -1,5 +1,5 @@
 import { Pencil1Icon } from '@radix-ui/react-icons';
-import type { TOCItemType } from 'fumadocs-core/server';
+import type { TOCItemType } from 'fumadocs-core/toc';
 import type { AnchorProviderProps } from 'fumadocs-core/toc';
 import { I18nLabel } from 'fumadocs-ui/contexts/i18n';
 import { type ComponentProps, forwardRef, type ReactNode } from 'react';

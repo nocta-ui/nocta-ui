@@ -9,7 +9,7 @@ import type { ScrollAreaProps } from '@radix-ui/react-scroll-area';
 import { cva } from 'class-variance-authority';
 import { usePathname } from 'fumadocs-core/framework';
 import Link, { type LinkProps } from 'fumadocs-core/link';
-import type { PageTree } from 'fumadocs-core/server';
+import type * as PageTree from 'fumadocs-core/page-tree';
 import { useMediaQuery } from 'fumadocs-core/utils/use-media-query';
 import { useOnChange } from 'fumadocs-core/utils/use-on-change';
 import { useSidebar } from 'fumadocs-ui/contexts/sidebar';

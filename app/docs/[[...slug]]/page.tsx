@@ -13,29 +13,15 @@ export default async function Page(props: {
 	if (!page) notFound();
 
 	const MDXContent = page.data.body;
-	const { toc, lastModified } = page.data;
-
-	const formattedDate = lastModified
-		? new Date(lastModified).toLocaleDateString('en-EN', {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric',
-			})
-		: null;
 
 	return (
 		<DocsPage
-			toc={toc}
-			lastUpdate={lastModified ? new Date(lastModified) : undefined}
+			toc={page.data.toc}
+			full={page.data.full}
 			tableOfContent={{
 				style: 'clerk',
 			}}
 		>
-			{formattedDate && (
-				<p className="text-sm text-foreground/35">
-					Last Modified: {formattedDate}
-				</p>
-			)}
 			<h1 className="mb-0 text-3xl font-medium text-foreground">
 				{page.data.title}
 			</h1>
@@ -48,7 +34,7 @@ export default async function Page(props: {
 					<LLMCopyButton markdownUrl={`/api/mdx?path=${page.url}`} />
 					<ViewOptions
 						markdownUrl={`/api/mdx?path=${page.url}`}
-						githubUrl={`https://github.com/nocta-ui/nocta-ui/tree/main/content/docs/${page.file.path}`}
+						githubUrl={`https://github.com/nocta-ui/nocta-ui/tree/main/content/docs/${page.path}`}
 					/>
 				</div>
 			</div>
