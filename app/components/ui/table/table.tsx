@@ -10,6 +10,7 @@ import {
 	type Row,
 	type RowSelectionState,
 	type SortingState,
+	type TableOptions,
 	useReactTable,
 } from '@tanstack/react-table';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -238,7 +239,7 @@ export function Table<TData>({
 		return [selectionColumn, ...columns];
 	}, [columns, enableRowSelection]);
 
-	const table = useReactTable({
+	const tableOptions: TableOptions<TData> = {
 		columns: augmentedColumns,
 		data,
 		state: {
@@ -261,10 +262,18 @@ export function Table<TData>({
 			}
 			onRowSelectionChange?.(next);
 		},
-		getRowId,
 		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: enableSorting ? getSortedRowModel() : undefined,
-	});
+	};
+
+	if (getRowId) {
+		tableOptions.getRowId = getRowId;
+	}
+
+	if (enableSorting) {
+		tableOptions.getSortedRowModel = getSortedRowModel();
+	}
+
+	const table = useReactTable(tableOptions);
 
 	/* biome-ignore lint/correctness/useExhaustiveDependencies: row selection callback must run when selection changes */
 	React.useEffect(() => {
