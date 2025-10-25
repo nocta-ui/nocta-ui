@@ -216,10 +216,14 @@ export const Slider: React.FC<SliderProps> = ({
 			if (!sliderRef.current) return 0;
 
 			const rect = sliderRef.current.getBoundingClientRect();
+			const firstTouch =
+				'touches' in event && event.touches.length > 0
+					? event.touches[0]
+					: null;
 			const clientX =
-				'touches' in event ? event.touches[0].clientX : event.clientX;
+				firstTouch?.clientX ?? ('clientX' in event ? event.clientX : 0);
 			const clientY =
-				'touches' in event ? event.touches[0].clientY : event.clientY;
+				firstTouch?.clientY ?? ('clientY' in event ? event.clientY : 0);
 
 			if (orientation === 'horizontal') {
 				return ((clientX - rect.left) / rect.width) * 100;
