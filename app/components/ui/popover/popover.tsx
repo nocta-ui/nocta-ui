@@ -76,11 +76,13 @@ export const Popover: React.FC<PopoverProps> = ({
 	defaultOpen = false,
 	onOpenChange,
 }) => {
-	const store = Ariakit.usePopoverStore({
-		open,
-		defaultOpen,
-		setOpen: onOpenChange,
-	});
+	const store = Ariakit.usePopoverStore(
+		open !== undefined
+			? onOpenChange
+				? { open, setOpen: onOpenChange }
+				: { open }
+			: { defaultOpen },
+	);
 
 	return (
 		<PopoverStoreContext.Provider value={store}>
