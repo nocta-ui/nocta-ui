@@ -1,0 +1,201 @@
+---
+title: Bun Monorepo Example
+description: Step-by-step Bun workspace with a Next.js app and shared Nocta UI package.
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Prerequisites
+
+- Bun 1.1 or newer
+- Node.js with npx (for occasional tools)
+- Git (optional but recommended)
+
+<Steps>
+  <Step>
+    ### Initialise the repository root
+
+    ```bash lineNumbers title="Terminal"
+    mkdir nocta-bun-monorepo
+    cd nocta-bun-monorepo
+    bun init --yes
+    ```
+
+    Update your `package.json` with a followind workspaces section:
+
+    ```json lineNumbers title="package.json"
+    {
+      "name": "nocta-bun-monorepo",
+      "module": "index.ts",
+      "type": "module",
+      "private": true,
+      "workspaces": ["apps/*", "packages/*"],  // [!code highlight]
+      "devDependencies": {
+        "@types/bun": "latest"
+      },
+      "peerDependencies": {
+        "typescript": "^5"
+      }
+    }
+    ```
+  </Step>
+  <Step>
+    ### Scaffold the shared UI workspace (`packages/ui`)
+
+    ```bash lineNumbers title="Terminal"
+    mkdir -p packages/ui
+    cd packages/ui
+    bun init --yes
+    bun add -D tsc-alias rimraf concurrently tailwindcss
+    ```
+
+    Configure TypeScript with alias support:
+
+    ```json lineNumbers title="tsconfig.json"
+    {
+      "compilerOptions": {
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "module": "Preserve",
+        "moduleDetection": "force",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": false,   // [!code highlight]
+        "verbatimModuleSyntax": true,
+        "outDir": "dist",   // [!code highlight]
+        "declaration": true,   // [!code highlight]
+        "declarationDir": "dist",   // [!code highlight]
+        "baseUrl": ".",   // [!code highlight]
+        "paths": {   // [!code highlight]
+          "@/*": ["./src/*"]   // [!code highlight]
+        },   // [!code highlight]
+        "strict": true,
+        "skipLibCheck": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noPropertyAccessFromIndexSignature": false
+      }
+    }
+    ```
+
+    The combination of `baseUrl` and `paths` lets you author source files with `@/...` imports; `tsc-alias` rewrites them for the compiled output.
+
+    Update your `packages/ui/package.json` with build scripts that emit assets to `dist/`:
+
+    ```json lineNumbers title="package.json"
+    {
+      "name": "ui",
+      "type": "module",
+      "private": true,
+      "files": ["dist"],   // [!code highlight]
+      "exports": {   // [!code highlight]
+        ".": {   // [!code highlight]
+          "import": "./dist/src/index.js",   // [!code highlight]
+          "types": "./dist/src/index.d.ts"   // [!code highlight]
+        },   // [!code highlight]
+        "./dist/styles.css": "./dist/styles.css"   // [!code highlight]
+      },   // [!code highlight]
+      "main": "./dist/src/index.js",   // [!code highlight]
+      "module": "./dist/src/index.js",   // [!code highlight]
+      "types": "./dist/src/index.d.ts",   // [!code highlight]
+      "peerDependencies": {
+        "typescript": "^5.9.3"
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+        "concurrently": "^9.2.1",
+        "rimraf": "^6.0.1",
+        "tailwindcss": "^4.1.15",
+        "tsc-alias": "^1.8.16",
+        "typescript": "^5.9.3"
+      },
+      "scripts": {   // [!code highlight]
+        "build": "bun run clean && bun run build:css && bun run build:ts",   // [!code highlight]
+        "build:css": "mkdir -p dist && bunx tailwindcss --input src/styles.css --output dist/styles.css --minify",   // [!code highlight]
+        "build:ts": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",   // [!code highlight]
+        "clean": "rimraf dist",   // [!code highlight]
+        "dev": "concurrently -k -n TS,ALIAS,CSS \"bun run dev:ts\" \"bun run dev:alias\" \"bun run dev:css\"",   // [!code highlight]
+        "dev:ts": "tsc -w -p tsconfig.json",   // [!code highlight]
+        "dev:alias": "tsc-alias -w -p tsconfig.json",   // [!code highlight]
+        "dev:css": "bunx tailwindcss --input src/styles.css --output dist/styles.css --watch"   // [!code highlight]
+      }   // [!code highlight]
+    }
+    ```
+
+    - `bun run --filter ui build` creates `dist/src/*` and `dist/styles.css`.
+    - `bun run --filter ui dev` launches watch mode for TypeScript, alias rewrites, and Tailwind.
+  </Step>
+  <Step>
+    ### Set up the Next.js app (`apps/web`)
+
+    ```bash lineNumbers title="Terminal"
+    cd ../../
+    mkdir -p apps/web
+    cd apps/web
+    bun create next-app@latest . --yes
+    ```
+
+    Add the shared UI package via workspaces:
+
+    ```json lineNumbers title="package.json"
+    {
+      "name": "web",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint"
+      },
+      "dependencies": {
+        "next": "16.0.0",
+        "react": "19.2.0",
+        "react-dom": "19.2.0",
+        "ui": "workspace:*"   // [!code highlight]
+      },
+      "devDependencies": {
+        "@tailwindcss/postcss": "^4",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "16.0.0",
+        "tailwindcss": "^4",
+        "typescript": "^5"
+      }
+    }
+    ```
+
+    Import the compiled UI styles once in `app/layout.tsx` (or your chosen root file):
+
+    ```tsx lineNumbers title="app/layout.tsx"
+    import "ui/dist/styles.css";
+    ```
+  </Step>
+  <Step>
+    ### Initialise the Nocta CLI
+
+    Run the CLI inside the shared UI workspace to generate configuration, helpers, and Tailwind tokens. When prompted for the workspace type choose **Shared UI**:
+
+    ```bash lineNumbers title="Terminal"
+    cd packages/ui
+    npx @nocta-ui/cli init
+    ```
+
+    Next, initialise the application workspace so it links to the shared UI package. Select **Application** when prompted and choose the existing `ui` workspace from the CLI's linked workspace picker:
+
+    ```bash lineNumbers title="Terminal"
+    cd ../apps/web
+    npx @nocta-ui/cli init
+    ```
+
+    After both workspaces are registered you can run commands such as `npx @nocta-ui/cli add` inside `apps/web` and the CLI will automatically install components into `packages/ui`.
+  </Step>
+</Steps>
+
+You now have a Bun-managed monorepo where the shared UI package outputs build artefacts that the Next.js application can consume directly. Adjust scripts or tooling versions to match your team standards, then commit the scaffold baseline.

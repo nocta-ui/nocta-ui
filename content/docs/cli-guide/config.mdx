@@ -1,0 +1,140 @@
+---
+title: Configuration Files
+description: Understand how `nocta.config.json` and `nocta.workspace.json` guide the CLI.
+---
+
+The Nocta CLI maintains two JSON documents: `nocta.config.json` inside each workspace and `nocta.workspace.json` at the repository root. This guide explains their structure and how they are used.
+
+## `nocta.config.json`
+Created by `nocta-ui init`, this file describes how the CLI should scaffold components and where shared helpers live.
+
+```json title="App workspace linked to shared UI"
+{
+  "$schema": "https://nocta-ui.com/registry/config-schema.json",
+  "style": "default",
+  "tailwind": {
+    "css": "app/globals.css"
+  },
+  "aliases": {
+    "components": "components/ui",
+    "utils": "lib/utils"
+  },
+  "aliasPrefixes": {
+    "components": "@",
+    "utils": "@"
+  },
+  "workspace": {
+    "kind": "app",
+    "packageName": "web",
+    "root": "apps/web",
+    "linkedWorkspaces": [
+      {
+        "kind": "ui",
+        "packageName": "ui",
+        "root": "packages/ui",
+        "config": "../../packages/ui/nocta.config.json"
+      }
+    ]
+  }
+}
+```
+
+```json title="Shared UI workspace with export barrel"
+{
+  "$schema": "https://nocta-ui.com/registry/config-schema.json",
+  "style": "default",
+  "tailwind": {
+    "css": "src/styles.css"
+  },
+  "aliases": {
+    "components": "src/components/ui",
+    "utils": "src/lib/utils"
+  },
+  "aliasPrefixes": {
+    "components": "@",
+    "utils": "@"
+  },
+  "exports": {
+    "components": {
+      "barrel": "src/index.ts",
+      "strategy": "named"
+    }
+  },
+  "workspace": {
+    "kind": "ui",
+    "packageName": "ui",
+    "root": "packages/ui"
+  }
+}
+```
+
+Key details the CLI reads from this file:
+- `tailwind.css` points to the stylesheet that receives design tokens.
+- `aliases` set the filesystem destinations and optionally an import alias.
+- `aliasPrefixes` apply when `aliases` use the short string form and you want a custom prefix.
+- `exports.components` is optional and lets `nocta-ui add` maintain a barrel file automatically.
+- The `workspace` block stores metadata used for monorepos and for linking shared UI packages.
+
+### Framework Defaults
+`init` fills the fields above based on the detected framework:
+
+| Framework | Tailwind CSS file | Component path | Utils path | Alias prefix |
+|-----------|------------------|----------------|------------|--------------|
+| Next.js (App Router) | `app/globals.css` | `components/ui` | `lib/utils` | `@` |
+| Next.js (Pages Router) | `styles/globals.css` | `components/ui` | `lib/utils` | `@` |
+| Vite + React | `src/App.css` | `src/components/ui` | `src/lib/utils` | `@` |
+| React Router 7 (Framework Mode) | `app/app.css` | `app/components/ui` | `app/lib/utils` | `~` |
+| TanStack Start | `src/styles.css` (auto-detected) | `src/components/ui` | `src/lib/utils` | `@` |
+| Shared UI / Library | CLI searches common CSS filenames and defaults to `src/styles.css`; component and utility paths live under `src/`. |
+
+You can edit the config after running `init`; future runs merge new information while preserving customisations where possible.
+
+## `nocta.workspace.json`
+Stored at the repository root, this manifest tracks every workspace that has run `init`. It enables cross-package coordination when you run commands from different directories.
+
+### Structure
+```json
+{
+  "packageManager": "pnpm",
+  "repoRoot": ".",
+  "workspaces": [
+    {
+      "name": "@workspace/ui",
+      "kind": "ui",
+      "packageName": "@workspace/ui",
+      "root": "packages/ui",
+      "config": "packages/ui/nocta.config.json"
+    },
+    {
+      "name": "@workspace/admin",
+      "kind": "app",
+      "packageName": "@workspace/admin",
+      "root": "apps/admin",
+      "config": "apps/admin/nocta.config.json"
+    }
+  ]
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `packageManager` | enum (`"npm"`, `"pnpm"`, `"yarn"`, `"bun"`) | Detected from repo lockfiles. Used for all install commands. |
+| `repoRoot` | string (optional) | Normalised path to the repo root (usually `.`). |
+| `workspaces` | array | Each entry mirrors information from the corresponding `nocta.config.json`. |
+
+Each workspace entry contains:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Display name (defaults to `root` when no package name is provided). |
+| `kind` | enum (`"app"`, `"ui"`, `"library"`) | Workspace role. |
+| `packageName` | string (optional) | npm workspace or package name. Helps route package-manager commands. |
+| `root` | string | Path from repo root to the workspace. |
+| `config` | string | Relative path from repo root to `nocta.config.json`. |
+
+### Lifecycle
+- `nocta-ui init` creates or updates the manifest whenever a workspace is registered.
+- The file keeps entries sorted by `root` for readability.
+- Commands like `add` rely on the manifest to resolve linked workspaces even when you run the CLI from a different directory.
+
+Keep the manifest committed to version control so collaborators share the same workspace topology.

@@ -1,0 +1,5 @@
+{
+	"title": "CLI Guide",
+	"root": false,
+	"pages": ["init", "list", "add", "config"]
+}

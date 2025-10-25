@@ -1,14 +1,13 @@
 {
 	"title": "Nocta UI",
 	"description": "A modern, accessible React component library built with TypeScript and Tailwind CSS.",
-	"icon": "Pencil",
 	"root": true,
 	"pages": [
 		"---Get Started---",
 		"index",
 		"quick-start",
 		"design-tokens",
-		"cli",
+		"cli-guide",
 		"---Layout---",
 		"accordion",
 		"card",
