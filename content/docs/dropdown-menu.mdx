@@ -57,24 +57,26 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Simple Dropdown Menu"
-    const [lastAction, setLastAction] = useState('');
+    const [lastAction, setLastAction] = useState("");
 
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+        <DropdownMenuTrigger
+          className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+        >
           Open dropdown
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => setLastAction('Profile')}>
-            <UserIcon className="w-4 h-4 mr-2" />
+          <DropdownMenuItem onClick={() => setLastAction("Profile")}>
+            <PersonIcon aria-hidden="true" className="mr-2 h-4 w-4" />
             Profile
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setLastAction('Billing')}>
-            <CreditCardIcon className="w-4 h-4 mr-2" />
+          <DropdownMenuItem onClick={() => setLastAction("Billing")}>
+            <CardStackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
             Billing
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setLastAction('Settings')}>
-            <SettingsIcon className="w-4 h-4 mr-2" />
+          <DropdownMenuItem onClick={() => setLastAction("Settings")}>
+            <GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
             Settings
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -95,38 +97,41 @@ Use `DropdownMenuSeparator` to group related menu items.
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Dropdown Menu with Separators"
     <DropdownMenu>
-      <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+      <DropdownMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+      >
         Open menu with separators
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <EditIcon className="w-4 h-4 mr-2" />
+          <Pencil1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <DuplicateIcon className="w-4 h-4 mr-2" />
+          <StackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Duplicate
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 
         <DropdownMenuItem>
-          <BookmarkIcon className="w-4 h-4 mr-2" />
+          <BookmarkIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Bookmark
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <ShareIcon className="w-4 h-4 mr-2" />
+          <Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
           Share
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 
         <DropdownMenuItem destructive>
-          <DeleteIcon className="w-4 h-4 mr-2" />
+          <TrashIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenu>;
+
     ```
   </DocsTab>
 </DocsTabs>
@@ -142,31 +147,33 @@ Create nested menus using `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `Drop
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Dropdown Menu with Submenu"
     <DropdownMenu>
-      <DropdownMenuTrigger className={buttonVariants({ variant: 'secondary', size: 'md' })}>
+      <DropdownMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+      >
         Open submenu example
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <PlusIcon className="w-4 h-4 mr-2" />
+          <PlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           New item
         </DropdownMenuItem>
 
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
-            <ExportIcon className="w-4 h-4 mr-2" />
+            <UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
             Export as
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuItem>
-              <PdfIcon className="w-4 h-4 mr-2" />
+              <FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               PDF
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <ExcelIcon className="w-4 h-4 mr-2" />
+              <TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               Excel
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <ImageIcon className="w-4 h-4 mr-2" />
+              <ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               Image
             </DropdownMenuItem>
           </DropdownMenuSubContent>
@@ -175,11 +182,11 @@ Create nested menus using `DropdownMenuSub`, `DropdownMenuSubTrigger`, and `Drop
         <DropdownMenuSeparator />
 
         <DropdownMenuItem>
-          <SettingsIcon className="w-4 h-4 mr-2" />
+          <GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Preferences
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenu>;
     ```
   </DocsTab>
 </DocsTabs>
