@@ -123,31 +123,33 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 			onValueChange?.(newValue);
 		};
 
-		return (
-			<ToggleGroupContext.Provider
-				value={{
-					store,
-					values: currentValue,
-					onSelect: handleSelect,
-					single,
-					size: size as NonNullable<typeof size>,
-				}}
+	const { autoFocus, ...restProps } = props;
+	return (
+		<ToggleGroupContext.Provider
+			value={{
+				store,
+				values: currentValue,
+				onSelect: handleSelect,
+				single,
+				size: size as NonNullable<typeof size>,
+			}}
+		>
+			<Composite
+				ref={ref}
+				store={store}
+				role={single ? 'radiogroup' : 'group'}
+				className={cn(
+					toggleGroupVariants({ variant, size }),
+					'flex divide-x divide-border',
+					className,
+				)}
+				{...(autoFocus === undefined ? {} : { autoFocus })}
+				{...restProps}
 			>
-				<Composite
-					ref={ref}
-					store={store}
-					role={single ? 'radiogroup' : 'group'}
-					className={cn(
-						toggleGroupVariants({ variant, size }),
-						'flex divide-x divide-border',
-						className,
-					)}
-					{...props}
-				>
-					{children}
-				</Composite>
-			</ToggleGroupContext.Provider>
-		);
+				{children}
+			</Composite>
+		</ToggleGroupContext.Provider>
+	);
 	},
 );
 ToggleGroup.displayName = 'ToggleGroup';
@@ -161,10 +163,14 @@ export const ToggleGroupItem = React.forwardRef<
 		throw new Error('ToggleGroupItem must be used within a <ToggleGroup>.');
 
 	const isSelected = ctx.values.includes(value);
+	const { disabled, autoFocus, id, ...rest } = props;
+	const isDisabled = Boolean(disabled);
+	const itemId = id ?? value;
 
 	return (
 		<CompositeItem
-			render={<button type="button" ref={ref} />}
+			id={itemId}
+			render={<button type="button" ref={ref} disabled={isDisabled} />}
 			role={ctx.single ? 'radio' : 'checkbox'}
 			aria-checked={isSelected}
 			data-state={isSelected ? 'on' : 'off'}
@@ -176,7 +182,9 @@ export const ToggleGroupItem = React.forwardRef<
 				}),
 				className,
 			)}
-			{...props}
+			disabled={isDisabled}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
+			{...rest}
 		>
 			{children}
 		</CompositeItem>
