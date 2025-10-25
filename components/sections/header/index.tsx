@@ -59,7 +59,7 @@ export const Header = ({
 			<div className="flex flex-1 flex-row items-center justify-end lg:gap-1.5">
 				<SearchOnly>
 					<SearchToggle className="lg:hidden" />
-					<LargeSearchToggle className="w-full max-w-[240px] hover:bg-card-muted hover:text-fd-accent-foreground/70 max-lg:hidden" />
+					<LargeSearchToggle className="w-full max-w-[240px] rounded-md bg-card-muted hover:text-fd-accent-foreground/70 max-lg:hidden" />
 				</SearchOnly>
 				<ThemeToggle />
 				{navItems.filter(isSecondary).map((item, i) => (

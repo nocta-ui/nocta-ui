@@ -70,7 +70,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	'inline-flex items-center gap-2 rounded-lg p-2 text-sm text-foreground/70 transition-colors duration-200 ease-in-out hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
+	'inline-flex items-center gap-2 rounded-sm p-2 text-sm text-foreground/70 transition-colors duration-200 ease-in-out hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
 );
 
 export function ViewOptions({
@@ -168,7 +168,7 @@ export function ViewOptions({
 			<PopoverContent
 				portal
 				fixed
-				className="flex flex-col overflow-auto bg-card !p-1"
+				className="flex flex-col overflow-auto bg-card !p-1 rounded-md"
 			>
 				{items.map((item) => (
 					<a
