@@ -3,6 +3,11 @@
 	"title": "Config schema",
 	"type": "object",
 	"properties": {
+		"$schema": {
+			"type": "string",
+			"format": "uri",
+			"description": "Optional JSON schema reference to aid editors."
+		},
 		"style": {
 			"type": "string",
 			"enum": ["default"],
@@ -24,8 +29,30 @@
 			"type": "object",
 			"patternProperties": {
 				"^[a-zA-Z0-9_-]+$": {
-					"type": "string",
-					"description": "File path associated with the alias."
+					"oneOf": [
+						{
+							"type": "string",
+							"minLength": 1,
+							"description": "Filesystem path for the alias. Import prefix is derived from aliasPrefixes."
+						},
+						{
+							"type": "object",
+							"properties": {
+								"filesystem": {
+									"type": "string",
+									"minLength": 1,
+									"description": "Filesystem path where CLI should write files."
+								},
+								"import": {
+									"type": "string",
+									"minLength": 1,
+									"description": "Custom import alias to use in generated files."
+								}
+							},
+							"required": ["filesystem"],
+							"additionalProperties": false
+						}
+					]
 				}
 			},
 			"minProperties": 1,
@@ -37,14 +64,94 @@
 			"patternProperties": {
 				"^[a-zA-Z0-9_-]+$": {
 					"type": "string",
-					"description": "Prefix string used for the alias."
+					"minLength": 1,
+					"description": "Prefix string used for the alias when aliases.* is provided as a simple string."
 				}
 			},
 			"minProperties": 1,
 			"additionalProperties": false,
 			"description": "Defines prefix mappings corresponding to the aliases."
+		},
+		"exports": {
+			"type": "object",
+			"patternProperties": {
+				"^[a-zA-Z0-9_-]+$": {
+					"type": "object",
+					"properties": {
+						"barrel": {
+							"type": "string",
+							"minLength": 1,
+							"description": "Relative path to the barrel file that CLI should maintain."
+						},
+						"strategy": {
+							"type": "string",
+							"enum": ["named"],
+							"description": "Emission strategy for exports. Currently only 'named' is supported."
+						}
+					},
+					"required": ["barrel"],
+					"additionalProperties": false
+				}
+			},
+			"minProperties": 1,
+			"additionalProperties": false,
+			"description": "Configure export barrels the CLI should synchronise."
+		},
+		"workspace": {
+			"type": "object",
+			"properties": {
+				"kind": {
+					"type": "string",
+					"enum": ["app", "ui", "library"],
+					"description": "Role of the current workspace."
+				},
+				"packageName": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Optional npm workspace or package name."
+				},
+				"root": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Path from repository root to this workspace."
+				},
+				"linkedWorkspaces": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"kind": {
+								"type": "string",
+								"enum": ["app", "ui", "library"],
+								"description": "Role of the linked workspace."
+							},
+							"packageName": {
+								"type": "string",
+								"minLength": 1,
+								"description": "Optional npm workspace or package name for the linked workspace."
+							},
+							"root": {
+								"type": "string",
+								"minLength": 1,
+								"description": "Path from repository root to the linked workspace."
+							},
+							"config": {
+								"type": "string",
+								"minLength": 1,
+								"description": "Relative path from the current workspace to the linked workspace's config file."
+							}
+						},
+						"required": ["kind", "root", "config"],
+						"additionalProperties": false
+					},
+					"description": "Workspaces that should receive shared files and dependency updates."
+				}
+			},
+			"required": ["kind", "root"],
+			"additionalProperties": false,
+			"description": "Metadata describing this workspace for monorepo-aware behaviour."
 		}
 	},
-	"required": ["style", "tailwind", "aliases", "aliasPrefixes"],
+	"required": ["style", "tailwind", "aliases"],
 	"additionalProperties": false
 }
