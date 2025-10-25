@@ -299,7 +299,10 @@ export const CommandK: React.FC<CommandKProps> = ({
 				break;
 			case 'Enter':
 				e.preventDefault();
-				handleSelect(flatSelectable[highlightedIndex]);
+				{
+					const entry = flatSelectable[highlightedIndex];
+					if (entry) handleSelect(entry);
+				}
 				break;
 			case 'Home':
 				e.preventDefault();
@@ -332,7 +335,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 			<DialogContent
 				size={size}
 				showClose={false}
-				className={cn('!p-0', className)}
+				className={cn('p-0!', className)}
 			>
 				<div className="px-0.5 pt-2" ref={searchContainerRef}>
 					<div className="relative">
@@ -353,11 +356,11 @@ export const CommandK: React.FC<CommandKProps> = ({
 							}}
 							onKeyDown={onKeyNav}
 							placeholder={placeholder}
-							className="w-full !border-none pr-12 !shadow-none focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+							className="w-full border-none! pr-12 shadow-none! focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
 							leftIcon={
 								<Icons.Search
 									aria-hidden="true"
-									className="!h-5 !w-5 -mt-0.5 -ml-0.5"
+									className="size-5! -mt-0.5 -ml-0.5"
 								/>
 							}
 						/>
