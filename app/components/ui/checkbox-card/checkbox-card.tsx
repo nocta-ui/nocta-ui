@@ -114,6 +114,12 @@ export const CheckboxCard = React.forwardRef<
 		const isChecked = Array.isArray(storedValue)
 			? storedValue.some((item) => Boolean(item))
 			: Boolean(storedValue);
+		const { name, autoFocus, ...restProps } = props;
+		const checkboxProps = {
+			...restProps,
+			...(typeof name === 'undefined' ? {} : { name }),
+			...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),
+		};
 
 		return (
 			<label
@@ -131,7 +137,7 @@ export const CheckboxCard = React.forwardRef<
 					className="sr-only"
 					disabled={disabled}
 					id={inputId}
-					{...props}
+					{...checkboxProps}
 				/>
 				<div className="flex w-full items-start gap-3">
 					<div className="flex flex-1 flex-col gap-3">
