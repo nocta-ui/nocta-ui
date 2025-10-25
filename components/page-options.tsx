@@ -168,7 +168,7 @@ export function ViewOptions({
 			<PopoverContent
 				portal
 				fixed
-				className="flex flex-col overflow-auto bg-card !p-1 rounded-md"
+				className="flex flex-col overflow-auto bg-card p-1! rounded-md"
 			>
 				{items.map((item) => (
 					<a

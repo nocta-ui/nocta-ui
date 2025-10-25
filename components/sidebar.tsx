@@ -68,7 +68,7 @@ interface InternalContext {
 }
 
 const itemVariants = cva(
-	'relative flex flex-row items-center gap-2 rounded-md p-1.5 mb-1 ps-(--sidebar-item-offset) text-start font-normal [overflow-wrap:anywhere] text-foreground/70 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:border-border focus-visible:ring-ring/50',
+	'cursor-pointer relative flex flex-row items-center gap-2 rounded-md p-1.5 mb-1 ps-(--sidebar-item-offset) text-start font-normal [overflow-wrap:anywhere] text-foreground/70 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:border-border focus-visible:ring-ring/50',
 	{
 		variants: {
 			active: {
@@ -261,7 +261,7 @@ export function SidebarSeparator(props: ComponentProps<'p'>) {
 		<p
 			{...props}
 			className={cn(
-				'mb-1.5 inline-flex items-center gap-2 px-2 ps-(--sidebar-item-offset) !text-xs tracking-widest text-foreground/45 uppercase empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0',
+				'mb-1.5 inline-flex items-center gap-2 px-2 ps-(--sidebar-item-offset) text-xs! tracking-widest text-foreground/45 uppercase empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0',
 				props.className,
 			)}
 		>

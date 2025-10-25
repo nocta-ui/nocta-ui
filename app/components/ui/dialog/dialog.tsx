@@ -201,7 +201,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 					className={cn(
 						'fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm',
 						'opacity-0 transition-opacity duration-200 ease-in-out',
-						'data-[enter]:opacity-100 data-[leave]:opacity-0',
+						'data-enter:opacity-100 data-leave:opacity-0',
 					)}
 				/>
 			}
@@ -209,8 +209,8 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 				dialogContentVariants({ size }),
 				'fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform',
 				'scale-105 opacity-0 blur-sm transition-all duration-200 ease-in-out',
-				'data-[enter]:scale-100 data-[enter]:opacity-100 data-[enter]:blur-none',
-				'data-[leave]:scale-105 data-[leave]:opacity-0 data-[leave]:blur-sm',
+				'data-enter:scale-100 data-enter:opacity-100 data-enter:blur-none',
+				'data-leave:scale-105 data-leave:opacity-0 data-leave:blur-sm',
 				className,
 			)}
 			{...props}

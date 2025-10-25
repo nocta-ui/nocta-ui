@@ -42,9 +42,9 @@ const tabsTriggerVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: `w-full rounded-sm text-foreground/70 hover:text-foreground data-[active-item]:bg-card-muted data-[active-item]:text-foreground`,
-				pills: `rounded-sm text-foreground/70 hover:text-foreground data-[active-item]:bg-foreground data-[active-item]:text-card data-[active-item]:shadow-sm`,
-				underline: `border-b-2 border-transparent text-foreground/70 hover:text-foreground data-[active-item]:border-foreground/75 data-[active-item]:text-foreground`,
+				default: `w-full rounded-sm text-foreground/70 hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground`,
+				pills: `rounded-sm text-foreground/70 hover:text-foreground data-active-item:bg-foreground data-active-item:text-card data-active-item:shadow-sm`,
+				underline: `border-b-2 border-transparent text-foreground/70 hover:text-foreground data-active-item:border-foreground/75 data-active-item:text-foreground`,
 			},
 			size: {
 				sm: '',

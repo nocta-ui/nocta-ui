@@ -417,12 +417,12 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 
 	const sideTransform =
 		side === 'left'
-			? '-translate-x-full data-[enter]:translate-x-0 data-[leave]:-translate-x-full'
+			? '-translate-x-full data-enter:translate-x-0 data-leave:-translate-x-full'
 			: side === 'right'
-				? 'translate-x-full data-[enter]:translate-x-0 data-[leave]:translate-x-full'
+				? 'translate-x-full data-enter:translate-x-0 data-leave:translate-x-full'
 				: side === 'top'
-					? '-translate-y-full data-[enter]:translate-y-0 data-[leave]:-translate-y-full'
-					: 'translate-y-full data-[enter]:translate-y-0 data-[leave]:translate-y-full';
+					? '-translate-y-full data-enter:translate-y-0 data-leave:-translate-y-full'
+					: 'translate-y-full data-enter:translate-y-0 data-leave:translate-y-full';
 	const isHorizontal = side === 'left' || side === 'right';
 	const resizerLabel = isHorizontal
 		? 'Resize sheet width'
@@ -512,7 +512,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 					className={cn(
 						'fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm',
 						'opacity-0 transition-opacity duration-200 ease-in-out',
-						'data-[enter]:opacity-100 data-[leave]:opacity-0',
+						'data-enter:opacity-100 data-leave:opacity-0',
 					)}
 				/>
 			}

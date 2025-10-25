@@ -60,7 +60,7 @@ export function LargeSearchToggle({
 			data-search-full=""
 			{...props}
 			className={cn(
-				'inline-flex items-center gap-2 rounded-md border border-fd-border bg-card-muted p-1.5 ps-2 text-sm text-fd-muted-foreground transition-colors duration-200 ease-in-out hover:bg-card-muted hover:text-fd-accent-foreground/70',
+				'cursor-pointer inline-flex items-center gap-2 rounded-md border border-fd-border bg-card-muted p-1.5 ps-2 text-sm text-fd-muted-foreground transition-colors duration-200 ease-in-out hover:bg-card-muted hover:text-fd-accent-foreground/70',
 				'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:border-border focus-visible:ring-ring/50',
 				props.className,
 			)}

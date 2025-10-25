@@ -190,8 +190,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						portal={portal}
 						sameWidth
 						className={cn(
-							'absolute z-[999] my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
-							'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:-translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0',
+							'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
+							'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0',
 							popoverClassName,
 						)}
 					>
@@ -233,8 +233,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											disabled={option.disabled}
 											className={cn(
 												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
-												'data-[active-item]:bg-card-muted data-[active-item]:text-foreground',
-												'aria-[selected=true]:bg-card-muted aria-[selected=true]:font-medium aria-[selected=true]:text-foreground',
+												'data-active-item:bg-card-muted data-active-item:text-foreground',
+												'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
 												option.disabled &&
 													'pointer-events-none cursor-not-allowed opacity-50',
 											)}
