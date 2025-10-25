@@ -452,11 +452,12 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 			const setFocusToToast = () => {
 				if (!isLatest) return;
 				const focusableElements = getFocusableElements();
-				if (focusableElements.length > 0) {
-					focusableElements[0].focus();
-				} else {
-					element.focus();
+				const firstFocusable = focusableElements[0];
+				if (firstFocusable) {
+					firstFocusable.focus();
+					return;
 				}
+				element.focus();
 			};
 
 			if (!hasAnimatedIn.current && isLatest) {
@@ -1114,9 +1115,13 @@ const ToastManager: React.FC<{
 
 					const prevToast = activeToasts[i - 1];
 					const currentToast = activeToasts[i];
+					const prevOffset = offsetsForActive[i - 1] ?? 0;
+					if (!prevToast || !currentToast) {
+						offsetsForActive.push(prevOffset);
+						continue;
+					}
 					const prevHeight = heights[prevToast.id];
 					const currentHeight = heights[currentToast.id];
-					const prevOffset = offsetsForActive[i - 1];
 					const fallbackOffset =
 						prevOffset +
 						(isTopPosition ? 1 : -1) * ANIMATION_CONFIG.STACK_OFFSET;
@@ -1146,6 +1151,7 @@ const ToastManager: React.FC<{
 
 				for (let i = 0; i < activeToasts.length; i++) {
 					const toast = activeToasts[i];
+					if (!toast) continue;
 					byId[toast.id] = offsetsForActive[i] ?? 0;
 				}
 
@@ -1189,24 +1195,25 @@ const ToastManager: React.FC<{
 				const activeToasts = group.filter((toast) => !toast.shouldClose);
 				let acc = 0;
 
-				for (let i = 0; i < activeToasts.length; i++) {
-					if (i === 0) {
-						offsets.push(0);
-						continue;
-					}
-					const prevToast = activeToasts[i - 1];
-					const prevHeight = heights[prevToast.id] ?? 0;
-					acc += prevHeight + expandedGap;
-					offsets.push(acc);
+			for (let i = 0; i < activeToasts.length; i++) {
+				if (i === 0) {
+					offsets.push(0);
+					continue;
 				}
+				const prevToast = activeToasts[i - 1];
+				const prevHeight = prevToast ? heights[prevToast.id] ?? 0 : 0;
+				acc += prevHeight + expandedGap;
+				offsets.push(acc);
+			}
 
-				for (let i = 0; i < activeToasts.length; i++) {
-					const toast = activeToasts[i];
-					byId[toast.id] = offsets[i] ?? 0;
-				}
+		for (let i = 0; i < activeToasts.length; i++) {
+			const toast = activeToasts[i];
+			if (!toast) continue;
+			byId[toast.id] = offsets[i] ?? 0;
+		}
 
-				for (const toast of group) {
-					if (byId[toast.id] != null) continue;
+		for (const toast of group) {
+			if (byId[toast.id] != null) continue;
 
 					const previousOffset = previousExpandedOffsetsRef.current[toast.id];
 					if (typeof previousOffset === 'number') {
@@ -1363,27 +1370,28 @@ const ToastManager: React.FC<{
 								const hiddenCollapsedOffset = toastIsHidden
 									? (sharedHiddenCollapsedOffset ?? collapsedOffsets?.[idx])
 									: collapsedOffsets?.[idx];
-								return (
-									<ToastItem
-										key={toast.id}
-										toast={toast}
-										onRemove={onRemove}
-										isGroupHovered={isHovered}
-										expandedOffset={expandedOffsets?.[idx] ?? 0}
-										expandedGap={expandedGap}
-										collapsedOffset={collapsedOffsets?.[idx]}
-										hiddenCollapsedOffset={hiddenCollapsedOffset}
-										onHeightChange={(id, h) =>
-											setHeights((prev) =>
-												prev[id] === h ? prev : { ...prev, [id]: h },
-											)
-										}
-										onGroupHoverEnter={() =>
-											setHovered((prev) => ({ ...prev, [pos]: true }))
-										}
-									/>
-								);
-							})}
+				const collapsedOffsetValue = collapsedOffsets?.[idx];
+				const itemProps: ToastItemProps = {
+					toast,
+					onRemove,
+					isGroupHovered: isHovered,
+					expandedOffset: expandedOffsets?.[idx] ?? 0,
+					expandedGap,
+					onHeightChange: (id, h) =>
+						setHeights((prev) =>
+							prev[id] === h ? prev : { ...prev, [id]: h },
+						),
+					onGroupHoverEnter: () =>
+						setHovered((prev) => ({ ...prev, [pos]: true })),
+				};
+				if (collapsedOffsetValue !== undefined) {
+					itemProps.collapsedOffset = collapsedOffsetValue;
+				}
+				if (hiddenCollapsedOffset !== undefined) {
+					itemProps.hiddenCollapsedOffset = hiddenCollapsedOffset;
+				}
+				return <ToastItem key={toast.id} {...itemProps} />;
+			})}
 						</React.Fragment>
 					);
 				})}
@@ -1418,11 +1426,6 @@ export const Toaster: React.FC<{ expandedGap?: number }> = ({
 		return null;
 	}
 
-	return (
-		<ToastManager
-			toasts={toasts}
-			onRemove={handleRemove}
-			expandedGap={expandedGap}
-		/>
-	);
+	const managerProps = expandedGap === undefined ? {} : { expandedGap };
+	return <ToastManager toasts={toasts} onRemove={handleRemove} {...managerProps} />;
 };
