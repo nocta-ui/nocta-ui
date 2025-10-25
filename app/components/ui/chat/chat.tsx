@@ -2,6 +2,7 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type React from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
@@ -118,7 +119,7 @@ export interface ChatMessageProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export interface TypingIndicatorProps
 	extends React.HTMLAttributes<HTMLDivElement> {
-	typingUsers: TypingUser[];
+	typingUsers?: TypingUser[];
 	showAvatars?: boolean;
 	className?: string;
 }
@@ -144,15 +145,19 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 	className = '',
 	...props
 }) => {
-	if (!typingUsers || typingUsers.length === 0) return null;
+	const safeTypingUsers = typingUsers ?? [];
+	if (safeTypingUsers.length === 0) return null;
 
 	const getTypingText = () => {
-		if (typingUsers.length === 1) {
-			return `${typingUsers[0].name || 'Someone'} is typing`;
-		} else if (typingUsers.length === 2) {
-			return `${typingUsers[0].name || 'Someone'} and ${typingUsers[1].name || 'someone else'} are typing`;
+		const [firstUser, secondUser] = safeTypingUsers;
+		if (safeTypingUsers.length === 1) {
+			return `${firstUser?.name || 'Someone'} is typing`;
+		} else if (safeTypingUsers.length === 2) {
+			return `${firstUser?.name || 'Someone'} and ${secondUser?.name || 'someone else'} are typing`;
 		} else {
-			return `${typingUsers[0].name || 'Someone'} and ${typingUsers.length - 1} others are typing`;
+			return `${firstUser?.name || 'Someone'} and ${
+				safeTypingUsers.length - 1
+			} others are typing`;
 		}
 	};
 
@@ -163,18 +168,18 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			{...props}
 		>
 			{showAvatars && (
-				<div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-card-muted text-xs font-medium text-foreground/70">
-					{typingUsers[0].avatar ? (
+				<div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card-muted text-xs font-medium text-foreground/70">
+					{safeTypingUsers[0]?.avatar ? (
 						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
-							src={typingUsers[0].avatar}
-							alt={typingUsers[0].name || 'typing'}
+							src={safeTypingUsers[0]?.avatar}
+							alt={safeTypingUsers[0]?.name || 'typing'}
 							className="h-full w-full rounded-full object-cover"
 						/>
 					) : (
 						<span>
-							{typingUsers[0].name
-								? typingUsers[0].name.charAt(0).toUpperCase()
+							{safeTypingUsers[0]?.name
+								? safeTypingUsers[0]?.name.charAt(0).toUpperCase()
 								: '?'}
 						</span>
 					)}
@@ -314,7 +319,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 			{...props}
 		>
 			{showAvatar && !isSystem && (
-				<div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-card-muted text-xs font-medium text-foreground/70">
+				<div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card-muted text-xs font-medium text-foreground/70">
 					{message.avatar ? (
 						/* biome-ignore lint/performance/noImgElement: prefer native img here */
 						<img
