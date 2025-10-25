@@ -61,27 +61,27 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     const [lastAction, setLastAction] = useState('');
 
     return (
-      <ContextMenu>
-        <ContextMenuTrigger
-          className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
-        >
-          Right-click here
-        </ContextMenuTrigger>
-        <ContextMenuContent>
-          <ContextMenuItem onClick={() => setLastAction('Cut')}>
-            <CutIcon className="w-4 h-4 mr-2" />
-            Cut
-          </ContextMenuItem>
-          <ContextMenuItem onClick={() => setLastAction('Copy')}>
-            <CopyIcon className="w-4 h-4 mr-2" />
-            Copy
-          </ContextMenuItem>
-          <ContextMenuItem onClick={() => setLastAction('Paste')}>
-            <PasteIcon className="w-4 h-4 mr-2" />
-            Paste
-          </ContextMenuItem>
-        </ContextMenuContent>
-      </ContextMenu>
+    <ContextMenu>
+      <ContextMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+      >
+        Right-click here
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem onClick={() => setLastAction("Cut")}>
+          <ScissorsIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+          Cut
+        </ContextMenuItem>
+        <ContextMenuItem onClick={() => setLastAction("Copy")}>
+          <CopyIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+          Copy
+        </ContextMenuItem>
+        <ContextMenuItem onClick={() => setLastAction("Paste")}>
+          <ClipboardIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+          Paste
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>;
     );
     ```
   </DocsTab>
@@ -98,40 +98,40 @@ Use `ContextMenuSeparator` to group related menu items.
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Context Menu with Separators"
     <ContextMenu>
-        <ContextMenuTrigger
+      <ContextMenuTrigger
         className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
-        >
-            Right-click for menu with separators
+      >
+        Right-click for menu with separators
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>
-          <EditIcon className="w-4 h-4 mr-2" />
+          <Pencil1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
           Edit
         </ContextMenuItem>
         <ContextMenuItem>
-          <DuplicateIcon className="w-4 h-4 mr-2" />
+          <StackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Duplicate
         </ContextMenuItem>
 
         <ContextMenuSeparator />
 
         <ContextMenuItem>
-          <BookmarkIcon className="w-4 h-4 mr-2" />
+          <BookmarkIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Bookmark
         </ContextMenuItem>
         <ContextMenuItem>
-          <ShareIcon className="w-4 h-4 mr-2" />
+          <Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
           Share
         </ContextMenuItem>
 
         <ContextMenuSeparator />
 
-        <ContextMenuItem className="text-red-600">
-          <DeleteIcon className="w-4 h-4 mr-2" />
+        <ContextMenuItem destructive>
+          <TrashIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Delete
         </ContextMenuItem>
       </ContextMenuContent>
-    </ContextMenu>
+    </ContextMenu>;
     ```
   </DocsTab>
 </DocsTabs>
@@ -147,33 +147,33 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Context Menu with Submenu"
     <ContextMenu>
-        <ContextMenuTrigger
+      <ContextMenuTrigger
         className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
-        >
+      >
         Right-click for submenu example
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>
-          <NewIcon className="w-4 h-4 mr-2" />
+          <PlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           New
         </ContextMenuItem>
 
         <ContextMenuSub>
           <ContextMenuSubTrigger>
-            <ExportIcon className="w-4 h-4 mr-2" />
+            <UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
             Export As
           </ContextMenuSubTrigger>
           <ContextMenuSubContent>
             <ContextMenuItem>
-              <PdfIcon className="w-4 h-4 mr-2" />
+              <FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               PDF
             </ContextMenuItem>
             <ContextMenuItem>
-              <ExcelIcon className="w-4 h-4 mr-2" />
+              <TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               Excel
             </ContextMenuItem>
             <ContextMenuItem>
-              <ImageIcon className="w-4 h-4 mr-2" />
+              <ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
               Image
             </ContextMenuItem>
           </ContextMenuSubContent>
@@ -182,11 +182,12 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
         <ContextMenuSeparator />
 
         <ContextMenuItem>
-          <SettingsIcon className="w-4 h-4 mr-2" />
+          <GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
           Settings
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
+
     ```
   </DocsTab>
 </DocsTabs>
@@ -203,20 +204,24 @@ Both the entire context menu and individual items can be disabled.
     ```tsx lineNumbers title="Disabled Context Menu"
     {/* Disabled context menu */}
     <ContextMenu>
-      <ContextMenuTrigger disabled>
-          Context menu disabled
+      <ContextMenuTrigger
+        disabled
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+      >
+        Context menu disabled
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>This won't show</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
 
+
     {/* Disabled menu items */}
     <ContextMenu>
-      <ContextMenuTrigger>
-        <div className="w-full h-24 border border-dashed rounded-lg flex items-center justify-center cursor-context-menu">
-          <span>Some items disabled</span>
-        </div>
+      <ContextMenuTrigger
+        className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
+    >
+        Context menu with some items disabled
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuItem>Available Item</ContextMenuItem>
@@ -226,6 +231,7 @@ Both the entire context menu and individual items can be disabled.
         <ContextMenuItem disabled>Another Disabled Item</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
+
     ```
   </DocsTab>
 </DocsTabs>

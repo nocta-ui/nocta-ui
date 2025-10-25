@@ -1053,6 +1053,62 @@
 				"ContextMenuSubContent": ["children", "className", "size"]
 			}
 		},
+		"menubar": {
+			"name": "Menubar",
+			"description": "An application menubar with multi-level menus, groups, and keyboard navigation",
+			"category": "navigation",
+			"files": [
+				{
+					"name": "menubar.tsx",
+					"path": "app/components/ui/menubar/menubar.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"react-dom": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.19"
+			},
+			"exports": [
+				"Menubar",
+				"MenubarMenu",
+				"MenubarTrigger",
+				"MenubarContent",
+				"MenubarItem",
+				"MenubarSeparator",
+				"MenubarSub",
+				"MenubarSubTrigger",
+				"MenubarSubContent"
+			],
+			"props": {
+				"Menubar": ["children", "className", "size"],
+				"MenubarMenu": ["children"],
+				"MenubarTrigger": ["children", "className", "disabled", "size"],
+				"MenubarContent": ["children", "className", "size"],
+				"MenubarItem": [
+					"children",
+					"disabled",
+					"inset",
+					"destructive",
+					"className",
+					"onClick"
+				],
+				"MenubarSeparator": ["className"],
+				"MenubarSub": ["children"],
+				"MenubarSubTrigger": [
+					"children",
+					"disabled",
+					"inset",
+					"destructive",
+					"className"
+				],
+				"MenubarSubContent": ["children", "className", "size"]
+			},
+			"sizes": ["md"]
+		},
 		"sheet": {
 			"name": "Sheet",
 			"description": "Slide-out panel component that can be triggered from any side of the screen",

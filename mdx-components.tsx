@@ -75,6 +75,17 @@ import {
 	DropdownMenuTrigger,
 } from '@/app/components/ui/dropdown-menu';
 import {
+	Menubar,
+	MenubarContent,
+	MenubarItem,
+	MenubarMenu,
+	MenubarSeparator,
+	MenubarSub,
+	MenubarSubContent,
+	MenubarSubTrigger,
+	MenubarTrigger,
+} from '@/app/components/ui/menubar';
+import {
 	FileUpload,
 	FileUploadItem,
 	FileUploadProgress,
@@ -273,6 +284,15 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		DropdownMenuSub,
 		DropdownMenuSubTrigger,
 		DropdownMenuSubContent,
+		Menubar,
+		MenubarMenu,
+		MenubarTrigger,
+		MenubarContent,
+		MenubarItem,
+		MenubarSeparator,
+		MenubarSub,
+		MenubarSubTrigger,
+		MenubarSubContent,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

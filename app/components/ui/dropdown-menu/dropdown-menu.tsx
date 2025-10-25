@@ -22,7 +22,7 @@ const dropdownMenuContentVariants = cva(
 );
 
 const dropdownSubMenuContentVariants = cva(
-	`not-prose z-50 origin-top-left -translate-y-1 scale-95 transform rounded-md border border-border bg-card text-foreground opacity-0 shadow-md transition-all duration-200 data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0`,
+	`not-prose z-50 origin-top-left -translate-y-1 scale-95 transform rounded-md border border-border bg-card text-foreground opacity-0 shadow-md transition-all duration-200 data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out`,
 	{
 		variants: {
 			size: {

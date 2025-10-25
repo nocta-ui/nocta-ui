@@ -1,0 +1,236 @@
+---
+title: Menubar
+description: A top-level application menubar with grouped actions, submenus, and full keyboard navigation
+---
+
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+} from '@/app/components/ui/menubar';
+import {
+  BasicMenubarDemo,
+  MenubarDisabledDemo,
+} from '@/app/components/ui/menubar/menubar-demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Menubar component with the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add menubar
+    ```
+  </Step>
+  <Step>
+    Import only the pieces you need:
+
+    ```tsx lineNumbers title="Import"
+    import {
+      Menubar,
+      MenubarMenu,
+      MenubarTrigger,
+      MenubarContent,
+    } from '@/components/ui/menubar';
+    ```
+  </Step>
+</Steps>
+
+## Basic Menubar
+
+Pair `Menubar`, `MenubarMenu`, and `MenubarTrigger` with `MenubarContent` to create a horizontal application menu.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicMenubarDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Menubar"
+    const [lastAction, setLastAction] = useState('No action selected');
+
+    return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem onClick={() => setLastAction("New project")}>
+            <FilePlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            New project
+          </MenubarItem>
+          <MenubarItem onClick={() => setLastAction("Open file")}>
+            <OpenInNewWindowIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Open file
+          </MenubarItem>
+          <MenubarItem onClick={() => setLastAction("Save")}>
+            <EnterIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Save
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarSub>
+            <MenubarSubTrigger>
+              <Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+              Share
+            </MenubarSubTrigger>
+            <MenubarSubContent>
+              <MenubarItem onClick={() => setLastAction("Share to email")}>
+                Email
+              </MenubarItem>
+              <MenubarItem onClick={() => setLastAction("Share to teams")}>
+                Teams
+              </MenubarItem>
+              <MenubarItem onClick={() => setLastAction("Copy link")}>
+                Copy link
+              </MenubarItem>
+            </MenubarSubContent>
+          </MenubarSub>
+          <MenubarSeparator />
+          <MenubarItem destructive onClick={() => setLastAction("Close window")}>
+            Close window
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem onClick={() => setLastAction("Undo")}>
+            <ReloadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Undo
+          </MenubarItem>
+          <MenubarItem onClick={() => setLastAction("Redo")}>
+            <ReloadIcon aria-hidden="true" className="mr-2 h-4 w-4 rotate-180" />
+            Redo
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem onClick={() => setLastAction("Cut")}>
+            <ScissorsIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Cut
+          </MenubarItem>
+          <MenubarItem onClick={() => setLastAction("Copy")}>
+            <CopyIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Copy
+          </MenubarItem>
+          <MenubarItem onClick={() => setLastAction("Paste")}>
+            <DotsHorizontalIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+            Paste
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+    );
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Disabled States
+
+Menubar supports disabling entire menus or individual commands to reflect application state.
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <MenubarDisabledDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Disabled Menubar Items"
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New file</MenubarItem>
+          <MenubarItem disabled>Save (synced)</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Export</MenubarItem>
+          <MenubarItem disabled>Close (background task)</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
+      <MenubarMenu>
+        <MenubarTrigger disabled>Team</MenubarTrigger>
+      </MenubarMenu>
+    </Menubar>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Menubar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Menubar menus |
+| `className` | `string` | — | Additional styling |
+| `size` | `'md'` | `'md'` | Control menubar height |
+
+### MenubarMenu
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Trigger and content for a menu |
+
+### MenubarTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Visible trigger label |
+| `className` | `string` | — | Custom classes |
+| `disabled` | `boolean` | `false` | Disable opening the menu |
+| `size` | `'md'` | `'md'` | Trigger padding and height |
+
+### MenubarContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Menu body content |
+| `className` | `string` | — | Additional classes |
+| `size` | `'md'` | `'md'` | Adjusts padding and width |
+
+### MenubarItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Command label and accessories |
+| `className` | `string` | — | Additional classes |
+| `disabled` | `boolean` | `false` | Disable interaction |
+| `inset` | `boolean` | `false` | Indent the item |
+| `destructive` | `boolean` | `false` | Apply destructive styling |
+| `onClick` | `() => void` | — | Click handler |
+
+### MenubarSeparator
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Additional classes |
+
+### MenubarSub
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger and content |
+
+### MenubarSubTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu trigger label |
+| `className` | `string` | — | Additional classes |
+| `disabled` | `boolean` | `false` | Disable the submenu trigger |
+| `inset` | `boolean` | `false` | Indent the trigger |
+| `destructive` | `boolean` | `false` | Destructive styling |
+
+### MenubarSubContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | — | Submenu body |
+| `className` | `string` | — | Additional classes |
+| `size` | `'md'` | `'md'` | Adjusts submenu padding |
