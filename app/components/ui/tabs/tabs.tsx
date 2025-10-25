@@ -38,7 +38,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-	`not-prose not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-all duration-200 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-all duration-200 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -74,7 +74,7 @@ interface TabsStyleContextValue {
 	variant: 'default' | 'pills' | 'underline';
 	size: 'sm' | 'md' | 'lg';
 	orientation: 'horizontal' | 'vertical';
-	disabled?: boolean;
+	disabled: boolean;
 }
 
 const TabsStyleContext = React.createContext<TabsStyleContextValue | null>(
@@ -108,7 +108,7 @@ export function Tabs({
 	variant = 'default',
 	size = 'md',
 	className,
-	disabled,
+	disabled = false,
 }: TabsProps) {
 	const store = Ariakit.useTabStore({
 		defaultSelectedId: defaultValue,
@@ -146,13 +146,15 @@ export type TabsListProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function TabsList({ children, className, ...props }: TabsListProps) {
 	const { orientation, variant, size } = useTabsStyleContext();
+	const { autoFocus, ...rest } = props;
 	return (
 		<Ariakit.TabList
 			className={cn(
 				tabsListVariants({ orientation, variant, size }),
 				className,
 			)}
-			{...props}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
+			{...rest}
 		>
 			{children}
 		</Ariakit.TabList>
@@ -170,16 +172,19 @@ export function TabsTrigger({
 	children,
 	value,
 	className,
-	...props
+	disabled: disabledProp,
+	...rest
 }: TabsTriggerProps) {
 	const { variant, size, disabled } = useTabsStyleContext();
+	const isDisabled = disabledProp ?? disabled;
+	const { autoFocus, id, ...restProps } = rest;
 	return (
 		<Ariakit.Tab
-			id={value}
-			value={value}
+			id={id ?? value}
 			className={cn(tabsTriggerVariants({ variant, size }), className)}
-			disabled={disabled}
-			{...props}
+			disabled={isDisabled}
+			{...(autoFocus === undefined ? {} : { autoFocus })}
+			{...restProps}
 		>
 			{children}
 		</Ariakit.Tab>
