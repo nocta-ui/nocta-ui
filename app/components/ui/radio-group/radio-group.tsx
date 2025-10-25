@@ -55,7 +55,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 	const storeProps: Parameters<typeof useRadioStore>[0] = {};
 	if (typeof value !== 'undefined') {
 		storeProps.value = value;
-		storeProps.setValue = onValueChange;
+		if (onValueChange) {
+			storeProps.setValue = onValueChange;
+		}
 	} else if (typeof defaultValue !== 'undefined') {
 		storeProps.defaultValue = defaultValue;
 	}
@@ -140,7 +142,7 @@ export const RadioGroupItem = React.forwardRef<
 			data-focus-visible={focusVisible ? '' : undefined}
 			className={cn(
 				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md transition-colors duration-200 ease-in-out',
-				'data-[focus-visible]:ring-1 data-[focus-visible]:ring-ring/50 data-[focus-visible]:ring-offset-1 data-[focus-visible]:ring-offset-ring-offset/50',
+				'data-focus-visible:ring-1 data-focus-visible:ring-ring/50 data-focus-visible:ring-offset-1 data-focus-visible:ring-offset-ring-offset/50',
 				isDisabled && 'cursor-not-allowed opacity-50',
 				className,
 			)}
@@ -163,7 +165,7 @@ export const RadioGroupItem = React.forwardRef<
 						checked: isChecked,
 						disabled: isDisabled,
 					}),
-					'mt-[2px]',
+					'mt-0.5',
 				)}
 			>
 				<span
