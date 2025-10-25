@@ -8,7 +8,19 @@ The Nocta CLI maintains two JSON documents: `nocta.config.json` inside each work
 ## `nocta.config.json`
 Created by `nocta-ui init`, this file describes how the CLI should scaffold components and where shared helpers live.
 
-```json title="App workspace linked to shared UI"
+### Core structure
+
+- `tailwind.css` tells the CLI where to inject design tokens.
+- `aliases` control where component files and utilities land and optionally provide a custom import alias.
+- `aliasPrefixes` only matter when an alias is a short string; they decide which import prefix (`@`, `~`, etc.) is used.
+- `exports.components` (optional) keeps a barrel file up to date when you install components.
+- `workspace` stores metadata that lets the CLI coordinate monorepos and link additional workspaces.
+
+### Example: Application linking a shared UI package
+
+The application workspace keeps its own Tailwind entry point but delegates component installs to a shared UI package. The CLI will sync helpers, exports, and dependencies with the linked workspace.
+
+```json title="apps/web/nocta.config.json"
 {
   "$schema": "https://nocta-ui.com/registry/config-schema.json",
   "style": "default",
@@ -39,7 +51,15 @@ Created by `nocta-ui init`, this file describes how the CLI should scaffold comp
 }
 ```
 
-```json title="Shared UI workspace with export barrel"
+- `linkedWorkspaces` let the CLI know which packages should receive component files and dependency updates.
+- Paths inside `linkedWorkspaces[].config` are relative to the current workspace, which makes cross-package updates resilient when you move folders.
+- Leave `aliasPrefixes` set to `@` unless your project needs a different import character (React Router defaults to `~`).
+
+### Example: Shared UI workspace with export barrel
+
+Shared UI packages usually own component source files, run Tailwind in build pipelines, and expose a barrel file for consumers. The CLI uses this information to decide where to write helpers and when to touch the package manifest.
+
+```json title="packages/ui/nocta.config.json"
 {
   "$schema": "https://nocta-ui.com/registry/config-schema.json",
   "style": "default",
@@ -68,12 +88,8 @@ Created by `nocta-ui init`, this file describes how the CLI should scaffold comp
 }
 ```
 
-Key details the CLI reads from this file:
-- `tailwind.css` points to the stylesheet that receives design tokens.
-- `aliases` set the filesystem destinations and optionally an import alias.
-- `aliasPrefixes` apply when `aliases` use the short string form and you want a custom prefix.
-- `exports.components` is optional and lets `nocta-ui add` maintain a barrel file automatically.
-- The `workspace` block stores metadata used for monorepos and for linking shared UI packages.
+- `exports.components` ensures `nocta-ui add` appends new components to the barrel without touching your custom code outside the managed block.
+- Shared UI workspaces usually omit `linkedWorkspaces` because other projects link to them; add entries only when you need to push files into sibling libraries.
 
 ### Framework Defaults
 `init` fills the fields above based on the detected framework:
