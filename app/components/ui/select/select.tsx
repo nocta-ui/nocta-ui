@@ -90,12 +90,24 @@ export const Select: React.FC<SelectProps> = ({
 	size = 'md',
 	variant = 'default',
 }) => {
-	const store = Ariakit.useSelectStore({
-		value: controlledValue,
-		defaultValue,
-		setValue: (v) => onValueChange?.(String(v ?? '')),
-		animated: true,
-	});
+	const store = Ariakit.useSelectStore(
+		controlledValue !== undefined
+			? {
+					value: controlledValue,
+					setValue: (v) => onValueChange?.(String(v ?? '')),
+					animated: true,
+				}
+			: defaultValue !== undefined
+				? {
+						defaultValue,
+						setValue: (v) => onValueChange?.(String(v ?? '')),
+						animated: true,
+					}
+				: {
+						setValue: (v) => onValueChange?.(String(v ?? '')),
+						animated: true,
+					},
+	);
 
 	const normalizedSize: SelectSize = size ?? 'md';
 	const normalizedVariant: SelectVariant = variant ?? 'default';
@@ -118,6 +130,8 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 	className = '',
 	size: propSize,
 	variant: propVariant,
+	disabled: disabledProp,
+	autoFocus,
 	...props
 }) => {
 	const ctx = React.useContext(InternalContext);
@@ -125,12 +139,17 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 	const isOpen = Ariakit.useStoreState(select, (s) => s?.open ?? false);
 	const size: SelectSize = propSize ?? ctx.size ?? 'md';
 	const variant: SelectVariant = propVariant ?? ctx.variant ?? 'default';
+	const disabled = disabledProp ?? ctx.disabled ?? false;
+	const triggerProps = {
+		...props,
+		...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),
+	};
 
 	return (
 		<Ariakit.Select
-			disabled={ctx.disabled}
+			disabled={disabled}
 			className={cn(selectTriggerVariants({ size, variant }), className)}
-			{...props}
+			{...triggerProps}
 		>
 			{children}
 			<Icons.ChevronDown
@@ -156,7 +175,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			portal={portal}
 			fixed={fixed}
 			className={cn(
-				'absolute z-[999] my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
+				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
 				'focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none',
 				'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0',
 				'not-prose',
