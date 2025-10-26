@@ -124,11 +124,13 @@ export const ContextMenuContent: React.FC<
 	{
 		children: React.ReactNode;
 		className?: string;
+		sameWidth?: boolean;
 	} & VariantProps<typeof contextMenuContentVariants>
-> = ({ children, className, size }) => (
+> = ({ children, className, sameWidth, size }) => (
 	<Ariakit.Menu
 		portal
 		gutter={4}
+		sameWidth={sameWidth}
 		className={cn(contextMenuContentVariants({ size }), className)}
 	>
 		<div className="flex flex-col gap-1">{children}</div>

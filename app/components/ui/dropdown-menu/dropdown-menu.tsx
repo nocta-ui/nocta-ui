@@ -110,11 +110,13 @@ export const DropdownMenuContent: React.FC<
 	{
 		children: React.ReactNode;
 		className?: string;
+		sameWidth?: boolean;
 	} & VariantProps<typeof dropdownMenuContentVariants>
-> = ({ children, className, size }) => (
+> = ({ children, className, sameWidth, size }) => (
 	<Ariakit.Menu
 		portal
 		gutter={4}
+		sameWidth={sameWidth}
 		className={cn(dropdownMenuContentVariants({ size }), className)}
 	>
 		<div className="flex flex-col gap-1">{children}</div>

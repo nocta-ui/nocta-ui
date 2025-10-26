@@ -979,7 +979,7 @@
 			"props": {
 				"DropdownMenu": ["children", "className"],
 				"DropdownMenuTrigger": ["children", "disabled", "className"],
-				"DropdownMenuContent": ["children", "className", "size"],
+				"DropdownMenuContent": ["children", "className", "sameWidth", "size"],
 				"DropdownMenuItem": [
 					"children",
 					"disabled",
@@ -1032,7 +1032,7 @@
 			"props": {
 				"ContextMenu": ["children", "className"],
 				"ContextMenuTrigger": ["children", "disabled", "className"],
-				"ContextMenuContent": ["children", "className", "size"],
+				"ContextMenuContent": ["children", "className", "sameWidth", "size"],
 				"ContextMenuItem": [
 					"children",
 					"disabled",
