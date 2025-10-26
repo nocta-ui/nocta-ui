@@ -1,0 +1,209 @@
+---
+title: Navigation Menu
+description: A hover-driven navigation bar with animated panels that surface nested content and quick actions
+---
+
+import {
+  NavigationMenu,
+  NavigationMenuGroup,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from '@/app/components/ui/navigation-menu';
+import {
+  BasicNavigationMenuDemo,
+} from '@/app/components/ui/navigation-menu/navigation-menu-demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Navigation Menu component with the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx nocta-ui add navigation-menu
+    ```
+  </Step>
+  <Step>
+    Import the primitives you need for your navigation structure:
+
+    ```tsx lineNumbers title="Import"
+    import {
+      NavigationMenu,
+      NavigationMenuItem,
+      NavigationMenuGroup,
+      NavigationMenuLink,
+    } from '@/components/ui/navigation-menu';
+    ```
+  </Step>
+</Steps>
+
+## Examples
+
+### Basic Navigation Menu
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicNavigationMenuDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Navigation Menu"
+    <NavigationMenu>
+      <NavigationMenuItem label="Product">
+        <NavigationMenuGroup label="Featured">
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <RocketIcon aria-hidden="true" className="h-4 w-4" />
+                Nocta Studio
+              </span>
+            }
+            description="Design, preview, and publish beautiful dashboards with live data."
+          />
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <LightningBoltIcon aria-hidden="true" className="h-4 w-4" />
+                Automations
+              </span>
+            }
+            description="Coordinate multi-step customer journeys with conditional logic."
+          />
+        </NavigationMenuGroup>
+        <NavigationMenuGroup label="Resources">
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <FileTextIcon aria-hidden="true" className="h-4 w-4" />
+                Release notes
+              </span>
+            }
+            description="Stay up to date with our latest capabilities and improvements."
+          />
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <LayersIcon aria-hidden="true" className="h-4 w-4" />
+                Templates
+              </span>
+            }
+            description="Jump-start new ideas with ready-made templates for common scenarios."
+          />
+        </NavigationMenuGroup>
+      </NavigationMenuItem>
+
+      <NavigationMenuItem label="Developers">
+        <NavigationMenuGroup label="Build">
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <CodeIcon aria-hidden="true" className="h-4 w-4" />
+                API Reference
+              </span>
+            }
+            description="Explore the full API surface with interactive examples."
+          />
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <LayersIcon aria-hidden="true" className="h-4 w-4" />
+                Component SDK
+              </span>
+            }
+            description="Embed Nocta UI components directly inside your application."
+          />
+        </NavigationMenuGroup>
+        <NavigationMenuGroup label="Support">
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <ChatBubbleIcon aria-hidden="true" className="h-4 w-4" />
+                Developer community
+              </span>
+            }
+            description="Ask questions, share patterns, and learn from other builders."
+          />
+          <NavigationMenuLink
+            href="#"
+            label={
+              <span className="flex items-center gap-2">
+                <ArrowRightIcon aria-hidden="true" className="h-4 w-4" />
+                Quickstart tutorials
+              </span>
+            }
+            description="Ship your first integration in under 10 minutes."
+          />
+        </NavigationMenuGroup>
+      </NavigationMenuItem>
+
+      <NavigationMenuItem label="Pricing" href="#" />
+      <NavigationMenuItem label="Blog" href="#" />
+    </NavigationMenu>;
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### NavigationMenu
+
+Top-level menubar that coordinates trigger interactions and panel positioning across the navigation surface.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Items rendered inside the menubar. |
+| `className` | `string` | `undefined` | Custom classes for the menubar. |
+| `size` | `'md'` | `'md'` | Size variant for triggers. |
+| `panelClassName` | `string` | `undefined` | Classes merged into the panel. |
+| `panelWrapperClassName` | `string` | `undefined` | Classes for the panel wrapper. |
+| `arrowClassName` | `string` | `undefined` | Classes for the arrow element. |
+| `...props` | `Ariakit.MenubarProps` | - | Additional `Ariakit.Menubar` props. |
+
+### NavigationMenuItem
+
+Interactive trigger that can either navigate directly or reveal nested panel content.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `React.ReactNode` | - | Trigger label content |
+| `children` | `React.ReactNode` | `undefined` | Panel content for the item |
+| `href` | `string` | `undefined` | Link target when used as an anchor |
+| `shift` | `number` | `0` | Horizontal panel offset |
+| `placement` | `Ariakit.MenuStoreProps['placement']` | `'bottom'` | Preferred panel placement |
+| `size` | `'md'` | `'md'` | Trigger size variant |
+| `className` | `string` | `undefined` | Custom classes for the trigger |
+| `render` | `Ariakit.MenuItemProps['render']` | `undefined` | Render override; auto-anchor for `href` |
+| `...props` | `Ariakit.MenuItemProps` | - | Additional `Ariakit.MenuItem` props |
+
+### NavigationMenuLink
+
+Styled menu item optimized for secondary content inside the floating panel.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `React.ReactNode` | - | Link label text |
+| `description` | `React.ReactNode` | `undefined` | Optional supporting text |
+| `href` | `string` | `undefined` | Destination URL |
+| `className` | `string` | `undefined` | Custom classes for the link |
+| `render` | `Ariakit.MenuItemProps['render']` | `undefined` | Render override; auto-anchor for `href` |
+| `...props` | `Ariakit.MenuItemProps` | - | Additional `Ariakit.MenuItem` props |
+
+### NavigationMenuGroup
+
+Collects related navigation links under a shared label within the floating panel.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `React.ReactNode` | `undefined` | Optional group heading |
+| `children` | `React.ReactNode` | - | Group content or links |
+| `className` | `string` | `undefined` | Custom classes for the group |
+| `labelClassName` | `string` | `undefined` | Custom classes for the heading |
+| `...props` | `Ariakit.MenuGroupProps` | - | Additional `Ariakit.MenuGroup` props |

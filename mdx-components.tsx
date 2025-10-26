@@ -102,6 +102,12 @@ import {
 	MenubarTrigger,
 } from '@/app/components/ui/menubar';
 import {
+	NavigationMenu,
+	NavigationMenuGroup,
+	NavigationMenuItem,
+	NavigationMenuLink,
+} from '@/app/components/ui/navigation-menu';
+import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
@@ -290,6 +296,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		MenubarContent,
 		MenubarItem,
 		MenubarSeparator,
+		NavigationMenu,
+		NavigationMenuGroup,
+		NavigationMenuItem,
+		NavigationMenuLink,
 		MenubarSub,
 		MenubarSubTrigger,
 		MenubarSubContent,
