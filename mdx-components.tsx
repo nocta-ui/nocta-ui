@@ -155,8 +155,8 @@ import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import { Pre, CodeBlock as YourCustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
-import { TypeTable } from '@/components/type-table';
 import { TokenTable } from '@/components/token-table';
+import { TypeTable } from '@/components/type-table';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />

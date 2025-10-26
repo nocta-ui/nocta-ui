@@ -1,5 +1,6 @@
 'use client';
 
+import type { TooltipAnchorProps as AriakitTooltipAnchorProps } from '@ariakit/react';
 import {
 	Tooltip as AriakitTooltip,
 	TooltipAnchor,
@@ -28,7 +29,7 @@ export interface TooltipProps {
 	delayDuration?: number;
 }
 
-export interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
+export interface TooltipTriggerProps extends AriakitTooltipAnchorProps {
 	children: React.ReactNode;
 	className?: string;
 }

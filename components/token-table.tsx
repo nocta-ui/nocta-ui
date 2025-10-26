@@ -2,7 +2,7 @@
 
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { ChevronDownIcon as ChevronDown } from '@radix-ui/react-icons';
-import { forwardRef, useEffect, useState, type ReactNode } from 'react';
+import { forwardRef, type ReactNode, useEffect, useState } from 'react';
 import { cn } from '@/lib/cn';
 
 const Collapsible = CollapsiblePrimitive.Root;
