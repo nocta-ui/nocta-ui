@@ -155,6 +155,7 @@ import { WheelPicker, WheelPickerItem } from '@/app/components/ui/wheel-picker';
 import { Pre, CodeBlock as YourCustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
+import { TypeTable } from '@/components/type-table';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -303,6 +304,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		MenubarSub,
 		MenubarSubTrigger,
 		MenubarSubContent,
+		TypeTable,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>
