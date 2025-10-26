@@ -189,7 +189,7 @@ export interface MenubarMenuProps {
 export const MenubarMenu: React.FC<MenubarMenuProps> = ({ children }) => {
 	const menubar = Ariakit.useMenubarContext();
 	const animation = useContext(MenubarAnimationContext);
-	const menu = Ariakit.useMenuStore({ menubar });
+	const menu = Ariakit.useMenuStore({ menubar: menubar ?? null });
 	const menuId = useId();
 	const [skipAnimation, setSkipAnimation] = useState(false);
 	const open = Ariakit.useStoreState(menu, 'open');
