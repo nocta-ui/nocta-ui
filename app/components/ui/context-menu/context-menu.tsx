@@ -128,7 +128,6 @@ export const ContextMenuContent: React.FC<
 > = ({ children, className, size }) => (
 	<Ariakit.Menu
 		portal
-		sameWidth
 		gutter={4}
 		className={cn(contextMenuContentVariants({ size }), className)}
 	>

@@ -29,7 +29,7 @@ const wheelPickerSizeConfig: Record<
 
 const wheelPickerVariants = cva(
 	[
-		'not-prose relative isolate overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors duration-200',
+		'not-prose relative isolate overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors ease-in-out duration-200',
 	],
 	{
 		variants: {
@@ -48,7 +48,7 @@ const wheelPickerVariants = cva(
 );
 
 const wheelPickerTrackText = cva(
-	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-200',
+	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-200 ease-in-out',
 	{
 		variants: {
 			size: { sm: 'text-xs', md: 'text-sm', lg: 'text-base' },
@@ -68,7 +68,7 @@ const wheelPickerHighlightText = cva(
 );
 
 const wheelPickerFocusRingClasses =
-	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:border-border group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50';
+	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:border-border group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50 transition-all duration-200 ease-in-out';
 
 const wheelPickerHighlightBand = cva(
 	cn(

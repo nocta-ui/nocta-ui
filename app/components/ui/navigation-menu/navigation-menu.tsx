@@ -119,7 +119,7 @@ export const NavigationMenu = React.forwardRef<
 							unmountOnHide
 							wrapperProps={{
 								className: cn(
-									'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-200',
+									'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-200 ease-in-out',
 									panelWrapperClassName,
 								),
 							}}
@@ -225,7 +225,7 @@ export const NavigationMenuItem = React.forwardRef<
 				{!!children && (
 					<Icons.ChevronDown
 						className={cn(
-							'ml-1 size-4 transition-transform duration-200',
+							'ml-1 size-4 transition-transform duration-200 ease-in-out',
 							open && 'rotate-180',
 						)}
 					/>

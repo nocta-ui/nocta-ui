@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm transition-colors duration-200 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+	'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm transition-colors duration-200 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 	{
 		variants: {
 			variant: {

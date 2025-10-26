@@ -42,7 +42,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out data-[skip-animation=true]:transition-none data-[skip-animation=true]:duration-0 data-[skip-animation=true]:ease-linear data-[skip-animation=true]:translate-y-0 data-[skip-animation=true]:scale-100 data-[skip-animation=true]:opacity-100',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out data-[skip-animation=true]:transition-none data-[skip-animation=true]:duration-0 data-[skip-animation=true]:ease-linear data-[skip-animation=true]:translate-y-0 data-[skip-animation=true]:scale-100 data-[skip-animation=true]:opacity-100',
 	{
 		variants: {
 			size: {
@@ -56,7 +56,7 @@ const menubarContentVariants = cva(
 );
 
 const menubarSubContentVariants = cva(
-	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out',
+	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out',
 	{
 		variants: {
 			size: {

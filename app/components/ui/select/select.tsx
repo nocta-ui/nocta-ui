@@ -203,7 +203,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
 				isSelected && 'bg-card-muted font-medium text-foreground',
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,
