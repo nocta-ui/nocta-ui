@@ -3,6 +3,7 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
+import SearchDialog from '@/components/search';
 
 const ppNeueMontreal = localFont({
 	src: [
@@ -221,7 +222,14 @@ export default function Layout({ children }: { children: ReactNode }) {
 				min-h-screen
 			"
 			>
-				<RootProvider>{children}</RootProvider>
+				<RootProvider
+					search={{
+						SearchDialog,
+					}}
+				>
+					{children}
+				</RootProvider>
+				;{' '}
 			</body>
 		</html>
 	);

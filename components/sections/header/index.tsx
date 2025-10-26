@@ -4,10 +4,7 @@ import {
 	LanguageToggle,
 	LanguageToggleText,
 } from 'fumadocs-ui/components/layout/language-toggle';
-import {
-	LargeSearchToggle,
-	SearchToggle,
-} from 'fumadocs-ui/components/layout/search-toggle';
+import { LargeSearchToggle, SearchToggle } from '@/components/search-toggle';
 import { NavigationMenuList } from 'fumadocs-ui/components/ui/navigation-menu';
 import type { LinkItemType } from 'fumadocs-ui/layouts/links';
 import { SearchOnly } from 'fumadocs-ui/contexts/search';
@@ -59,7 +56,7 @@ export const Header = ({
 			<div className="flex flex-1 flex-row items-center justify-end lg:gap-1.5">
 				<SearchOnly>
 					<SearchToggle className="lg:hidden" />
-					<LargeSearchToggle className="w-full max-w-60 rounded-md bg-card-muted hover:text-fd-accent-foreground/70 max-lg:hidden" />
+					<LargeSearchToggle className="w-full max-w-60 rounded-md text-foreground/35 hover:text-foreground/70 max-lg:hidden cursor-pointer" />
 				</SearchOnly>
 				<ThemeToggle />
 				{navItems.filter(isSecondary).map((item, i) => (

@@ -223,7 +223,7 @@ export function DocsLayout({
 					</div>
 					{searchToggle.enabled !== false &&
 						(searchToggle.components?.lg ?? (
-							<LargeSearchToggle hideIfDisabled />
+							<LargeSearchToggle className="" hideIfDisabled />
 						))}
 					{tabs.length > 0 && <RootToggle options={tabs} />}
 
