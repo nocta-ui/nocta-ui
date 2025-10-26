@@ -12,7 +12,7 @@ import {
 export const DefaultSelectDemo: React.FC = () => {
 	return (
 		<div className="my-6">
-			<Select>
+			<Select defaultValue="">
 				<SelectTrigger className="w-[180px]">
 					<SelectValue placeholder="Select a fruit" />
 				</SelectTrigger>
@@ -33,7 +33,7 @@ export const VariantsDemo: React.FC = () => {
 		<div className="my-6 space-y-6">
 			<div className="flex flex-col space-y-2">
 				<p className="text-sm font-medium text-foreground/70">Default</p>
-				<Select variant="default">
+				<Select variant="default" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Default variant" />
 					</SelectTrigger>
@@ -47,7 +47,7 @@ export const VariantsDemo: React.FC = () => {
 
 			<div className="flex flex-col space-y-2">
 				<p className="text-sm font-medium text-foreground/70">Error</p>
-				<Select variant="error">
+				<Select variant="error" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Error variant" />
 					</SelectTrigger>
@@ -62,7 +62,7 @@ export const VariantsDemo: React.FC = () => {
 
 			<div className="flex flex-col space-y-2">
 				<p className="text-sm font-medium text-foreground/70">Success</p>
-				<Select variant="success" defaultValue="orange">
+				<Select variant="success" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Success variant" />
 					</SelectTrigger>
@@ -85,7 +85,7 @@ export const SizesDemo: React.FC = () => {
 				<p className="mb-1.5 block text-sm font-medium text-foreground/70">
 					Small
 				</p>
-				<Select size="sm">
+				<Select size="sm" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Small select" />
 					</SelectTrigger>
@@ -101,7 +101,7 @@ export const SizesDemo: React.FC = () => {
 				<p className="mb-1.5 block text-sm font-medium text-foreground/70">
 					Medium
 				</p>
-				<Select size="md">
+				<Select size="md" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Medium select" />
 					</SelectTrigger>
@@ -117,7 +117,7 @@ export const SizesDemo: React.FC = () => {
 				<p className="mb-1.5 block text-sm font-medium text-foreground/70">
 					Large
 				</p>
-				<Select size="lg">
+				<Select size="lg" defaultValue="">
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder="Large select" />
 					</SelectTrigger>

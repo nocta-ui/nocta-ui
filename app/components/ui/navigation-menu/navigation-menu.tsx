@@ -58,7 +58,7 @@ const navigationMenuLinkVariants = cva(
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
 
 const navigationMenuGroupLabelClass =
-	'px-4 text-xs uppercase tracking-widest text-foreground/35';
+	'px-4 text-xs uppercase tracking-widest text-foreground/45';
 
 const SetShiftContext = React.createContext<
 	React.Dispatch<React.SetStateAction<number>>

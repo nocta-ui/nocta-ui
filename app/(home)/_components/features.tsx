@@ -84,7 +84,7 @@ function FeatureList() {
 function InstallSnippet() {
 	return (
 		<div className="space-y-4">
-			<p className="text-xs font-medium uppercase tracking-widest text-foreground/35">
+			<p className="text-xs font-medium uppercase tracking-widest text-foreground/45">
 				Install with one command
 			</p>
 
@@ -113,7 +113,7 @@ function CommandLine({ children }: { children: string }) {
 function TechStack() {
 	return (
 		<div className="space-y-4">
-			<p className="text-xs uppercase font-medium tracking-widest text-foreground/35">
+			<p className="text-xs uppercase font-medium tracking-widest text-foreground/45">
 				Built with
 			</p>
 

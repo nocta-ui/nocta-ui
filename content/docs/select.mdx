@@ -48,7 +48,7 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Default Select"
-    <Select>
+    <Select defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>
@@ -74,7 +74,7 @@ Visual variants help represent error and success states alongside the default ap
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Select Variants"
-    <Select variant="default">
+    <Select variant="default" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Default variant" />
       </SelectTrigger>
@@ -85,7 +85,7 @@ Visual variants help represent error and success states alongside the default ap
       </SelectContent>
     </Select>
 
-    <Select variant="error">
+    <Select variant="error" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Error variant" />
       </SelectTrigger>
@@ -96,7 +96,7 @@ Visual variants help represent error and success states alongside the default ap
       </SelectContent>
     </Select>
 
-    <Select variant="success" defaultValue="orange">
+    <Select variant="success" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Success variant" />
       </SelectTrigger>
@@ -120,7 +120,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Select Sizes"
-    <Select size="sm">
+    <Select size="sm" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Small select" />
       </SelectTrigger>
@@ -131,7 +131,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       </SelectContent>
     </Select>
 
-    <Select size="md">
+    <Select size="md" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Medium select" />
       </SelectTrigger>
@@ -142,7 +142,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       </SelectContent>
     </Select>
 
-    <Select size="lg">
+    <Select size="lg" defaultValue="">
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Large select" />
       </SelectTrigger>

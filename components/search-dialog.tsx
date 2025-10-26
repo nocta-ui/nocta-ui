@@ -134,7 +134,7 @@ export function SearchDialogInput(
 			onChange={(e) => onSearchChange(e.target.value)}
 			placeholder={text.search}
 			className={cn(
-				'w-0 flex-1 bg-transparent text-lg placeholder:text-foreground/35 text-foreground focus-visible:outline-none',
+				'w-0 flex-1 bg-transparent text-lg placeholder:text-foreground/45 text-foreground focus-visible:outline-none',
 				props.className,
 			)}
 		/>
@@ -328,7 +328,7 @@ export function SearchDialogListItem({
 		} else {
 			children = (
 				<>
-					<div className="inline-flex items-center text-foreground/35 text-xs empty:hidden">
+					<div className="inline-flex items-center text-foreground/45 text-xs empty:hidden">
 						{item.breadcrumbs?.map((crumb, i) => (
 							<Fragment key={i}>
 								{i > 0 && <ChevronRight className="size-4" />}
@@ -403,7 +403,7 @@ export function SearchDialogIcon({
 		<SearchIcon
 			{...props}
 			className={cn(
-				'size-6 text-foreground/35',
+				'size-6 text-foreground/45',
 				isLoading && 'animate-pulse duration-400',
 				className,
 			)}

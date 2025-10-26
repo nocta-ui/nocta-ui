@@ -5,7 +5,7 @@ import {
 	NavigationMenu,
 	NavigationMenuLink,
 	NavigationMenuViewport,
-} from 'fumadocs-ui/components/ui/navigation-menu';
+} from '../../navigation-menu';
 import { type HTMLAttributes, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,7 @@ export const Navbar = (props: HTMLAttributes<HTMLElement>) => {
 			<header
 				{...props}
 				className={cn(
-					'sticky top-[var(--fd-banner-height)] z-30 box-content w-full bg-background/80 backdrop-blur-lg transition-colors',
+					'fixed top-[var(--fd-banner-height)] z-30 box-content w-full bg-background/80 backdrop-blur-lg transition-colors',
 					'border-b border-fd-border',
 					props.className,
 				)}
