@@ -18,7 +18,7 @@ const menubarVariants = cva(
 	{
 		variants: {
 			size: {
-				md: 'h-11.5',
+				md: '',
 			},
 		},
 		defaultVariants: {
@@ -28,11 +28,11 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-	'inline-flex select-none items-center gap-2 rounded-sm px-3 py-1.5 text-sm font-medium transition-colors outline-none ring-offset-background hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+	'inline-flex select-none items-center gap-2 rounded-sm px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out outline-none ring-offset-background hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	{
 		variants: {
 			size: {
-				md: 'h-9 text-sm',
+				md: 'text-sm',
 			},
 		},
 		defaultVariants: {
