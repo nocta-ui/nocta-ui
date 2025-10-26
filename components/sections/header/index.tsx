@@ -4,10 +4,9 @@ import {
 	LanguageToggle,
 	LanguageToggleText,
 } from 'fumadocs-ui/components/layout/language-toggle';
-import { LargeSearchToggle, SearchToggle } from '@/components/search-toggle';
 import { NavigationMenuList } from 'fumadocs-ui/components/ui/navigation-menu';
-import type { LinkItemType } from 'fumadocs-ui/layouts/links';
 import { SearchOnly } from 'fumadocs-ui/contexts/search';
+import type { LinkItemType } from 'fumadocs-ui/layouts/links';
 import type { HomeLayoutProps } from '@/components/layout/home';
 import {
 	NavbarLink,
@@ -15,6 +14,7 @@ import {
 	NavbarMenuContent,
 	NavbarMenuTrigger,
 } from '@/components/layout/home/navbar';
+import { LargeSearchToggle, SearchToggle } from '@/components/search-toggle';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Menu, MenuContent, MenuLinkItem, MenuTrigger } from './menu';
 import { Navbar, NavbarMenuLink } from './navbar';

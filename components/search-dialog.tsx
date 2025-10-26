@@ -1,34 +1,35 @@
 'use client';
 
-import React, {
-	createContext,
-	Fragment,
-	useCallback,
-	useContext,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-	HTMLAttributes,
-} from 'react';
-import {
-	ChevronRightIcon as ChevronRight,
-	FrameIcon as Hash,
-	MagnifyingGlassIcon as SearchIcon,
-} from '@radix-ui/react-icons';
-import { I18nLabel, useI18n } from 'fumadocs-ui/contexts/i18n';
-import { cn } from '@/lib/utils';
 import {
 	Dialog,
 	DialogContent,
 	DialogOverlay,
 	DialogTitle,
 } from '@radix-ui/react-dialog';
+import {
+	ChevronRightIcon as ChevronRight,
+	FrameIcon as Hash,
+	MagnifyingGlassIcon as SearchIcon,
+} from '@radix-ui/react-icons';
 import { cva } from 'class-variance-authority';
-import { useEffectEvent } from 'fumadocs-core/utils/use-effect-event';
 import { useRouter } from 'fumadocs-core/framework';
+import { useEffectEvent } from 'fumadocs-core/utils/use-effect-event';
 import { useOnChange } from 'fumadocs-core/utils/use-on-change';
+import { I18nLabel, useI18n } from 'fumadocs-ui/contexts/i18n';
+import type React from 'react';
+import {
+	createContext,
+	Fragment,
+	type HTMLAttributes,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+import { cn } from '@/lib/utils';
 import { buttonVariants } from '../components/ui/button';
 
 interface SearchDialogProps {

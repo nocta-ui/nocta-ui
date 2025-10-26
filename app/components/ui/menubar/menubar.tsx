@@ -2,7 +2,7 @@
 
 import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import React, {
+import {
 	createContext,
 	useCallback,
 	useContext,
@@ -112,8 +112,7 @@ interface MenubarMenuContextValue {
 	skipAnimation: boolean;
 }
 
-const MenubarMenuContext =
-	createContext<MenubarMenuContextValue | null>(null);
+const MenubarMenuContext = createContext<MenubarMenuContextValue | null>(null);
 
 export const Menubar: React.FC<MenubarProps> = ({
 	children,

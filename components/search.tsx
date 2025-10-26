@@ -1,5 +1,6 @@
 'use client';
 import { useDocsSearch } from 'fumadocs-core/search/client';
+import { useI18n } from 'fumadocs-ui/contexts/i18n';
 import {
 	SearchDialog,
 	SearchDialogClose,
@@ -11,7 +12,6 @@ import {
 	SearchDialogOverlay,
 	type SharedProps,
 } from './search-dialog';
-import { useI18n } from 'fumadocs-ui/contexts/i18n';
 
 type DefaultSearchDialogProps = Omit<SharedProps, 'search' | 'onSearchChange'>;
 
