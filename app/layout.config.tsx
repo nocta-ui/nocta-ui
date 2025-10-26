@@ -1,3 +1,14 @@
+import {
+	CodeIcon,
+	GlobeIcon,
+	LayersIcon,
+	LightningBoltIcon,
+	MixerHorizontalIcon,
+	ReaderIcon,
+	RocketIcon,
+	ShuffleIcon,
+	StackIcon,
+} from '@radix-ui/react-icons';
 import type { LinkItemType } from 'fumadocs-ui/layouts/links';
 import type { BaseLayoutProps } from '@/components/layout/shared';
 
@@ -35,10 +46,95 @@ export const baseOptions: BaseLayoutProps = {
 
 export const linkItems: LinkItemType[] = [
 	{
-		text: 'Documentation',
-		url: '/docs',
+		type: 'menu',
+		text: 'Getting Started',
+		url: '/docs/quick-start',
+		active: 'nested-url',
+		items: [
+			{
+				text: 'Introduction',
+				url: '/docs',
+				icon: (
+					<ReaderIcon
+						aria-hidden="true"
+						className="size-4 text-foreground/70"
+					/>
+				),
+				description: 'Learn the Nocta UI philosophy and copy-paste workflow.',
+			},
+			{
+				text: 'Quick Start',
+				url: '/docs/quick-start',
+				icon: (
+					<LightningBoltIcon
+						aria-hidden="true"
+						className="size-4 text-foreground/70"
+					/>
+				),
+				description:
+					'Follow the guided checklist to install and explore components.',
+			},
+			{
+				text: 'CLI Guide',
+				url: '/docs/cli-guide/init',
+				icon: (
+					<CodeIcon aria-hidden="true" className="size-4 text-foreground/70" />
+				),
+				description:
+					'Discover CLI commands to scaffold workspaces and add UI kits.',
+			},
+		],
+	},
+	{
+		type: 'menu',
+		text: 'Framework Setup',
+		url: '/docs/nextjs',
+		active: 'nested-url',
+		items: [
+			{
+				text: 'Next.js',
+				url: '/docs/nextjs',
+				icon: (
+					<GlobeIcon aria-hidden="true" className="size-4 text-foreground/70" />
+				),
+				description: 'Configure Nocta UI inside a modern Next.js project.',
+			},
+			{
+				text: 'Vite',
+				url: '/docs/vite',
+				icon: (
+					<LightningBoltIcon
+						aria-hidden="true"
+						className="size-4 text-foreground/70"
+					/>
+				),
+				description: 'Add Nocta UI to a fast Vite + React toolchain.',
+			},
+			{
+				text: 'React Router',
+				url: '/docs/reactrouter',
+				icon: (
+					<ShuffleIcon
+						aria-hidden="true"
+						className="size-4 text-foreground/70"
+					/>
+				),
+				description: 'Wire up components with the latest React Router starter.',
+			},
+			{
+				text: 'TanStack Start',
+				url: '/docs/tanstack',
+				icon: (
+					<StackIcon aria-hidden="true" className="size-4 text-foreground/70" />
+				),
+				description: 'Integrate Nocta UI with TanStack’s fullstack framework.',
+			},
+		],
+	},
+	{
+		text: 'Design Tokens',
+		url: '/docs/design-tokens',
 		active: 'url',
+		icon: <MixerHorizontalIcon aria-hidden="true" className="size-4" />,
 	},
 ];
-
-export const postsPerPage = 5;

@@ -28,7 +28,7 @@ const NavigationMenuTrigger = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
 	<Primitive.Trigger
 		ref={ref}
-		className={cn('data-[state=open]:bg-foreground/50', className)}
+		className={cn('data-[state=open]:bg-card-muted', className)}
 		{...props}
 	>
 		{children}

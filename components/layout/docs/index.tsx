@@ -212,8 +212,8 @@ export function DocsLayout({
 								className={cn(
 									buttonVariants({
 										color: 'ghost',
-										size: 'icon-sm',
-										className: 'mb-auto text-foreground/70',
+										className:
+											'mb-auto text-foreground/70 p-1.5 [&_svg]:size-4.5 cursor-pointer',
 									}),
 								)}
 							>

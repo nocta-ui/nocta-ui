@@ -24,7 +24,7 @@ export const Navbar = (props: HTMLAttributes<HTMLElement>) => {
 			>
 				<div
 					className={cn(
-						'container mx-auto flex size-full h-14 flex-row items-center px-4 md:gap-1.5 lg:px-6',
+						'container mx-auto flex size-full h-14 flex-row items-center px-4 gap-6 md:gap-1.5 lg:px-6',
 						'border-fd-border sm:border-x',
 					)}
 				>
@@ -42,7 +42,7 @@ export const NavbarMenuLink = (props: LinkProps) => {
 			<Link
 				{...props}
 				className={cn(
-					'flex flex-col gap-2 rounded-lg border bg-foreground p-3 transition-colors hover:bg-card-muted/80 hover:text-foreground/45',
+					'flex flex-col gap-2 rounded-lg border bg-card p-3 transition-colors hover:bg-card-muted',
 					props.className,
 				)}
 			>

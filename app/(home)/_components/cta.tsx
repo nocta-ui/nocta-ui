@@ -1,4 +1,4 @@
-import { GitHubLogoIcon, ReaderIcon } from '@radix-ui/react-icons';
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import type React from 'react';
 import { Button } from '@/app/components/ui/button';
@@ -8,25 +8,15 @@ export default function CTA(): React.ReactElement {
 		<section className="relative overflow-hidden">
 			<div className="mx-auto flex max-w-5xl flex-col items-center justify-center md:border-x border-dashed border-fd-border p-6 md:p-10 lg:p-14 text-center">
 				<h2 className="text-left md:text-center font-medium text-xl md:text-2xl text-foreground max-w-2xl">
-					Ready to build something that just works?
+					Enjoying Nocta UI? Help us grow.
 				</h2>
 
 				<p className="text-left md:text-center mt-2 max-w-xl mx-auto text-base text-foreground/70">
-					Nocta UI gives you accessible, polished components and a CLI that
-					saves you hours — no hacks, no headaches.
+					Starring the repository on GitHub keeps the project healthy and shows
+					the community that Nocta UI matters to you.
 				</p>
 
 				<div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-					<Button
-						size="md"
-						render={
-							<Link href="/docs" className="flex items-center gap-2"></Link>
-						}
-					>
-						<ReaderIcon aria-hidden="true" className="h-5 w-5" />
-						Read Documentation
-					</Button>
-
 					<Button
 						size="md"
 						variant="secondary"
@@ -40,7 +30,7 @@ export default function CTA(): React.ReactElement {
 						}
 					>
 						<GitHubLogoIcon aria-hidden="true" className="h-5 w-5" />
-						View on GitHub
+						Give Nocta UI a Star
 					</Button>
 				</div>
 			</div>
