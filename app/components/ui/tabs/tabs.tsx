@@ -14,7 +14,7 @@ const tabsListVariants = cva(
 				vertical: 'w-fit flex-col',
 			},
 			variant: {
-				default: 'rounded-md bg-card',
+				default: 'rounded-md bg-card border-border border',
 				pills: 'gap-1',
 				underline: 'border-border/60 gap-0 border-b',
 			},
