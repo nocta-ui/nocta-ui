@@ -53,7 +53,7 @@ const groupHeaderClass = cva(
 
 const listItemClass = cva(
 	[
-		'relative flex cursor-pointer items-center gap-3 rounded-md px-3 py-2',
+		'relative flex cursor-pointer items-center gap-3 rounded-sm px-3 py-2',
 		'text-sm text-foreground',
 		'hover:bg-card-muted',
 		'transition-colors duration-200',
@@ -72,7 +72,7 @@ const listItemClass = cva(
 
 const kbdClass = cva(
 	[
-		'flex items-center justify-center',
+		'flex items-center justify-center font-mono',
 		'h-5 min-w-[2.2rem] rounded-sm border px-1.5',
 		'text-[10px] leading-none font-medium',
 		'border-border',
@@ -391,7 +391,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 					{flatSelectable.length === 0 ? (
 						<output
 							aria-live="polite"
-							className="px-3 py-6 text-center text-sm text-foreground/45"
+							className="px-3 py-6 text-center text-sm text-foreground/45 flex justify-center items-center"
 						>
 							{emptyMessage}
 						</output>
