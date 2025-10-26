@@ -113,7 +113,7 @@ export function Header({
 				{searchToggle.enabled !== false &&
 					(searchToggle.components?.lg ?? (
 						<LargeSearchToggle
-							className="w-full max-w-[240px] rounded-md ps-2.5"
+							className="w-full max-w-60 rounded-md ps-2.5"
 							hideIfDisabled
 						/>
 					))}

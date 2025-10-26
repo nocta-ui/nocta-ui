@@ -17,6 +17,7 @@ import {
   CustomContainerDemo
 } from '@/app/components/ui/input/input-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -87,9 +88,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Input component supports three variants: `default`, `error`, and `success`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -120,9 +119,7 @@ The Input component supports three variants: `default`, `error`, and `success`.
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -150,8 +147,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     ```
   </DocsTab>
 </DocsTabs>
-
-## Input with Icons
 
 ### Left Icon
 
@@ -194,8 +189,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     ```
   </DocsTab>
 </DocsTabs>
-
-## Input States
 
 ### Disabled State
 
@@ -241,20 +234,72 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Input style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
-| `label` | `string` | — | Label text displayed above the input |
-| `helperText` | `string` | — | Helper text displayed below the input |
-| `errorMessage` | `string` | — | Error message (shown when variant is 'error') |
-| `leftIcon` | `React.ReactNode` | — | Icon displayed on the left side |
-| `rightIcon` | `React.ReactNode` | — | Icon displayed on the right side |
-| `className` | `string` | `''` | Additional CSS classes for the input |
-| `containerClassName` | `string` | `''` | Additional CSS classes for the container |
-| `disabled` | `boolean` | `false` | Disable the input |
-| `readOnly` | `boolean` | `false` | Make the input read-only |
-| `placeholder` | `string` | — | Placeholder text |
-| `type` | `string` | `'text'` | Input type (text, email, password, etc.) |
-
-The Input component also accepts all standard HTML input attributes.
+<TypeTable
+  type={{
+    variant: {
+      description: 'Input style variant',
+      type: '"default" | "error" | "success"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Input size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    label: {
+      description: 'Label text displayed above the input',
+      type: 'string',
+      default: 'undefined',
+    },
+    helperText: {
+      description: 'Helper text displayed below the input',
+      type: 'string',
+      default: 'undefined',
+    },
+    errorMessage: {
+      description: "Error message (shown when variant is 'error')",
+      type: 'string',
+      default: 'undefined',
+    },
+    leftIcon: {
+      description: 'Icon displayed on the left side',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    rightIcon: {
+      description: 'Icon displayed on the right side',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes for the input',
+      type: 'string',
+      default: '""',
+    },
+    containerClassName: {
+      description: 'Additional CSS classes for the container',
+      type: 'string',
+      default: '""',
+    },
+    disabled: {
+      description: 'Disable the input',
+      type: 'boolean',
+      default: 'false',
+    },
+    readOnly: {
+      description: 'Make the input read-only',
+      type: 'boolean',
+      default: 'false',
+    },
+    placeholder: {
+      description: 'Placeholder text',
+      type: 'string',
+      default: 'undefined',
+    },
+    type: {
+      description: 'Input type (text, email, password, etc.)',
+      type: 'string',
+      default: '"text"',
+    },
+  }}
+/>

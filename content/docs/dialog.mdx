@@ -13,6 +13,7 @@ import {
   SizesDemo
 } from '@/app/components/ui/dialog/dialog-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -46,7 +47,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-### Simple Dialog
+### Default Dialog
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -112,9 +113,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-The Dialog component supports different sizes: `sm`, `md`, `lg`, and `xl`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -144,88 +143,188 @@ The Dialog component supports different sizes: `sm`, `md`, `lg`, and `xl`. The d
 
 ### Dialog
 
-The root component that manages dialog state.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controls the dialog state |
-| `onOpenChange` | `(open: boolean) => void` | `undefined` | Callback when dialog state changes |
-| `children` | `React.ReactNode` | - | Dialog content |
+<TypeTable
+  type={{
+    open: {
+      description: 'Controls the dialog state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    onOpenChange: {
+      description: 'Callback when dialog state changes',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Dialog content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogTrigger
 
-Button that opens the dialog.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element instead of button |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Trigger content |
+<TypeTable
+  type={{
+    asChild: {
+      description: 'Render as child element instead of button',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogContent
 
-The dialog modal content.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| `'md'` | Dialog size |
-| `showClose` | `boolean` | `true` | Show close button |
-| `portal` | `boolean` | `true` | Render the dialog in a React portal |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Dialog content |
+<TypeTable
+  type={{
+    size: {
+      description: 'Dialog size',
+      type: '"sm" | "md" | "lg" | "xl"',
+      default: '"md"',
+    },
+    showClose: {
+      description: 'Show close button',
+      type: 'boolean',
+      default: 'true',
+    },
+    portal: {
+      description: 'Render the dialog in a React portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Dialog content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogClose
 
-Button that closes the dialog.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element instead of button |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Close button content |
+<TypeTable
+  type={{
+    asChild: {
+      description: 'Render as child element instead of button',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Close button content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogHeader
 
-Container for the title and description.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Header content |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Header content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogTitle
 
-Accessible heading for the dialog.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `React.ElementType` | `'h2'` | Optional element type for the heading |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Title content |
+<TypeTable
+  type={{
+    as: {
+      description: 'Optional element type for the heading',
+      type: 'React.ElementType',
+      default: '"h2"',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Title content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogDescription
 
-Accessible description for the dialog.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Description content |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Description content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogFooter
 
-Footer container, typically for actions.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Footer content |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Footer content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### DialogActions
 
-Layout container for action buttons.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `children` | `React.ReactNode` | - | Actions content |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Actions content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>

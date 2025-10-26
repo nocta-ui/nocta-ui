@@ -16,6 +16,7 @@ import {
   CollisionDetectionDemo
 } from '@/app/components/ui/popover/popover-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -42,7 +43,7 @@ import {
 
 ## Example
 
-The Popover component provides a floating panel that appears on demand, perfect for displaying additional information or controls.
+### Default Popover
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -67,69 +68,80 @@ The Popover component provides a floating panel that appears on demand, perfect 
   </DocsTab>
 </DocsTabs>
 
-## Controlled State
-
-Control the popover's open state programmatically using the `open` and `onOpenChange` props.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ControlledDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Controlled State"
-    const [open, setOpen] = useState(false);
-
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger>Controlled Popover</PopoverTrigger>
-      <PopoverContent>
-        <div className="space-y-2">
-          <h4 className="font-medium text-sm">Controlled State</h4>
-          <p className="text-sm text-foreground/70">
-            This popover's state is controlled externally.
-          </p>
-          <button
-            onClick={() => setOpen(false)}
-            className="px-2 py-1 text-xs bg-card rounded"
-          >
-            Close from inside
-          </button>
-        </div>
-      </PopoverContent>
-    </Popover>
-
-    {/* External controls */}
-    <button onClick={() => setOpen(true)}>Open</button>
-    <button onClick={() => setOpen(false)}>Close</button>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Api Reference
 
 ### Popover
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | — | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Default open state |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes |
+<TypeTable
+  type={{
+    open: {
+      description: 'Controlled open state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    defaultOpen: {
+      description: 'Default open state',
+      type: 'boolean',
+      default: 'false',
+    },
+    onOpenChange: {
+      description: 'Callback when open state changes',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### PopoverTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default'` | `'default'` | Visual style of the trigger |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Trigger size |
-| `asChild` | `boolean` | `false` | Render as child element instead of button |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual style of the trigger',
+      type: '"default"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Trigger size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    asChild: {
+      description: 'Render as child element instead of button',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### PopoverContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content size (padding, typography) |
-| `className` | `string` | `''` | Additional CSS classes |
-| `portal` | `boolean` | `true` | Render content in a portal |
-| `fixed` | `boolean` | `false` | Use CSS `position: fixed` for the popover |
-
-The Popover component also accepts all standard HTML attributes for their respective elements.
+<TypeTable
+  type={{
+    size: {
+      description: 'Content size (padding, typography)',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    portal: {
+      description: 'Render content in a portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use CSS `position: fixed` for the popover',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>

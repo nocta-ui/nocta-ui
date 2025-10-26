@@ -10,6 +10,7 @@ import {
   IconToggleDemo
 } from '@/app/components/ui/toggle/toggle-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -34,6 +35,8 @@ import { Toggle } from '@/components/ui/toggle';
 
 ## Examples
 
+### Default Toggle
+
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
@@ -51,9 +54,7 @@ import { Toggle } from '@/components/ui/toggle';
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -70,9 +71,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Icon Toggles
-
-Combine toggles with icons for formatting toolbars or similar interfaces.
+### Icon Toggles
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -99,15 +98,47 @@ Combine toggles with icons for formatting toolbars or similar interfaces.
 
 ### Toggle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `pressed` | `boolean` | `undefined` | Controlled pressed (checked) state |
-| `defaultPressed` | `boolean` | `false` | Initial state for uncontrolled usage |
-| `onPressedChange` | `(pressed: boolean) => void` | - | Callback fired when the pressed state changes |
-| `variant` | `'default'` | `'default'` | Visual variant of the toggle |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the toggle |
-| `disabled` | `boolean` | `false` | Disables the toggle when true |
-| `className` | `string` | `''` | Additional classes for custom styling |
-| `children` | `React.ReactNode` | `undefined` | Toggle content (text, icon, etc.) |
-
-The component forwards all other props from `@ariakit/react`'s Checkbox. Internally, it renders as a `<button>` element via the `render={<button />}` prop for visual flexibility.
+<TypeTable
+  type={{
+    pressed: {
+      description: 'Controlled pressed (checked) state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    defaultPressed: {
+      description: 'Initial state for uncontrolled usage',
+      type: 'boolean',
+      default: 'false',
+    },
+    onPressedChange: {
+      description: 'Callback fired when the pressed state changes',
+      type: '(pressed: boolean) => void',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'Visual variant of the toggle',
+      type: '"default"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Size of the toggle',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Disables the toggle when true',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for custom styling',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Toggle content (text, icon, etc.)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>

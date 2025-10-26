@@ -10,6 +10,7 @@ import {
   HorizontalRadioGroupDemo,
 } from '@/app/components/ui/radio-group/radio-group-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -33,7 +34,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-### Basic Radio Group
+### Default Radio Group
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -97,8 +98,6 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ### Horizontal Layout
 
-Arrange the radio options horizontally using flex utilities.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
@@ -127,23 +126,69 @@ Arrange the radio options horizontally using flex utilities.
 
 ### RadioGroup
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Controlled value of the selected option |
-| `defaultValue` | `string` | — | Initial selected value for uncontrolled usage |
-| `onValueChange` | `(value: string | number | null) => void` | — | Callback fired when the selection changes |
-| `disabled` | `boolean` | `false` | Disables selection for all radio items |
-| `className` | `string` | `''` | Additional CSS classes applied to the group wrapper |
-| `children` | `React.ReactNode` | — | One or more `RadioGroupItem` components |
+<TypeTable
+  type={{
+    value: {
+      description: 'Controlled value of the selected option',
+      type: 'string',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Initial selected value for uncontrolled usage',
+      type: 'string',
+      default: 'undefined',
+    },
+    onValueChange: {
+      description: 'Callback fired when the selection changes',
+      type: '(value: string | number | null) => void',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables selection for all radio items',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes applied to the group wrapper',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'One or more `RadioGroupItem` components',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### RadioGroupItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Value associated with the radio option |
-| `label` | `React.ReactNode` | — | Main label displayed next to the indicator |
-| `description` | `React.ReactNode` | — | Optional helper text below the label |
-| `disabled` | `boolean` | `false` | Disables this individual option |
-| `className` | `string` | `''` | Additional CSS classes applied to the label wrapper |
-
-All other props are forwarded to the underlying Ariakit component.
+<TypeTable
+  type={{
+    value: {
+      description: 'Value associated with the radio option',
+      type: 'string',
+      default: 'undefined',
+    },
+    label: {
+      description: 'Main label displayed next to the indicator',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    description: {
+      description: 'Optional helper text below the label',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables this individual option',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes applied to the label wrapper',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

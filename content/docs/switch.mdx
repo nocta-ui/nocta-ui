@@ -9,6 +9,7 @@ import {
   SizesDemo,
 } from '@/app/components/ui/switch/switch-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -53,9 +54,7 @@ import { Switch } from '@/components/ui/switch';
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -76,14 +75,42 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ### Switch Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Whether the switch is checked (controlled) |
-| `defaultChecked` | `boolean` | `false` | Initial checked state (uncontrolled) |
-| `onCheckedChange` | `(checked: boolean) => void` | - | Callback fired when the switch state changes |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the switch |
-| `disabled` | `boolean` | `false` | Whether the switch is disabled |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-| `id` | `string` | - | The id attribute for the switch input |
-
-The Switch component also accepts all standard input props supported by `@ariakit/react` Checkbox through the `...props` spread operator.
+<TypeTable
+  type={{
+    checked: {
+      description: 'Whether the switch is checked (controlled)',
+      type: 'boolean',
+      default: 'false',
+    },
+    defaultChecked: {
+      description: 'Initial checked state (uncontrolled)',
+      type: 'boolean',
+      default: 'false',
+    },
+    onCheckedChange: {
+      description: 'Callback fired when the switch state changes',
+      type: '(checked: boolean) => void',
+      default: 'undefined',
+    },
+    size: {
+      description: 'The size of the switch',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Whether the switch is disabled',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+    id: {
+      description: 'The id attribute for the switch input',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

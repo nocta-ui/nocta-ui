@@ -21,6 +21,7 @@ import {
   FileContextMenuDemo
 } from '@/app/components/ui/context-menu/context-menu-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -50,7 +51,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-### Simple Context Menu
+### Default Context Menu
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -60,7 +61,6 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     ```tsx lineNumbers title="Simple Context Menu"
     const [lastAction, setLastAction] = useState('');
 
-    return (
     <ContextMenu>
       <ContextMenuTrigger
         className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
@@ -82,14 +82,12 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>;
-    );
+
     ```
   </DocsTab>
 </DocsTabs>
 
-## With Separators
-
-Use `ContextMenuSeparator` to group related menu items.
+### With Separators
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -136,9 +134,7 @@ Use `ContextMenuSeparator` to group related menu items.
   </DocsTab>
 </DocsTabs>
 
-## With Submenu
-
-Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `ContextMenuSubContent`.
+### With Submenu
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -192,9 +188,7 @@ Create nested menus using `ContextMenuSub`, `ContextMenuSubTrigger`, and `Contex
   </DocsTab>
 </DocsTabs>
 
-## Disabled State
-
-Both the entire context menu and individual items can be disabled.
+### Disabled State
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -202,7 +196,6 @@ Both the entire context menu and individual items can be disabled.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled Context Menu"
-    {/* Disabled context menu */}
     <ContextMenu>
       <ContextMenuTrigger
         disabled
@@ -216,7 +209,6 @@ Both the entire context menu and individual items can be disabled.
     </ContextMenu>
 
 
-    {/* Disabled menu items */}
     <ContextMenu>
       <ContextMenuTrigger
         className={cn(buttonVariants({ variant: "secondary", size: "md" }))}
@@ -240,64 +232,176 @@ Both the entire context menu and individual items can be disabled.
 
 ### ContextMenu
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | The trigger and content components |
-| `className` | `string` | — | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'The trigger and content components',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Content that triggers the menu on right-click |
-| `disabled` | `boolean` | `false` | Disable the context menu trigger |
-| `className` | `string` | — | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Content that triggers the menu on right-click',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the context menu trigger',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Menu items and separators |
-| `className` | `string` | — | Additional CSS classes |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min‑width |
+<TypeTable
+  type={{
+    children: {
+      description: 'Menu items and separators',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Content padding and min-width',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+  }}
+/>
 
 ### ContextMenuItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Item content |
-| `disabled` | `boolean` | `false` | Disable the item |
-| `inset` | `boolean` | `false` | Indent the item content |
-| `destructive` | `boolean` | `false` | Destructive styling (e.g., delete) |
-| `className` | `string` | — | Additional CSS classes |
-| `onClick` | `() => void` | — | Click handler |
+<TypeTable
+  type={{
+    children: {
+      description: 'Item content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the item',
+      type: 'boolean',
+      default: 'false',
+    },
+    inset: {
+      description: 'Indent the item content',
+      type: 'boolean',
+      default: 'false',
+    },
+    destructive: {
+      description: 'Destructive styling (e.g., delete)',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    onClick: {
+      description: 'Click handler',
+      type: '() => void',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuSeparator
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | Additional CSS classes |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuSub
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu trigger and content |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu trigger and content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuSubTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu trigger content |
-| `disabled` | `boolean` | `false` | Disable the submenu trigger |
-| `inset` | `boolean` | `false` | Indent the trigger content |
-| `destructive` | `boolean` | `false` | Destructive styling (not typical) |
-| `className` | `string` | — | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu trigger content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the submenu trigger',
+      type: 'boolean',
+      default: 'false',
+    },
+    inset: {
+      description: 'Indent the trigger content',
+      type: 'boolean',
+      default: 'false',
+    },
+    destructive: {
+      description: 'Destructive styling (not typical)',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### ContextMenuSubContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu items and separators |
-| `className` | `string` | — | Additional CSS classes |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Content padding and min‑width |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu items and separators',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Content padding and min-width',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+  }}
+/>

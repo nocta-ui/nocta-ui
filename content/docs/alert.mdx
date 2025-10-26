@@ -11,6 +11,7 @@ import {
   AlertWithoutIconsDemo,
 } from '@/app/components/ui/alert/alert-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -55,7 +56,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-### Simple Alert
+### Default Alert
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -72,9 +73,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Alert component supports four variants: `default`, `destructive`, `warning`, and `success`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -117,29 +116,81 @@ The Alert component supports four variants: `default`, `destructive`, `warning`,
 
 ### Alert
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'destructive' \| 'warning' \| 'success'` | `'default'` | Alert style variant and icon |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls padding and spacing |
-| `showIcon` | `boolean` | `true` | Whether to display the variant icon |
-| `className` | `string` | `''` | Additional CSS classes |
-| `children` | `React.ReactNode` | — | Alert content |
+<TypeTable
+  type={{
+    variant: {
+      description: 'Alert style variant and icon',
+      type: '"default" | "destructive" | "warning" | "success"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Controls padding and spacing',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    showIcon: {
+      description: 'Whether to display the variant icon',
+      type: 'boolean',
+      default: 'true',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Alert content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### AlertTitle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `React.ElementType` | `'h5'` | HTML element to render |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls title typography |
-| `className` | `string` | `''` | Additional CSS classes |
-| `children` | `React.ReactNode` | — | Title content |
+<TypeTable
+  type={{
+    as: {
+      description: 'HTML element to render',
+      type: 'React.ElementType',
+      default: '"h5"',
+    },
+    size: {
+      description: 'Controls title typography',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Title content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### AlertDescription
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls description typography |
-| `className` | `string` | `''` | Additional CSS classes |
-| `children` | `React.ReactNode` | — | Description content |
-
-All components also accept their respective HTML element attributes.
+<TypeTable
+  type={{
+    size: {
+      description: 'Controls description typography',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Description content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>

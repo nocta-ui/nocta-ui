@@ -12,6 +12,7 @@ import {
   CustomStylingDemo
 } from '@/app/components/ui/badge/badge-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -60,9 +61,7 @@ import { Badge } from '@/components/ui/badge';
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Badge component supports five variants: `default`, `secondary`, `destructive`, `success`, and `warning`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -79,9 +78,7 @@ The Badge component supports five variants: `default`, `secondary`, `destructive
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -98,13 +95,29 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ## API Reference
 
-### Badge Api Reference
+### Badge
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | The content of the badge |
-| `variant` | `'default' \| 'secondary' \| 'destructive' \| 'success' \| 'warning' \| `'default'` | The visual style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | The size of the badge |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-
-The Badge component also accepts all standard HTML span element props through the `...props` spread operator.
+<TypeTable
+  type={{
+    children: {
+      description: 'The content of the badge',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'The visual style variant',
+      type: '"default" | "secondary" | "destructive" | "success" | "warning"',
+      default: '"default"',
+    },
+    size: {
+      description: 'The size of the badge',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

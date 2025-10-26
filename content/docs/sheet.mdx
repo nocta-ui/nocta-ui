@@ -13,6 +13,7 @@ import {
   ControlledSheetDemo,
 } from '@/app/components/ui/sheet/sheet-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -44,9 +45,9 @@ import {
 </Step>
 </Steps>
 
-## Example
+## Examples
 
-The Sheet component provides a slide-out panel that can appear from any side of the screen.
+### Default Sheet
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -79,9 +80,7 @@ The Sheet component provides a slide-out panel that can appear from any side of 
   </DocsTab>
 </DocsTabs>
 
-## Sides
-
-The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `bottom`.
+### Sides
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -89,7 +88,6 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Sheet Sides"
-    {/* Left Side */}
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="secondary">Left Side</Button>
@@ -109,7 +107,6 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
       </SheetContent>
     </Sheet>
 
-    {/* Right Side */}
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="secondary">Right Side</Button>
@@ -134,9 +131,7 @@ The Sheet can slide in from any side of the screen: `left`, `right`, `top`, or `
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Six size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -166,9 +161,8 @@ Six size options are available: `sm`, `md`, `lg`, `xl`, and `full`. The default 
   </DocsTab>
 </DocsTabs>
 
-## Resizable
+### Resizable
 
-Enable the `resizable` prop to let users drag the sheet edge. Combine it with `allowShrink` if the sheet should shrink below its initial size.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -206,43 +200,125 @@ Enable the `resizable` prop to let users drag the sheet edge. Combine it with `a
 
 ### Sheet
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Sheet content including trigger and content components |
-| `open` | `boolean` | — | Controlled open state |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Sheet content including trigger and content components',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    open: {
+      description: 'Controlled open state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    onOpenChange: {
+      description: 'Callback when open state changes',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### SheetTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Trigger content |
-| `asChild` | `boolean` | `false` | Render as child element |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    asChild: {
+      description: 'Render as child element',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### SheetContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Sheet content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `side` | `'left' \| 'right' \| 'top' \| 'bottom'` | `'right'` | Side from which sheet slides in |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'md'` | Sheet size |
-| `showClose` | `boolean` | `true` | Show default close button |
-| `resizable` | `boolean` | `false` | Display resize handles on the sheet edge |
-| `allowShrink` | `boolean` | `false` | Permit resizing below the initial layout size |
+<TypeTable
+  type={{
+    children: {
+      description: 'Sheet content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    side: {
+      description: 'Side from which sheet slides in',
+      type: '"left" | "right" | "top" | "bottom"',
+      default: '"right"',
+    },
+    size: {
+      description: 'Sheet size',
+      type: '"sm" | "md" | "lg" | "xl" | "full"',
+      default: '"md"',
+    },
+    showClose: {
+      description: 'Show default close button',
+      type: 'boolean',
+      default: 'true',
+    },
+    resizable: {
+      description: 'Display resize handles on the sheet edge',
+      type: 'boolean',
+      default: 'false',
+    },
+    allowShrink: {
+      description: 'Permit resizing below the initial layout size',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
 
 ### SheetHeader, SheetTitle, SheetDescription, SheetFooter
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Content |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### SheetClose
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | `'Close'` | Button content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `asChild` | `boolean` | `false` | Render as child element |
+<TypeTable
+  type={{
+    children: {
+      description: 'Button content',
+      type: 'React.ReactNode',
+      default: '"Close"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    asChild: {
+      description: 'Render as child element',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>

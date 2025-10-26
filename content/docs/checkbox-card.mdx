@@ -9,6 +9,7 @@ import {
   CheckboxCardGroupDemo,
 } from '@/app/components/ui/checkbox-card/checkbox-card-demos';
 import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -32,7 +33,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Examples
 
-### Basic Checkbox Card
+### Default Checkbox Card
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -100,17 +101,57 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `React.ReactNode` | - | Primary heading displayed inside the card |
-| `description` | `React.ReactNode` | - | Supporting text shown under the title |
-| `meta` | `React.ReactNode` | - | Optional element rendered next to the selection indicator |
-| `helper` | `React.ReactNode` | - | Helper text displayed at the bottom of the card |
-| `children` | `React.ReactNode` | - | Extra content rendered between description and helper |
-| `checked` | `boolean` | `false` | Controlled checked state |
-| `defaultChecked` | `boolean` | `false` | Initial checked state for uncontrolled usage |
-| `onCheckedChange` | `(checked: boolean) => void` | - | Called when the selection state changes |
-| `disabled` | `boolean` | `false` | Disables interaction and visually dims the card |
-| `className` | `string` | `''` | Additional classes for the container |
-
-All other props are forwarded to the underlying checkbox element, allowing usage of native attributes like `name`, `value`, `required`, or `aria-*`.
+<TypeTable
+  type={{
+    title: {
+      description: 'Primary heading displayed inside the card',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    description: {
+      description: 'Supporting text shown under the title',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    meta: {
+      description: 'Optional element rendered next to the selection indicator',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    helper: {
+      description: 'Helper text displayed at the bottom of the card',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Extra content rendered between description and helper',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    checked: {
+      description: 'Controlled checked state',
+      type: 'boolean',
+      default: 'false',
+    },
+    defaultChecked: {
+      description: 'Initial checked state for uncontrolled usage',
+      type: 'boolean',
+      default: 'false',
+    },
+    onCheckedChange: {
+      description: 'Callback when the selection state changes',
+      type: '(checked: boolean) => void',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables interaction and visually dims the card',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for the container',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

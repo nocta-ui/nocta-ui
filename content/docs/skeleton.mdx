@@ -18,6 +18,7 @@ import {
   TableSkeletonDemo
 } from '@/app/components/ui/skeleton/skeleton-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -69,9 +70,7 @@ import { Skeleton } from '@/components/ui/skeleton';
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -86,9 +85,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Shapes
-
-The Skeleton component supports different shapes: `rectangle`, `circle`, and `text`.
+### Shapes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -111,9 +108,7 @@ The Skeleton component supports different shapes: `rectangle`, `circle`, and `te
   </DocsTab>
 </DocsTabs>
 
-## Text Lines
-
-For text content placeholders, you can specify multiple lines with the `lines` prop.
+### Text Lines
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -128,9 +123,7 @@ For text content placeholders, you can specify multiple lines with the `lines` p
   </DocsTab>
 </DocsTabs>
 
-## Custom Dimensions
-
-You can customize the width and height of skeleton elements using the `width` and `height` props.
+### Custom Dimensions
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -138,13 +131,10 @@ You can customize the width and height of skeleton elements using the `width` an
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Custom Dimensions"
-    {/* Custom Rectangle */}
     <Skeleton width="200px" height="60px" />
 
-    {/* Custom Circle */}
     <Skeleton shape="circle" width="80px" height="80px" />
 
-    {/* Custom Text */}
     <Skeleton shape="text" width="150px" height="20px" />
     ```
   </DocsTab>
@@ -152,14 +142,42 @@ You can customize the width and height of skeleton elements using the `width` an
 
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'pulse' \| 'wave'` | `'default'` | Animation variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Predefined size |
-| `shape` | `'rectangle' \| 'circle' \| 'text'` | `'rectangle'` | Shape of the skeleton |
-| `width` | `string \| number` | — | Custom width |
-| `height` | `string \| number` | — | Custom height |
-| `lines` | `number` | `1` | Number of text lines (only for text shape) |
-| `className` | `string` | `''` | Additional CSS classes |
-
-The Skeleton component also accepts all standard HTML div attributes.
+<TypeTable
+  type={{
+    variant: {
+      description: 'Animation variant',
+      type: '"default" | "shimmer"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Predefined size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    shape: {
+      description: 'Shape of the skeleton',
+      type: '"rectangle" | "circle" | "text"',
+      default: '"rectangle"',
+    },
+    width: {
+      description: 'Custom width',
+      type: 'string | number',
+      default: 'undefined',
+    },
+    height: {
+      description: 'Custom height',
+      type: 'string | number',
+      default: 'undefined',
+    },
+    lines: {
+      description: 'Number of text lines (only for text shape)',
+      type: 'number',
+      default: '1',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

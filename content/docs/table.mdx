@@ -4,6 +4,7 @@ description: Fully accessible data table powered by TanStack Table and Ariakit c
 ---
 
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
@@ -33,9 +34,7 @@ import {
 
 ## Examples
 
-### Basic Table
-
-Display structured data with sorting and custom cell rendering.
+### Default Table
 
 <DocsTabs justify="start"  defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -43,8 +42,6 @@ Display structured data with sorting and custom cell rendering.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Table"
-    import { Table, type ColumnDef } from '@/components/ui/table';
-
     interface Invoice {
       invoice: string;
       customer: string;
@@ -108,23 +105,17 @@ Display structured data with sorting and custom cell rendering.
       // ...
     ];
 
-    export default function BasicTableExample() {
-      return (
-        <Table<Invoice>
-          columns={invoiceColumns}
-          data={invoiceData}
-          getRowId={(invoice) => invoice.invoice}
-          density="comfortable"
-		/>
-      );
-    }
+    <Table<Invoice>
+      columns={invoiceColumns}
+      data={invoiceData}
+      getRowId={(invoice) => invoice.invoice}
+      density="comfortable"
+	/>
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Row Selection
-
-Enable checkbox selection with controlled state for bulk actions.
 
 <DocsTabs justify="start" defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -132,31 +123,23 @@ Enable checkbox selection with controlled state for bulk actions.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Row Selection"
-    import * as React from 'react';
-    import {
-      Table,
-      type ColumnDef,
-      type Row,
-    } from '@/components/ui/table';
-
     // columns and data defined as in the previous example
     const [selectedRows, setSelectedRows] = React.useState<Row<Invoice>[]>([]);
 
     <Table
-			columns={invoiceColumns}
-			data={invoiceData}
-			getRowId={(invoice) => invoice.invoice}
-			enableRowSelection
-			onSelectedRowsChange={setSelectedRows}
-			emptyState="No invoices yet"
+      columns={invoiceColumns}
+      data={invoiceData}
+      getRowId={(invoice) => invoice.invoice}
+      enableRowSelection
+      onSelectedRowsChange={setSelectedRows}
+      emptyState="No invoices yet"
     />;
+
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Compact Density
-
-Switch the visual density for dashboards or sidebars.
 
 <DocsTabs justify="start" defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -178,46 +161,94 @@ Switch the visual density for dashboards or sidebars.
   </DocsTab>
 </DocsTabs>
 
-## Column metadata
-
-Set column-level `meta` options to align content or pin widths:
-
-```tsx lineNumbers title="Column Meta"
-const columns: ColumnDef<Invoice>[] = [
-  {
-    accessorKey: 'amount',
-    header: 'Amount',
-    meta: {
-      align: 'right',
-      width: '140px',
-      headerTooltip: 'Total amount due',
-    },
-  },
-];
-```
-
-`Table` exposes fully typed helpers from TanStack Table so you can compose advanced features like column visibility, custom filter functions, or pagination while keeping the default Nocta UI styling and keyboard support powered by Ariakit Composite.
-
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `columns` | `ColumnDef<TData, unknown>[]` | - | Column definitions that describe the table structure. |
-| `data` | `TData[]` | - | Data records to render with the provided columns. |
-| `density` | `'comfortable' \| 'compact'` | `'comfortable'` | Controls overall padding and typography density. |
-| `enableSorting` | `boolean` | `true` | Toggles TanStack Table's sorting features. |
-| `enableRowSelection` | `boolean` | `false` | Adds a selection column with Ariakit-powered checkboxes. |
-| `activeRowId` | `string` | - | Marks a row as active for focus and highlighting. |
-| `onActiveRowChange` | `(rowId: string \| undefined) => void` | - | Called when the active row changes. |
-| `onRowClick` | `(row: Row<TData>) => void` | - | Fired when a table row is clicked. |
-| `initialSorting` | `SortingState` | `[]` | Default sorting state when uncontrolled. |
-| `sortingState` | `SortingState` | - | Controlled sorting state. |
-| `onSortingChange` | `(sorting: SortingState) => void` | - | Handler used with controlled sorting. |
-| `rowSelectionState` | `RowSelectionState` | - | Controlled selection state keyed by row id. |
-| `onRowSelectionChange` | `(state: RowSelectionState) => void` | - | Handler used with controlled selection. |
-| `onSelectedRowsChange` | `(rows: Row<TData>[]) => void` | - | Emits the currently selected rows array. |
-| `emptyState` | `React.ReactNode` | - | Custom UI shown when there are no rows. |
-| `getRowId` | `(originalRow: TData, index: number, parent?: Row<TData>) => string` | - | Supplies custom logic for deriving stable row ids. |
-| `className` | `string` | `''` | Additional Tailwind classes merged with the component styles. |
-
-The Table component also accepts all standard HTML `div` attributes.
+<TypeTable
+  type={{
+    columns: {
+      description: 'Column definitions that describe the table structure.',
+      type: 'ColumnDef<TData, unknown>[]',
+      default: 'undefined',
+    },
+    data: {
+      description: 'Data records to render with the provided columns.',
+      type: 'TData[]',
+      default: 'undefined',
+    },
+    density: {
+      description: 'Controls overall padding and typography density.',
+      type: '"comfortable" | "compact"',
+      default: '"comfortable"',
+    },
+    enableSorting: {
+      description: "Toggles TanStack Table's sorting features.",
+      type: 'boolean',
+      default: 'true',
+    },
+    enableRowSelection: {
+      description: 'Adds a selection column with Ariakit-powered checkboxes.',
+      type: 'boolean',
+      default: 'false',
+    },
+    activeRowId: {
+      description: 'Marks a row as active for focus and highlighting.',
+      type: 'string',
+      default: 'undefined',
+    },
+    onActiveRowChange: {
+      description: 'Callback when the active row changes.',
+      type: '(rowId: string | undefined) => void',
+      default: 'undefined',
+    },
+    onRowClick: {
+      description: 'Fired when a table row is clicked.',
+      type: '(row: Row<TData>) => void',
+      default: 'undefined',
+    },
+    initialSorting: {
+      description: 'Default sorting state when uncontrolled.',
+      type: 'SortingState',
+      default: '[]',
+    },
+    sortingState: {
+      description: 'Controlled sorting state.',
+      type: 'SortingState',
+      default: 'undefined',
+    },
+    onSortingChange: {
+      description: 'Handler used with controlled sorting.',
+      type: '(sorting: SortingState) => void',
+      default: 'undefined',
+    },
+    rowSelectionState: {
+      description: 'Controlled selection state keyed by row id.',
+      type: 'RowSelectionState',
+      default: 'undefined',
+    },
+    onRowSelectionChange: {
+      description: 'Handler used with controlled selection.',
+      type: '(state: RowSelectionState) => void',
+      default: 'undefined',
+    },
+    onSelectedRowsChange: {
+      description: 'Emits the currently selected rows array.',
+      type: '(rows: Row<TData>[]) => void',
+      default: 'undefined',
+    },
+    emptyState: {
+      description: 'Custom UI shown when there are no rows.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    getRowId: {
+      description: 'Supplies custom logic for deriving stable row ids.',
+      type: '(originalRow: TData, index: number, parent?: Row<TData>) => string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional Tailwind classes merged with the component styles.',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

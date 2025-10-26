@@ -67,7 +67,7 @@ export interface TypeNode {
 }
 export function TypeTable({ type }: { type: Record<string, TypeNode> }) {
 	return (
-		<div className="@container flex flex-col p-1 bg-card text-foreground rounded-lg border border-fd-border my-6 text-sm overflow-hidden">
+		<div className="@container flex flex-col p-1 bg-card shadow-sm text-foreground rounded-lg border border-fd-border my-6 text-sm overflow-hidden">
 			<div className="flex font-medium items-center px-3 py-1 not-prose text-foreground/45">
 				<p className="w-[25%]">Prop</p>
 				<p className="@max-xl:hidden">Type</p>
@@ -86,7 +86,11 @@ function renderType(value: ReactNode) {
 	const parts = value.split('|').map((part) => part.trim());
 
 	if (parts.length === 1) {
-		return <code className="text-foreground/70">{parts[0]}</code>;
+		return (
+			<code className="text-foreground  bg-card-muted rounded border border-fd-border p-px">
+				{parts[0]}
+			</code>
+		);
 	}
 
 	return (
@@ -94,9 +98,9 @@ function renderType(value: ReactNode) {
 			{parts.map((part, i) => (
 				<span
 					key={i}
-					className="inline-flex items-center bg-card-muted rounded border border-fd-border"
+					className="inline-flex items-center bg-card-muted rounded border border-fd-border p-px"
 				>
-					<code className="text-foreground/70">{part}</code>
+					<code className="text-foreground">{part}</code>
 				</span>
 			))}
 		</div>
@@ -127,11 +131,13 @@ function Item({
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all',
-				open ? 'shadow-sm bg-background not-last:mb-2' : 'border-transparent',
+				'rounded-md overflow-hidden transition-all border',
+				open
+					? 'bg-background not-last:mb-2 border-fd-border'
+					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
 				<code
 					className={cn(
 						keyVariants({

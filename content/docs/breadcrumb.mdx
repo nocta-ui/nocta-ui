@@ -4,6 +4,7 @@ description: Displays the path to the current resource using a hierarchy of link
 ---
 
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
@@ -46,7 +47,7 @@ import {
 
 ## Usage
 
-### Basic Breadcrumb
+### Default Breadcrumb
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -54,41 +55,26 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Breadcrumb"
-    import {
-      Breadcrumb,
-      BreadcrumbList,
-      BreadcrumbItem,
-      BreadcrumbLink,
-      BreadcrumbPage,
-      BreadcrumbSeparator,
-    } from '@/components/ui/breadcrumb';
-
-    export function BasicBreadcrumbDemo() {
-      return (
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      );
-    }
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>;
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Custom Separator
-
-You can customize the separator between breadcrumb items.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -116,8 +102,6 @@ You can customize the separator between breadcrumb items.
 </DocsTabs>
 
 ### With Icons
-
-You can include icons in your breadcrumb links.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -153,8 +137,6 @@ You can include icons in your breadcrumb links.
 
 ### With Ellipsis
 
-For long paths, you can use ellipsis to truncate the breadcrumb.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <EllipsisDemo />
@@ -185,8 +167,6 @@ For long paths, you can use ellipsis to truncate the breadcrumb.
 </DocsTabs>
 
 ### Sizes
-
-The breadcrumb component supports three sizes: `sm`, `md` (default), and `lg`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -237,8 +217,6 @@ The breadcrumb component supports three sizes: `sm`, `md` (default), and `lg`.
 
 ### Ghost Variant
 
-Use the ghost variant for a more subtle appearance.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <GhostVariantDemo />
@@ -268,65 +246,129 @@ Use the ghost variant for a more subtle appearance.
 
 ### Breadcrumb
 
-The root container for breadcrumb navigation.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | The size of the breadcrumb |
-| `separator` | `React.ReactNode` | `"/"` | Default separator between items |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    size: {
+      description: 'The size of the breadcrumb',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    separator: {
+      description: 'Default separator between items',
+      type: 'React.ReactNode',
+      default: '"/"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbList
 
-Contains the list of breadcrumb items.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    size: {
+      description: 'Override the size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbItem
 
-A wrapper for individual breadcrumb items.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    size: {
+      description: 'Override the size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbLink
 
-A navigable link in the breadcrumb trail.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `variant` | `"default" \| "ghost"` | `"default"` | The visual style of the link |
-| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    variant: {
+      description: 'The visual style of the link',
+      type: '"default" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Override the size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbPage
 
-Represents the current page in the breadcrumb trail.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    size: {
+      description: 'Override the size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbSeparator
 
-A separator between breadcrumb items.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | Inherited | Override the size from context |
-| `children` | `React.ReactNode` | Inherited | Custom separator content |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    size: {
+      description: 'Override the size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'Inherited',
+    },
+    children: {
+      description: 'Custom separator content',
+      type: 'React.ReactNode',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### BreadcrumbEllipsis
 
-An ellipsis indicator for truncated breadcrumb paths.
-
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `className` | `string` | `undefined` | Additional CSS classes |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

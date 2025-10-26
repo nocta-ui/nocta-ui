@@ -6,6 +6,7 @@ description: A command palette modal (Cmd/Ctrl+K) for quick actions and navigati
 import { CommandK } from '@/app/components/ui/command-k';
 import { BasicCommandKDemo } from '@/app/components/ui/command-k/command-k-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -29,7 +30,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Example
 
-The Command Palette provides a fast, searchable modal for navigating and triggering actions using the keyboard.
+### Default Command Palette
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -37,9 +38,6 @@ The Command Palette provides a fast, searchable modal for navigating and trigger
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Command Palette"
-    import { useState } from 'react';
-    import { CommandK, type CommandKItem } from '@/components/ui/command-k';
-
      const items: CommandKItem[] = [
 		{
 			label: "Search docs",
@@ -71,95 +69,146 @@ The Command Palette provides a fast, searchable modal for navigating and trigger
 		},
 	];
 
-    export default function Example() {
-      const [open, setOpen] = useState(false);
-      return (
-        <>
-          <button onClick={() => setOpen(true)}>Open Command Palette</button>
-          <CommandK
-            items={items}
-            open={open}
-            onOpenChange={setOpen}
-            onSelect={(it) => {
-              toast.success({
-						  title: "Command executed",
-						  description: `Selected: ${it.label}`,
-              });
-            }}
-          />
-        </>
-      );
-    }
+  const [open, setOpen] = useState(false);
+
+  <button onClick={() => setOpen(true)}>Open Command Palette</button>
+  <CommandK
+      items={items}
+      open={open}
+      onOpenChange={setOpen}
+      onSelect={(it) => {
+      toast.success({
+        title: "Command executed",
+        description: `Selected: ${it.label}`,
+      });
+    }}
+  />;
     ```
   </DocsTab>
 </DocsTabs>
-
-## Keyboard Shortcuts
-
-- Open: platform-default `⌘K` (macOS) / `Ctrl+K` (Windows/Linux)
-- Navigate: `↑/↓`
-- Confirm: `Enter`
-- First/Last: `Home` / `End`
-- Close: `Escape`
-
-### Customizing the open hotkey
-
-```tsx lineNumbers title="Custom Hotkey"
-// Require Cmd+P on macOS, Ctrl+P on Windows/Linux
-<CommandK hotkey={{ key: 'p' }} />
-
-// Explicit modifier (always Cmd)
-<CommandK hotkey={{ key: 'k', metaKey: true }} />
-
-// Explicit modifier (always Ctrl)
-<CommandK hotkey={{ key: 'k', ctrlKey: true }} />
-```
-
-## Controlled vs Hotkey
-
-You can control visibility with `open`/`onOpenChange` or rely solely on the global hotkey.
-
-```tsx lineNumbers title="Controlled"
-const [open, setOpen] = useState(false);
-
-<CommandK open={open} onOpenChange={setOpen} items={items} />
-```
-
-```tsx lineNumbers title="Hotkey Only"
-// No local state — palette opens with Cmd/Ctrl+K
-<CommandK items={items} />
-```
 
 ## API Reference
 
 ### CommandK
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `CommandKItem[]` | — | List of entries to render |
-| `open` | `boolean` | — | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Initial open state |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes |
-| `placeholder` | `string` | `'Type a command or search...'` | Search input placeholder |
-| `emptyMessage` | `string` | `'No results'` | Message when no results match |
-| `closeOnAction` | `boolean` | `true` | Close palette after selection |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full'` | `'xl'` | Dialog size variant |
-| `className` | `string` | `''` | Extra classes for DialogContent wrapper |
-| `listClassName` | `string` | `''` | Extra classes for results list |
-| `autoFocus` | `boolean` | `true` | Focus search input when opened |
-| `hotkey` | `{ key: string; metaKey?: boolean; ctrlKey?: boolean; }` | `{ key: 'k' }` | Open shortcut; when no modifier specified, uses platform default (⌘/Ctrl) |
-| `onSelect` | `(item: CommandKItem) => void` | — | Called on item selection |
+<TypeTable
+  type={{
+    items: {
+      description: 'List of entries to render',
+      type: 'CommandKItem[]',
+      default: 'undefined',
+    },
+    open: {
+      description: 'Controlled open state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    defaultOpen: {
+      description: 'Initial open state',
+      type: 'boolean',
+      default: 'false',
+    },
+    onOpenChange: {
+      description: 'Callback when open state changes',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+    placeholder: {
+      description: 'Search input placeholder',
+      type: 'string',
+      default: '"Type a command or search..."',
+    },
+    emptyMessage: {
+      description: 'Message when no results match',
+      type: 'string',
+      default: '"No results"',
+    },
+    closeOnAction: {
+      description: 'Close palette after selection',
+      type: 'boolean',
+      default: 'true',
+    },
+    size: {
+      description: 'Dialog size variant',
+      type: '"sm" | "md" | "lg" | "xl" | "full"',
+      default: '"xl"',
+    },
+    className: {
+      description: 'Extra classes for DialogContent wrapper',
+      type: 'string',
+      default: '""',
+    },
+    listClassName: {
+      description: 'Extra classes for results list',
+      type: 'string',
+      default: '""',
+    },
+    autoFocus: {
+      description: 'Focus search input when opened',
+      type: 'boolean',
+      default: 'true',
+    },
+    hotkey: {
+      description: 'Open shortcut; when no modifier specified, uses platform default (⌘/Ctrl)',
+      type: '{ key: string; metaKey?: boolean; ctrlKey?: boolean; }',
+      default: "{ key: 'k' }",
+    },
+    onSelect: {
+      description: 'Called on item selection',
+      type: '(item: CommandKItem) => void',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CommandKItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `id` | `string` | auto | Optional unique ID |
-| `label` | `string` | — | Display label |
-| `group` | `string` | `'General'` | Group header label |
-| `description` | `string` | `''` | Secondary description text |
-| `keywords` | `string[]` | `[]` | Additional searchable terms |
-| `icon` | `React.ReactNode` | — | Optional icon |
-| `shortcut` | `string[]` | `[]` | Visual shortcut hints |
-| `disabled` | `boolean` | `false` | Disable selection |
-| `action` | `() => void` | — | Action executed on select |
+<TypeTable
+  type={{
+    id: {
+      description: 'Optional unique ID',
+      type: 'string',
+      default: 'auto',
+    },
+    label: {
+      description: 'Display label',
+      type: 'string',
+      default: 'undefined',
+    },
+    group: {
+      description: 'Group header label',
+      type: 'string',
+      default: '"General"',
+    },
+    description: {
+      description: 'Secondary description text',
+      type: 'string',
+      default: '""',
+    },
+    keywords: {
+      description: 'Additional searchable terms',
+      type: 'string[]',
+      default: '[]',
+    },
+    icon: {
+      description: 'Optional icon',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    shortcut: {
+      description: 'Visual shortcut hints',
+      type: 'string[]',
+      default: '[]',
+    },
+    disabled: {
+      description: 'Disable selection',
+      type: 'boolean',
+      default: 'false',
+    },
+    action: {
+      description: 'Action executed on select',
+      type: '() => void',
+      default: 'undefined',
+    },
+  }}
+/>

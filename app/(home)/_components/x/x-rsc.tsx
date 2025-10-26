@@ -145,7 +145,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 );
 
 export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
-	<div className="leading-normal break-words">
+	<div className="leading-normal wrap-break-words">
 		{tweet.entities.map((entity, idx) => {
 			switch (entity.type) {
 				case 'url':

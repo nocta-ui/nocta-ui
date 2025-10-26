@@ -12,6 +12,7 @@ import {
   DisabledTabsDemo
 } from '@/app/components/ui/tabs/tabs-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -41,7 +42,7 @@ import {
 
 ## Examples
 
-The Tabs component follows a composable architecture where you build tabbed interfaces by combining smaller components together.
+### Default Tabs
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -99,9 +100,7 @@ The Tabs component follows a composable architecture where you build tabbed inte
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Tabs component supports three visual variants: `default`, `pills`, and `underline`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -109,7 +108,6 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Tabs Variants"
-    {/* Default variant */}
     <Tabs defaultValue="tab1" variant="default">
       <TabsList>
         <TabsTrigger value="tab1">Account</TabsTrigger>
@@ -121,7 +119,6 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
       <TabsContent value="tab3">Settings content</TabsContent>
     </Tabs>
 
-    {/* Pills variant */}
     <Tabs defaultValue="tab1" variant="pills">
       <TabsList>
         <TabsTrigger value="tab1">Home</TabsTrigger>
@@ -133,7 +130,6 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
       <TabsContent value="tab3">About content</TabsContent>
     </Tabs>
 
-    {/* Underline variant */}
     <Tabs defaultValue="tab1" variant="underline">
       <TabsList>
         <TabsTrigger value="tab1">Dashboard</TabsTrigger>
@@ -148,9 +144,7 @@ The Tabs component supports three visual variants: `default`, `pills`, and `unde
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -188,7 +182,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Vertical Orientation
+### Vertical Orientation
 
 Tabs can be displayed vertically using the `orientation="vertical"` prop.
 
@@ -226,9 +220,7 @@ Tabs can be displayed vertically using the `orientation="vertical"` prop.
   </DocsTab>
 </DocsTabs>
 
-## Disabled States
-
-Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
+### Disabled States
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -258,40 +250,118 @@ Individual tabs can be disabled using the `disabled` prop on `TabsTrigger`.
 
 ### Tabs
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Tabs content |
-| `value` | `string` | — | Controlled active tab value |
-| `defaultValue` | `string` | — | Default active tab value |
-| `onValueChange` | `(value: string) => void` | — | Callback when tab changes |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Tabs orientation |
-| `variant` | `'default' \| 'pills' \| 'underline'` | `'default'` | Visual variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
-| `className` | `string` | `''` | Additional CSS classes |
-| `disabled` | `boolean` | `false` | Disable all tabs |
+<TypeTable
+  type={{
+    children: {
+      description: 'Tabs content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    value: {
+      description: 'Controlled active tab value',
+      type: 'string',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Default active tab value',
+      type: 'string',
+      default: 'undefined',
+    },
+    onValueChange: {
+      description: 'Callback when tab changes',
+      type: '(value: string) => void',
+      default: 'undefined',
+    },
+    orientation: {
+      description: 'Tabs orientation',
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+    },
+    variant: {
+      description: 'Visual variant',
+      type: '"default" | "pills" | "underline"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Size variant',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    disabled: {
+      description: 'Disable all tabs',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
 
 ### TabsList
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Tab triggers |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Tab triggers',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### TabsTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Trigger content |
-| `value` | `string` | — | Unique tab identifier |
-| `className` | `string` | `''` | Additional CSS classes |
-| `disabled` | `boolean` | `false` | Disable this tab |
+<TypeTable
+  type={{
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    value: {
+      description: 'Unique tab identifier',
+      type: 'string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    disabled: {
+      description: 'Disable this tab',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
 
 ### TabsContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Content to display |
-| `value` | `string` | — | Tab identifier this content belongs to |
-| `className` | `string` | `''` | Additional CSS classes |
-
-The Tabs components also accept all standard HTML attributes for their respective elements.
+<TypeTable
+  type={{
+    children: {
+      description: 'Content to display',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    value: {
+      description: 'Tab identifier this content belongs to',
+      type: 'string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

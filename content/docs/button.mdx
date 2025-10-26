@@ -12,6 +12,7 @@ import {
   SizesDemo,
 } from '@/app/components/ui/button/button-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -27,9 +28,7 @@ npx nocta-ui add button
 Then import the components you need:
 
 ```tsx lineNumbers title="Import"
-import {
-  Button,
-} from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 ```
 </Step>
 </Steps>
@@ -97,9 +96,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -116,16 +113,52 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Button content |
-| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'icon'` | `'primary'` | Button style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `className` | `string` | `''` | Additional CSS classes |
-| `render` | `React.ReactElement \| RenderProp` | — | Render the button as another component (Ariakit `render` prop) |
-| `disabled` | `boolean` | `false` | Disable the button |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type (defaults to button to avoid accidental form submit) |
-| `aria-label` | `string` | — | Accessible name for icon-only buttons |
-| `onClick` | `() => void` | — | Click handler |
-
-The Button component also accepts all standard HTML button attributes. When `disabled` is set, the component also exposes `aria-disabled` for assistive technologies.
+<TypeTable
+  type={{
+    children: {
+      description: 'Button content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'Button style variant',
+      type: '"primary" | "secondary" | "ghost" | "icon"',
+      default: '"primary"',
+    },
+    size: {
+      description: 'Button size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    render: {
+      description: 'Render the button as another component (Ariakit `render` prop)',
+      type: 'React.ReactElement | RenderProp',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the button',
+      type: 'boolean',
+      default: 'false',
+    },
+    type: {
+      description: 'Button type (defaults to button to avoid accidental form submit)',
+      type: '"button" | "submit" | "reset"',
+      default: '"button"',
+    },
+    'aria-label': {
+      description: 'Accessible name for icon-only buttons',
+      type: 'string',
+      default: 'undefined',
+    },
+    onClick: {
+      description: 'Click handler',
+      type: '() => void',
+      default: 'undefined',
+    },
+  }}
+/>

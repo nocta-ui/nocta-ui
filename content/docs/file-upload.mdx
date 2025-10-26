@@ -12,6 +12,7 @@ import {
   FileUploadDisabledDemo,
 } from '@/app/components/ui/file-upload/file-upload-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -35,7 +36,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-### Basic File Upload
+### Default File Upload
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -124,9 +125,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -155,8 +154,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Component States
-
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
@@ -176,72 +173,84 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## File Types & Validation
-
-### File Type Restrictions
-
-```tsx lineNumbers title="File Type Examples"
-// Images only
-<FileUpload accept="image/*" />
-
-// Specific image types
-<FileUpload accept="image/jpeg,image/png,image/gif" />
-
-// Documents
-<FileUpload accept=".pdf,.doc,.docx,.txt" />
-
-// Multiple types
-<FileUpload accept="image/*,.pdf,.doc,.docx,text/*" />
-
-// All files
-<FileUpload accept="*/*" />
-```
-
-### File Size Limits
-
-```tsx lineNumbers title="Size Limits"
-// 1MB limit
-<FileUpload maxSize={1024 * 1024} />
-
-// 5MB limit
-<FileUpload maxSize={5 * 1024 * 1024} />
-
-// 50MB limit
-<FileUpload maxSize={50 * 1024 * 1024} />
-```
-
-### File Count Limits
-
-```tsx lineNumbers title="File Count"
-// Single file only
-<FileUpload multiple={false} />
-
-// Up to 5 files
-<FileUpload multiple maxFiles={5} />
-
-// Up to 20 files
-<FileUpload multiple maxFiles={20} />
-
-// Unlimited files
-<FileUpload multiple />
-```
-
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'default' \| 'compact'` | `'default'` | Visual style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the upload area |
-| `multiple` | `boolean` | `false` | Allow multiple file selection |
-| `accept` | `string` | - | Accepted file types (MIME types or extensions) |
-| `maxSize` | `number` | - | Maximum file size in bytes |
-| `maxFiles` | `number` | - | Maximum number of files |
-| `disabled` | `boolean` | `false` | Disable the upload component |
-| `files` | `FileUploadFile[]` | `[]` | Array of files |
-| `onFilesChange` | `(files: FileUploadFile[]) => void` | - | Callback when files change |
-| `onUpload` | `(files: FileUploadFile[]) => Promise<void>` | - | Upload function |
-| `showProgress` | `boolean` | `true` | Show upload progress |
-| `showPreview` | `boolean` | `true` | Show image previews |
-| `uploadText` | `string` | `'Click to upload or drag and drop'` | Upload zone text |
-| `dragText` | `string` | `'Drop files here'` | Drag over text |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual style variant',
+      type: '"default" | "compact"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Size of the upload area',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    multiple: {
+      description: 'Allow multiple file selection',
+      type: 'boolean',
+      default: 'false',
+    },
+    accept: {
+      description: 'Accepted file types (MIME types or extensions)',
+      type: 'string',
+      default: 'undefined',
+    },
+    maxSize: {
+      description: 'Maximum file size in bytes',
+      type: 'number',
+      default: 'undefined',
+    },
+    maxFiles: {
+      description: 'Maximum number of files',
+      type: 'number',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the upload component',
+      type: 'boolean',
+      default: 'false',
+    },
+    files: {
+      description: 'Array of files',
+      type: 'FileUploadFile[]',
+      default: '[]',
+    },
+    onFilesChange: {
+      description: 'Callback when files change',
+      type: '(files: FileUploadFile[]) => void',
+      default: 'undefined',
+    },
+    onUpload: {
+      description: 'Upload function',
+      type: '(files: FileUploadFile[]) => Promise<void>',
+      default: 'undefined',
+    },
+    showProgress: {
+      description: 'Show upload progress',
+      type: 'boolean',
+      default: 'true',
+    },
+    showPreview: {
+      description: 'Show image previews',
+      type: 'boolean',
+      default: 'true',
+    },
+    uploadText: {
+      description: 'Upload zone text',
+      type: 'string',
+      default: '"Click to upload or drag and drop"',
+    },
+    dragText: {
+      description: 'Drag over text',
+      type: 'string',
+      default: '"Drop files here"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

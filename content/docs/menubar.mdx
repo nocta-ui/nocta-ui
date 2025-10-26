@@ -19,6 +19,7 @@ import {
   MenubarDisabledDemo,
 } from '@/app/components/ui/menubar/menubar-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps";
 
 ## Installation
@@ -45,9 +46,9 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
   </Step>
 </Steps>
 
-## Basic Menubar
+## Examples
 
-Pair `Menubar`, `MenubarMenu`, and `MenubarTrigger` with `MenubarContent` to create a horizontal application menu.
+### Default Menubar
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -57,7 +58,6 @@ Pair `Menubar`, `MenubarMenu`, and `MenubarTrigger` with `MenubarContent` to cre
     ```tsx lineNumbers title="Basic Menubar"
     const [lastAction, setLastAction] = useState('No action selected');
 
-    return (
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger>File</MenubarTrigger>
@@ -126,14 +126,11 @@ Pair `Menubar`, `MenubarMenu`, and `MenubarTrigger` with `MenubarContent` to cre
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
-    );
     ```
   </DocsTab>
 </DocsTabs>
 
-## Disabled States
-
-Menubar supports disabling entire menus or individual commands to reflect application state.
+### Disabled States
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -165,72 +162,198 @@ Menubar supports disabling entire menus or individual commands to reflect applic
 
 ### Menubar
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Menubar menus |
-| `className` | `string` | — | Additional styling |
-| `size` | `'md'` | `'md'` | Control menubar height |
+<TypeTable
+  type={{
+    children: {
+      description: 'Menubar menus',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional styling',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Control menubar height',
+      type: '"md"',
+      default: '"md"',
+    },
+  }}
+/>
 
 ### MenubarMenu
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Trigger and content for a menu |
+<TypeTable
+  type={{
+    children: {
+      description: 'Trigger and content for a menu',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### MenubarTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Visible trigger label |
-| `className` | `string` | — | Custom classes |
-| `disabled` | `boolean` | `false` | Disable opening the menu |
-| `size` | `'md'` | `'md'` | Trigger padding and height |
+<TypeTable
+  type={{
+    children: {
+      description: 'Visible trigger label',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable opening the menu',
+      type: 'boolean',
+      default: 'false',
+    },
+    size: {
+      description: 'Trigger padding and height',
+      type: '"md"',
+      default: '"md"',
+    },
+  }}
+/>
 
 ### MenubarContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Menu body content |
-| `className` | `string` | — | Additional classes |
-| `size` | `'md'` | `'md'` | Adjusts padding and width |
+<TypeTable
+  type={{
+    children: {
+      description: 'Menu body content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Adjusts padding and width',
+      type: '"md"',
+      default: '"md"',
+    },
+  }}
+/>
 
 ### MenubarItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Command label and accessories |
-| `className` | `string` | — | Additional classes |
-| `disabled` | `boolean` | `false` | Disable interaction |
-| `inset` | `boolean` | `false` | Indent the item |
-| `destructive` | `boolean` | `false` | Apply destructive styling |
-| `onClick` | `() => void` | — | Click handler |
+<TypeTable
+  type={{
+    children: {
+      description: 'Command label and accessories',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable interaction',
+      type: 'boolean',
+      default: 'false',
+    },
+    inset: {
+      description: 'Indent the item',
+      type: 'boolean',
+      default: 'false',
+    },
+    destructive: {
+      description: 'Apply destructive styling',
+      type: 'boolean',
+      default: 'false',
+    },
+    onClick: {
+      description: 'Click handler',
+      type: '() => void',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### MenubarSeparator
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | — | Additional classes |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### MenubarSub
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu trigger and content |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu trigger and content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### MenubarSubTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu trigger label |
-| `className` | `string` | — | Additional classes |
-| `disabled` | `boolean` | `false` | Disable the submenu trigger |
-| `inset` | `boolean` | `false` | Indent the trigger |
-| `destructive` | `boolean` | `false` | Destructive styling |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu trigger label',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the submenu trigger',
+      type: 'boolean',
+      default: 'false',
+    },
+    inset: {
+      description: 'Indent the trigger',
+      type: 'boolean',
+      default: 'false',
+    },
+    destructive: {
+      description: 'Destructive styling',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
 
 ### MenubarSubContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Submenu body |
-| `className` | `string` | — | Additional classes |
-| `size` | `'md'` | `'md'` | Adjusts submenu padding |
+<TypeTable
+  type={{
+    children: {
+      description: 'Submenu body',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Adjusts submenu padding',
+      type: '"md"',
+      default: '"md"',
+    },
+  }}
+/>

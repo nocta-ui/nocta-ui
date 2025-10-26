@@ -11,6 +11,7 @@ import {
   GroupedWheelPickerDemo,
 } from '@/app/components/ui/wheel-picker/wheel-picker-demos';
 import { DocsTabs, DocsTab } from '@/components/docs-tab'
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -38,7 +39,7 @@ import {
 
 ## Examples
 
-### Default
+### Default Wheel Picker
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -169,35 +170,111 @@ import {
 
 ### WheelPicker
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Controlled value |
-| `defaultValue` | `string` | — | Default value when uncontrolled |
-| `onValueChange` | `(value: string) => void` | — | Fired after the selection changes |
-| `disabled` | `boolean` | `false` | Disables focus and gesture interactions |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Controls item height and component width |
-| `visibleCount` | `number` | `20` | Number of virtual segments used for the 3D wheel layout |
-| `infinite` | `boolean` | `false` | Enables looping scroll that wraps around |
-| `className` | `string` | `''` | Additional CSS classes |
-| `aria-label` | `string` | — | Accessible label when no visible label present |
-| `children` | `React.ReactNode` | — | Picker options rendered as `WheelPickerItem` children |
+<TypeTable
+  type={{
+    value: {
+      description: 'Controlled value',
+      type: 'string',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Default value when uncontrolled',
+      type: 'string',
+      default: 'undefined',
+    },
+    onValueChange: {
+      description: 'Callback when the selection changes',
+      type: '(value: string) => void',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables focus and gesture interactions',
+      type: 'boolean',
+      default: 'false',
+    },
+    size: {
+      description: 'Controls item height and component width',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    visibleCount: {
+      description: 'Number of virtual segments used for the 3D wheel layout',
+      type: 'number',
+      default: '20',
+    },
+    infinite: {
+      description: 'Enables looping scroll that wraps around',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    'aria-label': {
+      description: 'Accessible label when no visible label present',
+      type: 'string',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Picker options rendered as `WheelPickerItem` children',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### WheelPickerItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Item value |
-| `children` | `React.ReactNode` | — | Custom item content (label) |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    value: {
+      description: 'Item value',
+      type: 'string',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Custom item content (label)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### WheelPickerGroup
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Shared size passed to nested pickers |
-| `disabled` | `boolean` | `false` | Disables interactions for all nested pickers |
-| `contentClassName` | `string` | `''` | Classes for the inner flex container that holds each picker |
-| `className` | `string` | `''` | Additional CSS classes applied to the group frame |
-| `children` | `React.ReactNode` | — | Typically multiple `WheelPicker` instances |
-
-All components also accept their respective HTML element attributes.
+<TypeTable
+  type={{
+    size: {
+      description: 'Shared size passed to nested pickers',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Disables interactions for all nested pickers',
+      type: 'boolean',
+      default: 'false',
+    },
+    children: {
+      description: 'Typically multiple `WheelPicker` instances',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    contentClassName: {
+      description: 'Classes for the inner flex container that holds each picker',
+      type: 'string',
+      default: '""',
+    },
+    className: {
+      description: 'Additional CSS classes applied to the group frame',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

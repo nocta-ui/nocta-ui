@@ -15,6 +15,7 @@ import {
   ClickHandlersDemo,
 } from '@/app/components/ui/avatar/avatar-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -47,24 +48,19 @@ import { Avatar } from '@/components/ui/avatar';
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Avatar"
-    // With image
     <Avatar
       src="https://example.com/avatar.jpg"
       alt="John Doe"
     />
 
-    // With initials fallback
     <Avatar fallback="JD" />
 
-    // Default fallback (user icon)
     <Avatar />
     ```
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -84,9 +80,7 @@ Six size options are available: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`. The def
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Avatar component supports two shape variants: `circle` (default) and `square`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -104,9 +98,7 @@ The Avatar component supports two shape variants: `circle` (default) and `square
   </DocsTab>
 </DocsTabs>
 
-## Status Indicators
-
-Add status indicators to show user presence: `online`, `offline`, `away`, or `busy`.
+### Status Indicators
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -124,9 +116,7 @@ Add status indicators to show user presence: `online`, `offline`, `away`, or `bu
   </DocsTab>
 </DocsTabs>
 
-## Fallback Handling
-
-The Avatar component gracefully handles image loading failures with multiple fallback options.
+### Fallback Handling
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -136,27 +126,20 @@ The Avatar component gracefully handles image loading failures with multiple fal
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Fallback Handling"
-    // Valid image
     <Avatar src="valid-image.jpg" alt="John Doe" />
 
-    // Invalid image with initials fallback
     <Avatar src="invalid-image.jpg" fallback="JD" alt="John Doe" />
 
-    // Initials from name (auto-generated)
     <Avatar fallback="Sarah Connor" />
 
-    // Simple initials
     <Avatar fallback="AB" />
 
-    // Default user icon fallback
     <Avatar />
     ```
   </DocsTab>
 </DocsTabs>
 
-## Avatar Groups
-
-Stack multiple avatars to show groups or teams.
+### Avatar Groups
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -196,14 +179,42 @@ Stack multiple avatars to show groups or teams.
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `src` | `string` | - | The image source URL |
-| `alt` | `string` | `''` | Alt text for the image |
-| `fallback` | `string` | - | Text to generate initials from, or custom initials |
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl'` | `'md'` | The size of the avatar |
-| `variant` | `'circle' \| 'square'` | `'circle'` | The shape variant |
-| `status` | `'online' \| 'offline' \| 'away' \| 'busy' \| null` | `null` | Status indicator |
-| `className` | `string` | `''` | Additional CSS classes to apply |
-
-The Avatar component also accepts all standard HTML div element props through the `...props` spread operator.
+<TypeTable
+  type={{
+    src: {
+      description: 'The image source URL',
+      type: 'string',
+      default: 'undefined',
+    },
+    alt: {
+      description: 'Alt text for the image',
+      type: 'string',
+      default: '""',
+    },
+    fallback: {
+      description: 'Text to generate initials from, or custom initials',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'The size of the avatar',
+      type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'The shape variant',
+      type: '"circle" | "square"',
+      default: '"circle"',
+    },
+    status: {
+      description: 'Status indicator',
+      type: '"online" | "offline" | "away" | "busy" | null',
+      default: 'null',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

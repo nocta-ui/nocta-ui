@@ -11,6 +11,7 @@ import {
   ToggleGroupWithIconsDemo
 } from '@/app/components/ui/toggle-group/toggle-group-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -40,6 +41,8 @@ import {
 
 ## Examples
 
+### Default Toggle Group
+
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
@@ -59,9 +62,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Multiple Selection
-
-Remove the `single` prop to allow toggling several items at the same time. The component manages an array of selected values.
+### Multiple Selection
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -82,9 +83,7 @@ Remove the `single` prop to allow toggling several items at the same time. The c
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Toggle groups support `sm`, `md`, and `lg` sizes. The group and its items inherit the size for consistent spacing.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -115,9 +114,7 @@ Toggle groups support `sm`, `md`, and `lg` sizes. The group and its items inheri
   </DocsTab>
 </DocsTabs>
 
-## Icon Toolbar
-
-Combine toggle group items with icons to build formatting toolbars or segmented controls.
+### Icon Toolbar
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -146,22 +143,74 @@ Combine toggle group items with icons to build formatting toolbars or segmented 
 
 ### ToggleGroup
 
-| Prop            | Type                        | Default     | Description                                                 |
-| --------------- | --------------------------- | ----------- | ----------------------------------------------------------- |
-| `single`        | `boolean`                   | `false`     | Determines whether only one item can be selected at a time. |
-| `value`         | `string[]`                  | `undefined` | Controlled selected values.                                 |
-| `defaultValue`  | `string[]`                  | `[]`        | Initial selection for uncontrolled usage.                   |
-| `onValueChange` | `(value: string[]) => void` | -           | Called when the selection changes.                          |
-| `variant`       | `'default'`                 | `'default'` | Outer container style.                                      |
-| `size`          | `'sm' \| 'md' \| 'lg'`      | `'md'`      | Defines the toggle size and padding.                        |
-| `disabled`      | `boolean`                   | `false`     | Disables all toggle items when true.                        |
-| `className`     | `string`                    | `''`        | Additional classes on the group container.                  |
+<TypeTable
+  type={{
+    single: {
+      description: 'Determines whether only one item can be selected at a time.',
+      type: 'boolean',
+      default: 'false',
+    },
+    value: {
+      description: 'Controlled selected values.',
+      type: 'string[]',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Initial selection for uncontrolled usage.',
+      type: 'string[]',
+      default: '[]',
+    },
+    onValueChange: {
+      description: 'Callback when the selection changes.',
+      type: '(value: string[]) => void',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'Outer container style.',
+      type: '"default"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Defines the toggle size and padding.',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Disables all toggle items when true.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes on the group container.',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### ToggleGroupItem
 
-| Prop        | Type              | Default             | Description                                      |
-| ----------- | ----------------- | ------------------- | ------------------------------------------------ |
-| `value`     | `string`          | -                   | Unique identifier for the item within the group. |
-| `disabled`  | `boolean`         | Inherits from group | Disables only this item when true.               |
-| `className` | `string`          | `''`                | Additional classes for custom styling.           |
-| `children`  | `React.ReactNode` | -                   | Content such as text or icons.                   |
+<TypeTable
+  type={{
+    value: {
+      description: 'Unique identifier for the item within the group.',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables only this item when true.',
+      type: 'boolean',
+      default: 'Inherited',
+    },
+    className: {
+      description: 'Additional classes for custom styling.',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Content such as text or icons.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>

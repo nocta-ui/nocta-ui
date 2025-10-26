@@ -135,7 +135,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						'fd-scroll-container max-h-[600px] overflow-auto rounded-lg border border-fd-border bg-card py-3.5 text-[13px] [&_.line]:px-4',
+						'fd-scroll-container max-h-[600px] overflow-auto rounded-lg border border-fd-border bg-card shadow-sm py-3.5 text-[13px] [&_.line]:px-4',
 						props['data-line-numbers'] && '[&_.line]:pl-3',
 						viewportProps?.className,
 					)}

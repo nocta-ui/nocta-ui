@@ -10,6 +10,7 @@ import {
   SizesDemo,
 } from '@/app/components/ui/select/select-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -64,9 +65,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-Visual variants help represent error and success states alongside the default appearance.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -110,9 +109,7 @@ Visual variants help represent error and success states alongside the default ap
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -160,48 +157,140 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ### Select
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Controlled value |
-| `defaultValue` | `string` | — | Default value for uncontrolled component |
-| `onValueChange` | `(value: string) => void` | — | Callback when value changes |
-| `disabled` | `boolean` | `false` | Disable the select |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Select size |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant |
-| `children` | `React.ReactNode` | — | Select content |
+<TypeTable
+  type={{
+    value: {
+      description: 'Controlled value',
+      type: 'string',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Default value for uncontrolled component',
+      type: 'string',
+      default: 'undefined',
+    },
+    onValueChange: {
+      description: 'Callback when value changes',
+      type: '(value: string) => void',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the select',
+      type: 'boolean',
+      default: 'false',
+    },
+    size: {
+      description: 'Select size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'Visual variant',
+      type: '"default" | "error" | "success"',
+      default: '"default"',
+    },
+    children: {
+      description: 'Select content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### SelectTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
-| `size` | `'sm' \| 'md' \| 'lg'` | — | Override size from context |
-| `variant` | `'default' \| 'error' \| 'success'` | — | Override variant from context |
-| `children` | `React.ReactNode` | — | Trigger content |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    size: {
+      description: 'Override size from context',
+      type: '"sm" | "md" | "lg"',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'Override variant from context',
+      type: '"default" | "error" | "success"',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### SelectContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
-| `portal` | `boolean` | `true` | Render the dropdown in a React portal |
-| `fixed` | `boolean` | `false` | Use fixed positioning to avoid clipping |
-| `children` | `React.ReactNode` | — | Content (SelectItems) |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    portal: {
+      description: 'Render the dropdown in a React portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use fixed positioning to avoid clipping',
+      type: 'boolean',
+      default: 'false',
+    },
+    children: {
+      description: 'Content (SelectItems)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### SelectItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Item value |
-| `disabled` | `boolean` | `false` | Disable the item |
-| `className` | `string` | `''` | Additional CSS classes |
-| `children` | `React.ReactNode` | — | Item content |
+<TypeTable
+  type={{
+    value: {
+      description: 'Item value',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable the item',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Item content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### SelectValue
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `placeholder` | `string` | `'Select an option...'` | Placeholder text |
-| `className` | `string` | `''` | Additional CSS classes |
-
-All components also accept their respective HTML element attributes.
+<TypeTable
+  type={{
+    placeholder: {
+      description: 'Placeholder text',
+      type: 'string',
+      default: '"Select an option..."',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

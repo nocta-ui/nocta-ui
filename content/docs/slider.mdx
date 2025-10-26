@@ -16,6 +16,7 @@ import {
   PriceRangeDemo
 } from '@/app/components/ui/slider/slider-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -50,13 +51,11 @@ import { Slider } from '@/components/ui/slider';
     ```tsx lineNumbers title="Default Slider"
     const [value, setValue] = useState(50);
 
-    return (
-      <Slider
-        value={value}
-        onChange={setValue}
-        aria-label="Basic slider"
-      />
-    );
+    <Slider
+      value={value}
+      onChange={setValue}
+      aria-label="Basic slider"
+    />
     ```
   </DocsTab>
 </DocsTabs>
@@ -78,9 +77,7 @@ import { Slider } from '@/components/ui/slider';
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -94,8 +91,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
     ```
   </DocsTab>
 </DocsTabs>
-
-## Features
 
 ### Show Value
 
@@ -123,7 +118,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Custom Range & Formatting"
-    // Temperature slider
     <Slider
       min={16}
       max={30}
@@ -135,7 +129,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
       variant="default"
     />
 
-    // Volume slider
     <Slider
       min={0}
       max={10}
@@ -188,8 +181,6 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## States
-
 ### Disabled State
 
 <DocsTabs defaultValue="preview">
@@ -206,51 +197,99 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Controlled vs Uncontrolled
-
-### Controlled Slider
-```tsx
-const [value, setValue] = useState(50);
-
-return (
-  <Slider
-    value={value}
-    onChange={setValue}
-  />
-);
-```
-
-### Uncontrolled Slider
-```tsx
-return (
-  <Slider
-    defaultValue={50}
-    onChange={(value) => console.log('Value changed:', value)}
-  />
-);
-```
-
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `number` | — | Controlled value |
-| `defaultValue` | `number` | `0` | Default value for uncontrolled usage |
-| `min` | `number` | `0` | Minimum value |
-| `max` | `number` | `100` | Maximum value |
-| `step` | `number` | `1` | Step increment |
-| `disabled` | `boolean` | `false` | Disable the slider |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Slider size |
-| `variant` | `'default' \| 'secondary'` | `'default'` | Slider style variant |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider orientation |
-| `showValue` | `boolean` | `false` | Show current value |
-| `formatValue` | `(value: number) => string` | `(value) => value.toString()` | Custom value formatter |
-| `onChange` | `(value: number) => void` | — | Value change handler |
-| `onValueCommit` | `(value: number) => void` | — | Called when value is committed |
-| `className` | `string` | `''` | Additional CSS classes |
-| `trackClassName` | `string` | `''` | Track element CSS classes |
-| `thumbClassName` | `string` | `''` | Thumb element CSS classes |
-| `aria-label` | `string` | — | Accessibility label |
-| `aria-labelledby` | `string` | — | ID of labeling element |
-
-The Slider component also accepts all standard HTML div attributes.
+<TypeTable
+  type={{
+    value: {
+      description: 'Controlled value',
+      type: 'number',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Default value for uncontrolled usage',
+      type: 'number',
+      default: '0',
+    },
+    min: {
+      description: 'Minimum value',
+      type: 'number',
+      default: '0',
+    },
+    max: {
+      description: 'Maximum value',
+      type: 'number',
+      default: '100',
+    },
+    step: {
+      description: 'Step increment',
+      type: 'number',
+      default: '1',
+    },
+    disabled: {
+      description: 'Disable the slider',
+      type: 'boolean',
+      default: 'false',
+    },
+    size: {
+      description: 'Slider size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'Slider style variant',
+      type: '"default" | "secondary"',
+      default: '"default"',
+    },
+    orientation: {
+      description: 'Slider orientation',
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+    },
+    showValue: {
+      description: 'Show current value',
+      type: 'boolean',
+      default: 'false',
+    },
+    formatValue: {
+      description: 'Custom value formatter',
+      type: '(value: number) => string',
+      default: '(value) => value.toString()',
+    },
+    onChange: {
+      description: 'Value change handler',
+      type: '(value: number) => void',
+      default: 'undefined',
+    },
+    onValueCommit: {
+      description: 'Callback when value is committed',
+      type: '(value: number) => void',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    trackClassName: {
+      description: 'Track element CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    thumbClassName: {
+      description: 'Thumb element CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    'aria-label': {
+      description: 'Accessibility label',
+      type: 'string',
+      default: 'undefined',
+    },
+    'aria-labelledby': {
+      description: 'ID of labeling element',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

@@ -16,6 +16,7 @@ import {
   ToastPositionsDemo
 } from '@/app/components/ui/toast/toast-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -36,10 +37,7 @@ Import the components you need:
 import { toast, Toaster } from '@/components/ui/toast';
 ```
 </Step>
-</Steps>
-
-## Setup
-
+<Step>
 Add the Toaster component to your app to enable toast notifications:
 
 ```tsx lineNumbers title="Toaster Setup"
@@ -54,10 +52,12 @@ function App() {
   );
 }
 ```
+</Step>
+</Steps>
 
 ## Examples
 
-### Simple Toast
+### Default Toast
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -65,29 +65,22 @@ function App() {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Simple Toast"
-    import { toast } from '@/components/ui/toast';
 
-    function MyComponent() {
-      const showToast = () => {
-        toast({
-          title: 'Success!',
-          description: 'Your changes have been saved.',
-        });
-      };
+    const showToast = () => {
+      toast({
+        title: 'Success!',
+        description: 'Your changes have been saved.',
+      });
+    };
 
-      return (
-        <Button onClick={showToast}>
-          Show Toast
-        </Button>
-      );
-    }
+    <Button onClick={showToast}>
+      Show Toast
+    </Button>
     ```
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Toast component supports multiple variants: `default`, `success`, `warning`, and `destructive`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -126,9 +119,7 @@ The Toast component supports multiple variants: `default`, `success`, `warning`,
   </DocsTab>
 </DocsTabs>
 
-## Positions
-
-Toasts can be positioned in 6 different locations on the screen. Each position manages its own stack of toasts independently.
+### Positions
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -136,7 +127,6 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Toast Positions"
-    // Available positions
     const positions = [
       'top-left',
       'top-center',
@@ -146,7 +136,6 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
       'bottom-right'
     ];
 
-    // Show toast in specific position
     const showTopRight = () => {
       toast({
         title: 'Top Right Toast',
@@ -167,9 +156,7 @@ Toasts can be positioned in 6 different locations on the screen. Each position m
   </DocsTab>
 </DocsTabs>
 
-## Toast with Actions
-
-Add action buttons to your toast notifications for user interaction.
+### Toast with Actions
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -191,9 +178,7 @@ Add action buttons to your toast notifications for user interaction.
   </DocsTab>
 </DocsTabs>
 
-## Stacked Toasts
-
-The toast system supports smart stacking with a maximum of 3 visible toasts. New toasts push older ones up with scale and blur effects.
+### Stacked Toasts
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -229,9 +214,7 @@ The toast system supports smart stacking with a maximum of 3 visible toasts. New
   </DocsTab>
 </DocsTabs>
 
-## Persistent Toast
-
-Create persistent toasts that don't auto-close by setting `duration` to `0`.
+### Persistent Toast
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -243,16 +226,14 @@ Create persistent toasts that don't auto-close by setting `duration` to `0`.
       toast({
         title: 'Important Notice',
         description: 'This toast will remain visible until manually closed.',
-        duration: 0, // Persistent
+        duration: 0,
       });
     };
     ```
   </DocsTab>
 </DocsTabs>
 
-## Custom Duration
-
-Customize how long toasts remain visible by setting a custom duration in milliseconds.
+### Custom Duration
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -271,9 +252,7 @@ Customize how long toasts remain visible by setting a custom duration in millise
   </DocsTab>
 </DocsTabs>
 
-## Dismiss All
-
-You can dismiss all active toasts programmatically using the `dismissAll` function.
+### Dismiss All
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -287,7 +266,6 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
       toast.warning({ title: 'Toast 3', description: 'Third notification' });
     };
 
-    // Dismiss all toasts
     const handleDismissAll = () => {
       toast.dismissAll();
     };
@@ -295,37 +273,7 @@ You can dismiss all active toasts programmatically using the `dismissAll` functi
   </DocsTab>
 </DocsTabs>
 
-## Api Reference
-
-### ToastData Interface
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | — | Toast title |
-| `description` | `string` | — | Toast description |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Toast style variant |
-| `className` | `string` | — | Custom CSS classes for styling |
-| `position` | `'top-left' \| 'top-center' \| 'top-right' \| 'bottom-left' \| 'bottom-center' \| 'bottom-right'` | `'bottom-center'` | Toast position on screen |
-| `duration` | `number` | `5000` | Auto-close duration in ms (0 = persistent) |
-| `action` | `{ label: string; onClick: () => void }` | — | Action button configuration |
-| `shouldClose` | `boolean` | false | Flag for programmatic closing with animation |
-
-### Toast API
-
-The toast function and its methods:
-
-| Function | Type | Description |
-|----------|------|-----------|
-| `toast()` | `(data: ToastData \| string) => string` | Show a default toast notification |
-| `toast.success()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show a success toast |
-| `toast.warning()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show a warning toast |
-| `toast.error()` | `(data: Omit<ToastData, 'variant'> \| string) => string` | Show an error toast |
-| `toast.dismiss()` | `(id: string) => void` | Dismiss a specific toast |
-| `toast.dismissAll()` | `() => void` | Dismiss all active toasts |
-
-### Simple String Usage
-
-You can also pass a simple string for quick notifications:
+### Default String Usage
 
 ```tsx lineNumbers title="Simple String Toasts"
 toast('Simple message');
@@ -333,3 +281,52 @@ toast.success('Operation successful!');
 toast.warning('Please be careful');
 toast.error('Something went wrong');
 ```
+
+## Api Reference
+
+### ToastData Interface
+
+<TypeTable
+  type={{
+    title: {
+      description: 'Toast title',
+      type: 'string',
+      default: 'undefined',
+    },
+    description: {
+      description: 'Toast description',
+      type: 'string',
+      default: 'undefined',
+    },
+    variant: {
+      description: 'Toast style variant',
+      type: '"default" | "success" | "warning" | "destructive"',
+      default: '"default"',
+    },
+    className: {
+      description: 'Custom CSS classes for styling',
+      type: 'string',
+      default: 'undefined',
+    },
+    position: {
+      description: 'Toast position on screen',
+      type: '"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"',
+      default: '"bottom-center"',
+    },
+    duration: {
+      description: 'Auto-close duration in ms (0 = persistent)',
+      type: 'number',
+      default: '5000',
+    },
+    action: {
+      description: 'Action button configuration',
+      type: '{ label: string; onClick: () => void }',
+      default: 'undefined',
+    },
+    shouldClose: {
+      description: 'Flag for programmatic closing with animation',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>

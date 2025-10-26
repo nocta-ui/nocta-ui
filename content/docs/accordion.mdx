@@ -10,6 +10,7 @@ import {
   MultipleAccordionDemo,
   SizeAccordionDemo,
 } from '@/app/components/ui/accordion';
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -38,9 +39,7 @@ import {
 
 ## Examples
 
-### Basic Accordion
-
-A simple accordion with collapsible content sections.
+### Default Accordion
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -48,43 +47,33 @@ A simple accordion with collapsible content sections.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Accordion"
-    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+    <Accordion>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Nocta UI?</AccordionTrigger>
+        <AccordionContent>
+          Nocta UI is a modern React component library built with performance and accessibility in mind.
+        </AccordionContent>
+      </AccordionItem>
 
-    export function BasicAccordionDemo() {
-      return (
-        <div className="w-full max-w-md mx-auto">
-          <Accordion>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>What is Nocta UI?</AccordionTrigger>
-              <AccordionContent>
-                Nocta UI is a modern React component library built with performance and accessibility in mind.
-              </AccordionContent>
-            </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How to install?</AccordionTrigger>
+        <AccordionContent>
+          You can install components using our CLI: <code>npx nocta-ui add accordion</code>
+        </AccordionContent>
+      </AccordionItem>
 
-            <AccordionItem value="item-2">
-              <AccordionTrigger>How to install?</AccordionTrigger>
-              <AccordionContent>
-                You can install components using our CLI: <code>npx nocta-ui add accordion</code>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Does it support dark mode?</AccordionTrigger>
-              <AccordionContent>
-                Yes! All components in Nocta UI have full dark mode support with automatic switching.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      );
-    }
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Does it support dark mode?</AccordionTrigger>
+        <AccordionContent>
+          Yes! All components in Nocta UI have full dark mode support with automatic switching.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Multiple
-
-Allow opening multiple sections at the same time by setting `type="multiple"`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -92,43 +81,33 @@ Allow opening multiple sections at the same time by setting `type="multiple"`.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Multiple Accordion"
-    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+    <Accordion type="multiple">
+      <AccordionItem value="react">
+        <AccordionTrigger>React Basics</AccordionTrigger>
+        <AccordionContent>
+          Learn the fundamentals of React - components, props, state and lifecycle.
+        </AccordionContent>
+      </AccordionItem>
 
-    export function MultipleAccordionDemo() {
-      return (
-        <div className="w-full max-w-md mx-auto">
-          <Accordion type="multiple">
-            <AccordionItem value="react">
-              <AccordionTrigger>React Basics</AccordionTrigger>
-              <AccordionContent>
-                Learn the fundamentals of React - components, props, state and lifecycle.
-              </AccordionContent>
-            </AccordionItem>
+      <AccordionItem value="typescript">
+        <AccordionTrigger>TypeScript Integration</AccordionTrigger>
+        <AccordionContent>
+          How to use TypeScript with React for better type safety.
+        </AccordionContent>
+      </AccordionItem>
 
-            <AccordionItem value="typescript">
-              <AccordionTrigger>TypeScript Integration</AccordionTrigger>
-              <AccordionContent>
-                How to use TypeScript with React for better type safety.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="testing">
-              <AccordionTrigger>Testing Components</AccordionTrigger>
-              <AccordionContent>
-                Writing unit and integration tests for React components.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      );
-    }
+      <AccordionItem value="testing">
+        <AccordionTrigger>Testing Components</AccordionTrigger>
+        <AccordionContent>
+          Writing unit and integration tests for React components.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Card Variant
-
-Use the card variant for a more elevated appearance with individual cards for each item.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -136,43 +115,33 @@ Use the card variant for a more elevated appearance with individual cards for ea
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Card Accordion"
-    import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+    <Accordion variant="card" className="space-y-3">
+      <AccordionItem value="account">
+        <AccordionTrigger>Account Settings</AccordionTrigger>
+        <AccordionContent>
+          Manage your profile, change email address and password.
+        </AccordionContent>
+      </AccordionItem>
 
-    export function CardAccordionDemo() {
-      return (
-        <div className="w-full max-w-lg mx-auto">
-          <Accordion variant="card" className="space-y-3">
-				<AccordionItem value="account">
-					<AccordionTrigger>Account Settings</AccordionTrigger>
-					<AccordionContent>
-						Manage your profile, change email address and password.
-					</AccordionContent>
-				</AccordionItem>
+      <AccordionItem value="security">
+        <AccordionTrigger>Security</AccordionTrigger>
+        <AccordionContent>
+          Enable two-factor authentication and manage your login sessions.
+        </AccordionContent>
+      </AccordionItem>
 
-				<AccordionItem value="security">
-					<AccordionTrigger>Security</AccordionTrigger>
-					<AccordionContent>
-						Enable two-factor authentication and manage your login sessions.
-					</AccordionContent>
-				</AccordionItem>
-
-				<AccordionItem value="preferences">
-					<AccordionTrigger>Preferences</AccordionTrigger>
-					<AccordionContent>
-						Customize the interface theme, language, and notification settings.
-					</AccordionContent>
-				</AccordionItem>
-			</Accordion>
-        </div>
-      );
-    }
+      <AccordionItem value="preferences">
+        <AccordionTrigger>Preferences</AccordionTrigger>
+        <AccordionContent>
+          Customize the interface theme, language, and notification settings.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>;
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Sizes
-
-The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -184,42 +153,27 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 
     export function SizeAccordionDemo() {
       return (
-        <div className="w-full max-w-2xl mx-auto space-y-8">
-          <div>
-            <h3 className="text-sm font-medium text-foreground/70 mb-2">Small</h3>
-            <Accordion size="sm">
-              <AccordionItem value="small">
-                <AccordionTrigger>Small question</AccordionTrigger>
-                <AccordionContent>Short answer in small size.</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-medium text-foreground/70 mb-2">Medium (Default)</h3>
-            <Accordion size="md">
-              <AccordionItem value="medium">
-                <AccordionTrigger>Standard question</AccordionTrigger>
-                <AccordionContent>Standard answer in default size.</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-medium text-foreground/70 mb-2">Large</h3>
-            <Accordion size="lg">
-              <AccordionItem value="large">
-                <AccordionTrigger>Large question requiring more space</AccordionTrigger>
-                <AccordionContent>
-                  More detailed answer in larger size, which can contain more content
-                  and details requiring additional space.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </div>
-      );
-    }
+      <Accordion size="sm">
+        <AccordionItem value="small">
+          <AccordionTrigger>Small question</AccordionTrigger>
+          <AccordionContent>Short answer in small size.</AccordionContent>
+        </AccordionItem>
+      </Accordion>;
+      <Accordion size="md">
+        <AccordionItem value="medium">
+          <AccordionTrigger>Standard question</AccordionTrigger>
+          <AccordionContent>Standard answer in default size.</AccordionContent>
+        </AccordionItem>
+      </Accordion>;
+      <Accordion size="lg">
+        <AccordionItem value="large">
+          <AccordionTrigger>Large question requiring more space</AccordionTrigger>
+          <AccordionContent>
+            More detailed answer in larger size, which can contain more content and
+            details requiring additional space.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>;
     ```
   </DocsTab>
 </DocsTabs>
@@ -228,31 +182,83 @@ The accordion comes in three sizes: `sm`, `md` (default), and `lg`.
 
 ### Accordion
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `'single' \| 'multiple'` | `'single'` | Behavior mode: open one vs many at once |
-| `variant` | `'default' \| 'card'` | `'default'` | Visual variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the accordion |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    type: {
+      description: 'Behavior mode: open one vs many at once',
+      type: '"single" | "multiple"',
+      default: '"single"',
+    },
+    variant: {
+      description: 'Visual variant',
+      type: '"default" | "card"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Size of the accordion',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### AccordionItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | `undefined` | Optional id seed for ARIA linking |
-| `id` | `string` | `undefined` | Optional explicit id seed |
-| `disabled` | `boolean` | `false` | Disables the item |
-| `defaultOpen` | `boolean` | `false` | Whether the item should be open by default |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    value: {
+      description: 'Optional id seed for ARIA linking',
+      type: 'string',
+      default: 'undefined',
+    },
+    id: {
+      description: 'Optional explicit id seed',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disables the item',
+      type: 'boolean',
+      default: 'false',
+    },
+    defaultOpen: {
+      description: 'Whether the item should be open by default',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### AccordionTrigger
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### AccordionContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

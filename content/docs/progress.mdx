@@ -14,6 +14,7 @@ import {
   WithoutLabelDemo,
 } from '@/app/components/ui/progress/progress-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -51,9 +52,7 @@ import { Progress } from '@/components/ui/progress';
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Progress component supports four variants: `default`, `success`, `warning`, and `destructive`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -69,9 +68,7 @@ The Progress component supports four variants: `default`, `success`, `warning`, 
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -86,9 +83,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Animated Progress
-
-Progress automatically animates when the value changes.
+### Animated Progress
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -110,25 +105,7 @@ Progress automatically animates when the value changes.
   </DocsTab>
 </DocsTabs>
 
-## Custom Maximum Value
-
-Set a custom maximum value using the `max` prop.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <CustomMaxDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Custom Maximum Value"
-    <Progress value={15} max={20} showLabel />
-    <Progress value={250} max={500} variant="warning" showLabel />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Without Label
-
-Hide the label by omitting the `showLabel` prop.
+### Without Label
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -145,15 +122,47 @@ Hide the label by omitting the `showLabel` prop.
 
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `number` | `0` | Current progress value |
-| `max` | `number` | `100` | Maximum progress value |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Progress bar color variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Progress bar height |
-| `showLabel` | `boolean` | `false` | Show progress label and percentage |
-| `indeterminate` | `boolean` | `false` | Show indeterminate/loading state |
-| `className` | `string` | `''` | Additional CSS classes |
-| `aria-label` | `string` | — | Accessible label for screen readers |
-
-The Progress component also accepts all standard HTML div attributes.
+<TypeTable
+  type={{
+    value: {
+      description: 'Current progress value',
+      type: 'number',
+      default: '0',
+    },
+    max: {
+      description: 'Maximum progress value',
+      type: 'number',
+      default: '100',
+    },
+    variant: {
+      description: 'Progress bar color variant',
+      type: '"default" | "success" | "warning" | "destructive"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Progress bar height',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    showLabel: {
+      description: 'Show progress label and percentage',
+      type: 'boolean',
+      default: 'false',
+    },
+    indeterminate: {
+      description: 'Show indeterminate/loading state',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    'aria-label': {
+      description: 'Accessible label for screen readers',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

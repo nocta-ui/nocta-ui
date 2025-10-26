@@ -156,6 +156,7 @@ import { Pre, CodeBlock as YourCustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
 import { TypeTable } from '@/components/type-table';
+import { TokenTable } from '@/components/token-table';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -305,6 +306,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		MenubarSubTrigger,
 		MenubarSubContent,
 		TypeTable,
+		TokenTable,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

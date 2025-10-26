@@ -15,6 +15,7 @@ import {
   ControlledDemo
 } from '@/app/components/ui/combobox/combobox-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -38,7 +39,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-The Combobox component provides a searchable dropdown interface for selecting from a list of options.
+### Default Combobox
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -66,9 +67,7 @@ The Combobox component provides a searchable dropdown interface for selecting fr
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Combobox component supports three visual variants: `default`, `error`, and `success`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -76,21 +75,18 @@ The Combobox component supports three visual variants: `default`, `error`, and `
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Combobox Variants"
-    {/* Default variant */}
     <Combobox
       options={frameworks}
       placeholder="Default variant"
       variant="default"
     />
 
-    {/* Error variant */}
     <Combobox
       options={frameworks}
       placeholder="Error variant"
       variant="error"
     />
 
-    {/* Success variant */}
     <Combobox
       options={frameworks}
       defaultValue="react"
@@ -100,9 +96,7 @@ The Combobox component supports three visual variants: `default`, `error`, and `
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -131,9 +125,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Clearable Selection
-
-Control whether users can clear their selection with an X button.
+### Clearable Selection
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -141,14 +133,12 @@ Control whether users can clear their selection with an X button.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Clearable Combobox"
-    {/* Clearable (default) */}
     <Combobox
       options={frameworks}
       defaultValue="react"
       clearable={true}
     />
 
-    {/* Non-clearable */}
     <Combobox
       options={frameworks}
       defaultValue="vue"
@@ -158,9 +148,7 @@ Control whether users can clear their selection with an X button.
   </DocsTab>
 </DocsTabs>
 
-## Disabled Options
-
-Individual options can be disabled by setting the `disabled` property.
+### Disabled Options
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -184,9 +172,7 @@ Individual options can be disabled by setting the `disabled` property.
   </DocsTab>
 </DocsTabs>
 
-## Disabled State
-
-The entire combobox can be disabled.
+### Disabled State
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -203,9 +189,7 @@ The entire combobox can be disabled.
   </DocsTab>
 </DocsTabs>
 
-## Custom Messages
-
-Customize the empty state message when no options match the search.
+### Custom Messages
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -223,69 +207,103 @@ Customize the empty state message when no options match the search.
   </DocsTab>
 </DocsTabs>
 
-## Controlled vs Uncontrolled
-
-### Uncontrolled (Recommended)
-
-Use `defaultValue` for uncontrolled behavior:
-
-```tsx lineNumbers title="Uncontrolled Combobox"
-<Combobox
-  options={options}
-  defaultValue="react"
-  onValueChange={(value) => console.log('Selected:', value)}
-/>
-```
-
-### Controlled
-
-Use `value` and `onValueChange` for controlled behavior:
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ControlledDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Controlled Combobox"
-    const [selectedFramework, setSelectedFramework] = useState('react');
-
-    <Combobox
-      options={frameworks}
-      value={selectedFramework}
-      onValueChange={setSelectedFramework}
-      placeholder="Select framework..."
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Api Reference
 
 ### Combobox
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `options` | `ComboboxOption[]` | — | Array of selectable options |
-| `value` | `string` | — | Controlled selected value |
-| `defaultValue` | `string` | — | Default selected value |
-| `onValueChange` | `(value: string) => void` | — | Callback when selection changes |
-| `portal` | `boolean` | `true` | Render the combobox in a React portal |
-| `placeholder` | `string` | `'Select option...'` | Placeholder text |
-| `searchPlaceholder` | `string` | `'Search...'` | Search input placeholder |
-| `emptyMessage` | `string` | `'No options found'` | Message when no options match |
-| `disabled` | `boolean` | `false` | Disable the combobox |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size variant |
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant |
-| `className` | `string` | `''` | Additional CSS classes for trigger |
-| `popoverClassName` | `string` | `''` | Additional CSS classes for dropdown |
-| `clearable` | `boolean` | `true` | Show clear button when value selected |
+<TypeTable
+  type={{
+    options: {
+      description: 'Array of selectable options',
+      type: 'ComboboxOption[]',
+      default: 'undefined',
+    },
+    value: {
+      description: 'Controlled selected value',
+      type: 'string',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'Default selected value',
+      type: 'string',
+      default: 'undefined',
+    },
+    onValueChange: {
+      description: 'Callback when selection changes',
+      type: '(value: string) => void',
+      default: 'undefined',
+    },
+    portal: {
+      description: 'Render the combobox in a React portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    placeholder: {
+      description: 'Placeholder text',
+      type: 'string',
+      default: '"Select option..."',
+    },
+    searchPlaceholder: {
+      description: 'Search input placeholder',
+      type: 'string',
+      default: '"Search..."',
+    },
+    emptyMessage: {
+      description: 'Message when no options match',
+      type: 'string',
+      default: '"No options found"',
+    },
+    disabled: {
+      description: 'Disable the combobox',
+      type: 'boolean',
+      default: 'false',
+    },
+    size: {
+      description: 'Size variant',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'Visual variant',
+      type: '"default" | "error" | "success"',
+      default: '"default"',
+    },
+    className: {
+      description: 'Additional CSS classes for trigger',
+      type: 'string',
+      default: '""',
+    },
+    popoverClassName: {
+      description: 'Additional CSS classes for dropdown',
+      type: 'string',
+      default: '""',
+    },
+    clearable: {
+      description: 'Show clear button when value selected',
+      type: 'boolean',
+      default: 'true',
+    },
+  }}
+/>
 
 ### ComboboxOption
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Unique option identifier |
-| `label` | `string` | — | Display text for the option |
-| `disabled` | `boolean` | `false` | Disable this option |
-
-The Combobox component also accepts all standard HTML button attributes for the trigger element.
+<TypeTable
+  type={{
+    value: {
+      description: 'Unique option identifier',
+      type: 'string',
+      default: 'undefined',
+    },
+    label: {
+      description: 'Display text for the option',
+      type: 'string',
+      default: 'undefined',
+    },
+    disabled: {
+      description: 'Disable this option',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>

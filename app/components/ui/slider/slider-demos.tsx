@@ -142,9 +142,6 @@ export const StepDemo: React.FC = () => {
 	return (
 		<div className="my-6 w-56">
 			<div className="flex flex-col space-y-2">
-				<label className="text-sm font-medium text-foreground/70">
-					Step = 5 (Snaps to: 0, 5, 10, ...)
-				</label>
 				<Slider
 					min={0}
 					max={100}

@@ -18,6 +18,7 @@ import {
   CustomContainerDemo
 } from '@/app/components/ui/textarea/textarea-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -88,9 +89,7 @@ import { Textarea } from '@/components/ui/textarea';
   </DocsTab>
 </DocsTabs>
 
-## Variants
-
-The Textarea component supports three variants: `default`, `error`, and `success`.
+### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -121,9 +120,7 @@ The Textarea component supports three variants: `default`, `error`, and `success
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -155,9 +152,7 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
   </DocsTab>
 </DocsTabs>
 
-## Resize Options
-
-Control how the textarea can be resized with the `resize` prop.
+### Resize Options
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -192,9 +187,7 @@ Control how the textarea can be resized with the `resize` prop.
   </DocsTab>
 </DocsTabs>
 
-## Row Configuration
-
-Adjust the initial height of the textarea using the `rows` prop.
+### Row Configuration
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -222,8 +215,6 @@ Adjust the initial height of the textarea using the `rows` prop.
     ```
   </DocsTab>
 </DocsTabs>
-
-## Textarea States
 
 ### Disabled State
 
@@ -287,16 +278,52 @@ Adjust the initial height of the textarea using the `rows` prop.
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'error' \| 'success'` | `'default'` | Visual variant of the textarea |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the textarea |
-| `label` | `string` | `undefined` | Label text displayed above the textarea |
-| `helperText` | `string` | `undefined` | Helper text displayed below the textarea |
-| `errorMessage` | `string` | `undefined` | Error message (shown when variant is 'error') |
-| `resize` | `'none' \| 'vertical' \| 'horizontal' \| 'both'` | `'vertical'` | Resize behavior of the textarea |
-| `rows` | `number` | `4` | Initial number of visible text lines |
-| `className` | `string` | `''` | Additional CSS classes for the textarea element |
-| `containerClassName` | `string` | `''` | Additional CSS classes for the container |
-
-All standard HTML textarea attributes are also supported through props spreading.
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual variant of the textarea',
+      type: '"default" | "error" | "success"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Size of the textarea',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    label: {
+      description: 'Label text displayed above the textarea',
+      type: 'string',
+      default: 'undefined',
+    },
+    helperText: {
+      description: 'Helper text displayed below the textarea',
+      type: 'string',
+      default: 'undefined',
+    },
+    errorMessage: {
+      description: "Error message (shown when variant is 'error')",
+      type: 'string',
+      default: 'undefined',
+    },
+    resize: {
+      description: 'Resize behavior of the textarea',
+      type: '"none" | "vertical" | "horizontal" | "both"',
+      default: '"vertical"',
+    },
+    rows: {
+      description: 'Initial number of visible text lines',
+      type: 'number',
+      default: '4',
+    },
+    className: {
+      description: 'Additional CSS classes for the textarea element',
+      type: 'string',
+      default: '""',
+    },
+    containerClassName: {
+      description: 'Additional CSS classes for the container',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

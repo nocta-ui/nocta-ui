@@ -10,6 +10,7 @@ import {
   CardWithActionsDemo
 } from '@/app/components/ui/card/card-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Installation
@@ -41,7 +42,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ## Examples
 
-### Simple Card
+### Default Card
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -73,41 +74,38 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Card with Actions"
     <Card className="max-w-md">
-				<CardHeader>
-					<CardTitle>Project Settings</CardTitle>
-					<CardDescription>
-						Manage your project configuration and preferences
-					</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<div className="space-y-3">
-						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-foreground/70">
-								Status
-							</span>
-							<Badge size="sm" variant="success">
-								Active
-							</Badge>
-						</div>
-						<div className="flex items-center justify-between">
-							<span className="text-sm font-medium text-foreground/70">
-								Members
-							</span>
-							<span className="text-sm text-foreground/70">12</span>
-						</div>
-					</div>
-				</CardContent>
-				<CardFooter>
-					<CardActions>
-						<Button variant="ghost" size="sm">
-							Cancel
-						</Button>
-						<Button variant="primary" size="sm">
-							Save Changes
-						</Button>
-					</CardActions>
-				</CardFooter>
-			</Card>
+      <CardHeader>
+        <CardTitle>Project Settings</CardTitle>
+        <CardDescription>
+          Manage your project configuration and preferences
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-foreground/70">Status</span>
+            <Badge size="sm" variant="success">
+              Active
+            </Badge>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-foreground/70">Members</span>
+            <span className="text-sm text-foreground/70">12</span>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <CardActions>
+          <Button variant="ghost" size="sm">
+            Cancel
+          </Button>
+          <Button variant="primary" size="sm">
+            Save Changes
+          </Button>
+        </CardActions>
+      </CardFooter>
+    </Card>;
+
     ```
   </DocsTab>
 </DocsTabs>
@@ -116,50 +114,124 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 ### Card
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Card content |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Card content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CardHeader
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Header content (usually title/description) |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Header content (usually title/description)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CardTitle
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Title content |
-| `className` | `string` | - | Additional CSS classes |
-| `as` | `React.ElementType` | `'h3'` | Element/component used to render the title |
+<TypeTable
+  type={{
+    children: {
+      description: 'Title content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    as: {
+      description: 'Element/component used to render the title',
+      type: 'React.ElementType',
+      default: '"h3"',
+    },
+  }}
+/>
 
 ### CardDescription
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Description text |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Description text',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CardContent
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Main card content |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Main card content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CardFooter
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Footer content |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Footer content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### CardActions
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Action controls (buttons, links, etc.) |
-| `className` | `string` | - | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Action controls (buttons, links, etc.)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

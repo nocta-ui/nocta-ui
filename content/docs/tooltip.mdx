@@ -12,6 +12,7 @@ import {
   DelayDurationDemo,
 } from '@/app/components/ui/tooltip/tooltip-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -40,7 +41,7 @@ import {
 
 ## Examples
 
-### Simple Tooltip
+### Default Tooltip
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -84,9 +85,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-## Delay Duration
-
-Control how long the user must hover before the tooltip appears using the `delayDuration` prop.
+### Delay Duration
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -119,28 +118,56 @@ Control how long the user must hover before the tooltip appears using the `delay
 
 ### Tooltip
 
-The provider that manages tooltip behavior and timing.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `delayDuration` | `number` | `400` | Delay before showing tooltip (ms) |
-| `children` | `React.ReactNode` | - | Tooltip subtree |
+<TypeTable
+  type={{
+    delayDuration: {
+      description: 'Delay before showing tooltip (ms)',
+      type: 'number',
+      default: '400',
+    },
+    children: {
+      description: 'Tooltip subtree',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### TooltipTrigger
 
-Element that triggers the tooltip on hover/focus.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Trigger content (element or text) |
-| `className` | `string` | `undefined` | Additional classes for the trigger wrapper |
+<TypeTable
+  type={{
+    children: {
+      description: 'Trigger content (element or text)',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes for the trigger wrapper',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### TooltipContent
 
-The tooltip content that appears on hover/focus. Renders in a portal.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default'` | `'default'` | Visual style variant |
-| `children` | `React.ReactNode` | - | Tooltip content |
-| `className` | `string` | `undefined` | Additional classes for the content container |
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual style variant',
+      type: '"default"',
+      default: '"default"',
+    },
+    children: {
+      description: 'Tooltip content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes for the content container',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>

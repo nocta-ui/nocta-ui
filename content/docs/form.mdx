@@ -12,6 +12,7 @@ import {
   FormMessageTypesDemo,
 } from '@/app/components/ui/form/form-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Installation
@@ -45,7 +46,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 ## Examples
 
-The Form component follows a composable architecture where you build forms by combining smaller components together.
+### Default Form
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -77,19 +78,6 @@ The Form component follows a composable architecture where you build forms by co
   </DocsTab>
 </DocsTabs>
 
-## Form Architecture
-
-The Form component is built with a composable architecture:
-
-- **Form**: The main form container (Ariakit Form)
-- **FormField**: Wraps individual form fields and provides context
-- **FormLabel**: Accessible labels with required field indicators (Ariakit Label)
-- **FormControl**: Wrapper that connects inputs to the field context
-- **FormDescription**: Helper text for additional guidance
-- **FormMessage**: Error, success, and warning messages (uses Ariakit FormError when no explicit message provided)
-- **FormActions**: Container for form action buttons
-- **FormInput**: Input bound to the current field name (Ariakit FormInput)
-- **FormSubmit**: Submit button integrated with Ariakit (Ariakit FormSubmit)
 
 ## Error Handling
 
@@ -130,211 +118,168 @@ Handle validation in two ways:
   </DocsTab>
 </DocsTabs>
 
-## Complex Forms
-
-Build complex forms with multiple field types, layouts, and validation.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ComplexFormDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Complex Form"
-    <Form>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormField name="firstName">
-          <FormLabel required>First Name</FormLabel>
-          <FormControl>
-            <Input placeholder="First name" />
-          </FormControl>
-        </FormField>
-
-        <FormField name="lastName">
-          <FormLabel required>Last Name</FormLabel>
-          <FormControl>
-            <Input placeholder="Last name" />
-          </FormControl>
-        </FormField>
-      </div>
-
-      <FormField name="email">
-        <FormLabel required>Email Address</FormLabel>
-        <FormControl>
-          <Input type="email" placeholder="your.email@example.com" />
-        </FormControl>
-        <FormDescription>We'll never share your email with anyone else.</FormDescription>
-      </FormField>
-
-      <FormField name="country">
-        <FormLabel>Country</FormLabel>
-        <FormControl>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a country" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="us">United States</SelectItem>
-              <SelectItem value="uk">United Kingdom</SelectItem>
-              <SelectItem value="ca">Canada</SelectItem>
-            </SelectContent>
-          </Select>
-        </FormControl>
-      </FormField>
-
-      <FormField name="bio">
-        <FormLabel>Bio</FormLabel>
-        <FormControl>
-          <Textarea placeholder="Tell us about yourself..." />
-        </FormControl>
-        <FormDescription>Brief description for your profile. Maximum 500 characters.</FormDescription>
-      </FormField>
-
-      <FormField name="newsletter">
-        <div className="flex items-center space-x-2">
-          <FormControl>
-            <Checkbox />
-          </FormControl>
-          <FormLabel>Subscribe to newsletter</FormLabel>
-        </div>
-        <FormDescription>Get notified about new features and updates.</FormDescription>
-      </FormField>
-
-      <FormActions align="right">
-        <Button variant="ghost">Cancel</Button>
-        <Button variant="secondary">Save Draft</Button>
-        <Button type="submit">Save Profile</Button>
-      </FormActions>
-    </Form>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Form Actions
-
-The `FormActions` component supports different alignments for form buttons.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FormActionsVariantsDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Form Actions"
-    {/* Left aligned */}
-    <FormActions align="left">
-      <Button>Left Aligned</Button>
-      <Button variant="secondary">Cancel</Button>
-    </FormActions>
-
-    {/* Center aligned */}
-    <FormActions align="center">
-      <Button variant="secondary">Cancel</Button>
-      <Button>Center Aligned</Button>
-    </FormActions>
-
-    {/* Right aligned (default) */}
-    <FormActions align="right">
-      <Button variant="ghost">Cancel</Button>
-      <Button>Right Aligned</Button>
-    </FormActions>
-    ```
-  </DocsTab>
-</DocsTabs>
-
-## Message Types
-
-Form messages support different types for various validation states.
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <FormMessageTypesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Form Message Types"
-    <FormField name="success">
-      <FormLabel>Success Field</FormLabel>
-      <FormControl>
-        <Input defaultValue="valid@email.com" />
-      </FormControl>
-      <FormMessage type="success">Email is available!</FormMessage>
-    </FormField>
-
-    <FormField name="warning">
-      <FormLabel>Warning Field</FormLabel>
-      <FormControl>
-        <Input defaultValue="weak-password" />
-      </FormControl>
-      <FormMessage type="warning">Password strength is weak</FormMessage>
-    </FormField>
-
-    <FormField name="error" error="This field is required">
-      <FormLabel>Error Field</FormLabel>
-      <FormControl>
-        <Input />
-      </FormControl>
-      <FormMessage type="error" />
-    </FormField>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ## Api Reference
 
 ### Form
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Form content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `onSubmit` | `(event: React.FormEvent) => void` | — | Form submit handler |
-| `store` | `FormStore` | `useFormStore({})` | Optional Ariakit form store |
+<TypeTable
+  type={{
+    children: {
+      description: 'Form content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    onSubmit: {
+      description: 'Form submit handler',
+      type: '(event: React.FormEvent) => void',
+      default: 'undefined',
+    },
+    store: {
+      description: 'Optional Ariakit form store',
+      type: 'FormStore',
+      default: 'useFormStore({})',
+    },
+  }}
+/>
 
 ### FormField
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Field content |
-| `name` | `string` | — | Field name identifier |
-| `error` | `string` | — | Error message to display |
-| `description` | `string` | — | Description text |
-| `className` | `string` | `''` | Additional CSS classes |
+<TypeTable
+  type={{
+    children: {
+      description: 'Field content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    name: {
+      description: 'Field name identifier',
+      type: 'string',
+      default: 'undefined',
+    },
+    error: {
+      description: 'Error message to display',
+      type: 'string',
+      default: 'undefined',
+    },
+    description: {
+      description: 'Description text',
+      type: 'string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
 
 ### FormLabel
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Label content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `required` | `boolean` | `false` | Show required indicator |
+<TypeTable
+  type={{
+    children: {
+      description: 'Label content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    required: {
+      description: 'Show required indicator',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
 
 ### FormMessage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Message content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `type` | `'error' \| 'success' \| 'warning'` | `'error'` | Message type |
+<TypeTable
+  type={{
+    children: {
+      description: 'Message content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    type: {
+      description: 'Message type',
+      type: '"error" | "success" | "warning"',
+      default: '"error"',
+    },
+  }}
+/>
 
 ### FormActions
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Action buttons |
-| `className` | `string` | `''` | Additional CSS classes |
-| `align` | `'left' \| 'center' \| 'right'` | `'right'` | Button alignment |
+<TypeTable
+  type={{
+    children: {
+      description: 'Action buttons',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    align: {
+      description: 'Button alignment',
+      type: '"left" | "center" | "right"',
+      default: '"right"',
+    },
+  }}
+/>
 
 ### FormInput
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `''` | Additional CSS classes |
-| `...inputProps` | `InputHTMLAttributes<HTMLInputElement>` | — | Native input props forwarded to Ariakit FormInput |
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    '...inputProps': {
+      description: 'Native input props forwarded to Ariakit FormInput',
+      type: 'InputHTMLAttributes<HTMLInputElement>',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### FormSubmit
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Button content |
-| `className` | `string` | `''` | Additional CSS classes |
-| `...buttonProps` | `ButtonHTMLAttributes<HTMLButtonElement>` | — | Native button props forwarded to Ariakit FormSubmit |
-
-The Form components also accept all standard HTML attributes for their respective elements.
+<TypeTable
+  type={{
+    children: {
+      description: 'Button content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    '...buttonProps': {
+      description: 'Native button props forwarded to Ariakit FormSubmit',
+      type: 'ButtonHTMLAttributes<HTMLButtonElement>',
+      default: 'undefined',
+    },
+  }}
+/>

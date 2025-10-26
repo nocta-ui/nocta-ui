@@ -4,6 +4,7 @@ description: A fully featured date picker with keyboard navigation, accessibilit
 ---
 
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 import {
@@ -39,9 +40,7 @@ import {
 
 ## Examples
 
-### Basic Calendar
-
-A simple calendar with date selection functionality.
+### Default Calendar
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -49,26 +48,17 @@ A simple calendar with date selection functionality.
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Calendar"
-    import { Calendar } from '@/components/ui/calendar';
-    import { useState } from 'react';
-
-    export default function BasicCalendarDemo() {
       const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
-      return (
-        <Calendar
-          value={selectedDate}
-          onChange={setSelectedDate}
-        />
-      );
-    }
+      <Calendar
+        value={selectedDate}
+        onChange={setSelectedDate}
+      />
     ```
   </DocsTab>
 </DocsTabs>
 
 ### Week Configuration
-
-Customize the first day of the week and show week numbers.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -84,8 +74,6 @@ Customize the first day of the week and show week numbers.
 
 ### Week Numbers
 
-Display week numbers alongside the calendar.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <WithWeekNumbersDemo />
@@ -98,8 +86,6 @@ Display week numbers alongside the calendar.
 </DocsTabs>
 
 ### Disabled Dates
-
-Restrict date selection with various disability patterns.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -120,8 +106,6 @@ Restrict date selection with various disability patterns.
 
 ### Date Range Restrictions
 
-Set minimum and maximum selectable dates.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <DateRangeDemo />
@@ -141,8 +125,6 @@ Set minimum and maximum selectable dates.
 </DocsTabs>
 
 ### Custom Formatting
-
-Customize how months and weekdays are displayed.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -170,8 +152,6 @@ Customize how months and weekdays are displayed.
 
 ### Disabled State
 
-Disable the entire calendar.
-
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <DisabledCalendarDemo />
@@ -184,8 +164,6 @@ Disable the entire calendar.
 </DocsTabs>
 
 ### Event Handling
-
-Handle date selection with custom logic.
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -202,44 +180,100 @@ Handle date selection with custom logic.
       }
     };
 
-    return (
-      <div>
-        <Calendar
-          variant="compact"
-          value={selectedDate}
-          onChange={handleDateSelect}
-        />
-        {selectedDate && (
-          <div className="mt-4 p-3 bg-card rounded-lg">
-            <p className="text-sm">
-              Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
-            </p>
-          </div>
-        )}
+    <Calendar
+      variant="compact"
+      value={selectedDate}
+      onChange={handleDateSelect}
+    />
+    {selectedDate && (
+      <div className="mt-4 p-3 bg-card rounded-lg">
+        <p className="text-sm">
+          Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
+        </p>
       </div>
-    );
+    )}
     ```
   </DocsTab>
 </DocsTabs>
 
 ## API Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `Date \| undefined` | - | The selected date (controlled) |
-| `defaultValue` | `Date \| undefined` | - | The default selected date (uncontrolled) |
-| `onChange` | `(date: Date \| undefined) => void` | - | Callback when date is selected |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the calendar |
-| `disabled` | `boolean` | `false` | Whether the calendar is disabled |
-| `disabledDates` | `Date[] \| ((date: Date) => boolean)` | - | Dates to disable |
-| `minDate` | `Date` | - | Minimum selectable date |
-| `maxDate` | `Date` | - | Maximum selectable date |
-| `showWeekNumbers` | `boolean` | `false` | Whether to show week numbers |
-| `showOutsideDays` | `boolean` | `true` | Whether to show days from other months |
-| `weekStartsOn` | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | `0` | First day of week (0 = Sunday) |
-| `formatMonth` | `(date: Date) => string` | - | Custom month formatting function |
-| `formatWeekday` | `(date: Date) => string` | - | Custom weekday formatting function |
-| `className` | `string` | - | Additional CSS classes |
-| `aria-label` | `string` | `'Calendar'` | Accessibility label |
-
-The Calendar component also accepts all standard HTML `div` attributes.
+<TypeTable
+  type={{
+    value: {
+      description: 'The selected date (controlled)',
+      type: 'Date | undefined',
+      default: 'undefined',
+    },
+    defaultValue: {
+      description: 'The default selected date (uncontrolled)',
+      type: 'Date | undefined',
+      default: 'undefined',
+    },
+    onChange: {
+      description: 'Callback when date is selected',
+      type: '(date: Date | undefined) => void',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Size of the calendar',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Whether the calendar is disabled',
+      type: 'boolean',
+      default: 'false',
+    },
+    disabledDates: {
+      description: 'Dates to disable',
+      type: 'Date[] | ((date: Date) => boolean)',
+      default: 'undefined',
+    },
+    minDate: {
+      description: 'Minimum selectable date',
+      type: 'Date',
+      default: 'undefined',
+    },
+    maxDate: {
+      description: 'Maximum selectable date',
+      type: 'Date',
+      default: 'undefined',
+    },
+    showWeekNumbers: {
+      description: 'Whether to show week numbers',
+      type: 'boolean',
+      default: 'false',
+    },
+    showOutsideDays: {
+      description: 'Whether to show days from other months',
+      type: 'boolean',
+      default: 'true',
+    },
+    weekStartsOn: {
+      description: 'First day of week (0 = Sunday)',
+      type: '0 | 1 | 2 | 3 | 4 | 5 | 6',
+      default: '0',
+    },
+    formatMonth: {
+      description: 'Custom month formatting function',
+      type: '(date: Date) => string',
+      default: 'undefined',
+    },
+    formatWeekday: {
+      description: 'Custom weekday formatting function',
+      type: '(date: Date) => string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: 'undefined',
+    },
+    'aria-label': {
+      description: 'Accessibility label',
+      type: 'string',
+      default: '"Calendar"',
+    },
+  }}
+/>

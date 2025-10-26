@@ -13,6 +13,7 @@ import {
   BasicNavigationMenuDemo,
 } from '@/app/components/ui/navigation-menu/navigation-menu-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps";
 
 ## Installation
@@ -39,9 +40,9 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
   </Step>
 </Steps>
 
-## Examples
+## Example
 
-### Basic Navigation Menu
+### Default Navigation Menu
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -155,55 +156,163 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 
 ### NavigationMenu
 
-Top-level menubar that coordinates trigger interactions and panel positioning across the navigation surface.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Items rendered inside the menubar. |
-| `className` | `string` | `undefined` | Custom classes for the menubar. |
-| `size` | `'md'` | `'md'` | Size variant for triggers. |
-| `panelClassName` | `string` | `undefined` | Classes merged into the panel. |
-| `panelWrapperClassName` | `string` | `undefined` | Classes for the panel wrapper. |
-| `arrowClassName` | `string` | `undefined` | Classes for the arrow element. |
-| `...props` | `Ariakit.MenubarProps` | - | Additional `Ariakit.Menubar` props. |
+<TypeTable
+  type={{
+    children: {
+      description: 'Items rendered inside the menubar.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the menubar.',
+      type: 'string',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Size variant for triggers.',
+      type: '"md"',
+      default: '"md"',
+    },
+    panelClassName: {
+      description: 'Classes merged into the panel.',
+      type: 'string',
+      default: 'undefined',
+    },
+    panelWrapperClassName: {
+      description: 'Classes for the panel wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    arrowClassName: {
+      description: 'Classes for the arrow element.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `Ariakit.Menubar` props.',
+      type: 'Ariakit.MenubarProps',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### NavigationMenuItem
 
-Interactive trigger that can either navigate directly or reveal nested panel content.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `React.ReactNode` | - | Trigger label content |
-| `children` | `React.ReactNode` | `undefined` | Panel content for the item |
-| `href` | `string` | `undefined` | Link target when used as an anchor |
-| `shift` | `number` | `0` | Horizontal panel offset |
-| `placement` | `Ariakit.MenuStoreProps['placement']` | `'bottom'` | Preferred panel placement |
-| `size` | `'md'` | `'md'` | Trigger size variant |
-| `className` | `string` | `undefined` | Custom classes for the trigger |
-| `render` | `Ariakit.MenuItemProps['render']` | `undefined` | Render override; auto-anchor for `href` |
-| `...props` | `Ariakit.MenuItemProps` | - | Additional `Ariakit.MenuItem` props |
+<TypeTable
+  type={{
+    label: {
+      description: 'Trigger label content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Panel content for the item',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    href: {
+      description: 'Link target when used as an anchor',
+      type: 'string',
+      default: 'undefined',
+    },
+    shift: {
+      description: 'Horizontal panel offset',
+      type: 'number',
+      default: '0',
+    },
+    placement: {
+      description: 'Preferred panel placement',
+      type: "Ariakit.MenuStoreProps['placement']",
+      default: "'bottom'",
+    },
+    size: {
+      description: 'Trigger size variant',
+      type: '"md"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Custom classes for the trigger',
+      type: 'string',
+      default: 'undefined',
+    },
+    render: {
+      description: 'Render override; auto-anchor for `href`',
+      type: "Ariakit.MenuItemProps['render']",
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `Ariakit.MenuItem` props',
+      type: 'Ariakit.MenuItemProps',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### NavigationMenuLink
 
-Styled menu item optimized for secondary content inside the floating panel.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `React.ReactNode` | - | Link label text |
-| `description` | `React.ReactNode` | `undefined` | Optional supporting text |
-| `href` | `string` | `undefined` | Destination URL |
-| `className` | `string` | `undefined` | Custom classes for the link |
-| `render` | `Ariakit.MenuItemProps['render']` | `undefined` | Render override; auto-anchor for `href` |
-| `...props` | `Ariakit.MenuItemProps` | - | Additional `Ariakit.MenuItem` props |
+<TypeTable
+  type={{
+    label: {
+      description: 'Link label text',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    description: {
+      description: 'Optional supporting text',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    href: {
+      description: 'Destination URL',
+      type: 'string',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the link',
+      type: 'string',
+      default: 'undefined',
+    },
+    render: {
+      description: 'Render override; auto-anchor for `href`',
+      type: "Ariakit.MenuItemProps['render']",
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `Ariakit.MenuItem` props',
+      type: 'Ariakit.MenuItemProps',
+      default: 'undefined',
+    },
+  }}
+/>
 
 ### NavigationMenuGroup
 
-Collects related navigation links under a shared label within the floating panel.
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `React.ReactNode` | `undefined` | Optional group heading |
-| `children` | `React.ReactNode` | - | Group content or links |
-| `className` | `string` | `undefined` | Custom classes for the group |
-| `labelClassName` | `string` | `undefined` | Custom classes for the heading |
-| `...props` | `Ariakit.MenuGroupProps` | - | Additional `Ariakit.MenuGroup` props |
+<TypeTable
+  type={{
+    label: {
+      description: 'Optional group heading',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    children: {
+      description: 'Group content or links',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the group',
+      type: 'string',
+      default: 'undefined',
+    },
+    labelClassName: {
+      description: 'Custom classes for the heading',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `Ariakit.MenuGroup` props',
+      type: 'Ariakit.MenuGroupProps',
+      default: 'undefined',
+    },
+  }}
+/>

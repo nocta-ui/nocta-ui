@@ -13,6 +13,7 @@ import {
   CustomColorDemo
 } from '@/app/components/ui/spinner/spinner-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
 
 ## Installation
 
@@ -50,9 +51,7 @@ import { Spinner } from '@/components/ui/spinner';
   </DocsTab>
 </DocsTabs>
 
-## Sizes
-
-Three size options are available: `sm`, `md`, and `lg`. The default size is `md`.
+### Sizes
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -69,10 +68,22 @@ Three size options are available: `sm`, `md`, and `lg`. The default size is `md`
 
 ## Api Reference
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Spinner size |
-| `variant` | `'default' \| 'primary' \| 'secondary'` | `'default'` | Spinner style variant |
-| `className` | `string` | `''` | Additional CSS classes |
-
-The Spinner component also accepts all standard HTML div attributes.
+<TypeTable
+  type={{
+    size: {
+      description: 'Spinner size',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'Spinner style variant',
+      type: '"default" | "primary" | "secondary"',
+      default: '"default"',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>

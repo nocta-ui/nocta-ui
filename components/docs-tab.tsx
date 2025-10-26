@@ -14,15 +14,15 @@ interface DocsTabProps {
 
 const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 	let icon: React.ReactNode = null;
-	if (value === 'preview') icon = <EyeOpenIcon className="h-3 w-3" />;
-	if (value === 'code') icon = <CodeIcon className="h-3 w-3" />;
+	if (value === 'preview') icon = <EyeOpenIcon className="size-4" />;
+	if (value === 'code') icon = <CodeIcon className="size-4" />;
 
 	return (
 		<TabsTrigger
 			value={value}
 			className={cn(
 				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-200 ease-in-out sm:text-sm',
-				'bg-transparent border border-transparent !text-foreground/70 hover:!text-foreground data-active-item:!bg-card-muted dark:data-active-item:!bg-card-muted data-active-item:!text-foreground data-active-item:!shadow-none data-active-item:border',
+				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border',
 			)}
 		>
 			{icon && (
@@ -83,12 +83,12 @@ const DocsTabs = ({
 				value={activeTab}
 				onValueChange={handleTabChange}
 				size="sm"
-				className="relative overflow-hidden rounded-lg border border-fd-border bg-background"
+				className="relative overflow-hidden rounded-lg border border-fd-border shadow-sm"
 			>
 				<TabsList
 					className={cn(
-						'flex w-full items-center justify-start border-b p-0 bg-background',
-						'!flex !rounded-none !shadow-none border-x-0 border-t-0 border-fd-border',
+						'flex w-full items-center justify-start p-1 bg-card',
+						'flex! rounded-none! shadow-none! border-none',
 					)}
 				>
 					<div className="bg-background flex gap-1 p-1 rounded-md w-full justify-evenly">
@@ -103,12 +103,12 @@ const DocsTabs = ({
 					</div>
 				</TabsList>
 
-				<div className="relative overflow-hidden">
+				<div className="relative overflow-hidden bg-card p-1">
 					<div
 						className={cn(
-							'relative transition-opacity duration-200 ease-in-out',
+							'relative transition-opacity duration-200 ease-in-out bg-background rounded-md border border-fd-border',
 							activeTab === 'code' &&
-								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-none',
+								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-md',
 						)}
 					>
 						<div
