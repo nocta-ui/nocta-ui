@@ -15,7 +15,7 @@
 	--color-fd-border: oklch(from var(--color-border) l c h / 0.6);
 	--color-fd-primary: var(--color-ring);
 	--color-fd-primary-foreground: var(--color-foreground);
-	--color-fd-secondary: var(--color-card);
+	--color-fd-secondary: var(--color-card-muted);
 	--color-fd-secondary-foreground: var(--color-foreground);
 	--color-fd-accent: var(--color-card-muted);
 	--color-fd-accent-foreground: var(--color-foreground);
@@ -76,14 +76,14 @@
 :root {
 	--color-background: oklch(0.99 0.004 285.89);
 	--color-card: oklch(1 0 0);
-	--color-card-muted: oklch(0.96 0.004 285.89);
-	--color-foreground: oklch(0.15 0.005 285.89);
+	--color-card-muted: oklch(0.96 0.005 285.89);
+	--color-foreground: oklch(0.15 0.009 285.89);
 	--color-border: oklch(0.8925 0.0014 285.89);
 	--color-ring: oklch(0.55 0.012 285.89);
 	--color-ring-offset: oklch(0.96 0.002 285.89);
 	--color-overlay: oklch(0.92 0.003 285.89 / 0.65);
-	--color-gradient-from: oklch(0.3203 0.0141 285.89);
-	--color-gradient-to: oklch(0.2517 0.0169 285.89);
+	--color-gradient-from: oklch(0.3603 0.0181 285.89);
+	--color-gradient-to: oklch(0.2517 0.02 285.89);
 	--color-error: oklch(0.62 0.21 25);
 	--color-warning: oklch(0.8 0.2 75);
 	--color-success: oklch(0.7 0.18 155);
@@ -129,16 +129,16 @@
 }
 
 .dark {
-	--color-background: oklch(0.14 0.0045 285.89);
-	--color-card: oklch(0.1703 0.005 285.89);
-	--color-card-muted: oklch(0.2139 0.005 286.03);
-	--color-foreground: oklch(0.96 0.003 285.89);
+	--color-background: oklch(0.14 0.005 285.89);
+	--color-card: oklch(0.1703 0.006 285.89);
+	--color-card-muted: oklch(0.2139 0.0085 286.03);
+	--color-foreground: oklch(0.96 0.005 285.89);
 	--color-border: oklch(0.278 0.006 285.89);
 	--color-ring: oklch(0.58 0.012 285.89);
 	--color-ring-offset: oklch(0.15 0.005 285.89);
 	--color-overlay: oklch(0.12 0.004 285.89 / 0.65);
-	--color-gradient-from: oklch(0.3203 0.0041 285.89);
-	--color-gradient-to: oklch(0.2517 0.0069 285.89);
+	--color-gradient-from: oklch(0.3203 0.009 285.89);
+	--color-gradient-to: oklch(0.2517 0.01 285.89);
 	--color-error: oklch(0.58 0.22 25);
 	--color-warning: oklch(0.75 0.18 75);
 	--color-success: oklch(0.68 0.19 155);
