@@ -6,7 +6,7 @@ import { GithubStarsButton } from './github-stars-button';
 export default function Hero() {
 	return (
 		<div className="relative overflow-hidden mx-auto w-full">
-			<div className="relative z-10 mx-auto max-w-5xl flex flex-col items-center gap-6 text-center px-6 py-16">
+			<div className="relative z-10 mx-auto max-w-5xl flex flex-col items-center gap-6 text-center px-6 py-16 mt-16">
 				<Badge variant="secondary" size="md">
 					React + Ariakit + Tailwind, minus the boilerplate.
 				</Badge>
@@ -22,7 +22,7 @@ export default function Hero() {
 					Ariakit — no packages, no versioning pain.
 				</p>
 
-				<div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+				<div className="flex w-full flex-row items-center gap-3 justify-center">
 					<Button
 						variant="primary"
 						size="md"
