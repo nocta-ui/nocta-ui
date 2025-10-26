@@ -58,7 +58,7 @@ const navigationMenuLinkVariants = cva(
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
 
 const navigationMenuGroupLabelClass =
-	'px-4 text-xs uppercase tracking-widest text-foreground/45';
+	'px-4 text-[10px] uppercase tracking-widest text-foreground/45';
 
 const SetShiftContext = React.createContext<
 	React.Dispatch<React.SetStateAction<number>>
@@ -214,6 +214,7 @@ export const NavigationMenuItem = React.forwardRef<
 			className={cn(
 				navigationMenuTriggerVariants({ size }),
 				open && 'bg-card-muted text-foreground',
+				!children && 'hover:bg-card-muted',
 				className,
 			)}
 			{...renderProps}
