@@ -88,7 +88,7 @@ const DocsTabs = ({
 				<TabsList
 					className={cn(
 						'flex w-full items-center justify-start border-b p-0 bg-background',
-						'!flex !rounded-none !shadow-none',
+						'!flex !rounded-none !shadow-none border-x-0 border-t-0 border-fd-border',
 					)}
 				>
 					<div className="bg-background flex gap-1 p-1 rounded-md w-full justify-evenly">
