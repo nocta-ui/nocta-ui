@@ -21,7 +21,7 @@ const navigationMenuVariants = cva(
 );
 
 const navigationMenuTriggerVariants = cva(
-	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground/70 transition-colors duration-200 ease-in-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted data-[expanded=true]:text-foreground cursor-pointer',
+	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-colors duration-200 ease-in-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none [a&]:cursor-pointer',
+	'flex flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
