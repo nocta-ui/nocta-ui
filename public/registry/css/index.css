@@ -113,6 +113,50 @@
 	--radius-base: 0.175rem;
 }
 
+@keyframes navigation-menu-enter-from-start {
+	from {
+		opacity: 0;
+		transform: translateX(calc(-1 * var(--navigation-menu-motion-distance)));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes navigation-menu-enter-from-end {
+	from {
+		opacity: 0;
+		transform: translateX(var(--navigation-menu-motion-distance));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes navigation-menu-exit-to-start {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(calc(-1 * var(--navigation-menu-motion-distance)));
+	}
+}
+
+@keyframes navigation-menu-exit-to-end {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(var(--navigation-menu-motion-distance));
+	}
+}
+
 @theme {
 	--color-background: var(--background);
 	--color-card: var(--card);

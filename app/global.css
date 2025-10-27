@@ -73,6 +73,9 @@
 	@apply 2xl:max-w-[1400px];
 }
 
+/* ================================
+   NOCTA CSS THEME VARIABLES START
+   ================================*/
 :root {
 	--color-background: oklch(0.99 0.004 285.89);
 	--color-card: oklch(1 0 0);
@@ -183,6 +186,50 @@
 	--radius-base: 0.175rem;
 }
 
+@keyframes navigation-menu-enter-from-start {
+	from {
+		opacity: 0;
+		transform: translateX(calc(-1 * var(--navigation-menu-motion-distance)));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes navigation-menu-enter-from-end {
+	from {
+		opacity: 0;
+		transform: translateX(var(--navigation-menu-motion-distance));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes navigation-menu-exit-to-start {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(calc(-1 * var(--navigation-menu-motion-distance)));
+	}
+}
+
+@keyframes navigation-menu-exit-to-end {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(var(--navigation-menu-motion-distance));
+	}
+}
+
 @theme {
 	--font-mono: var(--font-ppneuemontrealmono);
 	--font-ppneuemontreal: var(--font-ppneuemontreal);
@@ -218,6 +265,9 @@
 	--radius-4xl: calc(var(--radius-base) * 16);
 	--radius-full: 9999px;
 }
+/* ================================
+   NOCTA CSS THEME VARIABLES END
+   ================================*/
 
 @layer base {
 	body {
