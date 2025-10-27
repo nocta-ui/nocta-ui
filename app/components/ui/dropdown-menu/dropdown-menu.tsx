@@ -112,7 +112,7 @@ export const DropdownMenuContent: React.FC<
 		className?: string;
 		sameWidth?: boolean;
 	} & VariantProps<typeof dropdownMenuContentVariants>
-> = ({ children, className, sameWidth, size }) => (
+> = ({ children, className, sameWidth = false, size }) => (
 	<Ariakit.Menu
 		portal
 		gutter={4}

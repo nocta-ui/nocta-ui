@@ -126,7 +126,7 @@ export const ContextMenuContent: React.FC<
 		className?: string;
 		sameWidth?: boolean;
 	} & VariantProps<typeof contextMenuContentVariants>
-> = ({ children, className, sameWidth, size }) => (
+> = ({ children, className, sameWidth = false, size }) => (
 	<Ariakit.Menu
 		portal
 		gutter={4}
