@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-200 ease-in-out',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0 translate-y-1 transition-all duration-200 ease-in-out-sine',
 	{
 		variants: {
 			size: {
