@@ -116,7 +116,6 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 				</NavigationMenuItem>
 
 				<NavigationMenuItem label="Pricing" href="#" />
-				<NavigationMenuItem label="Blog" href="#" />
 			</NavigationMenu>
 
 			<p className="text-sm text-foreground/70">

@@ -62,13 +62,15 @@ const navigationMenuGroupLabelClass =
 
 type MenuPlacement = NonNullable<Ariakit.MenuProviderProps['placement']>;
 
-interface NavigationMenuMotionContextValue {
+interface NavigationMenuContextValue {
 	registerItem: (id: string) => number;
 	setActiveIndex: (index: number) => void;
 	resetMotion: () => void;
 	commitActiveIndex: (index: number) => void;
 	activeIndex: number | null;
 	previousIndex: number | null;
+	setShift: React.Dispatch<React.SetStateAction<number>>;
+	setPlacement: React.Dispatch<React.SetStateAction<MenuPlacement>>;
 }
 
 type NavigationMenuMotionVariant =
@@ -76,11 +78,6 @@ type NavigationMenuMotionVariant =
 	| 'from-end'
 	| 'to-start'
 	| 'to-end';
-
-interface NavigationMenuContextValue extends NavigationMenuMotionContextValue {
-	setShift: React.Dispatch<React.SetStateAction<number>>;
-	setPlacement: React.Dispatch<React.SetStateAction<MenuPlacement>>;
-}
 
 const NavigationMenuContext =
 	React.createContext<NavigationMenuContextValue | null>(null);
@@ -115,11 +112,6 @@ const resolveRenderProp = (
 			{props.children}
 		</a>
 	);
-};
-
-const useRegisteredItem = (registerItem: (id: string) => number) => {
-	const itemId = React.useId();
-	return React.useMemo(() => registerItem(itemId), [itemId, registerItem]);
 };
 
 const useDelayedPresence = (isOpen: boolean, delay: number) => {
@@ -244,7 +236,7 @@ export const NavigationMenu = React.forwardRef<
 ) {
 	const [shift, setShift] = React.useState(0);
 	const [placement, setPlacement] = React.useState<MenuPlacement>('bottom');
-	const registeredItems = React.useRef<string[]>([]);
+	const registeredItems = React.useRef(new Map<string, number>());
 	const [activeIndex, setActiveIndexState] = React.useState<number | null>(
 		null,
 	);
@@ -260,13 +252,14 @@ export const NavigationMenu = React.forwardRef<
 	}, []);
 
 	const registerItem = React.useCallback((id: string) => {
-		const list = registeredItems.current;
-		const existingIndex = list.indexOf(id);
-		if (existingIndex !== -1) {
+		const items = registeredItems.current;
+		const existingIndex = items.get(id);
+		if (existingIndex !== undefined) {
 			return existingIndex;
 		}
-		list.push(id);
-		return list.length - 1;
+		const nextIndex = items.size;
+		items.set(id, nextIndex);
+		return nextIndex;
 	}, []);
 
 	const setActiveIndex = React.useCallback((index: number) => {
@@ -313,13 +306,13 @@ export const NavigationMenu = React.forwardRef<
 					{children}
 					<Ariakit.Menu
 						portal
-						gutter={8}
 						shift={shift}
 						tabIndex={-1}
+						gutter={8}
 						unmountOnHide={false}
 						wrapperProps={{
 							className: cn(
-								'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-200 ease-in-out overflow-x-clip',
+								'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-200 ease-in-out overflow-x-hidden overflow-y-visible',
 								panelWrapperClassName,
 							),
 						}}
@@ -327,9 +320,7 @@ export const NavigationMenu = React.forwardRef<
 							navigationMenuPanelVariants({ size }),
 							panelClassName,
 						)}
-					>
-						<Ariakit.MenuArrow />
-					</Ariakit.Menu>
+					></Ariakit.Menu>
 				</Ariakit.MenuProvider>
 			</NavigationMenuContext.Provider>
 		</Ariakit.Menubar>
@@ -383,7 +374,11 @@ export const NavigationMenuItem = React.forwardRef<
 	if (!context) {
 		throw new Error('NavigationMenuItem must be used within a NavigationMenu');
 	}
-	const itemIndex = useRegisteredItem(registerItem);
+	const itemId = React.useId();
+	const itemIndex = React.useMemo(
+		() => registerItem(itemId),
+		[registerItem, itemId],
+	);
 	const menu = Ariakit.useMenuStore({ store: context });
 	const parentMenu = Ariakit.useStoreState(menu, 'contentElement');
 	const open = Ariakit.useStoreState(
@@ -394,72 +389,68 @@ export const NavigationMenuItem = React.forwardRef<
 		open,
 		NAVIGATION_MENU_MOTION_MS,
 	);
+	const shouldResetMotion = !open && !shouldRenderContent && !isLeaving;
+	const motionDirection = resolveMotionDirection({
+		open,
+		isLeaving,
+		activeIndex,
+		previousIndex,
+		itemIndex,
+	});
+	const motionVariant = resolveMotionVariant(motionDirection, open, isLeaving);
+	const motionState = open ? 'enter' : isLeaving ? 'leave' : undefined;
+	const ariaHidden = motionState === 'leave' ? true : undefined;
+	const hasChildren = !!children;
 	const enterTimeoutRef = React.useRef<number | null>(null);
+	const isCurrentItem = activeIndex === itemIndex;
+
+	const clearEnterTimeout = React.useCallback(() => {
+		if (enterTimeoutRef.current !== null) {
+			window.clearTimeout(enterTimeoutRef.current);
+			enterTimeoutRef.current = null;
+		}
+	}, []);
+
+	const scheduleActiveCommit = React.useCallback(() => {
+		clearEnterTimeout();
+		enterTimeoutRef.current = window.setTimeout(() => {
+			commitActiveIndex(itemIndex);
+			enterTimeoutRef.current = null;
+		}, NAVIGATION_MENU_MOTION_MS);
+	}, [clearEnterTimeout, commitActiveIndex, itemIndex]);
+
+	React.useEffect(() => clearEnterTimeout, [clearEnterTimeout]);
 
 	React.useLayoutEffect(() => {
 		if (!open) return;
 		setShift(shift);
 		setPlacement(placement ?? 'bottom');
-	}, [open, placement, setPlacement, setShift, shift]);
-
-	React.useLayoutEffect(() => {
-		if (!open) return;
 		setActiveItemIndex(itemIndex);
-	}, [open, itemIndex, setActiveItemIndex]);
-
-	React.useEffect(
-		() => () => {
-			if (enterTimeoutRef.current !== null) {
-				window.clearTimeout(enterTimeoutRef.current);
-			}
-		},
-		[],
-	);
+	}, [
+		open,
+		placement,
+		setPlacement,
+		setShift,
+		shift,
+		setActiveItemIndex,
+		itemIndex,
+	]);
 
 	React.useEffect(() => {
-		if (open || shouldRenderContent || isLeaving) {
-			return;
-		}
-		if (activeIndex !== itemIndex) {
+		if (!shouldResetMotion) return;
+		if (!isCurrentItem) {
 			return;
 		}
 		resetMotion();
-	}, [
-		open,
-		shouldRenderContent,
-		isLeaving,
-		activeIndex,
-		itemIndex,
-		resetMotion,
-	]);
-
-	const direction = React.useMemo(
-		() =>
-			resolveMotionDirection({
-				open,
-				isLeaving,
-				activeIndex,
-				previousIndex,
-				itemIndex,
-			}),
-		[open, isLeaving, activeIndex, previousIndex, itemIndex],
-	);
-
-	const motionVariant = React.useMemo(
-		() => resolveMotionVariant(direction, open, isLeaving),
-		[direction, open, isLeaving],
-	);
+	}, [shouldResetMotion, isCurrentItem, resetMotion]);
 
 	React.useEffect(() => {
 		if (!open) {
-			if (enterTimeoutRef.current !== null) {
-				window.clearTimeout(enterTimeoutRef.current);
-				enterTimeoutRef.current = null;
-			}
+			clearEnterTimeout();
 			return;
 		}
 
-		if (activeIndex !== itemIndex) {
+		if (!isCurrentItem) {
 			return;
 		}
 
@@ -468,18 +459,21 @@ export const NavigationMenuItem = React.forwardRef<
 			return;
 		}
 
-		if (enterTimeoutRef.current !== null) {
-			window.clearTimeout(enterTimeoutRef.current);
-		}
+		scheduleActiveCommit();
+	}, [
+		open,
+		clearEnterTimeout,
+		itemIndex,
+		motionVariant,
+		commitActiveIndex,
+		isCurrentItem,
+		scheduleActiveCommit,
+	]);
 
-		enterTimeoutRef.current = window.setTimeout(() => {
-			commitActiveIndex(itemIndex);
-			enterTimeoutRef.current = null;
-		}, NAVIGATION_MENU_MOTION_MS);
-	}, [open, activeIndex, itemIndex, motionVariant, commitActiveIndex]);
-
-	const renderElement = resolveRenderProp(render, href);
-	const renderProps = renderElement ? { render: renderElement } : {};
+	const itemRender = React.useMemo(
+		() => resolveRenderProp(render, href),
+		[render, href],
+	);
 	const storeForItem = menu.menubar ?? menu;
 
 	const item = (
@@ -492,15 +486,15 @@ export const NavigationMenuItem = React.forwardRef<
 			className={cn(
 				navigationMenuTriggerVariants({ size }),
 				open && 'bg-card-muted text-foreground',
-				!children && 'hover:bg-card-muted',
+				!hasChildren && 'hover:bg-card-muted',
 				className,
 			)}
-			{...renderProps}
+			render={itemRender}
 			{...itemProps}
 		>
 			<span className="flex items-center gap-2">
 				{label}
-				{!!children && (
+				{hasChildren && (
 					<Icons.ChevronDown
 						className={cn(
 							'ml-1 size-4 transition-transform duration-200 ease-in-out',
@@ -512,7 +506,7 @@ export const NavigationMenuItem = React.forwardRef<
 		</Ariakit.MenuItem>
 	);
 
-	if (!children) {
+	if (!hasChildren) {
 		return item;
 	}
 
@@ -537,13 +531,13 @@ export const NavigationMenuItem = React.forwardRef<
 				<Ariakit.Portal portalElement={parentMenu}>
 					<div
 						data-motion={motionVariant}
-						data-state={open ? 'enter' : isLeaving ? 'leave' : undefined}
+						data-state={motionState}
 						className={navigationMenuMotionViewportClass}
 					>
 						<div
 							data-motion={motionVariant}
-							data-state={open ? 'enter' : isLeaving ? 'leave' : undefined}
-							aria-hidden={open ? undefined : isLeaving ? true : undefined}
+							data-state={motionState}
+							aria-hidden={ariaHidden}
 							className={cn(
 								navigationMenuContentLayoutClass,
 								navigationMenuMotionWrapperClass,
@@ -582,8 +576,10 @@ export const NavigationMenuLink = React.forwardRef<
 	const id = React.useId();
 	const labelId = `${id}-label`;
 	const descriptionId = `${id}-description`;
-	const renderElement = resolveRenderProp(render, href);
-	const renderProps = renderElement ? { render: renderElement } : {};
+	const itemRender = React.useMemo(
+		() => resolveRenderProp(render, href),
+		[render, href],
+	);
 
 	return (
 		<Ariakit.MenuItem
@@ -594,7 +590,7 @@ export const NavigationMenuLink = React.forwardRef<
 			aria-labelledby={labelId}
 			aria-describedby={description ? descriptionId : undefined}
 			className={cn(navigationMenuLinkVariants(), className)}
-			{...renderProps}
+			render={itemRender}
 			{...props}
 		>
 			<span id={labelId} className="text-sm font-medium text-foreground">
