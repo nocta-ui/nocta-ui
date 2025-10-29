@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
+	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
