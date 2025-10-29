@@ -160,8 +160,8 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			} others are typing`;
 		}
 	};
-
 	return (
+		/* biome-ignore lint/a11y/useSemanticElements: typing indicator intentionally uses a div with role="status" for accessibility */
 		<div
 			role="status"
 			className={cn('not-prose flex items-end gap-2', className)}
