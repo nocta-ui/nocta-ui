@@ -1,11 +1,9 @@
 import {
 	CodeIcon,
 	GlobeIcon,
-	LayersIcon,
 	LightningBoltIcon,
 	MixerHorizontalIcon,
 	ReaderIcon,
-	RocketIcon,
 	ShuffleIcon,
 	StackIcon,
 } from '@radix-ui/react-icons';
