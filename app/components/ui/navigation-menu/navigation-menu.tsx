@@ -489,7 +489,7 @@ export const NavigationMenuItem = React.forwardRef<
 				!hasChildren && 'hover:bg-card-muted',
 				className,
 			)}
-			render={itemRender}
+			{...(itemRender ? { render: itemRender } : {})}
 			{...itemProps}
 		>
 			<span className="flex items-center gap-2">
@@ -590,7 +590,7 @@ export const NavigationMenuLink = React.forwardRef<
 			aria-labelledby={labelId}
 			aria-describedby={description ? descriptionId : undefined}
 			className={cn(navigationMenuLinkVariants(), className)}
-			render={itemRender}
+			{...(itemRender ? { render: itemRender } : {})}
 			{...props}
 		>
 			<span id={labelId} className="text-sm font-medium text-foreground">
