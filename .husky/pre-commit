@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+bash ./scripts/sync-css-tokens.sh
 bash ./scripts/build-components.sh
 
-git add public/registry/components.json
+git add public/registry/components.json public/registry/css/index.css

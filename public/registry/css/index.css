@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* ================================
-   NOCTA CSS THEME VARIABLES
-   ================================*/
 :root {
 	--color-background: oklch(0.99 0.004 285.89);
 	--color-card: oklch(1 0 0);
