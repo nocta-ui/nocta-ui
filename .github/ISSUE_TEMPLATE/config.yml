@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://nocta-ui.com
+    about: Review the docs before opening an issue—many questions are already covered there.
+  - name: Community Discussion
+    url: https://github.com/nocta-ui/nocta-ui/discussions
+    about: Ask questions, share ideas, or get feedback before filing a feature request.
