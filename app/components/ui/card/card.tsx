@@ -113,7 +113,7 @@ export const CardContent: React.FC<CardContentProps> = ({
 }) => {
 	return (
 		<div
-			className={cn('not-prose text-md p-4 text-foreground/70', className)}
+			className={cn('not-prose text-sm p-4 text-foreground/70', className)}
 			{...props}
 		>
 			{children}
