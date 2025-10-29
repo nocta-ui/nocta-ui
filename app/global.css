@@ -4,6 +4,8 @@
 
 /* ---FUMADOCS CSS--- */
 @theme {
+	--font-aeonikpro: var(--font-aeonikpro);
+	--font-mono: var(--font-aeonikmono);
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
@@ -231,8 +233,6 @@
 }
 
 @theme {
-	--font-aeonikpro: var(--font-aeonikpro);
-	--font-mono: var(--font-aeonikmono);
 	--color-background: var(--background);
 	--color-card: var(--card);
 	--color-card-muted: var(--card-muted);
