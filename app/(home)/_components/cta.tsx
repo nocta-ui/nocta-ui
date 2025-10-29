@@ -6,7 +6,7 @@ import { Button } from '@/app/components/ui/button';
 export default function CTA(): React.ReactElement {
 	return (
 		<section className="relative overflow-hidden">
-			<div className="mx-auto flex max-w-5xl flex-col items-center justify-center md:border-x border-dashed border-fd-border p-6 md:p-10 lg:p-14 text-center">
+			<div className="mx-auto flex max-w-5xl flex-col items-start md:items-center justify-center md:border-x border-dashed border-fd-border p-6 md:p-10 lg:p-14 text-center">
 				<h2 className="text-left md:text-center font-medium text-xl md:text-2xl text-foreground max-w-2xl">
 					Enjoying Nocta UI? Help us grow.
 				</h2>
