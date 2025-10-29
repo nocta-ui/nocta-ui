@@ -5,117 +5,92 @@ import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import SearchDialog from '@/components/search';
 
-const ppNeueMontreal = localFont({
+const aeonikPro = localFont({
 	src: [
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Thin.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-Thin.woff2',
+			weight: '100',
+			style: 'normal',
+		},
+		{
+			path: './assets/fonts/Aeonik/AeonikPro-ThinItalic.woff2',
+			weight: '100',
+			style: 'italic',
+		},
+		{
+			path: './assets/fonts/Aeonik/AeonikPro-Air.woff2',
 			weight: '200',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-ThinItalic.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-AirItalic.woff2',
 			weight: '200',
 			style: 'italic',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Light.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-Light.woff2',
 			weight: '300',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-LightItalic.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-LightItalic.woff2',
 			weight: '300',
 			style: 'italic',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Regular.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-Regular.woff2',
 			weight: '400',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Italic.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-RegularItalic.woff2',
 			weight: '400',
 			style: 'italic',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Medium.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-Medium.woff2',
 			weight: '500',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-MediumItalic.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-MediumItalic.woff2',
 			weight: '500',
 			style: 'italic',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBold.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-Bold.woff2',
 			weight: '700',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBoldItalic.woff2',
+			path: './assets/fonts/Aeonik/AeonikPro-BoldItalic.woff2',
 			weight: '700',
 			style: 'italic',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Bold.woff2',
-			weight: '800',
+			path: './assets/fonts/Aeonik/AeonikPro-Black.woff2',
+			weight: '900',
 			style: 'normal',
 		},
 		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-BoldItalic.woff2',
-			weight: '800',
+			path: './assets/fonts/Aeonik/AeonikPro-BlackItalic.woff2',
+			weight: '900',
 			style: 'italic',
 		},
 	],
-	variable: '--font-ppneuemontreal',
+	variable: '--font-aeonikpro',
 	display: 'swap',
 });
 
-const ppNeueMontrealMono = localFont({
+const aeonikMono = localFont({
 	src: [
 		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Thin.woff2',
+			path: './assets/fonts/AeonikMono/AeonikMono-Regular.woff2',
 			weight: '100',
 			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-ThinItalic.woff2',
-			weight: '100',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Light.woff2',
-			weight: '300',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Regular.woff2',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-RegularItalic.woff2',
-			weight: '400',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Medium.woff2',
-			weight: '500',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Bold.woff2',
-			weight: '700',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-BoldItalic.woff2',
-			weight: '700',
-			style: 'italic',
 		},
 	],
-	variable: '--font-ppneuemontrealmono',
+	variable: '--font-aeonikmono',
 	display: 'swap',
 });
 
@@ -213,7 +188,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${ppNeueMontreal.variable} ${ppNeueMontrealMono.variable}`}
+			className={`${aeonikPro.variable} ${aeonikMono.variable}`}
 			suppressHydrationWarning
 		>
 			<body

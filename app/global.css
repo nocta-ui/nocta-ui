@@ -231,8 +231,8 @@
 }
 
 @theme {
-	--font-mono: var(--font-ppneuemontrealmono);
-	--font-ppneuemontreal: var(--font-ppneuemontreal);
+	--font-aeonikpro: var(--font-aeonikpro);
+	--font-mono: var(--font-aeonikmono);
 	--color-background: var(--background);
 	--color-card: var(--card);
 	--color-card-muted: var(--card-muted);
@@ -271,6 +271,6 @@
 
 @layer base {
 	body {
-		@apply font-ppneuemontreal bg-fd-background;
+		@apply font-aeonikpro bg-fd-background;
 	}
 }
