@@ -87,7 +87,7 @@ function renderType(value: ReactNode) {
 
 	if (parts.length === 1) {
 		return (
-			<code className="text-foreground  bg-card-muted rounded border border-fd-border p-px">
+			<code className="text-foreground bg-card-muted rounded border border-fd-border p-px">
 				{parts[0]}
 			</code>
 		);

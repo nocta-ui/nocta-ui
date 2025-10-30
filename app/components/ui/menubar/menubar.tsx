@@ -28,7 +28,7 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-	'inline-flex select-none items-center gap-2 rounded-sm px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out outline-none ring-offset-background hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+	'inline-flex select-none items-center gap-2 rounded-sm px-3 py-1.5 text-sm font-medium transition-colors duration-150 ease-out outline-none ring-offset-background hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -42,7 +42,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out data-[skip-animation=true]:transition-none data-[skip-animation=true]:duration-0 data-[skip-animation=true]:ease-linear data-[skip-animation=true]:translate-y-0 data-[skip-animation=true]:scale-100 data-[skip-animation=true]:opacity-100',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-150 ease-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-out data-[skip-animation=true]:transition-none data-[skip-animation=true]:duration-0 data-[skip-animation=true]:ease-linear data-[skip-animation=true]:translate-y-0 data-[skip-animation=true]:scale-100 data-[skip-animation=true]:opacity-100',
 	{
 		variants: {
 			size: {
@@ -56,7 +56,7 @@ const menubarContentVariants = cva(
 );
 
 const menubarSubContentVariants = cva(
-	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-200 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-in-out',
+	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-150 ease-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-out',
 	{
 		variants: {
 			size: {

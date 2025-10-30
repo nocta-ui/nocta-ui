@@ -31,14 +31,14 @@ export const ControlledDemo: React.FC = () => {
 				<button
 					type="button"
 					onClick={() => setOpen(true)}
-					className="rounded border border-success/40 bg-success/10 px-3 py-1 text-sm text-success/90 duration-200 ease-in-out hover:opacity-80"
+					className="rounded border border-success/40 bg-success/10 px-3 py-1 text-sm text-success/90 duration-150 ease-out hover:opacity-80"
 				>
 					Open
 				</button>
 				<button
 					type="button"
 					onClick={() => setOpen(false)}
-					className="rounded border border-error/40 bg-error/10 px-3 py-1 text-sm text-error/80 duration-200 ease-in-out hover:opacity-80"
+					className="rounded border border-error/40 bg-error/10 px-3 py-1 text-sm text-error/80 duration-150 ease-out hover:opacity-80"
 				>
 					Close
 				</button>
@@ -58,7 +58,7 @@ export const ControlledDemo: React.FC = () => {
 							<button
 								type="button"
 								onClick={() => setOpen(false)}
-								className="rounded bg-card px-2 py-1 text-xs duration-200 ease-in-out hover:bg-foreground/60/10"
+								className="rounded bg-card px-2 py-1 text-xs duration-150 ease-out hover:bg-foreground/60/10"
 							>
 								Close from inside
 							</button>

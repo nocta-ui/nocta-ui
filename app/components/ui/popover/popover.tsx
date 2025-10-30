@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm transition-colors duration-200 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+	'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm transition-colors duration-150 ease-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 	{
 		variants: {
 			variant: {
@@ -42,7 +42,7 @@ const popoverContentVariants = cva(
 );
 
 const popoverMotion =
-	'transform will-change-transform duration-200 ease-in-out transition opacity-0 scale-95 translate-y-1 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:translate-y-1';
+	'transform will-change-transform duration-150 ease-out transition opacity-0 scale-95 translate-y-1 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:translate-y-1';
 
 export interface PopoverProps {
 	children: React.ReactNode;

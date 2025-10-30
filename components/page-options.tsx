@@ -70,7 +70,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	'inline-flex items-center gap-2 rounded-sm p-2 text-sm text-foreground/70 transition-colors duration-200 ease-in-out hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
+	'inline-flex items-center gap-2 rounded-sm p-2 text-sm text-foreground/70 transition-colors duration-150 ease-out hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
 );
 
 export function ViewOptions({

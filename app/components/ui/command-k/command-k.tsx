@@ -56,7 +56,7 @@ const listItemClass = cva(
 		'relative flex cursor-pointer items-center gap-3 rounded-sm px-3 py-2',
 		'text-sm text-foreground',
 		'hover:bg-card-muted',
-		'transition-colors duration-200 ease-in-out',
+		'transition-colors duration-150 ease-out',
 	].join(' '),
 	{
 		variants: {

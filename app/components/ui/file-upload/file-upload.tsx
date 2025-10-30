@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 const fileUploadVariants = cva(
 	[
-		'relative transition-all duration-200 ease-in-out',
+		'relative transition-all duration-150 ease-out',
 		'focus-within:ring-1 focus-within:ring-offset-1 focus-within:outline-none',
 		'focus-within:ring-offset-ring-offset/50',
 		'focus-within:ring-ring/50',
@@ -195,7 +195,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 	return (
 		<div className={cn('h-2 w-full rounded-full bg-card-muted', className)}>
 			<div
-				className="h-2 rounded-full bg-foreground transition-all duration-200 ease-in-out"
+				className="h-2 rounded-full bg-foreground transition-all duration-150 ease-out"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}
@@ -246,7 +246,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="not-prose size-6 cursor-pointer text-foreground/45 transition-colors duration-200 hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="not-prose size-6 cursor-pointer text-foreground/45 transition-colors duration-150 hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
@@ -278,7 +278,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 				<div className="mt-2 h-2">
 					<div
 						className={cn(
-							'transition-opacity duration-200',
+							'transition-opacity duration-150',
 							isUploading ? 'opacity-100' : 'opacity-0',
 						)}
 					>
@@ -525,7 +525,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								onClick={handleUpload}
 								size="sm"
 								variant="ghost"
-								className="bg-foreground text-card transition-colors duration-200 hover:bg-foreground/60 hover:text-card/80"
+								className="bg-foreground text-card transition-colors duration-150 hover:bg-foreground/60 hover:text-card/80"
 								disabled={disabled || isUploading}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}

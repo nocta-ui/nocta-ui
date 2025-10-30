@@ -12,7 +12,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const indicatorVariants = cva(
-	'flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border transition-colors duration-200 ease-in-out',
+	'flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border transition-colors duration-150 ease-out',
 	{
 		variants: {
 			checked: {
@@ -102,7 +102,7 @@ const useRadioGroupContext = () => {
 };
 
 const dotVariants = cva(
-	'rounded-full bg-foreground transition-transform duration-200 ease-in-out',
+	'rounded-full bg-foreground transition-transform duration-150 ease-out',
 	{
 		variants: {
 			checked: {
@@ -141,7 +141,7 @@ export const RadioGroupItem = React.forwardRef<
 			htmlFor={id}
 			data-focus-visible={focusVisible ? '' : undefined}
 			className={cn(
-				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md transition-colors duration-200 ease-in-out',
+				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md transition-colors duration-150 ease-out',
 				'data-focus-visible:ring-1 data-focus-visible:ring-ring/50 data-focus-visible:ring-offset-1 data-focus-visible:ring-offset-ring-offset/50',
 				isDisabled && 'cursor-not-allowed opacity-50',
 				className,

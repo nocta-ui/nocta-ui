@@ -21,7 +21,7 @@ const navigationMenuVariants = cva(
 );
 
 const navigationMenuTriggerVariants = cva(
-	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-colors duration-200 ease-in-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
+	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-colors duration-150 ease-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0 translate-y-1 transition-all duration-200 ease-in-out-sine',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:scale-95 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-out-sine',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-200 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
+	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-150 ease-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
@@ -92,8 +92,8 @@ function useNavigationMenu(componentName: string): NavigationMenuContextValue {
 
 const navigationMenuMotionViewportClass = 'relative w-full';
 const navigationMenuMotionWrapperClass =
-	'w-full [--navigation-menu-motion-duration:200ms] p-4 [--navigation-menu-motion-distance:min(220px,35vw)] data-[state=leave]:fixed data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:cubic-bezier(0.4,0,0.2,1)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
-const NAVIGATION_MENU_MOTION_MS = 200;
+	'w-full [--navigation-menu-motion-duration:150ms] p-4 [--navigation-menu-motion-distance:min(220px,35vw)] data-[state=leave]:fixed data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:cubic-bezier(0,0,0.2,1)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
+const NAVIGATION_MENU_MOTION_MS = 150;
 
 type MenuItemRender = Ariakit.MenuItemProps['render'];
 
@@ -312,7 +312,7 @@ export const NavigationMenu = React.forwardRef<
 						unmountOnHide={false}
 						wrapperProps={{
 							className: cn(
-								'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-200 ease-in-out overflow-x-hidden overflow-y-visible',
+								'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-150 ease-out overflow-x-hidden overflow-y-visible',
 								panelWrapperClassName,
 							),
 						}}
@@ -497,7 +497,7 @@ export const NavigationMenuItem = React.forwardRef<
 				{hasChildren && (
 					<Icons.ChevronDown
 						className={cn(
-							'ml-1 size-4 transition-transform duration-200 ease-in-out',
+							'ml-1 size-4 transition-transform duration-150 ease-out',
 							open && 'rotate-180',
 						)}
 					/>
