@@ -41,8 +41,8 @@ const featureHighlights: FeatureHighlight[] = [
 ];
 
 const installCommands = [
-	'npx nocta-ui init',
-	'npx nocta-ui add button card badge',
+	'npx @nocta-ui/cli init',
+	'npx @nocta-ui/cli add button card badge',
 ];
 
 export default function Features() {
