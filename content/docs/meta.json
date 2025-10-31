@@ -52,6 +52,8 @@
 		"navigation-menu",
 		"tabs",
 		"---Communication---",
-		"chat"
+		"chat",
+		"---Charts---",
+		"pie-chart"
 	]
 }

@@ -1,0 +1,500 @@
+---
+title: Pie Chart
+description: Compare parts-to-whole relationships with classic and donut layouts.
+---
+
+import {
+  PieChart,
+  PieChartBasicDemo,
+  PieChartDonutDemo,
+  PieChartWithActionsDemo,
+  PieChartWithDataTableDemo,
+} from '@/app/components/ui/pie-chart';
+import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+Install the Popover component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add pie-chart
+```
+</Step>
+<Step>
+Import the component:
+
+```tsx lineNumbers title="Import"
+import {
+  PieChart,
+  PieChartHeader,
+  PieChartTitle,
+  PieChartDescription,
+  PieChartActions,
+  PieChartDataTable,
+  PieChartDataTableContent,
+  PieChartChart,
+  PieChartLegend,
+} from '@/components/ui/pie-chart';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Pie Chart
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <PieChartBasicDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Traffic by Channel"
+    const channelData = [
+	{ channel: 'Direct', visitors: 3200 },
+	{ channel: 'Organic', visitors: 5400 },
+	{ channel: 'Paid', visitors: 2300 },
+	{ channel: 'Referral', visitors: 1800 },
+	{ channel: 'Social', visitors: 1500 },
+    ];
+
+    <PieChart data={channelData} valueKey="visitors" nameKey="channel" sortSlices>
+      <PieChartHeader>
+        <PieChartTitle>Traffic by Channel</PieChartTitle>
+        <PieChartDescription>
+          Quickly compare inbound traffic sources for the current quarter.
+        </PieChartDescription>
+      </PieChartHeader>
+      <PieChartChart height={320} ariaLabel="Traffic share by channel" />
+      <PieChartLegend />
+    </PieChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Donut with labels
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <PieChartDonutDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Donut Chart"
+    const planData = [
+	{ plan: 'Starter', users: 1280 },
+	{ plan: 'Growth', users: 2870 },
+	{ plan: 'Scale', users: 1960 },
+	{ plan: 'Enterprise', users: 620 },
+    ];
+
+    <PieChart data={planData} valueKey="users" nameKey="plan">
+      <PieChartHeader>
+        <PieChartTitle>Active Accounts by Plan</PieChartTitle>
+        <PieChartDescription>
+          Donut layout highlights relative share of subscriptions.
+        </PieChartDescription>
+      </PieChartHeader>
+      <PieChartChart
+        height={320}
+        innerRadius="55%"
+        padAngle={2}
+        cornerRadius={4}
+        ariaLabel="Active accounts by plan"
+      >
+        <div className="text-center">
+          <p className="text-xs uppercase tracking-wide text-foreground/50">
+            Total users
+          </p>
+          <p className="text-2xl font-semibold text-foreground">
+            {data.reduce((sum, item) => sum + item.users, 0).toLocaleString()}
+          </p>
+        </div>
+      </PieChartChart>
+      <PieChartLegend />
+    </PieChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Header with actions
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <PieChartWithActionsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Campaign Conversions"
+    // Requires Button from '@/app/components/ui/button'
+    const campaignData = [
+      { campaign: 'Email', conversions: 420 },
+      { campaign: 'Paid Ads', conversions: 310 },
+      { campaign: 'Webinar', conversions: 180 },
+      { campaign: 'Social', conversions: 260 },
+    ];
+
+    <PieChart data={campaignData} valueKey="conversions" nameKey="campaign">
+      <PieChartHeader
+        contentClassName="sm:max-w-xs"
+        titleClassName="text-lg font-semibold"
+        actionsClassName="flex-wrap gap-2"
+      >
+        <PieChartTitle>Campaign Conversions</PieChartTitle>
+        <PieChartDescription>
+          Compare how each acquisition channel performed this quarter.
+        </PieChartDescription>
+        <PieChartActions>
+          <Button size="sm" variant="ghost">
+            Download CSV
+          </Button>
+          <Button size="sm">View Report</Button>
+        </PieChartActions>
+      </PieChartHeader>
+      <PieChartChart
+        height={300}
+        innerRadius="45%"
+        padAngle={1}
+        ariaLabel="Campaign conversion share"
+      />
+      <PieChartLegend />
+    </PieChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Data table summary
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <PieChartWithDataTableDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Revenue Breakdown"
+    const revenueData = [
+      { region: 'North America', revenue: 48800 },
+      { region: 'Europe', revenue: 31200 },
+      { region: 'Asia Pacific', revenue: 27600 },
+      { region: 'Latin America', revenue: 16450 },
+    ];
+    <PieChart
+      data={revenueData}
+      valueKey="revenue"
+      nameKey="region"
+      sortSlices
+    >
+      <PieChartHeader descriptionClassName="text-foreground/60">
+        <PieChartTitle>Quarterly Revenue by Region</PieChartTitle>
+        <PieChartDescription>
+          Break down revenue contribution and view the detailed table below.
+        </PieChartDescription>
+      </PieChartHeader>
+      <PieChartChart height={300} ariaLabel="Revenue share by region" />
+      <PieChartDataTable className="bg-card-muted/20">
+        <PieChartDataTableContent
+          totalLabel="Total revenue"
+          totalFormatter={(total) =>
+            total.toLocaleString(undefined, {
+              style: 'currency',
+              currency: 'USD',
+              maximumFractionDigits: 0,
+            })
+          }
+        />
+      </PieChartDataTable>
+    </PieChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+<TypeTable
+  type={{
+    data: {
+      description: 'Data slices consumed by the chart.',
+      type: 'TData[]',
+      default: '[]',
+    },
+    valueKey: {
+      description: 'Property that contains the numeric value for each slice.',
+      type: 'Extract<keyof TData, string>',
+      default: '—',
+    },
+    nameKey: {
+      description: 'Optional property used for labels in tooltips and legends.',
+      type: 'Extract<keyof TData, string>',
+      default: 'undefined',
+    },
+    colors: {
+      description: 'Palette applied to slices, defaults to the theme chart tokens.',
+      type: 'readonly string[]',
+      default: 'Design tokens',
+    },
+    sortSlices: {
+      description: 'Enable automatic sorting or provide your own comparator.',
+      type: 'boolean | ((a: TData, b: TData) => number)',
+      default: 'false',
+    },
+    valueFormatter: {
+      description: 'Customise values shown in tooltips and legends.',
+      type: '(slice, meta) => React.ReactNode',
+      default: 'value.toLocaleString()',
+    },
+    labelFormatter: {
+      description: 'Override the label text for each slice.',
+      type: '(slice) => React.ReactNode',
+      default: 'nameKey or generated label',
+    },
+    children: {
+      description: 'Compose headers, charts, legends, and data tables.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartChart
+
+<TypeTable
+  type={{
+    height: {
+      description: 'Chart height. Accepts px values or any CSS length.',
+      type: 'number | string',
+      default: '280',
+    },
+    innerRadius: {
+      description: 'Convert the pie into a donut by setting the inner radius (px or % of outer radius).',
+      type: 'number | string',
+      default: '0',
+    },
+    outerRadius: {
+      description: 'Override the outer radius (px or %, useful for tight layouts).',
+      type: 'number | string',
+      default: 'auto',
+    },
+    padAngle: {
+      description: 'Gap between slices in degrees.',
+      type: 'number',
+      default: '1',
+    },
+    cornerRadius: {
+      description: 'Rounded corners for slices.',
+      type: 'number',
+      default: '6',
+    },
+    startAngle: {
+      description: 'Start angle in degrees (0 = right side).',
+      type: 'number',
+      default: '0',
+    },
+    endAngle: {
+      description: 'End angle in degrees.',
+      type: 'number',
+      default: '360',
+    },
+    showTooltip: {
+      description: 'Enable hover and focus tooltips.',
+      type: 'boolean',
+      default: 'true',
+    },
+    tooltipRender: {
+      description: 'Custom tooltip renderer. Receives slice data, value, and percentage.',
+      type: '(info: PieChartTooltipInfo<TData>) => React.ReactNode',
+      default: 'Default tooltip UI',
+    },
+    loading: {
+      description: 'Display the loading state.',
+      type: 'boolean',
+      default: 'false',
+    },
+    emptyState: {
+      description: 'Custom content when no slices are available.',
+      type: 'React.ReactNode',
+      default: 'Preset placeholder',
+    },
+    error: {
+      description: 'Error state content.',
+      type: 'React.ReactNode',
+      default: 'Preset message',
+    },
+  }}
+/>
+
+### PieChartHeader
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Header content. Typically `PieChartTitle`, `PieChartDescription`, and `PieChartActions`.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes for the header wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    contentClassName: {
+      description: 'Classes merged into the primary content column (title + description).',
+      type: 'string',
+      default: 'undefined',
+    },
+    titleClassName: {
+      description: 'Classes merged into any direct `PieChartTitle` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+    descriptionClassName: {
+      description: 'Classes merged into any direct `PieChartDescription` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+    actionsClassName: {
+      description: 'Classes merged into any direct `PieChartActions` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartTitle
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Title content.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the default styles.',
+      type: 'string',
+      default: 'undefined',
+    },
+    as: {
+      description: 'Element/component used to render the title.',
+      type: 'React.ElementType',
+      default: '"h3"',
+    },
+  }}
+/>
+
+### PieChartDescription
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Supporting copy below the title.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the default styles.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartLegend
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Style override applied to the legend wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartActions
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Action elements such as buttons or links.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the action container.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartDataTable
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Custom data breakdown that appears below the chart.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the data table wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PieChartDataTableContent
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional classes merged with the content wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    rowClassName: {
+      description: 'Classes applied to every data row, including the total row.',
+      type: 'string',
+      default: 'undefined',
+    },
+    labelClassName: {
+      description: 'Classes merged into the label column (indicator + text).',
+      type: 'string',
+      default: 'undefined',
+    },
+    valueClassName: {
+      description: 'Classes merged into the value column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    percentageClassName: {
+      description: 'Classes merged into the percentage column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    showPercentages: {
+      description: 'Toggle display of the percentage column.',
+      type: 'boolean',
+      default: 'true',
+    },
+    showTotalRow: {
+      description: 'Show or hide the summary row.',
+      type: 'boolean',
+      default: 'true',
+    },
+    totalLabel: {
+      description: 'Label used in the summary row.',
+      type: 'React.ReactNode',
+      default: '"Total"',
+    },
+    totalFormatter: {
+      description: 'Format the summary value. Receives the numeric total.',
+      type: '(total: number) => React.ReactNode',
+      default: 'total.toLocaleString()',
+    },
+    percentageFormatter: {
+      description: 'Custom percentage formatter. Receives the raw ratio and slice.',
+      type: '(percentage: number, slice: PieChartSlice) => React.ReactNode',
+      default: 'percentage.toFixed(1) + "%"',
+    },
+  }}
+/>

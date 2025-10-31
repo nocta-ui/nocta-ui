@@ -87,6 +87,36 @@ export const colorTokens = [
 		light: 'oklch(0.7 0.18 155)',
 		dark: 'oklch(0.68 0.19 155)',
 	},
+	{
+		token: '--color-chart-1',
+		description: 'Chart series 1',
+		light: 'oklch(0.7 0.095 245)',
+		dark: 'oklch(0.63 0.095 245)',
+	},
+	{
+		token: '--color-chart-2',
+		description: 'Chart series 2',
+		light: 'oklch(0.68 0.118 295)',
+		dark: 'oklch(0.61 0.118 295)',
+	},
+	{
+		token: '--color-chart-3',
+		description: 'Chart series 3',
+		light: 'oklch(0.76 0.08 175)',
+		dark: 'oklch(0.69 0.08 175)',
+	},
+	{
+		token: '--color-chart-4',
+		description: 'Chart series 4',
+		light: 'oklch(0.72 0.14 55)',
+		dark: 'oklch(0.64 0.14 55)',
+	},
+	{
+		token: '--color-chart-5',
+		description: 'Chart series 5',
+		light: 'oklch(0.68 0.12 340)',
+		dark: 'oklch(0.6 0.12 340)',
+	},
 ];
 
 export const shadowTokens = [
