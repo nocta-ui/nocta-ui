@@ -60,7 +60,7 @@ const breadcrumbLinkVariants = cva(
 				ghost: [
 					'text-foreground/70',
 					'hover:text-foreground',
-					'hover:bg-card',
+					'hover:bg-card-muted',
 					'rounded-md px-2 py-1',
 				],
 			},
