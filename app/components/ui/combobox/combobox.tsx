@@ -195,7 +195,11 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							popoverClassName,
 						)}
 					>
-						<div className="border-b border-border/60 p-1">
+						<div className="border-b border-border/60 p-1 flex justify-start items-center">
+							<Icons.Search
+								aria-hidden="true"
+								className="size-6 text-foreground/35 ml-2"
+							/>
 							<Ariakit.Combobox
 								autoSelect
 								placeholder={searchPlaceholder}
@@ -205,7 +209,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 										setSearchValue(event.currentTarget.value),
 									)
 								}
-								className="w-full border-0 bg-transparent px-3 py-2 text-sm placeholder:text-foreground/45 focus-visible:outline-none"
+								className="w-full border-0 bg-transparent pl-1.5 pr-3 py-2 text-sm placeholder:text-foreground/45 focus-visible:outline-none"
 							/>
 						</div>
 
