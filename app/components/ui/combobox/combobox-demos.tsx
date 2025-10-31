@@ -87,7 +87,7 @@ export const VariantsDemo: React.FC = () => {
 				</label>
 				<Combobox
 					options={frameworks}
-					defaultValue="react"
+					placeholder="Success Variant"
 					variant="success"
 					className="w-[200px]"
 				/>
