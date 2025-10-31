@@ -36,6 +36,40 @@ export const WithTextTriggerDemo: React.FC = () => {
 	);
 };
 
+export const TooltipPlacementDemo: React.FC = () => {
+	return (
+	<div className="my-6 grid grid-cols-2 grid-rows-2 gap-2 justify-items-center items-center">
+				<Tooltip placement="top">
+					<TooltipTrigger>
+						<Button className='w-24' variant="secondary">Top</Button>
+					</TooltipTrigger>
+					<TooltipContent>Tooltip on top</TooltipContent>
+				</Tooltip>
+
+				<Tooltip placement="bottom">
+					<TooltipTrigger>
+						<Button className='w-24' variant="secondary">Bottom</Button>
+					</TooltipTrigger>
+					<TooltipContent>Tooltip on bottom</TooltipContent>
+				</Tooltip>
+
+				<Tooltip placement="left">
+					<TooltipTrigger>
+						<Button className='w-24' variant="secondary">Left</Button>
+					</TooltipTrigger>
+					<TooltipContent>Tooltip on left</TooltipContent>
+				</Tooltip>
+
+				<Tooltip placement="right">
+					<TooltipTrigger>
+						<Button className='w-24' variant="secondary">Right</Button>
+					</TooltipTrigger>
+					<TooltipContent>Tooltip on right</TooltipContent>
+				</Tooltip>
+			</div>
+	);
+};
+
 export const DelayDurationDemo: React.FC = () => {
 	return (
 		<div className="my-6 flex justify-center gap-4">

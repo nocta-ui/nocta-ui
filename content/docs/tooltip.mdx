@@ -10,6 +10,7 @@ import {
   SimpleTooltipDemo,
   WithTextTriggerDemo,
   DelayDurationDemo,
+  TooltipPlacementDemo,
 } from '@/app/components/ui/tooltip/tooltip-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
@@ -85,6 +86,53 @@ import {
   </DocsTab>
 </DocsTabs>
 
+### Placement
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <TooltipPlacementDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Simple Tooltip"
+    <Tooltip placement="top">
+      <TooltipTrigger>
+        <Button className="w-24" variant="secondary">
+          Top
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Tooltip on top</TooltipContent>
+    </Tooltip>
+
+    <Tooltip placement="bottom">
+      <TooltipTrigger>
+        <Button className="w-24" variant="secondary">
+        Bottom
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Tooltip on bottom</TooltipContent>
+    </Tooltip>
+
+    <Tooltip placement="left">
+      <TooltipTrigger>
+        <Button className="w-24" variant="secondary">
+        Left
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Tooltip on left</TooltipContent>
+    </Tooltip>
+
+    <Tooltip placement="right">
+      <TooltipTrigger>
+        <Button className="w-24" variant="secondary">
+        Right
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Tooltip on right</TooltipContent>
+    </Tooltip>
+    ```
+  </DocsTab>
+</DocsTabs>
+
 ### Delay Duration
 
 <DocsTabs defaultValue="preview">
@@ -125,6 +173,16 @@ import {
       type: 'number',
       default: '400',
     },
+    placement: {
+      description: 'Preferred tooltip placement relative to the trigger',
+      type: '"top" | "bottom" | "left" | "right"',
+      default: '"top"',
+    },
+    gutter: {
+      description: 'Gap between the trigger and tooltip (px)',
+      type: 'number',
+      default: '0',
+    },
     children: {
       description: 'Tooltip subtree',
       type: 'React.ReactNode',
@@ -159,6 +217,11 @@ import {
       type: '"default"',
       default: '"default"',
     },
+    gutter: {
+      description: 'Override the spacing from the trigger (falls back to tooltip context)',
+      type: 'number',
+      default: '0',
+    },
     children: {
       description: 'Tooltip content',
       type: 'React.ReactNode',
@@ -171,3 +234,5 @@ import {
     },
   }}
 />
+
+TooltipContent accepts any valid `div` HTML attributes in addition to the props above.
