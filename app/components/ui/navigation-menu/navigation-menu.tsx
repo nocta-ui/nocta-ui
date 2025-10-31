@@ -92,7 +92,7 @@ function useNavigationMenu(componentName: string): NavigationMenuContextValue {
 
 const navigationMenuMotionViewportClass = 'relative w-full';
 const navigationMenuMotionWrapperClass =
-	'w-full [--navigation-menu-motion-duration:150ms] p-4 [--navigation-menu-motion-distance:min(220px,35vw)] data-[state=leave]:fixed data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:cubic-bezier(0,0,0.2,1)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
+	'w-full [--navigation-menu-motion-duration:150ms] p-4 [--navigation-menu-motion-distance:min(50px,15vw)] md:[--navigation-menu-motion-distance:min(220px,35vw)] data-[state=leave]:fixed data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:cubic-bezier(0,0,0.2,1)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
 const NAVIGATION_MENU_MOTION_MS = 150;
 
 type MenuItemRender = Ariakit.MenuItemProps['render'];
