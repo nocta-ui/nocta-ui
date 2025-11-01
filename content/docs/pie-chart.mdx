@@ -276,12 +276,12 @@ import {
     padAngle: {
       description: 'Gap between slices in degrees.',
       type: 'number',
-      default: '1',
+      default: '0',
     },
     cornerRadius: {
       description: 'Rounded corners for slices.',
       type: 'number',
-      default: '6',
+      default: '0',
     },
     startAngle: {
       description: 'Start angle in degrees (0 = right side).',
@@ -308,6 +308,11 @@ import {
       type: 'boolean',
       default: 'false',
     },
+    loadingState: {
+      description: 'Content displayed while `loading` is true.',
+      type: 'React.ReactNode',
+      default: 'Preset placeholder',
+    },
     emptyState: {
       description: 'Custom content when no slices are available.',
       type: 'React.ReactNode',
@@ -317,6 +322,26 @@ import {
       description: 'Error state content.',
       type: 'React.ReactNode',
       default: 'Preset message',
+    },
+    ariaLabel: {
+      description: 'Accessible label applied to the chart SVG.',
+      type: 'string',
+      default: 'undefined (falls back to "Pie chart visualization")',
+    },
+    children: {
+      description: 'Content rendered centered over the chart area.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes for the outer wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    style: {
+      description: 'Inline styles applied to the outer wrapper.',
+      type: 'React.CSSProperties',
+      default: 'undefined',
     },
   }}
 />

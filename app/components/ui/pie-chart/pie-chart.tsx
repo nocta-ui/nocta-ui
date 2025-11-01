@@ -694,7 +694,7 @@ const PieChartGraphBase = React.forwardRef<
 			<div className="space-y-1">
 				<div className="flex items-center gap-2">
 					<span
-						className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
+						className="inline-flex h-2.5 w-1 shrink-0 rounded-[1px]"
 						style={{ backgroundColor: info.slice.color }}
 					/>
 					<span className="text-xs font-medium text-foreground">
@@ -1238,10 +1238,12 @@ export const PieChartLegend = React.forwardRef<
 			{slices.map((slice) => (
 				<div key={slice.id} className="flex items-center gap-2">
 					<span
-						className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
+						className="inline-flex h-2.5 w-1 shrink-0 rounded-[1px]"
 						style={{ backgroundColor: slice.color }}
 					/>
-					<span className="text-xs font-normal">{formatLabel(slice)}</span>
+					<span className="text-xs font-medium text-foreground">
+						{formatLabel(slice)}
+					</span>
 				</div>
 			))}
 		</div>
@@ -1353,7 +1355,7 @@ export function PieChartDataTableContent<
 						)}
 					>
 						<span
-							className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
+							className="inline-flex h-2.5 w-1 shrink-0 rounded-[1px]"
 							style={{ backgroundColor: slice.color }}
 						/>
 						<span className="truncate text-sm font-medium">

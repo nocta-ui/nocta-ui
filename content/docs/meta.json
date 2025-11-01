@@ -29,8 +29,10 @@
 		"toggle-group",
 		"wheel-picker",
 		"---Data Display---",
+		"area-chart",
 		"avatar",
 		"badge",
+		"pie-chart",
 		"table",
 		"---Feedback---",
 		"alert",
@@ -52,8 +54,6 @@
 		"navigation-menu",
 		"tabs",
 		"---Communication---",
-		"chat",
-		"---Charts---",
-		"pie-chart"
+		"chat"
 	]
 }
