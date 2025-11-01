@@ -34,7 +34,7 @@ import {
   PieChartActions,
   PieChartDataTable,
   PieChartDataTableContent,
-  PieChartChart,
+  PieChartGraph,
   PieChartLegend,
 } from '@/components/ui/pie-chart';
 ```
@@ -66,7 +66,7 @@ import {
           Quickly compare inbound traffic sources for the current quarter.
         </PieChartDescription>
       </PieChartHeader>
-      <PieChartChart height={320} ariaLabel="Traffic share by channel" />
+      <PieChartGraph height={320} ariaLabel="Traffic share by channel" />
       <PieChartLegend />
     </PieChart>
     ```
@@ -95,7 +95,7 @@ import {
           Donut layout highlights relative share of subscriptions.
         </PieChartDescription>
       </PieChartHeader>
-      <PieChartChart
+      <PieChartGraph
         height={320}
         innerRadius="55%"
         padAngle={2}
@@ -110,7 +110,7 @@ import {
             {data.reduce((sum, item) => sum + item.users, 0).toLocaleString()}
           </p>
         </div>
-      </PieChartChart>
+      </PieChartGraph>
       <PieChartLegend />
     </PieChart>
     ```
@@ -150,7 +150,7 @@ import {
           <Button size="sm">View Report</Button>
         </PieChartActions>
       </PieChartHeader>
-      <PieChartChart
+      <PieChartGraph
         height={300}
         innerRadius="45%"
         padAngle={1}
@@ -188,7 +188,7 @@ import {
           Break down revenue contribution and view the detailed table below.
         </PieChartDescription>
       </PieChartHeader>
-      <PieChartChart height={300} ariaLabel="Revenue share by region" />
+      <PieChartGraph height={300} ariaLabel="Revenue share by region" />
       <PieChartDataTable className="bg-card-muted/20">
         <PieChartDataTableContent
           totalLabel="Total revenue"
@@ -255,7 +255,7 @@ import {
   }}
 />
 
-### PieChartChart
+### PieChartGraph
 
 <TypeTable
   type={{

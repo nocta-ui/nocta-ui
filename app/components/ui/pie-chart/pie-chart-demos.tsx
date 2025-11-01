@@ -5,7 +5,7 @@ import type React from 'react';
 import {
 	PieChart,
 	PieChartActions,
-	PieChartChart,
+	PieChartGraph,
 	PieChartDataTable,
 	PieChartDataTableContent,
 	PieChartDescription,
@@ -52,7 +52,7 @@ export const PieChartBasicDemo: React.FC = () => (
 					Quickly compare inbound traffic sources for the current quarter.
 				</PieChartDescription>
 			</PieChartHeader>
-			<PieChartChart height={320} ariaLabel="Traffic share by channel" />
+			<PieChartGraph height={320} ariaLabel="Traffic share by channel" />
 			<PieChartLegend />
 		</PieChart>
 	</div>
@@ -67,7 +67,7 @@ export const PieChartDonutDemo: React.FC = () => (
 					Donut layout highlights relative share of subscriptions.
 				</PieChartDescription>
 			</PieChartHeader>
-			<PieChartChart
+			<PieChartGraph
 				height={320}
 				innerRadius="55%"
 				padAngle={2}
@@ -82,7 +82,7 @@ export const PieChartDonutDemo: React.FC = () => (
 						{planData.reduce((sum, item) => sum + item.users, 0).toLocaleString()}
 					</p>
 				</div>
-			</PieChartChart>
+			</PieChartGraph>
 			<PieChartLegend />
 		</PieChart>
 	</div>
@@ -107,7 +107,7 @@ export const PieChartWithActionsDemo: React.FC = () => (
 					<Button size="sm">View Report</Button>
 				</PieChartActions>
 			</PieChartHeader>
-			<PieChartChart
+			<PieChartGraph
 				height={300}
 				innerRadius="45%"
 				padAngle={1}
@@ -127,7 +127,7 @@ export const PieChartWithDataTableDemo: React.FC = () => (
 					Break down revenue contribution and drill into each market below.
 				</PieChartDescription>
 			</PieChartHeader>
-			<PieChartChart height={300} ariaLabel="Revenue share by region" />
+			<PieChartGraph height={300} ariaLabel="Revenue share by region" />
 			<PieChartDataTable className="bg-card-muted/20">
 				<PieChartDataTableContent
 					totalLabel="Total revenue"

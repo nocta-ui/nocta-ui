@@ -532,7 +532,7 @@ export interface PieChartTooltipInfo<TData extends ChartDatum = ChartDatum> {
 	percentage: number;
 }
 
-export interface PieChartChartProps<TData extends ChartDatum = ChartDatum>
+export interface PieChartGraphProps<TData extends ChartDatum = ChartDatum>
 	extends React.HTMLAttributes<HTMLDivElement> {
 	height?: number | string;
 	innerRadius?: number | string;
@@ -570,10 +570,10 @@ function PieChartState({
 	);
 }
 
-const PieChartChartBase = React.forwardRef<
+const PieChartGraphBase = React.forwardRef<
 	HTMLDivElement,
-	PieChartChartProps<ChartDatum>
->(function PieChartChartInner(
+	PieChartGraphProps<ChartDatum>
+>(function PieChartGraphInner(
 	{
 		height,
 		innerRadius,
@@ -593,7 +593,7 @@ const PieChartChartBase = React.forwardRef<
 		className,
 		style,
 		...rest
-	}: PieChartChartProps<ChartDatum>,
+	}: PieChartGraphProps<ChartDatum>,
 	ref,
 ) {
 	const {
@@ -1179,13 +1179,13 @@ const PieChartChartBase = React.forwardRef<
 		</div>
 	);
 });
-PieChartChartBase.displayName = 'PieChartChart';
+PieChartGraphBase.displayName = 'PieChartGraph';
 
-type PieChartChartComponent = <TData extends ChartDatum = ChartDatum>(
-	props: PieChartChartProps<TData> & { ref?: React.Ref<HTMLDivElement> },
+type PieChartGraphComponent = <TData extends ChartDatum = ChartDatum>(
+	props: PieChartGraphProps<TData> & { ref?: React.Ref<HTMLDivElement> },
 ) => React.ReactElement | null;
 
-export const PieChartChart = PieChartChartBase as PieChartChartComponent;
+export const PieChartGraph = PieChartGraphBase as PieChartGraphComponent;
 
 export interface PieChartLegendProps
 	extends React.HTMLAttributes<HTMLDivElement> {}

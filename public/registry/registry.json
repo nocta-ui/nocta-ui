@@ -152,7 +152,7 @@
 				"PieChartTitle",
 				"PieChartDescription",
 				"PieChartActions",
-				"PieChartChart",
+				"PieChartGraph",
 				"PieChartLegend",
 				"PieChartDataTable",
 				"PieChartDataTableContent"
@@ -180,7 +180,7 @@
 				"PieChartTitle": ["children", "className", "as"],
 				"PieChartDescription": ["children", "className"],
 				"PieChartActions": ["children", "className"],
-				"PieChartChart": [
+				"PieChartGraph": [
 					"height",
 					"innerRadius",
 					"outerRadius",
