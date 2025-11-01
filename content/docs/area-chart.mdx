@@ -7,7 +7,6 @@ import {
   AreaChart,
   AreaChartBasicDemo,
   AreaChartComparisonDemo,
-  AreaChartMetricDemo,
   AreaChartWithActionsDemo,
   AreaChartWithDataTableDemo,
 } from '@/app/components/ui/area-chart';
@@ -53,19 +52,20 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Monthly Recurring Revenue"
     const revenueTrend = [
-      { month: 'Jan', revenue: 18600 },
-      { month: 'Feb', revenue: 21450 },
-      { month: 'Mar', revenue: 23200 },
-      { month: 'Apr', revenue: 24890 },
-      { month: 'May', revenue: 26650 },
-      { month: 'Jun', revenue: 27980 },
-      { month: 'Jul', revenue: 29540 },
-      { month: 'Aug', revenue: 31010 },
-      { month: 'Sep', revenue: 32900 },
-      { month: 'Oct', revenue: 34280 },
-      { month: 'Nov', revenue: 36150 },
-      { month: 'Dec', revenue: 38240 },
+      { month: 'Jan', revenue: 25000 },
+      { month: 'Feb', revenue: 29325 },
+      { month: 'Mar', revenue: 32277 },
+      { month: 'Apr', revenue: 32918 },
+      { month: 'May', revenue: 31045 },
+      { month: 'Jun', revenue: 27253 },
+      { month: 'Jul', revenue: 22746 },
+      { month: 'Aug', revenue: 18954 },
+      { month: 'Sep', revenue: 17081 },
+      { month: 'Oct', revenue: 17722 },
+      { month: 'Nov', revenue: 20674 },
+      { month: 'Dec', revenue: 24999 },
     ];
+
 
     <AreaChart data={revenueTrend} xKey="month" yKey="revenue" sortPoints={false}>
       <AreaChartHeader>
@@ -91,13 +91,13 @@ import {
     ```tsx lineNumbers title="Session Duration"
     // Requires Button from '@/app/components/ui/button'
     const sessionDuration = [
-      { day: 'Mon', minutes: 8.2 },
-      { day: 'Tue', minutes: 8.6 },
-      { day: 'Wed', minutes: 9.1 },
-      { day: 'Thu', minutes: 9.4 },
-      { day: 'Fri', minutes: 9.8 },
-      { day: 'Sat', minutes: 10.3 },
-      { day: 'Sun', minutes: 10.9 },
+      { day: 'Mon', minutes: 9.8 },
+      { day: 'Tue', minutes: 10.2 },
+      { day: 'Wed', minutes: 9.3 },
+      { day: 'Thu', minutes: 8.2 },
+      { day: 'Fri', minutes: 7.8 },
+      { day: 'Sat', minutes: 8.7 },
+      { day: 'Sun', minutes: 9.8 },
     ];
 
     <AreaChart data={sessionDuration} xKey="day" yKey="minutes" seriesLabel="Session duration">
@@ -137,12 +137,18 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Signup Channels"
     const acquisitionChannels = [
-      { month: 'Jan', organic: 420, paid: 380 },
-      { month: 'Feb', organic: 458, paid: 402 },
-      { month: 'Mar', organic: 492, paid: 438 },
-      { month: 'Apr', organic: 528, paid: 452 },
-      { month: 'May', organic: 566, paid: 471 },
-      { month: 'Jun', organic: 611, paid: 489 },
+      { month: 'Jan', organic: 600, paid: 300 },
+      { month: 'Feb', organic: 708, paid: 354 },
+      { month: 'Mar', organic: 781, paid: 390 },
+      { month: 'Apr', organic: 797, paid: 398 },
+      { month: 'May', organic: 751, paid: 375 },
+      { month: 'Jun', organic: 656, paid: 328 },
+      { month: 'Jul', organic: 543, paid: 271 },
+      { month: 'Aug', organic: 448, paid: 224 },
+      { month: 'Sep', organic: 402, paid: 201 },
+      { month: 'Oct', organic: 418, paid: 209 },
+      { month: 'Nov', organic: 491, paid: 245 },
+      { month: 'Dec', organic: 600, paid: 300 },
     ];
 
     <AreaChart
@@ -176,14 +182,14 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Support Volume"
     const supportTickets = [
-      { week: 'Week 1', tickets: 84 },
-      { week: 'Week 2', tickets: 73 },
-      { week: 'Week 3', tickets: 92 },
-      { week: 'Week 4', tickets: 110 },
-      { week: 'Week 5', tickets: 128 },
-      { week: 'Week 6', tickets: 101 },
-      { week: 'Week 7', tickets: 96 },
-      { week: 'Week 8', tickets: 88 },
+      { week: 'Week 1', tickets: 75 },
+      { week: 'Week 2', tickets: 84 },
+      { week: 'Week 3', tickets: 106 },
+      { week: 'Week 4', tickets: 123 },
+      { week: 'Week 5', tickets: 123 },
+      { week: 'Week 6', tickets: 106 },
+      { week: 'Week 7', tickets: 84 },
+      { week: 'Week 8', tickets: 75 },
     ];
 
     <AreaChart data={supportTickets} xKey="week" yKey="tickets" sortPoints={false}>

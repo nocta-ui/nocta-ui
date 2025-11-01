@@ -15,68 +15,55 @@ import {
 } from './area-chart';
 
 const revenueTrend = [
-	{ month: 'Jan', revenue: 18600 },
-	{ month: 'Feb', revenue: 21450 },
-	{ month: 'Mar', revenue: 23200 },
-	{ month: 'Apr', revenue: 24890 },
-	{ month: 'May', revenue: 26650 },
-	{ month: 'Jun', revenue: 27980 },
-	{ month: 'Jul', revenue: 29540 },
-	{ month: 'Aug', revenue: 31010 },
-	{ month: 'Sep', revenue: 32900 },
-	{ month: 'Oct', revenue: 34280 },
-	{ month: 'Nov', revenue: 36150 },
-	{ month: 'Dec', revenue: 38240 },
-];
-
-const activeUsers = [
-	{ label: 'Week 1', users: 1280 },
-	{ label: 'Week 2', users: 1540 },
-	{ label: 'Week 3', users: 1685 },
-	{ label: 'Week 4', users: 2104 },
-	{ label: 'Week 5', users: 1970 },
-	{ label: 'Week 6', users: 2214 },
-	{ label: 'Week 7', users: 2360 },
-	{ label: 'Week 8', users: 2555 },
+  { month: 'Jan', revenue: 25000 },
+  { month: 'Feb', revenue: 29325 },
+  { month: 'Mar', revenue: 32277 },
+  { month: 'Apr', revenue: 32918 },
+  { month: 'May', revenue: 31045 },
+  { month: 'Jun', revenue: 27253 },
+  { month: 'Jul', revenue: 22746 },
+  { month: 'Aug', revenue: 18954 },
+  { month: 'Sep', revenue: 17081 },
+  { month: 'Oct', revenue: 17722 },
+  { month: 'Nov', revenue: 20674 },
+  { month: 'Dec', revenue: 24999 },
 ];
 
 const sessionDuration = [
-	{ day: 'Mon', minutes: 8.2 },
-	{ day: 'Tue', minutes: 8.6 },
-	{ day: 'Wed', minutes: 9.1 },
-	{ day: 'Thu', minutes: 9.4 },
-	{ day: 'Fri', minutes: 9.8 },
-	{ day: 'Sat', minutes: 10.3 },
-	{ day: 'Sun', minutes: 10.9 },
+  { day: 'Mon', minutes: 9.8 },
+  { day: 'Tue', minutes: 10.2 },
+  { day: 'Wed', minutes: 9.3 },
+  { day: 'Thu', minutes: 8.2 },
+  { day: 'Fri', minutes: 7.8 },
+  { day: 'Sat', minutes: 8.7 },
+  { day: 'Sun', minutes: 9.8 },
 ];
 
 const supportTickets = [
-	{ week: 'Week 1', tickets: 84 },
-	{ week: 'Week 2', tickets: 73 },
-	{ week: 'Week 3', tickets: 92 },
-	{ week: 'Week 4', tickets: 110 },
-	{ week: 'Week 5', tickets: 128 },
-	{ week: 'Week 6', tickets: 101 },
-	{ week: 'Week 7', tickets: 96 },
-	{ week: 'Week 8', tickets: 88 },
+  { week: 'Week 1', tickets: 75 },
+  { week: 'Week 2', tickets: 84 },
+  { week: 'Week 3', tickets: 106 },
+  { week: 'Week 4', tickets: 123 },
+  { week: 'Week 5', tickets: 123 },
+  { week: 'Week 6', tickets: 106 },
+  { week: 'Week 7', tickets: 84 },
+  { week: 'Week 8', tickets: 75 },
 ];
 
 const acquisitionChannels = [
-	{ month: 'Jan', organic: 480, paid: 260 },
-	{ month: 'Feb', organic: 540, paid: 310 },
-	{ month: 'Mar', organic: 610, paid: 350 },
-	{ month: 'Apr', organic: 670, paid: 400 },
-	{ month: 'May', organic: 730, paid: 460 },
-	{ month: 'Jun', organic: 690, paid: 500 },
-	{ month: 'Jul', organic: 640, paid: 470 },
-	{ month: 'Aug', organic: 700, paid: 520 },
-	{ month: 'Sep', organic: 770, paid: 560 },
-	{ month: 'Oct', organic: 830, paid: 610 },
-	{ month: 'Nov', organic: 790, paid: 580 },
-	{ month: 'Dec', organic: 850, paid: 630 },
+  { month: 'Jan', organic: 600, paid: 300 },
+  { month: 'Feb', organic: 708, paid: 354 },
+  { month: 'Mar', organic: 781, paid: 390 },
+  { month: 'Apr', organic: 797, paid: 398 },
+  { month: 'May', organic: 751, paid: 375 },
+  { month: 'Jun', organic: 656, paid: 328 },
+  { month: 'Jul', organic: 543, paid: 271 },
+  { month: 'Aug', organic: 448, paid: 224 },
+  { month: 'Sep', organic: 402, paid: 201 },
+  { month: 'Oct', organic: 418, paid: 209 },
+  { month: 'Nov', organic: 491, paid: 245 },
+  { month: 'Dec', organic: 600, paid: 300 },
 ];
-
-
 
 export const AreaChartBasicDemo: React.FC = () => (
 	<div className="my-6">
@@ -116,30 +103,6 @@ export const AreaChartComparisonDemo: React.FC = () => (
 				</AreaChartDescription>
 			</AreaChartHeader>
 			<AreaChartGraph ariaLabel="Organic and paid signups over time" />
-			<AreaChartLegend />
-		</AreaChart>
-	</div>
-);
-
-export const AreaChartMetricDemo: React.FC = () => (
-	<div className="my-6">
-		<AreaChart className='md:w-lg' data={activeUsers} xKey="label" yKey="users">
-			<AreaChartHeader>
-				<AreaChartTitle>Active Accounts</AreaChartTitle>
-				<AreaChartDescription>
-					Compare account engagement week over week.
-				</AreaChartDescription>
-			</AreaChartHeader>
-			<AreaChartGraph curve="natural" ariaLabel="Active accounts per week">
-				<div className="text-center">
-					<p className="text-xs uppercase tracking-wide text-foreground/45">
-						Last 8 weeks
-					</p>
-					<p className="text-2xl font-semibold text-foreground">
-						{activeUsers.reduce((sum, item) => sum + item.users, 0).toLocaleString()}
-					</p>
-				</div>
-			</AreaChartGraph>
 			<AreaChartLegend />
 		</AreaChart>
 	</div>
