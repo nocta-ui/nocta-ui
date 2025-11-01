@@ -1772,7 +1772,7 @@ export const AreaChartGraphBase = React.forwardRef<
 									>
 										<div className="flex items-center gap-2">
 											<span
-												className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
+												className="inline-flex h-2.5 w-1 shrink-0 rounded-[1px]"
 												style={{ backgroundColor: entry.seriesColor }}
 											/>
 											<span className={cn('text-xs text-foreground/70')}>
@@ -2093,7 +2093,7 @@ export const AreaChartLegend = React.forwardRef<
 			{series.map((seriesItem) => (
 				<div key={seriesItem.id} className="flex items-center gap-2">
 					<span
-						className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
+						className="inline-flex h-2.5 w-1 shrink-0 rounded-[1px]"
 						style={{ backgroundColor: seriesItem.color }}
 					/>
 					<span className="text-xs font-medium text-foreground">
