@@ -749,12 +749,26 @@ const PieChartGraphBase = React.forwardRef<
 		setActiveSliceId(null);
 	}, [cancelScheduledTooltipHide, setActiveSliceId]);
 
-	const scheduleTooltipHide = React.useCallback(() => {
-		cancelScheduledTooltipHide();
-		hideTooltipTimeoutRef.current = window.setTimeout(() => {
-			clearTooltip();
-		}, 140);
-	}, [cancelScheduledTooltipHide, clearTooltip]);
+	const scheduleTooltipHide = React.useCallback(
+		(delay = 140) => {
+			cancelScheduledTooltipHide();
+			hideTooltipTimeoutRef.current = window.setTimeout(() => {
+				clearTooltip();
+			}, delay);
+		},
+		[cancelScheduledTooltipHide, clearTooltip],
+	);
+
+	const handleSvgPointerLeave = React.useCallback(
+		(event: React.PointerEvent<SVGSVGElement>) => {
+			const delay =
+				event.pointerType === 'touch' || event.pointerType === 'pen'
+					? 320
+					: 140;
+			scheduleTooltipHide(delay);
+		},
+		[scheduleTooltipHide],
+	);
 
 	const renderTooltip =
 		showTooltip && tooltip ? tooltipRenderer(tooltip.info) : null;
@@ -941,10 +955,7 @@ const PieChartGraphBase = React.forwardRef<
 			if (!position) return;
 
 			setTooltip((previous) => {
-				const shouldAnimateIn =
-					!previous ||
-					previous.sliceId !== arcDatum.data.id ||
-					!previous.visible;
+				const shouldAnimateIn = !previous || !previous.visible;
 
 				const next = {
 					info: {
@@ -1057,7 +1068,7 @@ const PieChartGraphBase = React.forwardRef<
 				aria-label={svgTitle}
 				preserveAspectRatio="xMidYMid meet"
 				shapeRendering="geometricPrecision"
-				onPointerLeave={clearTooltip}
+				onPointerLeave={handleSvgPointerLeave}
 				{...(trimmedAriaLabel
 					? { role: 'img', 'aria-labelledby': svgTitleId }
 					: { role: 'img', 'aria-hidden': true })}
@@ -1115,8 +1126,12 @@ const PieChartGraphBase = React.forwardRef<
 								onPointerEnter={(event) => {
 									updateTooltipForSlice(arcDatum, event.currentTarget);
 								}}
-								onPointerLeave={() => {
-									scheduleTooltipHide();
+								onPointerLeave={(event) => {
+									const delay =
+										event.pointerType === 'touch' || event.pointerType === 'pen'
+											? 320
+											: 140;
+									scheduleTooltipHide(delay);
 								}}
 								onClick={(event) => {
 									updateTooltipForSlice(arcDatum, event.currentTarget);
@@ -1124,7 +1139,19 @@ const PieChartGraphBase = React.forwardRef<
 								onFocus={(event) => {
 									updateTooltipForSlice(arcDatum, event.currentTarget);
 								}}
-								onBlur={clearTooltip}
+								onBlur={(event) => {
+									const nextFocusTarget =
+										event.relatedTarget instanceof Node
+											? event.relatedTarget
+											: null;
+									if (
+										nextFocusTarget &&
+										svgRef.current?.contains(nextFocusTarget)
+									) {
+										return;
+									}
+									clearTooltip();
+								}}
 								onKeyDown={(event) => {
 									if (event.key === 'Enter' || event.key === ' ') {
 										event.preventDefault();
