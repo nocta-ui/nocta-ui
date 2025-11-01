@@ -398,8 +398,8 @@ export const Calendar: React.FC<CalendarProps> = ({
 					store={composite}
 					role="grid"
 					{...(ariaLabel
-						? { ['aria-label']: ariaLabel }
-						: { ['aria-labelledby']: headingId })}
+						? { 'aria-label': ariaLabel }
+						: { 'aria-labelledby': headingId })}
 					className="space-y-1"
 				>
 					{Array.from(
