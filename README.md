@@ -3,147 +3,75 @@
 </p>
 
 <p align="center">
-  <a href="https://nocta-ui.com">
-    <img src="https://img.shields.io/badge/docs-available-lightgray?style=flat-square" alt="Docs" />
-  </a>
-  <a href="https://github.com/nocta-ui/nocta-ui/issues">
-    <img src="https://img.shields.io/badge/issues-tracker-gray?style=flat-square" alt="Issues" />
-  </a>
-  <img src="https://img.shields.io/badge/react-18+-lightgray?style=flat-square" alt="React" />
-  <img src="https://img.shields.io/badge/tailwind-v4-lightgray?style=flat-square" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/license-MIT-gray?style=flat-square" alt="License" />
+  <a href="https://nocta-ui.com">Documentation</a> ·
+  <a href="https://github.com/nocta-ui/nocta-ui/issues">Issues</a> ·
+  MIT License
 </p>
 
+# Nocta UI
+Nocta UI is a React component library delivered as source files you control. The CLI keeps installs lightweight and version-free while interactive components build on `@ariakit/react` for accessible behavior out of the box.
 
-<h3 align="center">
-  Nocta UI is a React component library built with a copy-paste philosophy.
-</h3>
-
-<p align="center">
-  Instead of shipping as a heavy package, it provides source code you add directly to your project.<br/>
-  This gives you <b>full control</b>, easy customization, and <b>no versioning headaches</b>.
-</p>
-
----
-
-## Philosophy & Architecture
-
-Nocta UI merges its design philosophy with a lightweight and flexible architecture. It is built on four principles that shape every decision:
-
-### **Minimal & Performant**
-
-Clean components with no unnecessary complexity. Instead of being shipped as a package, Nocta UI uses a **copy-paste approach** via CLI tooling:
-
-```bash
-# Initialize your project with required dependencies
-npx nocta-ui init
-
-# Add components to your project
-npx nocta-ui add button card badge
-
-# Components are now in your /components/ui directory
-```
-
-* **Full control** – you own the code and can modify it however you want
-* **No version conflicts** – components are copied, not installed
-* **Easy customization** – adjust styling, behavior, or structure
-* **React focused** – optimized for Next.js and Vite projects
-
-### **Accessible by Default**
-
-Accessibility is not an afterthought. Interactive components are built on top of `@ariakit/react`, leveraging proven accessibility primitives:
-
-* Focus management
-* Keyboard navigation
-* WAI-ARIA patterns
-
-This ensures a great a11y experience out of the box.
-
-### **Developer First**
-
-Nocta UI is designed for developers:
-
-* Full TypeScript support with type safety and IntelliSense
-* Intuitive APIs that “just work”
-* CLI to quickly scaffold components into your project
-* Clear and comprehensive documentation
-
-### **Why Copy-Paste?**
-
-This architectural choice is what makes Nocta UI unique:
-
-* **You own the code** – no vendor lock-in
-* **Zero versioning headaches** – updates are on your terms
-* **Customizable** – change anything from styles to logic
-* **Transparent** – components live in your codebase
-
-
-## Quick Start
-
-1. **Initialize your project:**
-
-```bash
-npx nocta-ui init
-```
-
-2. **Add your first components:**
-
-```bash
-npx nocta-ui add button card
-```
-
-3. **Start building:**
-
-```tsx
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-
-function App() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Welcome to Nocta UI</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Button variant="primary">Get Started</Button>
-      </CardContent>
-    </Card>
-  )
-}
-```
+## Supported Stacks
+- Next.js (App and Pages Router)
+- Vite + React
+- React Router 7
+- TanStack Start
+- Custom React workspaces (library or shared UI packages)
 
 ## Requirements
+- Node.js 18+
+- React 18+
+- Tailwind CSS v4 present in the workspace
+- TypeScript
 
-* **React 18+**
-* **TypeScript** (recommended)
-* **Tailwind CSS v4**
+## Quick Start
+**Discover components**
+```bash
+npx @nocta-ui/cli list
+```
 
-The CLI automatically detects your framework and configures everything for you!
+**Single workspace (Next.js, Vite, and other supported frameworks)**
+```bash
+npx @nocta-ui/cli init
+npx @nocta-ui/cli add button card badge
+```
+`init` analyses the current project, writes `nocta.config.json`, updates `nocta.workspace.json`, and drops helpers (`lib/utils.ts`, `components/ui/icons.ts`) when the workspace owns them. `add` copies registry components into the configured `aliases.components` path and installs any missing dependencies.
 
-## Key Features
+**Monorepo linking (shared UI + application)**
+```bash
+cd packages/ui
+npx @nocta-ui/cli init                # choose Shared UI (writes config + helpers)
 
-* **TypeScript First** – full type safety and IntelliSense support
-* **Dark Mode Native** – built-in dark mode support
-* **Composable Design** – build complex interfaces by composing simple components
-* **Performance Optimized** – minimal re-renders and efficient animations
-* **Accessible by Default** – WAI-ARIA compliant components
-* **Customizable** – you own the source code
-* **Modern Styling** – powered by Tailwind CSS design tokens
+cd ../apps/web
+npx @nocta-ui/cli init                # choose Application, link "ui"
+npx @nocta-ui/cli add button card     # component source flows into packages/ui
+```
+- `init` registers both workspaces inside `nocta.workspace.json`. The shared package keeps the helpers and Tailwind tokens; the application records the link.
+- `add` runs from the application but writes React source into `packages/ui/src/...`, updates export barrels, and installs dependencies in the owning workspace. Application-side stubs are generated only when required.
+- Apps import from the shared package output (`import { Button } from "ui"`). Rebuild the shared package after each add (`bun run --filter ui build` or `bun run --filter ui dev`) so consumers read fresh artefacts.
+
+## `init` Command Reference
+- Detects the repo root, framework, package manager, and Tailwind v4.
+- Builds a tailored `nocta.config.json` with component and utility aliases.
+- Writes shared helpers (`lib/utils.ts`, `components/ui/icons.ts`) when needed.
+- Injects Nocta design tokens into your Tailwind entry file for managed workspaces.
+- Updates or creates `nocta.workspace.json` so other workspaces can discover this setup.
+
+### Flags
+| Flag | Description |
+| --- | --- |
+| `--dry-run` | Preview every action without touching the filesystem. |
+| `--help` | Show command-specific help. |
+| `--registry-url` | Point to a custom component registry (or use `NOCTA_REGISTRY_URL`). |
+
+## After `init`
+- Add components with `npx @nocta-ui/cli add <component...>`.
+- Browse the component registry at `https://nocta-ui.com` or via the CLI prompts.
+- Keep your working tree clean; the CLI rolls back if something fails after file writes.
 
 ## Contributing
-
-We welcome contributions! Whether it's bug reports, feature requests, or code contributions, please feel free to open an issue or submit a pull request.
+- We welcome contributions! Whether it's bug reports, feature requests, or code contributions, please feel free to open an issue or submit a pull request.
+- Read `CONTRIBUTING.md` for detailed guidelines.
 
 ## License
-
-MIT License - see [LICENSE](LICENSE) for details.
-
----
-
-<div align="center">
-  <p>
-    <a href="https://nocta-ui.com">Documentation</a> •
-    <a href="https://github.com/nocta-ui/nocta-ui/issues">Report Bug</a> •
-    <a href="https://github.com/nocta-ui/nocta-ui/issues">Request Feature</a>
-  </p>
-</div>
+- MIT License - see [LICENSE](LICENSE) for details.
