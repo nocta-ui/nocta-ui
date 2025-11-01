@@ -679,7 +679,7 @@ const PieChartGraphBase = React.forwardRef<
 
 	const arcs = React.useMemo(() => {
 		const generator = pie<PieChartSlice>()
-			.value((slice) => slice.value)
+			.value((slice: PieChartSlice) => slice.value)
 			.sort(null)
 			.padAngle(padAngleRad);
 
@@ -1214,8 +1214,7 @@ type PieChartGraphComponent = <TData extends ChartDatum = ChartDatum>(
 
 export const PieChartGraph = PieChartGraphBase as PieChartGraphComponent;
 
-export interface PieChartLegendProps
-	extends React.HTMLAttributes<HTMLDivElement> {}
+export type PieChartLegendProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const PieChartLegend = React.forwardRef<
 	HTMLDivElement,
