@@ -1275,13 +1275,13 @@ export const AreaChartGraphBase = React.forwardRef<
 
 			if (seriesItem.points.length > 1) {
 				const areaGenerator = area<AreaChartPoint>()
-					.x((point) => chartStartX + scaleX(point.x))
+					.x((point: AreaChartPoint) => chartStartX + scaleX(point.x))
 					.y0(padding.top + clamp(zeroYCoordinate, 0, chartHeight))
-					.y1((point) => padding.top + scaleY(point.y))
+					.y1((point: AreaChartPoint) => padding.top + scaleY(point.y))
 					.curve(curveFactory);
 				const lineGenerator = line<AreaChartPoint>()
-					.x((point) => chartStartX + scaleX(point.x))
-					.y((point) => padding.top + scaleY(point.y))
+					.x((point: AreaChartPoint) => chartStartX + scaleX(point.x))
+					.y((point: AreaChartPoint) => padding.top + scaleY(point.y))
 					.curve(curveFactory);
 				areaPath = areaGenerator(seriesItem.points) ?? undefined;
 				linePath = lineGenerator(seriesItem.points) ?? undefined;
@@ -2203,7 +2203,7 @@ export function AreaChartDataTableContent<
 				? 'text-error/90'
 				: 'text-foreground/45';
 
-	const rows = points.map((point, index) => {
+	const rows = points.map((point: AreaChartPoint<TData>, index) => {
 		const previous = index > 0 ? (points[index - 1] ?? null) : null;
 		const resolvedValue = valueFormatter
 			? valueFormatter(point, { total, domain: yDomain })
