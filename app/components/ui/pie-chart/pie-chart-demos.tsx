@@ -128,7 +128,7 @@ export const PieChartWithDataTableDemo: React.FC = () => (
 				</PieChartDescription>
 			</PieChartHeader>
 			<PieChartGraph height={300} ariaLabel="Revenue share by region" />
-			<PieChartDataTable className="bg-card-muted/20">
+			<PieChartDataTable>
 				<PieChartDataTableContent
 					totalLabel="Total revenue"
 					totalFormatter={(total) =>

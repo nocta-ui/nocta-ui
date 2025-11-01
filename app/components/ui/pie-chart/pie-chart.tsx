@@ -261,7 +261,7 @@ function PieChartRootInner<TData extends ChartDatum>(
 			<div
 				ref={ref}
 				className={cn(
-					'not-prose relative flex flex-col rounded-lg border border-border bg-card shadow-md',
+					'not-prose relative flex flex-col rounded-lg border border-border bg-card shadow-md overflow-hidden',
 					className,
 				)}
 				{...rest}
@@ -1237,7 +1237,7 @@ export const PieChartDataTable = React.forwardRef<
 		<div
 			ref={ref}
 			className={cn(
-				'not-prose space-y-2 border-t border-border/60 p-4 text-xs text-foreground/70',
+				'not-prose bg-card-muted/30 space-y-2 border-t border-border/60 p-4 text-xs text-foreground/70',
 				className,
 			)}
 			{...props}
