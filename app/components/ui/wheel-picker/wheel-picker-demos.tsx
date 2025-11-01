@@ -39,7 +39,7 @@ export const SizesWheelPickerDemo: React.FC = () => {
 	return (
 		<div className="my-6 grid grid-cols-3 gap-6 max-sm:grid-cols-1">
 			<div>
-				<p className="mb-2 text-sm font-medium text-foreground/75">Small</p>
+				<p className="mb-2 text-sm font-medium text-foreground/70">Small</p>
 				<WheelPicker
 					size="sm"
 					defaultValue={numbers[5]}
@@ -54,7 +54,7 @@ export const SizesWheelPickerDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<p className="mb-2 text-sm font-medium text-foreground/75">Medium</p>
+				<p className="mb-2 text-sm font-medium text-foreground/70">Medium</p>
 				<WheelPicker
 					size="md"
 					defaultValue={numbers[7]}
@@ -69,7 +69,7 @@ export const SizesWheelPickerDemo: React.FC = () => {
 			</div>
 
 			<div>
-				<p className="mb-2 text-sm font-medium text-foreground/75">Large</p>
+				<p className="mb-2 text-sm font-medium text-foreground/70">Large</p>
 				<WheelPicker
 					size="lg"
 					defaultValue={numbers[9]}
@@ -108,7 +108,7 @@ export const InfiniteWheelPickerDemo: React.FC = () => {
 					))}
 				</WheelPicker>
 			</div>
-			<p className="text-sm text-foreground/75">
+			<p className="text-sm text-foreground/70">
 				Selected time: {hour}:{'00'}
 			</p>
 		</div>

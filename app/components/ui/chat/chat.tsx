@@ -35,7 +35,7 @@ const messageVariants = cva(
 			variant: {
 				user: 'bg-foreground/90 text-card',
 				assistant: 'bg-card-muted text-foreground',
-				system: 'mx-auto bg-card-muted text-center text-xs text-foreground/75',
+				system: 'mx-auto bg-card-muted text-center text-xs text-foreground/70',
 			},
 		},
 		defaultVariants: {

@@ -167,7 +167,7 @@ function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
 		<button
 			type="button"
 			className={cn(
-				'inline-flex items-center justify-center text-foreground/75 rounded-md p-2 text-sm font-medium transition-colors duration-150 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium transition-colors duration-150 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
 				'hover:bg-card-muted hover:text-foreground transition-all duration-150 ease-out',
 				'[&_svg]:size-3.5 cursor-pointer',
 				!checked && '[@media(hover:hover)]:opacity-100',
