@@ -168,6 +168,17 @@ import {
 	PieChartLegend,
 	PieChartTitle,
 } from '@/app/components/ui/pie-chart';
+import {
+	AreaChart,
+	AreaChartActions,
+	AreaChartDataTable,
+	AreaChartDataTableContent,
+	AreaChartDescription,
+	AreaChartGraph,
+	AreaChartHeader,
+	AreaChartLegend,
+	AreaChartTitle,
+} from '@/app/components/ui/area-chart';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -327,6 +338,15 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		PieChartHeader,
 		PieChartLegend,
 		PieChartTitle,
+		AreaChart,
+		AreaChartActions,
+		AreaChartDataTable,
+		AreaChartDataTableContent,
+		AreaChartDescription,
+		AreaChartGraph,
+		AreaChartHeader,
+		AreaChartLegend,
+		AreaChartTitle,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

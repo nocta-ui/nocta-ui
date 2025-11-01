@@ -54,6 +54,7 @@
 		"---Communication---",
 		"chat",
 		"---Charts---",
+		"area-chart",
 		"pie-chart"
 	]
 }

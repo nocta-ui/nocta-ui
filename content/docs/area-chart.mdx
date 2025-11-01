@@ -1,0 +1,212 @@
+---
+title: Area Chart
+description: Visualise continuous trends and cumulative values with smooth area graphs.
+---
+
+import {
+  AreaChart,
+  AreaChartBasicDemo,
+  AreaChartComparisonDemo,
+  AreaChartMetricDemo,
+  AreaChartWithActionsDemo,
+  AreaChartWithDataTableDemo,
+} from '@/app/components/ui/area-chart';
+import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+<Steps>
+<Step>
+Install the Area Chart component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx nocta-ui add area-chart
+```
+</Step>
+<Step>
+Import the component:
+
+```tsx lineNumbers title="Import"
+import {
+  AreaChart,
+  AreaChartHeader,
+  AreaChartTitle,
+  AreaChartDescription,
+  AreaChartActions,
+  AreaChartGraph,
+  AreaChartLegend,
+  AreaChartDataTable,
+  AreaChartDataTableContent,
+} from '@/components/ui/area-chart';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Area Chart
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <AreaChartBasicDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Monthly Recurring Revenue"
+    const revenueTrend = [
+      { month: 'Jan', revenue: 18600 },
+      { month: 'Feb', revenue: 21450 },
+      { month: 'Mar', revenue: 23200 },
+      { month: 'Apr', revenue: 24890 },
+      { month: 'May', revenue: 26650 },
+      { month: 'Jun', revenue: 27980 },
+      { month: 'Jul', revenue: 29540 },
+      { month: 'Aug', revenue: 31010 },
+      { month: 'Sep', revenue: 32900 },
+      { month: 'Oct', revenue: 34280 },
+      { month: 'Nov', revenue: 36150 },
+      { month: 'Dec', revenue: 38240 },
+    ];
+
+    <AreaChart data={revenueTrend} xKey="month" yKey="revenue" sortPoints={false}>
+      <AreaChartHeader>
+        <AreaChartTitle>Monthly Recurring Revenue</AreaChartTitle>
+        <AreaChartDescription>
+          Track consistent growth across the current fiscal year.
+        </AreaChartDescription>
+      </AreaChartHeader>
+      <AreaChartGraph height={320} ariaLabel="Monthly recurring revenue trend" />
+      <AreaChartLegend />
+    </AreaChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Header with actions
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <AreaChartWithActionsDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Session Duration"
+    // Requires Button from '@/app/components/ui/button'
+    const sessionDuration = [
+      { day: 'Mon', minutes: 8.2 },
+      { day: 'Tue', minutes: 8.6 },
+      { day: 'Wed', minutes: 9.1 },
+      { day: 'Thu', minutes: 9.4 },
+      { day: 'Fri', minutes: 9.8 },
+      { day: 'Sat', minutes: 10.3 },
+      { day: 'Sun', minutes: 10.9 },
+    ];
+
+    <AreaChart data={sessionDuration} xKey="day" yKey="minutes" seriesLabel="Session duration">
+      <AreaChartHeader
+        contentClassName="sm:max-w-xs"
+        titleClassName="text-lg font-semibold"
+        actionsClassName="flex-wrap gap-2"
+      >
+        <AreaChartTitle>Average Session Length</AreaChartTitle>
+        <AreaChartDescription>
+          Hover to compare behaviour across the week.
+        </AreaChartDescription>
+        <AreaChartActions>
+          <Button size="sm" variant="ghost">
+            Export CSV
+          </Button>
+          <Button size="sm">View Cohort</Button>
+        </AreaChartActions>
+      </AreaChartHeader>
+      <AreaChartGraph
+        height={300}
+        curve="monotone"
+        ariaLabel="Average session duration"
+      />
+      <AreaChartLegend />
+    </AreaChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Compare multiple series
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <AreaChartComparisonDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Signup Channels"
+    const acquisitionChannels = [
+      { month: 'Jan', organic: 420, paid: 380 },
+      { month: 'Feb', organic: 458, paid: 402 },
+      { month: 'Mar', organic: 492, paid: 438 },
+      { month: 'Apr', organic: 528, paid: 452 },
+      { month: 'May', organic: 566, paid: 471 },
+      { month: 'Jun', organic: 611, paid: 489 },
+    ];
+
+    <AreaChart
+      data={acquisitionChannels}
+      xKey="month"
+      yKey="organic"
+      seriesLabel="Organic signups"
+      additionalSeries={[
+        { id: 'paid-signups', yKey: 'paid', seriesLabel: 'Paid signups' },
+      ]}
+    >
+      <AreaChartHeader>
+        <AreaChartTitle>Signup Channels</AreaChartTitle>
+        <AreaChartDescription>
+          Track organic and paid conversions side by side.
+        </AreaChartDescription>
+      </AreaChartHeader>
+      <AreaChartGraph ariaLabel="Organic and paid signups over time" />
+      <AreaChartLegend />
+    </AreaChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Data table summary
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <AreaChartWithDataTableDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Support Volume"
+    const supportTickets = [
+      { week: 'Week 1', tickets: 84 },
+      { week: 'Week 2', tickets: 73 },
+      { week: 'Week 3', tickets: 92 },
+      { week: 'Week 4', tickets: 110 },
+      { week: 'Week 5', tickets: 128 },
+      { week: 'Week 6', tickets: 101 },
+      { week: 'Week 7', tickets: 96 },
+      { week: 'Week 8', tickets: 88 },
+    ];
+
+    <AreaChart data={supportTickets} xKey="week" yKey="tickets" sortPoints={false}>
+      <AreaChartHeader descriptionClassName="text-foreground/60">
+        <AreaChartTitle>Support Volume</AreaChartTitle>
+        <AreaChartDescription>
+          Monitor ticket inflow and spot surges that may require staffing changes.
+        </AreaChartDescription>
+      </AreaChartHeader>
+      <AreaChartGraph height={300} ariaLabel="Support tickets created per week" />
+      <AreaChartDataTable>
+        <AreaChartDataTableContent
+          averageLabel="Average tickets"
+          averageFormatter={(average) =>
+            Math.round(average).toLocaleString(undefined, {
+              maximumFractionDigits: 0,
+            })
+          }
+        />
+      </AreaChartDataTable>
+    </AreaChart>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference

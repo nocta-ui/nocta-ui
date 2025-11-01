@@ -1241,7 +1241,9 @@ export const PieChartLegend = React.forwardRef<
 						className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full"
 						style={{ backgroundColor: slice.color }}
 					/>
-					<span className="text-xs font-normal">{formatLabel(slice)}</span>
+					<span className="text-xs font-medium text-foreground">
+						{formatLabel(slice)}
+					</span>
 				</div>
 			))}
 		</div>
