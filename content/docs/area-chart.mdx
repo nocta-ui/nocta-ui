@@ -210,3 +210,341 @@ import {
 </DocsTabs>
 
 ## API Reference
+
+### AreaChart
+
+<TypeTable
+  type={{
+    data: {
+      description: 'Primary series consumed by the chart.',
+      type: 'TData[]',
+      default: '[]',
+    },
+    xKey: {
+      description: 'Property used for the horizontal axis.',
+      type: 'Extract<keyof TData, string>',
+      default: '—',
+    },
+    yKey: {
+      description: 'Property that contains the numeric value for each point.',
+      type: 'Extract<keyof TData, string>',
+      default: '—',
+    },
+    nameKey: {
+      description: 'Optional label key used in tooltips and legends.',
+      type: 'Extract<keyof TData, string>',
+      default: 'undefined',
+    },
+    color: {
+      description: 'Override the primary series color.',
+      type: 'string',
+      default: 'Design tokens',
+    },
+    seriesLabel: {
+      description: 'Readable label for the primary series.',
+      type: 'string',
+      default: 'Derived from nameKey or yKey',
+    },
+    sortPoints: {
+      description: 'Control point ordering or supply a custom comparator.',
+      type: 'boolean | ((a: TData, b: TData) => number)',
+      default: 'true',
+    },
+    xFormatter: {
+      description: 'Custom formatter for x-axis labels and tooltips.',
+      type: '(point: AreaChartPoint<TData>) => React.ReactNode',
+      default: 'point.label',
+    },
+    yFormatter: {
+      description: 'Formatter for values shown in tooltips and tables.',
+      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      default: 'point.value.toLocaleString()',
+    },
+    valueFormatter: {
+      description: 'Overrides the numeric formatter when rendering values.',
+      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      default: 'point.value.toLocaleString()',
+    },
+    additionalSeries: {
+      description: 'Render extra series alongside the primary dataset.',
+      type: 'AreaChartAdditionalSeries<TData>[]',
+      default: '[]',
+    },
+    children: {
+      description: 'Compose headers, graphs, legends, and data tables.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartGraph
+
+<TypeTable
+  type={{
+    height: {
+      description: 'Chart height. Accepts px values or any CSS length.',
+      type: 'number | string',
+      default: '220px',
+    },
+    curve: {
+      description: 'Spline used to draw the area and line.',
+      type:  '"linear" | "monotone" | "natural" | "step"',
+      default: '"monotone"',
+    },
+    showTooltip: {
+      description: 'Toggle interactive hover and focus tooltips.',
+      type: 'boolean',
+      default: 'true',
+    },
+    tooltipRender: {
+      description: 'Custom tooltip renderer with access to the computed series.',
+      type: '(info: AreaChartTooltipInfo<TData>) => React.ReactNode',
+      default: 'Default tooltip UI',
+    },
+    showDots: {
+      description: 'Render point markers on the line.',
+      type: 'boolean',
+      default: 'true',
+    },
+    loading: {
+      description: 'Display the loading state.',
+      type: 'boolean',
+      default: 'false',
+    },
+    loadingState: {
+      description: 'Replace the default loading placeholder.',
+      type: 'React.ReactNode',
+      default: 'Preset loading state',
+    },
+    emptyState: {
+      description: 'Custom content when there are not enough points.',
+      type: 'React.ReactNode',
+      default: 'Preset empty state',
+    },
+    error: {
+      description: 'Custom error presentation.',
+      type: 'React.ReactNode',
+      default: 'Preset error state',
+    },
+    ariaLabel: {
+      description: 'Accessible label announced by screen readers.',
+      type: 'string',
+      default: '"Area chart visualization"',
+    },
+    showGrid: {
+      description: 'Draw horizontal grid lines.',
+      type: 'boolean',
+      default: 'true',
+    },
+    showXAxisValues: {
+      description: 'Render x-axis tick labels.',
+      type: 'boolean',
+      default: 'true',
+    },
+    showYAxisValues: {
+      description: 'Render y-axis tick labels.',
+      type: 'boolean',
+      default: 'true',
+    },
+    xTickCount: {
+      description: 'Target number of ticks on the x-axis.',
+      type: 'number',
+      default: '4',
+    },
+    yTickCount: {
+      description: 'Target number of ticks on the y-axis.',
+      type: 'number',
+      default: '5',
+    },
+    children: {
+      description: 'Optional elements layered on top of the SVG.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartHeader
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Header content. Typically `AreaChartTitle`, `AreaChartDescription`, and `AreaChartActions`.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes for the header wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    contentClassName: {
+      description: 'Classes merged into the primary content column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    titleClassName: {
+      description: 'Classes merged into any direct `AreaChartTitle` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+    descriptionClassName: {
+      description: 'Classes merged into any direct `AreaChartDescription` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+    actionsClassName: {
+      description: 'Classes merged into any direct `AreaChartActions` children.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartTitle
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Title content.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the default styles.',
+      type: 'string',
+      default: 'undefined',
+    },
+    as: {
+      description: 'Element or component used to render the title.',
+      type: 'React.ElementType',
+      default: '"h3"',
+    },
+  }}
+/>
+
+### AreaChartDescription
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Supporting copy below the title.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the default styles.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartActions
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Action elements such as buttons or links.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the action container.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartLegend
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Style override applied to the legend wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartDataTable
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Custom data breakdown that appears below the chart.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes merged with the data table wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### AreaChartDataTableContent
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional classes merged with the content wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    rowClassName: {
+      description: 'Classes applied to each data row, including the summary row.',
+      type: 'string',
+      default: 'undefined',
+    },
+    labelClassName: {
+      description: 'Classes merged into the label column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    valueClassName: {
+      description: 'Classes merged into the value column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    deltaClassName: {
+      description: 'Classes merged into the delta column.',
+      type: 'string',
+      default: 'undefined',
+    },
+    showDelta: {
+      description: 'Toggle display of the change column.',
+      type: 'boolean',
+      default: 'true',
+    },
+    deltaFormatter: {
+      description: 'Custom formatter for the change column. Receives the current and previous points.',
+      type: '(current: AreaChartPoint<TData>, previous: AreaChartPoint<TData> | null) => React.ReactNode',
+      default: 'Percentage change with +/− prefix',
+    },
+    valueFormatter: {
+      description: 'Override how each value cell is rendered.',
+      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      default: 'Chart value formatter',
+    },
+    showTotalRow: {
+      description: 'Control rendering of the summary row.',
+      type: 'boolean',
+      default: 'true',
+    },
+    averageLabel: {
+      description: 'Label used in the summary row.',
+      type: 'React.ReactNode',
+      default: '"Average"',
+    },
+    averageFormatter: {
+      description: 'Format the summary value. Receives the arithmetic mean.',
+      type: '(average: number) => React.ReactNode',
+      default: 'average.toLocaleString()',
+    },
+  }}
+/>
