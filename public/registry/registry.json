@@ -129,6 +129,91 @@
 			"variants": ["default", "secondary", "destructive", "success", "warning"],
 			"sizes": ["sm", "md", "lg"]
 		},
+		"pie-chart": {
+			"name": "Pie Chart",
+			"description": "Interactive pie chart with tooltips, legend, and data table helpers",
+			"category": "data-display",
+			"files": [
+				{
+					"name": "pie-chart.tsx",
+					"path": "app/components/ui/pie-chart/pie-chart.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"d3-shape": "^3.2.0"
+			},
+			"exports": [
+				"PieChart",
+				"PieChartHeader",
+				"PieChartTitle",
+				"PieChartDescription",
+				"PieChartActions",
+				"PieChartGraph",
+				"PieChartLegend",
+				"PieChartDataTable",
+				"PieChartDataTableContent"
+			],
+			"props": {
+				"PieChart": [
+					"data",
+					"valueKey",
+					"nameKey",
+					"colors",
+					"sortSlices",
+					"valueFormatter",
+					"labelFormatter",
+					"children",
+					"className"
+				],
+				"PieChartHeader": [
+					"children",
+					"className",
+					"contentClassName",
+					"titleClassName",
+					"descriptionClassName",
+					"actionsClassName"
+				],
+				"PieChartTitle": ["children", "className", "as"],
+				"PieChartDescription": ["children", "className"],
+				"PieChartActions": ["children", "className"],
+				"PieChartGraph": [
+					"height",
+					"innerRadius",
+					"outerRadius",
+					"padAngle",
+					"cornerRadius",
+					"startAngle",
+					"endAngle",
+					"showTooltip",
+					"tooltipRender",
+					"loading",
+					"loadingState",
+					"emptyState",
+					"error",
+					"ariaLabel",
+					"children",
+					"className"
+				],
+				"PieChartLegend": ["className"],
+				"PieChartDataTable": ["children", "className"],
+				"PieChartDataTableContent": [
+					"className",
+					"rowClassName",
+					"labelClassName",
+					"valueClassName",
+					"percentageClassName",
+					"showPercentages",
+					"showTotalRow",
+					"totalLabel",
+					"totalFormatter",
+					"percentageFormatter"
+				]
+			}
+		},
 		"table": {
 			"name": "Table",
 			"description": "Data table with TanStack Table integration, row selection, keyboard navigation, and customizable presentation",
@@ -1513,7 +1598,7 @@
 		"data-display": {
 			"name": "Data Display",
 			"description": "Components for displaying data and content",
-			"components": ["avatar", "badge", "table"]
+			"components": ["avatar", "badge", "pie-chart", "table"]
 		},
 		"feedback": {
 			"name": "Feedback",

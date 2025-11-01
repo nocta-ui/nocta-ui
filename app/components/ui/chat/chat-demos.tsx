@@ -41,7 +41,7 @@ export const BasicChatDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="">
+			<div>
 				<Chat
 					messages={messages}
 					onSendMessage={handleSendMessage}
@@ -105,7 +105,7 @@ export const ChatWithAvatarsDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="">
+			<div>
 				<Chat
 					messages={messages}
 					onSendMessage={handleSendMessage}
@@ -167,7 +167,7 @@ export const ChatWithTimestampsDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="">
+			<div>
 				<Chat
 					messages={messages}
 					onSendMessage={handleSendMessage}
@@ -206,7 +206,7 @@ export const ReadOnlyChatDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="">
+			<div>
 				<Chat
 					messages={messages}
 					showTimestamps
@@ -286,7 +286,7 @@ export const ChatWithActionsDemo: React.FC = () => {
 					</ChatActions>
 				</div>
 
-				<div className="">
+				<div>
 					<Chat
 						messages={messages}
 						onSendMessage={handleSendMessage}
@@ -325,7 +325,7 @@ export const CustomStyledChatDemo: React.FC = () => {
 
 	return (
 		<div className="my-6">
-			<div className="">
+			<div>
 				<Chat
 					messages={messages}
 					onSendMessage={handleSendMessage}
@@ -497,7 +497,7 @@ export const TypingIndicatorDemo: React.FC = () => {
 					</Button>
 				</div>
 
-				<div className="">
+				<div>
 					<Chat
 						messages={messages}
 						onSendMessage={handleSendMessage}
