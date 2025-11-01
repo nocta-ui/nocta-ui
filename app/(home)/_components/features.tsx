@@ -22,6 +22,15 @@ type FeatureHighlight = {
 	icon: ComponentType<{ className?: string }>;
 };
 
+type CopyButtonProps = {
+	containerRef: React.RefObject<HTMLDivElement | null>;
+	className?: string;
+};
+
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+	size?: number | string;
+}
+
 const Check: React.FC<IconProps> = ({
 	size = 24,
 	className = '',
@@ -122,13 +131,7 @@ function useCopyButton(copyFn: () => void) {
 	return [checked, onClick] as const;
 }
 
-function CopyButton({
-	containerRef,
-	className,
-}: {
-	containerRef: React.RefObject<HTMLDivElement>;
-	className?: string;
-}) {
+function CopyButton({ containerRef, className }: CopyButtonProps) {
 	const [checked, onClick] = useCopyButton(() => {
 		const el = containerRef.current;
 		if (!el) return;
