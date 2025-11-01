@@ -5,92 +5,25 @@ import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import SearchDialog from '@/components/search';
 
-const aeonikPro = localFont({
+const sfpro = localFont({
 	src: [
 		{
-			path: './assets/fonts/Aeonik/AeonikPro-Thin.woff2',
-			weight: '100',
+			path: './assets/fonts/SF-Pro.woff2',
 			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-ThinItalic.woff2',
-			weight: '100',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Air.woff2',
-			weight: '200',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-AirItalic.woff2',
-			weight: '200',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Light.woff2',
-			weight: '300',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-LightItalic.woff2',
-			weight: '300',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Regular.woff2',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-RegularItalic.woff2',
-			weight: '400',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Medium.woff2',
-			weight: '500',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-MediumItalic.woff2',
-			weight: '500',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Bold.woff2',
-			weight: '700',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-BoldItalic.woff2',
-			weight: '700',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-Black.woff2',
-			weight: '900',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/Aeonik/AeonikPro-BlackItalic.woff2',
-			weight: '900',
-			style: 'italic',
 		},
 	],
-	variable: '--font-aeonikpro',
+	variable: '--font-sfpro',
 	display: 'swap',
 });
 
-const aeonikMono = localFont({
+const sfmono = localFont({
 	src: [
 		{
-			path: './assets/fonts/AeonikMono/AeonikMono-Regular.woff2',
-			weight: '100',
+			path: './assets/fonts/SFMono-Regular.woff2',
 			style: 'normal',
 		},
 	],
-	variable: '--font-aeonikmono',
+	variable: '--font-sfmono',
 	display: 'swap',
 });
 
@@ -188,7 +121,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${aeonikPro.variable} ${aeonikMono.variable}`}
+			className={`${sfpro.variable} ${sfmono.variable}`}
 			suppressHydrationWarning
 		>
 			<body
