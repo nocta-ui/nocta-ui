@@ -105,6 +105,98 @@
 			"sizes": ["xs", "sm", "md", "lg", "xl", "2xl"],
 			"variants": ["circle", "square"]
 		},
+		"area-chart": {
+			"name": "Area Chart",
+			"description": "Interactive area chart with multi-series support, tooltips, legend, and data table helpers",
+			"category": "data-display",
+			"files": [
+				{
+					"name": "area-chart.tsx",
+					"path": "app/components/ui/area-chart/area-chart.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"d3-shape": "^3.2.0"
+			},
+			"exports": [
+				"AreaChart",
+				"AreaChartHeader",
+				"AreaChartTitle",
+				"AreaChartDescription",
+				"AreaChartActions",
+				"AreaChartGraph",
+				"AreaChartLegend",
+				"AreaChartDataTable",
+				"AreaChartDataTableContent"
+			],
+			"props": {
+				"AreaChart": [
+					"data",
+					"xKey",
+					"yKey",
+					"nameKey",
+					"color",
+					"seriesLabel",
+					"sortPoints",
+					"xFormatter",
+					"yFormatter",
+					"valueFormatter",
+					"additionalSeries",
+					"children",
+					"className"
+				],
+				"AreaChartHeader": [
+					"children",
+					"className",
+					"contentClassName",
+					"titleClassName",
+					"descriptionClassName",
+					"actionsClassName"
+				],
+				"AreaChartTitle": ["children", "className", "as"],
+				"AreaChartDescription": ["children", "className"],
+				"AreaChartActions": ["children", "className"],
+				"AreaChartGraph": [
+					"height",
+					"curve",
+					"showTooltip",
+					"tooltipRender",
+					"showDots",
+					"loading",
+					"loadingState",
+					"emptyState",
+					"error",
+					"ariaLabel",
+					"showGrid",
+					"showXAxisValues",
+					"showYAxisValues",
+					"xTickCount",
+					"yTickCount",
+					"children",
+					"className",
+					"style"
+				],
+				"AreaChartLegend": ["className"],
+				"AreaChartDataTable": ["children", "className"],
+				"AreaChartDataTableContent": [
+					"className",
+					"rowClassName",
+					"labelClassName",
+					"valueClassName",
+					"deltaClassName",
+					"showDelta",
+					"deltaFormatter",
+					"valueFormatter",
+					"showTotalRow",
+					"averageLabel",
+					"averageFormatter"
+				]
+			}
+		},
 		"badge": {
 			"name": "Badge",
 			"description": "Badge component for displaying status, counts, or labels",
@@ -1598,7 +1690,7 @@
 		"data-display": {
 			"name": "Data Display",
 			"description": "Components for displaying data and content",
-			"components": ["avatar", "badge", "pie-chart", "table"]
+			"components": ["avatar", "badge", "table", "area-chart", "pie-chart"]
 		},
 		"feedback": {
 			"name": "Feedback",
