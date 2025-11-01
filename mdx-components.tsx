@@ -157,6 +157,17 @@ import { DocsTabs } from '@/components/docs-tab';
 import { FrameworkSelector } from '@/components/framework-selector';
 import { TokenTable } from '@/components/token-table';
 import { TypeTable } from '@/components/type-table';
+import {
+	PieChart,
+	PieChartActions,
+	PieChartGraph,
+	PieChartDataTable,
+	PieChartDataTableContent,
+	PieChartDescription,
+	PieChartHeader,
+	PieChartLegend,
+	PieChartTitle,
+} from '@/app/components/ui/pie-chart';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -307,6 +318,15 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		MenubarSubContent,
 		TypeTable,
 		TokenTable,
+		PieChart,
+		PieChartActions,
+		PieChartGraph,
+		PieChartDataTable,
+		PieChartDataTableContent,
+		PieChartDescription,
+		PieChartHeader,
+		PieChartLegend,
+		PieChartTitle,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>
