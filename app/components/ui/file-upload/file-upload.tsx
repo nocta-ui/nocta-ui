@@ -19,7 +19,7 @@ const fileUploadVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: ['border border-border shadow-md', 'bg-card'],
+				default: ['border border-dashed border-border ', 'bg-card'],
 			},
 			size: {
 				sm: 'w-sm p-4',
@@ -471,10 +471,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								className={cn(
 									'mx-auto transition-colors',
 									size === 'sm'
-										? 'h-6 w-6'
+										? 'size-5'
 										: size === 'lg'
-											? 'h-10 w-10'
-											: 'h-8 w-8',
+											? 'size-7'
+											: 'size-6',
 									isDragOver ? 'text-foreground/45' : 'text-foreground/45',
 								)}
 							/>
