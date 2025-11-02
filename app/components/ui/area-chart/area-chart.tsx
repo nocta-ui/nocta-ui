@@ -1795,6 +1795,28 @@ export const AreaChartGraphBase = React.forwardRef<
 		}
 	}, [showChart]);
 
+	React.useEffect(() => {
+		if (!tooltip) {
+			return;
+		}
+
+		const handlePointerDown = (event: PointerEvent) => {
+			const container = outerRef.current;
+			if (!container) return;
+			const { target } = event;
+			if (target instanceof Node && container.contains(target)) {
+				return;
+			}
+			clearTooltip();
+		};
+
+		window.addEventListener('pointerdown', handlePointerDown);
+
+		return () => {
+			window.removeEventListener('pointerdown', handlePointerDown);
+		};
+	}, [clearTooltip, tooltip]);
+
 	let body: React.ReactNode = null;
 
 	if (error) {
