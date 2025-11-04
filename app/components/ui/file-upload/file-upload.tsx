@@ -246,7 +246,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="not-prose size-6 cursor-pointer text-foreground/45 transition-colors duration-150 hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="not-prose size-6 rounded-sm cursor-pointer text-foreground/45 transition-colors duration-150 hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
@@ -525,7 +525,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								onClick={handleUpload}
 								size="sm"
 								variant="ghost"
-								className="bg-foreground text-card transition-colors duration-150 hover:bg-foreground/60 hover:text-card/80"
+								className="bg-foreground text-card transition-colors duration-150 hover:bg-foreground/80 ease-out"
 								disabled={disabled || isUploading}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}
