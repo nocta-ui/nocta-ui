@@ -4,8 +4,8 @@
 
 /* ---FUMADOCS CSS--- */
 @theme {
-	--font-sfpro: var(--font-sfpro);
-	--font-mono: var(--font-sfmono);
+	--font-mono: var(--font-ppneuemontrealmono);
+	--font-ppneuemontreal: var(--font-ppneuemontreal);
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
@@ -286,6 +286,6 @@
 
 @layer base {
 	body {
-		@apply font-sfpro bg-fd-background;
+		@apply font-ppneuemontreal bg-fd-background;
 	}
 }

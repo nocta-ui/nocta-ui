@@ -23,7 +23,7 @@ export function BasicAccordionDemo() {
 					<AccordionTrigger>How to install?</AccordionTrigger>
 					<AccordionContent>
 						You can install components using our CLI:{' '}
-						<code>npx nocta-ui add accordion</code>
+						<code>npx @nocta-ui/cli add accordion</code>
 					</AccordionContent>
 				</AccordionItem>
 

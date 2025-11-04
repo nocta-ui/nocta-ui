@@ -12,7 +12,7 @@ assignees: []
 
 ## Reproduction Steps
 
-1. <!-- e.g. Run `npx nocta-ui add button` -->
+1. <!-- e.g. Run `npx @nocta-ui/cli add button` -->
 2. <!-- e.g. Navigate to /docs/button -->
 3. <!-- e.g. Click the primary button -->
 
@@ -38,4 +38,3 @@ assignees: []
 ## Additional Context
 
 <!-- Add any other context, logs, or related issues/PRs here. -->
-

@@ -127,7 +127,7 @@ Whenever tokens change:
 The Nocta CLI fetches everything it needs from `public/registry`:
 
 - `public/registry/components.json`: a map of `ComponentFileName -> Base64(Source)`.
-- `public/registry/css/index.css`: theme tokens consumed during `npx nocta-ui init`.
+- `public/registry/css/index.css`: theme tokens consumed during `npx @nocta-ui/cli init`.
 - `public/registry/registry.json`: the manifest that declares available components, their metadata, and category placement.
 
 `scripts/build-components.sh` controls the JSON artefact:
@@ -144,7 +144,7 @@ For `registry.json` updates:
 2. Add the component slug to the correct category array in the `categories` section (at the bottom of the file). The CLI relies on both the component object and the category list.
 3. Validate your structure against `public/registry/registry-schema.json` (your editor may support JSON Schema validation automatically).
 
-> The CLI reads `registry.json` to know what it can scaffold. Missing or malformed entries will prevent the new component from appearing in `npx nocta-ui add` and `npx nocta-ui list`.
+> The CLI reads `registry.json` to know what it can scaffold. Missing or malformed entries will prevent the new component from appearing in `npx @nocta-ui/cli add` and `npx @nocta-ui/cli list`.
 
 ## Updating Documentation
 
