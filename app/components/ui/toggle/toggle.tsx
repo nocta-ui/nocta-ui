@@ -1,6 +1,6 @@
 'use client';
 
-import { Checkbox, useCheckboxStore } from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
@@ -58,7 +58,7 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
 		},
 		ref,
 	) => {
-		const checkbox = useCheckboxStore({
+		const checkbox = Ariakit.useCheckboxStore({
 			value: pressed ?? defaultPressed,
 			setValue: (value) => onPressedChange?.(!!value),
 		});
@@ -76,7 +76,7 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
 		const isDisabled = Boolean(disabled);
 
 		return (
-			<Checkbox
+			<Ariakit.Checkbox
 				store={checkbox}
 				render={<button type="button" ref={ref} disabled={isDisabled} />}
 				checked={isPressed}
@@ -89,7 +89,7 @@ export const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
 				{...props}
 			>
 				{children}
-			</Checkbox>
+			</Ariakit.Checkbox>
 		);
 	},
 );

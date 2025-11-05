@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
-
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 

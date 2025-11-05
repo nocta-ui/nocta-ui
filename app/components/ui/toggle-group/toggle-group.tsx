@@ -1,11 +1,6 @@
 'use client';
 
-import {
-	Composite,
-	CompositeItem,
-	type CompositeStore,
-	useCompositeStore,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
@@ -101,7 +96,7 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 		},
 		ref,
 	) => {
-		const store = useCompositeStore();
+		const store = Ariakit.useCompositeStore();
 		const isControlled = value !== undefined;
 		const [internalValue, setInternalValue] =
 			React.useState<string[]>(defaultValue);
@@ -134,7 +129,7 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 					size: size as NonNullable<typeof size>,
 				}}
 			>
-				<Composite
+				<Ariakit.Composite
 					ref={ref}
 					store={store}
 					role={single ? 'radiogroup' : 'group'}
@@ -147,7 +142,7 @@ export const ToggleGroup = React.forwardRef<HTMLDivElement, ToggleGroupProps>(
 					{...restProps}
 				>
 					{children}
-				</Composite>
+				</Ariakit.Composite>
 			</ToggleGroupContext.Provider>
 		);
 	},
@@ -168,7 +163,7 @@ export const ToggleGroupItem = React.forwardRef<
 	const itemId = id ?? value;
 
 	return (
-		<CompositeItem
+		<Ariakit.CompositeItem
 			id={itemId}
 			render={<button type="button" ref={ref} disabled={isDisabled} />}
 			role={ctx.single ? 'radio' : 'checkbox'}
@@ -187,7 +182,7 @@ export const ToggleGroupItem = React.forwardRef<
 			{...rest}
 		>
 			{children}
-		</CompositeItem>
+		</Ariakit.CompositeItem>
 	);
 });
 ToggleGroupItem.displayName = 'ToggleGroupItem';

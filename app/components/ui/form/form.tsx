@@ -1,15 +1,6 @@
 'use client';
 
-import {
-	Form as AriakitForm,
-	FormDescription as AriakitFormDescription,
-	FormError as AriakitFormError,
-	FormInput as AriakitFormInput,
-	FormLabel as AriakitFormLabel,
-	FormSubmit as AriakitFormSubmit,
-	type FormStore,
-	useFormStore,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import React, { createContext, useContext, useId } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -83,7 +74,7 @@ export const Form: React.FC<FormProps> = ({
 	store: providedStore,
 	...props
 }) => {
-	const internalStore = useFormStore({});
+	const internalStore = Ariakit.useFormStore({});
 	const store = providedStore ?? internalStore;
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -94,14 +85,14 @@ export const Form: React.FC<FormProps> = ({
 	};
 
 	return (
-		<AriakitForm
+		<Ariakit.Form
 			store={store}
 			className={cn('not-prose space-y-6', className)}
 			onSubmit={handleSubmit}
 			{...props}
 		>
 			{children}
-		</AriakitForm>
+		</Ariakit.Form>
 	);
 };
 
@@ -140,7 +131,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 		typeof id === 'undefined' ? restProps : { ...restProps, id };
 
 	return (
-		<AriakitFormLabel
+		<Ariakit.FormLabel
 			name={name}
 			className={cn(
 				'block text-sm leading-none font-medium text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
@@ -150,7 +141,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 		>
 			{children}
 			{required && <span className="ml-1 text-error/90">*</span>}
-		</AriakitFormLabel>
+		</Ariakit.FormLabel>
 	);
 };
 
@@ -171,13 +162,13 @@ export const FormDescription: React.FC<FormDescriptionProps> = ({
 	const descriptionProps =
 		typeof id === 'undefined' ? restProps : { ...restProps, id };
 	return (
-		<AriakitFormDescription
+		<Ariakit.FormDescription
 			name={name}
 			className={cn('text-sm leading-relaxed text-foreground/45', className)}
 			{...descriptionProps}
 		>
 			{children}
-		</AriakitFormDescription>
+		</Ariakit.FormDescription>
 	);
 };
 
@@ -223,7 +214,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	}
 
 	return (
-		<AriakitFormError
+		<Ariakit.FormError
 			name={name}
 			className={cn('text-sm leading-none', variants.error, className)}
 			role="alert"
@@ -241,7 +232,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
 	({ className = '', name: _name, id, disabled, autoFocus, ...rest }, ref) => {
 		const { name } = useFormField();
 		return (
-			<AriakitFormInput
+			<Ariakit.FormInput
 				ref={ref}
 				name={name}
 				className={className}
@@ -273,9 +264,9 @@ export const FormSubmit: React.FC<FormSubmitProps> = ({
 		...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),
 	};
 	return (
-		<AriakitFormSubmit className={className} {...submitProps}>
+		<Ariakit.FormSubmit className={className} {...submitProps}>
 			{children}
-		</AriakitFormSubmit>
+		</Ariakit.FormSubmit>
 	);
 };
 

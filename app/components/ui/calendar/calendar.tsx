@@ -320,9 +320,9 @@ export const Calendar: React.FC<CalendarProps> = ({
 						'not-prose cursor-pointer rounded-sm text-foreground/70 transition-colors hover:bg-card-muted focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
-					aria-label="Previous month"
 				>
 					<Icons.ChevronLeft aria-hidden="true" className="h-4 w-4" />
+					<Ariakit.VisuallyHidden>Previous Month</Ariakit.VisuallyHidden>
 				</button>
 
 				<div className="flex items-center space-x-3">
@@ -344,6 +344,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						)}
 					>
 						Today
+						<VisuallyHidden>Today</VisuallyHidden>
 					</button>
 				</div>
 
@@ -355,9 +356,9 @@ export const Calendar: React.FC<CalendarProps> = ({
 						'not-prose cursor-pointer rounded-sm text-foreground/70 transition-colors hover:bg-card-muted focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
-					aria-label="Next month"
 				>
 					<Icons.ChevronRight aria-hidden="true" className="h-4 w-4" />
+					<Ariakit.VisuallyHidden>Next Month</Ariakit.VisuallyHidden>
 				</button>
 			</div>
 

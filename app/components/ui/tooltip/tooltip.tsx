@@ -1,12 +1,6 @@
 'use client';
 
-import type { TooltipAnchorProps as AriakitTooltipAnchorProps } from '@ariakit/react';
-import {
-	Tooltip as AriakitTooltip,
-	TooltipAnchor,
-	TooltipArrow,
-	TooltipProvider,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { createPortal } from 'react-dom';
@@ -66,13 +60,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
 }) => {
 	return (
 		<TooltipConfigContext.Provider value={{ gutter }}>
-			<TooltipProvider
+			<Ariakit.TooltipProvider
 				showTimeout={delayDuration}
 				hideTimeout={100}
 				placement={placement}
 			>
 				{children}
-			</TooltipProvider>
+			</Ariakit.TooltipProvider>
 		</TooltipConfigContext.Provider>
 	);
 };
@@ -86,7 +80,7 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 
 	if (React.isValidElement(children)) {
 		return (
-			<TooltipAnchor
+			<Ariakit.TooltipAnchor
 				render={(anchorProps) =>
 					React.cloneElement(
 						children as React.ReactElement<{ className?: string }>,
@@ -108,13 +102,13 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 	}
 
 	return (
-		<TooltipAnchor
+		<Ariakit.TooltipAnchor
 			className={cn('not-prose inline-flex items-center', className)}
 			{...(autoFocus === undefined ? {} : { autoFocus })}
 			{...restProps}
 		>
 			{children}
-		</TooltipAnchor>
+		</Ariakit.TooltipAnchor>
 	);
 };
 
@@ -134,15 +128,15 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	}
 
 	return createPortal(
-		<AriakitTooltip
+		<Ariakit.Tooltip
 			className={cn(tooltipContentVariants({ variant }), className)}
 			gutter={resolvedGutter}
 			{...(autoFocus === undefined ? {} : { autoFocus })}
 			{...props}
 		>
 			{children}
-			<TooltipArrow />
-		</AriakitTooltip>,
+			<Ariakit.TooltipArrow />
+		</Ariakit.Tooltip>,
 		document.body,
 	);
 };

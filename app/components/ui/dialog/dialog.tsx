@@ -1,14 +1,6 @@
 'use client';
 
-import {
-	Dialog as AriakitDialog,
-	DialogDescription as AriakitDialogDescription,
-	DialogDismiss as AriakitDialogDismiss,
-	DialogHeading as AriakitDialogHeading,
-	type DialogStore,
-	useDialogStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
@@ -112,7 +104,7 @@ export const Dialog: React.FC<DialogProps> = ({
 	open: controlledOpen,
 	onOpenChange,
 }) => {
-	const store = useDialogStore(
+	const store = Ariakit.useDialogStore(
 		controlledOpen !== undefined
 			? onOpenChange
 				? { open: controlledOpen, setOpen: onOpenChange }
@@ -135,7 +127,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	...props
 }) => {
 	const { store } = useDialog();
-	const isOpen = useStoreState(store, 'open');
+	const isOpen = Ariakit.useStoreState(store, 'open');
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		store.show();
@@ -184,7 +176,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 	const dialogProps =
 		typeof autoFocus === 'undefined' ? restProps : { ...restProps, autoFocus };
 	const { store } = useDialog();
-	const open = useStoreState(store, 'open');
+	const open = Ariakit.useStoreState(store, 'open');
 	const [mounted, setMounted] = React.useState(open);
 	React.useEffect(() => {
 		if (open) {
@@ -198,7 +190,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 	if (!mounted) return null;
 
 	return (
-		<AriakitDialog
+		<Ariakit.Dialog
 			store={store}
 			portal={portal}
 			backdrop={
@@ -223,11 +215,11 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			{showClose && (
 				<DialogClose className="absolute top-2 right-2 z-10">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
-					<span className="sr-only">Close</span>
+					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</DialogClose>
 			)}
 			{children}
-		</AriakitDialog>
+		</Ariakit.Dialog>
 	);
 };
 
@@ -250,7 +242,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
 	...props
 }) => {
 	return (
-		<AriakitDialogHeading
+		<Ariakit.DialogHeading
 			render={(headingProps) => React.createElement(Component, headingProps)}
 			className={cn(
 				'not-prose text-base leading-tight font-medium text-foreground',
@@ -259,7 +251,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
 			{...props}
 		>
 			{children}
-		</AriakitDialogHeading>
+		</Ariakit.DialogHeading>
 	);
 };
 
@@ -269,7 +261,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 	...props
 }) => {
 	return (
-		<AriakitDialogDescription
+		<Ariakit.DialogDescription
 			className={cn(
 				'not-prose mt-1 text-sm leading-relaxed text-foreground/45',
 				className,
@@ -277,7 +269,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 			{...props}
 		>
 			{children}
-		</AriakitDialogDescription>
+		</Ariakit.DialogDescription>
 	);
 };
 
@@ -344,7 +336,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 	}
 
 	return (
-		<AriakitDialogDismiss
+		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
 				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
@@ -357,6 +349,6 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 			{...props}
 		>
 			{children}
-		</AriakitDialogDismiss>
+		</Ariakit.DialogDismiss>
 	);
 };

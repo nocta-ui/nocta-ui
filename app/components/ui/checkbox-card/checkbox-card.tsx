@@ -1,10 +1,6 @@
 'use client';
 
-import {
-	Checkbox as AriakitCheckbox,
-	useCheckboxStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { useId } from 'react';
 import { cn } from '@/lib/utils';
@@ -109,8 +105,8 @@ export const CheckboxCard = React.forwardRef<
 			storeProps = { defaultValue: Boolean(defaultChecked) };
 		}
 
-		const store = useCheckboxStore<boolean>(storeProps);
-		const storedValue = useStoreState(store, 'value');
+		const store = Ariakit.useCheckboxStore<boolean>(storeProps);
+		const storedValue = Ariakit.useStoreState(store, 'value');
 		const isChecked = Array.isArray(storedValue)
 			? storedValue.some((item) => Boolean(item))
 			: Boolean(storedValue);
@@ -132,7 +128,7 @@ export const CheckboxCard = React.forwardRef<
 				data-disabled={disabled ? '' : undefined}
 				data-checked={isChecked ? '' : undefined}
 			>
-				<AriakitCheckbox
+				<Ariakit.Checkbox
 					store={store}
 					className="sr-only"
 					disabled={disabled}

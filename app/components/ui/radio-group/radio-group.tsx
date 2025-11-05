@@ -1,12 +1,6 @@
 'use client';
 
-import {
-	Radio as AriakitRadio,
-	RadioGroup as AriakitRadioGroup,
-	RadioProvider as AriakitRadioProvider,
-	useRadioStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
@@ -62,7 +56,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 		storeProps.defaultValue = defaultValue;
 	}
 
-	const store = useRadioStore(storeProps);
+	const store = Ariakit.useRadioStore(storeProps);
 	const contextValue = React.useMemo(
 		() => ({ store, disabled }),
 		[store, disabled],
@@ -70,8 +64,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 
 	return (
 		<RadioGroupContext.Provider value={contextValue}>
-			<AriakitRadioProvider store={store}>
-				<AriakitRadioGroup
+			<Ariakit.RadioProvider store={store}>
+				<Ariakit.RadioGroup
 					store={store}
 					aria-disabled={disabled || undefined}
 					data-disabled={disabled ? '' : undefined}
@@ -79,8 +73,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 					{...props}
 				>
 					{children}
-				</AriakitRadioGroup>
-			</AriakitRadioProvider>
+				</Ariakit.RadioGroup>
+			</Ariakit.RadioProvider>
 		</RadioGroupContext.Provider>
 	);
 };
@@ -130,7 +124,7 @@ export const RadioGroupItem = React.forwardRef<
 >(({ value, label, description, disabled, className, ...props }, ref) => {
 	const { store, disabled: contextDisabled } = useRadioGroupContext();
 	const isDisabled = disabled ?? contextDisabled;
-	const currentValue = useStoreState(store, 'value');
+	const currentValue = Ariakit.useStoreState(store, 'value');
 	const isChecked = currentValue === value;
 	const id = React.useId();
 	const [focusVisible, setFocusVisible] = React.useState(false);
@@ -147,7 +141,7 @@ export const RadioGroupItem = React.forwardRef<
 				className,
 			)}
 		>
-			<AriakitRadio
+			<Ariakit.Radio
 				id={id}
 				store={store}
 				value={value}

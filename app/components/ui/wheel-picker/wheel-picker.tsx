@@ -1,11 +1,6 @@
 'use client';
 
-import {
-	Composite,
-	CompositeItem,
-	useCompositeStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
@@ -217,7 +212,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 		() => `wp-${uid.replace(/[:]/g, '')}`,
 		[uid],
 	);
-	const composite = useCompositeStore({
+	const composite = Ariakit.useCompositeStore({
 		orientation: 'vertical',
 		virtualFocus: true,
 		focusLoop: infinite,
@@ -772,7 +767,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 
 	const renderHighlightItems = React.useMemo(() => {
 		const items = options.map((opt) => (
-			<CompositeItem
+			<Ariakit.CompositeItem
 				store={composite}
 				key={opt.value}
 				id={`${instancePrefix}-${opt.value}`}
@@ -780,7 +775,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				style={{ height: itemHeight }}
 			>
 				{opt.node}
-			</CompositeItem>
+			</Ariakit.CompositeItem>
 		));
 		if (infinite && options.length) {
 			items.unshift(
@@ -829,7 +824,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 			composite.setActiveId(activeId);
 	}, [activeId, composite]);
 
-	const ariakitActiveId = useStoreState(composite, (s) => s.activeId);
+	const ariakitActiveId = Ariakit.useStoreState(composite, (s) => s.activeId);
 
 	React.useEffect(() => {
 		if (!ariakitActiveId) return;
@@ -879,7 +874,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 			className={rootClassName}
 			aria-disabled={disabled || undefined}
 		>
-			<Composite
+			<Ariakit.Composite
 				ref={containerRef}
 				store={composite}
 				role="listbox"
@@ -960,7 +955,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 						{renderHighlightItems}
 					</ul>
 				</div>
-			</Composite>
+			</Ariakit.Composite>
 		</div>
 	);
 };

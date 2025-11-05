@@ -1,11 +1,6 @@
 'use client';
 
-import {
-	Disclosure,
-	type DisclosureStore,
-	useDisclosureStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
@@ -373,7 +368,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 		const reactId = React.useId();
 		const baseId = (id || value || reactId).toString();
 
-		const store = useDisclosureStore({ defaultOpen });
+		const store = Ariakit.useDisclosureStore({ defaultOpen });
 
 		const triggerId = `${baseId}-trigger`;
 		const contentId = `${baseId}-content`;
@@ -383,7 +378,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 			[store, disabled, triggerId, contentId],
 		);
 
-		const open = useStoreState(store, 'open');
+		const open = Ariakit.useStoreState(store, 'open');
 
 		React.useEffect(() => {
 			registerItem(baseId, store);
@@ -444,7 +439,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 	}) => {
 		const { variant, size } = useAccordionStyle();
 		const { store, disabled, triggerId, contentId } = useAccordionItem();
-		const isOpen = useStoreState(store, 'open');
+		const isOpen = Ariakit.useStoreState(store, 'open');
 		const mergedDisabled = Boolean(disabled || disabledProp);
 
 		const iconSize = useMemo(() => {
@@ -453,7 +448,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 
 		return (
 			<h3 className="not-prose">
-				<Disclosure
+				<Ariakit.Disclosure
 					store={store}
 					id={triggerId}
 					data-accordion-trigger
@@ -480,7 +475,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 						)}
 						style={{ width: iconSize, height: iconSize }}
 					/>
-				</Disclosure>
+				</Ariakit.Disclosure>
 			</h3>
 		);
 	},
@@ -492,7 +487,7 @@ export const AccordionContent: React.FC<AccordionContentProps> = React.memo(
 	({ children, className, ...props }) => {
 		const { variant, size } = useAccordionStyle();
 		const { store, triggerId, contentId } = useAccordionItem();
-		const isOpen = useStoreState(store, 'open');
+		const isOpen = Ariakit.useStoreState(store, 'open');
 
 		const contentRef = React.useRef<HTMLDivElement>(null);
 		const innerRef = React.useRef<HTMLDivElement>(null);

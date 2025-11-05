@@ -1,14 +1,6 @@
 'use client';
 
-import {
-	Dialog as AriakitDialog,
-	DialogDescription as AriakitDialogDescription,
-	DialogDismiss as AriakitDialogDismiss,
-	DialogHeading as AriakitDialogHeading,
-	type DialogStore,
-	useDialogStore,
-	useStoreState,
-} from '@ariakit/react';
+import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
@@ -215,7 +207,7 @@ export const Sheet: React.FC<SheetProps> = ({
 	open: controlledOpen,
 	onOpenChange,
 }) => {
-	const store = useDialogStore(
+	const store = Ariakit.useDialogStore(
 		controlledOpen !== undefined
 			? onOpenChange
 				? { open: controlledOpen, setOpen: onOpenChange }
@@ -236,7 +228,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	...props
 }) => {
 	const { store } = useSheet();
-	const isOpen = useStoreState(store, 'open');
+	const isOpen = Ariakit.useStoreState(store, 'open');
 
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
 		store.show();
@@ -287,7 +279,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 	...props
 }) => {
 	const { store } = useSheet();
-	const open = useStoreState(store, 'open');
+	const open = Ariakit.useStoreState(store, 'open');
 	const [mounted, setMounted] = React.useState(open);
 	const contentRef = React.useRef<HTMLDivElement>(null);
 	const [customSize, setCustomSize] = React.useState<number | null>(null);
@@ -507,7 +499,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				: { height: `${customSize}px` };
 
 	return (
-		<AriakitDialog
+		<Ariakit.Dialog
 			store={store}
 			portal
 			backdrop={
@@ -593,13 +585,13 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				)}
 
 			{showClose && (
-				<AriakitDialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
-					<span className="sr-only">Close</span>
-				</AriakitDialogDismiss>
+					<VisuallyHidden>Close</VisuallyHidden>
+				</Ariakit.DialogDismiss>
 			)}
 			{children}
-		</AriakitDialog>
+		</Ariakit.Dialog>
 	);
 };
 
@@ -622,7 +614,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 	...props
 }) => {
 	return (
-		<AriakitDialogHeading
+		<Ariakit.DialogHeading
 			className={cn(
 				'not-prose text-base leading-tight font-medium text-foreground',
 				className,
@@ -630,7 +622,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 			{...props}
 		>
 			{children}
-		</AriakitDialogHeading>
+		</Ariakit.DialogHeading>
 	);
 };
 
@@ -640,7 +632,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 	...props
 }) => {
 	return (
-		<AriakitDialogDescription
+		<Ariakit.DialogDescription
 			className={cn(
 				'not-prose mt-1 text-sm leading-relaxed text-foreground/45',
 				className,
@@ -648,7 +640,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 			{...props}
 		>
 			{children}
-		</AriakitDialogDescription>
+		</Ariakit.DialogDescription>
 	);
 };
 
@@ -703,7 +695,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 	}
 
 	return (
-		<AriakitDialogDismiss
+		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
 				'inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-colors duration-150 ease-in-out px-4 py-2 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
@@ -715,6 +707,6 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 			{...props}
 		>
 			{children || 'Close'}
-		</AriakitDialogDismiss>
+		</Ariakit.DialogDismiss>
 	);
 };
