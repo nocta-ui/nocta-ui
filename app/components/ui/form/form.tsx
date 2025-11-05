@@ -25,7 +25,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 	children: React.ReactNode;
 	className?: string;
 	onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
-	store?: FormStore;
+	store?: Ariakit.FormStore;
 }
 
 export interface FormFieldProps {

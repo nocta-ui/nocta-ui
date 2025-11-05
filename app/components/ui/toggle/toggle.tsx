@@ -33,7 +33,7 @@ const toggleVariants = cva(
 
 export interface ToggleProps
 	extends Omit<
-			React.ComponentPropsWithoutRef<typeof Checkbox>,
+			React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>,
 			'checked' | 'defaultChecked' | 'onChange' | 'size'
 		>,
 		VariantProps<typeof toggleVariants> {

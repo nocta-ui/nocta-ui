@@ -70,7 +70,7 @@ export interface ToggleGroupItemProps
 }
 
 interface ToggleGroupContextValue {
-	store: CompositeStore;
+	store: Ariakit.CompositeStore;
 	values: string[];
 	onSelect: (value: string) => void;
 	single: boolean;
