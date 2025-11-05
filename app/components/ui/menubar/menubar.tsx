@@ -2,15 +2,7 @@
 
 import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useId,
-	useMemo,
-	useState,
-} from 'react';
+import type { FC, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 const menubarVariants = cva(
@@ -42,7 +34,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-150 ease-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-out data-[skip-animation=true]:transition-none data-[skip-animation=true]:duration-0 data-[skip-animation=true]:ease-linear data-[skip-animation=true]:translate-y-0 data-[skip-animation=true]:scale-100 data-[skip-animation=true]:opacity-100',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card text-foreground/70 shadow-md -translate-y-1 scale-95 opacity-0 transition-all duration-150 ease-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0 ease-out',
 	{
 		variants: {
 			size: {
@@ -90,151 +82,48 @@ const menubarItemVariants = cva(
 );
 
 export interface MenubarProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 	size?: VariantProps<typeof menubarVariants>['size'];
 }
 
-interface MenubarAnimationContextValue {
-	activeMenuId: string | null;
-	setActiveMenuId: (id: string | null) => void;
-	skipAnimation: boolean;
-	currentSkipToken: symbol | null;
-	requestSkipAnimation: () => symbol;
-	releaseSkipAnimation: (token: symbol) => void;
-}
-
-const MenubarAnimationContext =
-	createContext<MenubarAnimationContextValue | null>(null);
-
-interface MenubarMenuContextValue {
-	menuId: string;
-	skipAnimation: boolean;
-}
-
-const MenubarMenuContext = createContext<MenubarMenuContextValue | null>(null);
-
-export const Menubar: React.FC<MenubarProps> = ({
-	children,
-	className,
-	size,
-}) => {
+export const Menubar: FC<MenubarProps> = ({ children, className, size }) => {
 	const menubar = Ariakit.useMenubarStore({
 		orientation: 'horizontal',
 		focusLoop: true,
 	});
-	const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
-	const [skipState, setSkipState] = useState<{
-		token: symbol | null;
-		active: boolean;
-	}>({
-		token: null,
-		active: false,
-	});
-
-	const requestSkipAnimation = useCallback(() => {
-		const token = Symbol('menubar-skip-animation');
-		setSkipState({ token, active: true });
-		return token;
-	}, []);
-
-	const releaseSkipAnimation = useCallback((token: symbol) => {
-		setSkipState((state) => {
-			if (state.token !== token) {
-				return state;
-			}
-
-			return { token: null, active: false };
-		});
-	}, []);
-
-	const { active: skipAnimation, token: currentSkipToken } = skipState;
-
-	const animationContextValue = useMemo<MenubarAnimationContextValue>(
-		() => ({
-			activeMenuId,
-			setActiveMenuId,
-			skipAnimation,
-			currentSkipToken,
-			requestSkipAnimation,
-			releaseSkipAnimation,
-		}),
-		[
-			activeMenuId,
-			currentSkipToken,
-			skipAnimation,
-			requestSkipAnimation,
-			releaseSkipAnimation,
-		],
-	);
 
 	return (
-		<MenubarAnimationContext.Provider value={animationContextValue}>
-			<Ariakit.MenubarProvider store={menubar}>
-				<Ariakit.Menubar
-					store={menubar}
-					className={cn(menubarVariants({ size }), className)}
-				>
-					{children}
-				</Ariakit.Menubar>
-			</Ariakit.MenubarProvider>
-		</MenubarAnimationContext.Provider>
+		<Ariakit.MenubarProvider store={menubar}>
+			<Ariakit.Menubar
+				store={menubar}
+				className={cn(menubarVariants({ size }), className)}
+			>
+				{children}
+			</Ariakit.Menubar>
+		</Ariakit.MenubarProvider>
 	);
 };
 
 export interface MenubarMenuProps {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
-export const MenubarMenu: React.FC<MenubarMenuProps> = ({ children }) => {
+export const MenubarMenu: FC<MenubarMenuProps> = ({ children }) => {
 	const menubar = Ariakit.useMenubarContext();
-	const animation = useContext(MenubarAnimationContext);
 	const menu = Ariakit.useMenuStore({ menubar: menubar ?? null });
-	const menuId = useId();
-	const [skipAnimation, setSkipAnimation] = useState(false);
-	const open = Ariakit.useStoreState(menu, 'open');
 
-	useEffect(() => {
-		const shouldSkip = animation?.skipAnimation ?? false;
-		setSkipAnimation(shouldSkip);
-		menu.setState('animated', !shouldSkip);
-	}, [animation?.skipAnimation, menu]);
-
-	useEffect(() => {
-		if (!animation) {
-			return;
-		}
-
-		if (open) {
-			animation.setActiveMenuId(menuId);
-			if (animation.skipAnimation && animation.currentSkipToken) {
-				animation.releaseSkipAnimation(animation.currentSkipToken);
-			}
-			return;
-		}
-
-		if (animation.activeMenuId === menuId) {
-			animation.setActiveMenuId(null);
-		}
-	}, [animation, menuId, open]);
-
-	return (
-		<Ariakit.MenuProvider store={menu}>
-			<MenubarMenuContext.Provider value={{ menuId, skipAnimation }}>
-				{children}
-			</MenubarMenuContext.Provider>
-		</Ariakit.MenuProvider>
-	);
+	return <Ariakit.MenuProvider store={menu}>{children}</Ariakit.MenuProvider>;
 };
 
 export interface MenubarTriggerProps
 	extends VariantProps<typeof menubarTriggerVariants> {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 	disabled?: boolean;
 }
 
-export const MenubarTrigger: React.FC<MenubarTriggerProps> = ({
+export const MenubarTrigger: FC<MenubarTriggerProps> = ({
 	children,
 	className,
 	disabled,
@@ -245,25 +134,6 @@ export const MenubarTrigger: React.FC<MenubarTriggerProps> = ({
 		throw new Error('MenubarTrigger must be used within a MenubarMenu.');
 	}
 	const open = Ariakit.useStoreState(menu, 'open');
-	const animation = useContext(MenubarAnimationContext);
-	const menuContext = useContext(MenubarMenuContext);
-
-	const handlePointerEnter = useCallback(() => {
-		if (disabled) {
-			return;
-		}
-
-		if (!animation || !menuContext) {
-			return;
-		}
-
-		if (
-			animation.activeMenuId &&
-			animation.activeMenuId !== menuContext.menuId
-		) {
-			animation.requestSkipAnimation();
-		}
-	}, [animation, disabled, menuContext]);
 
 	return (
 		<Ariakit.MenuItem
@@ -271,7 +141,6 @@ export const MenubarTrigger: React.FC<MenubarTriggerProps> = ({
 				<Ariakit.MenuButton
 					store={menu}
 					disabled={Boolean(disabled)}
-					onPointerEnter={handlePointerEnter}
 					className={cn(
 						menubarTriggerVariants({ size }),
 						open && 'bg-card-muted text-foreground',
@@ -288,22 +157,19 @@ export const MenubarTrigger: React.FC<MenubarTriggerProps> = ({
 
 export interface MenubarContentProps
 	extends VariantProps<typeof menubarContentVariants> {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 }
 
-export const MenubarContent: React.FC<MenubarContentProps> = ({
+export const MenubarContent: FC<MenubarContentProps> = ({
 	children,
 	className,
 	size,
 }) => {
-	const menuContext = useContext(MenubarMenuContext);
-
 	return (
 		<Ariakit.Menu
 			portal
 			gutter={9}
-			data-skip-animation={menuContext?.skipAnimation ? 'true' : undefined}
 			className={cn(menubarContentVariants({ size }), className)}
 		>
 			<div className="flex flex-col gap-1">{children}</div>
@@ -313,13 +179,13 @@ export const MenubarContent: React.FC<MenubarContentProps> = ({
 
 export interface MenubarItemProps
 	extends VariantProps<typeof menubarItemVariants> {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 	disabled?: boolean;
 	onClick?: () => void;
 }
 
-export const MenubarItem: React.FC<MenubarItemProps> = ({
+export const MenubarItem: FC<MenubarItemProps> = ({
 	children,
 	className,
 	disabled,
@@ -336,28 +202,24 @@ export const MenubarItem: React.FC<MenubarItemProps> = ({
 	</Ariakit.MenuItem>
 );
 
-export const MenubarSeparator: React.FC<{ className?: string }> = ({
-	className,
-}) => (
+export const MenubarSeparator: FC<{ className?: string }> = ({ className }) => (
 	<Ariakit.MenuSeparator
 		className={cn('-mx-1 h-px bg-border opacity-60', className)}
 	/>
 );
 
-export const MenubarSub: React.FC<{ children: React.ReactNode }> = ({
-	children,
-}) => {
+export const MenubarSub: FC<{ children: ReactNode }> = ({ children }) => {
 	return <Ariakit.MenuProvider>{children}</Ariakit.MenuProvider>;
 };
 
 export interface MenubarSubTriggerProps
 	extends VariantProps<typeof menubarItemVariants> {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 	disabled?: boolean;
 }
 
-export const MenubarSubTrigger: React.FC<MenubarSubTriggerProps> = ({
+export const MenubarSubTrigger: FC<MenubarSubTriggerProps> = ({
 	children,
 	className,
 	disabled,
@@ -368,6 +230,7 @@ export const MenubarSubTrigger: React.FC<MenubarSubTriggerProps> = ({
 	if (!menu) {
 		throw new Error('MenubarSubTrigger must be used within a MenubarSub.');
 	}
+	const open = Ariakit.useStoreState(menu, 'open');
 
 	return (
 		<Ariakit.MenuItem
@@ -375,7 +238,11 @@ export const MenubarSubTrigger: React.FC<MenubarSubTriggerProps> = ({
 				<Ariakit.MenuButton
 					store={menu}
 					disabled={Boolean(disabled)}
-					className={cn(menubarItemVariants({ inset, destructive }), className)}
+					className={cn(
+						menubarItemVariants({ inset, destructive }),
+						open && 'bg-card-muted text-foreground',
+						className,
+					)}
 				/>
 			}
 			disabled={Boolean(disabled)}
@@ -388,11 +255,11 @@ export const MenubarSubTrigger: React.FC<MenubarSubTriggerProps> = ({
 
 export interface MenubarSubContentProps
 	extends VariantProps<typeof menubarSubContentVariants> {
-	children: React.ReactNode;
+	children: ReactNode;
 	className?: string;
 }
 
-export const MenubarSubContent: React.FC<MenubarSubContentProps> = ({
+export const MenubarSubContent: FC<MenubarSubContentProps> = ({
 	children,
 	className,
 	size,
