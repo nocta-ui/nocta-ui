@@ -54,7 +54,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     ```json lineNumbers title="tsconfig.json"
     {
       "compilerOptions": {
-        "lib": ["ESNext"],
+        "lib": ["ESNext","DOM"],
         "target": "ESNext",
         "module": "Preserve",
         "moduleDetection": "force",
@@ -62,7 +62,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
         "allowJs": true,
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": false,   // [!code highlight]
-        "verbatimModuleSyntax": true,
+        "verbatimModuleSyntax": false,  // [!code highlight]
         "outDir": "dist",   // [!code highlight]
         "declaration": true,   // [!code highlight]
         "declarationDir": "dist",   // [!code highlight]
