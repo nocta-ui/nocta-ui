@@ -3,6 +3,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { useEffect, useState } from 'react';
+import * as Ariakit from '@ariakit/react';
 
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
@@ -165,6 +166,8 @@ export const Avatar: React.FC<AvatarProps> = ({
 					}}
 				/>
 			)}
+
+			<Ariakit.VisuallyHidden>{`${getInitials()} Avatar`}</Ariakit.VisuallyHidden>
 
 			{showInitials && (
 				<span className={textVariants({ size })}>{getInitials()}</span>
