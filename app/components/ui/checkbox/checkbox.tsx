@@ -93,7 +93,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 	id,
 	...props
 }) => {
-	let propsForStore: Parameters<typeof useCheckboxStore<boolean>>[0];
+	let propsForStore: Parameters<typeof Ariakit.useCheckboxStore<boolean>>[0];
 	if (typeof checked !== 'undefined') {
 		if (onCheckedChange) {
 			propsForStore = {

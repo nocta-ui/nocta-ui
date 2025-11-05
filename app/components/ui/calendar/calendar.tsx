@@ -344,7 +344,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						)}
 					>
 						Today
-						<VisuallyHidden>Today</VisuallyHidden>
+						<Ariakit.VisuallyHidden>Today</Ariakit.VisuallyHidden>
 					</button>
 				</div>
 

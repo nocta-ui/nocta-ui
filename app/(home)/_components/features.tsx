@@ -255,28 +255,28 @@ function TechStack() {
 
 			<div className="flex flex-wrap items-center gap-6">
 				<Image
-					className="hidden w-20 dark:block md:w-[100px]"
+					className="hidden w-20 dark:block md:w-25"
 					src="/icons/ariakit-dark.svg"
 					alt="Ariakit logo"
 					width={140}
 					height={140}
 				/>
 				<Image
-					className="block w-20 dark:hidden md:w-[100px]"
+					className="block w-20 dark:hidden md:w-25"
 					src="/icons/ariakit-light.svg"
 					alt="Ariakit logo"
 					width={140}
 					height={140}
 				/>
 				<Image
-					className="hidden w-32 dark:block md:w-[160px]"
+					className="hidden w-32 dark:block md:w-40"
 					src="/icons/tailwind-dark.svg"
 					alt="Tailwind logo"
 					width={220}
 					height={220}
 				/>
 				<Image
-					className="block w-32 dark:hidden md:w-[160px]"
+					className="block w-32 dark:hidden md:w-40"
 					src="/icons/tailwind-light.svg"
 					alt="Tailwind logo"
 					width={220}

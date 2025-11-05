@@ -29,7 +29,7 @@ export interface TooltipProps {
 	gutter?: number;
 }
 
-export interface TooltipTriggerProps extends AriakitTooltipAnchorProps {
+export interface TooltipTriggerProps extends Ariakit.TooltipAnchorProps {
 	children: React.ReactNode;
 	className?: string;
 }

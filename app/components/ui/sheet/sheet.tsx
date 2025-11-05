@@ -187,7 +187,7 @@ export interface SheetCloseProps
 }
 
 interface SheetContextType {
-	store: DialogStore;
+	store: Ariakit.DialogStore;
 }
 
 const SheetContext = React.createContext<SheetContextType | undefined>(
@@ -587,7 +587,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 			{showClose && (
 				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
-					<VisuallyHidden>Close</VisuallyHidden>
+					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</Ariakit.DialogDismiss>
 			)}
 			{children}

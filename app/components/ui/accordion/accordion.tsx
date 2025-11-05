@@ -198,7 +198,9 @@ export interface AccordionItemProps
 	defaultOpen?: boolean;
 }
 
-type DisclosureButtonProps = React.ComponentPropsWithoutRef<typeof Disclosure>;
+type DisclosureButtonProps = React.ComponentPropsWithoutRef<
+	typeof Ariakit.Disclosure
+>;
 
 export interface AccordionTriggerProps
 	extends Omit<DisclosureButtonProps, 'store'>,
@@ -233,7 +235,7 @@ const useAccordionStyle = () => {
 
 type AccordionBehaviorContextType = {
 	type: 'single' | 'multiple';
-	registerItem: (value: string, store: DisclosureStore) => void;
+	registerItem: (value: string, store: Ariakit.DisclosureStore) => void;
 	unregisterItem: (value: string) => void;
 	notifyItemOpen: (value: string) => void;
 };
@@ -251,7 +253,7 @@ const useAccordionBehavior = () => {
 };
 
 type AccordionItemContextType = {
-	store: DisclosureStore;
+	store: Ariakit.DisclosureStore;
 	disabled: boolean;
 	triggerId: string;
 	contentId: string;
@@ -290,10 +292,12 @@ export const Accordion: React.FC<AccordionProps> = React.memo(
 			[resolvedVariant, resolvedSize],
 		);
 
-		const itemsRef = React.useRef<Map<string, DisclosureStore>>(new Map());
+		const itemsRef = React.useRef<Map<string, Ariakit.DisclosureStore>>(
+			new Map(),
+		);
 
 		const registerItem = useCallback(
-			(value: string, store: DisclosureStore) => {
+			(value: string, store: Ariakit.DisclosureStore) => {
 				itemsRef.current.set(value, store);
 			},
 			[],

@@ -90,7 +90,7 @@ export const CheckboxCard = React.forwardRef<
 		const generatedId = useId();
 		const inputId = idProp ?? generatedId;
 
-		let storeProps: Parameters<typeof useCheckboxStore<boolean>>[0];
+		let storeProps: Parameters<typeof Ariakit.useCheckboxStore<boolean>>[0];
 		if (typeof checked !== 'undefined') {
 			storeProps = {
 				value: checked,

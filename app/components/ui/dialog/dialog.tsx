@@ -84,7 +84,7 @@ export interface DialogCloseProps
 }
 
 interface DialogContextType {
-	store: DialogStore;
+	store: Ariakit.DialogStore;
 }
 
 const DialogContext = React.createContext<DialogContextType | undefined>(

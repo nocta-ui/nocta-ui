@@ -27,7 +27,7 @@ const indicatorVariants = cva(
 
 export interface RadioGroupProps
 	extends Omit<
-		React.ComponentPropsWithoutRef<typeof AriakitRadioGroup>,
+		React.ComponentPropsWithoutRef<typeof Ariakit.RadioGroup>,
 		'store'
 	> {
 	value?: string;
@@ -46,7 +46,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 	children,
 	...props
 }) => {
-	const storeProps: Parameters<typeof useRadioStore>[0] = {};
+	const storeProps: Parameters<typeof Ariakit.useRadioStore>[0] = {};
 	if (typeof value !== 'undefined') {
 		storeProps.value = value;
 		if (onValueChange) {
@@ -80,7 +80,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 };
 
 interface RadioGroupContextValue {
-	store: ReturnType<typeof useRadioStore>;
+	store: ReturnType<typeof Ariakit.useRadioStore>;
 	disabled: boolean;
 }
 
@@ -111,7 +111,7 @@ const dotVariants = cva(
 );
 
 export interface RadioGroupItemProps
-	extends Omit<React.ComponentPropsWithoutRef<typeof AriakitRadio>, 'store'> {
+	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Radio>, 'store'> {
 	label: React.ReactNode;
 	description?: React.ReactNode;
 	disabled?: boolean;
