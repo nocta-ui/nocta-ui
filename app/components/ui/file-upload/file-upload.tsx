@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 const fileUploadVariants = cva(
 	[
-		'relative transition-all duration-150 ease-out',
+		'relative transition-all duration-150 ease-in-out',
 		'focus-within:ring-1 focus-within:ring-offset-1 focus-within:outline-none',
 		'focus-within:ring-offset-ring-offset/50',
 		'focus-within:ring-ring/50',
@@ -195,7 +195,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 	return (
 		<div className={cn('h-2 w-full rounded-full bg-card-muted', className)}>
 			<div
-				className="h-2 rounded-full bg-foreground transition-all duration-150 ease-out"
+				className="h-2 rounded-full bg-foreground transition-all duration-150 ease-in-out"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}
@@ -525,7 +525,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								onClick={handleUpload}
 								size="sm"
 								variant="ghost"
-								className="bg-foreground text-card transition-colors duration-150 hover:bg-foreground/80 ease-out"
+								className="bg-foreground text-card transition-colors duration-150 hover:bg-foreground/80 ease-in-out"
 								disabled={disabled || isUploading}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}

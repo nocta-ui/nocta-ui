@@ -15,7 +15,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const comboboxVariants = cva(
-	`not-prose relative inline-flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-150 ease-out hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose relative inline-flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-150 ease-in-out hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -172,7 +172,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									}}
 									role="button"
 									tabIndex={0}
-									className="cursor-pointer rounded p-0.5 text-foreground/70 transition-colors duration-150 ease-out hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+									className="cursor-pointer rounded p-0.5 text-foreground/70 transition-colors duration-150 ease-in-out hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 									title="Clear selection"
 									aria-label="Clear selection"
 								>
@@ -191,7 +191,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						sameWidth
 						className={cn(
 							'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
-							'origin-top -translate-y-1 scale-95 transform opacity-0 transition-all duration-150 ease-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-1 data-leave:scale-95 data-leave:opacity-0',
+							'origin-top -translate-y-2 scale-95 transform opacity-0 transition-all duration-150 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 							popoverClassName,
 						)}
 					>
@@ -237,7 +237,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											value={option.value}
 											{...(itemDisabled ? { disabled: true } : {})}
 											className={cn(
-												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-150 ease-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
+												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-150 ease-in-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
 												'data-active-item:bg-card-muted data-active-item:text-foreground',
 												'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
 												option.disabled &&

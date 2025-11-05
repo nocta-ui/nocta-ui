@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 const toggleVariants = cva(
 	[
 		'not-prose inline-flex items-center justify-center gap-2 rounded-md shadow-sm',
-		'border text-sm font-medium transition-all duration-150 ease-out',
+		'border text-sm font-medium transition-all duration-150 ease-in-out',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:outline-none',
 		'disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	],

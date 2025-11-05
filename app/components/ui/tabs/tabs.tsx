@@ -6,7 +6,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const tabsListVariants = cva(
-	'not-prose inline-flex items-center justify-center transition-all duration-150 ease-out',
+	'not-prose inline-flex items-center justify-center transition-all duration-150 ease-in-out',
 	{
 		variants: {
 			orientation: {
@@ -38,7 +38,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-all duration-150 ease-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-all duration-150 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
 	{
 		variants: {
 			variant: {

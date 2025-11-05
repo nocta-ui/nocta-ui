@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 const switchVariants = cva(
 	[
 		'relative inline-flex items-center rounded-full border-2 border-transparent',
-		'cursor-pointer transition-all duration-150 ease-out',
+		'cursor-pointer transition-all duration-150 ease-in-out',
 		'peer-focus-visible:ring-1 peer-focus-visible:outline-none',
 		'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50',
 	],
@@ -49,7 +49,7 @@ const switchVariants = cva(
 const thumbVariants = cva(
 	[
 		'inline-block rounded-full bg-card dark:bg-foreground',
-		'transform shadow-sm transition-transform duration-150 ease-out',
+		'transform shadow-sm transition-transform duration-150 ease-in-out',
 	],
 	{
 		variants: {

@@ -45,7 +45,7 @@ const breadcrumbItemVariants = cva('inline-flex items-center', {
 
 const breadcrumbLinkVariants = cva(
 	[
-		'inline-flex items-center transition-colors duration-150 ease-out',
+		'inline-flex items-center transition-colors duration-150 ease-in-out',
 		'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 		'rounded-md focus-visible:border-border',
 	],

@@ -21,7 +21,7 @@ const navigationMenuVariants = cva(
 );
 
 const navigationMenuTriggerVariants = cva(
-	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-colors duration-150 ease-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
+	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-colors duration-150 ease-in-out ring-offset-background hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground focus-visible:ring-1 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card p-4 text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-out',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card p-4 text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-in-out',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-150 ease-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
+	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
@@ -119,7 +119,7 @@ export const NavigationMenu = React.forwardRef<
 							unmountOnHide
 							wrapperProps={{
 								className: cn(
-									'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-150 ease-out',
+									'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-150 ease-in-out',
 									panelWrapperClassName,
 								),
 							}}
@@ -225,7 +225,7 @@ export const NavigationMenuItem = React.forwardRef<
 				{!!children && (
 					<Icons.ChevronDown
 						className={cn(
-							'ml-1 size-4 transition-transform duration-150 ease-out',
+							'ml-1 size-4 transition-transform duration-150 ease-in-out',
 							open && 'rotate-180',
 						)}
 					/>

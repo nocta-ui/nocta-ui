@@ -10,7 +10,7 @@ const calendarVariants = cva(
 	[
 		'rounded-lg bg-card',
 		'shadow-md',
-		'transition-all duration-150 ease-out',
+		'transition-all duration-150 ease-in-out',
 		'overflow-hidden',
 		'not-prose',
 		'text-xs',

@@ -382,7 +382,7 @@ export function SearchDialogListItem({
 			ref={ref}
 			aria-selected={active}
 			className={cn(
-				'relative select-none px-2.5 py-2 text-start text-sm rounded-md cursor-pointer transition-colors duration-150 ease-out',
+				'relative select-none px-2.5 py-2 text-start text-sm rounded-md cursor-pointer transition-colors duration-150 ease-in-out',
 				active && 'bg-card-muted',
 				className,
 			)}

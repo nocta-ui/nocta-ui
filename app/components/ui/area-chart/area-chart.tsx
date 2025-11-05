@@ -2071,7 +2071,7 @@ export const AreaChartGraphBase = React.forwardRef<
 							transform: `translate3d(${tooltip.x}px, ${tooltip.y}px, 0) scale(${tooltip.visible ? 1 : 0.95})`,
 							opacity: tooltip.visible ? 1 : 0,
 							transition:
-								'transform 300ms cubic-bezier(0, 0, 0.2, 1), opacity 150ms ease-out',
+								'transform 300ms cubic-bezier(0, 0, 0.2, 1), opacity 150ms ease-in-out',
 							willChange: 'transform, opacity',
 						}}
 					>

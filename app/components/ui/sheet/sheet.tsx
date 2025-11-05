@@ -15,7 +15,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const sheetContentVariants = cva(
-	'fixed flex transform flex-col border border-border bg-card shadow-2xl transition-transform duration-150 ease-out',
+	'fixed flex transform flex-col border border-border bg-card shadow-2xl transition-transform duration-150 ease-in-out',
 	{
 		variants: {
 			side: {
@@ -260,7 +260,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md font-medium transition-all duration-150 ease-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md font-medium transition-all duration-150 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"
@@ -514,7 +514,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				<div
 					className={cn(
 						'fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm',
-						'opacity-0 transition-opacity duration-150 ease-out',
+						'opacity-0 transition-opacity duration-150 ease-in-out',
 						'data-enter:opacity-100 data-leave:opacity-0',
 					)}
 				/>
@@ -593,7 +593,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 				)}
 
 			{showClose && (
-				<AriakitDialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<AriakitDialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<span className="sr-only">Close</span>
 				</AriakitDialogDismiss>
@@ -706,7 +706,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		<AriakitDialogDismiss
 			store={store}
 			className={cn(
-				'inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-colors duration-150 ease-out px-4 py-2 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-colors duration-150 ease-in-out px-4 py-2 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"

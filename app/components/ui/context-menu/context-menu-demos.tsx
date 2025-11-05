@@ -242,7 +242,7 @@ export const FileContextMenuDemo: React.FC = () => {
 				{files.map((file, index) => (
 					<ContextMenu key={index}>
 						<ContextMenuTrigger>
-							<div className="flex cursor-context-menu items-center gap-3 rounded-md border border-border bg-card p-3 transition-all duration-150 ease-out">
+							<div className="flex cursor-context-menu items-center gap-3 rounded-md border border-border bg-card p-3 transition-all duration-150 ease-in-out">
 								{getFileIcon(file.type)}
 								<div className="min-w-0 flex-1">
 									<div className="truncate text-sm font-medium text-foreground">

@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 const checkboxVariants = cva(
 	[
 		'relative inline-flex items-center justify-center rounded border',
-		'cursor-pointer transition-colors duration-150 ease-out',
+		'cursor-pointer transition-colors duration-150 ease-in-out',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',
 		'has-[:focus-visible]:ring-offset-ring-offset/50',
 		'not-prose shadow-sm',
@@ -53,7 +53,7 @@ const checkboxVariants = cva(
 );
 
 const iconVariants = cva(
-	['text-card transition-opacity duration-150 ease-out'],
+	['text-card transition-opacity duration-150 ease-in-out'],
 	{
 		variants: {
 			size: {
