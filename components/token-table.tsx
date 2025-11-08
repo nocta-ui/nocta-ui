@@ -10,64 +10,78 @@ const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
 
 export const colorTokens = [
 	{
+		token: '--base-hue',
+		description: 'Hue anchor for the entire palette',
+		light: '285.89',
+		dark: '285.89',
+		showSwatch: false,
+	},
+	{
+		token: '--chart-hue-step',
+		description: 'Hue offset between consecutive chart series',
+		light: '4',
+		dark: '4',
+		showSwatch: false,
+	},
+	{
 		token: '--color-background',
 		description: 'Base background',
-		light: 'oklch(0.99 0.004 285.89)',
-		dark: 'oklch(0.14 0.0045 285.89)',
+		light: 'oklch(0.99 0.004 var(--base-hue))',
+		dark: 'oklch(0.14 0.005 var(--base-hue))',
 	},
 	{
 		token: '--color-card',
 		description: 'Surface for cards',
 		light: 'oklch(1 0 0)',
-		dark: 'oklch(0.1703 0.005 285.89)',
+		dark: 'oklch(0.1703 0.006 var(--base-hue))',
 	},
 	{
 		token: '--color-card-muted',
 		description: 'Muted surface',
-		light: 'oklch(0.96 0.004 285.89)',
-		dark: 'oklch(0.2139 0.005 286.03)',
+		light: 'oklch(0.96 0.005 var(--base-hue))',
+		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
 	},
 	{
 		token: '--color-foreground',
 		description: 'Primary text',
-		light: 'oklch(0.15 0.005 285.89)',
-		dark: 'oklch(0.96 0.003 285.89)',
+		light: 'oklch(0.15 0.009 var(--base-hue))',
+		dark: 'oklch(0.96 0.005 var(--base-hue))',
 	},
 	{
 		token: '--color-border',
 		description: 'Neutral border',
-		light: 'oklch(0.9025 0.0014 285.89)',
-		dark: 'oklch(0.278 0.006 285.89)',
+		light: 'oklch(0.8925 0.0014 var(--base-hue))',
+		dark: 'oklch(0.278 0.006 var(--base-hue))',
 	},
 	{
 		token: '--color-ring',
 		description: 'Focus ring',
-		light: 'oklch(0.55 0.012 285.89)',
-		dark: 'oklch(0.58 0.012 285.89)',
+		light: 'oklch(0.55 0.012 var(--base-hue))',
+		dark: 'oklch(0.58 0.012 var(--base-hue))',
 	},
 	{
 		token: '--color-ring-offset',
 		description: 'Offset ring',
-		light: 'oklch(0.96 0.002 285.89)',
-		dark: 'oklch(0.15 0.005 285.89)',
+		light: 'oklch(0.96 0.002 var(--base-hue))',
+		dark: 'oklch(0.15 0.005 var(--base-hue))',
 	},
 	{
 		token: '--color-overlay',
 		description: 'Modal overlay',
-		light: 'oklch(0.92 0.003 285.89 / 0.65)',
-		dark: 'oklch(0.12 0.004 285.89 / 0.65)',
+		light: 'oklch(0.92 0.003 var(--base-hue) / 0.65)',
+		dark: 'oklch(0.12 0.004 var(--base-hue) / 0.65)',
 	},
 	{
 		token: '--color-gradient-from',
 		description: 'Gradient start',
-		light: 'oklch(0.3203 0.0141 285.89)',
-		dark: 'oklch(0.3203 0.0041 285.89)',
+		light: 'oklch(0.3603 0.0181 var(--base-hue))',
+		dark: 'oklch(0.3203 0.009 var(--base-hue))',
 	},
 	{
 		token: '--color-gradient-to',
 		description: 'Gradient end',
-		light: 'oklch(0.2517 0.0169 285.89)',
-		dark: 'oklch(0.2517 0.0069 285.89)',
+		light: 'oklch(0.2517 0.02 var(--base-hue))',
+		dark: 'oklch(0.2517 0.01 var(--base-hue))',
 	},
 	{
 		token: '--color-error',
@@ -90,32 +104,32 @@ export const colorTokens = [
 	{
 		token: '--color-chart-1',
 		description: 'Chart series 1',
-		light: 'oklch(0.7 0.095 245)',
-		dark: 'oklch(0.63 0.095 245)',
+		light: 'oklch(0.8 0.13 calc(var(--base-hue) - var(--chart-hue-step)))',
+		dark: 'oklch(0.84 0.13 calc(var(--base-hue) - var(--chart-hue-step)))',
 	},
 	{
 		token: '--color-chart-2',
 		description: 'Chart series 2',
-		light: 'oklch(0.68 0.118 295)',
-		dark: 'oklch(0.61 0.118 295)',
+		light: 'oklch(0.68 0.2 var(--base-hue))',
+		dark: 'oklch(0.74 0.2 var(--base-hue))',
 	},
 	{
 		token: '--color-chart-3',
 		description: 'Chart series 3',
-		light: 'oklch(0.76 0.08 175)',
-		dark: 'oklch(0.69 0.08 175)',
+		light: 'oklch(0.6 0.23 calc(var(--base-hue) + var(--chart-hue-step)))',
+		dark: 'oklch(0.66 0.23 calc(var(--base-hue) + var(--chart-hue-step)))',
 	},
 	{
 		token: '--color-chart-4',
 		description: 'Chart series 4',
-		light: 'oklch(0.72 0.14 55)',
-		dark: 'oklch(0.64 0.14 55)',
+		light: 'oklch(0.53 0.23 calc(var(--base-hue) + (var(--chart-hue-step) * 2)))',
+		dark: 'oklch(0.58 0.23 calc(var(--base-hue) + (var(--chart-hue-step) * 2)))',
 	},
 	{
 		token: '--color-chart-5',
 		description: 'Chart series 5',
-		light: 'oklch(0.68 0.12 340)',
-		dark: 'oklch(0.6 0.12 340)',
+		light: 'oklch(0.47 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3)))',
+		dark: 'oklch(0.52 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3)))',
 	},
 ];
 
@@ -224,6 +238,7 @@ export interface ColorTokenRow {
 	description?: ReactNode;
 	light: string;
 	dark: string;
+	showSwatch?: boolean;
 }
 
 export interface ShadowTokenRow {
@@ -304,6 +319,7 @@ function TokenTableShell({
 
 function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 	const [open, setOpen] = useState(false);
+	const showSwatch = token.showSwatch ?? true;
 
 	return (
 		<Collapsible
@@ -316,7 +332,7 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -336,13 +352,13 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 
 					<p className={FIELD_LABEL_CLASS}>Light Mode</p>
 					<div className="flex items-center gap-3">
-						<Swatch color={token.light} />
+						{showSwatch && <Swatch color={token.light} />}
 						<CodePill>{token.light}</CodePill>
 					</div>
 
 					<p className={FIELD_LABEL_CLASS}>Dark Mode</p>
 					<div className="flex items-center gap-3">
-						<Swatch color={token.dark} />
+						{showSwatch && <Swatch color={token.dark} />}
 						<CodePill>{token.dark}</CodePill>
 					</div>
 				</div>
@@ -366,7 +382,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -410,7 +426,7 @@ function RadiusTokenItem({ token }: { token: RadiusTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
