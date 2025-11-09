@@ -1362,6 +1362,39 @@
 			},
 			"sizes": ["sm", "md", "lg", "xl", "full"]
 		},
+		"scroll-area": {
+			"name": "Scroll Area",
+			"description": "A stylized scroll container with composable viewport, custom indicators, and hover or scroll-driven visibility",
+			"category": "layout",
+			"files": [
+				{
+					"name": "scroll-area.tsx",
+					"path": "app/components/ui/scroll-area/scroll-area.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1"
+			},
+			"exports": ["ScrollArea"],
+			"props": {
+				"ScrollArea": [
+					"children",
+					"type",
+					"direction",
+					"onViewportScroll",
+					"scrollbarSize",
+					"horizontalScrollbarSize",
+					"scrollbarThumbClassName",
+					"className",
+					"onPointerEnter",
+					"onPointerLeave"
+				]
+			}
+		},
 		"slider": {
 			"name": "Slider",
 			"description": "A customizable range slider component with variants, orientations, and accessibility support",
@@ -1728,7 +1761,7 @@
 		"layout": {
 			"name": "Layout",
 			"description": "Components for page and content layout",
-			"components": ["accordion", "card"]
+			"components": ["accordion", "card", "scroll-area"]
 		},
 		"overlay": {
 			"name": "Overlay",

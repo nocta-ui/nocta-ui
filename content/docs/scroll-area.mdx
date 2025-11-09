@@ -1,0 +1,152 @@
+---
+title: Scroll Area
+description: A stylized scroll container with composable viewport, custom indicators, and hover or scroll-driven visibility
+---
+
+import { ScrollArea } from '@/app/components/ui/scroll-area';
+import { ScrollAreaBasicDemo, ScrollAreaHorizontalDemo } from '@/app/components/ui/scroll-area/scroll-area-demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+
+<Steps>
+<Step>
+Install the Scroll Area component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add scroll-area
+```
+</Step>
+<Step>
+Import the pieces you need:
+
+```tsx lineNumbers title="Import"
+import { ScrollArea } from '@/components/ui/scroll-area';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Scroll Area
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ScrollAreaBasicDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Scrollable Panel"
+    const notifications = [
+      { title: 'Product launch', time: '2m ago', body: 'Release goes live tomorrow at 9:00 AM.' },
+      { title: 'New mention', time: '18m ago', body: 'Marta mentioned you in #design-system.' },
+      // ...
+    ];
+
+    <ScrollArea className="h-64 w-full max-w-md">
+      <div className="space-y-4">
+        {notifications.map((notification) => (
+          <div
+            key={notification.title}
+            className="rounded-lg border border-border/60 bg-card-muted/40 p-4 shadow-xs"
+          >
+            <div className="flex items-center justify-between text-sm font-medium text-foreground">
+              <span>{notification.title}</span>
+              <span className="text-foreground/60">{notification.time}</span>
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+              {notification.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Horizontal
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ScrollAreaHorizontalDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Horizontal Scroll"
+    const frameworks = ['Next.js', 'Expo', 'Remix', 'SvelteKit'];
+
+    <ScrollArea type="scroll" direction="horizontal" className="w-full max-w-3xl">
+      <div className="flex w-max gap-3 whitespace-nowrap text-sm font-medium p-3">
+        {frameworks.map((framework) => (
+          <span
+            key={framework}
+            className="rounded-full border border-border/60 bg-card px-4 py-2 shadow-xs"
+          >
+            {framework}
+          </span>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Api Reference
+
+### ScrollArea
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Content that should scroll',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    type: {
+      description: 'When scrollbars become visible',
+      type: '"hover" | "scroll" | "always"',
+      default: '"hover"',
+    },
+    direction: {
+      description: 'Which scrollbar(s) to render',
+      type: '"vertical" | "horizontal" | "both"',
+      default: '"vertical"',
+    },
+    onViewportScroll: {
+      description: 'Scroll handler for the viewport element',
+      type: '(event: React.UIEvent<HTMLDivElement>) => void',
+      default: 'undefined',
+    },
+    scrollbarSize: {
+      description: 'Thickness for the vertical scrollbar (and default for horizontal)',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    horizontalScrollbarSize: {
+      description: 'Override size for the horizontal scrollbar',
+      type: '"sm" | "md" | "lg"',
+      default: 'inherit',
+    },
+    scrollbarThumbClassName: {
+      description: 'Additional classes merged onto the scrollbar thumb (override the default `bg-foreground/45` color here)',
+      type: 'string',
+      default: '""',
+    },
+    className: {
+      description: 'Additional CSS classes (apply sizing, padding, etc. here)',
+      type: 'string',
+      default: '""',
+    },
+    onPointerEnter: {
+      description: 'Pointer enter handler',
+      type: '(event: React.PointerEvent<HTMLDivElement>) => void',
+      default: 'undefined',
+    },
+    onPointerLeave: {
+      description: 'Pointer leave handler',
+      type: '(event: React.PointerEvent<HTMLDivElement>) => void',
+      default: 'undefined',
+    },
+  }}
+/>
