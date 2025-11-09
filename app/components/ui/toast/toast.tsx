@@ -50,7 +50,7 @@ const FOCUSABLE_SELECTORS = [
 
 const ANIMATION_CONFIG = {
 	ENTER_DURATION: 0.5,
-	EXIT_DURATION: 0.45,
+	EXIT_DURATION: 0.5,
 	STACK_DURATION: 0.5,
 	STACK_OFFSET: 16,
 	EXPANDED_GAP: 12,
@@ -58,8 +58,8 @@ const ANIMATION_CONFIG = {
 	MIN_SCALE: 0.92,
 	MAX_VISIBLE_TOASTS: 3,
 	Z_INDEX_BASE: 50,
-	EASING_DEFAULT: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
-	EASING_EXIT: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+	EASING_DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+	EASING_EXIT: 'cubic-bezier(0.4, 0, 0.2, 1)',
 } as const;
 
 const SWIPE_DISMISS_THRESHOLD = 45;
