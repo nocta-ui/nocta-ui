@@ -179,6 +179,7 @@ import {
 	AreaChartLegend,
 	AreaChartTitle,
 } from '@/app/components/ui/area-chart';
+import { Pagination } from '@/app/components/ui/pagination';
 
 const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
@@ -347,6 +348,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 		AreaChartHeader,
 		AreaChartLegend,
 		AreaChartTitle,
+		Pagination,
 		pre: ({ ref: _ref, ...props }) => (
 			<YourCustomCodeBlock {...props}>
 				<Pre>{props.children}</Pre>

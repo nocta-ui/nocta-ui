@@ -1,0 +1,122 @@
+---
+title: Pagination
+description: Navigate through paged data sets with previous, next and numbered controls.
+---
+
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import {
+  Pagination,
+  DefaultPaginationDemo,
+  ExtendedPaginationDemo,
+} from '@/app/components/ui/pagination';
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Pagination component using the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx @nocta-ui/cli add pagination
+    ```
+  </Step>
+  <Step>
+    Then import the component where you need it:
+
+    ```tsx lineNumbers title="Import"
+    import { Pagination } from '@/components/ui/pagination';
+    ```
+  </Step>
+</Steps>
+
+## Examples
+
+### Default
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <DefaultPaginationDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Pagination"
+    function Example() {
+      const [page, setPage] = React.useState(1);
+
+      return (
+        <Pagination
+          totalPages={4}
+          currentPage={page}
+          onPageChange={setPage}
+        />
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Extended Ranges
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <ExtendedPaginationDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Extended Pagination"
+    function ExtendedExample() {
+      const [page, setPage] = React.useState(25);
+
+      return (
+        <Pagination
+          totalPages={64}
+          currentPage={page}
+          onPageChange={setPage}
+          siblingCount={2}
+        />
+      );
+    }
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+<TypeTable
+  type={{
+    totalPages: {
+      description: 'Total amount of available pages.',
+      type: 'number',
+      required: true,
+    },
+    currentPage: {
+      description: 'Currently selected page (1-indexed).',
+      type: 'number',
+      required: true,
+    },
+    onPageChange: {
+      description: 'Callback fired when the user selects a different page.',
+      type: '(page: number) => void',
+      default: 'undefined',
+    },
+    siblingCount: {
+      description: 'Amount of adjacent pages to show on each side of the current page.',
+      type: 'number',
+      default: '1',
+    },
+    className: {
+      description: 'Additional classes for the outer navigation element.',
+      type: 'string',
+      default: '""',
+    },
+    'aria-label': {
+      description: 'Accessible label for the navigation element.',
+      type: 'string',
+      default: '"Pagination"',
+    },
+    '...props': {
+      description: 'Any other props supported by `<nav>`.',
+      type: 'React.ComponentPropsWithoutRef<"nav">',
+    },
+  }}
+/>

@@ -423,6 +423,27 @@
 			},
 			"sizes": ["sm", "md", "lg"]
 		},
+		"pagination": {
+			"name": "Pagination",
+			"description": "Pagination component for navigating between pages of content",
+			"category": "navigation",
+			"files": [
+				{
+					"name": "pagination.tsx",
+					"path": "app/components/ui/pagination/pagination.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1"
+			},
+			"exports": ["Pagination"],
+			"props": {
+				"Pagination": ["totalPages", "currentPage", "onPageChange", "siblingCount", "className", "...props"]
+			}
+		},
 		"card": {
 			"name": "Card",
 			"description": "Card component with composable layout sections",
@@ -1724,7 +1745,7 @@
 		"navigation": {
 			"name": "Navigation",
 			"description": "Components for navigation and routing",
-			"components": ["breadcrumb", "navigation-menu", "tabs"]
+			"components": ["breadcrumb", "navigation-menu", "tabs", "menubar", "pagination"]
 		},
 		"communication": {
 			"name": "Communication",
