@@ -91,7 +91,7 @@
 	--color-overlay: oklch(0.92 0.003 var(--base-hue) / 0.65);
 	--color-gradient-from: oklch(0.3603 0.0181 var(--base-hue));
 	--color-gradient-to: oklch(0.2517 0.02 var(--base-hue));
-	--color-error: oklch(0.62 0.21 25);
+	--color-destructive: oklch(0.62 0.21 25);
 	--color-warning: oklch(0.8 0.2 75);
 	--color-success: oklch(0.7 0.18 155);
 	--color-chart-1: oklch(
@@ -159,7 +159,7 @@
 	--color-overlay: oklch(0.12 0.004 var(--base-hue) / 0.65);
 	--color-gradient-from: oklch(0.3203 0.012 var(--base-hue));
 	--color-gradient-to: oklch(0.2517 0.012 var(--base-hue));
-	--color-error: oklch(0.58 0.22 25);
+	--color-destructive: oklch(0.58 0.22 25);
 	--color-warning: oklch(0.75 0.18 75);
 	--color-success: oklch(0.68 0.19 155);
 	--color-chart-1: oklch(
@@ -227,7 +227,7 @@
 	--color-overlay: var(--overlay);
 	--color-gradient-from: var(--gradient-from);
 	--color-gradient-to: var(--gradient-to);
-	--color-error: var(--error);
+	--color-destructive: var(--destructive);
 	--color-warning: var(--warning);
 	--color-success: var(--success);
 	--color-chart-1: var(--chart-1);

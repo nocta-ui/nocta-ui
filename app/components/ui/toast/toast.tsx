@@ -172,7 +172,7 @@ const toastContainerVariants = cva(
 				default: 'overflow-hidden border-border bg-card-muted text-foreground',
 				success: 'border-border bg-card-muted text-success/90',
 				warning: 'border-border bg-card-muted text-warning/90',
-				destructive: 'border-border bg-card-muted text-error/90',
+				destructive: 'border-border bg-card-muted text-destructive/90',
 			},
 		},
 		defaultVariants: {

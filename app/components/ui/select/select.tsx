@@ -12,7 +12,7 @@ const selectTriggerVariants = cva(
 		variants: {
 			variant: {
 				default: `border-border bg-card text-foreground focus-visible:border-border focus-visible:ring-ring/50`,
-				error: `border-error/40 bg-card text-foreground focus-visible:border-error/50 focus-visible:ring-error/50 dark:focus-visible:ring-error/50`,
+				error: `border-destructive/40 bg-card text-foreground focus-visible:border-destructive/50 focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50`,
 				success: `border-success/40 bg-card text-foreground focus-visible:border-success/50 focus-visible:ring-success/50 dark:focus-visible:ring-success/50`,
 			},
 			size: {

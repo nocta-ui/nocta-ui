@@ -38,7 +38,7 @@ export const ControlledDemo: React.FC = () => {
 				<button
 					type="button"
 					onClick={() => setOpen(false)}
-					className="rounded border border-error/40 bg-error/10 px-3 py-1 text-sm text-error/80 duration-150 ease-in-out hover:opacity-80"
+					className="rounded border border-destructive/40 bg-destructive/10 px-3 py-1 text-sm text-destructive/80 duration-150 ease-in-out hover:opacity-80"
 				>
 					Close
 				</button>

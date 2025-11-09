@@ -27,10 +27,10 @@ const badgeVariants = cva(
 					'border shadow-sm border-border',
 				],
 				destructive: [
-					'bg-error/10',
-					'text-error/90',
-					'hover:bg-error/25',
-					'border shadow-sm border-error/40',
+					'bg-destructive/10',
+					'text-destructive/90',
+					'hover:bg-destructive/25',
+					'border shadow-sm border-destructive/40',
 				],
 				success: [
 					'bg-success/10',

@@ -140,7 +140,7 @@ export const FormLabel: React.FC<FormLabelProps> = ({
 			{...labelProps}
 		>
 			{children}
-			{required && <span className="ml-1 text-error/90">*</span>}
+			{required && <span className="ml-1 text-destructive/90">*</span>}
 		</Ariakit.FormLabel>
 	);
 };
@@ -184,7 +184,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
 	const forwardedProps = typeof id === 'undefined' ? props : { ...props, id };
 
 	const variants = {
-		error: 'text-error/90',
+		error: 'text-destructive/90',
 		success: 'text-success/90',
 		warning: 'text-warning/90',
 	} as const;

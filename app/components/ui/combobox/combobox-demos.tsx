@@ -78,7 +78,7 @@ export const VariantsDemo: React.FC = () => {
 					variant="error"
 					className="w-[200px]"
 				/>
-				<p className="text-xs text-error/90">This field is required</p>
+				<p className="text-xs text-destructive/90">This field is required</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">

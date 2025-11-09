@@ -77,7 +77,7 @@ const statusVariants = cva('absolute rounded-full ring-ring-offset', {
 			online: 'bg-success',
 			offline: 'bg-foreground-subtle',
 			away: 'bg-warning',
-			busy: 'bg-error',
+			busy: 'bg-destructive',
 		},
 		size: {
 			xs: 'right-0 bottom-0 h-1.5 w-1.5 ring-1',

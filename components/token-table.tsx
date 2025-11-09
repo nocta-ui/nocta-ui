@@ -84,8 +84,8 @@ export const colorTokens = [
 		dark: 'oklch(0.2517 0.01 var(--base-hue))',
 	},
 	{
-		token: '--color-error',
-		description: 'Error state',
+		token: '--color-destructive',
+		description: 'Destructive state',
 		light: 'oklch(0.62 0.21 25)',
 		dark: 'oklch(0.58 0.22 25)',
 	},

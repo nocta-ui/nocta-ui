@@ -11,7 +11,7 @@ const alertVariants = cva(
 				default:
 					'overflow-hidden border-border bg-card text-foreground [&_[data-slot=alert-icon]]:text-foreground',
 				destructive:
-					'border-border bg-card text-error/90 [&_[data-slot=alert-icon]]:text-error/90',
+					'border-border bg-card text-destructive/90 [&_[data-slot=alert-icon]]:text-destructive/90',
 				warning:
 					'border-border bg-card text-warning/90 [&_[data-slot=alert-icon]]:text-warning/90',
 				success:

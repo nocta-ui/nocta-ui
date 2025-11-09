@@ -29,7 +29,7 @@ const fileUploadVariants = cva(
 			state: {
 				idle: '',
 				dragover: ['border-background-subtle', 'bg-card', 'scale-[1.02]'],
-				error: ['border-error/40', 'bg-red-50 dark:bg-red-900/20'],
+				error: ['border-destructive/40', 'bg-red-50 dark:bg-red-900/20'],
 			},
 		},
 		defaultVariants: {
@@ -262,7 +262,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 
 					{file.status === 'error' && file.error && (
-						<p className="truncate text-xs text-error/90 font-medium">
+						<p className="truncate text-xs text-destructive/90 font-medium">
 							{file.error}
 						</p>
 					)}

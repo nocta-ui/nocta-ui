@@ -22,11 +22,11 @@ const inputVariants = cva(
 					'focus-visible:ring-ring/50',
 				],
 				error: [
-					'border-error/40',
+					'border-destructive/40',
 					'bg-card',
 					'text-foreground',
-					'focus-visible:border-error/50',
-					'focus-visible:ring-error/50 dark:focus-visible:ring-error/50',
+					'focus-visible:border-destructive/50',
+					'focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50',
 				],
 				success: [
 					'border-success/40',
@@ -100,7 +100,7 @@ const labelVariants = cva('mb-1.5 block text-sm font-medium', {
 const messageVariants = cva('mt-1.5 text-sm', {
 	variants: {
 		type: {
-			error: 'text-error/90',
+			error: 'text-destructive/90',
 			success: 'text-success/90',
 			helper: 'text-foreground/70',
 		},

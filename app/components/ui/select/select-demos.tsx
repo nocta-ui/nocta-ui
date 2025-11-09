@@ -57,7 +57,7 @@ export const VariantsDemo: React.FC = () => {
 						<SelectItem value="orange">Orange</SelectItem>
 					</SelectContent>
 				</Select>
-				<p className="text-xs text-error/90">Please select an option</p>
+				<p className="text-xs text-destructive/90">Please select an option</p>
 			</div>
 
 			<div className="flex flex-col space-y-2">

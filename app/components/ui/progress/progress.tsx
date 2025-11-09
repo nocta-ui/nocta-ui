@@ -15,7 +15,7 @@ const progressVariants = cva(
 				default: '[&>div]:bg-foreground dark:[&>div]:bg-foreground/50',
 				success: '[&>div]:bg-success/80 dark:[&>div]:bg-success/40',
 				warning: '[&>div]:bg-warning/80 dark:[&>div]:bg-warning/40',
-				destructive: '[&>div]:bg-error/80 dark:[&>div]:bg-error/40',
+				destructive: '[&>div]:bg-destructive/80 dark:[&>div]:bg-destructive/40',
 			},
 			size: {
 				sm: 'h-2',

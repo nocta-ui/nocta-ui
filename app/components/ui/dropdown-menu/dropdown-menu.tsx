@@ -46,7 +46,7 @@ const dropdownMenuItemVariants = cva(
 				false: '',
 			},
 			destructive: {
-				true: 'text-error/90 hover:bg-error/10 hover:text-error',
+				true: 'text-destructive/90 hover:bg-destructive/10 hover:text-destructive',
 				false: '',
 			},
 		},

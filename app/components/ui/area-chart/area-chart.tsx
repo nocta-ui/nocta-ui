@@ -2222,7 +2222,7 @@ export function AreaChartDataTableContent<
 		tone === 'positive'
 			? 'text-success/90'
 			: tone === 'negative'
-				? 'text-error/90'
+				? 'text-destructive/90'
 				: 'text-foreground/45';
 
 	const rows = points.map((point: AreaChartPoint<TData>, index) => {
