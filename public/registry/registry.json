@@ -439,6 +439,7 @@
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1"
 			},
+			"internalDependencies": ["button"],
 			"exports": ["Pagination"],
 			"props": {
 				"Pagination": ["totalPages", "currentPage", "onPageChange", "siblingCount", "className", "...props"]
