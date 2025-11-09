@@ -62,7 +62,7 @@ const menubarSubContentVariants = cva(
 );
 
 const menubarItemVariants = cva(
-	'flex w-full cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm transition-colors outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50',
+	'flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50',
 	{
 		variants: {
 			inset: {

@@ -24,9 +24,9 @@ const comboboxVariants = cva(
 				success: `border-success/40 bg-card text-foreground focus-visible:border-success/50 focus-visible:ring-success/50 dark:focus-visible:ring-success/50`,
 			},
 			size: {
-				sm: 'h-8 px-3 text-xs',
-				md: 'h-10 px-3 text-sm',
-				lg: 'h-12 px-4 text-base',
+				sm: 'h-8 px-2.5 py-1.5 px-3 text-sm',
+				md: 'h-9 px-3 py-2 text-sm',
+				lg: 'h-10 px-4 py-2 text-base',
 			},
 		},
 		defaultVariants: {
@@ -210,7 +210,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 										setSearchValue(event.currentTarget.value),
 									)
 								}
-								className="w-full border-0 bg-transparent pl-1.5 pr-3 py-2 text-sm placeholder:text-foreground/45 focus-visible:outline-none"
+								className="w-full border-0 bg-transparent pl-1.5 pr-2 py-1.5 text-sm placeholder:text-foreground/45 focus-visible:outline-none"
 							/>
 						</div>
 
@@ -224,7 +224,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							{matches.length === 0 ? (
 								<output
 									aria-live="polite"
-									className="mx-1 px-3 py-2 text-center text-sm text-foreground/70"
+									className="mx-1 px-2 py-1.5 text-center text-sm text-foreground/70"
 								>
 									{emptyMessage}
 								</output>
@@ -238,7 +238,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											value={option.value}
 											{...(itemDisabled ? { disabled: true } : {})}
 											className={cn(
-												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-3 py-2 text-sm text-foreground/70 transition-colors duration-150 ease-in-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
+												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-150 ease-in-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
 												'data-active-item:bg-card-muted data-active-item:text-foreground',
 												'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
 												option.disabled &&
