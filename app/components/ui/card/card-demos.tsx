@@ -67,7 +67,7 @@ export const CardWithActionsDemo: React.FC = () => {
 						<Button variant="ghost" size="sm">
 							Cancel
 						</Button>
-						<Button variant="primary" size="sm">
+						<Button variant="default" size="sm">
 							Save Changes
 						</Button>
 					</CardActions>

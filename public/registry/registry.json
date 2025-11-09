@@ -384,7 +384,7 @@
 					"disabled"
 				]
 			},
-			"variants": ["primary", "secondary", "ghost", "icon"],
+			"variants": ["default", "secondary", "ghost", "icon"],
 			"sizes": ["sm", "md", "lg"]
 		},
 		"wheel-picker": {

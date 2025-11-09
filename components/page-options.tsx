@@ -54,7 +54,7 @@ export function LLMCopyButton({
 	return (
 		<Button
 			disabled={isLoading}
-			variant="primary"
+			variant="default"
 			size="sm"
 			className="gap-2 [&_svg]:size-3.5"
 			onClick={onClick}

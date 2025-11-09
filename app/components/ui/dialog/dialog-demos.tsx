@@ -67,7 +67,7 @@ export const DialogWithActionsDemo: React.FC = () => {
 									Cancel
 								</Button>
 							</DialogClose>
-							<Button variant="primary" size="sm">
+							<Button variant="default" size="sm">
 								Delete
 							</Button>
 						</DialogActions>

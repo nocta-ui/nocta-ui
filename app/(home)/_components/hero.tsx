@@ -24,7 +24,7 @@ export default function Hero() {
 
 				<div className="flex w-full flex-row items-center gap-3 justify-center">
 					<Button
-						variant="primary"
+						variant="default"
 						size="md"
 						render={<Link href="/docs"></Link>}
 					>
