@@ -44,15 +44,15 @@ export const BasicDropdownMenuDemo: React.FC = () => {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem onClick={() => setLastAction('Profile')}>
-						<PersonIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<PersonIcon aria-hidden="true" />
 						Profile
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setLastAction('Billing')}>
-						<CardStackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<CardStackIcon aria-hidden="true" />
 						Billing
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setLastAction('Settings')}>
-						<GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<GearIcon aria-hidden="true" />
 						Settings
 					</DropdownMenuItem>
 				</DropdownMenuContent>
@@ -78,29 +78,29 @@ export const DropdownMenuWithSeparatorDemo: React.FC = () => {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem>
-						<Pencil1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<Pencil1Icon aria-hidden="true" />
 						Edit
 					</DropdownMenuItem>
 					<DropdownMenuItem>
-						<StackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<StackIcon aria-hidden="true" />
 						Duplicate
 					</DropdownMenuItem>
 
 					<DropdownMenuSeparator />
 
 					<DropdownMenuItem>
-						<BookmarkIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<BookmarkIcon aria-hidden="true" />
 						Bookmark
 					</DropdownMenuItem>
 					<DropdownMenuItem>
-						<Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<Share1Icon aria-hidden="true" />
 						Share
 					</DropdownMenuItem>
 
 					<DropdownMenuSeparator />
 
 					<DropdownMenuItem destructive>
-						<TrashIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<TrashIcon aria-hidden="true" />
 						Delete
 					</DropdownMenuItem>
 				</DropdownMenuContent>
@@ -120,26 +120,26 @@ export const DropdownMenuWithSubmenuDemo: React.FC = () => {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuItem>
-						<PlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<PlusIcon aria-hidden="true" />
 						New item
 					</DropdownMenuItem>
 
 					<DropdownMenuSub>
 						<DropdownMenuSubTrigger>
-							<UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<UploadIcon aria-hidden="true" />
 							Export as
 						</DropdownMenuSubTrigger>
 						<DropdownMenuSubContent>
 							<DropdownMenuItem>
-								<FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<FileTextIcon aria-hidden="true" />
 								PDF
 							</DropdownMenuItem>
 							<DropdownMenuItem>
-								<TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<TableIcon aria-hidden="true" />
 								Excel
 							</DropdownMenuItem>
 							<DropdownMenuItem>
-								<ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<ImageIcon aria-hidden="true" />
 								Image
 							</DropdownMenuItem>
 						</DropdownMenuSubContent>
@@ -148,7 +148,7 @@ export const DropdownMenuWithSubmenuDemo: React.FC = () => {
 					<DropdownMenuSeparator />
 
 					<DropdownMenuItem>
-						<GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<GearIcon aria-hidden="true" />
 						Preferences
 					</DropdownMenuItem>
 				</DropdownMenuContent>

@@ -204,6 +204,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			disabled={disabled}
 			className={cn(
 				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
+				"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
 				isSelected && 'bg-card-muted font-medium text-foreground',
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,

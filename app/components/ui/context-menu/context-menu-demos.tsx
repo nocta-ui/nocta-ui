@@ -48,15 +48,15 @@ export const BasicContextMenuDemo: React.FC = () => {
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem onClick={() => setLastAction('Cut')}>
-						<ScissorsIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<ScissorsIcon aria-hidden="true" />
 						Cut
 					</ContextMenuItem>
 					<ContextMenuItem onClick={() => setLastAction('Copy')}>
-						<CopyIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<CopyIcon aria-hidden="true" />
 						Copy
 					</ContextMenuItem>
 					<ContextMenuItem onClick={() => setLastAction('Paste')}>
-						<ClipboardIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<ClipboardIcon aria-hidden="true" />
 						Paste
 					</ContextMenuItem>
 				</ContextMenuContent>
@@ -82,29 +82,29 @@ export const ContextMenuWithSeparatorDemo: React.FC = () => {
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem>
-						<Pencil1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<Pencil1Icon aria-hidden="true" />
 						Edit
 					</ContextMenuItem>
 					<ContextMenuItem>
-						<StackIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<StackIcon aria-hidden="true" />
 						Duplicate
 					</ContextMenuItem>
 
 					<ContextMenuSeparator />
 
 					<ContextMenuItem>
-						<BookmarkIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<BookmarkIcon aria-hidden="true" />
 						Bookmark
 					</ContextMenuItem>
 					<ContextMenuItem>
-						<Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<Share1Icon aria-hidden="true" />
 						Share
 					</ContextMenuItem>
 
 					<ContextMenuSeparator />
 
 					<ContextMenuItem destructive>
-						<TrashIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<TrashIcon aria-hidden="true" />
 						Delete
 					</ContextMenuItem>
 				</ContextMenuContent>
@@ -124,26 +124,26 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 				</ContextMenuTrigger>
 				<ContextMenuContent>
 					<ContextMenuItem>
-						<PlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<PlusIcon aria-hidden="true" />
 						New
 					</ContextMenuItem>
 
 					<ContextMenuSub>
 						<ContextMenuSubTrigger>
-							<UploadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<UploadIcon aria-hidden="true" />
 							Export As
 						</ContextMenuSubTrigger>
 						<ContextMenuSubContent>
 							<ContextMenuItem>
-								<FileTextIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<FileTextIcon aria-hidden="true" />
 								PDF
 							</ContextMenuItem>
 							<ContextMenuItem>
-								<TableIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<TableIcon aria-hidden="true" />
 								Excel
 							</ContextMenuItem>
 							<ContextMenuItem>
-								<ImageIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<ImageIcon aria-hidden="true" />
 								Image
 							</ContextMenuItem>
 						</ContextMenuSubContent>
@@ -152,7 +152,7 @@ export const ContextMenuWithSubmenuDemo: React.FC = () => {
 					<ContextMenuSeparator />
 
 					<ContextMenuItem>
-						<GearIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+						<GearIcon aria-hidden="true" />
 						Settings
 					</ContextMenuItem>
 				</ContextMenuContent>
@@ -191,93 +191,6 @@ export const DisabledContextMenuDemo: React.FC = () => {
 						<ContextMenuItem disabled>Another Disabled Item</ContextMenuItem>
 					</ContextMenuContent>
 				</ContextMenu>
-			</div>
-		</div>
-	);
-};
-
-export const FileContextMenuDemo: React.FC = () => {
-	const [files] = useState([
-		{ name: 'document.pdf', type: 'pdf', size: '2.4 MB' },
-		{ name: 'image.jpg', type: 'image', size: '1.8 MB' },
-		{ name: 'project.zip', type: 'archive', size: '15.2 MB' },
-	]);
-
-	const getFileIcon = (type: string) => {
-		switch (type) {
-			case 'pdf':
-				return (
-					<FileTextIcon
-						aria-hidden="true"
-						className="mr-3 h-5 w-5 text-foreground/45"
-					/>
-				);
-			case 'image':
-				return (
-					<ImageIcon
-						aria-hidden="true"
-						className="mr-3 h-5 w-5 text-foreground/45"
-					/>
-				);
-			case 'archive':
-				return (
-					<ArchiveIcon
-						aria-hidden="true"
-						className="mr-3 h-5 w-5 text-foreground/45"
-					/>
-				);
-			default:
-				return (
-					<FileIcon
-						aria-hidden="true"
-						className="mr-3 h-5 w-5 text-foreground/45"
-					/>
-				);
-		}
-	};
-
-	return (
-		<div className="mx-auto my-6 w-full max-w-md space-y-4">
-			<div className="flex flex-col space-y-2">
-				{files.map((file, index) => (
-					<ContextMenu key={index}>
-						<ContextMenuTrigger>
-							<div className="flex cursor-context-menu items-center gap-3 rounded-md border border-border bg-card p-3 transition-all duration-150 ease-in-out">
-								{getFileIcon(file.type)}
-								<div className="min-w-0 flex-1">
-									<div className="truncate text-sm font-medium text-foreground">
-										{file.name}
-									</div>
-									<div className="text-xs text-foreground/45">{file.size}</div>
-								</div>
-							</div>
-						</ContextMenuTrigger>
-						<ContextMenuContent>
-							<ContextMenuItem>
-								<EyeOpenIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-								Open
-							</ContextMenuItem>
-							<ContextMenuItem>
-								<Pencil1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
-								Rename
-							</ContextMenuItem>
-							<ContextMenuSeparator />
-							<ContextMenuItem>
-								<CopyIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-								Copy
-							</ContextMenuItem>
-							<ContextMenuItem>
-								<Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
-								Share
-							</ContextMenuItem>
-							<ContextMenuSeparator />
-							<ContextMenuItem>
-								<InfoCircledIcon aria-hidden="true" className="mr-2 h-4 w-4" />
-								Properties
-							</ContextMenuItem>
-						</ContextMenuContent>
-					</ContextMenu>
-				))}
 			</div>
 		</div>
 	);

@@ -62,7 +62,7 @@ const menubarSubContentVariants = cva(
 );
 
 const menubarItemVariants = cva(
-	'flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50',
+	"flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-colors outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50",
 	{
 		variants: {
 			inset: {
@@ -247,7 +247,9 @@ export const MenubarSubTrigger: FC<MenubarSubTriggerProps> = ({
 			}
 			disabled={Boolean(disabled)}
 		>
-			<span className="flex flex-1 items-center justify-start">{children}</span>
+			<span className="flex flex-1 items-center justify-start [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2">
+				{children}
+			</span>
 			<Ariakit.MenuButtonArrow className="ml-2" />
 		</Ariakit.MenuItem>
 	);

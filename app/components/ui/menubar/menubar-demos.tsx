@@ -33,24 +33,24 @@ export const BasicMenubarDemo: React.FC = () => {
 					<MenubarTrigger>File</MenubarTrigger>
 					<MenubarContent>
 						<MenubarItem onClick={() => setLastAction('New project')}>
-							<FilePlusIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<FilePlusIcon aria-hidden="true" />
 							New project
 						</MenubarItem>
 						<MenubarItem onClick={() => setLastAction('Open file')}>
 							<OpenInNewWindowIcon
 								aria-hidden="true"
-								className="mr-2 h-4 w-4"
+
 							/>
 							Open file
 						</MenubarItem>
 						<MenubarItem onClick={() => setLastAction('Save')}>
-							<EnterIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<EnterIcon aria-hidden="true" />
 							Save
 						</MenubarItem>
 						<MenubarSeparator />
 						<MenubarSub>
 							<MenubarSubTrigger>
-								<Share1Icon aria-hidden="true" className="mr-2 h-4 w-4" />
+								<Share1Icon aria-hidden="true" />
 								Share
 							</MenubarSubTrigger>
 							<MenubarSubContent>
@@ -79,7 +79,7 @@ export const BasicMenubarDemo: React.FC = () => {
 					<MenubarTrigger>Edit</MenubarTrigger>
 					<MenubarContent>
 						<MenubarItem onClick={() => setLastAction('Undo')}>
-							<ReloadIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<ReloadIcon aria-hidden="true" />
 							Undo
 						</MenubarItem>
 						<MenubarItem onClick={() => setLastAction('Redo')}>
@@ -91,15 +91,15 @@ export const BasicMenubarDemo: React.FC = () => {
 						</MenubarItem>
 						<MenubarSeparator />
 						<MenubarItem onClick={() => setLastAction('Cut')}>
-							<ScissorsIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<ScissorsIcon aria-hidden="true" />
 							Cut
 						</MenubarItem>
 						<MenubarItem onClick={() => setLastAction('Copy')}>
-							<CopyIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<CopyIcon aria-hidden="true" />
 							Copy
 						</MenubarItem>
 						<MenubarItem onClick={() => setLastAction('Paste')}>
-							<DotsHorizontalIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+							<DotsHorizontalIcon aria-hidden="true" />
 							Paste
 						</MenubarItem>
 					</MenubarContent>
