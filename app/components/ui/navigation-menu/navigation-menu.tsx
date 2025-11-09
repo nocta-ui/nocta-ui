@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card p-4 text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-in-out',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card p-2 text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-in-out',
 	{
 		variants: {
 			size: {
@@ -52,13 +52,10 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex last:h-full flex-col items-start gap-1 rounded-md px-4 py-3 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
+	'flex last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
-
-const navigationMenuGroupLabelClass =
-	'px-4 text-xs uppercase tracking-widest text-foreground/45';
 
 const SetShiftContext = React.createContext<
 	React.Dispatch<React.SetStateAction<number>>
@@ -319,7 +316,10 @@ export const NavigationMenuLink = React.forwardRef<
 				{label}
 			</span>
 			{description && (
-				<span id={descriptionId} className="text-xs text-foreground/70">
+				<span
+					id={descriptionId}
+					className="text-sm text-foreground/70 line-clamp-2 leading-snug"
+				>
 					{description}
 				</span>
 			)}
@@ -332,31 +332,19 @@ NavigationMenuLink.displayName = 'NavigationMenuLink';
 export interface NavigationMenuGroupProps
 	extends Ariakit.MenuGroupProps,
 		VariantProps<typeof navigationMenuGroupVariants> {
-	label?: React.ReactNode;
 	className?: string;
-	labelClassName?: string;
 }
 
 export const NavigationMenuGroup = React.forwardRef<
 	HTMLDivElement,
 	NavigationMenuGroupProps
->(function NavigationMenuGroup(
-	{ label, className, labelClassName, children, ...props },
-	ref,
-) {
+>(function NavigationMenuGroup({ className, children, ...props }, ref) {
 	return (
 		<Ariakit.MenuGroup
 			ref={ref}
 			{...props}
 			className={cn(navigationMenuGroupVariants(), className)}
 		>
-			{label && (
-				<Ariakit.MenuGroupLabel
-					className={cn(navigationMenuGroupLabelClass, labelClassName)}
-				>
-					{label}
-				</Ariakit.MenuGroupLabel>
-			)}
 			{children}
 		</Ariakit.MenuGroup>
 	);

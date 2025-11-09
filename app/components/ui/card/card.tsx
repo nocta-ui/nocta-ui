@@ -79,7 +79,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				'not-prose text-base leading-tight font-medium text-foreground',
+				'not-prose text-base leading-none font-medium text-foreground',
 				className,
 			),
 			...props,
@@ -96,7 +96,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 	return (
 		<p
 			className={cn(
-				'not-prose mt-1 text-sm leading-relaxed text-foreground/45',
+				'not-prose mt-1 text-sm leading-snug text-foreground/45',
 				className,
 			)}
 			{...props}
@@ -113,7 +113,10 @@ export const CardContent: React.FC<CardContentProps> = ({
 }) => {
 	return (
 		<div
-			className={cn('not-prose text-sm p-4 text-foreground/70', className)}
+			className={cn(
+				'not-prose text-sm p-4 text-foreground/70 leading-snug',
+				className,
+			)}
 			{...props}
 		>
 			{children}

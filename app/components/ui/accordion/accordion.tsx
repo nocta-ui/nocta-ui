@@ -123,58 +123,55 @@ const accordionContentVariants = cva(
 	},
 );
 
-const accordionContentInnerVariants = cva(
-	'leading-relaxed text-foreground/70',
-	{
-		variants: {
-			variant: {
-				default: '',
-				card: 'border-t border-border/60',
-			},
-			size: {
-				sm: '',
-				md: '',
-				lg: '',
-			},
+const accordionContentInnerVariants = cva('leading-snug text-foreground/70', {
+	variants: {
+		variant: {
+			default: '',
+			card: 'border-t border-border/60',
 		},
-		compoundVariants: [
-			{
-				variant: 'default',
-				size: 'sm',
-				class: 'pb-2',
-			},
-			{
-				variant: 'default',
-				size: 'md',
-				class: 'pb-3',
-			},
-			{
-				variant: 'default',
-				size: 'lg',
-				class: 'pb-4',
-			},
-			{
-				variant: 'card',
-				size: 'sm',
-				class: 'px-3 py-2',
-			},
-			{
-				variant: 'card',
-				size: 'md',
-				class: 'px-4 py-3',
-			},
-			{
-				variant: 'card',
-				size: 'lg',
-				class: 'px-5 py-4',
-			},
-		],
-		defaultVariants: {
-			variant: 'default',
-			size: 'md',
+		size: {
+			sm: '',
+			md: '',
+			lg: '',
 		},
 	},
-);
+	compoundVariants: [
+		{
+			variant: 'default',
+			size: 'sm',
+			class: 'pb-2',
+		},
+		{
+			variant: 'default',
+			size: 'md',
+			class: 'pb-3',
+		},
+		{
+			variant: 'default',
+			size: 'lg',
+			class: 'pb-4',
+		},
+		{
+			variant: 'card',
+			size: 'sm',
+			class: 'px-3 py-2',
+		},
+		{
+			variant: 'card',
+			size: 'md',
+			class: 'px-4 py-3',
+		},
+		{
+			variant: 'card',
+			size: 'lg',
+			class: 'px-5 py-4',
+		},
+	],
+	defaultVariants: {
+		variant: 'default',
+		size: 'md',
+	},
+});
 
 export interface AccordionProps
 	extends React.HTMLAttributes<HTMLDivElement>,

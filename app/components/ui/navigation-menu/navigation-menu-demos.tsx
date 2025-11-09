@@ -22,94 +22,54 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 		<div className="my-6 flex w-full max-w-3xl flex-col items-center gap-4">
 			<NavigationMenu>
 				<NavigationMenuItem label="Product">
-					<NavigationMenuGroup label="Featured">
+					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<RocketIcon aria-hidden="true" className="h-4 w-4" />
-									Nocta Studio
-								</span>
-							}
+							label={"Nocta Studio"}
 							description="Design, preview, and publish beautiful dashboards with live data."
 						/>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<LightningBoltIcon aria-hidden="true" className="h-4 w-4" />
-									Automations
-								</span>
-							}
+							label={"Automations"}
 							description="Coordinate multi-step customer journeys with conditional logic."
 						/>
 					</NavigationMenuGroup>
-					<NavigationMenuGroup label="Resources">
+					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<FileTextIcon aria-hidden="true" className="h-4 w-4" />
-									Release notes
-								</span>
-							}
+							label={"Release notes"}
 							description="Stay up to date with our latest capabilities and improvements."
 						/>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<LayersIcon aria-hidden="true" className="h-4 w-4" />
-									Templates
-								</span>
-							}
+							label={"Templates"}
 							description="Jump-start new ideas with ready-made templates for common scenarios."
 						/>
 					</NavigationMenuGroup>
 				</NavigationMenuItem>
 
 				<NavigationMenuItem label="Developers">
-					<NavigationMenuGroup label="Build">
+					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<CodeIcon aria-hidden="true" className="h-4 w-4" />
-									API Reference
-								</span>
-							}
+							label={"API Reference"}
 							description="Explore the full API surface with interactive examples."
 						/>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<LayersIcon aria-hidden="true" className="h-4 w-4" />
-									Component SDK
-								</span>
-							}
+							label={"Component SDK"}
 							description="Embed Nocta UI components directly inside your application."
 						/>
 					</NavigationMenuGroup>
-					<NavigationMenuGroup label="Support">
+					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<ChatBubbleIcon aria-hidden="true" className="h-4 w-4" />
-									Developer community
-								</span>
-							}
+							label={"Developer Community"}
 							description="Ask questions, share patterns, and learn from other builders."
 						/>
 						<NavigationMenuLink
 							href="#"
-							label={
-								<span className="flex items-center gap-2">
-									<ArrowRightIcon aria-hidden="true" className="h-4 w-4" />
-									Quickstart tutorials
-								</span>
-							}
+							label={"Quickstart tutorials"}
 							description="Ship your first integration in under 10 minutes."
 						/>
 					</NavigationMenuGroup>

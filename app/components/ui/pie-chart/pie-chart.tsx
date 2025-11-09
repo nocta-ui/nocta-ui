@@ -298,7 +298,7 @@ export const PieChartTitle = (({
 		Component,
 		{
 			className: cn(
-				'not-prose text-base font-medium leading-tight text-foreground',
+				'not-prose text-base font-medium leading-none text-foreground',
 				className,
 			),
 			...props,
@@ -327,7 +327,7 @@ export const PieChartDescription = (({
 	return (
 		<p
 			className={cn(
-				'not-prose text-sm leading-relaxed text-foreground/70',
+				'not-prose text-sm leading-snug text-foreground/70',
 				className,
 			)}
 			{...props}

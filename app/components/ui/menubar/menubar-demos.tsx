@@ -85,7 +85,7 @@ export const BasicMenubarDemo: React.FC = () => {
 						<MenubarItem onClick={() => setLastAction('Redo')}>
 							<ReloadIcon
 								aria-hidden="true"
-								className="mr-2 h-4 w-4 rotate-180"
+								className="rotate-180"
 							/>
 							Redo
 						</MenubarItem>

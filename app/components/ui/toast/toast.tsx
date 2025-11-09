@@ -947,7 +947,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{title && (
 								<div
 									id={titleId}
-									className="mb-1 text-sm leading-tight font-medium select-none"
+									className="mb-1 text-sm leading-none font-medium select-none"
 								>
 									{title}
 								</div>
@@ -955,7 +955,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							{description && (
 								<div
 									id={descriptionId}
-									className="text-sm leading-relaxed text-foreground/70 select-none"
+									className="text-sm leading-snug text-foreground/70 select-none"
 								>
 									{description}
 								</div>

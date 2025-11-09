@@ -4,7 +4,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-	'not-prose relative flex w-fit items-start gap-3 rounded-lg border px-4 py-3 shadow-sm transition-all duration-150 ease-in-out',
+	'not-prose relative flex w-fit items-start gap-3 rounded-lg border px-4 py-3 shadow-sm',
 	{
 		variants: {
 			variant: {
@@ -18,8 +18,8 @@ const alertVariants = cva(
 					'border-border bg-card text-success/90 [&_[data-slot=alert-icon]]:text-success/90',
 			},
 			size: {
-				md: 'px-4 py-3',
 				sm: 'px-3 py-2',
+				md: 'px-4 py-3',
 				lg: 'px-6 py-4',
 			},
 		},
@@ -30,26 +30,29 @@ const alertVariants = cva(
 	},
 );
 
-const alertTitleVariants = cva('not-prose mb-1 leading-none font-medium', {
-	variants: {
-		size: {
-			md: 'text-sm',
-			sm: 'text-xs',
-			lg: 'text-base',
-		},
-	},
-	defaultVariants: {
-		size: 'md',
-	},
-});
-
-const alertDescriptionVariants = cva(
-	'not-prose text-foreground/70 opacity-90 [&_p]:leading-relaxed',
+const alertTitleVariants = cva(
+	'not-prose [line-height:1] font-medium text-foreground mb-1',
 	{
 		variants: {
 			size: {
-				md: 'text-xs',
 				sm: 'text-xs',
+				md: 'text-sm',
+				lg: 'text-base',
+			},
+		},
+		defaultVariants: {
+			size: 'md',
+		},
+	},
+);
+
+const alertDescriptionVariants = cva(
+	'not-prose text-foreground/70 [&_p]:leading-snug',
+	{
+		variants: {
+			size: {
+				sm: 'text-xs',
+				md: 'text-xs',
 				lg: 'text-sm',
 			},
 		},
