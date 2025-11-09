@@ -69,6 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 	className,
 	...props
 }) => {
+	const [animOff, setAnimOff] = React.useState(false);
 	const { 'aria-label': ariaLabelProp, ...restProps } = props;
 	const normalizedTotalPages =
 		Number.isFinite(totalPages) && totalPages > 0 ? Math.floor(totalPages) : 0;
@@ -83,6 +84,13 @@ export const Pagination: React.FC<PaginationProps> = ({
 
 		return getPaginationRange(normalizedTotalPages, safePage, siblingCount);
 	}, [hasPages, normalizedTotalPages, safePage, siblingCount]);
+
+	/* biome-ignore lint/correctness/useExhaustiveDependencies: this dependency is needed for proper transition blocking */
+	React.useEffect(() => {
+		setAnimOff(true);
+		const id = setTimeout(() => setAnimOff(false), 40);
+		return () => clearTimeout(id);
+	}, [safePage]);
 
 	if (!hasPages) {
 		return null;
@@ -127,7 +135,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 								key={`dots-${dotsInstance}`}
 								className="px-2 text-sm font-medium text-foreground/45"
 							>
-								...
+								<Icons.DotsHorizontal />
 							</li>
 						);
 					}
@@ -141,9 +149,10 @@ export const Pagination: React.FC<PaginationProps> = ({
 								variant="ghost"
 								size="sm"
 								className={cn(
-									'h-9 min-w-9 px-0 py-0 font-medium',
+									'h-9 min-w-9 px-0 py-0 font-medium transition-colors',
+									animOff && 'transition-none duration-0',
 									isActive &&
-										'bg-card text-foreground shadow-sm ring-1 ring-border pointer-events-none disabled:opacity-100',
+										'bg-card text-foreground shadow-sm border border-border pointer-events-none disabled:opacity-100',
 								)}
 								aria-current={isActive ? 'page' : undefined}
 								onClick={() => handlePageChange(pageNumber)}
