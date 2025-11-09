@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 const badgeVariants = cva(
 	[
 		'inline-flex items-center justify-center rounded-full font-medium',
+		'shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none',
 		'transition-all duration-150 ease-in-out',
 		'whitespace-nowrap',
 		'not-prose',
@@ -45,9 +46,9 @@ const badgeVariants = cva(
 				],
 			},
 			size: {
-				sm: 'px-2 py-0.5 text-xs',
-				md: 'px-2.5 py-1 text-xs',
-				lg: 'px-3 py-1.5 text-sm',
+				sm: 'px-1.5 py-0.25 text-xs',
+				md: 'px-2 py-0.5 text-xs',
+				lg: 'px-2.5 py-1 text-sm',
 			},
 		},
 		defaultVariants: {

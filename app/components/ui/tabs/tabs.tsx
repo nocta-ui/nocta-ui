@@ -38,7 +38,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-all duration-150 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 transition-all duration-150 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -53,15 +53,51 @@ const tabsTriggerVariants = cva(
 			},
 		},
 		compoundVariants: [
-			{ variant: 'default', size: 'sm', class: 'px-2 py-1 text-xs' },
-			{ variant: 'default', size: 'md', class: 'px-3 py-1.5 text-sm' },
-			{ variant: 'default', size: 'lg', class: 'px-4 py-2 text-base' },
-			{ variant: 'pills', size: 'sm', class: 'px-3 py-1.5 text-xs' },
-			{ variant: 'pills', size: 'md', class: 'px-4 py-2 text-sm' },
-			{ variant: 'pills', size: 'lg', class: 'px-6 py-2.5 text-base' },
-			{ variant: 'underline', size: 'sm', class: 'px-3 py-2 text-xs' },
-			{ variant: 'underline', size: 'md', class: 'px-4 py-3 text-sm' },
-			{ variant: 'underline', size: 'lg', class: 'px-6 py-4 text-base' },
+			{
+				variant: 'default',
+				size: 'sm',
+				class: 'h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
+			},
+			{
+				variant: 'default',
+				size: 'md',
+				class: 'h-8 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',
+			},
+			{
+				variant: 'default',
+				size: 'lg',
+				class: 'h-8.5 px-6 gap-2 has-[>svg]:px-4 text-base',
+			},
+			{
+				variant: 'pills',
+				size: 'sm',
+				class: 'h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
+			},
+			{
+				variant: 'pills',
+				size: 'md',
+				class: 'h-8 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',
+			},
+			{
+				variant: 'pills',
+				size: 'lg',
+				class: 'h-8.5 px-6 gap-2 has-[>svg]:px-4 text-base',
+			},
+			{
+				variant: 'underline',
+				size: 'sm',
+				class: 'h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
+			},
+			{
+				variant: 'underline',
+				size: 'md',
+				class: 'h-8 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',
+			},
+			{
+				variant: 'underline',
+				size: 'lg',
+				class: 'h-8.5 px-6 gap-2 has-[>svg]:px-4 text-base',
+			},
 		],
 		defaultVariants: {
 			variant: 'default',

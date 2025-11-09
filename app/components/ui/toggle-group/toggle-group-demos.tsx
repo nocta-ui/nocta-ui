@@ -59,13 +59,13 @@ export const ToggleGroupWithIconsDemo: React.FC = () => {
 			className="w-fit"
 		>
 			<ToggleGroupItem value="bold" aria-label="Bold">
-				<FontBoldIcon className="h-4 w-4" aria-hidden="true" />
+				<FontBoldIcon aria-hidden="true" />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="italic" aria-label="Italic">
-				<FontItalicIcon className="h-4 w-4" aria-hidden="true" />
+				<FontItalicIcon aria-hidden="true" />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="underline" aria-label="Underline">
-				<UnderlineIcon className="h-4 w-4" aria-hidden="true" />
+				<UnderlineIcon aria-hidden="true" />
 			</ToggleGroupItem>
 		</ToggleGroup>
 	);

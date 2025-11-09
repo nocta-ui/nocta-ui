@@ -6,7 +6,7 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-	'not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md font-medium transition-all duration-150 ease-in-out focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-all duration-150 ease-in-out focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
 	{
 		variants: {
 			variant: {
@@ -19,26 +19,26 @@ export const buttonVariants = cva(
 				icon: 'text-foreground hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
 			},
 			size: {
-				sm: 'px-3 py-1.5 text-sm',
-				md: 'px-4 py-2 text-sm',
-				lg: 'px-6 py-3 text-base',
+				sm: 'h-8 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
+				md: 'h-9 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',
+				lg: 'h-10 px-6 gap-2 has-[>svg]:px-4 text-base',
 			},
 		},
 		compoundVariants: [
 			{
 				variant: 'icon',
 				size: 'sm',
-				class: 'h-8 w-8 p-0 text-sm',
+				class: 'size-8 p-0 text-sm',
 			},
 			{
 				variant: 'icon',
 				size: 'md',
-				class: 'h-10 w-10 p-0 text-sm',
+				class: 'size-9 p-0 text-sm',
 			},
 			{
 				variant: 'icon',
 				size: 'lg',
-				class: 'h-12 w-12 p-0 text-base',
+				class: 'size-10 p-0 text-base',
 			},
 		],
 		defaultVariants: {
