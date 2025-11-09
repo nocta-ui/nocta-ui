@@ -42,7 +42,7 @@ const popoverContentVariants = cva(
 );
 
 const popoverMotion =
-	'transform will-change-transform duration-150 ease-in-out transition opacity-0 scale-95 translate-y-1 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:translate-y-1';
+	'transform will-change-transform duration-150 ease-in-out transition opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
 
 export interface PopoverProps {
 	children: React.ReactNode;
