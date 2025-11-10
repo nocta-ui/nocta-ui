@@ -36,7 +36,7 @@ export interface DialogTriggerProps
 	className?: string;
 }
 
-export interface DialogContentProps
+export interface DialogSurfaceProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof dialogContentVariants> {
 	children: React.ReactNode;
@@ -164,7 +164,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	);
 };
 
-export const DialogContent: React.FC<DialogContentProps> = ({
+export const DialogSurface: React.FC<DialogSurfaceProps> = ({
 	children,
 	className = '',
 	size = 'md',
@@ -220,6 +220,30 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			)}
 			{children}
 		</Ariakit.Dialog>
+	);
+};
+
+export interface DialogContentProps
+	extends React.HTMLAttributes<HTMLDivElement> {
+	children: React.ReactNode;
+	className?: string;
+}
+
+export const DialogContent: React.FC<DialogContentProps> = ({
+	children,
+	className = '',
+	...props
+}) => {
+	return (
+		<div
+			className={cn(
+				'not-prose p-4 text-sm leading-snug text-foreground/70',
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</div>
 	);
 };
 

@@ -3,6 +3,8 @@ export {
 	DialogActions,
 	type DialogActionsProps,
 	DialogClose,
+	DialogSurface,
+	type DialogSurfaceProps,
 	DialogContent,
 	type DialogContentProps,
 	DialogDescription,

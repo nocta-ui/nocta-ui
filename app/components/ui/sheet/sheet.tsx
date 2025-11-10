@@ -146,7 +146,7 @@ export interface SheetTriggerProps
 	className?: string;
 }
 
-export interface SheetContentProps
+export interface SheetSurfaceProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof sheetContentVariants> {
 	children: React.ReactNode;
@@ -266,7 +266,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	);
 };
 
-export const SheetContent: React.FC<SheetContentProps> = ({
+export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 	children,
 	className = '',
 	side = 'right',
@@ -592,6 +592,29 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 			)}
 			{children}
 		</Ariakit.Dialog>
+	);
+};
+
+export interface SheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
+	children: React.ReactNode;
+	className?: string;
+}
+
+export const SheetContent: React.FC<SheetContentProps> = ({
+	children,
+	className = '',
+	...props
+}) => {
+	return (
+		<div
+			className={cn(
+				'not-prose flex-1 p-4 text-sm leading-snug text-foreground/70',
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</div>
 	);
 };
 

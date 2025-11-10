@@ -610,6 +610,7 @@
 			"exports": [
 				"Dialog",
 				"DialogTrigger",
+				"DialogSurface",
 				"DialogContent",
 				"DialogHeader",
 				"DialogTitle",
@@ -621,13 +622,14 @@
 			"props": {
 				"Dialog": ["children", "open", "onOpenChange"],
 				"DialogTrigger": ["children", "asChild", "className"],
-				"DialogContent": [
+				"DialogSurface": [
 					"children",
 					"className",
 					"size",
 					"showClose",
 					"portal"
 				],
+				"DialogContent": ["children", "className"],
 				"DialogHeader": ["children", "className"],
 				"DialogTitle": ["children", "className", "as"],
 				"DialogDescription": ["children", "className"],
@@ -1332,6 +1334,7 @@
 			"exports": [
 				"Sheet",
 				"SheetTrigger",
+				"SheetSurface",
 				"SheetContent",
 				"SheetHeader",
 				"SheetTitle",
@@ -1342,7 +1345,7 @@
 			"props": {
 				"Sheet": ["children", "open", "onOpenChange"],
 				"SheetTrigger": ["children", "asChild", "className"],
-				"SheetContent": [
+				"SheetSurface": [
 					"children",
 					"className",
 					"side",
@@ -1351,6 +1354,7 @@
 					"resizable",
 					"allowShrink"
 				],
+				"SheetContent": ["children", "className"],
 				"SheetHeader": ["children", "className"],
 				"SheetTitle": ["children", "className", "as"],
 				"SheetDescription": ["children", "className"],

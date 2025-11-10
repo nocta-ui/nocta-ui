@@ -1,5 +1,6 @@
 export type {
 	SheetCloseProps,
+	SheetSurfaceProps,
 	SheetContentProps,
 	SheetDescriptionProps,
 	SheetFooterProps,
@@ -11,6 +12,7 @@ export type {
 export {
 	Sheet,
 	SheetClose,
+	SheetSurface,
 	SheetContent,
 	SheetDescription,
 	SheetFooter,

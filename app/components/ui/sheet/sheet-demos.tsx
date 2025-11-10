@@ -8,6 +8,7 @@ import {
 	Sheet,
 	SheetClose,
 	SheetContent,
+	SheetSurface,
 	SheetDescription,
 	SheetFooter,
 	SheetHeader,
@@ -22,21 +23,21 @@ export const BasicSheetDemo: React.FC = () => {
 				<SheetTrigger asChild>
 					<Button>Open Sheet</Button>
 				</SheetTrigger>
-				<SheetContent>
+				<SheetSurface>
 					<SheetHeader>
 						<SheetTitle>Sheet Title</SheetTitle>
 						<SheetDescription>This is a basic sheet panel.</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Sheet content goes here. You can add any components or content you
 							need.
 						</p>
-					</div>
+					</SheetContent>
 					<SheetFooter>
 						<SheetClose>Close</SheetClose>
 					</SheetFooter>
-				</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);
@@ -49,74 +50,74 @@ export const SheetSidesDemo: React.FC = () => {
 				<SheetTrigger asChild>
 					<Button variant="secondary">Left Side</Button>
 				</SheetTrigger>
-				<SheetContent side="left">
+				<SheetSurface side="left">
 					<SheetHeader>
 						<SheetTitle>Left Sheet</SheetTitle>
 						<SheetDescription>
 							This sheet slides in from the left side.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Content for left-side sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button variant="secondary">Right Side</Button>
 				</SheetTrigger>
-				<SheetContent side="right">
+				<SheetSurface side="right">
 					<SheetHeader>
 						<SheetTitle>Right Sheet</SheetTitle>
 						<SheetDescription>
 							This sheet slides in from the right side.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Content for right-side sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button variant="secondary">Top Side</Button>
 				</SheetTrigger>
-				<SheetContent side="top">
+				<SheetSurface side="top">
 					<SheetHeader>
 						<SheetTitle>Top Sheet</SheetTitle>
 						<SheetDescription>
 							This sheet slides in from the top.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">Content for top sheet.</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button variant="secondary">Bottom Side</Button>
 				</SheetTrigger>
-				<SheetContent side="bottom">
+				<SheetSurface side="bottom">
 					<SheetHeader>
 						<SheetTitle>Bottom Sheet</SheetTitle>
 						<SheetDescription>
 							This sheet slides in from the bottom.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Content for bottom sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);
@@ -131,19 +132,19 @@ export const SheetSizesDemo: React.FC = () => {
 						Small
 					</Button>
 				</SheetTrigger>
-				<SheetContent size="sm">
+				<SheetSurface size="sm">
 					<SheetHeader>
 						<SheetTitle>Small Sheet</SheetTitle>
 						<SheetDescription>
 							This is a small-sized sheet (320px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Compact content for small sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
@@ -152,19 +153,19 @@ export const SheetSizesDemo: React.FC = () => {
 						Medium
 					</Button>
 				</SheetTrigger>
-				<SheetContent size="md">
+				<SheetSurface size="md">
 					<SheetHeader>
 						<SheetTitle>Medium Sheet</SheetTitle>
 						<SheetDescription>
 							This is a medium-sized sheet (384px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Standard content for medium sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
@@ -173,19 +174,19 @@ export const SheetSizesDemo: React.FC = () => {
 						Large
 					</Button>
 				</SheetTrigger>
-				<SheetContent size="lg">
+				<SheetSurface size="lg">
 					<SheetHeader>
 						<SheetTitle>Large Sheet</SheetTitle>
 						<SheetDescription>
 							This is a large-sized sheet (448px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Expanded content for large sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 
 			<Sheet>
@@ -194,19 +195,19 @@ export const SheetSizesDemo: React.FC = () => {
 						Extra Large
 					</Button>
 				</SheetTrigger>
-				<SheetContent size="xl">
+				<SheetSurface size="xl">
 					<SheetHeader>
 						<SheetTitle>Extra Large Sheet</SheetTitle>
 						<SheetDescription>
 							This is an extra large sheet (512px width).
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent>
 						<p className="text-sm text-foreground/70">
 							Wide content for extra large sheet.
 						</p>
-					</div>
-				</SheetContent>
+					</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);
@@ -219,14 +220,14 @@ export const ResizableSheetDemo: React.FC = () => {
 				<SheetTrigger asChild>
 					<Button variant="secondary">Resizable Sheet</Button>
 				</SheetTrigger>
-				<SheetContent resizable size="lg">
+				<SheetSurface resizable size="lg">
 					<SheetHeader>
 						<SheetTitle>Resizable Panel</SheetTitle>
 						<SheetDescription>
 							Drag the edge of the sheet to adjust its width.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 space-y-3 p-4">
+					<SheetContent className="space-y-3">
 						<p className="text-sm text-foreground/70">
 							Resizable sheets are great for side panels that need more room
 							when working with complex forms or data views.
@@ -235,25 +236,25 @@ export const ResizableSheetDemo: React.FC = () => {
 							Try dragging the divider to find the width that works for your
 							layout.
 						</div>
-					</div>
+					</SheetContent>
 					<SheetFooter>
 						<SheetClose>Close</SheetClose>
 						<Button>Save layout</Button>
 					</SheetFooter>
-				</SheetContent>
+				</SheetSurface>
 			</Sheet>
 			<Sheet>
 				<SheetTrigger asChild>
 					<Button variant="secondary">Resizable / AllowShrink Sheet</Button>
 				</SheetTrigger>
-				<SheetContent resizable allowShrink size="lg">
+				<SheetSurface resizable allowShrink size="lg">
 					<SheetHeader>
 						<SheetTitle>Resizable Panel</SheetTitle>
 						<SheetDescription>
 							Drag the edge of the sheet to adjust its width.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 space-y-3 p-4">
+					<SheetContent className="space-y-3">
 						<p className="text-sm text-foreground/70">
 							Resizable sheets are great for side panels that need more room
 							when working with complex forms or data views.
@@ -262,12 +263,12 @@ export const ResizableSheetDemo: React.FC = () => {
 							Try dragging the divider to find the width that works for your
 							layout.
 						</div>
-					</div>
+					</SheetContent>
 					<SheetFooter>
 						<SheetClose>Close</SheetClose>
 						<Button>Save layout</Button>
 					</SheetFooter>
-				</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);
@@ -280,14 +281,14 @@ export const FormSheetDemo: React.FC = () => {
 				<SheetTrigger asChild>
 					<Button>Edit Profile</Button>
 				</SheetTrigger>
-				<SheetContent>
+				<SheetSurface>
 					<SheetHeader>
 						<SheetTitle>Edit Profile</SheetTitle>
 						<SheetDescription>
 							Make changes to your profile here. Click save when you're done.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 space-y-4 p-4">
+					<SheetContent className="space-y-4">
 						<Input
 							label="Name"
 							placeholder="Enter your name"
@@ -316,12 +317,12 @@ export const FormSheetDemo: React.FC = () => {
 								<Badge variant="secondary">Premium</Badge>
 							</div>
 						</div>
-					</div>
+					</SheetContent>
 					<SheetFooter>
 						<SheetClose>Cancel</SheetClose>
 						<Button>Save Changes</Button>
 					</SheetFooter>
-				</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);
@@ -343,7 +344,7 @@ export const ControlledSheetDemo: React.FC = () => {
 			</div>
 
 			<Sheet open={open} onOpenChange={setOpen}>
-				<SheetContent>
+				<SheetSurface>
 					<SheetHeader>
 						<SheetTitle>Controlled Sheet</SheetTitle>
 						<SheetDescription>
@@ -351,22 +352,22 @@ export const ControlledSheetDemo: React.FC = () => {
 							it programmatically.
 						</SheetDescription>
 					</SheetHeader>
-					<div className="flex-1 p-4">
+					<SheetContent className="space-y-4">
 						<p className="text-sm text-foreground/70">
 							This sheet's open state is managed by the parent component. You
 							can control when it opens and closes from outside the Sheet
 							component.
 						</p>
-						<div className="mt-4 rounded-lg bg-card p-3">
+						<div className="rounded-lg bg-card p-3">
 							<p className="font-mono text-xs text-foreground/70">
 								Current state: {open ? 'open' : 'closed'}
 							</p>
 						</div>
-					</div>
+					</SheetContent>
 					<SheetFooter>
 						<SheetClose>Close</SheetClose>
 					</SheetFooter>
-				</SheetContent>
+				</SheetSurface>
 			</Sheet>
 		</div>
 	);

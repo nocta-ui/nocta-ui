@@ -3,7 +3,7 @@ title: Sheet
 description: A slide-out panel component that can be triggered from any side of the screen
 ---
 
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from '@/app/components/ui/sheet';
+import { Sheet, SheetTrigger, SheetSurface, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from '@/app/components/ui/sheet';
 import {
   BasicSheetDemo,
   SheetSidesDemo,
@@ -34,6 +34,7 @@ Import the component:
 import {
   Sheet,
   SheetTrigger,
+  SheetSurface,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -59,22 +60,22 @@ import {
       <SheetTrigger asChild>
         <Button>Open Sheet</Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetSurface>
         <SheetHeader>
           <SheetTitle>Sheet Title</SheetTitle>
           <SheetDescription>
             This is a basic sheet panel.
           </SheetDescription>
         </SheetHeader>
-        <div className="p-4 flex-1">
+        <SheetContent>
           <p className="text-sm text-foreground/70">
             Sheet content goes here. You can add any components or content you need.
           </p>
-        </div>
+        </SheetContent>
         <SheetFooter>
           <SheetClose>Close</SheetClose>
         </SheetFooter>
-      </SheetContent>
+      </SheetSurface>
     </Sheet>
     ```
   </DocsTab>
@@ -92,38 +93,38 @@ import {
       <SheetTrigger asChild>
         <Button variant="secondary">Left Side</Button>
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetSurface side="left">
         <SheetHeader>
           <SheetTitle>Left Sheet</SheetTitle>
           <SheetDescription>
             This sheet slides in from the left side.
           </SheetDescription>
         </SheetHeader>
-        <div className="p-4 flex-1">
+        <SheetContent>
           <p className="text-sm text-foreground/70">
             Content for left-side sheet.
           </p>
-        </div>
-      </SheetContent>
+        </SheetContent>
+      </SheetSurface>
     </Sheet>
 
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="secondary">Right Side</Button>
       </SheetTrigger>
-      <SheetContent side="right">
+      <SheetSurface side="right">
         <SheetHeader>
           <SheetTitle>Right Sheet</SheetTitle>
           <SheetDescription>
             This sheet slides in from the right side.
           </SheetDescription>
         </SheetHeader>
-        <div className="p-4 flex-1">
+        <SheetContent>
           <p className="text-sm text-foreground/70">
             Content for right-side sheet.
           </p>
-        </div>
-      </SheetContent>
+        </SheetContent>
+      </SheetSurface>
     </Sheet>
 
     {/* Top & Bottom sides work similarly */}
@@ -143,19 +144,19 @@ import {
       <SheetTrigger asChild>
         <Button variant="ghost" size="sm">Small</Button>
       </SheetTrigger>
-      <SheetContent size="sm">
+      <SheetSurface size="sm">
         <SheetHeader>
           <SheetTitle>Small Sheet</SheetTitle>
           <SheetDescription>
             This is a small-sized sheet (320px width).
           </SheetDescription>
         </SheetHeader>
-        <div className="p-4 flex-1">
+        <SheetContent>
           <p className="text-sm text-foreground/70">
             Compact content for small sheet.
           </p>
-        </div>
-      </SheetContent>
+        </SheetContent>
+      </SheetSurface>
     </Sheet>
     ```
   </DocsTab>
@@ -174,23 +175,23 @@ import {
       <SheetTrigger asChild>
         <Button variant="outline">Resizable Sheet</Button>
       </SheetTrigger>
-      <SheetContent resizable allowShrink size="lg">
+      <SheetSurface resizable allowShrink size="lg">
         <SheetHeader>
           <SheetTitle>Resizable Panel</SheetTitle>
           <SheetDescription>
             Drag the divider to change the width.
           </SheetDescription>
         </SheetHeader>
-        <div className="p-4 flex-1">
+        <SheetContent>
           <p className="text-sm text-foreground/70">
             Resizable sheets give power users extra control over the layout.
           </p>
-        </div>
+        </SheetContent>
         <SheetFooter>
           <SheetClose>Close</SheetClose>
           <Button>Save layout</Button>
         </SheetFooter>
-      </SheetContent>
+      </SheetSurface>
     </Sheet>
     ```
   </DocsTab>
@@ -242,12 +243,12 @@ import {
   }}
 />
 
-### SheetContent
+### SheetSurface
 
 <TypeTable
   type={{
     children: {
-      description: 'Sheet content',
+      description: 'Sheet panel content',
       type: 'React.ReactNode',
       default: 'undefined',
     },
@@ -280,6 +281,23 @@ import {
       description: 'Permit resizing below the initial layout size',
       type: 'boolean',
       default: 'false',
+    },
+  }}
+/>
+
+### SheetContent
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Scrollable content area inside the sheet',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
     },
   }}
 />

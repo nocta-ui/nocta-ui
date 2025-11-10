@@ -10,7 +10,7 @@ import {
 	useRef,
 	useState,
 } from 'react';
-import { Dialog, DialogContent } from '@/app/components/ui/dialog';
+import { Dialog, DialogContent, DialogSurface } from '@/app/components/ui/dialog';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { Input } from '@/app/components/ui/input';
 import { cn } from '@/lib/utils';
@@ -332,176 +332,178 @@ export const CommandK: React.FC<CommandKProps> = ({
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogContent
+			<DialogSurface
 				size={size}
 				showClose={false}
 				className={cn('p-0!', className)}
 			>
-				<div className="px-0.5 pt-2" ref={searchContainerRef}>
-					<div className="relative">
-						<Input
-							role="combobox"
-							aria-controls={`${baseId}-commandk-listbox`}
-							aria-expanded={open}
-							aria-autocomplete="list"
-							aria-activedescendant={
-								flatSelectable[highlightedIndex]
-									? getOptionId(highlightedIndex)
-									: undefined
-							}
-							value={query}
-							onChange={(e) => {
-								setQuery(e.target.value);
-								setHighlightedIndex(0);
-							}}
-							onKeyDown={onKeyNav}
-							placeholder={placeholder}
-							className="w-full border-none! pr-12 shadow-none! focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-							leftIcon={
-								<Icons.Search
-									aria-hidden="true"
-									className="size-5! -mt-0.5 -ml-0.5"
-								/>
-							}
-						/>
-						<div className="pointer-events-none absolute top-1/2 right-3 h-fit -translate-y-1/2">
-							<span aria-hidden="true" className={kbdClass()}>
-								{shortcutHint}
-							</span>
-							<span className="sr-only">Shortcut: {shortcutHint}</span>
-						</div>
-					</div>
-				</div>
-
-				<div
-					ref={listRef}
-					className={cn(
-						'mt-2 max-h-80 overflow-auto py-2',
-						'border-t border-border/60',
-						listClassName,
-					)}
-					id={`${baseId}-commandk-listbox`}
-					role="listbox"
-					aria-label="Command results"
-					onKeyDown={onKeyNav}
-				>
-					<div aria-live="polite" className="sr-only">
-						{filtered.length} result{filtered.length === 1 ? '' : 's'}
-					</div>
-					{flatSelectable.length === 0 ? (
-						<output
-							aria-live="polite"
-							className="px-3 py-6 text-center text-sm text-foreground/45 flex justify-center items-center"
-						>
-							{emptyMessage}
-						</output>
-					) : (
-						Array.from(grouped.entries()).map(([group, entries]) => (
-							<div key={group} className="px-2">
-								<fieldset className="m-0 mt-1 flex flex-col gap-1 border-0 p-0">
-									<legend className={groupHeaderClass()}>{group}</legend>
-									{entries.map((entry) => {
-										const flatIndex = flatSelectable.findIndex(
-											(f) => f.key === entry.key,
-										);
-										const highlighted = flatIndex === highlightedIndex;
-										return (
-											<div
-												key={entry.key}
-												ref={(el) => {
-													optionRefs.current[flatIndex] = el;
-												}}
-												className={listItemClass({
-													highlighted,
-													disabled: !!entry.item.disabled,
-												})}
-												id={getOptionId(flatIndex)}
-												role="option"
-												aria-selected={highlighted}
-												aria-disabled={entry.item.disabled || undefined}
-												tabIndex={-1}
-												onMouseEnter={() => setHighlightedIndex(flatIndex)}
-												onClick={() => handleSelect(entry)}
-												onKeyDown={(e) => {
-													if (entry.item.disabled) return;
-													if (e.key === 'Enter' || e.key === ' ') {
-														e.preventDefault();
-														handleSelect(entry);
-													}
-												}}
-											>
-												{entry.item.icon && (
-													<span
-														aria-hidden="true"
-														className="shrink-0 text-foreground/45"
-													>
-														{entry.item.icon}
-													</span>
-												)}
-												<div className="flex min-w-0 flex-1 flex-row gap-3">
-													<div className="truncate font-medium">
-														{entry.item.label}
-													</div>
-													{entry.item.description && (
-														<div className="mt-0.5 hidden truncate text-xs text-foreground/70 md:block">
-															{entry.item.description}
-														</div>
-													)}
-												</div>
-												{entry.item.shortcut &&
-													entry.item.shortcut.length > 0 && (
-														<div
-															aria-hidden="true"
-															className="ml-2 flex items-center gap-1"
-														>
-															{(() => {
-																const sc = entry.item.shortcut ?? [];
-																const hasShift = sc.some((t) =>
-																	/^(shift|⇧)$/i.test(t.trim()),
-																);
-																const letters = sc
-																	.filter((t) => /^[a-z0-9]$/i.test(t.trim()))
-																	.map((t) => t.trim().toUpperCase());
-																const tokens = [
-																	isMac ? '⌘' : 'Ctrl',
-																	...(hasShift ? ['⇧'] : []),
-																	...letters,
-																];
-																return tokens.map((tok) => (
-																	<span key={`${tok}`} className={kbdClass()}>
-																		{tok}
-																	</span>
-																));
-															})()}
-														</div>
-													)}
-											</div>
-										);
-									})}
-								</fieldset>
+				<DialogContent className="p-0">
+					<div className="px-0.5 pt-2" ref={searchContainerRef}>
+						<div className="relative">
+							<Input
+								role="combobox"
+								aria-controls={`${baseId}-commandk-listbox`}
+								aria-expanded={open}
+								aria-autocomplete="list"
+								aria-activedescendant={
+									flatSelectable[highlightedIndex]
+										? getOptionId(highlightedIndex)
+										: undefined
+								}
+								value={query}
+								onChange={(e) => {
+									setQuery(e.target.value);
+									setHighlightedIndex(0);
+								}}
+								onKeyDown={onKeyNav}
+								placeholder={placeholder}
+								className="w-full border-none! pr-12 shadow-none! focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+								leftIcon={
+									<Icons.Search
+										aria-hidden="true"
+										className="size-5! -mt-0.5 -ml-0.5"
+									/>
+								}
+							/>
+							<div className="pointer-events-none absolute top-1/2 right-3 h-fit -translate-y-1/2">
+								<span aria-hidden="true" className={kbdClass()}>
+									{shortcutHint}
+								</span>
+								<span className="sr-only">Shortcut: {shortcutHint}</span>
 							</div>
-						))
-					)}
-				</div>
+						</div>
+					</div>
 
-				<div className="flex items-center justify-between gap-2 border-t border-border/60 px-3 py-2 text-xs text-foreground/70 bg-card-muted/30">
-					<div className="flex items-center gap-2">
-						<span className="hidden sm:inline">Navigate</span>
-						<div className="flex items-center gap-1" aria-hidden="true">
-							<span className={kbdClass()}>↑</span>
-							<span className={kbdClass()}>↓</span>
+					<div
+						ref={listRef}
+						className={cn(
+							'mt-2 max-h-80 overflow-auto py-2',
+							'border-t border-border/60',
+							listClassName,
+						)}
+						id={`${baseId}-commandk-listbox`}
+						role="listbox"
+						aria-label="Command results"
+						onKeyDown={onKeyNav}
+					>
+						<div aria-live="polite" className="sr-only">
+							{filtered.length} result{filtered.length === 1 ? '' : 's'}
 						</div>
-						<span className="sr-only">Navigate with arrow keys</span>
+						{flatSelectable.length === 0 ? (
+							<output
+								aria-live="polite"
+								className="flex items-center justify-center px-3 py-6 text-center text-sm text-foreground/45"
+							>
+								{emptyMessage}
+							</output>
+						) : (
+							Array.from(grouped.entries()).map(([group, entries]) => (
+								<div key={group} className="px-2">
+									<fieldset className="m-0 mt-1 flex flex-col gap-1 border-0 p-0">
+										<legend className={groupHeaderClass()}>{group}</legend>
+										{entries.map((entry) => {
+											const flatIndex = flatSelectable.findIndex(
+												(f) => f.key === entry.key,
+											);
+											const highlighted = flatIndex === highlightedIndex;
+											return (
+												<div
+													key={entry.key}
+													ref={(el) => {
+														optionRefs.current[flatIndex] = el;
+													}}
+													className={listItemClass({
+														highlighted,
+														disabled: !!entry.item.disabled,
+													})}
+													id={getOptionId(flatIndex)}
+													role="option"
+													aria-selected={highlighted}
+													aria-disabled={entry.item.disabled || undefined}
+													tabIndex={-1}
+													onMouseEnter={() => setHighlightedIndex(flatIndex)}
+													onClick={() => handleSelect(entry)}
+													onKeyDown={(e) => {
+														if (entry.item.disabled) return;
+														if (e.key === 'Enter' || e.key === ' ') {
+															e.preventDefault();
+															handleSelect(entry);
+														}
+													}}
+												>
+													{entry.item.icon && (
+														<span
+															aria-hidden="true"
+															className="shrink-0 text-foreground/45"
+														>
+															{entry.item.icon}
+														</span>
+													)}
+													<div className="flex min-w-0 flex-1 flex-row gap-3">
+														<div className="truncate font-medium">
+															{entry.item.label}
+														</div>
+														{entry.item.description && (
+															<div className="mt-0.5 hidden truncate text-xs text-foreground/70 md:block">
+																{entry.item.description}
+															</div>
+														)}
+													</div>
+													{entry.item.shortcut &&
+														entry.item.shortcut.length > 0 && (
+															<div
+																aria-hidden="true"
+																className="ml-2 flex items-center gap-1"
+															>
+																{(() => {
+																	const sc = entry.item.shortcut ?? [];
+																	const hasShift = sc.some((t) =>
+																		/^(shift|⇧)$/i.test(t.trim()),
+																	);
+																	const letters = sc
+																		.filter((t) => /^[a-z0-9]$/i.test(t.trim()))
+																		.map((t) => t.trim().toUpperCase());
+																	const tokens = [
+																		isMac ? '⌘' : 'Ctrl',
+																		...(hasShift ? ['⇧'] : []),
+																		...letters,
+																	];
+																	return tokens.map((tok) => (
+																		<span key={`${tok}`} className={kbdClass()}>
+																			{tok}
+																		</span>
+																	));
+																})()}
+															</div>
+														)}
+												</div>
+											);
+										})}
+									</fieldset>
+								</div>
+							))
+						)}
 					</div>
-					<div className="flex items-center gap-2">
-						<span className="hidden sm:inline">Select</span>
-						<div className="flex items-center gap-1" aria-hidden="true">
-							<span className={kbdClass()}>Enter</span>
+
+					<div className="flex items-center justify-between gap-2 border-t border-border/60 bg-card-muted/30 px-3 py-2 text-xs text-foreground/70">
+						<div className="flex items-center gap-2">
+							<span className="hidden sm:inline">Navigate</span>
+							<div className="flex items-center gap-1" aria-hidden="true">
+								<span className={kbdClass()}>↑</span>
+								<span className={kbdClass()}>↓</span>
+							</div>
+							<span className="sr-only">Navigate with arrow keys</span>
 						</div>
-						<span className="sr-only">Select with Enter key</span>
+						<div className="flex items-center gap-2">
+							<span className="hidden sm:inline">Select</span>
+							<div className="flex items-center gap-1" aria-hidden="true">
+								<span className={kbdClass()}>Enter</span>
+							</div>
+							<span className="sr-only">Select with Enter key</span>
+						</div>
 					</div>
-				</div>
-			</DialogContent>
+				</DialogContent>
+			</DialogSurface>
 		</Dialog>
 	);
 };

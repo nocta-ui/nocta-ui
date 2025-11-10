@@ -7,6 +7,7 @@ import {
 	DialogActions,
 	DialogClose,
 	DialogContent,
+	DialogSurface,
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
@@ -21,20 +22,20 @@ export const SimpleDialogDemo: React.FC = () => {
 				<DialogTrigger asChild>
 					<Button>Open Dialog</Button>
 				</DialogTrigger>
-				<DialogContent>
+				<DialogSurface>
 					<DialogHeader>
 						<DialogTitle>Welcome</DialogTitle>
 						<DialogDescription>
 							This is a basic dialog example with a title and description.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							Dialog content goes here. You can add any components or content
 							you need.
 						</p>
-					</div>
-				</DialogContent>
+					</DialogContent>
+				</DialogSurface>
 			</Dialog>
 		</div>
 	);
@@ -47,19 +48,19 @@ export const DialogWithActionsDemo: React.FC = () => {
 				<DialogTrigger asChild>
 					<Button variant="secondary">Delete Item</Button>
 				</DialogTrigger>
-				<DialogContent showClose={false}>
+				<DialogSurface showClose={false}>
 					<DialogHeader>
 						<DialogTitle>Confirm Deletion</DialogTitle>
 						<DialogDescription>
 							Are you sure you want to delete this item?
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							This will permanently remove <strong>Project Alpha</strong> and
 							all associated data.
 						</p>
-					</div>
+					</DialogContent>
 					<DialogFooter>
 						<DialogActions>
 							<DialogClose asChild>
@@ -72,7 +73,7 @@ export const DialogWithActionsDemo: React.FC = () => {
 							</Button>
 						</DialogActions>
 					</DialogFooter>
-				</DialogContent>
+				</DialogSurface>
 			</Dialog>
 		</div>
 	);
@@ -87,19 +88,19 @@ export const SizesDemo: React.FC = () => {
 						Small
 					</Button>
 				</DialogTrigger>
-				<DialogContent size="sm">
+				<DialogSurface size="sm">
 					<DialogHeader>
 						<DialogTitle>Small Dialog</DialogTitle>
 						<DialogDescription>
 							This is a small dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							Compact dialog for simple interactions.
 						</p>
-					</div>
-				</DialogContent>
+					</DialogContent>
+				</DialogSurface>
 			</Dialog>
 
 			<Dialog>
@@ -108,19 +109,19 @@ export const SizesDemo: React.FC = () => {
 						Medium
 					</Button>
 				</DialogTrigger>
-				<DialogContent size="md">
+				<DialogSurface size="md">
 					<DialogHeader>
 						<DialogTitle>Medium Dialog</DialogTitle>
 						<DialogDescription>
 							This is a medium dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							Standard dialog size for most use cases.
 						</p>
-					</div>
-				</DialogContent>
+					</DialogContent>
+				</DialogSurface>
 			</Dialog>
 
 			<Dialog>
@@ -129,19 +130,19 @@ export const SizesDemo: React.FC = () => {
 						Large
 					</Button>
 				</DialogTrigger>
-				<DialogContent size="lg">
+				<DialogSurface size="lg">
 					<DialogHeader>
 						<DialogTitle>Large Dialog</DialogTitle>
 						<DialogDescription>
 							This is a large dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							Larger dialog for complex forms or detailed content.
 						</p>
-					</div>
-				</DialogContent>
+					</DialogContent>
+				</DialogSurface>
 			</Dialog>
 			<Dialog>
 				<DialogTrigger asChild>
@@ -149,19 +150,19 @@ export const SizesDemo: React.FC = () => {
 						Extra Large
 					</Button>
 				</DialogTrigger>
-				<DialogContent size="xl">
+				<DialogSurface size="xl">
 					<DialogHeader>
 						<DialogTitle>Extra Large Dialog</DialogTitle>
 						<DialogDescription>
 							This is an extra large dialog example.
 						</DialogDescription>
 					</DialogHeader>
-					<div className="p-4">
+					<DialogContent>
 						<p className="text-sm text-foreground/70">
 							Extra Large dialog for complex content.
 						</p>
-					</div>
-				</DialogContent>
+					</DialogContent>
+				</DialogSurface>
 			</Dialog>
 		</div>
 	);

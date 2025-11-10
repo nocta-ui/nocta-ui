@@ -3,7 +3,7 @@ title: Dialog
 description: A modal dialog component for displaying content over the main interface with backdrop, keyboard navigation and accessibility features
 ---
 
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
+import { Dialog, DialogTrigger, DialogSurface, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
@@ -33,6 +33,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     import {
       Dialog,
       DialogTrigger,
+      DialogSurface,
       DialogContent,
       DialogHeader,
       DialogTitle,
@@ -59,17 +60,17 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       <DialogTrigger asChild>
         <Button>Open Dialog</Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogSurface>
         <DialogHeader>
           <DialogTitle>Welcome</DialogTitle>
           <DialogDescription>
             This is a basic dialog example with a title and description.
           </DialogDescription>
         </DialogHeader>
-        <div className="p-4">
+        <DialogContent>
           <p className="text-sm">Dialog content goes here.</p>
-        </div>
-      </DialogContent>
+        </DialogContent>
+      </DialogSurface>
     </Dialog>
     ```
   </DocsTab>
@@ -87,18 +88,18 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       <DialogTrigger asChild>
         <Button variant="secondary">Delete Item</Button>
       </DialogTrigger>
-      <DialogContent showClose={false}>
+      <DialogSurface showClose={false}>
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>
           <DialogDescription>
             Are you sure you want to delete this item?
           </DialogDescription>
         </DialogHeader>
-        <div className="p-4">
+        <DialogContent>
           <p className="text-sm">
             This will permanently remove <strong>Project Alpha</strong> and all associated data.
           </p>
-        </div>
+        </DialogContent>
         <DialogFooter>
           <DialogActions>
             <DialogClose asChild>
@@ -107,7 +108,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
             <Button variant="default" size="sm">Delete</Button>
           </DialogActions>
         </DialogFooter>
-      </DialogContent>
+      </DialogSurface>
     </Dialog>
     ```
   </DocsTab>
@@ -125,15 +126,15 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       <DialogTrigger asChild>
         <Button size="sm">Small</Button>
       </DialogTrigger>
-      <DialogContent size="sm">
+      <DialogSurface size="sm">
         <DialogHeader>
           <DialogTitle>Small Dialog</DialogTitle>
           <DialogDescription>This is a small dialog example.</DialogDescription>
         </DialogHeader>
-        <div className="p-4">
+        <DialogContent>
           <p className="text-sm">Compact dialog for simple interactions.</p>
-        </div>
-      </DialogContent>
+        </DialogContent>
+      </DialogSurface>
     </Dialog>
     ```
   </DocsTab>
@@ -185,7 +186,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   }}
 />
 
-### DialogContent
+### DialogSurface
 
 <TypeTable
   type={{
@@ -213,6 +214,23 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       description: 'Dialog content',
       type: 'React.ReactNode',
       default: 'undefined',
+    },
+  }}
+/>
+
+### DialogContent
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Scrollable body inside the dialog',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes to apply',
+      type: 'string',
+      default: '""',
     },
   }}
 />
