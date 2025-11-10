@@ -127,7 +127,7 @@ export function SidebarContent(props: ComponentProps<'aside'>) {
 			className={cn(
 				'fixed bg-card border-r border-fd-border top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) left-0 z-20 flex flex-col items-end text-sm transition-[top,opacity,translate,width] duration-150 *:w-(--fd-sidebar-width) max-md:hidden rtl:right-(--removed-body-scroll-bar-size,0) rtl:left-auto',
 				collapsed && [
-					'translate-x-(--fd-sidebar-offset) rounded-xl border rtl:-translate-x-(--fd-sidebar-offset)',
+					'translate-x-(--fd-sidebar-offset) rounded-lg border border-border rtl:-translate-x-(--fd-sidebar-offset)',
 					hover ? 'z-50 shadow-lg' : 'opacity-0',
 				],
 				props.className,

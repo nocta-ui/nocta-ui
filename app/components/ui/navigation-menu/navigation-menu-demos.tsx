@@ -27,8 +27,8 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 							href="#"
 							className='relative min-h-36 flex flex-col items-start justify-end bg-[radial-gradient(125%_125%_at_50%_0%,#F1F2F5_50%,#6D31BA_70%)] dark:bg-[radial-gradient(125%_125%_at_50%_0%,#09090B_50%,#7B42C9_70%)]'
 						>
-						  <span className='font-medium text-lg text-card dark:text-foreground'>
-								Nocta UI
+						  <span className='font-medium tracking-wide text-lg text-card dark:text-foreground'>
+								NOCTA UI
 							</span>
 							<span className='text-sm text-card-muted/70 dark:text-foreground/70'>
 								Modern, accessible React components built with TypeScript and Tailwind CSS.
