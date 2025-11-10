@@ -1,0 +1,145 @@
+---
+title: Separator
+description: A lightweight divider for grouping content sections horizontally or vertically.
+---
+
+import { Separator } from '@/app/components/ui/separator';
+import {
+  BasicSeparatorDemo,
+  VerticalSeparatorDemo,
+  VariantsSeparatorDemo,
+} from '@/app/components/ui/separator/separator-demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+<Steps>
+<Step>
+Install the Separator component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add separator
+```
+</Step>
+<Step>
+Then import the component where you need it:
+
+```tsx lineNumbers title="Import"
+import { Separator } from '@/components/ui/separator';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Separator
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicSeparatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Card Divider"
+    <div className="my-6 space-y-4 rounded-lg border border-border bg-card p-4 shadow-md">
+      <div>
+        <p className="text-sm font-medium text-foreground">Project Status</p>
+        <p className="text-sm text-foreground/70">
+          Track the latest updates from the team.
+        </p>
+      </div>
+      <Separator />
+      <div className="grid gap-1 text-sm">
+        <p className="font-medium text-foreground">Next milestone</p>
+        <p className="text-foreground/70">QA sign-off on Tuesday</p>
+      </div>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Vertical Separator
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <VerticalSeparatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Vertical Flow"
+    <div className="my-6 flex items-center gap-4 rounded-lg border border-border bg-card p-2 text-sm shadow-md text-foreground font-medium">
+      <span>Overview</span>
+      <Separator orientation="vertical" className="h-5" decorative />
+      <span>Billing</span>
+      <Separator orientation="vertical" className="h-5" decorative />
+      <span>Automation</span>
+    </div>
+
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Variants
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <VariantsSeparatorDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Styling Variants"
+    <div className="space-y-4 rounded-lg border border-border bg-card shadow-md p-4">
+      <div className="space-y-2 text-sm">
+        <p className="font-medium text-foreground">Default Divider</p>
+        <p className="text-muted-foreground">
+          Use the default separator for clear and balanced section breaks.
+        </p>
+      </div>
+      <Separator variant="default" />
+      <div className="space-y-2 text-sm">
+        <p className="font-medium text-foreground">Subtle Divider</p>
+        <p className="text-muted-foreground">
+          Use muted separators to softly separate dense content.
+        </p>
+      </div>
+      <Separator variant="muted" />
+    </div>
+
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## Api Reference
+
+<TypeTable
+  type={{
+    orientation: {
+      description: 'Sets the direction of the divider',
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+    },
+    variant: {
+      description: 'Visual style for the divider line',
+      type: '"default" | "muted"',
+      default: '"default"',
+    },
+    thickness: {
+      description: 'Controls the thickness of the line',
+      type: '"sm" | "md" | "lg"',
+      default: '"sm"',
+    },
+    decorative: {
+      description: 'Hides the separator from assistive technology',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    role: {
+      description: 'Override the computed role',
+      type: 'string',
+      default: '"separator"',
+    },
+  }}
+/>

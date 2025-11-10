@@ -1141,7 +1141,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^19.1.1",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
@@ -1167,7 +1166,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
@@ -1220,7 +1218,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
@@ -1273,7 +1270,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^19.1.1",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
@@ -1329,7 +1325,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^18.0.0",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
@@ -1396,6 +1391,29 @@
 					"onPointerLeave"
 				]
 			}
+		},
+		"separator": {
+			"name": "separator",
+			"description": "A lightweight divider for grouping content sections horizontally or vertically",
+			"category": "overlay",
+			"files": [
+				{
+					"name": "separator.tsx",
+					"path": "app/components/ui/separator/separator.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.1.1",
+				"tailwind-merge": "^3.3.1",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1"
+			},
+			"exports": ["Separator"],
+			"props": {
+				"Separator": ["orientation", "variant", "thickness", "decorative", "className", "role"]
+			},
+			"variants": ["default", "muted"]
 		},
 		"slider": {
 			"name": "Slider",
@@ -1614,7 +1632,6 @@
 			],
 			"dependencies": {
 				"react": "^19.1.1",
-				"react-dom": "^19.1.1",
 				"tailwind-merge": "^3.3.1",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
