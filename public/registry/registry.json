@@ -16,8 +16,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -58,8 +58,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -85,8 +85,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -117,8 +117,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"d3-shape": "^3.2.0"
 			},
@@ -212,8 +212,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -236,8 +236,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"d3-shape": "^3.2.0"
 			},
@@ -324,8 +324,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19",
@@ -367,8 +367,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -399,8 +399,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -435,8 +435,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1"
 			},
 			"internalDependencies": ["button"],
@@ -457,8 +457,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -493,8 +493,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -535,8 +535,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -567,8 +567,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -601,8 +601,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -649,8 +649,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -687,8 +687,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -722,8 +722,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -749,8 +749,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -788,8 +788,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -831,8 +831,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -863,8 +863,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -887,8 +887,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -919,8 +919,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -953,8 +953,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -988,8 +988,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1024,8 +1024,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1064,7 +1064,7 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
+				"react": "^19.2.0",
 				"@ariakit/react": "^0.4.19"
 			},
 			"exports": [
@@ -1102,8 +1102,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1140,8 +1140,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1165,8 +1165,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1217,8 +1217,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1269,8 +1269,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1324,8 +1324,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1371,8 +1371,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1404,8 +1404,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1427,8 +1427,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1470,8 +1470,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1503,8 +1503,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1536,8 +1536,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1574,8 +1574,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1631,8 +1631,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
@@ -1690,8 +1690,8 @@
 				}
 			],
 			"dependencies": {
-				"react": "^19.1.1",
-				"tailwind-merge": "^3.3.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
@@ -1807,10 +1807,10 @@
 		}
 	},
 	"requirements": {
-		"react": "^19.1.1",
-		"react-dom": "^19.1.1",
-		"@types/react": "^19.1.16",
-		"tailwindcss": "^4.1.15",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0",
+		"@types/react": "^19.2.2",
+		"tailwindcss": "^4.1.16",
 		"typescript": "^5.9.3",
 		"@radix-ui/react-icons": "^1.3.2"
 	}
