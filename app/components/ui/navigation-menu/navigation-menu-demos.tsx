@@ -16,6 +16,7 @@ import {
 	NavigationMenuItem,
 	NavigationMenuLink,
 } from './navigation-menu';
+import Image from 'next/image';
 
 export const BasicNavigationMenuDemo: React.FC = () => {
 	return (
@@ -25,14 +26,15 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							label={"Nocta Studio"}
-							description="Design, preview, and publish beautiful dashboards with live data."
-						/>
-						<NavigationMenuLink
-							href="#"
-							label={"Automations"}
-							description="Coordinate multi-step customer journeys with conditional logic."
-						/>
+							className='relative'
+						>
+						<Image
+              src="/images/navigation.jpg"
+              fill
+              alt="Picture of the author"
+              className='absolute object-cover'
+            />
+						</NavigationMenuLink>
 					</NavigationMenuGroup>
 					<NavigationMenuGroup>
 						<NavigationMenuLink

@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'flex last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer',
+	'relative flex last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer overflow-clip',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
@@ -268,17 +268,18 @@ NavigationMenuItem.displayName = 'NavigationMenuItem';
 
 export interface NavigationMenuLinkProps
 	extends Omit<Ariakit.MenuItemProps, 'children'> {
-	label: React.ReactNode;
+	label?: React.ReactNode;
 	description?: React.ReactNode;
 	href?: string;
 	className?: string;
+	children?: React.ReactNode;
 }
 
 export const NavigationMenuLink = React.forwardRef<
 	HTMLDivElement,
 	NavigationMenuLinkProps
 >(function NavigationMenuLink(
-	{ label, description, href, className, render, ...props },
+	{ label, description, href, className, children, render, ...props },
 	ref,
 ) {
 	const menu = Ariakit.useMenuContext();
@@ -288,6 +289,11 @@ export const NavigationMenuLink = React.forwardRef<
 	const id = React.useId();
 	const labelId = `${id}-label`;
 	const descriptionId = `${id}-description`;
+	const hasCustomChildren = React.useMemo(
+		() => React.Children.count(children) > 0,
+		[children],
+	);
+
 	const renderElement =
 		render ??
 		(href
@@ -306,22 +312,33 @@ export const NavigationMenuLink = React.forwardRef<
 			store={menu}
 			tabbable
 			focusOnHover={false}
-			aria-labelledby={labelId}
-			aria-describedby={description ? descriptionId : undefined}
+			aria-labelledby={!hasCustomChildren ? labelId : undefined}
+			aria-describedby={
+				!hasCustomChildren && description ? descriptionId : undefined
+			}
 			className={cn(navigationMenuLinkVariants(), className)}
 			{...renderProps}
 			{...props}
 		>
-			<span id={labelId} className="text-sm font-medium text-foreground">
-				{label}
-			</span>
-			{description && (
-				<span
-					id={descriptionId}
-					className="text-sm text-foreground/70 line-clamp-2 leading-snug"
-				>
-					{description}
-				</span>
+			{hasCustomChildren ? (
+				children
+			) : (
+				<>
+					<span
+						id={labelId}
+						className="text-sm font-medium leading-none text-foreground"
+					>
+						{label}
+					</span>
+					{description && (
+						<span
+							id={descriptionId}
+							className="text-sm text-foreground/70 line-clamp-2 leading-snug"
+						>
+							{description}
+						</span>
+					)}
+				</>
 			)}
 		</Ariakit.MenuItem>
 	);
