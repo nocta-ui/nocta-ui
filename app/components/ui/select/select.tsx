@@ -4,6 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
+import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
@@ -182,8 +183,13 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				className,
 			)}
 		>
-			<div className="z-50 flex max-h-42 flex-col gap-1 overflow-auto py-1">
-				{children}
+			<div className="z-50">
+				<ScrollArea
+					type="hover"
+					className="flex flex-col h-full w-full max-h-42"
+				>
+					<div className="flex flex-col gap-1 py-1">{children}</div>
+				</ScrollArea>
 			</div>
 		</Ariakit.SelectPopover>
 	);

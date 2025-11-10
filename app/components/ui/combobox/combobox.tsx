@@ -12,6 +12,7 @@ import {
 	useState,
 } from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
+import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const comboboxVariants = cva(
@@ -214,57 +215,63 @@ export const Combobox: React.FC<ComboboxProps> = ({
 							/>
 						</div>
 
-						<Ariakit.ComboboxList
-							id={listId}
-							className="z-50 flex max-h-42 flex-col gap-1 overflow-auto py-1"
+						<ScrollArea
+							type="hover"
+							className="z-50 flex flex-col h-full w-full max-h-42"
 						>
-							<div aria-live="polite" className="sr-only">
-								{matches.length} result{matches.length === 1 ? '' : 's'}
-							</div>
-							{matches.length === 0 ? (
-								<output
-									aria-live="polite"
-									className="mx-1 px-2 py-1.5 text-center text-sm text-foreground/70"
-								>
-									{emptyMessage}
-								</output>
-							) : (
-								matches.map((option) => {
-									const isSelected = option.value === selectedValue;
-									const itemDisabled = option.disabled === true;
-									return (
-										<Ariakit.SelectItem
-											key={option.value}
-											value={option.value}
-											{...(itemDisabled ? { disabled: true } : {})}
-											className={cn(
-												'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-150 ease-in-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
-												'data-active-item:bg-card-muted data-active-item:text-foreground',
-												"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
-												'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
-												option.disabled &&
-													'pointer-events-none cursor-not-allowed opacity-50',
-											)}
-											render={
-												<Ariakit.ComboboxItem
-													value={option.label}
-													focusOnHover
-													setValueOnClick
-												/>
-											}
-										>
-											<span className="flex-1">{option.label}</span>
-											{isSelected && (
-												<Icons.Check
-													aria-hidden="true"
-													className="h-4 w-4 text-foreground/70"
-												/>
-											)}
-										</Ariakit.SelectItem>
-									);
-								})
-							)}
-						</Ariakit.ComboboxList>
+							{' '}
+							<Ariakit.ComboboxList
+								id={listId}
+								className="flex flex-col gap-1 py-1"
+							>
+								<div aria-live="polite" className="sr-only">
+									{matches.length} result{matches.length === 1 ? '' : 's'}
+								</div>
+								{matches.length === 0 ? (
+									<output
+										aria-live="polite"
+										className="mx-1 px-2 py-1.5 text-center text-sm text-foreground/70"
+									>
+										{emptyMessage}
+									</output>
+								) : (
+									matches.map((option) => {
+										const isSelected = option.value === selectedValue;
+										const itemDisabled = option.disabled === true;
+										return (
+											<Ariakit.SelectItem
+												key={option.value}
+												value={option.value}
+												{...(itemDisabled ? { disabled: true } : {})}
+												className={cn(
+													'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-150 ease-in-out select-none outline-none hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted',
+													'data-active-item:bg-card-muted data-active-item:text-foreground',
+													"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
+													'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
+													option.disabled &&
+														'pointer-events-none cursor-not-allowed opacity-50',
+												)}
+												render={
+													<Ariakit.ComboboxItem
+														value={option.label}
+														focusOnHover
+														setValueOnClick
+													/>
+												}
+											>
+												<span className="flex-1">{option.label}</span>
+												{isSelected && (
+													<Icons.Check
+														aria-hidden="true"
+														className="h-4 w-4 text-foreground/70"
+													/>
+												)}
+											</Ariakit.SelectItem>
+										);
+									})
+								)}
+							</Ariakit.ComboboxList>
+						</ScrollArea>
 					</Ariakit.SelectPopover>
 				</div>
 			</Ariakit.SelectProvider>
