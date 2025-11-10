@@ -16,7 +16,6 @@ import {
 	NavigationMenuItem,
 	NavigationMenuLink,
 } from './navigation-menu';
-import Image from 'next/image';
 
 export const BasicNavigationMenuDemo: React.FC = () => {
 	return (
@@ -26,14 +25,14 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 					<NavigationMenuGroup>
 						<NavigationMenuLink
 							href="#"
-							className='relative'
+							className='relative min-h-36 flex flex-col items-start justify-end bg-[radial-gradient(125%_125%_at_50%_0%,#F1F2F5_50%,#6D31BA_70%)] dark:bg-[radial-gradient(125%_125%_at_50%_0%,#09090B_50%,#7B42C9_70%)]'
 						>
-						<Image
-              src="/images/navigation.jpg"
-              fill
-              alt="Picture of the author"
-              className='absolute object-cover'
-            />
+						  <span className='font-medium text-lg text-card dark:text-foreground'>
+								Nocta UI
+							</span>
+							<span className='text-sm text-card-muted/70 dark:text-foreground/70'>
+								Modern, accessible React components built with TypeScript and Tailwind CSS.
+							</span>
 						</NavigationMenuLink>
 					</NavigationMenuGroup>
 					<NavigationMenuGroup>
@@ -47,6 +46,11 @@ export const BasicNavigationMenuDemo: React.FC = () => {
 							label={"Templates"}
 							description="Jump-start new ideas with ready-made templates for common scenarios."
 						/>
+						<NavigationMenuLink
+              href="#"
+              label={"Changelog"}
+              description="See what’s new, improved, or fixed in the latest version."
+            />
 					</NavigationMenuGroup>
 				</NavigationMenuItem>
 

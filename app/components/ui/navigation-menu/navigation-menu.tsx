@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card p-2 text-foreground/70 opacity-0 shadow-2xl data-[enter]:translate-y-0 data-[enter]:opacity-100 data-[leave]:translate-y-1 data-[leave]:opacity-0 translate-y-1 transition-all duration-150 ease-in-out',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:scale-95 data-[leave]:-translate-y-2 data-[leave]:opacity-0 -translate-y-2 transition-all duration-150 ease-in-out',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'relative flex last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer overflow-clip',
+	'relative flex md:last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none hover:bg-card-muted hover:text-foreground focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer overflow-clip',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
@@ -66,6 +66,72 @@ type MenuPlacement = NonNullable<Ariakit.MenuProviderProps['placement']>;
 const SetPlacementContext = React.createContext<
 	React.Dispatch<React.SetStateAction<MenuPlacement>>
 >(() => {});
+
+type MotionAttribute = 'from-start' | 'from-end' | 'to-start' | 'to-end';
+
+interface NavigationMenuMotionPane {
+	key: string;
+	uid: string;
+	index: number;
+	phase: 'enter' | 'leave';
+	motion: MotionAttribute | null;
+	lastDirection: 'start' | 'end' | null;
+	content: React.ReactNode;
+}
+
+type NavigationMenuContentAction =
+	| {
+			type: 'open' | 'update';
+			key: string;
+			index: number;
+			content: React.ReactNode;
+	  }
+	| {
+			type: 'close';
+			key: string;
+	  };
+
+interface NavigationMenuContentContextValue {
+	dispatch: (action: NavigationMenuContentAction) => void;
+}
+
+const NavigationMenuContentContext =
+	React.createContext<NavigationMenuContentContextValue | null>(null);
+
+interface NavigationMenuItemOrderContextValue {
+	registerItem: (id: string) => number;
+	unregisterItem: (id: string) => void;
+}
+
+const NavigationMenuItemOrderContext =
+	React.createContext<NavigationMenuItemOrderContextValue | null>(null);
+
+const navigationMenuMotionViewportClass =
+	'relative w-full overflow-hidden transition-[height] duration-300 ease-in-out [--navigation-menu-motion-duration:300ms] [--navigation-menu-motion-distance:min(50px,15vw)] md:[--navigation-menu-motion-distance:min(220px,35vw)]';
+
+const navigationMenuMotionPaneClass =
+	'relative p-2 w-full data-[state=leave]:absolute data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:cubic-bezier(0.4,0,0.2,1)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
+
+interface NavigationMenuMotionObserverProps {
+	onMenuClose: () => void;
+}
+
+function NavigationMenuMotionObserver({
+	onMenuClose,
+}: NavigationMenuMotionObserverProps) {
+	const menu = Ariakit.useMenuContext();
+	const mounted = Ariakit.useStoreState(menu, 'mounted');
+	const previousMountedRef = React.useRef(mounted);
+
+	React.useEffect(() => {
+		if (previousMountedRef.current && !mounted) {
+			onMenuClose();
+		}
+		previousMountedRef.current = mounted;
+	}, [mounted, onMenuClose]);
+
+	return null;
+}
 
 export interface NavigationMenuProps
 	extends Omit<Ariakit.MenubarProps, 'className' | 'children'>,
@@ -94,6 +160,209 @@ export const NavigationMenu = React.forwardRef<
 ) {
 	const [shift, setShift] = React.useState(0);
 	const [placement, setPlacement] = React.useState<MenuPlacement>('bottom');
+	const [panes, setPanes] = React.useState<NavigationMenuMotionPane[]>([]);
+	const itemOrderMapRef = React.useRef(new Map<string, number>());
+	const paneIdRef = React.useRef(0);
+	const activeKeyRef = React.useRef<string | null>(null);
+	const activeIndexRef = React.useRef<number | null>(null);
+	const contentRegistryRef = React.useRef(new Map<string, React.ReactNode>());
+	const paneRefs = React.useRef(new Map<string, HTMLDivElement>());
+	const [motionViewportHeight, setMotionViewportHeight] = React.useState<
+		number | null
+	>(null);
+	const activePaneUid = React.useMemo(
+		() => panes.find((pane) => pane.phase === 'enter')?.uid ?? null,
+		[panes],
+	);
+
+	React.useLayoutEffect(() => {
+		if (!activePaneUid) {
+			setMotionViewportHeight(null);
+			return;
+		}
+
+		const paneElement = paneRefs.current.get(activePaneUid);
+		if (!paneElement) {
+			return;
+		}
+
+		const updateHeight = () => {
+			setMotionViewportHeight(paneElement.offsetHeight);
+		};
+
+		updateHeight();
+
+		if (typeof ResizeObserver === 'undefined') {
+			return;
+		}
+
+		const observer = new ResizeObserver(() => {
+			updateHeight();
+		});
+
+		observer.observe(paneElement);
+
+		return () => {
+			observer.disconnect();
+		};
+	}, [activePaneUid]);
+
+	const resetMotionState = React.useCallback(() => {
+		activeKeyRef.current = null;
+		activeIndexRef.current = null;
+		contentRegistryRef.current.clear();
+		setPanes([]);
+	}, []);
+
+	const makePane = React.useCallback(
+		(
+			pane: Omit<NavigationMenuMotionPane, 'uid'>,
+		): NavigationMenuMotionPane => ({
+			...pane,
+			uid: `navigation-pane-${paneIdRef.current++}`,
+		}),
+		[],
+	);
+
+	const registerItem = React.useCallback((id: string) => {
+		const map = itemOrderMapRef.current;
+		if (!map.has(id)) {
+			map.set(id, map.size);
+		}
+		return map.get(id) ?? 0;
+	}, []);
+
+	const unregisterItem = React.useCallback((id: string) => {
+		const map = itemOrderMapRef.current;
+
+		if (!map.has(id)) return;
+
+		const removedIndex = map.get(id);
+		if (removedIndex === undefined) return;
+
+		map.delete(id);
+
+		for (const [key, value] of map.entries()) {
+			if (value > removedIndex) {
+				map.set(key, value - 1);
+			}
+		}
+	}, []);
+
+	const handlePaneAnimationEnd = React.useCallback((paneUid: string) => {
+		setPanes((prev) =>
+			prev.filter((pane) => !(pane.phase === 'leave' && pane.uid === paneUid)),
+		);
+	}, []);
+
+	const dispatchContentAction = React.useCallback(
+		(action: NavigationMenuContentAction) => {
+			if (action.type === 'update') {
+				contentRegistryRef.current.set(action.key, action.content);
+				setPanes((prev) =>
+					prev.map((pane) =>
+						pane.key === action.key
+							? { ...pane, content: action.content, index: action.index }
+							: pane,
+					),
+				);
+				return;
+			}
+
+			if (action.type === 'close') {
+				contentRegistryRef.current.delete(action.key);
+				setPanes((prev) => prev.filter((pane) => pane.key !== action.key));
+				return;
+			}
+
+			contentRegistryRef.current.set(action.key, action.content);
+			const previousKey = activeKeyRef.current;
+			const previousIndex = activeIndexRef.current;
+			activeKeyRef.current = action.key;
+			activeIndexRef.current = action.index;
+
+			setPanes((prev) => {
+				const { enterMotion, leaveMotion } = getMotionAttributes(
+					previousIndex,
+					action.index,
+				);
+
+				const leavingPanes = prev.filter(
+					(pane) =>
+						pane.phase === 'leave' &&
+						pane.key !== previousKey &&
+						pane.key !== action.key,
+				);
+				const nextPanes: NavigationMenuMotionPane[] = [...leavingPanes];
+
+				if (
+					previousKey &&
+					previousKey !== action.key &&
+					previousIndex !== null &&
+					leaveMotion
+				) {
+					const previousContent =
+						prev.find(
+							(pane) => pane.key === previousKey && pane.phase === 'enter',
+						)?.content ??
+						contentRegistryRef.current.get(previousKey) ??
+						null;
+
+					if (previousContent) {
+						nextPanes.push(
+							makePane({
+								key: previousKey,
+								index: previousIndex,
+								phase: 'leave',
+								content: previousContent,
+								motion: leaveMotion,
+								lastDirection:
+									leaveMotion === 'to-end'
+										? 'end'
+										: leaveMotion === 'to-start'
+											? 'start'
+											: null,
+							}),
+						);
+					}
+				}
+
+				nextPanes.push(
+					makePane({
+						key: action.key,
+						index: action.index,
+						phase: 'enter',
+						content: action.content,
+						motion: enterMotion,
+						lastDirection:
+							enterMotion === 'from-end'
+								? 'end'
+								: enterMotion === 'from-start'
+									? 'start'
+									: null,
+					}),
+				);
+
+				return nextPanes;
+			});
+		},
+		[makePane],
+	);
+
+	const orderContextValue = React.useMemo(
+		() => ({
+			registerItem,
+			unregisterItem,
+		}),
+		[registerItem, unregisterItem],
+	);
+
+	const contentContextValue = React.useMemo(
+		() => ({
+			dispatch: dispatchContentAction,
+		}),
+		[dispatchContentAction],
+	);
 
 	return (
 		<Ariakit.Menubar
@@ -108,27 +377,70 @@ export const NavigationMenu = React.forwardRef<
 						showTimeout={100}
 						hideTimeout={250}
 					>
-						{children}
-						<Ariakit.Menu
-							portal
-							shift={shift}
-							tabIndex={-1}
-							unmountOnHide
-							wrapperProps={{
-								className: cn(
-									'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-150 ease-in-out',
-									panelWrapperClassName,
-								),
-							}}
-							className={cn(
-								navigationMenuPanelVariants({ size }),
-								panelClassName,
-							)}
-						>
-							<Ariakit.MenuArrow
-								className={cn('transition-[left]', arrowClassName)}
-							/>
-						</Ariakit.Menu>
+						<NavigationMenuItemOrderContext.Provider value={orderContextValue}>
+							<NavigationMenuContentContext.Provider
+								value={contentContextValue}
+							>
+								<NavigationMenuMotionObserver onMenuClose={resetMotionState} />
+								{children}
+								<Ariakit.Menu
+									portal
+									shift={shift}
+									tabIndex={-1}
+									unmountOnHide
+									wrapperProps={{
+										className: cn(
+											'[&:has([data-enter])]:transition-[transform] [&:has([data-enter])]:duration-300 ease-in-out',
+											panelWrapperClassName,
+										),
+									}}
+									className={cn(
+										navigationMenuPanelVariants({ size }),
+										panelClassName,
+									)}
+								>
+									<div
+										className={navigationMenuMotionViewportClass}
+										style={
+											motionViewportHeight === null
+												? undefined
+												: { height: motionViewportHeight }
+										}
+									>
+										{panes.map((pane) => (
+											<div
+												key={pane.uid}
+												data-motion={pane.motion ?? undefined}
+												data-state={pane.phase === 'enter' ? 'open' : 'leave'}
+												className={navigationMenuMotionPaneClass}
+												ref={(node) => {
+													if (node) {
+														paneRefs.current.set(pane.uid, node);
+													} else {
+														paneRefs.current.delete(pane.uid);
+													}
+												}}
+												onAnimationEnd={(event) => {
+													if (
+														pane.phase === 'leave' &&
+														event.currentTarget === event.target
+													) {
+														handlePaneAnimationEnd(pane.uid);
+													}
+												}}
+											>
+												<div className={navigationMenuContentLayoutClass}>
+													{pane.content}
+												</div>
+											</div>
+										))}
+									</div>
+									<Ariakit.MenuArrow
+										className={cn('transition-[left]', arrowClassName)}
+									/>
+								</Ariakit.Menu>
+							</NavigationMenuContentContext.Provider>
+						</NavigationMenuItemOrderContext.Provider>
 					</Ariakit.MenuProvider>
 				</SetPlacementContext.Provider>
 			</SetShiftContext.Provider>
@@ -172,11 +484,21 @@ export const NavigationMenuItem = React.forwardRef<
 	const setShift = React.useContext(SetShiftContext);
 	const setPlacement = React.useContext(SetPlacementContext);
 	const context = Ariakit.useMenuContext();
-	if (!context) {
+	const contentContext = React.useContext(NavigationMenuContentContext);
+	const itemOrderContext = React.useContext(NavigationMenuItemOrderContext);
+	if (!context || !contentContext || !itemOrderContext) {
 		throw new Error('NavigationMenuItem must be used within a NavigationMenu');
 	}
+	const itemId = React.useId();
+	const [itemIndex] = React.useState(() =>
+		itemOrderContext.registerItem(itemId),
+	);
+	React.useEffect(() => {
+		return () => {
+			itemOrderContext.unregisterItem(itemId);
+		};
+	}, [itemOrderContext, itemId]);
 	const menu = Ariakit.useMenuStore({ store: context });
-	const parentMenu = Ariakit.useStoreState(menu, 'contentElement');
 	const open = Ariakit.useStoreState(
 		menu,
 		(state) => state.mounted && state.anchorElement === menuButton,
@@ -187,6 +509,32 @@ export const NavigationMenuItem = React.forwardRef<
 		setShift(shift);
 		setPlacement(placement ?? 'bottom');
 	}, [open, placement, setPlacement, setShift, shift]);
+
+	React.useLayoutEffect(() => {
+		if (!open) return;
+		contentContext.dispatch({
+			type: 'open',
+			key: itemId,
+			index: itemIndex,
+			content: children ?? null,
+		});
+	}, [open, contentContext, itemId, itemIndex, children]);
+
+	React.useLayoutEffect(() => {
+		if (!open) return;
+		contentContext.dispatch({
+			type: 'update',
+			key: itemId,
+			index: itemIndex,
+			content: children ?? null,
+		});
+	}, [children, open, contentContext, itemId, itemIndex]);
+
+	React.useEffect(() => {
+		return () => {
+			contentContext.dispatch({ type: 'close', key: itemId });
+		};
+	}, [contentContext, itemId]);
 
 	const renderElement =
 		render ??
@@ -252,14 +600,6 @@ export const NavigationMenuItem = React.forwardRef<
 					return false;
 				}}
 			/>
-			{open && parentMenu && (
-				<Ariakit.Portal
-					className={navigationMenuContentLayoutClass}
-					portalElement={parentMenu}
-				>
-					{children}
-				</Ariakit.Portal>
-			)}
 		</Ariakit.MenuProvider>
 	);
 });
@@ -368,3 +708,19 @@ export const NavigationMenuGroup = React.forwardRef<
 });
 
 NavigationMenuGroup.displayName = 'NavigationMenuGroup';
+
+function getMotionAttributes(
+	prevIndex: number | null,
+	nextIndex: number,
+): {
+	enterMotion: MotionAttribute | null;
+	leaveMotion: MotionAttribute | null;
+} {
+	if (prevIndex === null || prevIndex === nextIndex) {
+		return { enterMotion: null, leaveMotion: null };
+	}
+
+	return prevIndex < nextIndex
+		? { enterMotion: 'from-end', leaveMotion: 'to-start' }
+		: { enterMotion: 'from-start', leaveMotion: 'to-end' };
+}

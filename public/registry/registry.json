@@ -1652,10 +1652,9 @@
 					"render"
 				],
 				"NavigationMenuGroup": [
-					"label",
 					"children",
 					"className",
-					"labelClassName"
+					"...props"
 				]
 			},
 			"sizes": ["md"]
