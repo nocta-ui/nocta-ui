@@ -79,17 +79,29 @@ interface NavigationMenuMotionPane {
 	content: React.ReactNode;
 }
 
+type NavigationMenuOpenAction = {
+	type: 'open';
+	key: string;
+	index: number;
+	content: React.ReactNode;
+};
+
+type NavigationMenuUpdateAction = {
+	type: 'update';
+	key: string;
+	index: number;
+	content: React.ReactNode;
+};
+
+type NavigationMenuCloseAction = {
+	type: 'close';
+	key: string;
+};
+
 type NavigationMenuContentAction =
-	| {
-			type: 'open' | 'update';
-			key: string;
-			index: number;
-			content: React.ReactNode;
-	  }
-	| {
-			type: 'close';
-			key: string;
-	  };
+	| NavigationMenuOpenAction
+	| NavigationMenuUpdateAction
+	| NavigationMenuCloseAction;
 
 interface NavigationMenuContentContextValue {
 	dispatch: (action: NavigationMenuContentAction) => void;
@@ -105,6 +117,8 @@ interface NavigationMenuItemOrderContextValue {
 
 const NavigationMenuItemOrderContext =
 	React.createContext<NavigationMenuItemOrderContextValue | null>(null);
+
+const NAVIGATION_MENU_MOTION_DURATION = 450;
 
 const navigationMenuMotionViewportClass =
 	'relative w-full overflow-hidden transition-[height] duration-450 ease-smooth [--navigation-menu-motion-duration:450ms] [--navigation-menu-motion-distance:min(50px,15vw)] md:[--navigation-menu-motion-distance:min(250px,35vw)]';
@@ -167,6 +181,12 @@ export const NavigationMenu = React.forwardRef<
 	const activeIndexRef = React.useRef<number | null>(null);
 	const contentRegistryRef = React.useRef(new Map<string, React.ReactNode>());
 	const paneRefs = React.useRef(new Map<string, HTMLDivElement>());
+	const animationLockTimeoutRef = React.useRef<number | null>(null);
+	const isAnimationLockedRef = React.useRef(false);
+	const pendingOpenActionRef = React.useRef<NavigationMenuOpenAction | null>(
+		null,
+	);
+	const [animationLockVersion, setAnimationLockVersion] = React.useState(0);
 	const [motionViewportHeight, setMotionViewportHeight] = React.useState<
 		number | null
 	>(null);
@@ -207,12 +227,39 @@ export const NavigationMenu = React.forwardRef<
 		};
 	}, [activePaneUid]);
 
+	const handleAnimationLockCompletion = React.useCallback(() => {
+		if (animationLockTimeoutRef.current) {
+			window.clearTimeout(animationLockTimeoutRef.current);
+			animationLockTimeoutRef.current = null;
+		}
+
+		if (!isAnimationLockedRef.current) {
+			return;
+		}
+
+		isAnimationLockedRef.current = false;
+		setAnimationLockVersion((version) => version + 1);
+	}, []);
+
+	const startAnimationLock = React.useCallback(() => {
+		if (animationLockTimeoutRef.current) {
+			window.clearTimeout(animationLockTimeoutRef.current);
+		}
+
+		isAnimationLockedRef.current = true;
+		animationLockTimeoutRef.current = window.setTimeout(() => {
+			handleAnimationLockCompletion();
+		}, NAVIGATION_MENU_MOTION_DURATION);
+	}, [handleAnimationLockCompletion]);
+
 	const resetMotionState = React.useCallback(() => {
 		activeKeyRef.current = null;
 		activeIndexRef.current = null;
 		contentRegistryRef.current.clear();
+		pendingOpenActionRef.current = null;
 		setPanes([]);
-	}, []);
+		handleAnimationLockCompletion();
+	}, [handleAnimationLockCompletion]);
 
 	const makePane = React.useCallback(
 		(
@@ -275,17 +322,24 @@ export const NavigationMenu = React.forwardRef<
 				return;
 			}
 
+			const isSameTarget =
+				activeKeyRef.current === action.key ||
+				activeIndexRef.current === action.index;
+
+			if (isAnimationLockedRef.current && !isSameTarget) {
+				pendingOpenActionRef.current = action;
+				return;
+			}
+
 			contentRegistryRef.current.set(action.key, action.content);
 			const previousKey = activeKeyRef.current;
 			const previousIndex = activeIndexRef.current;
+			const motionAttributes = getMotionAttributes(previousIndex, action.index);
 			activeKeyRef.current = action.key;
 			activeIndexRef.current = action.index;
 
 			setPanes((prev) => {
-				const { enterMotion, leaveMotion } = getMotionAttributes(
-					previousIndex,
-					action.index,
-				);
+				const { enterMotion, leaveMotion } = motionAttributes;
 
 				const leavingPanes = prev.filter(
 					(pane) =>
@@ -345,8 +399,15 @@ export const NavigationMenu = React.forwardRef<
 
 				return nextPanes;
 			});
+
+			if (
+				motionAttributes.enterMotion !== null ||
+				motionAttributes.leaveMotion !== null
+			) {
+				startAnimationLock();
+			}
 		},
-		[makePane],
+		[makePane, startAnimationLock],
 	);
 
 	const orderContextValue = React.useMemo(
@@ -363,6 +424,31 @@ export const NavigationMenu = React.forwardRef<
 		}),
 		[dispatchContentAction],
 	);
+
+	React.useEffect(() => {
+		// Touch the version so lint understands the dependency is intentional.
+		void animationLockVersion;
+
+		if (isAnimationLockedRef.current) {
+			return;
+		}
+
+		const pendingAction = pendingOpenActionRef.current;
+		if (!pendingAction) {
+			return;
+		}
+
+		pendingOpenActionRef.current = null;
+		dispatchContentAction(pendingAction);
+	}, [animationLockVersion, dispatchContentAction]);
+
+	React.useEffect(() => {
+		return () => {
+			if (animationLockTimeoutRef.current) {
+				window.clearTimeout(animationLockTimeoutRef.current);
+			}
+		};
+	}, []);
 
 	return (
 		<Ariakit.Menubar
