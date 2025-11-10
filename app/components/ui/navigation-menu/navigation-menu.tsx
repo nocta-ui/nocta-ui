@@ -121,7 +121,7 @@ const NavigationMenuItemOrderContext =
 const NAVIGATION_MENU_MOTION_DURATION = 450;
 
 const navigationMenuMotionViewportClass =
-	'relative w-full overflow-hidden transition-[height] duration-450 ease-smooth [--navigation-menu-motion-duration:450ms] [--navigation-menu-motion-distance:min(50px,15vw)] md:[--navigation-menu-motion-distance:min(250px,35vw)]';
+	'relative w-full overflow-hidden transition-[height] duration-450 ease-smooth [--navigation-menu-motion-duration:450ms] [--navigation-menu-motion-distance:min(550px,35vw)] md:[--navigation-menu-motion-distance:min(250px,35vw)]';
 
 const navigationMenuMotionPaneClass =
 	'relative p-2 w-full data-[state=leave]:absolute data-[state=leave]:inset-0 data-[state=leave]:pointer-events-none data-[motion]:[animation-duration:var(--navigation-menu-motion-duration)] data-[motion]:[animation-timing-function:var(--ease-smooth)] data-[motion]:[animation-fill-mode:both] data-[motion]:[will-change:transform,opacity] data-[motion=from-start]:[animation-name:navigation-menu-enter-from-start] data-[motion=from-end]:[animation-name:navigation-menu-enter-from-end] data-[motion=to-start]:[animation-name:navigation-menu-exit-to-start] data-[motion=to-end]:[animation-name:navigation-menu-exit-to-end]';
