@@ -23,8 +23,8 @@
 	--color-fd-accent-foreground: var(--color-foreground);
 	--color-fd-ring: var(--color-ring);
 
-	--animate-accordion-down: accordion-down 0.2s ease-in-out;
-	--animate-accordion-up: accordion-up 0.2s ease-in-out;
+	--animate-accordion-down: accordion-down 0.2s ease-smooth;
+	--animate-accordion-up: accordion-up 0.2s ease-smooth;
 
 	@keyframes accordion-down {
 		from {
@@ -146,6 +146,8 @@
 		rgba(9, 9, 11, 0.025);
 
 	--radius-base: 0.175rem;
+
+	--ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
@@ -253,6 +255,7 @@
 	--radius-3xl: calc(var(--radius-base) * 12);
 	--radius-4xl: calc(var(--radius-base) * 16);
 	--radius-full: 9999px;
+	--ease-smooth: var(--ease-smooth);
 }
 
 @keyframes navigation-menu-enter-from-start {

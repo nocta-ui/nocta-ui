@@ -8,7 +8,7 @@ const badgeVariants = cva(
 	[
 		'inline-flex items-center justify-center rounded-full font-medium',
 		'shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none',
-		'transition-all duration-150 ease-in-out',
+		'transition-all duration-300 ease-smooth',
 		'whitespace-nowrap',
 		'not-prose',
 	],

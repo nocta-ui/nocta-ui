@@ -1113,7 +1113,7 @@ const PieChartGraphBase = React.forwardRef<
 								aria-label={`${labelText}: ${valueText} (${(
 									arcDatum.data.percentage * 100
 								).toFixed(1)}%)`}
-								className="outline-none transition-[transform,opacity] duration-300 ease-in-out"
+								className="outline-none transition-[transform,opacity] duration-600 ease-smooth"
 								style={{
 									opacity: isDimmed ? 0.5 : 1,
 									filter: `
@@ -1121,7 +1121,7 @@ const PieChartGraphBase = React.forwardRef<
                   `,
 									transform: isActive ? 'scale(1.03)' : undefined,
 									willChange: 'transform, opacity, filter',
-									transition: 'all 0.3s ease-in-out',
+									transition: 'all 600ms var(--ease-smooth)',
 								}}
 								onPointerEnter={(event) => {
 									updateTooltipForSlice(arcDatum, event.currentTarget);
@@ -1195,7 +1195,7 @@ const PieChartGraphBase = React.forwardRef<
 							})`,
 							opacity: tooltip.visible ? 1 : 0,
 							transition:
-								'transform 300ms cubic-bezier(0, 0, 0.2, 1), opacity 150ms ease-in-out',
+								'transform 450ms var(--ease-smooth), opacity 300ms var(--ease-smooth)',
 							willChange: 'transform, opacity',
 						}}
 					>

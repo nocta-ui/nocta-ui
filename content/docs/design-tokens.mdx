@@ -2,7 +2,7 @@
 title: Design Tokens
 description: Reference guide for Nocta UI’s global design tokens — colors, shadows, and radii.
 ---
-import {TokenTable, colorTokens, shadowTokens, radiusTokens} from "@/components/token-table"
+import {TokenTable, colorTokens, shadowTokens, radiusTokens, motionTokens} from "@/components/token-table"
 
 ## Colors
 
@@ -26,3 +26,12 @@ Border radius tokens define how rounded corners appear throughout the system.
 <TokenTable category="radius" tokens={radiusTokens} />
 
 Modify this token to globally adjust the curvature of all components in your project.
+
+## Motion
+
+Component animations share a single easing curve to feel cohesive across the system.
+Define it once in `app/global.css` and reuse it anywhere you need the default transition feel.
+
+<TokenTable category="motion" tokens={motionTokens} />
+
+Nocta UI hooks this token into animations, so updating the curve immediately affects every motion primitive.

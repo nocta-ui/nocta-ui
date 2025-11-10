@@ -68,6 +68,8 @@
 		rgba(9, 9, 11, 0.025);
 
 	--radius-base: 0.175rem;
+
+	--ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
@@ -175,6 +177,7 @@
 	--radius-3xl: calc(var(--radius-base) * 12);
 	--radius-4xl: calc(var(--radius-base) * 16);
 	--radius-full: 9999px;
+	--ease-smooth: var(--ease-smooth);
 }
 
 @keyframes navigation-menu-enter-from-start {

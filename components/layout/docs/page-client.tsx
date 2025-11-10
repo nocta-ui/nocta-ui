@@ -319,7 +319,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 		<Link
 			href={item.url}
 			className={cn(
-				'group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm p-4 text-sm transition-colors duration-150 hover:bg-card-muted @max-lg:col-span-full',
+				'group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm p-4 text-sm transition-colors duration-300 hover:bg-card-muted @max-lg:col-span-full',
 				'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 				'focus-visible:ring-offset-ring-offset/50',
 				'focus-visible:border-border',
@@ -338,11 +338,11 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 					aria-hidden="true"
 					className="-mx-1 size-4 shrink-0 rtl:rotate-180"
 				/>
-				<p className="text-foreground/70 group-hover:text-foreground transition-colors duration-150">
+				<p className="text-foreground/70 group-hover:text-foreground transition-colors duration-300">
 					{item.name}
 				</p>
 			</div>
-			<p className="truncate text-foreground/45 group-hover:text-foreground/70 transition-colors duration-150">
+			<p className="truncate text-foreground/45 group-hover:text-foreground/70 transition-colors duration-300">
 				{item.description ?? (index === 0 ? text.previousPage : text.nextPage)}
 			</p>
 		</Link>

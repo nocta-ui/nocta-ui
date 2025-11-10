@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 const toggleGroupVariants = cva(
 	[
 		'w-fit not-prose inline-flex rounded-md border shadow-sm select-none',
-		'border-border text-sm font-medium transition-all duration-150 ease-in-out',
+		'border-border text-sm font-medium transition-all duration-300 ease-smooth',
 		'disabled:pointer-events-none disabled:opacity-50',
 	],
 	{
@@ -31,7 +31,7 @@ const toggleGroupVariants = cva(
 
 const toggleGroupItemVariants = cva(
 	[
-		'flex-1 flex items-center justify-center transition-all duration-150 ease-in-out cursor-pointer',
+		'flex-1 flex items-center justify-center transition-all duration-300 ease-smooth cursor-pointer',
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
 		'hover:bg-card-muted',
 		'focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none focus-visible:rounded-md',

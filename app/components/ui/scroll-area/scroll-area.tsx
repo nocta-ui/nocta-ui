@@ -42,7 +42,7 @@ const scrollViewportBaseClass =
 	'relative size-full overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden';
 
 const scrollBarVariants = cva(
-	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-150 ease-in-out data-[visible=true]:opacity-100 overflow-hidden',
+	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-300 ease-smooth data-[visible=true]:opacity-100 overflow-hidden',
 	{
 		variants: {
 			orientation: {

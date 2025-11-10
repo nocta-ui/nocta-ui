@@ -9,7 +9,7 @@ const toggleVariants = cva(
 	[
 		'not-prose inline-flex items-center justify-center gap-2 rounded-md shadow-sm',
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
-		'border text-sm font-medium transition-all duration-150 ease-in-out',
+		'border text-sm font-medium transition-all duration-300 ease-smooth',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:outline-none',
 		'disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	],

@@ -63,7 +63,7 @@ const headerCellVariants = cva(
 	[
 		'flex items-center rounded-lg p-4 text-xs font-medium tracking-wide uppercase',
 		'text-foreground/70',
-		'transition-all duration-150 ease-in-out',
+		'transition-all duration-300 ease-smooth',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'not-prose focus-visible:border-border focus-visible:ring-ring/50 focus-visible:ring-offset-ring-offset/50',
 	],
@@ -108,7 +108,7 @@ const cellVariants = cva(['px-4 py-3 text-foreground', 'whitespace-nowrap'], {
 const rowVariants = cva(
 	[
 		'relative grid items-center',
-		'transition-colors duration-150 ease-in-out',
+		'transition-colors duration-300 ease-smooth',
 		'border-b border-border/60 last:border-0',
 	],
 	{

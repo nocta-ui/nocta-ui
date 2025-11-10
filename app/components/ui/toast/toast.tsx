@@ -49,17 +49,17 @@ const FOCUSABLE_SELECTORS = [
 ].join(', ');
 
 const ANIMATION_CONFIG = {
-	ENTER_DURATION: 0.5,
-	EXIT_DURATION: 0.5,
-	STACK_DURATION: 0.5,
+	ENTER_DURATION: 0.75,
+	EXIT_DURATION: 0.75,
+	STACK_DURATION: 0.75,
 	STACK_OFFSET: 16,
 	EXPANDED_GAP: 12,
 	SCALE_FACTOR: 0.04,
 	MIN_SCALE: 0.92,
 	MAX_VISIBLE_TOASTS: 3,
 	Z_INDEX_BASE: 50,
-	EASING_DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
-	EASING_EXIT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+	EASING_DEFAULT: 'var(--ease-smooth)',
+	EASING_EXIT: 'var(--ease-smooth)',
 } as const;
 
 const SWIPE_DISMISS_THRESHOLD = 45;
@@ -155,7 +155,7 @@ class ToasterInstanceManager {
 const toasterInstanceManager = new ToasterInstanceManager();
 
 const toastContainerVariants = cva(
-	'not-prose pointer-events-auto fixed rounded-lg border shadow-2xl transition-all duration-150 ease-in-out will-change-transform',
+	'not-prose pointer-events-auto fixed rounded-lg border shadow-2xl transition-all duration-300 ease-smooth will-change-transform',
 	{
 		variants: {
 			position: {
@@ -936,7 +936,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							type="button"
 							onClick={handleClose}
 							className={cn(
-								'absolute top-2 right-2 cursor-pointer rounded-md p-1 text-foreground/45 transition-colors duration-150 ease-in-out hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:outline-none',
+								'absolute top-2 right-2 cursor-pointer rounded-md p-1 text-foreground/45 transition-colors duration-300 ease-smooth hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:outline-none',
 							)}
 							aria-label="Close toast"
 						>
@@ -968,7 +968,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 											action.onClick();
 											handleClose();
 										}}
-										className="relative inline-flex cursor-pointer items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground transition-all duration-150 ease-in-out focus-visible:ring-ring/50"
+										className="relative inline-flex cursor-pointer items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground transition-all duration-300 ease-smooth focus-visible:ring-ring/50"
 									>
 										{action.label}
 									</button>

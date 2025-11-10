@@ -24,7 +24,7 @@ const wheelPickerSizeConfig: Record<
 
 const wheelPickerVariants = cva(
 	[
-		'not-prose relative isolate overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors ease-in-out duration-150',
+		'not-prose relative isolate overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors ease-smooth duration-300',
 	],
 	{
 		variants: {
@@ -43,7 +43,7 @@ const wheelPickerVariants = cva(
 );
 
 const wheelPickerTrackText = cva(
-	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-150 ease-in-out',
+	'flex w-full items-center justify-center px-3 text-center text-foreground/45 transition-colors duration-300 ease-smooth',
 	{
 		variants: {
 			size: { sm: 'text-xs', md: 'text-sm', lg: 'text-base' },
@@ -63,11 +63,11 @@ const wheelPickerHighlightText = cva(
 );
 
 const wheelPickerFocusRingClasses =
-	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:border-border group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50 transition-all duration-150 ease-in-out';
+	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:border-border group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50 transition-all duration-300 ease-smooth';
 
 const wheelPickerHighlightBand = cva(
 	cn(
-		'absolute left-1 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center bg-card-muted rounded-sm border border-transparent transition-colors duration-150 pointer-events-none',
+		'absolute left-1 right-1 top-1/2 flex -translate-y-1/2 items-center justify-center bg-card-muted rounded-sm border border-transparent transition-colors duration-300 pointer-events-none',
 		wheelPickerFocusRingClasses,
 	),
 	{
@@ -120,7 +120,7 @@ export const WheelPickerGroup: React.FC<WheelPickerGroupProps> = ({
 			<div
 				{...props}
 				className={cn(
-					'not-prose relative isolate flex overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors duration-150',
+					'not-prose relative isolate flex overflow-hidden rounded-md border border-border bg-card shadow-sm transition-colors duration-300',
 					disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
 					className,
 				)}
@@ -802,7 +802,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 
 	const rootClassName = grouped
 		? cn(
-				'not-prose relative isolate flex-none min-w-0 overflow-hidden bg-transparent shadow-none transition-colors duration-150',
+				'not-prose relative isolate flex-none min-w-0 overflow-hidden bg-transparent shadow-none transition-colors duration-300',
 				wheelPickerSizeConfig[size]?.widthClass,
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,

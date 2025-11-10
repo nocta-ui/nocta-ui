@@ -19,7 +19,7 @@ const accordionVariants = cva('not-prose w-full', {
 });
 
 const accordionItemVariants = cva(
-	'not-prose transition-all duration-150 ease-in-out',
+	'not-prose transition-all duration-300 ease-smooth',
 	{
 		variants: {
 			variant: {
@@ -39,7 +39,7 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left transition-all duration-150 ease-in-out',
+	'not-prose flex w-full items-center justify-between rounded-lg text-left transition-all duration-300 ease-smooth',
 	{
 		variants: {
 			variant: {
@@ -108,7 +108,7 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-	'not-prose overflow-hidden transition-all duration-150 ease-in-out',
+	'not-prose overflow-hidden transition-all duration-300 ease-smooth',
 	{
 		variants: {
 			size: {
@@ -402,7 +402,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all duration-150 ease-in-out">
+						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all duration-300 ease-smooth">
 							{children}
 						</div>
 					</div>
@@ -471,7 +471,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					<Icons.ChevronDown
 						aria-hidden="true"
 						className={cn(
-							'ml-2 shrink-0 text-foreground/45 transition-transform duration-150 ease-in-out will-change-transform',
+							'ml-2 shrink-0 text-foreground/45 transition-transform duration-300 ease-smooth will-change-transform',
 							isOpen ? 'rotate-180' : 'rotate-0',
 						)}
 						style={{ width: iconSize, height: iconSize }}

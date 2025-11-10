@@ -8,7 +8,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-150 ease-in-out placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-300 ease-smooth placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -156,7 +156,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 			<Icons.ChevronDown
 				aria-hidden="true"
 				className={cn(
-					'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-150 ease-in-out',
+					'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-300 ease-smooth',
 					isOpen && 'rotate-180',
 				)}
 			/>
@@ -178,7 +178,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			className={cn(
 				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
 				'focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none',
-				'origin-top -translate-y-2 scale-95 transform opacity-0 transition-all duration-150 ease-in-out data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
+				'origin-top -translate-y-2 scale-95 transform opacity-0 transition-all duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 				'not-prose',
 				className,
 			)}
@@ -209,7 +209,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-150 ease-in-out outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-300 ease-smooth outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
 				"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
 				isSelected && 'bg-card-muted font-medium text-foreground',
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',

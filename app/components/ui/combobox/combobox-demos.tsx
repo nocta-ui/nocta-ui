@@ -264,13 +264,13 @@ export const ControlledDemo: React.FC = () => {
 					<div className="mt-2 space-x-2">
 						<button
 							onClick={() => setSelectedFramework('vue')}
-							className="rounded bg-card-muted px-2 py-1 text-xs hover:opacity-80 transition-all duration-150 cursor-pointer"
+							className="rounded bg-card-muted px-2 py-1 text-xs hover:opacity-80 transition-all duration-300 cursor-pointer"
 						>
 							Set Vue.js
 						</button>
 						<button
 							onClick={() => setSelectedFramework('')}
-							className="rounded bg-card-muted px-2 py-1 text-xs hover:opacity-80 transition-all duration-150 cursor-pointer"
+							className="rounded bg-card-muted px-2 py-1 text-xs hover:opacity-80 transition-all duration-300 cursor-pointer"
 						>
 							Clear
 						</button>

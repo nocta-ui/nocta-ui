@@ -205,6 +205,15 @@ export const radiusTokens = [
 	},
 ];
 
+export const motionTokens = [
+	{
+		token: '--ease-smooth',
+		description:
+			'Global motion curve used for transitions',
+		value: 'cubic-bezier(0.32, 0.72, 0, 1)',
+	},
+];
+
 const CollapsibleContent = forwardRef<
 	HTMLDivElement,
 	CollapsiblePrimitive.CollapsibleContentProps
@@ -247,11 +256,14 @@ export interface ShadowTokenRow {
 	value: string | string[];
 }
 
-export interface RadiusTokenRow {
+interface SingleValueTokenRow {
 	token: string;
 	description?: ReactNode;
 	value: string;
 }
+
+export interface RadiusTokenRow extends SingleValueTokenRow {}
+export interface MotionTokenRow extends SingleValueTokenRow {}
 
 type TokenTableProps =
 	| {
@@ -265,6 +277,10 @@ type TokenTableProps =
 	| {
 			category: 'radius';
 			tokens: RadiusTokenRow[];
+	  }
+	| {
+			category: 'motion';
+			tokens: MotionTokenRow[];
 	  };
 
 const FIELD_LABEL_CLASS = 'text-foreground/45 not-prose pe-2';
@@ -290,10 +306,12 @@ export function TokenTable(props: TokenTableProps) {
 		);
 	}
 
+	const singleValueTokens = props.tokens as SingleValueTokenRow[];
+
 	return (
 		<TokenTableShell secondaryHeader="Value">
-			{props.tokens.map((token) => (
-				<RadiusTokenItem key={token.token} token={token} />
+			{singleValueTokens.map((token) => (
+				<SingleValueTokenItem key={token.token} token={token} />
 			))}
 		</TokenTableShell>
 	);
@@ -332,7 +350,7 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-300 ease-smooth">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -382,7 +400,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-300 ease-smooth">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -412,7 +430,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 	);
 }
 
-function RadiusTokenItem({ token }: { token: RadiusTokenRow }) {
+function SingleValueTokenItem({ token }: { token: SingleValueTokenRow }) {
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -426,7 +444,7 @@ function RadiusTokenItem({ token }: { token: RadiusTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-150 ease-in-out">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-300 ease-smooth">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>

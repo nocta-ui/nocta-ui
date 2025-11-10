@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-card shadow-2xl transition-all duration-150 ease-in-out`,
+	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-card shadow-2xl transition-all duration-300 ease-smooth`,
 	{
 		variants: {
 			size: {
@@ -151,7 +151,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium transition-all duration-150 ease-in-out focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 ease-smooth focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			onClick={handleClick}
@@ -197,7 +197,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 				<div
 					className={cn(
 						'fixed inset-0 z-40 bg-overlay/50 backdrop-blur-sm',
-						'opacity-0 transition-opacity duration-150 ease-in-out',
+						'opacity-0 transition-opacity duration-300 ease-smooth',
 						'data-enter:opacity-100 data-leave:opacity-0',
 					)}
 				/>
@@ -205,7 +205,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 			className={cn(
 				dialogContentVariants({ size }),
 				'fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform',
-				'scale-105 opacity-0 blur-sm transition-all duration-150 ease-in-out',
+				'scale-105 opacity-0 blur-sm transition-all duration-300 ease-smooth',
 				'data-enter:scale-100 data-enter:opacity-100 data-enter:blur-none',
 				'data-leave:scale-105 data-leave:opacity-0 data-leave:blur-sm',
 				className,
@@ -339,7 +339,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
-				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-150 ease-in-out hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-colors duration-300 ease-smooth hover:bg-card-muted hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"
