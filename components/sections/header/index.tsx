@@ -54,7 +54,7 @@ export const Header = ({
 					))}
 			</NavigationMenuList>
 
-			<div className="flex flex-1 flex-row items-center justify-end lg:gap-1.5">
+			<div className="flex flex-1 flex-row items-center justify-end gap-1 lg:gap-1.5">
 				<SearchOnly>
 					<SearchToggle className="lg:hidden" />
 					<LargeSearchToggle className="w-full max-w-60 rounded-md text-foreground/45 hover:text-foreground/70 max-lg:hidden cursor-pointer" />
