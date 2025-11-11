@@ -14,7 +14,6 @@ const avatarVariants = cva(
 		'bg-card-muted',
 		'text-foreground/70',
 		'font-medium select-none',
-		'transition-all duration-300 ease-smooth',
 		'not-prose',
 	],
 	{

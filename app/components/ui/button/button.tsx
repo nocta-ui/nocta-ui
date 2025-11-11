@@ -6,17 +6,16 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
-	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-all duration-300 ease-smooth focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,filter,box-shadow] duration-150 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
 	{
 		variants: {
 			variant: {
 				default:
-					'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card dark:text-foreground focus-visible:border-border focus-visible:ring-ring/50',
+					'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card dark:text-foreground',
 				secondary:
-					'border border-border bg-card text-foreground shadow-sm hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
-				ghost:
-					'text-foreground hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
-				icon: 'text-foreground hover:bg-card-muted focus-visible:border-border focus-visible:ring-ring/50',
+					'border border-border bg-card text-foreground shadow-sm hover:bg-card-muted focus-visible:ring-ring/50',
+				ghost: 'text-foreground hover:bg-card-muted focus-visible:ring-ring/50',
+				icon: 'text-foreground hover:bg-card-muted focus-visible:ring-ring/50',
 			},
 			size: {
 				sm: 'h-8 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',

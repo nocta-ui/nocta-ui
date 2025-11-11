@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const sliderVariants = cva(
-	'not-prose relative cursor-pointer touch-none rounded-full select-none focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+	'not-prose relative cursor-pointer touch-none rounded-full select-none transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 	{
 		variants: {
 			orientation: {
@@ -99,7 +99,7 @@ const fillVariants = cva('absolute rounded-full', {
 });
 
 const thumbVariants = cva(
-	'absolute origin-center transform rounded-full shadow-md hover:shadow-sm',
+	'absolute origin-center rounded-full shadow-md hover:shadow-sm',
 	{
 		variants: {
 			variant: {

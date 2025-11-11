@@ -15,25 +15,16 @@ interface ScrollMetrics {
 }
 
 interface ScrollAreaContextValue {
-	registerViewport: (node: HTMLDivElement | null) => void;
-	getViewport: () => HTMLDivElement | null;
-	updateMetrics: () => void;
-	handleScroll: () => void;
-	metrics: Record<ScrollAxis, ScrollMetrics>;
+	scrollAreaRef: React.RefObject<HTMLDivElement | null>;
+	viewportRef: React.RefObject<HTMLDivElement | null>;
 	type: ScrollAreaType;
-	isHovered: boolean;
-	isScrolling: boolean;
-	scrollbarThumbClassName?: string | undefined;
+	scrollHideDelay: number;
+	scrollbarThumbClassName: string | undefined;
 }
 
 const ScrollAreaContext = React.createContext<ScrollAreaContextValue | null>(
 	null,
 );
-
-const defaultMetrics: Record<ScrollAxis, ScrollMetrics> = {
-	vertical: { size: 1, progress: 0, scrollable: false },
-	horizontal: { size: 1, progress: 0, scrollable: false },
-};
 
 const scrollAreaBaseClass =
 	'group/scroll-area not-prose relative overflow-hidden';
@@ -42,7 +33,7 @@ const scrollViewportBaseClass =
 	'relative size-full overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden';
 
 const scrollBarVariants = cva(
-	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-300 ease-smooth data-[visible=true]:opacity-100 overflow-hidden',
+	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-150 ease-basic overflow-hidden',
 	{
 		variants: {
 			orientation: {
@@ -90,27 +81,15 @@ function calculateAxisMetrics(
 		return { size: 1, progress: 0, scrollable: false };
 	}
 
-	const size = clamp(viewport / total, 0, 1);
+	const size = Math.min(Math.max(viewport / total, 0), 1);
 	const maxScroll = total - viewport;
-	const progress = maxScroll > 0 ? clamp(offset / maxScroll, 0, 1) : 0;
+	const progress = maxScroll > 0 ? Math.min(Math.max(offset / maxScroll, 0), 1) : 0;
 
 	return {
 		size,
 		progress,
 		scrollable: true,
 	};
-}
-
-function clamp(value: number, min = 0, max = 1) {
-	return Math.min(Math.max(value, min), max);
-}
-
-function metricsAreEqual(a: ScrollMetrics, b: ScrollMetrics) {
-	return (
-		Math.abs(a.size - b.size) < 0.001 &&
-		Math.abs(a.progress - b.progress) < 0.001 &&
-		a.scrollable === b.scrollable
-	);
 }
 
 function composeRefs<T>(
@@ -136,7 +115,8 @@ export interface ScrollAreaProps
 	onViewportScroll?: React.UIEventHandler<HTMLDivElement>;
 	scrollbarSize?: VariantProps<typeof scrollBarVariants>['size'];
 	horizontalScrollbarSize?: VariantProps<typeof scrollBarVariants>['size'];
-	scrollbarThumbClassName?: string | undefined;
+	scrollbarThumbClassName?: string;
+	scrollHideDelay?: number;
 }
 
 export const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
@@ -149,120 +129,29 @@ export const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
 			onViewportScroll,
 			scrollbarSize = 'md',
 			horizontalScrollbarSize,
-			onPointerEnter,
-			onPointerLeave,
 			scrollbarThumbClassName,
+			scrollHideDelay = 600,
 			...props
 		},
 		ref,
 	) => {
+		const scrollAreaRef = React.useRef<HTMLDivElement | null>(null);
 		const viewportRef = React.useRef<HTMLDivElement | null>(null);
-		const [metrics, setMetrics] =
-			React.useState<Record<ScrollAxis, ScrollMetrics>>(defaultMetrics);
-		const [isHovered, setIsHovered] = React.useState(false);
-		const [isScrolling, setIsScrolling] = React.useState(false);
-		const scrollTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(
-			null,
+
+		const composedRef = React.useMemo(
+			() => composeRefs(ref, scrollAreaRef),
+			[ref],
 		);
 
-		const updateMetrics = React.useCallback(() => {
-			const viewport = viewportRef.current;
-			if (!viewport) return;
-			const nextVertical = calculateAxisMetrics(
-				viewport.scrollHeight,
-				viewport.clientHeight,
-				viewport.scrollTop,
-			);
-			const nextHorizontal = calculateAxisMetrics(
-				viewport.scrollWidth,
-				viewport.clientWidth,
-				viewport.scrollLeft,
-			);
-
-			setMetrics((current) => {
-				if (
-					metricsAreEqual(current.vertical, nextVertical) &&
-					metricsAreEqual(current.horizontal, nextHorizontal)
-				) {
-					return current;
-				}
-
-				return {
-					vertical: nextVertical,
-					horizontal: nextHorizontal,
-				};
-			});
-		}, []);
-
-		const registerViewport = React.useCallback(
-			(node: HTMLDivElement | null) => {
-				if (viewportRef.current === node) return;
-				viewportRef.current = node;
-				if (node) {
-					updateMetrics();
-				}
-			},
-			[updateMetrics],
-		);
-
-		const getViewport = React.useCallback(() => viewportRef.current, []);
-
-		const handleScroll = React.useCallback(() => {
-			updateMetrics();
-			setIsScrolling(true);
-			if (scrollTimeoutRef.current) {
-				clearTimeout(scrollTimeoutRef.current);
-			}
-			scrollTimeoutRef.current = setTimeout(() => setIsScrolling(false), 450);
-		}, [updateMetrics]);
-
-		React.useEffect(() => {
-			return () => {
-				if (scrollTimeoutRef.current) {
-					clearTimeout(scrollTimeoutRef.current);
-				}
-			};
-		}, []);
-
-		const onEnter = React.useCallback(
-			(event: React.PointerEvent<HTMLDivElement>) => {
-				setIsHovered(true);
-				onPointerEnter?.(event);
-			},
-			[onPointerEnter],
-		);
-
-		const onLeave = React.useCallback(
-			(event: React.PointerEvent<HTMLDivElement>) => {
-				setIsHovered(false);
-				onPointerLeave?.(event);
-			},
-			[onPointerLeave],
-		);
-
-		const contextValue = React.useMemo(
+		const contextValue = React.useMemo<ScrollAreaContextValue>(
 			() => ({
-				registerViewport,
-				getViewport,
-				updateMetrics,
-				handleScroll,
-				metrics,
+				scrollAreaRef,
+				viewportRef,
 				type,
-				isHovered,
-				isScrolling,
+				scrollHideDelay,
 				scrollbarThumbClassName,
 			}),
-			[
-				registerViewport,
-				getViewport,
-				updateMetrics,
-				handleScroll,
-				metrics,
-				type,
-				isHovered,
-				isScrolling,
-				scrollbarThumbClassName,
-			],
+			[type, scrollHideDelay, scrollbarThumbClassName],
 		);
 
 		const showVerticalScrollBar =
@@ -274,21 +163,19 @@ export const ScrollArea = React.forwardRef<HTMLDivElement, ScrollAreaProps>(
 		return (
 			<ScrollAreaContext.Provider value={contextValue}>
 				<div
-					ref={ref}
+					ref={composedRef}
 					className={cn(scrollAreaBaseClass, className)}
-					onPointerEnter={onEnter}
-					onPointerLeave={onLeave}
 					{...props}
 				>
 					<ScrollViewport onScroll={onViewportScroll}>
 						{children}
 					</ScrollViewport>
-					{showVerticalScrollBar ? (
+					{showVerticalScrollBar && (
 						<ScrollBar orientation="vertical" size={scrollbarSize} />
-					) : null}
-					{showHorizontalScrollBar ? (
+					)}
+					{showHorizontalScrollBar && (
 						<ScrollBar orientation="horizontal" size={resolvedHorizontalSize} />
-					) : null}
+					)}
 				</div>
 			</ScrollAreaContext.Provider>
 		);
@@ -299,66 +186,23 @@ ScrollArea.displayName = 'ScrollArea';
 interface ScrollViewportProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const ScrollViewport = React.forwardRef<HTMLDivElement, ScrollViewportProps>(
-	({ className, onScroll, ...props }, ref) => {
-		const { registerViewport, handleScroll, updateMetrics, getViewport } =
-			useScrollAreaContext('ScrollViewport');
-		const composedRef = composeRefs(ref, registerViewport);
+	({ className, onScroll, children, ...props }, ref) => {
+		const { viewportRef } = useScrollAreaContext('ScrollViewport');
 
-		React.useEffect(() => {
-			return () => registerViewport(null);
-		}, [registerViewport]);
-
-		React.useEffect(() => {
-			if (typeof window === 'undefined') return;
-			const viewport = getViewport();
-			if (!viewport) return;
-
-			const runUpdate = () => updateMetrics();
-			runUpdate();
-
-			if (typeof ResizeObserver === 'undefined') {
-				return;
-			}
-
-			const resizeObserver = new ResizeObserver(runUpdate);
-			resizeObserver.observe(viewport);
-
-			const observeChildren = () => {
-				for (const child of Array.from(viewport.children)) {
-					if (child instanceof Element) {
-						resizeObserver.observe(child);
-					}
-				}
-			};
-
-			observeChildren();
-
-			const mutationObserver = new MutationObserver(() => {
-				observeChildren();
-				runUpdate();
-			});
-
-			mutationObserver.observe(viewport, {
-				childList: true,
-				subtree: true,
-			});
-
-			return () => {
-				resizeObserver.disconnect();
-				mutationObserver.disconnect();
-			};
-		}, [getViewport, updateMetrics]);
+		const composedRef = React.useMemo(
+			() => composeRefs(ref, viewportRef),
+			[ref, viewportRef],
+		);
 
 		return (
 			<div
 				ref={composedRef}
-				onScroll={(event) => {
-					handleScroll();
-					onScroll?.(event);
-				}}
+				onScroll={onScroll}
 				className={cn(scrollViewportBaseClass, className)}
 				{...props}
-			/>
+			>
+				{children}
+			</div>
 		);
 	},
 );
@@ -375,67 +219,197 @@ const ScrollBar = React.forwardRef<HTMLDivElement, ScrollBarProps>(
 		{ className, orientation = 'vertical', size = 'md', style, ...props },
 		ref,
 	) => {
-		const { metrics, type, isHovered, isScrolling, scrollbarThumbClassName } =
-			useScrollAreaContext('ScrollBar');
-		const axis = metrics[orientation];
+		const {
+			viewportRef,
+			scrollAreaRef,
+			type,
+			scrollHideDelay,
+			scrollbarThumbClassName,
+		} = useScrollAreaContext('ScrollBar');
+
+		const scrollbarRef = React.useRef<HTMLDivElement | null>(null);
+		const thumbRef = React.useRef<HTMLSpanElement | null>(null);
+		const isScrollableRef = React.useRef(false);
+
+		const composedRef = React.useMemo(
+			() => composeRefs(ref, scrollbarRef),
+			[ref],
+		);
+
+		const updateThumbPosition = React.useCallback(() => {
+			const viewport = viewportRef.current;
+			const thumb = thumbRef.current;
+			const scrollbar = scrollbarRef.current;
+			if (!viewport || !thumb || !scrollbar) return;
+
+			const metrics = calculateAxisMetrics(
+				orientation === 'vertical'
+					? viewport.scrollHeight
+					: viewport.scrollWidth,
+				orientation === 'vertical'
+					? viewport.clientHeight
+					: viewport.clientWidth,
+				orientation === 'vertical' ? viewport.scrollTop : viewport.scrollLeft,
+			);
+
+			const wasScrollable = isScrollableRef.current;
+			isScrollableRef.current = metrics.scrollable;
+
+			if (metrics.scrollable && !wasScrollable) {
+				scrollbar.style.display = '';
+			} else if (!metrics.scrollable && wasScrollable) {
+				scrollbar.style.display = 'none';
+			}
+
+			if (metrics.scrollable) {
+				const thumbFraction = Math.max(metrics.size, MIN_THUMB_RATIO);
+				const thumbSizePercent = thumbFraction * 100;
+				const maxOffset = Math.max(0, 100 - thumbSizePercent);
+				const offsetPercent = metrics.progress * maxOffset;
+
+				if (orientation === 'vertical') {
+					thumb.style.height = `${thumbSizePercent}%`;
+					thumb.style.top = `${offsetPercent}%`;
+				} else {
+					thumb.style.width = `${thumbSizePercent}%`;
+					thumb.style.left = `${offsetPercent}%`;
+				}
+			}
+		}, [orientation, viewportRef]);
+
+		React.useEffect(() => {
+			const scrollbar = scrollbarRef.current;
+			if (!scrollbar) return;
+
+			if (type === 'always') {
+				scrollbar.style.opacity = '1';
+			}
+		}, [type]);
+
+		React.useEffect(() => {
+			if (type !== 'hover') return;
+
+			const scrollArea = scrollAreaRef.current;
+			const scrollbar = scrollbarRef.current;
+			if (!scrollArea || !scrollbar) return;
+
+			let hideTimer: number | undefined;
+
+			const show = () => {
+				if (hideTimer !== undefined) {
+					window.clearTimeout(hideTimer);
+				}
+				scrollbar.style.opacity = '1';
+			};
+
+			const hide = () => {
+				hideTimer = window.setTimeout(() => {
+					scrollbar.style.opacity = '0';
+				}, scrollHideDelay);
+			};
+
+			scrollArea.addEventListener('pointerenter', show);
+			scrollArea.addEventListener('pointerleave', hide);
+
+			return () => {
+				if (hideTimer !== undefined) {
+					window.clearTimeout(hideTimer);
+				}
+				scrollArea.removeEventListener('pointerenter', show);
+				scrollArea.removeEventListener('pointerleave', hide);
+			};
+		}, [type, scrollHideDelay, scrollAreaRef]);
+
+		React.useEffect(() => {
+			if (type !== 'scroll') return;
+
+			const viewport = viewportRef.current;
+			const scrollbar = scrollbarRef.current;
+			if (!viewport || !scrollbar) return;
+
+			let hideTimer: number | undefined;
+
+			const handleScroll = () => {
+				scrollbar.style.opacity = '1';
+
+				if (hideTimer !== undefined) {
+					window.clearTimeout(hideTimer);
+				}
+
+				hideTimer = window.setTimeout(() => {
+					scrollbar.style.opacity = '0';
+				}, scrollHideDelay);
+
+				requestAnimationFrame(updateThumbPosition);
+			};
+
+			viewport.addEventListener('scroll', handleScroll, { passive: true });
+
+			return () => {
+				if (hideTimer !== undefined) {
+					window.clearTimeout(hideTimer);
+				}
+				viewport.removeEventListener('scroll', handleScroll);
+			};
+		}, [type, scrollHideDelay, viewportRef, updateThumbPosition]);
+
+		React.useEffect(() => {
+			const viewport = viewportRef.current;
+			if (!viewport) return;
+
+			updateThumbPosition();
+
+			const handleScroll = () => {
+				requestAnimationFrame(updateThumbPosition);
+			};
+
+			viewport.addEventListener('scroll', handleScroll, { passive: true });
+
+			const resizeObserver = new ResizeObserver(() => {
+				requestAnimationFrame(updateThumbPosition);
+			});
+			resizeObserver.observe(viewport);
+
+			return () => {
+				viewport.removeEventListener('scroll', handleScroll);
+				resizeObserver.disconnect();
+			};
+		}, [viewportRef, updateThumbPosition]);
+
+		const viewport = viewportRef.current;
 		const hasBoth =
-			metrics.vertical.scrollable && metrics.horizontal.scrollable;
-
-		if (!axis.scrollable) {
-			return null;
-		}
-
-		const thumbFraction = Math.max(axis.size, MIN_THUMB_RATIO);
-		const thumbSizePercent = thumbFraction * 100;
-		const maxOffset = Math.max(0, 100 - thumbSizePercent);
-		const offsetPercent = axis.progress * maxOffset;
-
-		const shouldShow =
-			type === 'always' ||
-			(type === 'hover' && isHovered) ||
-			(type === 'scroll' && isScrolling);
+			viewport &&
+			viewport.scrollHeight > viewport.clientHeight &&
+			viewport.scrollWidth > viewport.clientWidth;
 
 		const trackStyle =
-			hasBoth && (orientation === 'vertical' || orientation === 'horizontal')
-				? orientation === 'vertical'
-					? { bottom: `calc(0.25rem + ${CORNER_GAP}px)` }
-					: { right: `calc(0.25rem + ${CORNER_GAP}px)` }
-				: undefined;
+			hasBoth && orientation === 'vertical'
+				? { bottom: `calc(0.25rem + ${CORNER_GAP}px)` }
+				: hasBoth && orientation === 'horizontal'
+					? { right: `calc(0.25rem + ${CORNER_GAP}px)` }
+					: undefined;
 
 		return (
 			<div
-				ref={ref}
+				ref={composedRef}
 				aria-hidden="true"
-				data-visible={shouldShow ? 'true' : 'false'}
+				data-orientation={orientation}
 				className={cn(scrollBarVariants({ orientation, size }), className)}
-				style={
-					trackStyle
-						? {
-								...style,
-								...trackStyle,
-							}
-						: style
-				}
+				style={{
+					display: 'none',
+					...(trackStyle ? trackStyle : {}),
+					...style,
+				}}
 				{...props}
 			>
 				<span
+					ref={thumbRef}
 					aria-hidden="true"
 					className={cn(
 						'pointer-events-none absolute block rounded-full',
 						scrollbarThumbClassName ?? 'bg-foreground/45',
 						orientation === 'horizontal' ? 'h-full top-0' : 'w-full left-0',
 					)}
-					style={
-						orientation === 'vertical'
-							? {
-									height: `${thumbSizePercent}%`,
-									top: `${offsetPercent}%`,
-								}
-							: {
-									width: `${thumbSizePercent}%`,
-									left: `${offsetPercent}%`,
-								}
-					}
 				/>
 			</div>
 		);

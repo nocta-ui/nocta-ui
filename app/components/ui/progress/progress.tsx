@@ -6,7 +6,6 @@ const progressVariants = cva(
 	[
 		'relative w-full overflow-hidden rounded-full',
 		'border border-border/60 bg-card-muted shadow-inner',
-		'transition-all duration-300 ease-smooth',
 		'not-prose',
 	],
 	{
@@ -76,7 +75,7 @@ export const Progress: React.FC<ProgressProps> = ({
 			>
 				<div
 					className={cn(
-						'progress-fill h-full rounded-full transition-all duration-500 ease-smooth',
+						'progress-fill h-full rounded-full transition-[width] duration-500 ease-smooth',
 					)}
 					style={{ width: `${percentage}%` }}
 				/>

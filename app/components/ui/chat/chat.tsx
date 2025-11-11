@@ -7,15 +7,11 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const chatVariants = cva(
-	[
-		'relative border border-border bg-card',
-		'rounded-lg shadow-md transition-all duration-300 ease-smooth',
-		'not-prose overflow-hidden',
-	],
+	['relative border', 'rounded-lg shadow-md', 'not-prose overflow-hidden'],
 	{
 		variants: {
 			variant: {
-				default: '',
+				default: 'bg-card border-border',
 			},
 		},
 		defaultVariants: {
@@ -27,7 +23,7 @@ const chatVariants = cva(
 const messageVariants = cva(
 	[
 		'w-fit max-w-[80%] rounded-lg px-3 py-2 text-sm',
-		'not-prose transition-all duration-300 ease-smooth',
+		'not-prose',
 		'overflow-hidden',
 	],
 	{
@@ -46,7 +42,7 @@ const messageVariants = cva(
 
 const inputVariants = cva(
 	[
-		'min-h-[40px] flex-1 resize-none rounded-lg border px-3 py-2 text-sm transition-all duration-300 ease-smooth',
+		'min-h-[40px] flex-1 resize-none rounded-lg border px-3 py-2 text-sm transition-shadow duration-150 ease-basic',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'disabled:cursor-not-allowed disabled:opacity-50',
 		'not-prose placeholder:text-foreground/45',
@@ -59,7 +55,6 @@ const inputVariants = cva(
 					'border-border/60',
 					'bg-card',
 					'text-foreground',
-					'focus-visible:border-border',
 					'focus-visible:ring-ring/50',
 				],
 			},
@@ -187,7 +182,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			)}
 
 			<div className="flex w-full flex-col items-start gap-1">
-				<div className="not-prose w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground transition-all duration-300 ease-smooth">
+				<div className="not-prose w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground transition-all duration-150 ease-basic">
 					<div className="flex items-center gap-2">
 						<span className="text-xs text-foreground/70">
 							{getTypingText()}
@@ -457,8 +452,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 					aria-label="Send message"
 					disabled={!message.trim() || disabled}
 					className={cn(
-						'relative h-full rounded-md px-3 py-2 font-medium transition-all duration-300 ease-smooth cursor-pointer',
-						'focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+						'relative h-full rounded-md px-3 py-2 font-medium transition-[background-color,filter,box-shadow] duration-150 ease-basic cursor-pointer',
+						'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 						'not-prose disabled:cursor-not-allowed disabled:opacity-50',
 						'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground',
 					)}

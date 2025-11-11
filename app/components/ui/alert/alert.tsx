@@ -4,18 +4,15 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-	'not-prose relative flex w-fit items-start gap-3 rounded-lg border px-4 py-3 shadow-sm',
+	'not-prose relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm',
 	{
 		variants: {
 			variant: {
-				default:
-					'overflow-hidden border-border bg-card text-foreground [&_[data-slot=alert-icon]]:text-foreground',
+				default: 'text-foreground [&_[data-slot=alert-icon]]:text-foreground',
 				destructive:
-					'border-border bg-card text-destructive/90 [&_[data-slot=alert-icon]]:text-destructive/90',
-				warning:
-					'border-border bg-card text-warning/90 [&_[data-slot=alert-icon]]:text-warning/90',
-				success:
-					'border-border bg-card text-success/90 [&_[data-slot=alert-icon]]:text-success/90',
+					'text-destructive/90 [&_[data-slot=alert-icon]]:text-destructive/90',
+				warning: 'text-warning/90 [&_[data-slot=alert-icon]]:text-warning/90',
+				success: 'text-success/90 [&_[data-slot=alert-icon]]:text-success/90',
 			},
 			size: {
 				sm: 'px-3 py-2',

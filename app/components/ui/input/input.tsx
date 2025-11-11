@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 
 const inputVariants = cva(
 	[
-		'flex w-fit rounded-md border transition-all duration-300 ease-smooth',
+		'flex w-fit rounded-md border transition-shadow duration-150 ease-basic',
+		'bg-card text-foreground',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'focus-visible:ring-offset-ring-offset/50',
 		'disabled:cursor-not-allowed disabled:opacity-50',
@@ -14,25 +15,13 @@ const inputVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: [
-					'border-border',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-border',
-					'focus-visible:ring-ring/50',
-				],
+				default: ['border-border', 'focus-visible:ring-ring/50'],
 				error: [
 					'border-destructive/40',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-destructive/50',
 					'focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50',
 				],
 				success: [
 					'border-success/40',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-success/50',
 					'focus-visible:ring-success/50 dark:focus-visible:ring-success/50',
 				],
 			},
@@ -84,18 +73,21 @@ const iconVariants = cva(
 	},
 );
 
-const labelVariants = cva('mb-1.5 block text-sm font-medium', {
-	variants: {
-		variant: {
-			default: 'text-foreground/70',
-			error: 'text-foreground/70',
-			success: 'text-foreground/70',
+const labelVariants = cva(
+	'mb-1.5 block text-sm font-medium text-foreground/70',
+	{
+		variants: {
+			variant: {
+				default: '',
+				error: '',
+				success: '',
+			},
+		},
+		defaultVariants: {
+			variant: 'default',
 		},
 	},
-	defaultVariants: {
-		variant: 'default',
-	},
-});
+);
 
 const messageVariants = cva('mt-1.5 text-sm', {
 	variants: {

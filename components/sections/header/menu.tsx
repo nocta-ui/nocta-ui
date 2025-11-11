@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 const menuItemVariants = cva('', {
 	variants: {
 		variant: {
-			main: 'inline-flex items-center gap-2 py-1.5 text-foreground/45 transition-colors duration-300 ease-smooth hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground [&_svg]:size-4',
+			main: 'inline-flex items-center gap-2 py-1.5 text-foreground/45 transition-all duration-150 ease-basic hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground [&_svg]:size-4',
 			icon: buttonVariants({
 				size: 'icon',
 				color: 'ghost',

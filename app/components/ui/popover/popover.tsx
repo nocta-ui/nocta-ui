@@ -6,11 +6,11 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	"not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-colors duration-300 ease-smooth focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-150 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
-				default: 'border-border bg-card text-foreground hover:bg-card-muted',
+				default: 'bg-card hover:bg-card-muted border-border text-foreground',
 			},
 			size: {
 				sm: 'h-8 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
@@ -26,11 +26,11 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md',
+	'not-prose relative w-fit rounded-lg border shadow-md transition-shadow focus-visible:ring-none focus-visible:outline-none',
 	{
 		variants: {
 			variant: {
-				default: `border-border bg-card-muted text-foreground`,
+				default: `bg-card-muted border-border text-foreground`,
 			},
 			size: {
 				sm: 'px-3 py-2 text-sm',
@@ -46,7 +46,7 @@ const popoverContentVariants = cva(
 );
 
 const popoverMotion =
-	'transform will-change-transform duration-300 ease-smooth transition opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
+	'duration-300 ease-smooth transition-[translate,opacity,scale] opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
 
 type PopoverPlacement =
 	| 'top'
@@ -95,8 +95,8 @@ export type PopoverDescriptionProps = React.ComponentPropsWithoutRef<
 	typeof Ariakit.PopoverDescription
 >;
 
-type PopoverHeadingElement = React.ElementRef<typeof Ariakit.PopoverHeading>;
-type PopoverDescriptionElement = React.ElementRef<
+type PopoverHeadingElement = React.ComponentRef<typeof Ariakit.PopoverHeading>;
+type PopoverDescriptionElement = React.ComponentRef<
 	typeof Ariakit.PopoverDescription
 >;
 
@@ -108,7 +108,6 @@ const PopoverConfigContext = React.createContext<{
 	portal?: boolean;
 	fixed?: boolean;
 	showArrow?: boolean;
-	placement?: PopoverPlacement;
 }>({});
 
 export const Popover: React.FC<PopoverProps> = ({
@@ -132,9 +131,7 @@ export const Popover: React.FC<PopoverProps> = ({
 	});
 
 	return (
-		<PopoverConfigContext.Provider
-			value={{ gutter, portal, fixed, showArrow, placement }}
-		>
+		<PopoverConfigContext.Provider value={{ gutter, portal, fixed, showArrow }}>
 			<PopoverStoreContext.Provider value={store}>
 				<Ariakit.PopoverProvider store={store}>
 					<div className="not-prose relative">{children}</div>
@@ -195,15 +192,14 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 		portal: contextPortal,
 		fixed: contextFixed,
 		showArrow: contextShowArrow,
-		placement: contextPlacement,
 	} = React.useContext(PopoverConfigContext);
+	const resolvedGutter = contextGutter ?? 0;
 
 	return (
 		<Ariakit.Popover
 			portal={contextPortal ?? true}
 			fixed={contextFixed ?? false}
-			gutter={contextGutter}
-			placement={contextPlacement}
+			gutter={resolvedGutter}
 			className={cn(
 				popoverContentVariants({ variant, size }),
 				popoverMotion,

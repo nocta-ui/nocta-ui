@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const tooltipContentVariants = cva(
-	`not-prose pointer-events-auto z-50 origin-top -translate-y-2 scale-95 transform rounded-md border px-3 py-2 text-sm opacity-0 shadow-md transition-all duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
+	`not-prose pointer-events-auto z-50 origin-top -translate-y-2 scale-95 rounded-md border px-3 py-2 text-sm opacity-0 shadow-md transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			variant: {

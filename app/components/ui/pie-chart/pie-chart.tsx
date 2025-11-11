@@ -1121,7 +1121,8 @@ const PieChartGraphBase = React.forwardRef<
                   `,
 									transform: isActive ? 'scale(1.03)' : undefined,
 									willChange: 'transform, opacity, filter',
-									transition: 'all 600ms var(--ease-smooth)',
+									transition:
+										'transform 600ms var(--ease-smooth), opacity 600ms var(--ease-smooth), filter 600ms var(--ease-smooth)',
 								}}
 								onPointerEnter={(event) => {
 									updateTooltipForSlice(arcDatum, event.currentTarget);

@@ -149,7 +149,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 								variant="ghost"
 								size="sm"
 								className={cn(
-									'h-9 min-w-9 px-0 py-0 font-medium transition-colors',
+									'h-9 min-w-9 px-0 py-0 font-medium transition-[background-color,box-shadow]',
 									animOff && 'transition-none duration-0',
 									isActive &&
 										'bg-card text-foreground shadow-sm border border-border pointer-events-none disabled:opacity-100',

@@ -19,7 +19,7 @@ const accordionVariants = cva('not-prose w-full', {
 });
 
 const accordionItemVariants = cva(
-	'not-prose transition-all duration-300 ease-smooth',
+	'not-prose transition-[border-color,box-shadow]',
 	{
 		variants: {
 			variant: {
@@ -39,13 +39,13 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left transition-all duration-300 ease-smooth',
+	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[box-shadow,color] duration-150 ease-basic',
 	{
 		variants: {
 			variant: {
 				default:
-					'text-foreground hover:text-foreground/70 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
-				card: 'text-foreground hover:text-foreground/70 focus-visible:ring-0 focus-visible:outline-none',
+					'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				card: 'focus-visible:ring-0 focus-visible:outline-none',
 			},
 			size: {
 				sm: 'text-xs',
@@ -108,7 +108,7 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-	'not-prose overflow-hidden transition-all duration-300 ease-smooth',
+	'not-prose overflow-hidden transition-[height,opacity] duration-300 ease-smooth',
 	{
 		variants: {
 			size: {
@@ -402,7 +402,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all duration-300 ease-smooth">
+						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-[height,opacity] duration-300 ease-smooth">
 							{children}
 						</div>
 					</div>
@@ -471,7 +471,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					<Icons.ChevronDown
 						aria-hidden="true"
 						className={cn(
-							'ml-2 shrink-0 text-foreground/45 transition-transform duration-300 ease-smooth will-change-transform',
+							'ml-2 shrink-0 text-foreground/45 transition-transform duration-150 ease-basic will-change-transform',
 							isOpen ? 'rotate-180' : 'rotate-0',
 						)}
 						style={{ width: iconSize, height: iconSize }}

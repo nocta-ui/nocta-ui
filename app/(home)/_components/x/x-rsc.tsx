@@ -96,7 +96,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 				href={tweet.user.url}
 				target="_blank"
 				rel="noreferrer"
-				className="focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none focus-visible:rounded-full"
+				className="focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none focus-visible:rounded-full"
 			>
 				<img
 					title={`Profile picture of ${tweet.user.name}`}
@@ -112,7 +112,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 					href={tweet.user.url}
 					target="_blank"
 					rel="noreferrer"
-					className="flex items-center font-semibold whitespace-nowrap focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+					className="flex items-center font-semibold whitespace-nowrap focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 				>
 					{truncate(tweet.user.name, 20)}
 					{tweet.user.verified ||
@@ -125,7 +125,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 						href={tweet.user.url}
 						target="_blank"
 						rel="noreferrer"
-						className="text-sm text-foreground/30 transition-all duration-75 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+						className="text-sm text-foreground/30 transition-all duration-75 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 					>
 						@{truncate(tweet.user.screen_name, 16)}
 					</a>
@@ -136,10 +136,10 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 			href={tweet.url}
 			target="_blank"
 			rel="noreferrer"
-			className="focus-visible:border-border h-fit focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+			className="h-fit focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 		>
 			<span className="sr-only">Link to tweet</span>
-			<Twitter className="size-5 items-start text-foreground transition-all ease-smooth hover:scale-105" />
+			<Twitter className="size-5 items-start text-foreground transition-all ease-basic hover:scale-105" />
 		</a>
 	</div>
 );

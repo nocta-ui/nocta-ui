@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 
 const textareaVariants = cva(
 	[
-		'flex w-full rounded-md border transition-[border-color,box-shadow] duration-300 ease-smooth',
+		'flex w-full rounded-md border transition-shadow duration-150 ease-basic',
+		'bg-card text-foreground',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'focus-visible:ring-offset-ring-offset/50',
 		'disabled:cursor-not-allowed disabled:opacity-50',
@@ -14,25 +15,13 @@ const textareaVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: [
-					'border-border',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-border',
-					'focus-visible:ring-ring/50',
-				],
+				default: ['border-border', 'focus-visible:ring-ring/50'],
 				error: [
 					'border-destructive/40',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-destructive/50',
 					'focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50',
 				],
 				success: [
 					'border-success/40',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:border-success/50',
 					'focus-visible:ring-success/50 dark:focus-visible:ring-success/50',
 				],
 			},

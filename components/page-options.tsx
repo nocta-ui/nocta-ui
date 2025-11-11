@@ -70,7 +70,7 @@ export function LLMCopyButton({
 }
 
 const optionVariants = cva(
-	'inline-flex items-center gap-2 rounded-sm p-2 text-sm text-foreground/70 transition-colors duration-300 ease-smooth hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
+	'inline-flex items-center gap-2 rounded-sm p-2 text-sm text-foreground/70 transition-all duration-150 ease-basic hover:bg-card-muted hover:text-foreground [&_svg]:size-4',
 );
 
 export function ViewOptions({
@@ -152,7 +152,7 @@ export function ViewOptions({
 	}, [githubUrl, markdownUrl]);
 
 	return (
-		<Popover>
+		<Popover portal fixed>
 			<PopoverTrigger
 				className={cn(
 					buttonVariants({
@@ -166,8 +166,6 @@ export function ViewOptions({
 				<CaretDownIcon className="size-3.5 text-foreground/70" />
 			</PopoverTrigger>
 			<PopoverContent
-				portal
-				fixed
 				className="flex flex-col overflow-auto bg-card p-1! rounded-md"
 			>
 				{items.map((item) => (

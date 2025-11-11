@@ -147,12 +147,12 @@ export const CustomStylingDemo: React.FC = () => {
 			/>
 			<Avatar
 				fallback="JD"
-				className="bg-gradient-to-br from-purple-500 to-pink-500 text-card"
+				className="bg-linear-to-br from-purple-500 to-pink-500 text-card"
 			/>
 			<Avatar
 				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
 				alt="John Doe"
-				className="grayscale transition-all duration-300 hover:grayscale-0"
+				className="grayscale transition-all duration-150 hover:grayscale-0"
 			/>
 		</div>
 	);

@@ -8,13 +8,13 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md border shadow-sm transition-all duration-300 ease-smooth placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm transition-[background-color,box-shadow] duration-150 ease-basic placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
-				default: `border-border bg-card text-foreground focus-visible:border-border focus-visible:ring-ring/50`,
-				error: `border-destructive/40 bg-card text-foreground focus-visible:border-destructive/50 focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50`,
-				success: `border-success/40 bg-card text-foreground focus-visible:border-success/50 focus-visible:ring-success/50 dark:focus-visible:ring-success/50`,
+				default: `border-border focus-visible:ring-ring/50`,
+				error: `border-destructive/40 focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50`,
+				success: `border-success/40 focus-visible:ring-success/50 dark:focus-visible:ring-success/50`,
 			},
 			size: {
 				sm: 'h-8 px-2.5 py-1.5 px-3 text-sm',
@@ -110,6 +110,10 @@ export const Select: React.FC<SelectProps> = ({
 					},
 	);
 
+	React.useEffect(() => {
+  console.log('Child re-rendered!');
+});
+
 	const normalizedSize: SelectSize = size ?? 'md';
 	const normalizedVariant: SelectVariant = variant ?? 'default';
 	const contextValue = React.useMemo<InternalCtx>(
@@ -156,7 +160,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
 			<Icons.ChevronDown
 				aria-hidden="true"
 				className={cn(
-					'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-300 ease-smooth',
+					'ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-150 ease-basic',
 					isOpen && 'rotate-180',
 				)}
 			/>
@@ -170,6 +174,10 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 	portal = true,
 	fixed = false,
 }) => {
+	const selectStore = Ariakit.useSelectContext();
+	if (!selectStore)
+		throw new Error('SelectContent must be used within <Select>');
+
 	return (
 		<Ariakit.SelectPopover
 			sameWidth
@@ -177,18 +185,23 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			fixed={fixed}
 			className={cn(
 				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
-				'focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none',
-				'origin-top -translate-y-2 scale-95 transform opacity-0 transition-all duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
+				'focus-visible:ring-none focus-visible:outline-none',
+				'origin-top -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 				'not-prose',
 				className,
 			)}
 		>
 			<div className="z-50">
 				<ScrollArea
-					type="hover"
+					type="scroll"
 					className="flex flex-col h-full w-full max-h-42"
 				>
-					<div className="flex flex-col gap-1 py-1">{children}</div>
+					<Ariakit.SelectList
+						store={selectStore}
+						className="flex flex-col gap-1 py-1 focus-visible:ring-none focus-visible:outline-none"
+					>
+						{children}
+					</Ariakit.SelectList>
 				</ScrollArea>
 			</div>
 		</Ariakit.SelectPopover>
@@ -209,9 +222,9 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-colors duration-300 ease-smooth outline-none select-none hover:bg-card-muted hover:text-foreground data-active-item:bg-card-muted data-active-item:text-foreground',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-150 ease-basic outline-none select-none data-active-item:bg-card-muted data-active-item:text-foreground',
+				'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
 				"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
-				isSelected && 'bg-card-muted font-medium text-foreground',
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,
 			)}

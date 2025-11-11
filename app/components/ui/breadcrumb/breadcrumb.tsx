@@ -45,24 +45,18 @@ const breadcrumbItemVariants = cva('inline-flex items-center', {
 
 const breadcrumbLinkVariants = cva(
 	[
-		'inline-flex items-center transition-colors duration-300 ease-smooth',
+		'inline-flex items-center transition-[background-color,box-shadow,color,text-decoration-color] duration-150 ease-basic',
+		'text-foreground/70 hover:text-foreground',
 		'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
-		'rounded-md focus-visible:border-border',
+		'rounded-md',
 	],
 	{
 		variants: {
 			variant: {
 				default: [
-					'text-foreground/70',
-					'hover:text-foreground',
-					'underline-offset-4 hover:underline',
+					'underline underline-offset-4 decoration-transparent hover:decoration-current',
 				],
-				ghost: [
-					'text-foreground/70',
-					'hover:text-foreground',
-					'hover:bg-card-muted',
-					'rounded-md px-2 py-1',
-				],
+				ghost: ['hover:bg-card-muted', 'rounded-md px-2 py-1'],
 			},
 			size: {
 				sm: 'text-xs',

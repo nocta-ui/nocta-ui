@@ -153,7 +153,7 @@ function CopyButton({ containerRef, className }: CopyButtonProps) {
 			data-checked={checked || undefined}
 			aria-label={checked ? 'Copied command' : 'Copy command'}
 			className={[
-				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-card-muted hover:text-foreground transition-all duration-300 ease-smooth [&_svg]:size-3.5 cursor-pointer [@media(hover:hover)]:opacity-100 z-2 backdrop-blur-md',
+				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-card-muted hover:text-foreground transition-all duration-150 ease-basic [&_svg]:size-3.5 cursor-pointer [@media(hover:hover)]:opacity-100 z-2 backdrop-blur-md',
 				className,
 			].join(' ')}
 		>

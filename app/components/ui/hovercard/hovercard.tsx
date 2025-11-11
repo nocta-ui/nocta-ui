@@ -6,11 +6,11 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const hovercardTriggerVariants = cva(
-	"not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-colors duration-300 ease-smooth focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-150 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
-				default: 'border-border bg-card text-foreground hover:bg-card-muted',
+				default: 'bg-card hover:bg-card-muted border-border text-foreground',
 			},
 			size: {
 				sm: 'h-8 px-3 py-1.5 gap-1.5 has-[>svg]:px-2.5 text-sm',
@@ -26,11 +26,11 @@ const hovercardTriggerVariants = cva(
 );
 
 const hovercardContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md',
+	'not-prose relative w-fit rounded-lg border border-border bg-card-muted text-foreground shadow-md',
 	{
 		variants: {
 			variant: {
-				default: 'border-border bg-card-muted text-foreground',
+				default: '',
 			},
 			size: {
 				sm: 'px-3 py-2 text-sm',
@@ -46,7 +46,7 @@ const hovercardContentVariants = cva(
 );
 
 const hovercardMotion =
-	'transform will-change-transform duration-300 ease-smooth transition opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
+	'duration-300 ease-smooth transition-[translate,opacity,scale] opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
 
 type HovercardPlacement =
 	| 'top'
@@ -103,10 +103,10 @@ export type HovercardDescriptionProps = React.ComponentPropsWithoutRef<
 	typeof Ariakit.HovercardDescription
 >;
 
-type HovercardHeadingElement = React.ElementRef<
+type HovercardHeadingElement = React.ComponentRef<
 	typeof Ariakit.HovercardHeading
 >;
-type HovercardDescriptionElement = React.ElementRef<
+type HovercardDescriptionElement = React.ComponentRef<
 	typeof Ariakit.HovercardDescription
 >;
 
@@ -117,9 +117,9 @@ const HovercardConfigContext = React.createContext<{
 	portal?: boolean;
 	fixed?: boolean;
 	showArrow?: boolean;
-	placement?: HovercardPlacement;
 	hideOnHoverOutside?: HovercardIntentHandler;
 	disablePointerEventsOnApproach?: HovercardIntentHandler;
+	autoFocusOnShow?: boolean;
 }>({});
 
 export const Hovercard: React.FC<HovercardProps> = ({
@@ -142,7 +142,6 @@ export const Hovercard: React.FC<HovercardProps> = ({
 	const store = Ariakit.useHovercardStore({
 		placement,
 		timeout,
-		autoFocusOnShow,
 		...(openDelay !== undefined ? { showTimeout: openDelay } : {}),
 		...(closeDelay !== undefined ? { hideTimeout: closeDelay } : {}),
 		...(open !== undefined
@@ -159,9 +158,9 @@ export const Hovercard: React.FC<HovercardProps> = ({
 				portal,
 				fixed,
 				showArrow,
-				placement,
 				hideOnHoverOutside,
 				disablePointerEventsOnApproach,
+				autoFocusOnShow,
 			}}
 		>
 			<HovercardStoreContext.Provider value={store}>
@@ -225,20 +224,25 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 		portal: contextPortal,
 		fixed: contextFixed,
 		showArrow: contextShowArrow,
-		placement: contextPlacement,
 		hideOnHoverOutside,
 		disablePointerEventsOnApproach,
+		autoFocusOnShow,
 	} = React.useContext(HovercardConfigContext);
+	const resolvedGutter = contextGutter ?? 0;
+	const resolvedHideOnHoverOutside = hideOnHoverOutside ?? true;
+	const resolvedDisablePointerEvents =
+		disablePointerEventsOnApproach ?? true;
+	const resolvedAutoFocusOnShow = autoFocusOnShow ?? false;
 
 	return (
 		<Ariakit.Hovercard
 			store={store}
 			portal={contextPortal ?? true}
 			fixed={contextFixed ?? false}
-			gutter={contextGutter}
-			placement={contextPlacement}
-			hideOnHoverOutside={hideOnHoverOutside}
-			disablePointerEventsOnApproach={disablePointerEventsOnApproach}
+			gutter={resolvedGutter}
+			hideOnHoverOutside={resolvedHideOnHoverOutside}
+			disablePointerEventsOnApproach={resolvedDisablePointerEvents}
+			autoFocusOnShow={resolvedAutoFocusOnShow}
 			className={cn(
 				hovercardContentVariants({ variant, size }),
 				hovercardMotion,
