@@ -730,11 +730,28 @@
 				"class-variance-authority": "^0.7.1",
 				"@ariakit/react": "^0.4.19"
 			},
-			"exports": ["Popover", "PopoverTrigger", "PopoverContent"],
+			"exports": [
+				"Popover",
+				"PopoverTrigger",
+				"PopoverContent",
+				"PopoverHeading",
+				"PopoverDescription"
+			],
 			"props": {
-				"Popover": ["open", "defaultOpen", "onOpenChange"],
+				"Popover": [
+					"open",
+					"defaultOpen",
+					"onOpenChange",
+					"gutter",
+					"portal",
+					"fixed",
+					"showArrow",
+					"placement"
+				],
 				"PopoverTrigger": ["variant", "size", "asChild", "className"],
-				"PopoverContent": ["size", "className", "portal", "fixed"]
+				"PopoverContent": ["variant", "size", "className", "children"],
+				"PopoverHeading": ["className", "children"],
+				"PopoverDescription": ["className", "children"]
 			},
 			"variants": ["default"],
 			"sizes": ["sm", "md", "lg"]
@@ -1151,16 +1168,16 @@
 			"exports": ["Tooltip", "TooltipTrigger", "TooltipContent"],
 			"props": {
 				"Tooltip": [
-					"children",
 					"delayDuration",
 					"placement",
 					"gutter",
 					"portal",
 					"fixed",
-					"showArrow"
+					"showArrow",
+					"children"
 				],
-				"TooltipTrigger": ["children", "className", "render", "autoFocus"],
-				"TooltipContent": ["children", "className", "variant", "autoFocus"]
+				"TooltipTrigger": ["children", "className"],
+				"TooltipContent": ["variant", "children", "className"]
 			}
 		},
 		"dropdown-menu": {
