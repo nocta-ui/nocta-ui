@@ -6,16 +6,16 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm transition-colors duration-300 ease-smooth focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+	"not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-colors duration-300 ease-smooth focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
 				default: 'border-border bg-card text-foreground hover:bg-card-muted',
 			},
 			size: {
-				sm: 'px-2 py-1 text-xs',
-				md: 'px-3 py-2 text-sm',
-				lg: 'px-4 py-3 text-base',
+				sm: 'h-8 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',
+				md: 'h-9 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',
+				lg: 'h-10 px-6 py-2 gap-2 has-[>svg]:px-4 text-base',
 			},
 		},
 		defaultVariants: {
