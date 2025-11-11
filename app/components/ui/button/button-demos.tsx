@@ -54,3 +54,13 @@ export const SizesDemo: React.FC = () => {
 		</div>
 	);
 };
+
+export const AsChildDemo: React.FC = () => {
+	return (
+		<div className="my-6">
+			<Button asChild>
+				<a href="https://www.nocta-ui.com/docs/design-tokens">Explore Design Tokens</a>
+			</Button>
+		</div>
+	);
+};

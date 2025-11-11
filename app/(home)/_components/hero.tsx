@@ -26,9 +26,9 @@ export default function Hero() {
 					<Button
 						variant="default"
 						size="md"
-						render={<Link href="/docs"></Link>}
+						asChild
 					>
-						Get started
+					  <Link href="/docs"> Get Started</Link>
 					</Button>
 					<GithubStarsButton />
 				</div>

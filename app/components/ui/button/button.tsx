@@ -2,7 +2,7 @@
 
 import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import type React from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 export const buttonVariants = cva(
@@ -49,10 +49,11 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps
-	extends Omit<Ariakit.ButtonProps, 'className' | 'children'>,
+	extends Omit<Ariakit.ButtonProps, 'className' | 'children' | 'render'>,
 		VariantProps<typeof buttonVariants> {
 	children: React.ReactNode;
 	className?: string;
+	asChild?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -61,25 +62,35 @@ export const Button: React.FC<ButtonProps> = ({
 	size = 'md',
 	className = '',
 	type,
-	render,
+	asChild = false,
 	...props
 }) => {
-	const buttonType = type ?? (render ? undefined : 'button');
-	const renderProps = render === undefined ? {} : { render };
+	const buttonType = type ?? (asChild ? undefined : 'button');
+	const classes = cn(
+		buttonVariants({
+			variant,
+			size,
+		}),
+		className,
+	);
+
+	if (asChild && React.isValidElement(children)) {
+		const child = children as React.ReactElement<{ className?: string }>;
+		const mergedChild = React.cloneElement(child, {
+			className: cn(child.props.className, classes),
+		});
+
+		return (
+			<Ariakit.Button
+				render={mergedChild}
+				type={buttonType}
+				{...props}
+			/>
+		);
+	}
 
 	return (
-		<Ariakit.Button
-			{...renderProps}
-			className={cn(
-				buttonVariants({
-					variant,
-					size,
-				}),
-				className,
-			)}
-			type={buttonType}
-			{...props}
-		>
+		<Ariakit.Button className={classes} type={buttonType} {...props}>
 			{children}
 		</Ariakit.Button>
 	);

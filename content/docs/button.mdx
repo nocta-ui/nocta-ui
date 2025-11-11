@@ -10,6 +10,7 @@ import {
   GhostButtonDemo,
   IconButtonDemo,
   SizesDemo,
+  AsChildDemo,
 } from '@/app/components/ui/button/button-demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
@@ -111,6 +112,23 @@ import { Button } from '@/components/ui/button';
   </DocsTab>
 </DocsTabs>
 
+### Using `asChild`
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <AsChildDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="asChild Button"
+    <Button asChild>
+      <a href="https://www.nocta-ui.com/docs/design-tokens">
+        Explore Design Tokens
+      </a>
+    </Button>
+    ```
+  </DocsTab>
+</DocsTabs>
+
 ## Api Reference
 
 <TypeTable
@@ -122,8 +140,8 @@ import { Button } from '@/components/ui/button';
     },
     variant: {
       description: 'Button style variant',
-      type: '"primary" | "secondary" | "ghost" | "icon"',
-      default: '"primary"',
+      type: '"default" | "secondary" | "ghost" | "icon"',
+      default: '"default"',
     },
     size: {
       description: 'Button size',
@@ -135,10 +153,10 @@ import { Button } from '@/components/ui/button';
       type: 'string',
       default: '""',
     },
-    render: {
-      description: 'Render the button as another component (Ariakit `render` prop)',
-      type: 'React.ReactElement | RenderProp',
-      default: 'undefined',
+    asChild: {
+      description: 'Render the button styles on the passed child element',
+      type: 'boolean',
+      default: 'false',
     },
     disabled: {
       description: 'Disable the button',
