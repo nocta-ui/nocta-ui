@@ -183,6 +183,21 @@ import {
       type: 'number',
       default: '0',
     },
+    portal: {
+      description: 'Whether tooltip content renders inside a portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use CSS `position: fixed` for the tooltip',
+      type: 'boolean',
+      default: 'false',
+    },
+    showArrow: {
+      description: 'Render the arrow indicator for every tooltip content',
+      type: 'boolean',
+      default: 'true',
+    },
     children: {
       description: 'Tooltip subtree',
       type: 'React.ReactNode',
@@ -217,11 +232,6 @@ import {
       type: '"default"',
       default: '"default"',
     },
-    gutter: {
-      description: 'Override the spacing from the trigger (falls back to tooltip context)',
-      type: 'number',
-      default: '0',
-    },
     children: {
       description: 'Tooltip content',
       type: 'React.ReactNode',
@@ -234,5 +244,3 @@ import {
     },
   }}
 />
-
-TooltipContent accepts any valid `div` HTML attributes in addition to the props above.

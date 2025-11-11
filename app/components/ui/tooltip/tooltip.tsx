@@ -3,7 +3,6 @@
 import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
-import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 
 const tooltipContentVariants = cva(
@@ -27,6 +26,9 @@ export interface TooltipProps {
 	delayDuration?: number;
 	placement?: TooltipPlacement;
 	gutter?: number;
+	portal?: boolean;
+	fixed?: boolean;
+	showArrow?: boolean;
 }
 
 export interface TooltipTriggerProps extends Ariakit.TooltipAnchorProps {
@@ -39,15 +41,20 @@ export interface TooltipContentProps
 		VariantProps<typeof tooltipContentVariants> {
 	children: React.ReactNode;
 	className?: string;
-	gutter?: number;
 }
 
 interface TooltipConfig {
-	gutter: number;
+	gutter?: number;
+	portal?: boolean;
+	fixed?: boolean;
+	showArrow?: boolean;
 }
 
 const TooltipConfigContext = React.createContext<TooltipConfig>({
 	gutter: 0,
+	portal: true,
+	fixed: false,
+	showArrow: true,
 });
 
 const useTooltipConfig = () => React.useContext(TooltipConfigContext);
@@ -57,9 +64,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
 	delayDuration = 400,
 	placement = 'top',
 	gutter = 0,
+	portal = true,
+	fixed = false,
+	showArrow = true,
 }) => {
 	return (
-		<TooltipConfigContext.Provider value={{ gutter }}>
+		<TooltipConfigContext.Provider value={{ gutter, portal, fixed, showArrow }}>
 			<Ariakit.TooltipProvider
 				showTimeout={delayDuration}
 				hideTimeout={100}
@@ -116,27 +126,27 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	children,
 	className,
 	variant = 'default',
-	gutter,
 	autoFocus,
 	...props
 }) => {
-	const { gutter: ctxGutter } = useTooltipConfig();
-	const resolvedGutter = gutter ?? ctxGutter;
+	const {
+		gutter: contextGutter,
+		portal: contextPortal,
+		fixed: contextFixed,
+		showArrow: contextShowArrow,
+	} = useTooltipConfig();
 
-	if (typeof document === 'undefined') {
-		return null;
-	}
-
-	return createPortal(
+	return (
 		<Ariakit.Tooltip
 			className={cn(tooltipContentVariants({ variant }), className)}
-			gutter={resolvedGutter}
+			gutter={contextGutter}
+			portal={contextPortal ?? true}
+			fixed={contextFixed ?? false}
 			{...(autoFocus === undefined ? {} : { autoFocus })}
 			{...props}
 		>
 			{children}
-			<Ariakit.TooltipArrow />
-		</Ariakit.Tooltip>,
-		document.body,
+			{(contextShowArrow ?? true) ? <Ariakit.TooltipArrow /> : null}
+		</Ariakit.Tooltip>
 	);
 };

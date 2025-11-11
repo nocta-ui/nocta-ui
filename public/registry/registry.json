@@ -1150,9 +1150,17 @@
 			},
 			"exports": ["Tooltip", "TooltipTrigger", "TooltipContent"],
 			"props": {
-				"Tooltip": ["children", "delayDuration", "placement", "gutter"],
+				"Tooltip": [
+					"children",
+					"delayDuration",
+					"placement",
+					"gutter",
+					"portal",
+					"fixed",
+					"showArrow"
+				],
 				"TooltipTrigger": ["children", "className", "render", "autoFocus"],
-				"TooltipContent": ["children", "className", "variant", "gutter", "autoFocus"]
+				"TooltipContent": ["children", "className", "variant", "autoFocus"]
 			}
 		},
 		"dropdown-menu": {

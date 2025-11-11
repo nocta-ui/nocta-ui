@@ -52,18 +52,16 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Popover"
     <Popover>
-      <PopoverTrigger>
-        Open Popover
-      </PopoverTrigger>
+      <PopoverTrigger>Open Popover</PopoverTrigger>
       <PopoverContent>
-        <div className="space-y-2">
-          <h4 className="font-medium text-sm">About this feature</h4>
-          <p className="text-sm text-foreground/70">
+        <div className="flex flex-col space-y-1 max-w-xs">
+          <PopoverHeading>About this feature</PopoverHeading>
+          <PopoverDescription>
             This is a popover component that can contain any content you want.
-          </p>
+          </PopoverDescription>
         </div>
       </PopoverContent>
-    </Popover>
+    </Popover>;
     ```
   </DocsTab>
 </DocsTabs>
@@ -88,6 +86,31 @@ import {
       description: 'Callback when open state changes',
       type: '(open: boolean) => void',
       default: 'undefined',
+    },
+    gutter: {
+      description: 'Default distance between the trigger and any PopoverContent',
+      type: 'number',
+      default: '0',
+    },
+    portal: {
+      description: 'Whether PopoverContent renders inside a portal by default',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Whether PopoverContent uses `position: fixed` by default',
+      type: 'boolean',
+      default: 'false',
+    },
+    showArrow: {
+      description: 'Whether PopoverContent renders the arrow indicator by default',
+      type: 'boolean',
+      default: 'true',
+    },
+    placement: {
+      description: 'Preferred placement of the popover relative to the trigger',
+      type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
+      default: '"bottom"',
     },
   }}
 />
@@ -123,6 +146,11 @@ import {
 
 <TypeTable
   type={{
+    variant: {
+      description: 'Visual style variant',
+      type: '"default"',
+      default: '"default"',
+    },
     size: {
       description: 'Content size (padding, typography)',
       type: '"sm" | "md" | "lg"',
@@ -133,15 +161,44 @@ import {
       type: 'string',
       default: '""',
     },
-    portal: {
-      description: 'Render content in a portal',
-      type: 'boolean',
-      default: 'true',
+    children: {
+      description: 'Content rendered inside the popover',
+      type: 'React.ReactNode',
+      default: 'required',
     },
-    fixed: {
-      description: 'Use CSS `position: fixed` for the popover',
-      type: 'boolean',
-      default: 'false',
+  }}
+/>
+
+### PopoverHeading
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Heading content for the popover',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### PopoverDescription
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Descriptive text for supplementary context',
+      type: 'React.ReactNode',
+      default: 'undefined',
     },
   }}
 />

@@ -26,9 +26,12 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	'not-prose relative w-fit max-w-[var(--popover-available-width,_theme(spacing.80))] min-w-[8rem] overflow-hidden rounded-lg border border-border bg-card-muted p-4 text-foreground shadow-md',
+	'not-prose relative w-fit rounded-lg border shadow-md',
 	{
 		variants: {
+			variant: {
+				default: `border-border bg-card-muted text-foreground`,
+			},
 			size: {
 				sm: 'px-3 py-2 text-sm',
 				md: 'px-4 py-3 text-sm',
@@ -36,6 +39,7 @@ const popoverContentVariants = cva(
 			},
 		},
 		defaultVariants: {
+			variant: 'default',
 			size: 'md',
 		},
 	},
@@ -44,9 +48,28 @@ const popoverContentVariants = cva(
 const popoverMotion =
 	'transform will-change-transform duration-300 ease-smooth transition opacity-0 scale-95 -translate-y-2 data-enter:opacity-100 data-enter:scale-100 data-enter:translate-y-0 data-leave:opacity-0 data-leave:scale-95 data-leave:-translate-y-2';
 
+type PopoverPlacement =
+	| 'top'
+	| 'top-start'
+	| 'top-end'
+	| 'bottom'
+	| 'bottom-start'
+	| 'bottom-end'
+	| 'left'
+	| 'left-start'
+	| 'left-end'
+	| 'right'
+	| 'right-start'
+	| 'right-end';
+
 export interface PopoverProps {
 	children: React.ReactNode;
 	open?: boolean;
+	gutter?: number;
+	portal?: boolean;
+	fixed?: boolean;
+	showArrow?: boolean;
+	placement?: PopoverPlacement;
 	defaultOpen?: boolean;
 	onOpenChange?: (open: boolean) => void;
 }
@@ -62,34 +85,62 @@ export interface PopoverContentProps
 	extends VariantProps<typeof popoverContentVariants> {
 	children: React.ReactNode;
 	className?: string;
-	portal?: boolean;
-	fixed?: boolean;
 }
+
+export type PopoverHeadingProps = React.ComponentPropsWithoutRef<
+	typeof Ariakit.PopoverHeading
+>;
+
+export type PopoverDescriptionProps = React.ComponentPropsWithoutRef<
+	typeof Ariakit.PopoverDescription
+>;
+
+type PopoverHeadingElement = React.ElementRef<typeof Ariakit.PopoverHeading>;
+type PopoverDescriptionElement = React.ElementRef<
+	typeof Ariakit.PopoverDescription
+>;
 
 const PopoverStoreContext = React.createContext<Ariakit.PopoverStore | null>(
 	null,
 );
+const PopoverConfigContext = React.createContext<{
+	gutter?: number;
+	portal?: boolean;
+	fixed?: boolean;
+	showArrow?: boolean;
+	placement?: PopoverPlacement;
+}>({});
 
 export const Popover: React.FC<PopoverProps> = ({
 	children,
 	open,
 	defaultOpen = false,
 	onOpenChange,
+	gutter = 0,
+	portal = true,
+	fixed = false,
+	showArrow = true,
+	placement,
 }) => {
-	const store = Ariakit.usePopoverStore(
-		open !== undefined
+	const store = Ariakit.usePopoverStore({
+		...(placement ? { placement } : {}),
+		...(open !== undefined
 			? onOpenChange
 				? { open, setOpen: onOpenChange }
 				: { open }
-			: { defaultOpen },
-	);
+			: { defaultOpen }),
+	});
 
 	return (
-		<PopoverStoreContext.Provider value={store}>
-			<Ariakit.PopoverProvider store={store}>
-				<div className="not-prose relative">{children}</div>
-			</Ariakit.PopoverProvider>
-		</PopoverStoreContext.Provider>
+		<PopoverConfigContext.Provider
+			value={{ gutter, portal, fixed, showArrow, placement }}
+		>
+			<PopoverStoreContext.Provider value={store}>
+				<Ariakit.PopoverProvider store={store}>
+					<div className="not-prose relative">{children}</div>
+				</Ariakit.PopoverProvider>
+			</PopoverStoreContext.Provider>
+		</PopoverConfigContext.Provider>
 	);
 };
 
@@ -133,21 +184,66 @@ export const PopoverTrigger: React.FC<PopoverTriggerProps> = ({
 export const PopoverContent: React.FC<PopoverContentProps> = ({
 	children,
 	className = '',
+	variant = 'default',
 	size = 'md',
-	portal = true,
-	fixed = false,
 }) => {
 	const store = React.useContext(PopoverStoreContext);
 	if (!store) throw new Error('PopoverContent must be used within <Popover>');
 
+	const {
+		gutter: contextGutter,
+		portal: contextPortal,
+		fixed: contextFixed,
+		showArrow: contextShowArrow,
+		placement: contextPlacement,
+	} = React.useContext(PopoverConfigContext);
+
 	return (
 		<Ariakit.Popover
-			portal={portal}
-			fixed={fixed}
-			gutter={8}
-			className={cn(popoverContentVariants({ size }), popoverMotion, className)}
+			portal={contextPortal ?? true}
+			fixed={contextFixed ?? false}
+			gutter={contextGutter}
+			placement={contextPlacement}
+			className={cn(
+				popoverContentVariants({ variant, size }),
+				popoverMotion,
+				className,
+			)}
 		>
+			{(contextShowArrow ?? true) ? <Ariakit.PopoverArrow /> : null}
 			{children}
 		</Ariakit.Popover>
 	);
 };
+
+export const PopoverHeading = React.forwardRef<
+	PopoverHeadingElement,
+	PopoverHeadingProps
+>(({ className = '', ...props }, ref) => (
+	<Ariakit.PopoverHeading
+		ref={ref}
+		className={cn(
+			'not-prose text-sm leading-none font-medium text-foreground',
+			className,
+		)}
+		{...props}
+	/>
+));
+
+PopoverHeading.displayName = 'PopoverHeading';
+
+export const PopoverDescription = React.forwardRef<
+	PopoverDescriptionElement,
+	PopoverDescriptionProps
+>(({ className = '', ...props }, ref) => (
+	<Ariakit.PopoverDescription
+		ref={ref}
+		className={cn(
+			'not-prose text-sm leading-snug text-foreground/70',
+			className,
+		)}
+		{...props}
+	/>
+));
+
+PopoverDescription.displayName = 'PopoverDescription';
