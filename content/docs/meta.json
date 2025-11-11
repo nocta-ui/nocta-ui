@@ -47,6 +47,7 @@
 		"context-menu",
 		"dialog",
 		"dropdown-menu",
+		"hovercard",
 		"popover",
 		"sheet",
 		"tooltip",

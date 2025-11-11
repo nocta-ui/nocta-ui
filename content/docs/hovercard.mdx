@@ -1,0 +1,255 @@
+---
+title: Hovercard
+description: Contextual hovercards for showing lightweight profiles or previews on pointer hover with Ariakit primitives and smart positioning
+---
+
+import {
+  Hovercard,
+  HovercardTrigger,
+  HovercardContent,
+  HovercardHeading,
+  HovercardDescription,
+  BasicHovercardDemo
+} from '@/app/components/ui/hovercard';
+import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { TypeTable } from '@/components/type-table';
+
+## Installation
+
+<Steps>
+<Step>
+Install the Hovercard component with the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add hovercard
+```
+</Step>
+<Step>
+Import the parts you need:
+
+```tsx lineNumbers title="Import"
+import {
+  Hovercard,
+  HovercardTrigger,
+  HovercardContent
+} from '@/components/ui/hovercard';
+```
+</Step>
+</Steps>
+
+## Example
+
+### Default Hovercard
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <BasicHovercardDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Hovercard"
+    <Hovercard>
+      <HovercardTrigger>Hover for details</HovercardTrigger>
+      <HovercardContent className="max-w-xs relative">
+        <div className="flex-row space-y-2">
+          <div className="flex-col space-y-1">
+            <Avatar
+              src="https://avatars.githubusercontent.com/u/168720167?v=4"
+              alt="66HEX"
+              className="mb-2"
+            />
+            <HovercardHeading>@66HEX</HovercardHeading>
+            <HovercardDescription>
+              Frontend developer specializing in building modern websites that
+              perfectly balance technical excellence and creative insight.
+            </HovercardDescription>
+          </div>
+        </div>
+        <Button
+          size="sm"
+          className="absolute top-3 right-4 border border-border rounded-full"
+        >
+          Follow
+        </Button>
+      </HovercardContent>
+    </Hovercard>;
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Hovercard
+
+<TypeTable
+  type={{
+    open: {
+      description: 'Controlled open state',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    defaultOpen: {
+      description: 'Initial uncontrolled open state',
+      type: 'boolean',
+      default: 'false',
+    },
+    onOpenChange: {
+      description: 'Callback fired when the hovercard opens or closes',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+    gutter: {
+      description: 'Distance between the trigger and the hovercard',
+      type: 'number',
+      default: '0',
+    },
+    portal: {
+      description: 'Render the hovercard inside a React portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use CSS `position: fixed` for the floating content',
+      type: 'boolean',
+      default: 'false',
+    },
+    showArrow: {
+      description: 'Render an arrow indicator pointing to the trigger',
+      type: 'boolean',
+      default: 'true',
+    },
+    placement: {
+      description: 'Preferred placement relative to the trigger',
+      type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
+      default: '"bottom"',
+    },
+    timeout: {
+      description: 'Base delay (ms) used for showing and hiding',
+      type: 'number',
+      default: '400',
+    },
+    openDelay: {
+      description: 'Custom show delay that overrides `timeout`',
+      type: 'number',
+      default: 'undefined',
+    },
+    closeDelay: {
+      description: 'Custom hide delay that overrides `timeout`',
+      type: 'number',
+      default: 'undefined',
+    },
+    autoFocusOnShow: {
+      description: 'Whether content should steal focus when shown',
+      type: 'boolean',
+      default: 'false',
+    },
+    hideOnHoverOutside: {
+      description: 'Controls hover intent behavior when leaving trigger/content',
+      type: 'boolean | ((event: MouseEvent) => boolean)',
+      default: 'true',
+    },
+    disablePointerEventsOnApproach: {
+      description: 'Disable outside pointer events while the cursor travels to the card',
+      type: 'boolean | ((event: MouseEvent) => boolean)',
+      default: 'true',
+    },
+    children: {
+      description: 'Hovercard subtree (trigger + content)',
+      type: 'React.ReactNode',
+      default: 'required',
+    },
+  }}
+/>
+
+### HovercardTrigger
+
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual style of the trigger control',
+      type: '"default"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Trigger sizing preset',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    asChild: {
+      description: 'Render the trigger as the passed child element',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for the trigger',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'required',
+    },
+  }}
+/>
+
+### HovercardContent
+
+<TypeTable
+  type={{
+    variant: {
+      description: 'Visual style variant',
+      type: '"default"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Padding and typography scale',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    className: {
+      description: 'Additional classes for the hovercard container',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Content rendered inside the hovercard',
+      type: 'React.ReactNode',
+      default: 'required',
+    },
+  }}
+/>
+
+### HovercardHeading
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional heading classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Heading text or elements',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### HovercardDescription
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional description classes',
+      type: 'string',
+      default: '""',
+    },
+    children: {
+      description: 'Supporting copy for the hovercard',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+  }}
+/>
