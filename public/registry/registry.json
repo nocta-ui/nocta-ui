@@ -677,6 +677,57 @@
 			},
 			"sizes": ["sm", "md", "lg", "xl", "full"]
 		},
+		"hovercard": {
+			"name": "Hovercard",
+			"description": "Contextual hovercard for lightweight previews with hover intent handling and smart positioning",
+			"category": "overlay",
+			"files": [
+				{
+					"name": "hovercard.tsx",
+					"path": "app/components/ui/hovercard/hovercard.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
+				"clsx": "^2.1.1",
+				"class-variance-authority": "^0.7.1",
+				"@ariakit/react": "^0.4.19"
+			},
+			"exports": [
+				"Hovercard",
+				"HovercardTrigger",
+				"HovercardContent",
+				"HovercardHeading",
+				"HovercardDescription"
+			],
+			"props": {
+				"Hovercard": [
+					"open",
+					"defaultOpen",
+					"onOpenChange",
+					"children",
+					"gutter",
+					"portal",
+					"fixed",
+					"showArrow",
+					"placement",
+					"timeout",
+					"openDelay",
+					"closeDelay",
+					"autoFocusOnShow",
+					"hideOnHoverOutside",
+					"disablePointerEventsOnApproach"
+				],
+				"HovercardTrigger": ["variant", "size", "asChild", "className", "children"],
+				"HovercardContent": ["variant", "size", "className", "children"],
+				"HovercardHeading": ["className", "children"],
+				"HovercardDescription": ["className", "children"]
+			},
+			"variants": ["default", "ghost"],
+			"sizes": ["sm", "md", "lg"]
+		},
 		"input": {
 			"name": "Input",
 			"description": "Input component with variants, icons, and helper text",
@@ -739,6 +790,7 @@
 			],
 			"props": {
 				"Popover": [
+				  "children",
 					"open",
 					"defaultOpen",
 					"onOpenChange",
@@ -748,7 +800,7 @@
 					"showArrow",
 					"placement"
 				],
-				"PopoverTrigger": ["variant", "size", "asChild", "className"],
+				"PopoverTrigger": ["variant", "size", "asChild", "className", "children"],
 				"PopoverContent": ["variant", "size", "className", "children"],
 				"PopoverHeading": ["className", "children"],
 				"PopoverDescription": ["className", "children"]
@@ -1176,7 +1228,7 @@
 					"showArrow",
 					"children"
 				],
-				"TooltipTrigger": ["children", "className"],
+				"TooltipTrigger": ["children", "className", "children"],
 				"TooltipContent": ["variant", "children", "className"]
 			}
 		},
@@ -1780,6 +1832,7 @@
 			"description": "Form input and control components",
 			"components": [
 				"button",
+				"calendar",
 				"checkbox",
 				"checkbox-card",
 				"combobox",
@@ -1793,7 +1846,7 @@
 				"textarea",
 				"toggle",
 				"toggle-group",
-				"calendar"
+				"wheel-picker"
 			]
 		},
 		"data-display": {
@@ -1809,7 +1862,7 @@
 		"layout": {
 			"name": "Layout",
 			"description": "Components for page and content layout",
-			"components": ["accordion", "card", "scroll-area"]
+			"components": ["accordion", "card", "scroll-area", "separator"]
 		},
 		"overlay": {
 			"name": "Overlay",
@@ -1818,6 +1871,7 @@
 				"context-menu",
 				"dropdown-menu",
 				"dialog",
+				"hovercard",
 				"popover",
 				"sheet",
 				"tooltip",

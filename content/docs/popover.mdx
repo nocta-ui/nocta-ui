@@ -112,6 +112,11 @@ import {
       type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
       default: '"bottom"',
     },
+    children: {
+      description: 'Popover subtree (trigger + content)',
+      type: 'React.ReactNode',
+      default: 'required',
+    },
   }}
 />
 
@@ -138,6 +143,11 @@ import {
       description: 'Additional CSS classes',
       type: 'string',
       default: '""',
+    },
+    children: {
+      description: 'Trigger content',
+      type: 'React.ReactNode',
+      default: 'required',
     },
   }}
 />
