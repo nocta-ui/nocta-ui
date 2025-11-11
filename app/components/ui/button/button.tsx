@@ -80,13 +80,7 @@ export const Button: React.FC<ButtonProps> = ({
 			className: cn(child.props.className, classes),
 		});
 
-		return (
-			<Ariakit.Button
-				render={mergedChild}
-				type={buttonType}
-				{...props}
-			/>
-		);
+		return <Ariakit.Button render={mergedChild} type={buttonType} {...props} />;
 	}
 
 	return (

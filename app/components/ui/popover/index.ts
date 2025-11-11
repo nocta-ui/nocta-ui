@@ -1,11 +1,11 @@
 export {
 	Popover,
 	PopoverContent,
+	type PopoverContentProps,
 	PopoverDescription,
 	type PopoverDescriptionProps,
 	PopoverHeading,
 	type PopoverHeadingProps,
-	type PopoverContentProps,
 	type PopoverProps,
 	PopoverTrigger,
 	type PopoverTriggerProps,

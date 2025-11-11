@@ -595,7 +595,8 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 	);
 };
 
-export interface SheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface SheetContentProps
+	extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
 	className?: string;
 }
