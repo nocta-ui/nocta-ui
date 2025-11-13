@@ -94,7 +94,7 @@ const messageVariants = cva('mt-1.5 text-sm', {
 		type: {
 			error: 'text-destructive/90',
 			success: 'text-success/90',
-			helper: 'text-foreground/70',
+			helper: 'text-foreground/45',
 		},
 	},
 });
