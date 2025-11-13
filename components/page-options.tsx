@@ -152,7 +152,7 @@ export function ViewOptions({
 	}, [githubUrl, markdownUrl]);
 
 	return (
-		<Popover portal fixed>
+		<Popover>
 			<PopoverTrigger
 				className={cn(
 					buttonVariants({
@@ -166,6 +166,8 @@ export function ViewOptions({
 				<CaretDownIcon className="size-3.5 text-foreground/70" />
 			</PopoverTrigger>
 			<PopoverContent
+			  portal
+				fixed
 				className="flex flex-col overflow-auto bg-card p-1! rounded-md"
 			>
 				{items.map((item) => (
