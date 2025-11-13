@@ -402,7 +402,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-[height,opacity] duration-300 ease-smooth">
+						<div className="not-prose relative overflow-hidden rounded-lg border border-border bg-card shadow-sm">
 							{children}
 						</div>
 					</div>
