@@ -252,7 +252,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md font-medium transition-[background-color,box-shadow] duration-150 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md font-medium transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"
@@ -585,7 +585,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 				)}
 
 			{showClose && (
-				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,color] duration-150 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,color] duration-100 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</Ariakit.DialogDismiss>
@@ -722,7 +722,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-[background-color,box-shadow] duration-150 ease-basic h-9 px-4 py-2 gap-2 has-[>svg]:px-3 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+				"inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-[background-color,box-shadow] duration-100 ease-basic h-9 px-4 py-2 gap-2 has-[>svg]:px-3 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 				className,
 			)}
 			type="button"

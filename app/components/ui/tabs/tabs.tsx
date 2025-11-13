@@ -38,7 +38,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 transition-[background-color,color,box-shadow] duration-150 ease-basic focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 transition-[background-color,color,box-shadow] duration-100 ease-basic focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
 	{
 		variants: {
 			variant: {

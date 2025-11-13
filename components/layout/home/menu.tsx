@@ -15,7 +15,7 @@ import { BaseLinkItem, type LinkItemType } from '../shared/index';
 const menuItemVariants = cva('', {
 	variants: {
 		variant: {
-			main: 'inline-flex items-center gap-2 py-1.5 ease-basic transition-all duration-150 hover:text-foreground/50 data-[active=true]:font-medium data-[active=true]:text-foreground [&_svg]:size-4',
+			main: 'inline-flex items-center gap-2 py-1.5 ease-basic transition-all duration-100 hover:text-foreground/50 data-[active=true]:font-medium data-[active=true]:text-foreground [&_svg]:size-4',
 			icon: buttonVariants({
 				size: 'icon',
 				color: 'ghost',

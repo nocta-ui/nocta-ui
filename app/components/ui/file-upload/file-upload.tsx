@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 const fileUploadVariants = cva(
 	[
-		'relative border transition-[background-color,box-shadow,scale] duration-150 ease-basic',
+		'relative border transition-[background-color,box-shadow,scale] duration-100 ease-basic',
 		'focus-within:ring-1 focus-within:ring-offset-1 focus-within:outline-none',
 		'focus-within:ring-offset-ring-offset/50',
 		'focus-within:ring-ring/50',
@@ -195,7 +195,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 	return (
 		<div className={cn('h-2 w-full rounded-full bg-card-muted', className)}>
 			<div
-				className="h-2 rounded-full bg-foreground transition-[width] duration-150 ease-basic"
+				className="h-2 rounded-full bg-foreground transition-[width] duration-100 ease-basic"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}
@@ -246,7 +246,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 					</p>
 					{onRemove && (
 						<Button
-							className="not-prose size-6 rounded-sm cursor-pointer text-foreground/45 transition-[background-color,box-shadow,color] duration-150 hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="not-prose size-6 rounded-sm cursor-pointer text-foreground/45 transition-[background-color,box-shadow,color] duration-100 hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 							variant="icon"
 							onClick={handleRemove}
 							aria-label={`Remove ${file.file.name}`}
@@ -278,7 +278,7 @@ export const FileUploadItem: React.FC<FileUploadItemProps> = ({
 				<div className="mt-2 h-2">
 					<div
 						className={cn(
-							'transition-opacity duration-150',
+							'transition-opacity duration-100',
 							isUploading ? 'opacity-100' : 'opacity-0',
 						)}
 					>
@@ -525,7 +525,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 								onClick={handleUpload}
 								size="sm"
 								variant="ghost"
-								className="bg-foreground text-card transition-[background-color,box-shadow] duration-150 hover:bg-foreground/80 ease-basic"
+								className="bg-foreground text-card transition-[background-color,box-shadow] duration-100 hover:bg-foreground/80 ease-basic"
 								disabled={disabled || isUploading}
 							>
 								{isUploading && <Spinner size="sm" variant="default" />}

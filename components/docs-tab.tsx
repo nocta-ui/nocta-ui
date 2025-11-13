@@ -21,7 +21,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 		<TabsTrigger
 			value={value}
 			className={cn(
-				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-150 ease-basic sm:text-sm',
+				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-100 ease-basic sm:text-sm',
 				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border',
 			)}
 		>
@@ -106,7 +106,7 @@ const DocsTabs = ({
 				<div className="relative overflow-hidden bg-card p-1">
 					<div
 						className={cn(
-							'relative transition-opacity duration-150 ease-basic bg-background rounded-md border border-fd-border',
+							'relative transition-opacity duration-100 ease-basic bg-background rounded-md border border-fd-border',
 							activeTab === 'code' &&
 								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-md',
 						)}

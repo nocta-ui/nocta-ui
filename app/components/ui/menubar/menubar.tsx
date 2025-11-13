@@ -20,7 +20,7 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 transition-[background-color,color,box-shadow] duration-150 ease-basic outline-none hover:bg-card-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 transition-[background-color,color,box-shadow] duration-100 ease-basic outline-none hover:bg-card-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	{
 		variants: {
 			size: {

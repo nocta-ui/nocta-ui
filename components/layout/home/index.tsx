@@ -149,7 +149,7 @@ export function Header({
 					>
 						<ChevronDownIcon
 							aria-hidden="true"
-							className="size-5.5! transition-transform duration-150 group-data-[state=open]:rotate-180"
+							className="size-5.5! transition-transform duration-100 group-data-[state=open]:rotate-180"
 						/>
 					</MenuTrigger>
 					<MenuContent className="sm:flex-row sm:items-center sm:justify-end">

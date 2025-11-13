@@ -319,7 +319,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 		<Link
 			href={item.url}
 			className={cn(
-				'group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm p-4 text-sm transition-colors ease-basic duration-150 hover:bg-card-muted @max-lg:col-span-full',
+				'group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm p-4 text-sm transition-colors ease-basic duration-100 hover:bg-card-muted @max-lg:col-span-full',
 				'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 				'focus-visible:ring-offset-ring-offset/50',
 				'focus-visible:ring-ring/50',
@@ -337,11 +337,11 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 					aria-hidden="true"
 					className="-mx-1 size-4 shrink-0 rtl:rotate-180"
 				/>
-				<p className="text-foreground/70 group-hover:text-foreground transition-all duration-150 ease-basic">
+				<p className="text-foreground/70 group-hover:text-foreground transition-all duration-100 ease-basic">
 					{item.name}
 				</p>
 			</div>
-			<p className="truncate text-foreground/45 group-hover:text-foreground/70 transition-all duration-150 ease-basic">
+			<p className="truncate text-foreground/45 group-hover:text-foreground/70 transition-all duration-100 ease-basic">
 				{item.description ?? (index === 0 ? text.previousPage : text.nextPage)}
 			</p>
 		</Link>
@@ -393,7 +393,7 @@ export function PageBreadcrumb({
 						{item.url ? (
 							<Link
 								href={item.url}
-								className={cn(className, 'transition-opacity duration-150 hover:opacity-80')}
+								className={cn(className, 'transition-opacity duration-100 hover:opacity-80')}
 							>
 								{item.name}
 							</Link>

@@ -151,7 +151,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium transition-shadow duration-150 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium transition-shadow duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			onClick={handleClick}
@@ -363,7 +363,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
-				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,opacity] duration-150 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,opacity] duration-100 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"

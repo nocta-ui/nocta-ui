@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const checkboxCardVariants = cva(
 	[
-		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-md transition-[border-color,box-shadow] duration-150 ease-basic',
+		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-md transition-[border-color,box-shadow] duration-100 ease-basic',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:outline-none',
 	],
 	{
@@ -29,7 +29,7 @@ const checkboxCardVariants = cva(
 );
 
 const indicatorVariants = cva(
-	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-[border-color] duration-150 ease-basic',
+	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-[border-color] duration-100 ease-basic',
 	{
 		variants: {
 			checked: {
@@ -164,7 +164,7 @@ export const CheckboxCard = React.forwardRef<
 									<span
 										aria-hidden="true"
 										className={cn(
-											'h-2 w-2 rounded-full bg-foreground transition-[scale,opacity] duration-150 ease-basic transform',
+											'h-2 w-2 rounded-full bg-foreground transition-[scale,opacity] duration-100 ease-basic transform',
 											isChecked ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
 											disabled ? 'opacity-60' : '',
 										)}

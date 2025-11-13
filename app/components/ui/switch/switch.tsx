@@ -49,7 +49,7 @@ const switchVariants = cva(
 const thumbVariants = cva(
 	[
 		'inline-block rounded-full bg-card dark:bg-foreground',
-		'shadow-sm transition-transform duration-150 ease-basic',
+		'shadow-sm transition-transform duration-100 ease-basic',
 	],
 	{
 		variants: {

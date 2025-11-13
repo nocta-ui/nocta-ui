@@ -39,7 +39,7 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[box-shadow,color] duration-150 ease-basic',
+	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[box-shadow,color] duration-100 ease-basic',
 	{
 		variants: {
 			variant: {
@@ -471,7 +471,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					<Icons.ChevronDown
 						aria-hidden="true"
 						className={cn(
-							'ml-2 shrink-0 text-foreground/45 transition-transform duration-150 ease-basic will-change-transform',
+							'ml-2 shrink-0 text-foreground/45 transition-[rotate] duration-300 ease-smooth will-change-transform',
 							isOpen ? 'rotate-180' : 'rotate-0',
 						)}
 						style={{ width: iconSize, height: iconSize }}

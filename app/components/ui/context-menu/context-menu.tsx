@@ -187,7 +187,7 @@ export const ContextMenuSubTrigger: React.FC<
 		className={cn(contextMenuItemVariants({ inset, destructive }), className)}
 	>
 		{children}
-		<Ariakit.MenuButtonArrow className="ml-auto text-foreground/70 group-hover:text-foreground transition-[color] duration-150 ease-basic" />
+		<Ariakit.MenuButtonArrow className="ml-auto text-foreground/70 group-hover:text-foreground transition-[color] duration-100 ease-basic" />
 	</Ariakit.MenuButton>
 );
 

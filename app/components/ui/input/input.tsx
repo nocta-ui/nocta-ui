@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 const inputVariants = cva(
 	[
-		'flex w-fit rounded-md border transition-shadow duration-150 ease-basic',
+		'flex w-fit rounded-md border transition-shadow duration-100 ease-basic',
 		'bg-card text-foreground',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'focus-visible:ring-offset-ring-offset/50',
