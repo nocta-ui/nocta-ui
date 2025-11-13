@@ -87,26 +87,6 @@ import {
       type: '(open: boolean) => void',
       default: 'undefined',
     },
-    gutter: {
-      description: 'Default distance between the trigger and any PopoverContent',
-      type: 'number',
-      default: '0',
-    },
-    portal: {
-      description: 'Whether PopoverContent renders inside a portal by default',
-      type: 'boolean',
-      default: 'true',
-    },
-    fixed: {
-      description: 'Whether PopoverContent uses `position: fixed` by default',
-      type: 'boolean',
-      default: 'false',
-    },
-    showArrow: {
-      description: 'Whether PopoverContent renders the arrow indicator by default',
-      type: 'boolean',
-      default: 'true',
-    },
     placement: {
       description: 'Preferred placement of the popover relative to the trigger',
       type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
@@ -170,6 +150,26 @@ import {
       description: 'Additional CSS classes',
       type: 'string',
       default: '""',
+    },
+    portal: {
+      description: 'Render the popover content inside a portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use CSS `position: fixed` for the floating panel',
+      type: 'boolean',
+      default: 'false',
+    },
+    gutter: {
+      description: 'Distance between the trigger and this popover content',
+      type: 'number',
+      default: '0',
+    },
+    showArrow: {
+      description: 'Render an arrow indicator pointing to the trigger',
+      type: 'boolean',
+      default: 'true',
     },
     children: {
       description: 'Content rendered inside the popover',

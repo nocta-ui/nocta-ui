@@ -708,20 +708,25 @@
 					"defaultOpen",
 					"onOpenChange",
 					"children",
-					"gutter",
-					"portal",
-					"fixed",
-					"showArrow",
 					"placement",
 					"timeout",
 					"openDelay",
-					"closeDelay",
-					"autoFocusOnShow",
-					"hideOnHoverOutside",
-					"disablePointerEventsOnApproach"
+					"closeDelay"
 				],
 				"HovercardTrigger": ["variant", "size", "asChild", "className", "children"],
-				"HovercardContent": ["variant", "size", "className", "children"],
+				"HovercardContent": [
+					"variant",
+					"size",
+					"className",
+					"portal",
+					"fixed",
+					"gutter",
+					"showArrow",
+					"hideOnHoverOutside",
+					"disablePointerEventsOnApproach",
+					"autoFocusOnShow",
+					"children"
+				],
 				"HovercardHeading": ["className", "children"],
 				"HovercardDescription": ["className", "children"]
 			},
@@ -790,18 +795,29 @@
 			],
 			"props": {
 				"Popover": [
-				  "children",
+					"children",
 					"open",
 					"defaultOpen",
 					"onOpenChange",
-					"gutter",
-					"portal",
-					"fixed",
-					"showArrow",
 					"placement"
 				],
-				"PopoverTrigger": ["variant", "size", "asChild", "className", "children"],
-				"PopoverContent": ["variant", "size", "className", "children"],
+				"PopoverTrigger": [
+					"variant",
+					"size",
+					"asChild",
+					"className",
+					"children"
+				],
+				"PopoverContent": [
+					"variant",
+					"size",
+					"className",
+					"portal",
+					"fixed",
+					"gutter",
+					"showArrow",
+					"children"
+				],
 				"PopoverHeading": ["className", "children"],
 				"PopoverDescription": ["className", "children"]
 			},

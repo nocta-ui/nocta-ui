@@ -101,26 +101,6 @@ import {
       type: '(open: boolean) => void',
       default: 'undefined',
     },
-    gutter: {
-      description: 'Distance between the trigger and the hovercard',
-      type: 'number',
-      default: '0',
-    },
-    portal: {
-      description: 'Render the hovercard inside a React portal',
-      type: 'boolean',
-      default: 'true',
-    },
-    fixed: {
-      description: 'Use CSS `position: fixed` for the floating content',
-      type: 'boolean',
-      default: 'false',
-    },
-    showArrow: {
-      description: 'Render an arrow indicator pointing to the trigger',
-      type: 'boolean',
-      default: 'true',
-    },
     placement: {
       description: 'Preferred placement relative to the trigger',
       type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end"',
@@ -140,21 +120,6 @@ import {
       description: 'Custom hide delay that overrides `timeout`',
       type: 'number',
       default: 'undefined',
-    },
-    autoFocusOnShow: {
-      description: 'Whether content should steal focus when shown',
-      type: 'boolean',
-      default: 'false',
-    },
-    hideOnHoverOutside: {
-      description: 'Controls hover intent behavior when leaving trigger/content',
-      type: 'boolean | ((event: MouseEvent) => boolean)',
-      default: 'true',
-    },
-    disablePointerEventsOnApproach: {
-      description: 'Disable outside pointer events while the cursor travels to the card',
-      type: 'boolean | ((event: MouseEvent) => boolean)',
-      default: 'true',
     },
     children: {
       description: 'Hovercard subtree (trigger + content)',
@@ -214,6 +179,41 @@ import {
       description: 'Additional classes for the hovercard container',
       type: 'string',
       default: '""',
+    },
+    portal: {
+      description: 'Render the floating card inside a portal',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Use `position: fixed` for the card to avoid clipping',
+      type: 'boolean',
+      default: 'false',
+    },
+    gutter: {
+      description: 'Distance between the trigger and this hovercard content',
+      type: 'number',
+      default: '0',
+    },
+    showArrow: {
+      description: 'Render an arrow indicator pointing to the trigger',
+      type: 'boolean',
+      default: 'true',
+    },
+    hideOnHoverOutside: {
+      description: 'Controls hover intent behavior when pointer leaves the card',
+      type: 'boolean | ((event: MouseEvent) => boolean)',
+      default: 'true',
+    },
+    disablePointerEventsOnApproach: {
+      description: 'Disable outside pointer events while the cursor travels to the card',
+      type: 'boolean | ((event: MouseEvent) => boolean)',
+      default: 'true',
+    },
+    autoFocusOnShow: {
+      description: 'Move focus into the hovercard when it appears',
+      type: 'boolean',
+      default: 'false',
     },
     children: {
       description: 'Content rendered inside the hovercard',

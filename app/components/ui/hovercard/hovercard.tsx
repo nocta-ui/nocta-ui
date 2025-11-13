@@ -67,18 +67,11 @@ type HovercardIntentHandler = boolean | ((event: MouseEvent) => boolean);
 export interface HovercardProps {
 	children: React.ReactNode;
 	open?: boolean;
-	gutter?: number;
-	portal?: boolean;
-	fixed?: boolean;
-	showArrow?: boolean;
 	placement?: HovercardPlacement;
 	defaultOpen?: boolean;
 	timeout?: number;
 	openDelay?: number;
 	closeDelay?: number;
-	autoFocusOnShow?: boolean;
-	hideOnHoverOutside?: HovercardIntentHandler;
-	disablePointerEventsOnApproach?: HovercardIntentHandler;
 	onOpenChange?: (open: boolean) => void;
 }
 
@@ -93,6 +86,13 @@ export interface HovercardContentProps
 	extends VariantProps<typeof hovercardContentVariants> {
 	children: React.ReactNode;
 	className?: string;
+	portal?: boolean;
+	fixed?: boolean;
+	gutter?: number;
+	showArrow?: boolean;
+	hideOnHoverOutside?: HovercardIntentHandler;
+	disablePointerEventsOnApproach?: HovercardIntentHandler;
+	autoFocusOnShow?: boolean;
 }
 
 export type HovercardHeadingProps = React.ComponentPropsWithoutRef<
@@ -112,32 +112,16 @@ type HovercardDescriptionElement = React.ComponentRef<
 
 const HovercardStoreContext =
 	React.createContext<Ariakit.HovercardStore | null>(null);
-const HovercardConfigContext = React.createContext<{
-	gutter?: number;
-	portal?: boolean;
-	fixed?: boolean;
-	showArrow?: boolean;
-	hideOnHoverOutside?: HovercardIntentHandler;
-	disablePointerEventsOnApproach?: HovercardIntentHandler;
-	autoFocusOnShow?: boolean;
-}>({});
 
 export const Hovercard: React.FC<HovercardProps> = ({
 	children,
 	open,
 	defaultOpen = false,
 	onOpenChange,
-	gutter = 0,
-	portal = true,
-	fixed = false,
-	showArrow = true,
 	placement = 'bottom',
 	timeout = 400,
 	openDelay,
 	closeDelay,
-	autoFocusOnShow = false,
-	hideOnHoverOutside = true,
-	disablePointerEventsOnApproach = true,
 }) => {
 	const store = Ariakit.useHovercardStore({
 		placement,
@@ -152,23 +136,11 @@ export const Hovercard: React.FC<HovercardProps> = ({
 	});
 
 	return (
-		<HovercardConfigContext.Provider
-			value={{
-				gutter,
-				portal,
-				fixed,
-				showArrow,
-				hideOnHoverOutside,
-				disablePointerEventsOnApproach,
-				autoFocusOnShow,
-			}}
-		>
-			<HovercardStoreContext.Provider value={store}>
-				<Ariakit.HovercardProvider store={store}>
-					<div className="not-prose relative">{children}</div>
-				</Ariakit.HovercardProvider>
-			</HovercardStoreContext.Provider>
-		</HovercardConfigContext.Provider>
+		<HovercardStoreContext.Provider value={store}>
+			<Ariakit.HovercardProvider store={store}>
+				<div className="not-prose relative">{children}</div>
+			</Ariakit.HovercardProvider>
+		</HovercardStoreContext.Provider>
 	);
 };
 
@@ -214,42 +186,34 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 	className = '',
 	variant = 'default',
 	size = 'md',
+	portal = true,
+	fixed = false,
+	gutter = 0,
+	showArrow = true,
+	hideOnHoverOutside = true,
+	disablePointerEventsOnApproach = true,
+	autoFocusOnShow = false,
 }) => {
 	const store = React.useContext(HovercardStoreContext);
 	if (!store)
 		throw new Error('HovercardContent must be used within <Hovercard>');
 
-	const {
-		gutter: contextGutter,
-		portal: contextPortal,
-		fixed: contextFixed,
-		showArrow: contextShowArrow,
-		hideOnHoverOutside,
-		disablePointerEventsOnApproach,
-		autoFocusOnShow,
-	} = React.useContext(HovercardConfigContext);
-	const resolvedGutter = contextGutter ?? 0;
-	const resolvedHideOnHoverOutside = hideOnHoverOutside ?? true;
-	const resolvedDisablePointerEvents =
-		disablePointerEventsOnApproach ?? true;
-	const resolvedAutoFocusOnShow = autoFocusOnShow ?? false;
-
 	return (
 		<Ariakit.Hovercard
 			store={store}
-			portal={contextPortal ?? true}
-			fixed={contextFixed ?? false}
-			gutter={resolvedGutter}
-			hideOnHoverOutside={resolvedHideOnHoverOutside}
-			disablePointerEventsOnApproach={resolvedDisablePointerEvents}
-			autoFocusOnShow={resolvedAutoFocusOnShow}
+			portal={portal}
+			fixed={fixed}
+			gutter={gutter}
+			hideOnHoverOutside={hideOnHoverOutside}
+			disablePointerEventsOnApproach={disablePointerEventsOnApproach}
+			autoFocusOnShow={autoFocusOnShow}
 			className={cn(
 				hovercardContentVariants({ variant, size }),
 				hovercardMotion,
 				className,
 			)}
 		>
-			{(contextShowArrow ?? true) ? <Ariakit.HovercardArrow /> : null}
+			{showArrow ? <Ariakit.HovercardArrow /> : null}
 			{children}
 		</Ariakit.Hovercard>
 	);

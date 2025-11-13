@@ -65,10 +65,6 @@ type PopoverPlacement =
 export interface PopoverProps {
 	children: React.ReactNode;
 	open?: boolean;
-	gutter?: number;
-	portal?: boolean;
-	fixed?: boolean;
-	showArrow?: boolean;
 	placement?: PopoverPlacement;
 	defaultOpen?: boolean;
 	onOpenChange?: (open: boolean) => void;
@@ -85,6 +81,10 @@ export interface PopoverContentProps
 	extends VariantProps<typeof popoverContentVariants> {
 	children: React.ReactNode;
 	className?: string;
+	portal?: boolean;
+	fixed?: boolean;
+	gutter?: number;
+	showArrow?: boolean;
 }
 
 export type PopoverHeadingProps = React.ComponentPropsWithoutRef<
@@ -103,22 +103,12 @@ type PopoverDescriptionElement = React.ComponentRef<
 const PopoverStoreContext = React.createContext<Ariakit.PopoverStore | null>(
 	null,
 );
-const PopoverConfigContext = React.createContext<{
-	gutter?: number;
-	portal?: boolean;
-	fixed?: boolean;
-	showArrow?: boolean;
-}>({});
 
 export const Popover: React.FC<PopoverProps> = ({
 	children,
 	open,
 	defaultOpen = false,
 	onOpenChange,
-	gutter = 0,
-	portal = true,
-	fixed = false,
-	showArrow = true,
 	placement,
 }) => {
 	const store = Ariakit.usePopoverStore({
@@ -131,13 +121,11 @@ export const Popover: React.FC<PopoverProps> = ({
 	});
 
 	return (
-		<PopoverConfigContext.Provider value={{ gutter, portal, fixed, showArrow }}>
-			<PopoverStoreContext.Provider value={store}>
-				<Ariakit.PopoverProvider store={store}>
-					<div className="not-prose relative">{children}</div>
-				</Ariakit.PopoverProvider>
-			</PopoverStoreContext.Provider>
-		</PopoverConfigContext.Provider>
+		<PopoverStoreContext.Provider value={store}>
+			<Ariakit.PopoverProvider store={store}>
+				<div className="not-prose relative">{children}</div>
+			</Ariakit.PopoverProvider>
+		</PopoverStoreContext.Provider>
 	);
 };
 
@@ -183,30 +171,26 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 	className = '',
 	variant = 'default',
 	size = 'md',
+	portal = true,
+	fixed = false,
+	gutter = 0,
+	showArrow = true,
 }) => {
 	const store = React.useContext(PopoverStoreContext);
 	if (!store) throw new Error('PopoverContent must be used within <Popover>');
 
-	const {
-		gutter: contextGutter,
-		portal: contextPortal,
-		fixed: contextFixed,
-		showArrow: contextShowArrow,
-	} = React.useContext(PopoverConfigContext);
-	const resolvedGutter = contextGutter ?? 0;
-
 	return (
 		<Ariakit.Popover
-			portal={contextPortal ?? true}
-			fixed={contextFixed ?? false}
-			gutter={resolvedGutter}
+			portal={portal}
+			fixed={fixed}
+			gutter={gutter}
 			className={cn(
 				popoverContentVariants({ variant, size }),
 				popoverMotion,
 				className,
 			)}
 		>
-			{(contextShowArrow ?? true) ? <Ariakit.PopoverArrow /> : null}
+			{showArrow ? <Ariakit.PopoverArrow /> : null}
 			{children}
 		</Ariakit.Popover>
 	);
