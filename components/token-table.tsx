@@ -12,8 +12,8 @@ export const colorTokens = [
 	{
 		token: '--base-hue',
 		description: 'Hue anchor for the entire palette',
-		light: '285.89',
-		dark: '285.89',
+		light: '248',
+		dark: '248',
 		showSwatch: false,
 	},
 	{
@@ -27,7 +27,7 @@ export const colorTokens = [
 		token: '--color-background',
 		description: 'Base background',
 		light: 'oklch(0.99 0.004 var(--base-hue))',
-		dark: 'oklch(0.14 0.005 var(--base-hue))',
+		dark: 'oklch(0.1408 0.0044 var(--base-hue))',
 	},
 	{
 		token: '--color-card',
@@ -44,8 +44,8 @@ export const colorTokens = [
 	{
 		token: '--color-foreground',
 		description: 'Primary text',
-		light: 'oklch(0.15 0.009 var(--base-hue))',
-		dark: 'oklch(0.96 0.005 var(--base-hue))',
+		light: 'oklch(0.1408 0.0044 var(--base-hue))',
+		dark: 'oklch(0.9824 0.0013 var(--base-hue))',
 	},
 	{
 		token: '--color-border',
@@ -350,17 +350,17 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all border',
+				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
 				open
 					? 'bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-100 ease-basic">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted duration-100 ease-basic">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
-				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180" />
+				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180 duration-500 ease-smooth" />
 			</CollapsibleTrigger>
 
 			<CollapsibleContent>
@@ -400,7 +400,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all border',
+				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
 				open
 					? 'shadow-sm bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
@@ -410,7 +410,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
-				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180" />
+				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180 duration-500 ease-smooth" />
 			</CollapsibleTrigger>
 
 			<CollapsibleContent>
@@ -444,7 +444,7 @@ function SingleValueTokenItem({ token }: { token: SingleValueTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all border',
+				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
 				open
 					? 'shadow-sm bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
@@ -454,7 +454,7 @@ function SingleValueTokenItem({ token }: { token: SingleValueTokenRow }) {
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
-				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180" />
+				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180 duration-500 ease-smooth" />
 			</CollapsibleTrigger>
 
 			<CollapsibleContent>

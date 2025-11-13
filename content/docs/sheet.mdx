@@ -302,12 +302,63 @@ import {
   }}
 />
 
-### SheetHeader, SheetTitle, SheetDescription, SheetFooter
+### SheetHeader
 
 <TypeTable
   type={{
     children: {
-      description: 'Content',
+      description: 'Header content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
+
+### SheetTitle
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Title content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
+
+### SheetDescription
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Description content',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional CSS classes',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
+
+### SheetFooter
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Footer content',
       type: 'React.ReactNode',
       default: 'undefined',
     },

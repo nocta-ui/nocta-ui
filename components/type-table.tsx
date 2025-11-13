@@ -131,13 +131,13 @@ function Item({
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all border',
+				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
 				open
 					? 'bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-100 ease-basic">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-[color] duration-100 ease-basic">
 				<code
 					className={cn(
 						keyVariants({
@@ -158,7 +158,7 @@ function Item({
 					<span className="@max-xl:hidden">{renderType(type)}</span>
 				)}
 
-				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180" />
+				<ChevronDown className="absolute end-2 size-5 text-foreground/70 transition-transform group-data-[state=open]:rotate-180 duration-300 ease-smooth" />
 			</CollapsibleTrigger>
 
 			<CollapsibleContent>
