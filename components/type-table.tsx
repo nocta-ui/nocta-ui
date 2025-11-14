@@ -131,7 +131,7 @@ function Item({
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
+				'rounded-md overflow-hidden transition-all duration-450 ease-smooth border',
 				open
 					? 'bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
