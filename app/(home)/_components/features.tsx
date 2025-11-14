@@ -8,13 +8,13 @@ import {
 } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import {
-	useCallback,
 	useRef,
-	useState,
-	useEffect,
+	type HTMLAttributes,
 	type ComponentType,
-	type PropsWithChildren,
 } from 'react';
+import { cn } from 'fumadocs-ui/utils/cn';
+
+import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
 
 type FeatureHighlight = {
 	title: string;
@@ -22,10 +22,10 @@ type FeatureHighlight = {
 	icon: ComponentType<{ className?: string }>;
 };
 
-type CopyButtonProps = {
-	containerRef: React.RefObject<HTMLDivElement | null>;
+interface CopyButtonProps extends HTMLAttributes<HTMLButtonElement> {
 	className?: string;
-};
+	onCopy: () => void;
+}
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
 	size?: number | string;
@@ -114,73 +114,60 @@ const installCommands = [
 	'npx @nocta-ui/cli add button card badge',
 ];
 
-function useCopyButton(copyFn: () => void) {
-	const [checked, setChecked] = useState(false);
 
-	const onClick = useCallback(() => {
-		copyFn();
-		setChecked(true);
-	}, [copyFn]);
-
-	useEffect(() => {
-		if (!checked) return;
-		const id = setTimeout(() => setChecked(false), 2000);
-		return () => clearTimeout(id);
-	}, [checked]);
-
-	return [checked, onClick] as const;
-}
-
-function CopyButton({ containerRef, className }: CopyButtonProps) {
-	const [checked, onClick] = useCopyButton(() => {
-		const el = containerRef.current;
-		if (!el) return;
-
-		const clone = el.cloneNode(true) as HTMLElement;
-
-		clone
-			.querySelectorAll('.nd-copy-ignore')
-			.forEach((node) => node.replaceWith('\n'));
-
-		const text = clone.textContent ?? '';
-		void navigator.clipboard.writeText(text.trim());
-	});
+function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
+	const [checked, onClick] = useCopyButton(onCopy);
 
 	return (
 		<button
 			type="button"
-			onClick={onClick}
-			data-checked={checked || undefined}
-			aria-label={checked ? 'Copied command' : 'Copy command'}
-			className={[
-				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-card-muted hover:text-foreground transition-all duration-100 ease-basic [&_svg]:size-3.5 cursor-pointer [@media(hover:hover)]:opacity-100 z-2 backdrop-blur-md',
+			className={cn(
+				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium transition-all duration-100 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+				'hover:bg-card-muted hover:text-foreground transition-all duration-100 ease-basic',
+				'[&_svg]:size-3.5 cursor-pointer',
+				!checked && '[@media(hover:hover)]:opacity-100',
 				className,
-			].join(' ')}
-		>
-			{checked ? (
-				<Check className="h-3.5 w-3.5" />
-			) : (
-				<Copy className="h-3.5 w-3.5" />
 			)}
+			aria-label={checked ? 'Copied Text' : 'Copy Text'}
+			onClick={onClick}
+			{...props}
+		>
+			<Check className={cn('transition-transform', !checked && 'scale-0')} />
+			<Copy
+				className={cn('absolute transition-transform', checked && 'scale-0')}
+			/>
 		</button>
 	);
 }
+
 
 function CommandLine({ children }: { children: string }) {
 	const [first, ...restParts] = children.trim().split(/\s+/);
 	const rest = restParts.join(' ');
 
-	const lineRef = useRef<HTMLDivElement>(null);
+	const areaRef = useRef<HTMLDivElement>(null);
+
+	const onCopy = () => {
+		if (!areaRef.current) return;
+
+		const clone = areaRef.current.cloneNode(true) as HTMLDivElement;
+
+		clone.querySelectorAll('.nd-copy-ignore').forEach((node) => {
+			node.remove();
+		});
+
+		void navigator.clipboard.writeText(clone.textContent ?? '');
+	};
 
 	return (
 		<div className="relative">
-			<div className="absolute right-2 top-2 z-10">
-				<CopyButton containerRef={lineRef} />
-			</div>
-
+			<CopyButton
+				className="absolute top-2 right-2 z-2 backdrop-blur-md"
+				onCopy={onCopy}
+			/>
 			<div
-				ref={lineRef}
-				className="block rounded-md border border-border bg-card px-4 py-3 pr-10 text-left shadow-sm font-mono text-[13px] leading-relaxed text-sm"
+				ref={areaRef}
+				className="relative block rounded-md border border-border bg-card px-4 py-3 pr-10 text-left shadow-sm shadow-card font-mono text-[13px] leading-relaxed text-sm"
 			>
 				<span className="text-[#6F42C1] dark:text-[#B392F0]">{first}</span>{' '}
 				<span className="text-[#032F62] dark:text-[#9ECBFF]">{rest}</span>
@@ -188,6 +175,7 @@ function CommandLine({ children }: { children: string }) {
 		</div>
 	);
 }
+
 
 export default function Features() {
 	return (
@@ -211,7 +199,7 @@ function FeatureList() {
 		<div className="grid gap-6">
 			{featureHighlights.map(({ title, description, icon: Icon }) => (
 				<div key={title} className="flex items-start gap-4">
-					<span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground shadow-sm">
+					<span className="relative flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground shadow-sm shadow-card">
 						<Icon className="h-5 w-5" aria-hidden />
 					</span>
 

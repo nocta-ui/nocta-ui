@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const hovercardTriggerVariants = cva(
-	"not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
@@ -26,7 +26,7 @@ const hovercardTriggerVariants = cva(
 );
 
 const hovercardContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md',
+	'not-prose relative w-fit rounded-lg border shadow-md shadow-card',
 	{
 		variants: {
 			variant: {
@@ -197,6 +197,11 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 	const store = React.useContext(HovercardStoreContext);
 	if (!store)
 		throw new Error('HovercardContent must be used within <Hovercard>');
+	const currentPlacement = Ariakit.useStoreState(store, 'currentPlacement');
+	const shouldTintArrow = currentPlacement?.startsWith('bottom');
+	const arrowStyle = shouldTintArrow
+		? { stroke: 'var(--shadow-highlight)' }
+		: undefined;
 
 	return (
 		<Ariakit.Hovercard
@@ -213,7 +218,9 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 				className,
 			)}
 		>
-			{showArrow ? <Ariakit.HovercardArrow /> : null}
+			{showArrow ? (
+				<Ariakit.HovercardArrow style={arrowStyle} />
+			) : null}
 			{children}
 		</Ariakit.Hovercard>
 	);

@@ -50,7 +50,7 @@ export function ThemeToggle({
 	const [mounted, setMounted] = useState(false);
 
 	const container = cn(
-		'relative flex items-center rounded-full p-0 ring-1 ring-border bg-transparent',
+		'relative flex items-center rounded-full p-0 ring-1 ring-border shadow-card bg-transparent',
 		className,
 	);
 

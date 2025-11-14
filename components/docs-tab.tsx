@@ -22,7 +22,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 			value={value}
 			className={cn(
 				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium transition-all duration-100 ease-basic sm:text-sm',
-				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border',
+				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border data-active-item:shadow-card!',
 			)}
 		>
 			{icon && (
@@ -78,12 +78,12 @@ const DocsTabs = ({
 	};
 
 	return (
-		<div className="not-prose relative z-0 mb-16 text-sm outline-none">
+		<div className="not-prose relative z-0 mb-16 text-sm outline-none border border-border shadow-card rounded-lg shadow-sm">
 			<Tabs
 				value={activeTab}
 				onValueChange={handleTabChange}
 				size="sm"
-				className="relative overflow-hidden rounded-lg border border-fd-border shadow-sm"
+				className="relative overflow-hidden rounded-lg"
 			>
 				<TabsList
 					className={cn(
@@ -108,7 +108,7 @@ const DocsTabs = ({
 						className={cn(
 							'relative transition-opacity duration-100 ease-basic bg-background rounded-md border border-fd-border',
 							activeTab === 'code' &&
-								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-md',
+								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-md [&_figure>div]:before:content-none! [&_figure>div]:before:shadow-none!',
 						)}
 					>
 						<div

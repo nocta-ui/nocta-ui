@@ -6,7 +6,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const tabsListVariants = cva(
-	'not-prose inline-flex items-center justify-center',
+	'relative not-prose inline-flex items-center justify-center shadow-sm',
 	{
 		variants: {
 			orientation: {
@@ -14,7 +14,7 @@ const tabsListVariants = cva(
 				vertical: 'w-fit flex-col',
 			},
 			variant: {
-				default: 'rounded-md bg-card border-border border',
+				default: 'rounded-md bg-card border-border border shadow-card',
 				pills: 'gap-1',
 				underline: 'border-border/60 gap-0 border-b',
 			},
@@ -238,7 +238,7 @@ export function TabsContent({ children, value, className }: TabsContentProps) {
 		<Ariakit.TabPanel
 			tabId={value}
 			className={cn(
-				'not-prose focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'relative not-prose focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 		>

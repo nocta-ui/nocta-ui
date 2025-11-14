@@ -24,7 +24,7 @@ const wheelPickerSizeConfig: Record<
 
 const wheelPickerVariants = cva(
 	[
-		'not-prose relative isolate overflow-hidden rounded-md border border-border bg-card shadow-sm',
+		'not-prose relative isolate rounded-md border border-border bg-card shadow-sm shadow-card',
 	],
 	{
 		variants: {

@@ -6,7 +6,7 @@ import { Separator } from './separator';
 
 export const BasicSeparatorDemo: React.FC = () => {
 	return (
-		<div className="my-6 space-y-4 rounded-lg border border-border bg-card p-4 shadow-md">
+		<div className="relative my-6 space-y-4 rounded-lg border border-border bg-card p-4 shadow-md shadow-card">
 			<div>
 				<p className="text-sm font-medium text-foreground">Project Status</p>
 				<p className="text-sm text-foreground/70">
@@ -24,7 +24,7 @@ export const BasicSeparatorDemo: React.FC = () => {
 
 export const VerticalSeparatorDemo: React.FC = () => {
 	return (
-		<div className="my-6 flex items-center gap-4 rounded-lg border border-border bg-card p-2 text-sm shadow-md text-foreground font-medium">
+		<div className="relative my-6 flex items-center gap-4 rounded-lg border border-border bg-card p-2 text-sm shadow-md shadow-card text-foreground font-medium">
 			<span>Overview</span>
 			<Separator orientation="vertical" className="h-5" decorative />
 			<span>Billing</span>
@@ -36,7 +36,7 @@ export const VerticalSeparatorDemo: React.FC = () => {
 
 export const VariantsSeparatorDemo: React.FC = () => {
 	return (
-		<div className="my-6 space-y-4 rounded-lg border border-border bg-card shadow-md p-4">
+		<div className="relative my-6 space-y-4 rounded-lg border border-border bg-card shadow-md shadow-card p-4">
 			<div className="space-y-2 text-sm">
 				<p className="font-medium text-foreground">Default Divider</p>
 				<p className="text-muted-foreground">

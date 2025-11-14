@@ -131,7 +131,7 @@ const NavbarLinkItem = ({
 				<NavbarMenuLink key={j.toString()} href={child.url} {...rest}>
 					{banner ??
 						(child.icon ? (
-							<div className="w-fit rounded-md border bg-card-muted p-1 [&_svg]:size-4">
+							<div className="relative w-fit rounded-sm border bg-card-muted p-1 [&_svg]:size-4 shadow0card">
 								{child.icon}
 							</div>
 						) : null)}

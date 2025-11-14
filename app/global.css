@@ -147,6 +147,8 @@
 		inset 0px 1px 2px rgba(9, 9, 11, 0.05), inset 0px -1px 2px
 		rgba(9, 9, 11, 0.025);
 
+	--shadow-highlight: var(--color-border);
+
 	--radius-base: 0.175rem;
 
 	--ease-basic: cubic-bezier(0, 0, 0.2, 1);
@@ -220,6 +222,8 @@
 		inset 0px 1px 2px rgba(9, 9, 11, 0.05), inset 0px -1px 2px
 		rgba(9, 9, 11, 0.025);
 
+	--shadow-highlight: rgb(255 255 255 / 0.22);
+
 	--radius-base: 0.175rem;
 }
 
@@ -253,6 +257,7 @@
 	--shadow-xl: var(--shadow-xl);
 	--shadow-2xl: var(--shadow-2xl);
 	--shadow-inner: var(--shadow-inner);
+	--shadow-highlight: var(--shadow-highlight);
 	--radius-xs: calc(var(--radius-base) * 1);
 	--radius-sm: calc(var(--radius-base) * 2);
 	--radius-md: calc(var(--radius-base) * 3);
@@ -307,6 +312,24 @@
 	to {
 		opacity: 0;
 		transform: translateX(var(--navigation-menu-motion-distance));
+	}
+}
+
+@layer utilities {
+	.shadow-card {
+		isolation: isolate;
+	}
+	.shadow-card::before {
+		content: "";
+		position: absolute;
+		inset: -1px;
+		border-radius: inherit;
+		pointer-events: none;
+		z-index: -1;
+		box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.32);
+	}
+	.dark .shadow-card::before {
+		box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
 	}
 }
 /* ================================

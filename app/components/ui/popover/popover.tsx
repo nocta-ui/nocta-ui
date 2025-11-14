@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	"not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"not-prose relative not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
@@ -26,7 +26,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md transition-shadow focus-visible:ring-none focus-visible:outline-none',
+	'not-prose relative w-fit rounded-lg border shadow-md shadow-card transition-shadow focus-visible:ring-none focus-visible:outline-none',
 	{
 		variants: {
 			variant: {
@@ -178,6 +178,11 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 }) => {
 	const store = React.useContext(PopoverStoreContext);
 	if (!store) throw new Error('PopoverContent must be used within <Popover>');
+	const currentPlacement = Ariakit.useStoreState(store, 'currentPlacement');
+	const shouldTintArrow = currentPlacement?.startsWith('bottom');
+	const arrowStyle = shouldTintArrow
+		? { stroke: 'var(--shadow-highlight)' }
+		: undefined;
 
 	return (
 		<Ariakit.Popover
@@ -190,7 +195,9 @@ export const PopoverContent: React.FC<PopoverContentProps> = ({
 				className,
 			)}
 		>
-			{showArrow ? <Ariakit.PopoverArrow /> : null}
+			{showArrow ? (
+				<Ariakit.PopoverArrow style={arrowStyle} />
+			) : null}
 			{children}
 		</Ariakit.Popover>
 	);

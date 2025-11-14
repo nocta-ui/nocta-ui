@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
 	[
-		'inline-flex items-center justify-center rounded-full font-medium',
+		'relative inline-flex items-center justify-center rounded-full font-medium',
 		'shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none',
 		'transition-[background-color] duration-100 ease-basic',
-		'whitespace-nowrap shadow-sm ',
+		'whitespace-nowrap shadow-sm shadow-card',
 		'not-prose',
 	],
 	{
@@ -18,7 +18,7 @@ const badgeVariants = cva(
 				default: [
 					'bg-foreground/90',
 					'text-background',
-					'shadow-sm hover:bg-foreground/75',
+					'hover:bg-foreground/75',
 				],
 				secondary: [
 					'bg-card',

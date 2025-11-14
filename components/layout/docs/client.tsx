@@ -58,7 +58,7 @@ export function CollapsibleControl() {
 	return (
 		<div
 			className={cn(
-				'fixed z-10 flex rounded-md border bg-card-muted p-0.5 text-foreground/70 shadow-lg transition-opacity max-xl:end-4 max-md:hidden xl:start-4',
+				'fixed z-10 flex rounded-md border bg-card-muted p-0.5 text-foreground/70 shadow-lg shadow-card transition-opacity max-xl:end-4 max-md:hidden xl:start-4',
 				!collapsed && 'pointer-events-none opacity-0',
 			)}
 			style={{

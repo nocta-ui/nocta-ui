@@ -8,7 +8,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose not-prose flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm transition-[background-color,box-shadow] duration-100 ease-basic placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose relative flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm shadow-card transition-[background-color,box-shadow] duration-100 ease-basic placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -184,7 +184,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			portal={portal}
 			fixed={fixed}
 			className={cn(
-				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-popover shadow-md',
+				'absolute z-999 my-1 rounded-md border border-border bg-popover shadow-md shadow-card',
 				'focus-visible:ring-none focus-visible:outline-none',
 				'origin-top -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 				'not-prose',

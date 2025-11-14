@@ -59,12 +59,12 @@ const listItemClass = cva(
 	[
 		'relative flex cursor-pointer items-center gap-3 rounded-sm h-9 px-3 py-2',
 		'text-sm text-foreground',
-		'hover:bg-card-muted',
+		'hover:bg-popover-muted',
 		'transition-[background-color] duration-100 ease-basic',
 	].join(' '),
 	{
 		variants: {
-			highlighted: { true: 'bg-card-muted', false: '' },
+			highlighted: { true: 'bg-popover-muted', false: '' },
 			disabled: {
 				true: 'pointer-events-none cursor-not-allowed opacity-50',
 				false: '',
@@ -76,11 +76,11 @@ const listItemClass = cva(
 
 const kbdClass = cva(
 	[
-		'flex items-center justify-center font-mono',
+		'relative flex items-center justify-center font-mono',
 		'h-5 min-w-[2.2rem] rounded-sm border px-1.5',
 		'text-[10px] leading-none font-medium',
 		'border-border',
-		'bg-card-muted/50',
+		'bg-popover-muted shadow-sm shadow-card',
 		'text-foreground/70 shadow-sm',
 	].join(' '),
 );
@@ -343,7 +343,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 			>
 				<DialogContent className="p-0">
 					<div className="px-0.5 pt-2" ref={searchContainerRef}>
-						<div className="relative">
+						<div className="relative px-1">
 							<Input
 								role="combobox"
 								aria-controls={`${baseId}-commandk-listbox`}
@@ -361,7 +361,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 								}}
 								onKeyDown={onKeyNav}
 								placeholder={placeholder}
-								className="w-full border-none! pr-12 shadow-none! focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+								wrapperClassName="w-full bg-transparent border-none! pr-12 shadow-none! before:!content-none before:!shadow-none focus-within:border-none focus-within:ring-0 focus-within:ring-offset-0"
 								leftIcon={
 									<Icons.Search
 										aria-hidden="true"

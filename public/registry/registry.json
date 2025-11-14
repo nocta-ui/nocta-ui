@@ -758,10 +758,12 @@
 					"label",
 					"helperText",
 					"errorMessage",
+					"successMessage",
 					"leftIcon",
 					"rightIcon",
 					"className",
 					"containerClassName",
+					"wrapperClassName",
 					"disabled"
 				]
 			},
@@ -1091,6 +1093,7 @@
 					"successMessage",
 					"className",
 					"containerClassName",
+					"wrapperClassName",
 					"resize",
 					"disabled",
 					"rows"
@@ -1792,6 +1795,7 @@
 				"clsx": "^2.1.1",
 				"class-variance-authority": "^0.7.1"
 			},
+			"internalDependencies": ["input", "button"],
 			"exports": [
 				"Chat",
 				"ChatMessages",

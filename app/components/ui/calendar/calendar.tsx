@@ -7,15 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const calendarVariants = cva(
-	[
-		'rounded-lg bg-card',
-		'shadow-md',
-		'overflow-hidden',
-		'not-prose',
-		'text-xs',
-		'w-fit',
-		'max-w-sm',
-	],
+	'relative rounded-lg bg-card border border-border shadow-md shadow-card not-prose text-xs w-fit max-w-sm',
 	{
 		variants: {
 			disabled: {
@@ -305,7 +297,6 @@ export const Calendar: React.FC<CalendarProps> = ({
 				calendarVariants({
 					disabled,
 				}),
-				'relative overflow-hidden border border-border',
 				className,
 			)}
 			{...props}

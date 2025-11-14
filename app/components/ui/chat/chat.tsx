@@ -3,11 +3,13 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Button } from '@/app/components/ui/button/button';
+import { Textarea } from '@/app/components/ui/textarea/textarea';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const chatVariants = cva(
-	['relative border', 'rounded-lg shadow-md', 'not-prose overflow-hidden'],
+	'relative border rounded-lg shadow-md shadow-card not-prose',
 	{
 		variants: {
 			variant: {
@@ -36,31 +38,6 @@ const messageVariants = cva(
 		},
 		defaultVariants: {
 			variant: 'user',
-		},
-	},
-);
-
-const inputVariants = cva(
-	[
-		'min-h-[40px] flex-1 resize-none rounded-lg border px-3 py-2 text-sm transition-shadow duration-100 ease-basic',
-		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
-		'disabled:cursor-not-allowed disabled:opacity-50',
-		'not-prose placeholder:text-foreground/45',
-		'focus-visible:ring-offset-ring-offset/50',
-	],
-	{
-		variants: {
-			variant: {
-				default: [
-					'border-border/60',
-					'bg-card',
-					'text-foreground',
-					'focus-visible:ring-ring/50',
-				],
-			},
-		},
-		defaultVariants: {
-			variant: 'default',
 		},
 	},
 );
@@ -376,12 +353,28 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 	...props
 }) => {
 	const [message, setMessage] = useState('');
-	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	const textareaContainerRef = useRef<HTMLDivElement>(null);
+
+	const getTextareaElement = useCallback(() => {
+		return textareaContainerRef.current?.querySelector('textarea') ?? null;
+	}, []);
+
+	const adjustTextareaHeight = useCallback(
+		(element?: HTMLTextAreaElement | null) => {
+			const textarea = element ?? getTextareaElement();
+			if (!textarea) return;
+			textarea.style.height = 'auto';
+			const newHeight = Math.min(textarea.scrollHeight, 120);
+			textarea.style.height = `${newHeight}px`;
+		},
+		[getTextareaElement],
+	);
+
 	useEffect(() => {
 		if (autoFocus) {
-			textareaRef.current?.focus({ preventScroll: true });
+			getTextareaElement()?.focus({ preventScroll: true });
 		}
-	}, [autoFocus]);
+	}, [autoFocus, getTextareaElement]);
 
 	const handleSubmit = useCallback(
 		(e: React.FormEvent) => {
@@ -389,12 +382,13 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 			if (message.trim() && !disabled) {
 				onSendMessage(message.trim());
 				setMessage('');
-				if (textareaRef.current) {
-					textareaRef.current.style.height = 'auto';
+				const textarea = getTextareaElement();
+				if (textarea) {
+					textarea.style.height = 'auto';
 				}
 			}
 		},
-		[message, disabled, onSendMessage],
+		[message, disabled, onSendMessage, getTextareaElement],
 	);
 
 	const handleKeyDown = useCallback(
@@ -416,14 +410,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 			if (maxLength && value.length > maxLength) return;
 
 			setMessage(value);
-
-			if (textareaRef.current) {
-				textareaRef.current.style.height = 'auto';
-				const newHeight = Math.min(textareaRef.current.scrollHeight, 120);
-				textareaRef.current.style.height = `${newHeight}px`;
-			}
+			adjustTextareaHeight(e.target);
 		},
-		[maxLength],
+		[maxLength, adjustTextareaHeight],
 	);
 
 	return (
@@ -435,34 +424,33 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 			{...props}
 		>
 			<form onSubmit={handleSubmit} className="flex items-center gap-2">
-				<textarea
-					ref={textareaRef}
-					value={message}
-					onChange={handleTextareaChange}
-					onKeyDown={handleKeyDown}
-					placeholder={placeholder}
-					aria-label={placeholder || 'Type a message'}
-					aria-multiline={allowMultiline}
-					disabled={disabled}
-					rows={1}
-					className={inputVariants({ variant: 'default' })}
-				/>
-				<button
+				<div className="flex-1" ref={textareaContainerRef}>
+					<Textarea
+						value={message}
+						onChange={handleTextareaChange}
+						onKeyDown={handleKeyDown}
+						placeholder={placeholder}
+						aria-label={placeholder || 'Type a message'}
+						aria-multiline={allowMultiline}
+						disabled={disabled}
+						rows={1}
+						resize="none"
+						containerClassName="flex-1"
+						wrapperClassName="h-full"
+						className="min-h-9"
+					/>
+				</div>
+				<Button
 					type="submit"
+					size="md"
 					aria-label="Send message"
 					disabled={!message.trim() || disabled}
-					className={cn(
-						'relative h-full rounded-md px-3 py-2 font-medium transition-[background-color,filter,box-shadow] duration-100 ease-basic cursor-pointer',
-						'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
-						'not-prose disabled:cursor-not-allowed disabled:opacity-50',
-						'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card-muted dark:text-foreground',
-					)}
 				>
 					<Icons.SendMessage
 						aria-hidden="true"
 						className="mb-0.5 ml-1 size-5 -rotate-45"
 					/>
-				</button>
+				</Button>
 			</form>
 			{maxLength && (
 				<div className="mt-1 text-right text-xs text-foreground/45 dark:text-foreground/45">

@@ -41,7 +41,7 @@ export const BasicFormDemo: React.FC = () => {
 					<FormLabel required>Full Name</FormLabel>
 					<FormControl>
 						<Input
-							className="w-full"
+							wrapperClassName="w-full"
 							placeholder="Enter your full name"
 							value={formData.name}
 							onChange={(e) =>
@@ -58,7 +58,7 @@ export const BasicFormDemo: React.FC = () => {
 					<FormLabel required>Email</FormLabel>
 					<FormControl>
 						<Input
-							className="w-full"
+						  wrapperClassName="w-full"
 							type="email"
 							placeholder="Enter your email"
 							value={formData.email}
@@ -89,7 +89,7 @@ export const FormWithErrorsDemo: React.FC = () => {
 				<FormField name="username" error={errors.username}>
 					<FormLabel required>Username</FormLabel>
 					<FormControl>
-						<Input className="w-full" placeholder="Choose a username" />
+						<Input wrapperClassName="w-full" placeholder="Choose a username" />
 					</FormControl>
 					<FormMessage />
 				</FormField>
@@ -98,7 +98,7 @@ export const FormWithErrorsDemo: React.FC = () => {
 					<FormLabel required>Password</FormLabel>
 					<FormControl>
 						<Input
-							className="w-full"
+							wrapperClassName="w-full"
 							type="password"
 							placeholder="Create a password"
 						/>
@@ -134,7 +134,7 @@ export const ComplexFormDemo: React.FC = () => {
 						<FormLabel required>First Name</FormLabel>
 						<FormControl>
 							<Input
-								className="w-full"
+								wrapperClassName="w-full"
 								placeholder="First name"
 								value={formData.firstName}
 								onChange={(e) =>
@@ -148,7 +148,7 @@ export const ComplexFormDemo: React.FC = () => {
 						<FormLabel required>Last Name</FormLabel>
 						<FormControl>
 							<Input
-								className="w-full"
+								wrapperClassName="w-full"
 								placeholder="Last name"
 								value={formData.lastName}
 								onChange={(e) =>

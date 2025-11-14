@@ -261,6 +261,11 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
       type: 'string',
       default: 'undefined',
     },
+    successMessage: {
+      description: 'Success state message shown when there is no error',
+      type: 'string',
+      default: 'undefined',
+    },
     leftIcon: {
       description: 'Icon displayed on the left side',
       type: 'React.ReactNode',
@@ -278,6 +283,11 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
     },
     containerClassName: {
       description: 'Additional CSS classes for the container',
+      type: 'string',
+      default: '""',
+    },
+    wrapperClassName: {
+      description: 'Additional CSS classes for the wrapper element',
       type: 'string',
       default: '""',
     },

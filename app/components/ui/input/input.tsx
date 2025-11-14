@@ -2,33 +2,53 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-const inputVariants = cva(
+const wrapperVariants = cva(
 	[
-		'flex w-fit rounded-md border transition-shadow duration-100 ease-basic',
+		'relative flex w-fit rounded-md border transition-shadow duration-100 ease-basic',
 		'bg-card text-foreground',
-		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
-		'focus-visible:ring-offset-ring-offset/50',
-		'disabled:cursor-not-allowed disabled:opacity-50',
-		'placeholder:text-foreground/45',
-		'not-prose shadow-sm',
+		'focus-within:ring-1 focus-within:ring-offset-1',
+		'focus-within:ring-offset-ring-offset/50',
+		'has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50',
+		'not-prose shadow-sm shadow-card',
 	],
 	{
 		variants: {
 			variant: {
-				default: ['border-border', 'focus-visible:ring-ring/50'],
+				default: ['border-border', 'focus-within:ring-ring/50'],
 				error: [
 					'border-destructive/40',
-					'focus-visible:ring-destructive/50 dark:focus-visible:ring-destructive/50',
+					'focus-within:ring-destructive/50 dark:focus-within:ring-destructive/50',
 				],
 				success: [
 					'border-success/40',
-					'focus-visible:ring-success/50 dark:focus-visible:ring-success/50',
+					'focus-within:ring-success/50 dark:focus-within:ring-success/50',
 				],
 			},
 			size: {
-				sm: 'h-8 px-2.5 py-0.5 text-sm',
-				md: 'h-9 px-3 py-1 text-sm',
-				lg: 'h-10 px-3.5 py-1.5 text-base',
+				sm: 'h-8',
+				md: 'h-9',
+				lg: 'h-10',
+			},
+		},
+		defaultVariants: {
+			variant: 'default',
+			size: 'md',
+		},
+	},
+);
+
+const inputVariants = cva(
+	[
+		'w-full bg-transparent outline-none',
+		'placeholder:text-foreground/45',
+		'disabled:cursor-not-allowed',
+	],
+	{
+		variants: {
+			size: {
+				sm: 'px-2.5 py-0.5 text-sm',
+				md: 'px-3 py-1 text-sm',
+				lg: 'px-3.5 py-1.5 text-base',
 			},
 			hasLeftIcon: {
 				true: 'pl-10',
@@ -40,7 +60,6 @@ const inputVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: 'default',
 			size: 'md',
 			hasLeftIcon: false,
 			hasRightIcon: false,
@@ -110,6 +129,8 @@ export interface InputProps
 	rightIcon?: React.ReactNode;
 	className?: string;
 	containerClassName?: string;
+	wrapperClassName?: string;
+	variant?: 'default' | 'error' | 'success';
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -123,6 +144,7 @@ export const Input: React.FC<InputProps> = ({
 	rightIcon,
 	className = '',
 	containerClassName = '',
+	wrapperClassName = '',
 	disabled,
 	...props
 }) => {
@@ -142,7 +164,7 @@ export const Input: React.FC<InputProps> = ({
 				</label>
 			)}
 
-			<div className="relative">
+			<div className={cn(wrapperVariants({ variant, size }), wrapperClassName)}>
 				{leftIcon && (
 					<div
 						className={cn(
@@ -160,7 +182,7 @@ export const Input: React.FC<InputProps> = ({
 
 				<input
 					className={cn(
-						inputVariants({ variant, size, hasLeftIcon, hasRightIcon }),
+						inputVariants({ size, hasLeftIcon, hasRightIcon }),
 						className,
 					)}
 					id={inputId}

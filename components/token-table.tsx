@@ -348,7 +348,7 @@ function TokenTableShell({
 	secondaryHeader: ReactNode;
 }) {
 	return (
-		<div className="@container flex flex-col p-1 bg-card shadow-sm text-foreground rounded-lg border border-fd-border my-6 text-sm overflow-hidden">
+		<div className="@container relative flex flex-col p-1 bg-card shadow-sm shadow-card text-foreground rounded-lg border border-fd-border my-6 text-sm">
 			<div className="flex font-medium items-center px-3 py-1 not-prose text-foreground/45">
 				<p className="w-[25%] min-w-40">Token</p>
 				<p className="@max-lg:hidden">{secondaryHeader}</p>

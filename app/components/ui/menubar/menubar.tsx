@@ -6,7 +6,7 @@ import type { FC, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 const menubarVariants = cva(
-	'not-prose inline-flex items-center gap-1 rounded-md border border-border bg-card p-1 shadow-sm',
+	'not-prose relative inline-flex items-center gap-1 rounded-md border border-border bg-card p-1 shadow-sm shadow-card',
 	{
 		variants: {
 			size: {
@@ -34,7 +34,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-popover shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
 	{
 		variants: {
 			size: {
@@ -48,7 +48,7 @@ const menubarContentVariants = cva(
 );
 
 const menubarSubContentVariants = cva(
-	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-popover shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
 	{
 		variants: {
 			size: {

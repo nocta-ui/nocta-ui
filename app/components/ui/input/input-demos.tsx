@@ -34,6 +34,7 @@ export const InputWithHelperTextDemo: React.FC = () => {
 	return (
 		<div className="my-6">
 			<Input
+			  wrapperClassName='w-full'
 				label="Username"
 				placeholder="Enter your username"
 				helperText="Choose a unique username between 3-20 characters"

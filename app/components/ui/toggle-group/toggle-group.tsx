@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const toggleGroupVariants = cva(
 	[
-		'w-fit not-prose inline-flex rounded-md border shadow-sm select-none',
+		'w-fit not-prose relative inline-flex rounded-md border shadow-sm shadow-card select-none',
 		'text-sm font-medium',
 		'disabled:pointer-events-none disabled:opacity-50',
 	],

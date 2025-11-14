@@ -305,6 +305,11 @@ import { Textarea } from '@/components/ui/textarea';
       type: 'string',
       default: 'undefined',
     },
+    successMessage: {
+      description: 'Success message displayed when the value is valid',
+      type: 'string',
+      default: 'undefined',
+    },
     resize: {
       description: 'Resize behavior of the textarea',
       type: '"none" | "vertical" | "horizontal" | "both"',
@@ -322,6 +327,11 @@ import { Textarea } from '@/components/ui/textarea';
     },
     containerClassName: {
       description: 'Additional CSS classes for the container',
+      type: 'string',
+      default: '""',
+    },
+    wrapperClassName: {
+      description: 'Additional CSS classes for the wrapper element',
       type: 'string',
       default: '""',
     },

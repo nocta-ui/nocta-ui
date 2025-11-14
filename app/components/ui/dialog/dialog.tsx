@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-popover shadow-2xl`,
+	`not-prose relative max-h-[70vh] rounded-lg border border-border bg-popover shadow-card shadow-2xl`,
 	{
 		variants: {
 			size: {
@@ -213,10 +213,10 @@ export const DialogSurface: React.FC<DialogSurfaceProps> = ({
 			{...dialogProps}
 		>
 			{showClose && (
-				<DialogClose className="absolute top-2 right-2 z-10">
+				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,colorbox-shadow] duration-100 ease-basic hover:bg-popover-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
-				</DialogClose>
+				</Ariakit.DialogDismiss>
 			)}
 			{children}
 		</Ariakit.Dialog>

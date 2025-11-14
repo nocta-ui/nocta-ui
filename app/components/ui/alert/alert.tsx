@@ -4,7 +4,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-	'not-prose relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm',
+	'not-prose relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm shadow-card',
 	{
 		variants: {
 			variant: {
