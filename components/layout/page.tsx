@@ -282,7 +282,7 @@ DocsTitle.displayName = 'DocsTitle';
 export function withArticle(props: ComponentProps<'main'>): ReactNode {
 	return (
 		<main {...props} className={cn('container py-12', props.className)}>
-			<article className="prose">{props.children}</article>
+			<article>{props.children}</article>
 		</main>
 	);
 }
