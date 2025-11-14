@@ -33,7 +33,7 @@ const scrollViewportBaseClass =
 	'relative size-full overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden';
 
 const scrollBarVariants = cva(
-	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-100 ease-basic overflow-hidden',
+	'pointer-events-none absolute z-20 select-none rounded-full bg-transparent opacity-0 transition-opacity duration-300 ease-smooth overflow-hidden',
 	{
 		variants: {
 			orientation: {
@@ -83,7 +83,8 @@ function calculateAxisMetrics(
 
 	const size = Math.min(Math.max(viewport / total, 0), 1);
 	const maxScroll = total - viewport;
-	const progress = maxScroll > 0 ? Math.min(Math.max(offset / maxScroll, 0), 1) : 0;
+	const progress =
+		maxScroll > 0 ? Math.min(Math.max(offset / maxScroll, 0), 1) : 0;
 
 	return {
 		size,
