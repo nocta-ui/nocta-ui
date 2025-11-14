@@ -388,7 +388,7 @@ export function Table<TData>({
 				<div
 					key={headerGroup.id}
 					role="row"
-					className="grid border-b border-border/60 bg-card-muted/50 dark:bg-card-muted/30"
+					className="grid border-b border-border/60 bg-card-muted/50 dark:bg-card-muted/30 rounded-t-lg"
 					style={{ gridTemplateColumns }}
 					tabIndex={-1}
 				>
