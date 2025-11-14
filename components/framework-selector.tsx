@@ -110,20 +110,20 @@ const FrameworkSelector = () => {
 					<Link
 						href={`/docs/${framework.id}`}
 						key={framework.id}
-						className="group no-underline"
+						className="no-underline not-prose"
 					>
 						<button
 							type="button"
 							key={framework.id}
-							className="relative h-full w-full cursor-pointer"
+							className="relative h-full w-full cursor-pointer  group "
 						>
-							<div className="relative group flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card p-8 shadow-sm shadow-card hover:bg-card-muted text-foreground/70 hover:text-foreground">
+							<div className="relative flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card hover:bg-card-muted p-8 shadow-sm shadow-card">
 								{framework.logo}
 								<div className="mt-3 text-center">
-									<span className="block text-lg font-medium text-foreground/70 group-hover:text-foregroun">
+									<span className="block text-lg font-medium text-foreground/70">
 										{framework.name}
 									</span>
-									<span className="block text-sm text-foreground/45 group-hover:text-foreground/70">
+									<span className="block text-sm text-foreground/45">
 										{framework.description}
 									</span>
 								</div>
