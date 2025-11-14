@@ -8,8 +8,7 @@ import { cn } from '@/lib/utils';
 
 const checkboxVariants = cva(
 	[
-		'relative inline-flex items-center justify-center rounded border border-border',
-		'cursor-pointer transition-[background-color,box-shadow] duration-100 ease-basic',
+		'relative inline-flex items-center justify-center rounded border border-border cursor-pointer',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',
 		'has-[:focus-visible]:ring-offset-ring-offset/50',
 		'not-prose shadow-sm shadow-card',

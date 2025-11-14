@@ -16,7 +16,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const comboboxVariants = cva(
-	`not-prose relative inline-flex w-fit cursor-pointer items-center justify-between bg-card text-foreground rounded-md border shadow-sm shadow-card transition-[background-color,box-shadow] duration-100 ease-basic hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose relative inline-flex w-fit cursor-pointer items-center justify-between bg-card text-foreground rounded-md border shadow-sm shadow-card hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -173,7 +173,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									}}
 									role="button"
 									tabIndex={0}
-									className="cursor-pointer rounded p-0.5 text-foreground/70 transition-[box-shadow,color] duration-100 ease-basic hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+									className="cursor-pointer rounded p-0.5 text-foreground/70 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 								>
 									<Icons.X aria-hidden="true" className="h-3 w-3" />
 									<Ariakit.VisuallyHidden>
@@ -243,7 +243,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 												value={option.value}
 												{...(itemDisabled ? { disabled: true } : {})}
 												className={cn(
-													'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-100 ease-basic select-none outline-none',
+													'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 select-none outline-none',
 													'data-active-item:bg-popover-muted data-active-item:text-foreground',
 													'aria-selected:bg-popover-muted aria-selected:font-medium aria-selected:text-foreground',
 													"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",

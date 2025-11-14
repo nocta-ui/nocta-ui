@@ -117,7 +117,7 @@ const FrameworkSelector = () => {
 							key={framework.id}
 							className="relative h-full w-full cursor-pointer"
 						>
-							<div className="relative group flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card p-8 shadow-sm shadow-card transition-all duration-100 ease-basic hover:bg-card-muted text-foreground/70 hover:text-foreground">
+							<div className="relative group flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card p-8 shadow-sm shadow-card hover:bg-card-muted text-foreground/70 hover:text-foreground">
 								{framework.logo}
 								<div className="mt-3 text-center">
 									<span className="block text-lg font-medium text-foreground/70 group-hover:text-foregroun">

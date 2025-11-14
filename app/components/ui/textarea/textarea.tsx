@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 const wrapperVariants = cva(
 	[
-		'relative inline-flex min-w-full rounded-md border transition-shadow duration-100 ease-basic',
+		'relative inline-flex min-w-full rounded-md border',
 		'bg-card text-foreground',
 		'focus-within:ring-1 focus-within:ring-offset-1',
 		'focus-within:ring-offset-ring-offset/50',

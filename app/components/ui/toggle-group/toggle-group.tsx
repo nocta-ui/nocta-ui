@@ -31,7 +31,7 @@ const toggleGroupVariants = cva(
 
 const toggleGroupItemVariants = cva(
 	[
-		'flex-1 flex items-center justify-center transition-[background-color,box-shadow] duration-100 ease-basic cursor-pointer',
+		'flex-1 flex items-center justify-center cursor-pointer',
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
 		'hover:bg-card-muted',
 		'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none focus-visible:rounded-md',

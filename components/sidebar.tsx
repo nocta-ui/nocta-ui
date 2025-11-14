@@ -74,7 +74,7 @@ const itemVariants = cva(
 			active: {
 				true: 'bg-card-muted text-foreground',
 				false:
-					'transition-colors hover:bg-card-muted hover:text-foreground duration-100 ease-basic',
+					'hover:bg-card-muted hover:text-foreground',
 			},
 		},
 	},

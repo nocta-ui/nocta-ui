@@ -373,7 +373,7 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted duration-100 ease-basic">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -423,7 +423,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-100 ease-basic">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>
@@ -467,7 +467,7 @@ function SingleValueTokenItem({ token }: { token: SingleValueTokenRow }) {
 					: 'border-transparent',
 			)}
 		>
-			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all duration-100 ease-basic">
+			<CollapsibleTrigger className="relative cursor-pointer flex flex-row items-center w-full group text-start px-3 py-2 not-prose hover:bg-card-muted data-[state=open]:bg-card-muted transition-all">
 				<code className="w-fit font-mono font-medium bg-card-muted rounded border border-fd-border px-2 py-0.5 text-left">
 					{token.token}
 				</code>

@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const checkboxCardVariants = cva(
 	[
-		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-md shadow-card transition-[border-color,box-shadow] duration-100 ease-basic',
+		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-md shadow-card',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:outline-none',
 	],
 	{
@@ -29,7 +29,7 @@ const checkboxCardVariants = cva(
 );
 
 const indicatorVariants = cva(
-	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-[border-color] duration-100 ease-basic',
+	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card',
 	{
 		variants: {
 			checked: {

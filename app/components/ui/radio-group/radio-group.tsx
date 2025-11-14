@@ -6,7 +6,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const indicatorVariants = cva(
-	'relative flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border shadow-sm shadow-card transition-[border-color] duration-100 ease-basic',
+	'relative flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border shadow-sm shadow-card',
 	{
 		variants: {
 			checked: {
@@ -95,20 +95,17 @@ const useRadioGroupContext = () => {
 	return context;
 };
 
-const dotVariants = cva(
-	'rounded-full bg-foreground transition-[scale,opacity] duration-100 ease-basic',
-	{
-		variants: {
-			checked: {
-				true: 'scale-100 opacity-100',
-				false: 'scale-0 opacity-0',
-			},
-		},
-		defaultVariants: {
-			checked: false,
+const dotVariants = cva('rounded-full bg-foreground', {
+	variants: {
+		checked: {
+			true: 'scale-100 opacity-100',
+			false: 'scale-0 opacity-0',
 		},
 	},
-);
+	defaultVariants: {
+		checked: false,
+	},
+});
 
 export interface RadioGroupItemProps
 	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Radio>, 'store'> {
@@ -135,7 +132,7 @@ export const RadioGroupItem = React.forwardRef<
 			htmlFor={id}
 			data-focus-visible={focusVisible ? '' : undefined}
 			className={cn(
-				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md transition-shadow duration-100 ease-basic',
+				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md',
 				'data-focus-visible:ring-1 data-focus-visible:ring-ring/50 data-focus-visible:ring-offset-1 data-focus-visible:ring-offset-ring-offset/50',
 				isDisabled && 'cursor-not-allowed opacity-50',
 				className,

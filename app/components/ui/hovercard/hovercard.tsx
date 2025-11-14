@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const hovercardTriggerVariants = cva(
-	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 transition-[background-color,box-shadow] duration-100 ease-basic focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
@@ -218,9 +218,7 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 				className,
 			)}
 		>
-			{showArrow ? (
-				<Ariakit.HovercardArrow style={arrowStyle} />
-			) : null}
+			{showArrow ? <Ariakit.HovercardArrow style={arrowStyle} /> : null}
 			{children}
 		</Ariakit.Hovercard>
 	);
