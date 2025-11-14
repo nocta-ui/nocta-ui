@@ -226,13 +226,13 @@ export const motionTokens = [
 	{
 		token: '--ease-basic',
 		description:
-			'Global motion curve used for hover effects',
+			'Global motion curve used for short animations',
 		value: 'cubic-bezier(0, 0, 0.2, 1)',
 	},
 	{
 		token: '--ease-smooth',
 		description:
-			'Global motion curve used for other transformations',
+			'Global motion curve used for longer, more visual transformations',
 		value: 'cubic-bezier(0.32, 0.72, 0, 1)',
 	},
 ];
