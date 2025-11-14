@@ -156,7 +156,7 @@ export function SearchDialogClose({
 					color: 'outline',
 					size: 'sm',
 					className:
-						'font-mono text-foreground/35 cursor-pointer bg-card shadow-sm border-border',
+						'relative font-mono text-foreground/35 cursor-pointer bg-popover-muted shadow-sm shadow-card border-border',
 				}),
 				className,
 			)}
@@ -198,7 +198,7 @@ export function SearchDialogContent({
 			aria-describedby={undefined}
 			{...props}
 			className={cn(
-				'fixed left-1/2 top-4 md:top-[calc(50%-250px)] z-50 w-[calc(100%-1rem)] max-w-screen-sm -translate-x-1/2 rounded-lg border border-border bg-card text-foreground/70 shadow-2xl overflow-hidden data-[state=closed]:animate-fd-dialog-out data-[state=open]:animate-fd-dialog-in',
+				'fixed shadow-card left-1/2 top-4 md:top-[calc(50%-250px)] z-50 w-[calc(100%-1rem)] max-w-screen-sm -translate-x-1/2 rounded-lg border border-border bg-popover text-foreground/70 shadow-2xl data-[state=closed]:animate-fd-dialog-out data-[state=open]:animate-fd-dialog-in',
 				'*:border-b *:has-[+:last-child[data-empty=true]]:border-b-0 *:data-[empty=true]:border-b-0 *:last:border-b-0',
 				props.className,
 			)}
@@ -383,7 +383,7 @@ export function SearchDialogListItem({
 			aria-selected={active}
 			className={cn(
 				'relative select-none px-2.5 py-2 text-start text-sm rounded-md cursor-pointer transition-colors duration-100 ease-basic',
-				active && 'bg-card-muted',
+				active && 'bg-popover-muted',
 				className,
 			)}
 			onPointerMove={() => setActive(item.id)}

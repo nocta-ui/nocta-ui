@@ -135,7 +135,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						'fd-scroll-container max-h-[600px] rounded-lg border border-fd-border bg-card relative shadow-card shadow-sm py-3.5 text-[13px] [&_.line]:px-4',
+						'relative rounded-lg border border-fd-border bg-card shadow-card shadow-sm',
 						props['data-line-numbers'] && '[&_.line]:pl-3',
 						viewportProps?.className,
 					)}
@@ -146,7 +146,9 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 						...viewportProps?.style,
 					}}
 				>
-					{children}
+				<div className='fd-scroll-container max-h-[600px] overflow-x-auto py-3.5 text-[13px] [&_.line]:px-4'>
+				{children}
+				</div>
 				</div>
 			</figure>
 		);

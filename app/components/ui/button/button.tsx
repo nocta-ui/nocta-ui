@@ -11,7 +11,7 @@ export const buttonVariants = cva(
 		variants: {
 			variant: {
 				default:
-					'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 border border-border shadow-card text-card dark:text-foreground',
+					'bg-linear-to-b from-gradient-from to-gradient-to hover:contrast-90 shadow-[inset_0_1px_0_0_rgb(255_255_255/.32),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] dark:shadow-[inset_0_1px_0_0_rgb(255_255_255/.12),0px_1px_1px_-0.5px_rgba(9,9,11,0.05),0px_3px_3px_-1.5px_rgba(9,9,11,0.05),0px_6px_6px_-3px_rgba(9,9,11,0.05)] text-card dark:text-foreground',
 				secondary:
 					'border border-border bg-card hover:bg-card-muted text-foreground shadow-sm shadow-card focus-visible:ring-ring/50',
 				ghost: 'text-foreground hover:bg-card-muted focus-visible:ring-ring/50',

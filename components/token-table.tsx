@@ -367,7 +367,7 @@ function ColorTokenItem({ token }: { token: ColorTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
+				'rounded-md overflow-hidden transition-all duration-450 ease-smooth border',
 				open
 					? 'bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
@@ -417,7 +417,7 @@ function ShadowTokenItem({ token }: { token: ShadowTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
+				'rounded-md overflow-hidden transition-all duration-450 ease-smooth border',
 				open
 					? 'shadow-sm bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',
@@ -461,7 +461,7 @@ function SingleValueTokenItem({ token }: { token: SingleValueTokenRow }) {
 			open={open}
 			onOpenChange={setOpen}
 			className={cn(
-				'rounded-md overflow-hidden transition-all duration-500 ease-smooth border',
+				'rounded-md overflow-hidden transition-all duration-450 ease-smooth border',
 				open
 					? 'shadow-sm bg-background not-last:mb-2 border-fd-border'
 					: 'border-transparent',

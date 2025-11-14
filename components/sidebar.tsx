@@ -68,13 +68,13 @@ interface InternalContext {
 }
 
 const itemVariants = cva(
-	'cursor-pointer relative flex flex-row items-center gap-2 rounded-md p-1.5 mb-1 duration-100 ps-(--sidebar-item-offset) text-start font-normal [overflow-wrap:anywhere] text-foreground/70 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50',
+	'cursor-pointer relative flex flex-row items-center gap-2 rounded-md p-1.5 mb-1 ps-(--sidebar-item-offset) text-start font-normal [overflow-wrap:anywhere] text-foreground/70 [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50',
 	{
 		variants: {
 			active: {
 				true: 'bg-card-muted text-foreground',
 				false:
-					'transition-all hover:bg-card-muted hover:text-foreground',
+					'transition-colors hover:bg-card-muted hover:text-foreground duration-100 ease-basic',
 			},
 		},
 	},
@@ -125,7 +125,7 @@ export function SidebarContent(props: ComponentProps<'aside'>) {
 			{...props}
 			data-collapsed={collapsed}
 			className={cn(
-				'fixed bg-card border-r border-fd-border shadow-card top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) left-0 z-20 flex flex-col items-end text-sm transition-[top,opacity,translate,width] duration-500 ease-smooth *:w-(--fd-sidebar-width) max-md:hidden rtl:right-(--removed-body-scroll-bar-size,0) rtl:left-auto',
+				'fixed bg-card border-r rounded-r-lg border-fd-border shadow-card top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) left-0 z-20 flex flex-col items-end text-sm transition-[top,opacity,translate,width] duration-450 ease-smooth *:w-(--fd-sidebar-width) max-md:hidden rtl:right-(--removed-body-scroll-bar-size,0) rtl:left-auto',
 				collapsed && [
 					'translate-x-(--fd-sidebar-offset) rounded-lg border border-border rtl:-translate-x-(--fd-sidebar-offset)',
 					hover ? 'z-50 shadow-lg' : 'opacity-0',
@@ -199,7 +199,7 @@ export function SidebarContentMobile({
 						{...props}
 						data-state={state}
 						className={cn(
-							'fixed inset-y-0 end-0 z-40 flex w-[85%] max-w-[380px] flex-col border-s border-border bg-card text-[15px] shadow-lg data-[state=closed]:animate-fd-sidebar-out data-[state=open]:animate-fd-sidebar-in',
+							'fixed inset-y-0 end-0 z-40 flex w-[85%] max-w-[380px] flex-col border-s border-border bg-card rounded-l-lg text-[15px] shadow-lg data-[state=closed]:animate-fd-sidebar-out data-[state=open]:animate-fd-sidebar-in',
 							!present && 'invisible',
 							className,
 						)}
