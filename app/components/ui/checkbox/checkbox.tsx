@@ -8,7 +8,8 @@ import { cn } from '@/lib/utils';
 
 const checkboxVariants = cva(
 	[
-		'relative inline-flex items-center justify-center rounded border border-border cursor-pointer',
+		'relative inline-flex items-center justify-center rounded border border-transparent cursor-pointer',
+		'transition-[background-color] duration-100 ease-basic',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',
 		'has-[:focus-visible]:ring-offset-ring-offset/50',
 		'not-prose shadow-sm shadow-card',
@@ -36,7 +37,7 @@ const checkboxVariants = cva(
 			},
 			{
 				checked: false,
-				class: 'bg-card has-[:focus-visible]:ring-ring/50',
+				class: 'bg-card border-border has-[:focus-visible]:ring-ring/50',
 			},
 		],
 		defaultVariants: {

@@ -402,7 +402,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 						) : (
 							Array.from(grouped.entries()).map(([group, entries]) => (
 								<div key={group} className="px-2">
-									<fieldset className="m-0 mt-1 flex flex-col gap-1 border-0 p-0">
+									<fieldset className="m-0 mt-1 flex flex-col border-0 p-0">
 										<legend className={groupHeaderClass()}>{group}</legend>
 										{entries.map((entry) => {
 											const flatIndex = flatSelectable.findIndex(

@@ -133,7 +133,7 @@ export const ContextMenuContent: React.FC<
 		sameWidth={sameWidth}
 		className={cn(contextMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );
 
@@ -201,6 +201,6 @@ export const ContextMenuSubContent: React.FC<
 		portal
 		className={cn(contextSubMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );

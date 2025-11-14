@@ -30,7 +30,7 @@ export const BasicHovercardDemo: React.FC = () => {
               </HovercardDescription>
   					</div>
 					</div>
-					<Button asChild size="sm" className='absolute top-3 right-4 border border-border rounded-full'>
+					<Button asChild size="sm" className='absolute top-3 right-4 rounded-full'>
 					  <a target="_blank" rel="noopener noreferrer" href='https://github.com/66HEX'>Follow</a>
 					</Button>
 				</HovercardContent>

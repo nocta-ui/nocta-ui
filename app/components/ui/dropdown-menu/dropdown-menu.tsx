@@ -119,7 +119,7 @@ export const DropdownMenuContent: React.FC<
 		sameWidth={sameWidth}
 		className={cn(dropdownMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );
 
@@ -187,6 +187,6 @@ export const DropdownMenuSubContent: React.FC<
 		portal
 		className={cn(dropdownSubMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );

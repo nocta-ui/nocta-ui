@@ -172,7 +172,7 @@ export const MenubarContent: FC<MenubarContentProps> = ({
 			gutter={9}
 			className={cn(menubarContentVariants({ size }), className)}
 		>
-			<div className="flex flex-col gap-1">{children}</div>
+			<div className="flex flex-col">{children}</div>
 		</Ariakit.Menu>
 	);
 };
@@ -204,7 +204,7 @@ export const MenubarItem: FC<MenubarItemProps> = ({
 
 export const MenubarSeparator: FC<{ className?: string }> = ({ className }) => (
 	<Ariakit.MenuSeparator
-		className={cn('-mx-1 h-px bg-border opacity-60', className)}
+		className={cn('-mx-1 my-1 h-px bg-border opacity-60', className)}
 	/>
 );
 
@@ -270,6 +270,6 @@ export const MenubarSubContent: FC<MenubarSubContentProps> = ({
 		portal
 		className={cn(menubarSubContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );
