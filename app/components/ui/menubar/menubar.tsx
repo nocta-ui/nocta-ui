@@ -34,7 +34,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-card shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-popover shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
 	{
 		variants: {
 			size: {
@@ -48,7 +48,7 @@ const menubarContentVariants = cva(
 );
 
 const menubarSubContentVariants = cva(
-	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-card shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-popover shadow-md -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
 	{
 		variants: {
 			size: {
@@ -62,7 +62,7 @@ const menubarSubContentVariants = cva(
 );
 
 const menubarItemVariants = cva(
-	"flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none text-foreground/70 hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50",
+	"flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50",
 	{
 		variants: {
 			inset: {
@@ -143,7 +143,7 @@ export const MenubarTrigger: FC<MenubarTriggerProps> = ({
 					disabled={Boolean(disabled)}
 					className={cn(
 						menubarTriggerVariants({ size }),
-						open && 'bg-card-muted text-foreground',
+						open && 'bg-popover-muted text-foreground',
 						className,
 					)}
 				/>
@@ -240,7 +240,7 @@ export const MenubarSubTrigger: FC<MenubarSubTriggerProps> = ({
 					disabled={Boolean(disabled)}
 					className={cn(
 						menubarItemVariants({ inset, destructive }),
-						open && 'bg-card-muted text-foreground',
+						open && 'bg-popover-muted text-foreground',
 						className,
 					)}
 				/>

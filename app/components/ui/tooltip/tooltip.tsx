@@ -10,7 +10,7 @@ const tooltipContentVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: `border-border bg-card-muted text-foreground`,
+				default: `border-border bg-popover text-foreground`,
 			},
 		},
 		defaultVariants: {

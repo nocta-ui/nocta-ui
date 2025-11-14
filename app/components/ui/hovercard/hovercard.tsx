@@ -26,11 +26,11 @@ const hovercardTriggerVariants = cva(
 );
 
 const hovercardContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border border-border bg-card-muted text-foreground shadow-md',
+	'not-prose relative w-fit rounded-lg border shadow-md',
 	{
 		variants: {
 			variant: {
-				default: '',
+				default: 'bg-popover text-foreground border-border',
 			},
 			size: {
 				sm: 'px-3 py-2 text-sm',

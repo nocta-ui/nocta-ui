@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-card text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:scale-95 data-[leave]:-translate-y-2 data-[leave]:opacity-0 -translate-y-2 transition-[translate,opacity,scale]l duration-300 ease-smooth',
+	'not-prose relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-popover text-foreground/70 opacity-0 scale-95 shadow-2xl data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:scale-95 data-[leave]:-translate-y-2 data-[leave]:opacity-0 -translate-y-2 transition-[translate,opacity,scale]l duration-300 ease-smooth',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'relative flex md:last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm transition-[background-color,box-shadow] duration-100 ease-basic outline-none hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-card-muted [a&]:cursor-pointer overflow-clip',
+	'relative flex md:last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm transition-[background-color,box-shadow] duration-100 ease-basic outline-none hover:bg-popover-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-popover-muted [a&]:cursor-pointer overflow-clip',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');

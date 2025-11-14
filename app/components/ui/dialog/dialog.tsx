@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-card shadow-2xl`,
+	`not-prose relative max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-popover shadow-2xl`,
 	{
 		variants: {
 			size: {
@@ -305,7 +305,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose flex items-center justify-end rounded-b-lg border-t border-border/60 bg-card-muted/30 p-4',
+				'not-prose flex items-center justify-end rounded-b-lg border-t border-border/60 bg-popover-muted/30 p-4',
 				className,
 			)}
 			{...props}
@@ -363,7 +363,7 @@ export const DialogClose: React.FC<DialogCloseProps> = ({
 		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
-				'not-prose not-prose inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,opacity] duration-100 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				"inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-[background-color,box-shadow] duration-100 ease-basic h-9 px-4 py-2 gap-2 has-[>svg]:px-3 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 text-sm font-medium text-foreground hover:bg-popover-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 				className,
 			)}
 			type="button"

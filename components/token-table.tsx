@@ -36,8 +36,20 @@ export const colorTokens = [
 		dark: 'oklch(0.1703 0.006 var(--base-hue))',
 	},
 	{
+		token: '--color-popover',
+		description: 'Surface for popovers',
+		light: 'oklch(1 0 0)',
+		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
+	},
+	{
+		token: '--color-popover-muted',
+		description: 'Muted popover surface',
+		light: 'oklch(0.96 0.005 var(--base-hue))',
+		dark: 'oklch(0.2502 0.0095 var(--base-hue))',
+	},
+	{
 		token: '--color-card-muted',
-		description: 'Muted surface',
+		description: 'Muted card surface',
 		light: 'oklch(0.96 0.005 var(--base-hue))',
 		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
 	},
@@ -134,6 +146,11 @@ export const colorTokens = [
 ];
 
 export const shadowTokens = [
+	{
+		token: '--shadow-xs',
+		description: 'Micro elevation',
+		value: '0px 1px 1px -0.5px rgba(9, 9, 11, 0.05)',
+	},
 	{
 		token: '--shadow-sm',
 		description: 'Light elevation',

@@ -155,7 +155,7 @@ class ToasterInstanceManager {
 const toasterInstanceManager = new ToasterInstanceManager();
 
 const toastContainerVariants = cva(
-	'not-prose pointer-events-auto fixed rounded-lg border shadow-2xl will-change-transform overflow-hidden border-border bg-card-muted ',
+	'not-prose pointer-events-auto fixed rounded-lg border shadow-2xl will-change-transform overflow-hidden border-border bg-popover',
 	{
 		variants: {
 			position: {
@@ -936,7 +936,7 @@ const ToastItem: React.FC<ToastItemProps> = React.memo(
 							type="button"
 							onClick={handleClose}
 							className={cn(
-								'absolute top-2 right-2 cursor-pointer rounded-md p-1 text-foreground/45 transition-[box-shadow,color] duration-100 ease-basic hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:outline-none',
+								'absolute top-2 right-2 cursor-pointer rounded-sm p-1 text-foreground/45 transition-[box-shadow,background-color,color] duration-100 ease-basic hover:bg-popover-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:outline-none',
 							)}
 							aria-label="Close toast"
 						>

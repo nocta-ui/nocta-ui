@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const sheetContentVariants = cva(
-	'fixed flex flex-col border border-border bg-card shadow-2xl transition-transform duration-300 ease-smooth',
+	'fixed flex flex-col border border-border bg-popover shadow-2xl transition-transform duration-300 ease-smooth',
 	{
 		variants: {
 			side: {
@@ -541,7 +541,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 							onKeyDown={handleKeyDown}
 							onMouseDown={beginResize}
 							onTouchStart={beginResize}
-							className="not-prose absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-card transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="not-prose absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-popover-muted transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						/>
 						<div className="z-10 pointer-events-none flex h-8 w-2 flex-col items-center justify-center rounded-[2px] bg-border/60">
 							<div className="flex flex-col gap-1">
@@ -585,7 +585,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 				)}
 
 			{showClose && (
-				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,box-shadow,color] duration-100 ease-basic hover:bg-card-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 transition-[background-color,colorbox-shadow] duration-100 ease-basic hover:bg-popover-muted hover:text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</Ariakit.DialogDismiss>
@@ -676,7 +676,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-card-muted/30 p-4',
+				'not-prose mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-popover-muted/30 p-4',
 				className,
 			)}
 			{...props}
@@ -722,7 +722,7 @@ export const SheetClose: React.FC<SheetCloseProps> = ({
 		<Ariakit.DialogDismiss
 			store={store}
 			className={cn(
-				"inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-[background-color,box-shadow] duration-100 ease-basic h-9 px-4 py-2 gap-2 has-[>svg]:px-3 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 text-sm font-medium text-foreground hover:bg-card-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+				"inline-flex cursor-pointer items-center justify-center rounded-md bg-transparent transition-[background-color,box-shadow] duration-100 ease-basic h-9 px-4 py-2 gap-2 has-[>svg]:px-3 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 text-sm font-medium text-foreground hover:bg-popover-muted/60 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 				className,
 			)}
 			type="button"

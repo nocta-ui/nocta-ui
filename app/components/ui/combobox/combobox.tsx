@@ -192,7 +192,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						portal={portal}
 						sameWidth
 						className={cn(
-							'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
+							'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-popover shadow-md',
 							'origin-top -translate-y-2 scale-95 opacity-0 transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 							popoverClassName,
 						)}
@@ -244,8 +244,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
 												{...(itemDisabled ? { disabled: true } : {})}
 												className={cn(
 													'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-100 ease-basic select-none outline-none',
-													'data-active-item:bg-card-muted data-active-item:text-foreground',
-													'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
+													'data-active-item:bg-popover-muted data-active-item:text-foreground',
+													'aria-selected:bg-popover-muted aria-selected:font-medium aria-selected:text-foreground',
 													"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
 													option.disabled &&
 														'pointer-events-none cursor-not-allowed opacity-50',

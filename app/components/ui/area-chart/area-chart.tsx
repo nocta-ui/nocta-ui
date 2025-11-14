@@ -2065,7 +2065,7 @@ export const AreaChartGraphBase = React.forwardRef<
 					<div
 						ref={tooltipRef}
 						data-visible={tooltip.visible ? '' : undefined}
-						className="pointer-events-none absolute left-0 top-0 z-50 min-w-32 max-w-xs rounded-md border border-border bg-card-muted p-2 text-xs text-foreground shadow-md"
+						className="pointer-events-none absolute left-0 top-0 z-50 min-w-32 max-w-xs rounded-md border border-border bg-popover p-2 text-xs text-foreground shadow-md"
 						style={{
 							transformOrigin: `${tooltip.horizontal} ${tooltip.vertical}`,
 							transform: `translate3d(${tooltip.x}px, ${tooltip.y}px, 0) scale(${tooltip.visible ? 1 : 0.95})`,

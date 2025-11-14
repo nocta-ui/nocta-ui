@@ -63,12 +63,10 @@ export const DialogWithActionsDemo: React.FC = () => {
 					</DialogContent>
 					<DialogFooter>
 						<DialogActions>
-							<DialogClose asChild>
-								<Button variant="ghost" size="sm">
+							<DialogClose>
 									Cancel
-								</Button>
 							</DialogClose>
-							<Button variant="default" size="sm">
+							<Button variant="default">
 								Delete
 							</Button>
 						</DialogActions>

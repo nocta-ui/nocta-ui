@@ -111,8 +111,8 @@ export const Select: React.FC<SelectProps> = ({
 	);
 
 	React.useEffect(() => {
-  console.log('Child re-rendered!');
-});
+		console.log('Child re-rendered!');
+	});
 
 	const normalizedSize: SelectSize = size ?? 'md';
 	const normalizedVariant: SelectVariant = variant ?? 'default';
@@ -184,7 +184,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 			portal={portal}
 			fixed={fixed}
 			className={cn(
-				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-card shadow-md',
+				'absolute z-999 my-1 overflow-hidden rounded-md border border-border bg-popover shadow-md',
 				'focus-visible:ring-none focus-visible:outline-none',
 				'origin-top -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 				'not-prose',
@@ -222,8 +222,8 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-100 ease-basic outline-none select-none data-active-item:bg-card-muted data-active-item:text-foreground',
-				'aria-selected:bg-card-muted aria-selected:font-medium aria-selected:text-foreground',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-100 ease-basic outline-none select-none data-active-item:bg-popover-muted data-active-item:text-foreground',
+				'aria-selected:bg-popover-muted aria-selected:font-medium aria-selected:text-foreground',
 				"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,

@@ -30,7 +30,7 @@ const popoverContentVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: `bg-card-muted border-border text-foreground`,
+				default: `bg-popover border-border text-foreground`,
 			},
 			size: {
 				sm: 'px-3 py-2 text-sm',

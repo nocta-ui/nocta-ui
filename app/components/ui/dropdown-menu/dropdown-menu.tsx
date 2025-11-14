@@ -6,7 +6,7 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 
 const dropdownMenuContentVariants = cva(
-	`not-prose z-50 origin-top -translate-y-2 scale-95 rounded-md border border-border bg-card opacity-0 shadow-md transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
+	`not-prose z-50 origin-top -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			size: {
@@ -22,7 +22,7 @@ const dropdownMenuContentVariants = cva(
 );
 
 const dropdownSubMenuContentVariants = cva(
-	`not-prose z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-card opacity-0 shadow-md transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic`,
+	`not-prose z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic`,
 	{
 		variants: {
 			size: {
@@ -38,7 +38,7 @@ const dropdownSubMenuContentVariants = cva(
 );
 
 const dropdownMenuItemVariants = cva(
-	`relative group flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none select-none text-foreground/70 hover:bg-card-muted hover:text-foreground focus-visible:bg-card-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50`,
+	`relative group flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none select-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50`,
 	{
 		variants: {
 			inset: {
