@@ -54,7 +54,7 @@ export function RootToggle({
 				<PopoverTrigger
 					{...props}
 					className={cn(
-						'flex items-center gap-2 rounded-lg border bg-foreground/50 p-2 text-start text-foreground/45 duration-100 ease-basic transition-colors hover:bg-card-muted data-[state=open]:bg-card-muted data-[state=open]:text-foreground/45',
+						'flex items-center gap-2 rounded-lg border bg-foreground/50 p-2 text-start text-foreground/45 hover:bg-card-muted data-[state=open]:bg-card-muted data-[state=open]:text-foreground/45',
 						props.className,
 					)}
 				>
@@ -77,7 +77,7 @@ export function RootToggle({
 							onClick={onClick}
 							{...item.props}
 							className={cn(
-								'flex items-center gap-2 rounded-lg p-1.5 transition-all duration-100 ease-basic hover:bg-card-muted hover:text-foreground/45',
+								'flex items-center gap-2 rounded-lg p-1.5 hover:bg-card-muted hover:text-foreground/45',
 								item.props?.className,
 							)}
 						>

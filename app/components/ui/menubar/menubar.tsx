@@ -20,7 +20,7 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 transition-[background-color,color,box-shadow] duration-100 ease-basic outline-none hover:bg-card-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 outline-none hover:bg-card-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -34,7 +34,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[12rem] origin-top rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 	{
 		variants: {
 			size: {
@@ -48,7 +48,7 @@ const menubarContentVariants = cva(
 );
 
 const menubarSubContentVariants = cva(
-	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic',
+	'not-prose z-50 min-w-[10rem] origin-top-left rounded-md border border-border bg-popover shadow-md shadow-card -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 	{
 		variants: {
 			size: {
@@ -62,7 +62,7 @@ const menubarSubContentVariants = cva(
 );
 
 const menubarItemVariants = cva(
-	"flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50",
+	"flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 outline-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50",
 	{
 		variants: {
 			inset: {
@@ -172,7 +172,7 @@ export const MenubarContent: FC<MenubarContentProps> = ({
 			gutter={9}
 			className={cn(menubarContentVariants({ size }), className)}
 		>
-			<div className="flex flex-col gap-1">{children}</div>
+			<div className="flex flex-col">{children}</div>
 		</Ariakit.Menu>
 	);
 };
@@ -204,7 +204,7 @@ export const MenubarItem: FC<MenubarItemProps> = ({
 
 export const MenubarSeparator: FC<{ className?: string }> = ({ className }) => (
 	<Ariakit.MenuSeparator
-		className={cn('-mx-1 h-px bg-border opacity-60', className)}
+		className={cn('-mx-1 my-1 h-px bg-border opacity-60', className)}
 	/>
 );
 
@@ -270,6 +270,6 @@ export const MenubarSubContent: FC<MenubarSubContentProps> = ({
 		portal
 		className={cn(menubarSubContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );

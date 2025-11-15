@@ -22,7 +22,7 @@ const dropdownMenuContentVariants = cva(
 );
 
 const dropdownSubMenuContentVariants = cva(
-	`not-prose z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0 ease-basic`,
+	`not-prose z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			size: {
@@ -38,7 +38,7 @@ const dropdownSubMenuContentVariants = cva(
 );
 
 const dropdownMenuItemVariants = cva(
-	`relative group flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 transition-[background-color,color] outline-none select-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50`,
+	`relative group flex w-full cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm [&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2 outline-none select-none text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:bg-popover-muted focus-visible:text-foreground aria-disabled:pointer-events-none aria-disabled:opacity-50`,
 	{
 		variants: {
 			inset: {
@@ -119,7 +119,7 @@ export const DropdownMenuContent: React.FC<
 		sameWidth={sameWidth}
 		className={cn(dropdownMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );
 
@@ -173,7 +173,7 @@ export const DropdownMenuSubTrigger: React.FC<
 		className={cn(dropdownMenuItemVariants({ inset, destructive }), className)}
 	>
 		{children}
-		<Ariakit.MenuButtonArrow className="ml-auto text-foreground/70 group-hover:text-foreground transition-[color] duration-100 ease-basic" />
+		<Ariakit.MenuButtonArrow className="ml-auto text-foreground/70 group-hover:text-foreground" />
 	</Ariakit.MenuButton>
 );
 
@@ -187,6 +187,6 @@ export const DropdownMenuSubContent: React.FC<
 		portal
 		className={cn(dropdownSubMenuContentVariants({ size }), className)}
 	>
-		<div className="flex flex-col gap-1">{children}</div>
+		<div className="flex flex-col">{children}</div>
 	</Ariakit.Menu>
 );

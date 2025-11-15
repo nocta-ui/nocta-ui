@@ -8,7 +8,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose relative flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm shadow-card transition-[background-color,box-shadow] duration-100 ease-basic placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose relative flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm shadow-card placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -198,7 +198,7 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				>
 					<Ariakit.SelectList
 						store={selectStore}
-						className="flex flex-col gap-1 py-1 focus-visible:ring-none focus-visible:outline-none"
+						className="flex flex-col py-1 focus-visible:ring-none focus-visible:outline-none"
 					>
 						{children}
 					</Ariakit.SelectList>
@@ -222,8 +222,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 			value={value}
 			disabled={disabled}
 			className={cn(
-				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 transition-[background-color,color] duration-100 ease-basic outline-none select-none data-active-item:bg-popover-muted data-active-item:text-foreground',
-				'aria-selected:bg-popover-muted aria-selected:font-medium aria-selected:text-foreground',
+				'relative mx-1 flex cursor-pointer items-center justify-between rounded-sm px-2 py-1.5 text-sm text-foreground/70 outline-none select-none hover:bg-popover-muted hover:text-foreground data-active-item:bg-popover-muted data-active-item:text-foreground',
 				"[&_svg]:shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 gap-2",
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,

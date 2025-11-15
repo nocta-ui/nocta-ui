@@ -1515,6 +1515,83 @@
 			},
 			"variants": ["default", "muted"]
 		},
+		"sidebar": {
+			"name": "Sidebar",
+			"description": "Collapsible workspace sidebar with hover peek, mobile sheet mode, and grouped navigation",
+			"category": "navigation",
+			"files": [
+				{
+					"name": "sidebar.tsx",
+					"path": "app/components/ui/sidebar/sidebar.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
+				"clsx": "^2.1.1",
+				"@ariakit/react": "^0.4.19"
+			},
+			"internalDependencies": ["button", "sheet", "tooltip", "command-k", "separator"],
+			"exports": [
+				"Sidebar",
+				"SidebarContent",
+				"SidebarFooter",
+				"SidebarGroup",
+				"SidebarGroupAction",
+				"SidebarGroupContent",
+				"SidebarGroupLabel",
+				"SidebarHeader",
+				"SidebarInput",
+				"SidebarInset",
+				"SidebarMenu",
+				"SidebarMenuAction",
+				"SidebarMenuButton",
+				"SidebarMenuItem",
+				"SidebarMenuSub",
+				"SidebarMenuSubButton",
+				"SidebarMenuSubItem",
+				"SidebarProvider",
+				"SidebarSeparator",
+				"SidebarTrigger",
+				"useSidebar"
+			],
+			"props": {
+				"Sidebar": ["children", "side", "className"],
+				"SidebarContent": ["children", "className"],
+				"SidebarFooter": ["children", "className"],
+				"SidebarGroup": ["children", "className"],
+				"SidebarGroupAction": ["children", "className", "asChild", "onClick"],
+				"SidebarGroupContent": ["children", "className"],
+				"SidebarGroupLabel": ["children", "className", "asChild"],
+				"SidebarHeader": ["children", "className"],
+				"SidebarInput": ["items", "placeholder", "disabled", "className", "onClick"],
+				"SidebarInset": ["children", "className"],
+				"SidebarMenu": ["children", "className"],
+				"SidebarMenuAction": ["children", "className", "showOnHover", "onClick"],
+				"SidebarMenuButton": ["children", "className", "isActive", "asChild", "tooltip", "onClick"],
+				"SidebarMenuItem": ["children", "className", "collapsible", "defaultOpen", "open", "onOpenChange"],
+				"SidebarMenuSub": ["children", "className"],
+				"SidebarMenuSubButton": ["children", "className", "isActive", "asChild", "tabIndex", "onClick"],
+				"SidebarMenuSubItem": ["children", "className"],
+				"SidebarProvider": ["children", "side", "defaultOpen", "open", "onOpenChange", "className", "style"],
+				"SidebarSeparator": ["className"],
+				"SidebarTrigger": ["children", "className", "floating", "onClick"],
+				"useSidebar": [
+					"side",
+					"state",
+					"open",
+					"setOpen",
+					"toggleSidebar",
+					"isMobile",
+					"openMobile",
+					"setOpenMobile",
+					"isPeeking",
+					"startPeek",
+					"stopPeek"
+				]
+			}
+		},
 		"slider": {
 			"name": "Slider",
 			"description": "A customizable range slider component with variants, orientations, and accessibility support",
@@ -1901,7 +1978,7 @@
 		"navigation": {
 			"name": "Navigation",
 			"description": "Components for navigation and routing",
-			"components": ["breadcrumb", "navigation-menu", "tabs", "menubar", "pagination"]
+			"components": ["breadcrumb", "navigation-menu", "tabs", "menubar", "pagination", "sidebar"]
 		},
 		"communication": {
 			"name": "Communication",

@@ -1,0 +1,787 @@
+---
+title: Sidebar
+description: A collapsible application sidebar with floating controls, peek interactions, and a dedicated content inset.
+---
+
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarInput,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarFooter,
+  SidebarTrigger,
+  SidebarInset,
+} from '@/app/components/ui/sidebar';
+import { SidebarWorkspaceDemo } from '@/app/components/ui/sidebar/sidebar-demos';
+import { DocsTabs, DocsTab } from '@/components/docs-tab';
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the Sidebar package using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add sidebar
+```
+  </Step>
+  <Step>
+    Then import the primitives you need:
+
+```tsx lineNumbers title="Import"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarInput,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarSeparator,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+```
+  </Step>
+</Steps>
+
+## Examples
+
+### Default Sidebar
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <SidebarWorkspaceDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+```tsx lineNumbers title="Sidebar layout"
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarInput,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarFooter,
+  SidebarTrigger,
+  SidebarInset,
+} from '@/components/ui/sidebar';
+
+export function AppSidebar() {
+  return (
+    <SidebarProvider className="min-h-[28rem] rounded-2xl border border-border/70 bg-background/80 shadow-card">
+      <Sidebar>
+        <SidebarHeader>
+          <SidebarInput placeholder="Search workspace" />
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton isActive>
+                    <span>Overview</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton>
+                    <span>Launch plans</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <p className="text-sm text-foreground/70">
+            Hand off work or show reminders here.
+          </p>
+        </SidebarFooter>
+      </Sidebar>
+      <SidebarTrigger />
+      <SidebarInset className="p-6 space-y-4">
+        <div>
+          <p className="text-xs text-foreground/60">Active sprint</p>
+          <p className="text-2xl font-semibold text-foreground">Northstar dashboard</p>
+        </div>
+        <div className="rounded-xl border border-border/60 bg-card/70 p-4 shadow-card">
+          Keep your primary content inside the inset. It automatically grows to
+          fill the space when the sidebar collapses.
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### Providers and hooks
+
+#### SidebarProvider
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Sidebar layout, typically `<Sidebar>` plus `<SidebarInset>`. ',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    side: {
+      description: 'Edge of the viewport the sidebar is anchored to.',
+      type: '"left" | "right"',
+      default: '"left"',
+    },
+    defaultOpen: {
+      description: 'Initial open state when the provider mounts.',
+      type: 'boolean',
+      default: 'true',
+    },
+    open: {
+      description: 'Controlled open state for the desktop sidebar.',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    onOpenChange: {
+      description: 'Fires when the desktop open state changes.',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes merged onto the wrapper element.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props forwarded to the provider wrapper.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### useSidebar
+
+`useSidebar` exposes the shared layout state from `SidebarProvider`.
+
+<TypeTable
+  type={{
+    side: {
+      description: 'Current placement of the sidebar.',
+      type: '"left" | "right"',
+    },
+    state: {
+      description: 'Collapsed or expanded state of the desktop sidebar.',
+      type: '"expanded" | "collapsed"',
+    },
+    open: {
+      description: 'Boolean indicating whether the desktop sidebar is open.',
+      type: 'boolean',
+    },
+    setOpen: {
+      description: 'Setter that mirrors `setOpen` from `useState`.',
+      type: '(open: boolean | ((open: boolean) => boolean)) => void',
+    },
+    toggleSidebar: {
+      description: 'Toggles the sidebar open state for the current breakpoint.',
+      type: '() => void',
+    },
+    isMobile: {
+      description: 'Indicates whether the layout is currently considered mobile.',
+      type: 'boolean',
+    },
+    openMobile: {
+      description: 'Boolean indicating whether the sheet-based mobile view is open.',
+      type: 'boolean',
+    },
+    setOpenMobile: {
+      description: 'Setter for the mobile sheet state.',
+      type: '(open: boolean | ((open: boolean) => boolean)) => void',
+    },
+    isPeeking: {
+      description: 'True while the pointer hover reveals the collapsed sidebar.',
+      type: 'boolean',
+    },
+    startPeek: {
+      description: 'Begins the peek animation when the hover zone is entered.',
+      type: '() => void',
+    },
+    stopPeek: {
+      description: 'Ends the peek animation after a short delay.',
+      type: '() => void',
+    },
+  }}
+/>
+
+### Layout primitives
+
+#### Sidebar
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Header, content, footer, and other primitives rendered inside the surface.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    side: {
+      description: 'Overrides the provider side for this sidebar instance.',
+      type: '"left" | "right"',
+      default: 'undefined (inherits provider context)',
+    },
+    className: {
+      description: 'Custom classes merged onto the floating container.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props forwarded to the container.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarTrigger
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Custom trigger content; defaults to the vertical view icon + sr-only label.',
+      type: 'React.ReactNode',
+      default: 'Icon + "Toggle sidebar" label',
+    },
+    floating: {
+      description: 'Displays the trigger as a floating control when `true`.',
+      type: 'boolean',
+      default: 'true',
+    },
+    className: {
+      description: 'Additional classes for the trigger button.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'All other `Button` props such as `onClick`.',
+      type: 'ButtonProps',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarInset
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Main application content that adapts with the sidebar.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Classes merged into the `<main>` element.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional props forwarded to the `<main>` element.',
+      type: 'React.HTMLAttributes<HTMLElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarHeader
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Any header content such as title, search, or controls.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the header container.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarContent
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Scrollable body content such as groups and menus.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes merged into the content wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarFooter
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Footer content such as quick links or CTAs.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the footer region.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarSeparator
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Classes merged with the underlying separator.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Props passed down to the base `Separator` component.',
+      type: 'React.ComponentProps<typeof Separator>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarInput
+
+<TypeTable
+  type={{
+    items: {
+      description: 'Command palette items rendered when the field opens.',
+      type: 'CommandKItem[]',
+      default: '[]',
+    },
+    placeholder: {
+      description: 'Input placeholder text.',
+      type: 'string',
+      default: '"Search..."',
+    },
+    disabled: {
+      description: 'Disables both the input button and the command dialog.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional button classes.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Other button props except `children`, `variant`, and `size`.',
+      type: 'Omit<ButtonProps, "children" | "variant" | "size">',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### Grouping primitives
+
+#### SidebarGroup
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Label, actions, and menu content for a section.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Custom classes for the group wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarGroupLabel
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Label text or elements.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    asChild: {
+      description: 'Render the label slot using a custom component via `asChild`.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for the label element.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarGroupAction
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Button content or a custom element when `asChild` is set.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    asChild: {
+      description: 'Allows rendering the action with a custom component.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Classes merged into the action button.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional button attributes.',
+      type: 'React.ButtonHTMLAttributes<HTMLButtonElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarGroupContent
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Menus or custom content grouped under the label.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Classes merged into the content wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional `div` props.',
+      type: 'React.HTMLAttributes<HTMLDivElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+### Menu primitives
+
+#### SidebarMenu
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Top-level menu items.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes applied to the `<ul>` element.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Extra props forwarded to the `<ul>`.',
+      type: 'React.HTMLAttributes<HTMLUListElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuItem
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Menu button and optional nested items.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    collapsible: {
+      description: 'Enable toggleable nested content when `true`.',
+      type: 'boolean',
+      default: 'false',
+    },
+    defaultOpen: {
+      description: 'Initial open state for collapsible sections.',
+      type: 'boolean',
+      default: 'false',
+    },
+    open: {
+      description: 'Controlled open state for collapsible sections.',
+      type: 'boolean',
+      default: 'undefined',
+    },
+    onOpenChange: {
+      description: 'Called when a collapsible section toggles.',
+      type: '(open: boolean) => void',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Classes applied to the `<li>` wrapper.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional list item props.',
+      type: 'React.LiHTMLAttributes<HTMLLIElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuButton
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Button content such as icon and label.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    isActive: {
+      description: 'Applies the active visual state when `true`.',
+      type: 'boolean',
+      default: 'false',
+    },
+    asChild: {
+      description: 'Renders the button via `asChild` to reuse another element.',
+      type: 'boolean',
+      default: 'false',
+    },
+    tooltip: {
+      description: 'Collapsed-state tooltip content or configuration.',
+      type: 'React.ReactNode | SidebarMenuButtonTooltipProps',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Additional classes for the button.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional button attributes.',
+      type: 'React.ButtonHTMLAttributes<HTMLButtonElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuButtonTooltipProps
+
+<TypeTable
+  type={{
+    content: {
+      description: 'Tooltip body shown when the sidebar is collapsed.',
+      type: 'React.ReactNode',
+      default: 'required',
+    },
+    delayDuration: {
+      description: 'Delay in milliseconds before showing the tooltip.',
+      type: 'number',
+      default: '400',
+    },
+    placement: {
+      description: 'Preferred tooltip placement relative to the button.',
+      type: 'TooltipPlacement',
+      default: '"right"',
+    },
+    gutter: {
+      description: 'Offset between the trigger and tooltip.',
+      type: 'number',
+      default: '4',
+    },
+    portal: {
+      description: 'Render the tooltip in a portal when `true`.',
+      type: 'boolean',
+      default: 'true',
+    },
+    fixed: {
+      description: 'Opt into `position: fixed` anchoring.',
+      type: 'boolean',
+      default: 'false',
+    },
+    showArrow: {
+      description: 'Controls whether the tooltip arrow is rendered.',
+      type: 'boolean',
+      default: 'true',
+    },
+    contentProps: {
+      description: 'Props forwarded to `TooltipContent` when it renders.',
+      type: 'Omit<TooltipContentProps, "children">',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuAction
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Action button content (icon, text, etc.).',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    showOnHover: {
+      description: 'Fades the action in only while the parent item is hovered.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Classes for the positioned action button.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional button attributes.',
+      type: 'React.ButtonHTMLAttributes<HTMLButtonElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuSub
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Nested menu items rendered when the parent is open.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Classes merged into the nested `<ul>`.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional nested list props.',
+      type: 'React.HTMLAttributes<HTMLUListElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuSubItem
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Wrapper around a nested menu button.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    className: {
+      description: 'Classes merged into the nested list item.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional nested list item props.',
+      type: 'React.LiHTMLAttributes<HTMLLIElement>',
+      default: 'undefined',
+    },
+  }}
+/>
+
+#### SidebarMenuSubButton
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Nested menu button content.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    isActive: {
+      description: 'Marks the nested item as active.',
+      type: 'boolean',
+      default: 'false',
+    },
+    asChild: {
+      description: 'Render via `asChild` to customize the element.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for the nested button.',
+      type: 'string',
+      default: 'undefined',
+    },
+    '...props': {
+      description: 'Additional button props (e.g., `onClick`).',
+      type: 'React.ButtonHTMLAttributes<HTMLButtonElement>',
+      default: 'undefined',
+    },
+  }}
+/>

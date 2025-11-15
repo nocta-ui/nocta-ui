@@ -25,7 +25,6 @@ const dayButtonVariants = cva(
 	[
 		'text-center',
 		'rounded-sm',
-		'transition-[background-color,box-shadow,color] duration-100 ease-basic',
 		'not-prose focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 		'w-8',
 		'h-8',
@@ -307,7 +306,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToPreviousMonth}
 					disabled={disabled}
 					className={cn(
-						'not-prose cursor-pointer rounded-sm text-foreground/70 duration-100 ease-basic transition-[background-color,box-shadow] hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
 				>
@@ -329,7 +328,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							'not-prose cursor-pointer rounded-sm bg-card text-foreground/70 transition-[background-color,box-shadow] hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+							'not-prose cursor-pointer rounded-sm bg-card text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 							'px-2 py-1 text-xs',
 						)}
 					>
@@ -343,7 +342,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToNextMonth}
 					disabled={disabled}
 					className={cn(
-						'not-prose cursor-pointer rounded-sm text-foreground/70 duration-100 ease-basic transition-[background-color,box-shadow] hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
 				>

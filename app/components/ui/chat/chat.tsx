@@ -4,8 +4,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/app/components/ui/button/button';
-import { Textarea } from '@/app/components/ui/textarea/textarea';
 import { Icons } from '@/app/components/ui/icons/icons';
+import { Textarea } from '@/app/components/ui/textarea/textarea';
 import { cn } from '@/lib/utils';
 
 const chatVariants = cva(
@@ -159,7 +159,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			)}
 
 			<div className="flex w-full flex-col items-start gap-1">
-				<div className="not-prose w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground transition-all duration-100 ease-basic">
+				<div className="not-prose w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground">
 					<div className="flex items-center gap-2">
 						<span className="text-xs text-foreground/70">
 							{getTypingText()}

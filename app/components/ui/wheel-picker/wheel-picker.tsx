@@ -63,7 +63,7 @@ const wheelPickerHighlightText = cva(
 );
 
 const wheelPickerFocusRingClasses =
-	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50 transition-shadow duration-100 ease-basic';
+	'group-focus/wheelpicker:rounded-sm group-focus/wheelpicker:ring-1 group-focus/wheelpicker:ring-ring/50 group-focus/wheelpicker:ring-offset-1 group-focus/wheelpicker:ring-offset-ring-offset/50 group-focus-visible/wheelpicker:rounded-sm group-focus-visible/wheelpicker:border-border group-focus-visible/wheelpicker:ring-1 group-focus-visible/wheelpicker:ring-ring/50 group-focus-visible/wheelpicker:ring-offset-1 group-focus-visible/wheelpicker:ring-offset-ring-offset/50';
 
 const wheelPickerHighlightBand = cva(
 	cn(

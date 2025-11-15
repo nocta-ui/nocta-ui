@@ -42,7 +42,7 @@ export const NavbarMenuLink = (props: LinkProps) => {
 			<Link
 				{...props}
 				className={cn(
-					'relative flex flex-col gap-2 rounded-lg border bg-card p-3 transition-colors hover:bg-card-muted shadow-card',
+					'relative flex flex-col gap-2 rounded-lg border bg-card p-3 transition-none hover:bg-card-muted shadow-card',
 					props.className,
 				)}
 			>

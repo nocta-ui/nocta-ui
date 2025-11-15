@@ -74,7 +74,7 @@ const itemVariants = cva(
 			active: {
 				true: 'bg-card-muted text-foreground',
 				false:
-					'transition-colors hover:bg-card-muted hover:text-foreground duration-100 ease-basic',
+					'hover:bg-card-muted hover:text-foreground',
 			},
 		},
 	},
@@ -125,7 +125,7 @@ export function SidebarContent(props: ComponentProps<'aside'>) {
 			{...props}
 			data-collapsed={collapsed}
 			className={cn(
-				'fixed bg-card border-r rounded-r-lg border-fd-border shadow-card top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) left-0 z-20 flex flex-col items-end text-sm transition-[top,opacity,translate,width] duration-450 ease-smooth *:w-(--fd-sidebar-width) max-md:hidden rtl:right-(--removed-body-scroll-bar-size,0) rtl:left-auto',
+				'fixed bg-card border-r border-fd-border shadow-card top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) left-0 z-20 flex flex-col items-end text-sm transition-[top,opacity,translate,width] duration-450 ease-smooth *:w-(--fd-sidebar-width) max-md:hidden rtl:right-(--removed-body-scroll-bar-size,0) rtl:left-auto',
 				collapsed && [
 					'translate-x-(--fd-sidebar-offset) rounded-lg border border-border rtl:-translate-x-(--fd-sidebar-offset)',
 					hover ? 'z-50 shadow-lg' : 'opacity-0',

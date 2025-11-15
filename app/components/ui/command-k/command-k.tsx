@@ -60,7 +60,6 @@ const listItemClass = cva(
 		'relative flex cursor-pointer items-center gap-3 rounded-sm h-9 px-3 py-2',
 		'text-sm text-foreground',
 		'hover:bg-popover-muted',
-		'transition-[background-color] duration-100 ease-basic',
 	].join(' '),
 	{
 		variants: {
@@ -403,7 +402,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 						) : (
 							Array.from(grouped.entries()).map(([group, entries]) => (
 								<div key={group} className="px-2">
-									<fieldset className="m-0 mt-1 flex flex-col gap-1 border-0 p-0">
+									<fieldset className="m-0 mt-1 flex flex-col border-0 p-0">
 										<legend className={groupHeaderClass()}>{group}</legend>
 										{entries.map((entry) => {
 											const flatIndex = flatSelectable.findIndex(
