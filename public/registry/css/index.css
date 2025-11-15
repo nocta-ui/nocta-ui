@@ -237,20 +237,22 @@
 	}
 }
 
-@layer utilities {
-	.shadow-card {
-		isolation: isolate;
-	}
-	.shadow-card::before {
+@utility shadow-card {
+	isolation: isolate;
+
+	&::before {
 		content: "";
 		position: absolute;
 		inset: -1px;
 		border-radius: inherit;
 		pointer-events: none;
 		z-index: -1;
-		box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.32);
+		box-shadow: inset 0 1px 0 0 rgb(249 249 255 / 0.32);
 	}
-	.dark .shadow-card::before {
-		box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
+
+	@variant dark {
+		&::before {
+			box-shadow: inset 0 1px 0 0 rgb(249 249 255 / 0.12);
+		}
 	}
 }

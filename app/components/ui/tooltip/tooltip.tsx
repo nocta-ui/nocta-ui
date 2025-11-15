@@ -5,6 +5,52 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
 
+type AnyEventHandler = (...args: unknown[]) => void;
+
+const isEventHandlerKey = (key: string) =>
+	key.startsWith('on') && key.length > 2 && key[2] === key[2]?.toUpperCase();
+
+const isAnyEventHandler = (value: unknown): value is AnyEventHandler =>
+	typeof value === 'function';
+
+const composeEventHandlers = (
+	childHandler?: AnyEventHandler,
+	anchorHandler?: AnyEventHandler,
+) => {
+	if (!childHandler) return anchorHandler;
+	if (!anchorHandler) return childHandler;
+	return (...args: unknown[]) => {
+		childHandler(...args);
+		const event = args[0];
+		const defaultPrevented =
+			event && typeof event === 'object' && 'defaultPrevented' in event
+				? Boolean((event as { defaultPrevented?: boolean }).defaultPrevented)
+				: false;
+		if (!defaultPrevented) {
+			anchorHandler(...args);
+		}
+	};
+};
+
+const mergeRefs = <T,>(
+	...refs: (React.Ref<T> | undefined)[]
+): React.RefCallback<T> | undefined => {
+	const validRefs = refs.filter(Boolean);
+	if (validRefs.length === 0) {
+		return undefined;
+	}
+	return (node: T | null) => {
+		for (const ref of validRefs) {
+			if (!ref) continue;
+			if (typeof ref === 'function') {
+				ref(node);
+			} else {
+				(ref as React.MutableRefObject<T | null>).current = node;
+			}
+		}
+	};
+};
+
 const tooltipContentVariants = cva(
 	`not-prose pointer-events-auto z-50 origin-top -translate-y-2 scale-95 rounded-md border px-3 py-2 text-sm opacity-0 shadow-md shadow-card transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
@@ -91,20 +137,43 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 	if (React.isValidElement(children)) {
 		return (
 			<Ariakit.TooltipAnchor
-				render={(anchorProps) =>
-					React.cloneElement(
-						children as React.ReactElement<{ className?: string }>,
-						{
-							...(anchorProps as Record<string, unknown>),
-							className: cn(
-								'not-prose inline-flex items-center',
-								className,
-								(children as React.ReactElement<{ className?: string }>).props
-									.className,
-							),
-						},
-					)
-				}
+				render={(anchorProps) => {
+					const childElement = children as React.ReactElement & {
+						ref?: React.Ref<unknown>;
+					};
+					const childProps = (childElement.props ?? {}) as Record<
+						string,
+						unknown
+					> & { className?: string };
+					const {
+						ref: anchorRef,
+						className: anchorClassName,
+						...restAnchorProps
+					} = anchorProps;
+					const mergedProps: Record<string, unknown> = { ...childProps };
+
+					Object.entries(restAnchorProps as Record<string, unknown>).forEach(([key, value]) => {
+						if (isEventHandlerKey(key) && isAnyEventHandler(value)) {
+							const existingHandler =
+								mergedProps[key] as AnyEventHandler | undefined;
+							mergedProps[key] = composeEventHandlers(existingHandler, value);
+							return;
+						}
+						mergedProps[key] = value;
+					});
+
+					mergedProps['className'] = cn(
+						'not-prose inline-flex items-center',
+						className,
+						anchorClassName as string | undefined,
+						childProps.className,
+					);
+
+					return React.cloneElement(childElement as React.ReactElement<any>, {
+						...mergedProps,
+						ref: mergeRefs(childElement.ref, anchorRef as React.Ref<unknown>),
+					});
+				}}
 				{...(autoFocus === undefined ? {} : { autoFocus })}
 				{...restProps}
 			/>

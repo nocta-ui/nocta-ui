@@ -106,16 +106,16 @@ const DocsTabs = ({
 				<div className="relative overflow-hidden bg-card p-1">
 					<div
 						className={cn(
-							'relative bg-background rounded-md border border-fd-border',
+							'relative bg-background rounded-md border border-fd-border overflow-hidden',
 							activeTab === 'code' &&
 								'overflow-y-visible [&_figure]:my-0 [&_figure>div]:border-0 [&_figure>div]:rounded-md [&_figure>div]:before:content-none! [&_figure>div]:before:shadow-none!',
 						)}
 					>
 						<div
 							className={cn(
-								'flex w-full items-center overflow-x-auto md:justify-center',
+								'flex w-full items-center overflow-x-auto md:justify-center isolate',
 								justify === 'center' ? 'justify-center' : 'justify-start',
-								activeTab !== 'code' ? 'p-4 md:p-16' : '',
+								activeTab !== 'code' ? 'p-4 md:p-16 has-[.sidebar]:p-0' : '',
 							)}
 						>
 							{activeContent?.props.children}
