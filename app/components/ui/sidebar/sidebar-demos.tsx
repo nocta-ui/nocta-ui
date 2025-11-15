@@ -31,7 +31,7 @@ type WorkspaceNavChild = {
 	id: string;
 	title: string;
 	icon: keyof typeof RadixIcons;
-	ooltip?: string;
+	tooltip?: string;
 };
 
 type WorkspaceNavItem = {
