@@ -136,7 +136,6 @@ import {
     <PieChart data={campaignData} valueKey="conversions" nameKey="campaign">
       <PieChartHeader
         contentClassName="sm:max-w-xs"
-        titleClassName="text-lg font-medium"
         actionsClassName="flex-wrap gap-2"
       >
         <PieChartTitle>Campaign Conversions</PieChartTitle>
@@ -182,7 +181,7 @@ import {
       nameKey="region"
       sortSlices
     >
-      <PieChartHeader descriptionClassName="text-foreground/60">
+      <PieChartHeader>
         <PieChartTitle>Quarterly Revenue by Region</PieChartTitle>
         <PieChartDescription>
           Break down revenue contribution and view the detailed table below.

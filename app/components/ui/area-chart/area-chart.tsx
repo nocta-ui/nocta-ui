@@ -817,7 +817,10 @@ export const AreaChartDescription = (({
 }: AreaChartDescriptionProps) => {
 	return (
 		<p
-			className={cn('text-sm leading-snug text-foreground/70', className)}
+			className={cn(
+				'text-sm leading-snug text-foreground/45 text-balance',
+				className,
+			)}
 			{...props}
 		>
 			{children}
@@ -1073,7 +1076,9 @@ function AreaChartState({
 			<div className="space-y-2">
 				<p className="text-sm font-medium text-foreground">{label}</p>
 				{description ? (
-					<p className="text-sm text-foreground/70">{description}</p>
+					<p className="text-sm text-foreground/45 text-balance">
+						{description}
+					</p>
 				) : null}
 			</div>
 		</div>

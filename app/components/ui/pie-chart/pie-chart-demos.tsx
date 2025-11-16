@@ -93,7 +93,6 @@ export const PieChartWithActionsDemo: React.FC = () => (
 		<PieChart data={campaignData} valueKey="conversions" nameKey="campaign">
 			<PieChartHeader
 				contentClassName="sm:max-w-xs"
-				titleClassName="text-lg font-medium"
 				actionsClassName="flex-wrap gap-2"
 			>
 				<PieChartTitle>Campaign Conversions</PieChartTitle>
@@ -121,7 +120,7 @@ export const PieChartWithActionsDemo: React.FC = () => (
 export const PieChartWithDataTableDemo: React.FC = () => (
 	<div className="my-6">
 		<PieChart data={revenueData} valueKey="revenue" nameKey="region" sortSlices>
-			<PieChartHeader descriptionClassName="text-foreground/60">
+			<PieChartHeader>
 				<PieChartTitle>Quarterly Revenue by Region</PieChartTitle>
 				<PieChartDescription>
 					Break down revenue contribution and drill into each market below.

@@ -43,18 +43,21 @@ const alertTitleVariants = cva(
 	},
 );
 
-const alertDescriptionVariants = cva('text-foreground/70 [&_p]:leading-snug', {
-	variants: {
-		size: {
-			sm: 'text-xs',
-			md: 'text-xs',
-			lg: 'text-sm',
+const alertDescriptionVariants = cva(
+	'text-foreground/70 [&_p]:leading-snug text-balance',
+	{
+		variants: {
+			size: {
+				sm: 'text-xs',
+				md: 'text-xs',
+				lg: 'text-sm',
+			},
+		},
+		defaultVariants: {
+			size: 'md',
 		},
 	},
-	defaultVariants: {
-		size: 'md',
-	},
-});
+);
 
 type AlertVariant = NonNullable<VariantProps<typeof alertVariants>['variant']>;
 

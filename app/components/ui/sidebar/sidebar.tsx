@@ -566,7 +566,7 @@ function SidebarInput({
 			>
 				<Icons.Search className="size-5 text-foreground/45" />
 				<span className="flex-1 truncate text-left">{placeholder}</span>
-				<kbd className="relative pointer-events-none select-none rounded-sm border border-border bg-card-muted shadow-sm shadow-card px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground/60">
+				<kbd className="relative pointer-events-none select-none rounded-sm border border-border bg-card-muted shadow-sm shadow-card px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground/70">
 					⌘K
 				</kbd>
 			</Button>

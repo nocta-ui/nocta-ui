@@ -140,11 +140,11 @@ export const CheckboxCard = React.forwardRef<
 					<div className="flex flex-1 flex-col gap-3">
 						<div className="flex items-start gap-3">
 							<div className="flex min-w-0 flex-1 flex-col">
-								<span className="truncate text-sm font-medium text-foreground">
+								<span className="truncate text-sm leading-none font-medium text-foreground">
 									{title}
 								</span>
 								{description ? (
-									<span className="mt-1 text-xs text-foreground/70">
+									<span className="mt-1 text-xs text-foreground/70 leading-snug text-balance">
 										{description}
 									</span>
 								) : null}

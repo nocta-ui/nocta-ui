@@ -32,7 +32,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 						'transition-[color] ease-out-quad duration-100',
 						isActive
 							? 'text-foreground'
-							: 'text-foreground/60 group-hover:text-foreground',
+							: 'text-foreground/70 group-hover:text-foreground',
 					)}
 				>
 					{icon}
@@ -43,7 +43,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 					'relative z-10 transition-colors',
 					isActive
 						? 'text-foreground'
-						: 'text-foreground/60 group-hover:text-foreground',
+						: 'text-foreground/70 group-hover:text-foreground',
 				)}
 			>
 				{title}

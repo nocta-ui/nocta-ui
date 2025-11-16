@@ -326,7 +326,10 @@ export const PieChartDescription = (({
 }: PieChartDescriptionProps) => {
 	return (
 		<p
-			className={cn('text-sm leading-snug text-foreground/70', className)}
+			className={cn(
+				'text-sm leading-snug text-foreground/45 text-balance',
+				className,
+			)}
 			{...props}
 		>
 			{children}
@@ -558,9 +561,13 @@ function PieChartState({
 	return (
 		<div className="flex h-full w-full items-center justify-center rounded-md border border-dashed border-border/60 bg-card-muted/30 px-4 py-10 text-center">
 			<div className="space-y-2">
-				<p className="text-sm font-medium text-foreground">{label}</p>
+				<p className="text-sm leading-none font-medium text-foreground">
+					{label}
+				</p>
 				{description ? (
-					<p className="text-sm text-foreground/70">{description}</p>
+					<p className="text-sm leading-snug text-foreground/45">
+						{description}
+					</p>
 				) : null}
 			</div>
 		</div>
@@ -1382,7 +1389,7 @@ export function PieChartDataTableContent<
 					{showPercentages ? (
 						<span
 							className={cn(
-								'text-right text-xs uppercase tracking-wide text-foreground/55',
+								'text-right text-xs uppercase tracking-wide text-foreground/45',
 								percentageClassName,
 							)}
 						>

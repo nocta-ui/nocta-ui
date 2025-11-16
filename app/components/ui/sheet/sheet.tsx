@@ -657,7 +657,10 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 }) => {
 	return (
 		<Ariakit.DialogDescription
-			className={cn('mt-1 text-sm leading-snug text-foreground/45', className)}
+			className={cn(
+				'mt-1 text-sm leading-snug text-foreground/45 text-balance',
+				className,
+			)}
 			{...props}
 		>
 			{children}
