@@ -1013,9 +1013,15 @@ function SidebarMenuSubButton({
 	children,
 	type,
 	tabIndex: tabIndexProp,
+	tooltip,
 	...props
-}: React.ComponentProps<'button'> & { asChild?: boolean; isActive?: boolean }) {
+}: React.ComponentProps<'button'> & {
+	asChild?: boolean;
+	isActive?: boolean;
+	tooltip?: React.ReactNode | SidebarMenuButtonTooltipProps;
+}) {
 	const menuItem = useSidebarMenuItem();
+	const { state, isMobile } = useSidebar();
 	const classes = cn(
 		sidebarNavSubButtonBaseClasses,
 		sidebarNavButtonStateClasses,
@@ -1035,14 +1041,72 @@ function SidebarMenuSubButton({
 		tabIndex: computedTabIndex,
 	};
 
-	if (asChild && React.isValidElement(children)) {
-		return <Role.button {...sharedProps} render={children} />;
+	const button =
+		asChild && React.isValidElement(children) ? (
+			<Role.button {...sharedProps} render={children} />
+		) : (
+			<button type={type ?? 'button'} {...sharedProps}>
+				{children}
+			</button>
+		);
+
+	const tooltipConfig =
+		React.useMemo<SidebarMenuButtonTooltipProps | null>(() => {
+			if (!tooltip) return null;
+			if (
+				React.isValidElement(tooltip) ||
+				typeof tooltip === 'string' ||
+				typeof tooltip === 'number'
+			) {
+				return { content: tooltip };
+			}
+			if (
+				typeof tooltip === 'object' &&
+				tooltip !== null &&
+				'content' in tooltip &&
+				tooltip.content !== undefined
+			) {
+				return tooltip as SidebarMenuButtonTooltipProps;
+			}
+			return { content: tooltip as React.ReactNode };
+		}, [tooltip]);
+
+	if (!tooltipConfig) {
+		return button;
+	}
+
+	const {
+		content,
+		delayDuration,
+		placement,
+		gutter,
+		portal,
+		fixed,
+		showArrow,
+		contentProps,
+	} = tooltipConfig;
+	const { hidden: contentHidden, ...restContentProps } = contentProps ?? {};
+	const defaultShouldHide = state !== 'collapsed' || isMobile;
+	const shouldSkipTooltip = contentHidden ?? defaultShouldHide;
+
+	if (shouldSkipTooltip) {
+		return button;
 	}
 
 	return (
-		<button type={type ?? 'button'} {...sharedProps}>
-			{children}
-		</button>
+		<Tooltip
+			delayDuration={delayDuration ?? 400}
+			placement={placement ?? 'right'}
+			gutter={gutter ?? 4}
+			portal={portal ?? true}
+			fixed={fixed ?? false}
+			showArrow={showArrow ?? true}
+		>
+			<TooltipTrigger className="w-full">{button}</TooltipTrigger>
+			<TooltipContent className="p-1 text-xs rounded" {...restContentProps}>
+				{content}
+			</TooltipContent>
+		</Tooltip>
 	);
 }
 

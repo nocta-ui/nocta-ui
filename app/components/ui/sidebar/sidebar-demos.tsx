@@ -265,6 +265,7 @@ export function SidebarWorkspaceDemo() {
                                   <SidebarMenuSubButton
                                     isActive={activeItem === child.id}
                                     onClick={() => setActiveItem(child.id)}
+                                    tooltip={child.tooltip}
                                   >
                                     <span className="flex items-center gap-2">
                                       <ChildIcon className="size-4" aria-hidden="true" />
