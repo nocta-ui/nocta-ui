@@ -6,7 +6,7 @@ import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
-const accordionVariants = cva('not-prose w-full', {
+const accordionVariants = cva('w-full', {
 	variants: {
 		variant: {
 			default: '',
@@ -19,7 +19,7 @@ const accordionVariants = cva('not-prose w-full', {
 });
 
 const accordionItemVariants = cva(
-	'not-prose transition-[box-shadow] ease-out-quad duration-100',
+	'transition-[box-shadow] ease-out-quad duration-100',
 	{
 		variants: {
 			variant: {
@@ -39,7 +39,7 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[color,box-shadow] ease-out-quad duration-100',
+	'flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[color,box-shadow] ease-out-quad duration-100',
 	{
 		variants: {
 			variant: {
@@ -108,7 +108,7 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-	'not-prose overflow-hidden transition-[height,opacity] duration-300 ease-smooth',
+	'overflow-hidden transition-[height,opacity] duration-300 ease-smooth',
 	{
 		variants: {
 			size: {
@@ -402,7 +402,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="not-prose relative rounded-lg border border-border bg-card shadow-sm shadow-card">
+						<div className="relative rounded-lg border border-border bg-card shadow-sm shadow-card">
 							{children}
 						</div>
 					</div>
@@ -448,7 +448,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 		}, [size]);
 
 		return (
-			<h3 className="not-prose">
+			<h3>
 				<Ariakit.Disclosure
 					store={store}
 					id={triggerId}

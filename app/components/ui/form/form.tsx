@@ -87,7 +87,7 @@ export const Form: React.FC<FormProps> = ({
 	return (
 		<Ariakit.Form
 			store={store}
-			className={cn('not-prose space-y-6', className)}
+			className={cn('space-y-6', className)}
 			onSubmit={handleSubmit}
 			{...props}
 		>

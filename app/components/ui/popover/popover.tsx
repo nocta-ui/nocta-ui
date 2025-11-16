@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const popoverTriggerVariants = cva(
-	"not-prose relative not-prose inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card transition-[background-color,box-shadow,filter] [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card transition-[background-color,box-shadow,filter] [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
@@ -26,7 +26,7 @@ const popoverTriggerVariants = cva(
 );
 
 const popoverContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md shadow-card transition-shadow focus-visible:ring-none focus-visible:outline-none',
+	'relative w-fit rounded-lg border shadow-md shadow-card transition-shadow focus-visible:ring-none focus-visible:outline-none',
 	{
 		variants: {
 			variant: {
@@ -123,7 +123,7 @@ export const Popover: React.FC<PopoverProps> = ({
 	return (
 		<PopoverStoreContext.Provider value={store}>
 			<Ariakit.PopoverProvider store={store}>
-				<div className="not-prose relative">{children}</div>
+				<div className="relative">{children}</div>
 			</Ariakit.PopoverProvider>
 		</PopoverStoreContext.Provider>
 	);
@@ -208,7 +208,7 @@ export const PopoverHeading = React.forwardRef<
 	<Ariakit.PopoverHeading
 		ref={ref}
 		className={cn(
-			'not-prose text-sm leading-none font-medium text-foreground',
+			'text-sm leading-none font-medium text-foreground',
 			className,
 		)}
 		{...props}
@@ -223,10 +223,7 @@ export const PopoverDescription = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
 	<Ariakit.PopoverDescription
 		ref={ref}
-		className={cn(
-			'not-prose text-sm leading-snug text-foreground/70',
-			className,
-		)}
+		className={cn('text-sm leading-snug text-foreground/70', className)}
 		{...props}
 	/>
 ));

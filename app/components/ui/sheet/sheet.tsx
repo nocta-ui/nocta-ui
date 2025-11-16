@@ -252,7 +252,7 @@ export const SheetTrigger: React.FC<SheetTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex cursor-pointer items-center justify-center rounded-md font-medium focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'inline-flex cursor-pointer items-center justify-center rounded-md font-medium focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			type="button"
@@ -541,7 +541,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 							onKeyDown={handleKeyDown}
 							onMouseDown={beginResize}
 							onTouchStart={beginResize}
-							className="not-prose absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-popover-muted transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-popover-muted transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						/>
 						<div className="z-10 pointer-events-none flex h-8 w-2 flex-col items-center justify-center rounded-[2px] bg-border/60">
 							<div className="flex flex-col gap-1">
@@ -572,7 +572,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 							onKeyDown={handleKeyDown}
 							onMouseDown={beginResize}
 							onTouchStart={beginResize}
-							className="not-prose absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-transparent transition-shadow ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-transparent transition-shadow ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						/>
 						<div className="z-10 pointer-events-none flex h-2 w-8 items-center justify-center rounded-[2px] bg-border/60">
 							<div className="flex gap-1">
@@ -585,7 +585,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 				)}
 
 			{showClose && (
-				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 hover:bg-popover-muted hover:text-foreground/70 transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<Ariakit.DialogDismiss className="absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 hover:bg-popover-muted hover:text-foreground/70 transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</Ariakit.DialogDismiss>
@@ -609,7 +609,7 @@ export const SheetContent: React.FC<SheetContentProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose flex-1 p-4 text-sm leading-snug text-foreground/70',
+				'flex-1 p-4 text-sm leading-snug text-foreground/70',
 				className,
 			)}
 			{...props}
@@ -625,7 +625,7 @@ export const SheetHeader: React.FC<SheetHeaderProps> = ({
 	...props
 }) => {
 	return (
-		<div className={cn('not-prose px-4 pt-4', className)} {...props}>
+		<div className={cn('px-4 pt-4', className)} {...props}>
 			{children}
 		</div>
 	);
@@ -640,7 +640,7 @@ export const SheetTitle: React.FC<SheetTitleProps> = ({
 	return (
 		<Ariakit.DialogHeading
 			className={cn(
-				'not-prose text-base leading-none font-medium text-foreground',
+				'text-base leading-none font-medium text-foreground',
 				className,
 			)}
 			{...props}
@@ -657,10 +657,7 @@ export const SheetDescription: React.FC<SheetDescriptionProps> = ({
 }) => {
 	return (
 		<Ariakit.DialogDescription
-			className={cn(
-				'not-prose mt-1 text-sm leading-snug text-foreground/45',
-				className,
-			)}
+			className={cn('mt-1 text-sm leading-snug text-foreground/45', className)}
 			{...props}
 		>
 			{children}
@@ -676,7 +673,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-popover-muted/30 p-4',
+				'mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-popover-muted/30 p-4',
 				className,
 			)}
 			{...props}

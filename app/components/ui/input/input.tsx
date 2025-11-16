@@ -9,7 +9,7 @@ const wrapperVariants = cva(
 		'focus-within:ring-1 focus-within:ring-offset-1',
 		'focus-within:ring-offset-ring-offset/50',
 		'has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50',
-		'not-prose shadow-sm shadow-card',
+		'shadow-sm shadow-card',
 		'transition-shadow duration-100 ease-out-quad',
 	],
 	{
@@ -158,7 +158,7 @@ export const Input: React.FC<InputProps> = ({
 	const describedBy: string[] = [];
 
 	return (
-		<div className={`not-prose ${containerClassName}`}>
+		<div className={`${containerClassName}`}>
 			{label && (
 				<label htmlFor={inputId} className={labelVariants({ variant })}>
 					{label}

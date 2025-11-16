@@ -5,63 +5,60 @@ import type React from 'react';
 
 import { cn } from '@/lib/utils';
 
-const separatorVariants = cva(
-	'not-prose relative shrink-0 rounded-full bg-border',
-	{
-		variants: {
-			orientation: {
-				horizontal: 'w-full',
-				vertical: 'h-full min-h-4',
-			},
-			variant: {
-				default: 'bg-border',
-				muted: 'bg-border/60',
-			},
-			thickness: {
-				sm: '',
-				md: '',
-				lg: '',
-			},
+const separatorVariants = cva('relative shrink-0 rounded-full bg-border', {
+	variants: {
+		orientation: {
+			horizontal: 'w-full',
+			vertical: 'h-full min-h-4',
 		},
-		compoundVariants: [
-			{
-				orientation: 'horizontal',
-				thickness: 'sm',
-				class: 'h-px',
-			},
-			{
-				orientation: 'horizontal',
-				thickness: 'md',
-				class: 'h-0.5',
-			},
-			{
-				orientation: 'horizontal',
-				thickness: 'lg',
-				class: 'h-1',
-			},
-			{
-				orientation: 'vertical',
-				thickness: 'sm',
-				class: 'w-px',
-			},
-			{
-				orientation: 'vertical',
-				thickness: 'md',
-				class: 'w-0.5',
-			},
-			{
-				orientation: 'vertical',
-				thickness: 'lg',
-				class: 'w-1',
-			},
-		],
-		defaultVariants: {
-			orientation: 'horizontal',
-			thickness: 'sm',
-			variant: 'default',
+		variant: {
+			default: 'bg-border',
+			muted: 'bg-border/60',
+		},
+		thickness: {
+			sm: '',
+			md: '',
+			lg: '',
 		},
 	},
-);
+	compoundVariants: [
+		{
+			orientation: 'horizontal',
+			thickness: 'sm',
+			class: 'h-px',
+		},
+		{
+			orientation: 'horizontal',
+			thickness: 'md',
+			class: 'h-0.5',
+		},
+		{
+			orientation: 'horizontal',
+			thickness: 'lg',
+			class: 'h-1',
+		},
+		{
+			orientation: 'vertical',
+			thickness: 'sm',
+			class: 'w-px',
+		},
+		{
+			orientation: 'vertical',
+			thickness: 'md',
+			class: 'w-0.5',
+		},
+		{
+			orientation: 'vertical',
+			thickness: 'lg',
+			class: 'w-1',
+		},
+	],
+	defaultVariants: {
+		orientation: 'horizontal',
+		thickness: 'sm',
+		variant: 'default',
+	},
+});
 
 export interface SeparatorProps
 	extends React.HTMLAttributes<HTMLDivElement>,

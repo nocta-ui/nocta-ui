@@ -4,7 +4,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
-	'not-prose relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm shadow-card',
+	'relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm shadow-card',
 	{
 		variants: {
 			variant: {
@@ -28,7 +28,7 @@ const alertVariants = cva(
 );
 
 const alertTitleVariants = cva(
-	'not-prose [line-height:1] font-medium text-foreground mb-1',
+	'[line-height:1] font-medium text-foreground mb-1',
 	{
 		variants: {
 			size: {
@@ -43,21 +43,18 @@ const alertTitleVariants = cva(
 	},
 );
 
-const alertDescriptionVariants = cva(
-	'not-prose text-foreground/70 [&_p]:leading-snug',
-	{
-		variants: {
-			size: {
-				sm: 'text-xs',
-				md: 'text-xs',
-				lg: 'text-sm',
-			},
-		},
-		defaultVariants: {
-			size: 'md',
+const alertDescriptionVariants = cva('text-foreground/70 [&_p]:leading-snug', {
+	variants: {
+		size: {
+			sm: 'text-xs',
+			md: 'text-xs',
+			lg: 'text-sm',
 		},
 	},
-);
+	defaultVariants: {
+		size: 'md',
+	},
+});
 
 type AlertVariant = NonNullable<VariantProps<typeof alertVariants>['variant']>;
 

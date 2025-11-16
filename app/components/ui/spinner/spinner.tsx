@@ -2,25 +2,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { cn } from '@/lib/utils';
 
-const spinnerVariants = cva(
-	['inline-block not-prose animate-spin text-current'],
-	{
-		variants: {
-			variant: {
-				default: 'text-foreground/70',
-			},
-			size: {
-				sm: 'size-4',
-				md: 'size-6',
-				lg: 'size-8',
-			},
+const spinnerVariants = cva(['inline-block animate-spin text-current'], {
+	variants: {
+		variant: {
+			default: 'text-foreground/70',
 		},
-		defaultVariants: {
-			variant: 'default',
-			size: 'md',
+		size: {
+			sm: 'size-4',
+			md: 'size-6',
+			lg: 'size-8',
 		},
 	},
-);
+	defaultVariants: {
+		variant: 'default',
+		size: 'md',
+	},
+});
 
 export interface SpinnerProps
 	extends React.HTMLAttributes<HTMLDivElement>,

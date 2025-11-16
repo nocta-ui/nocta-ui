@@ -5,7 +5,7 @@ import type React from 'react';
 import { useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 
-const skeletonVariants = cva('not-prose bg-card-muted', {
+const skeletonVariants = cva('bg-card-muted', {
 	variants: {
 		variant: {
 			default: '',

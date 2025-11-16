@@ -6,7 +6,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const tabsListVariants = cva(
-	'relative not-prose inline-flex items-center justify-center shadow-sm',
+	'relative inline-flex items-center justify-center shadow-sm',
 	{
 		variants: {
 			orientation: {
@@ -38,7 +38,7 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-	`not-prose inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-[color,box-shadow] ease-out-quad duration-100 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+	`inline-flex cursor-pointer items-center justify-center font-medium whitespace-nowrap transition-[color,box-shadow] ease-out-quad duration-100 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-border focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -238,7 +238,7 @@ export function TabsContent({ children, value, className }: TabsContentProps) {
 		<Ariakit.TabPanel
 			tabId={value}
 			className={cn(
-				'relative not-prose focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'relative focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 		>

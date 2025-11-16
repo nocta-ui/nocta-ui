@@ -64,7 +64,7 @@ const headerCellVariants = cva(
 		'flex items-center rounded-lg p-4 text-foreground/70 text-xs font-medium tracking-wide uppercase',
 		'transition-shadow duration-100 ease-out-quad',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
-		'not-prose focus-visible:ring-ring/50 focus-visible:ring-offset-ring-offset/50',
+		'focus-visible:ring-ring/50 focus-visible:ring-offset-ring-offset/50',
 	],
 	{
 		variants: {

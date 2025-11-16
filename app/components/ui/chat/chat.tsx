@@ -136,7 +136,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 		/* biome-ignore lint/a11y/useSemanticElements: typing indicator intentionally uses a div with role="status" for accessibility */
 		<div
 			role="status"
-			className={cn('not-prose flex items-end gap-2', className)}
+			className={cn('flex items-end gap-2', className)}
 			{...props}
 		>
 			{showAvatars && (
@@ -159,7 +159,7 @@ export const TypingIndicator: React.FC<TypingIndicatorProps> = ({
 			)}
 
 			<div className="flex w-full flex-col items-start gap-1">
-				<div className="not-prose w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground">
+				<div className="w-fit max-w-[80%] rounded-lg bg-card-muted px-3 py-2 text-sm text-foreground">
 					<div className="flex items-center gap-2">
 						<span className="text-xs text-foreground/70">
 							{getTypingText()}
@@ -249,10 +249,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
 			aria-live="polite"
 			aria-relevant="additions text"
 			aria-label="Chat messages"
-			className={cn(
-				'not-prose flex-1 space-y-3 overflow-y-auto p-4',
-				className,
-			)}
+			className={cn('flex-1 space-y-3 overflow-y-auto p-4', className)}
 			{...props}
 		>
 			{messages.map((message) => (
@@ -283,7 +280,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 		<div
 			role={isSystem ? 'status' : 'listitem'}
 			className={cn(
-				'not-prose flex items-end gap-2',
+				'flex items-end gap-2',
 				isUser ? 'flex-row-reverse' : 'flex-row',
 				isSystem ? 'justify-center' : '',
 				className,
@@ -418,7 +415,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose border-t border-border/60 bg-card-muted/30 p-4',
+				'border-t border-border/60 bg-card-muted/30 p-4',
 				className,
 			)}
 			{...props}
@@ -467,10 +464,7 @@ export const ChatActions: React.FC<ChatActionsProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={cn('not-prose flex items-center gap-2', className)}
-			{...props}
-		>
+		<div className={cn('flex items-center gap-2', className)} {...props}>
 			{children}
 		</div>
 	);

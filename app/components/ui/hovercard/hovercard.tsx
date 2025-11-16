@@ -6,7 +6,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 const hovercardTriggerVariants = cva(
-	"not-prose relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card transition-[background-color,box-shadow,filter] [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
+	"relative inline-flex cursor-pointer items-center justify-center rounded-md border shadow-sm shadow-card transition-[background-color,box-shadow,filter] [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
@@ -26,7 +26,7 @@ const hovercardTriggerVariants = cva(
 );
 
 const hovercardContentVariants = cva(
-	'not-prose relative w-fit rounded-lg border shadow-md shadow-card',
+	'relative w-fit rounded-lg border shadow-md shadow-card',
 	{
 		variants: {
 			variant: {
@@ -138,7 +138,7 @@ export const Hovercard: React.FC<HovercardProps> = ({
 	return (
 		<HovercardStoreContext.Provider value={store}>
 			<Ariakit.HovercardProvider store={store}>
-				<div className="not-prose relative">{children}</div>
+				<div className="relative">{children}</div>
 			</Ariakit.HovercardProvider>
 		</HovercardStoreContext.Provider>
 	);
@@ -231,7 +231,7 @@ export const HovercardHeading = React.forwardRef<
 	<Ariakit.HovercardHeading
 		ref={ref}
 		className={cn(
-			'not-prose text-sm leading-none font-medium text-foreground',
+			'text-sm leading-none font-medium text-foreground',
 			className,
 		)}
 		{...props}
@@ -246,10 +246,7 @@ export const HovercardDescription = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
 	<Ariakit.HovercardDescription
 		ref={ref}
-		className={cn(
-			'not-prose text-sm leading-snug text-foreground/70',
-			className,
-		)}
+		className={cn('text-sm leading-snug text-foreground/70', className)}
 		{...props}
 	/>
 ));

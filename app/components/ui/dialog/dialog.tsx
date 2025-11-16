@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-	`not-prose relative max-h-[70vh] rounded-lg border border-border bg-popover shadow-card shadow-2xl`,
+	`relative max-h-[70vh] rounded-lg border border-border bg-popover shadow-card shadow-2xl`,
 	{
 		variants: {
 			size: {
@@ -151,7 +151,7 @@ export const DialogTrigger: React.FC<DialogTriggerProps> = ({
 	return (
 		<button
 			className={cn(
-				'not-prose not-prose inline-flex items-center justify-center rounded-lg font-medium focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				'inline-flex items-center justify-center rounded-lg font-medium focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				className,
 			)}
 			onClick={handleClick}
@@ -213,7 +213,7 @@ export const DialogSurface: React.FC<DialogSurfaceProps> = ({
 			{...dialogProps}
 		>
 			{showClose && (
-				<Ariakit.DialogDismiss className="not-prose absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 hover:bg-popover-muted hover:text-foreground/70 transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
+				<Ariakit.DialogDismiss className="absolute top-2 right-2 z-10 inline-flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm text-foreground/45 hover:bg-popover-muted hover:text-foreground/70 transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none">
 					<Icons.X aria-hidden="true" className="h-4 w-4" />
 					<Ariakit.VisuallyHidden>Close</Ariakit.VisuallyHidden>
 				</Ariakit.DialogDismiss>
@@ -236,10 +236,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				'not-prose p-4 text-sm leading-snug text-foreground/70',
-				className,
-			)}
+			className={cn('p-4 text-sm leading-snug text-foreground/70', className)}
 			{...props}
 		>
 			{children}
@@ -253,7 +250,7 @@ export const DialogHeader: React.FC<DialogHeaderProps> = ({
 	...props
 }) => {
 	return (
-		<div className={cn('not-prose px-4 pt-4', className)} {...props}>
+		<div className={cn('px-4 pt-4', className)} {...props}>
 			{children}
 		</div>
 	);
@@ -269,7 +266,7 @@ export const DialogTitle: React.FC<DialogTitleProps> = ({
 		<Ariakit.DialogHeading
 			render={(headingProps) => React.createElement(Component, headingProps)}
 			className={cn(
-				'not-prose text-base leading-none font-medium text-foreground',
+				'text-base leading-none font-medium text-foreground',
 				className,
 			)}
 			{...props}
@@ -286,10 +283,7 @@ export const DialogDescription: React.FC<DialogDescriptionProps> = ({
 }) => {
 	return (
 		<Ariakit.DialogDescription
-			className={cn(
-				'not-prose mt-1 text-sm leading-snug text-foreground/45',
-				className,
-			)}
+			className={cn('mt-1 text-sm leading-snug text-foreground/45', className)}
 			{...props}
 		>
 			{children}
@@ -305,7 +299,7 @@ export const DialogFooter: React.FC<DialogFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose flex items-center justify-end rounded-b-lg border-t border-border/60 bg-popover-muted/30 p-4',
+				'flex items-center justify-end rounded-b-lg border-t border-border/60 bg-popover-muted/30 p-4',
 				className,
 			)}
 			{...props}
@@ -321,10 +315,7 @@ export const DialogActions: React.FC<DialogActionsProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={cn('not-prose flex items-center gap-2', className)}
-			{...props}
-		>
+		<div className={cn('flex items-center gap-2', className)} {...props}>
 			{children}
 		</div>
 	);

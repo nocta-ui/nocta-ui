@@ -111,7 +111,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 	return (
 		<nav
 			aria-label={ariaLabelProp ?? 'Pagination'}
-			className={cn('not-prose flex items-center gap-2', className)}
+			className={cn('flex items-center gap-2', className)}
 			{...restProps}
 		>
 			<Button

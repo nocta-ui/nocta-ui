@@ -24,7 +24,7 @@ const wheelPickerSizeConfig: Record<
 
 const wheelPickerVariants = cva(
 	[
-		'not-prose relative isolate rounded-md border border-border bg-card shadow-sm shadow-card',
+		'relative isolate rounded-md border border-border bg-card shadow-sm shadow-card',
 	],
 	{
 		variants: {
@@ -120,7 +120,7 @@ export const WheelPickerGroup: React.FC<WheelPickerGroupProps> = ({
 			<div
 				{...props}
 				className={cn(
-					'not-prose relative isolate flex overflow-hidden rounded-md border border-border bg-card shadow-sm',
+					'relative isolate flex overflow-hidden rounded-md border border-border bg-card shadow-sm',
 					disabled ? 'pointer-events-none cursor-not-allowed opacity-50' : '',
 					className,
 				)}
@@ -802,7 +802,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 
 	const rootClassName = grouped
 		? cn(
-				'not-prose relative isolate flex-none min-w-0 overflow-hidden bg-transparent shadow-none',
+				'relative isolate flex-none min-w-0 overflow-hidden bg-transparent shadow-none',
 				wheelPickerSizeConfig[size]?.widthClass,
 				disabled && 'pointer-events-none cursor-not-allowed opacity-50',
 				className,

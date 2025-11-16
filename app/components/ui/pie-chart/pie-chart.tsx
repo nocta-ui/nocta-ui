@@ -261,7 +261,7 @@ function PieChartRootInner<TData extends ChartDatum>(
 			<div
 				ref={ref}
 				className={cn(
-					'not-prose relative flex flex-col rounded-lg border border-border bg-card shadow-md shadow-card',
+					'relative flex flex-col rounded-lg border border-border bg-card shadow-md shadow-card',
 					className,
 				)}
 				{...rest}
@@ -298,7 +298,7 @@ export const PieChartTitle = (({
 		Component,
 		{
 			className: cn(
-				'not-prose text-base font-medium leading-none text-foreground',
+				'text-base font-medium leading-none text-foreground',
 				className,
 			),
 			...props,
@@ -326,10 +326,7 @@ export const PieChartDescription = (({
 }: PieChartDescriptionProps) => {
 	return (
 		<p
-			className={cn(
-				'not-prose text-sm leading-snug text-foreground/70',
-				className,
-			)}
+			className={cn('text-sm leading-snug text-foreground/70', className)}
 			{...props}
 		>
 			{children}
@@ -353,7 +350,7 @@ export const PieChartActions = (({ children, className = '', ...props }) => {
 	return (
 		<div
 			className={cn(
-				'not-prose flex items-center gap-2 self-start sm:self-auto',
+				'flex items-center gap-2 self-start sm:self-auto',
 				className,
 			)}
 			{...props}
@@ -509,7 +506,7 @@ export const PieChartHeader = React.forwardRef<
 			<div
 				ref={ref}
 				className={cn(
-					'not-prose flex flex-col gap-3 px-4 pt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4',
+					'flex flex-col gap-3 px-4 pt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-4',
 					className,
 				)}
 				{...props}
@@ -1173,7 +1170,7 @@ const PieChartGraphBase = React.forwardRef<
 	return (
 		<div
 			ref={setOuterContainerRef}
-			className={cn('not-prose relative w-full p-4', className)}
+			className={cn('relative w-full p-4', className)}
 			style={{ ...style, height: resolvedHeight }}
 			{...rest}
 		>
@@ -1233,7 +1230,7 @@ export const PieChartLegend = React.forwardRef<
 		<div
 			ref={ref}
 			className={cn(
-				'not-prose flex flex-wrap items-center gap-3 px-4 pb-4 pt-2 text-xs text-foreground/70',
+				'flex flex-wrap items-center gap-3 px-4 pb-4 pt-2 text-xs text-foreground/70',
 				className,
 			)}
 			{...props}
@@ -1268,7 +1265,7 @@ export const PieChartDataTable = React.forwardRef<
 		<div
 			ref={ref}
 			className={cn(
-				'not-prose bg-card-muted/30 space-y-2 border-t border-border/60 p-4 text-xs text-foreground/70',
+				'bg-card-muted/30 space-y-2 border-t border-border/60 p-4 text-xs text-foreground/70',
 				className,
 			)}
 			{...props}

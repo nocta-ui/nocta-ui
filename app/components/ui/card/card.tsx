@@ -44,7 +44,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 			<div
 				ref={ref}
 				className={cn(
-					'not-prose relative rounded-lg border border-border bg-card shadow-md shadow-card',
+					'relative rounded-lg border border-border bg-card shadow-md shadow-card',
 					className,
 				)}
 				{...props}
@@ -63,7 +63,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 	...props
 }) => {
 	return (
-		<div className={cn('not-prose px-4 pt-4', className)} {...props}>
+		<div className={cn('px-4 pt-4', className)} {...props}>
 			{children}
 		</div>
 	);
@@ -79,7 +79,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
 		Component,
 		{
 			className: cn(
-				'not-prose text-base leading-none font-medium text-foreground',
+				'text-base leading-none font-medium text-foreground',
 				className,
 			),
 			...props,
@@ -95,10 +95,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
 }) => {
 	return (
 		<p
-			className={cn(
-				'not-prose mt-1 text-sm leading-snug text-foreground/45',
-				className,
-			)}
+			className={cn('mt-1 text-sm leading-snug text-foreground/45', className)}
 			{...props}
 		>
 			{children}
@@ -113,10 +110,7 @@ export const CardContent: React.FC<CardContentProps> = ({
 }) => {
 	return (
 		<div
-			className={cn(
-				'not-prose text-sm p-4 text-foreground/70 leading-snug',
-				className,
-			)}
+			className={cn('text-sm p-4 text-foreground/70 leading-snug', className)}
 			{...props}
 		>
 			{children}
@@ -132,7 +126,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'not-prose flex items-center justify-end rounded-b-lg border-t border-border/60 bg-card-muted/30 p-4',
+				'flex items-center justify-end rounded-b-lg border-t border-border/60 bg-card-muted/30 p-4',
 				className,
 			)}
 			{...props}
@@ -148,10 +142,7 @@ export const CardActions: React.FC<CardActionsProps> = ({
 	...props
 }) => {
 	return (
-		<div
-			className={cn('not-prose flex items-center gap-2', className)}
-			{...props}
-		>
+		<div className={cn('flex items-center gap-2', className)} {...props}>
 			{children}
 		</div>
 	);

@@ -6,7 +6,7 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 
 const dropdownMenuContentVariants = cva(
-	`not-prose z-50 origin-top -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
+	`z-50 origin-top -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			size: {
@@ -22,7 +22,7 @@ const dropdownMenuContentVariants = cva(
 );
 
 const dropdownSubMenuContentVariants = cva(
-	`not-prose z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
+	`z-50 origin-top-left -translate-y-2 scale-95 rounded-md border border-border bg-popover opacity-0 shadow-md shadow-card transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			size: {

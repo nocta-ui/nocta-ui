@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-const breadcrumbVariants = cva('not-prose flex items-center', {
+const breadcrumbVariants = cva('flex items-center', {
 	variants: {
 		size: {
 			sm: 'text-xs',
@@ -17,7 +17,7 @@ const breadcrumbVariants = cva('not-prose flex items-center', {
 	},
 });
 
-const breadcrumbListVariants = cva('not-prose flex flex-wrap items-center', {
+const breadcrumbListVariants = cva('flex flex-wrap items-center', {
 	variants: {
 		size: {
 			sm: 'gap-1',

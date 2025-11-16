@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 const toggleVariants = cva(
 	[
-		'not-prose relative inline-flex items-center justify-center gap-2 rounded-md shadow-sm shadow-card',
+		'relative inline-flex items-center justify-center gap-2 rounded-md shadow-sm shadow-card',
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
 		'border text-sm font-medium',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:outline-none',

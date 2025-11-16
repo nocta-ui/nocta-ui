@@ -26,8 +26,7 @@ const ScrollAreaContext = React.createContext<ScrollAreaContextValue | null>(
 	null,
 );
 
-const scrollAreaBaseClass =
-	'group/scroll-area not-prose relative overflow-hidden';
+const scrollAreaBaseClass = 'group/scroll-area relative overflow-hidden';
 
 const scrollViewportBaseClass =
 	'relative size-full overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden';
