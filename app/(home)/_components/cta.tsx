@@ -7,11 +7,11 @@ export default function CTA(): React.ReactElement {
 	return (
 		<section className="relative overflow-hidden">
 			<div className="mx-auto flex max-w-5xl flex-col items-start md:items-center justify-center md:border-x border-dashed border-fd-border p-6 md:p-10 lg:p-14 text-center">
-				<h2 className="text-left md:text-center font-medium text-xl md:text-2xl text-foreground max-w-2xl">
+				<h2 className="text-left md:text-center font-medium text-xl md:text-2xl text-foreground tracking-tight max-w-2xl">
 					Enjoying Nocta UI? Help us grow.
 				</h2>
 
-				<p className="text-left md:text-center mt-2 max-w-xl mx-auto text-base text-foreground/70">
+				<p className="text-left md:text-center mt-2 max-w-xl mx-auto text-base text-foreground/70 leading-relaxed">
 					Starring the repository on GitHub keeps the project healthy and shows
 					the community that Nocta UI matters to you.
 				</p>

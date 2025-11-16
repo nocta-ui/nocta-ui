@@ -36,11 +36,11 @@ const faq = [
 export const FAQ = () => (
 	<section className="relative overflow-hidden">
 		<div className="mx-auto max-w-5xl md:border-x border-dashed border-fd-border p-6 text-center">
-			<h2 className="text-left font-medium text-xl md:text-2xl text-foreground max-w-2xl">
+			<h2 className="text-left font-medium text-xl md:text-2xl text-foreground tracking-tight max-w-2xl">
 				Frequently Asked Questions
 			</h2>
 
-			<p className="text-left mt-2 max-w-lg text-base text-foreground/70">
+			<p className="text-left mt-2 max-w-lg text-base text-foreground/70 leading-relaxed">
 				We know you’ve got questions — probably the same ones everyone else had.
 				Let’s save you some time.
 			</p>

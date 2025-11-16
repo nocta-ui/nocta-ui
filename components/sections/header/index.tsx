@@ -135,9 +135,9 @@ const NavbarLinkItem = ({
 								{child.icon}
 							</div>
 						) : null)}
-					<p className="-mb-1 text-sm font-medium">{child.text}</p>
+					<p className="-mb-1 text-sm font-medium text-foreground">{child.text}</p>
 					{child.description ? (
-						<p className="text-[13px]">{child.description}</p>
+						<p className="text-xs text-foreground/70">{child.description}</p>
 					) : null}
 				</NavbarMenuLink>
 			);

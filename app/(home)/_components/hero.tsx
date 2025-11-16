@@ -11,13 +11,13 @@ export default function Hero() {
 					React + Ariakit + Tailwind, minus the boilerplate.
 				</Badge>
 
-				<h1 className="text-balance text-3xl font-medium text-foreground md:text-4xl">
+				<h1 className="text-balance text-3xl font-medium text-foreground tracking-tight md:text-4xl">
 					Own the Code.
 					<br />
 					Shape the Experience.
 				</h1>
 
-				<p className="text-balance text-lg text-foreground/70 max-w-2xl -mt-4">
+				<p className="text-balance text-lg text-foreground/70 max-w-2xl -mt-4 leading-relaxed">
 					Own your code with clean, accessible components built on Tailwind and
 					Ariakit — no packages, no versioning pain.
 				</p>

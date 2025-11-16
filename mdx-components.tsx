@@ -187,6 +187,16 @@ const Wrap = (Tag: any, className: string) => (props: any) => (
 	<Tag className={className} {...props} />
 );
 
+function CustomTable({ children, ...props }: any) {
+  return (
+    <div className="relative border border-border shadow-sm h-fit shadow-card rounded-lg">
+      <table {...props} className="border-none mb-0 mt-0">
+        {children}
+      </table>
+    </div>
+  );
+}
+
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
 	return {
 		...defaultMdxComponents,
@@ -206,6 +216,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 			'my-6 ml-6 list-decimal [&>li]:mt-2 marker:text-foreground/70',
 		),
 		li: Wrap('li', 'leading-7 text-foreground/70'),
+		th: Wrap('th', 'bg-card-muted/30'),
+		tr: Wrap('tr', 'bg-card'),
+    table: CustomTable,
 		Card,
 		CardHeader,
 		CardTitle,

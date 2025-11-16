@@ -33,7 +33,7 @@ export const baseOptions: BaseLayoutProps = {
 						fill="currentColor"
 					/>
 				</svg>
-				<p className="text-foreground text-sm leading-relaxed font-bold">
+				<p className="text-foreground text-sm leading-relaxed font-semibold">
 					NOCTA UI
 				</p>
 			</div>

@@ -1,122 +1,19 @@
 import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Instrument_Sans, Fira_Code } from 'next/font/google';
 import type { ReactNode } from 'react';
 import SearchDialog from '@/components/search';
 
-const ppNeueMontreal = localFont({
-	src: [
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Thin.woff2',
-			weight: '200',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-ThinItalic.woff2',
-			weight: '200',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Light.woff2',
-			weight: '300',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-LightItalic.woff2',
-			weight: '300',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Regular.woff2',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Italic.woff2',
-			weight: '400',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Medium.woff2',
-			weight: '500',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-MediumItalic.woff2',
-			weight: '500',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBold.woff2',
-			weight: '600',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-SemiBoldItalic.woff2',
-			weight: '600',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-Bold.woff2',
-			weight: '700',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontreal/PPNeueMontreal-BoldItalic.woff2',
-			weight: '700',
-			style: 'italic',
-		},
-	],
-	variable: '--font-ppneuemontreal',
-	display: 'swap',
+const instrumentSans = Instrument_Sans({
+	subsets: ['latin'],
+	variable: '--font-instrumentsans',
 });
 
-const ppNeueMontrealMono = localFont({
-	src: [
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Thin.woff2',
-			weight: '100',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-ThinItalic.woff2',
-			weight: '100',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Light.woff2',
-			weight: '300',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Regular.woff2',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-RegularItalic.woff2',
-			weight: '400',
-			style: 'italic',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Medium.woff2',
-			weight: '500',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-Bold.woff2',
-			weight: '700',
-			style: 'normal',
-		},
-		{
-			path: './assets/fonts/PPNeueMontrealMono/PPNeueMontrealMono-BoldItalic.woff2',
-			weight: '700',
-			style: 'italic',
-		},
-	],
-	variable: '--font-ppneuemontrealmono',
-	display: 'swap',
+const firaCode = Fira_Code({
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -213,7 +110,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${ppNeueMontreal.variable} ${ppNeueMontrealMono.variable}`}
+			className={`${instrumentSans.variable} ${firaCode.variable}`}
 			suppressHydrationWarning
 		>
 			<body

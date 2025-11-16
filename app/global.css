@@ -4,8 +4,7 @@
 
 /* ---FUMADOCS CSS--- */
 @theme {
-	--font-mono: var(--font-ppneuemontrealmono);
-	--font-ppneuemontreal: var(--font-ppneuemontreal);
+	--font-instrumentsans: var(--font-instrumentsans);
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
@@ -341,6 +340,6 @@
 
 @layer base {
 	body {
-		@apply font-ppneuemontreal bg-fd-background tracking-[0.01rem];
+		@apply font-instrumentsans bg-fd-background -tracking-[0.01rem];
 	}
 }
