@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Button } from '@/app/components/ui/button';
 import { CommandK, type CommandKItem } from '@/app/components/ui/command-k';
 import { Icons } from '@/app/components/ui/icons/icons';
+import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { Separator } from '@/app/components/ui/separator';
 import {
 	Sheet,
@@ -616,14 +617,13 @@ function SidebarSeparator({
 
 function SidebarContent({ className, ...props }: React.ComponentProps<'div'>) {
 	return (
-		<div
-			data-slot="sidebar-content"
-			className={cn(
-				'flex flex-1 flex-col gap-3 overflow-y-auto p-4',
-				className,
-			)}
-			{...props}
-		/>
+		<ScrollArea type="scroll" className="flex-1">
+			<div
+				data-slot="sidebar-content"
+				className={cn('flex flex-1 flex-col gap-3 p-4', className)}
+				{...props}
+			/>
+		</ScrollArea>
 	);
 }
 

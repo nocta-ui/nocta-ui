@@ -1532,7 +1532,7 @@
 				"clsx": "^2.1.1",
 				"@ariakit/react": "^0.4.19"
 			},
-			"internalDependencies": ["button", "sheet", "tooltip", "command-k", "separator"],
+			"internalDependencies": ["button", "sheet", "tooltip", "command-k","scroll-area", "separator"],
 			"exports": [
 				"Sidebar",
 				"SidebarContent",
