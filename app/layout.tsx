@@ -1,18 +1,29 @@
 import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import type { Metadata } from 'next';
-import { Instrument_Sans, Fira_Code } from 'next/font/google';
+import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import SearchDialog from '@/components/search';
 
-const instrumentSans = Instrument_Sans({
-	subsets: ['latin'],
-	variable: '--font-instrumentsans',
+const diatype = localFont({
+	src: [
+		{
+			path: './assets/fonts/ABCDiatypeVariable.woff2',
+			style: 'normal',
+		},
+	],
+	variable: '--font-diatype',
+	display: 'swap',
 });
 
-const firaCode = Fira_Code({
-	weight: ['400'],
-	subsets: ['latin'],
+const diatypeMono = localFont({
+	src: [
+		{
+			path: './assets/fonts/ABCDiatypeMono-Regular.woff2',
+			style: 'normal',
+		},
+	],
+	display: 'swap',
 	variable: '--font-mono',
 });
 
@@ -57,7 +68,7 @@ export const metadata: Metadata = {
 		siteName: 'Nocta UI',
 		images: [
 			{
-				url: '/og-image.jpg',
+				url: '/og-image.jpeg',
 				width: 1200,
 				height: 630,
 				alt: 'Nocta UI - Modern React Component Library',
@@ -69,7 +80,7 @@ export const metadata: Metadata = {
 		title: 'Nocta UI - Modern React Component Library',
 		description:
 			'A modern, accessible React component library built with simplicity, performance, and developer experience at its core.',
-		images: ['/og-image.jpg'],
+		images: ['/og-image.jpeg'],
 		creator: '@nocta_ui',
 	},
 	robots: {
@@ -110,7 +121,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${instrumentSans.variable} ${firaCode.variable}`}
+			className={`${diatype.className} ${diatypeMono.variable}`}
 			suppressHydrationWarning
 		>
 			<body

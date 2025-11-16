@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="nocta-ui.png" alt="Nocta UI" />
+  <img src="nocta-ui.jpeg" alt="Nocta UI" />
 </p>
 
 <p align="center">

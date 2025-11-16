@@ -206,7 +206,7 @@ function FeatureList() {
 
 					<div className="space-y-1">
 						<h3 className="text-lg font-medium text-foreground tracking-tight">{title}</h3>
-						<p className="text-sm text-foreground/70 leading-relaxed">{description}</p>
+						<p className="text-sm text-foreground/70 leading-relaxed text-balance">{description}</p>
 					</div>
 				</div>
 			))}
@@ -227,7 +227,7 @@ function InstallSnippet() {
 				))}
 			</div>
 
-			<p className="text-sm text-foreground/70 leading-relaxed">
+			<p className="text-sm text-foreground/70 leading-relaxed text-balance">
 				The CLI pulls accessible, production-ready components straight into your
 				project - no packages, no lock-in.
 			</p>
@@ -273,7 +273,7 @@ function TechStack() {
 				/>
 			</div>
 
-			<p className="text-sm text-foreground/70 leading-relaxed">
+			<p className="text-sm text-foreground/70 leading-relaxed text-balance">
 				Ariakit handles accessibility primitives while Tailwind keeps styling
 				iterative and flexible.
 			</p>

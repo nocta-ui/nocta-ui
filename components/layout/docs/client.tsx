@@ -58,7 +58,7 @@ export function CollapsibleControl() {
 	return (
 		<div
 			className={cn(
-				'fixed z-10 flex rounded-md border bg-card-muted p-0.5 text-foreground/70 shadow-lg shadow-card transition-opacity max-xl:end-4 max-md:hidden xl:start-4',
+				'fixed z-10 flex rounded-md border bg-popover p-0.5 text-foreground/70 transition-opacity shadow-lg shadow-card max-xl:end-4 max-md:hidden xl:start-4',
 				!collapsed && 'pointer-events-none opacity-0',
 			)}
 			style={{
@@ -70,13 +70,13 @@ export function CollapsibleControl() {
 					buttonVariants({
 						color: 'ghost',
 						size: 'icon-sm',
-						className: 'rounded-lg',
+						className: 'rounded-sm hover:bg-popover-muted',
 					}),
 				)}
 			>
 				<ViewVerticalIcon aria-hidden="true" />
 			</SidebarCollapseTrigger>
-			<SearchToggle className="rounded-lg" hideIfDisabled />
+			<SearchToggle className="rounded-sm hover:bg-popover-muted" hideIfDisabled />
 		</div>
 	);
 }

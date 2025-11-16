@@ -152,15 +152,18 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 					} = anchorProps;
 					const mergedProps: Record<string, unknown> = { ...childProps };
 
-					Object.entries(restAnchorProps as Record<string, unknown>).forEach(([key, value]) => {
-						if (isEventHandlerKey(key) && isAnyEventHandler(value)) {
-							const existingHandler =
-								mergedProps[key] as AnyEventHandler | undefined;
-							mergedProps[key] = composeEventHandlers(existingHandler, value);
-							return;
-						}
-						mergedProps[key] = value;
-					});
+					Object.entries(restAnchorProps as Record<string, unknown>).forEach(
+						([key, value]) => {
+							if (isEventHandlerKey(key) && isAnyEventHandler(value)) {
+								const existingHandler = mergedProps[key] as
+									| AnyEventHandler
+									| undefined;
+								mergedProps[key] = composeEventHandlers(existingHandler, value);
+								return;
+							}
+							mergedProps[key] = value;
+						},
+					);
 
 					mergedProps['className'] = cn(
 						'not-prose inline-flex items-center',

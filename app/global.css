@@ -4,7 +4,6 @@
 
 /* ---FUMADOCS CSS--- */
 @theme {
-	--font-instrumentsans: var(--font-instrumentsans);
 	--color-fd-background: var(--color-background);
 	--color-fd-foreground: var(--color-foreground);
 	--color-fd-muted: var(--color-card-muted);
@@ -340,6 +339,6 @@
 
 @layer base {
 	body {
-		@apply font-instrumentsans bg-fd-background -tracking-[0.01rem];
+		@apply bg-fd-background;
 	}
 }

@@ -282,7 +282,7 @@ export function DocsLayout({
 						<Navbar className="h-(--fd-nav-height) md:hidden on-root:[--fd-nav-height:56px] md:on-root:[--fd-nav-height:0px]">
 							<Link
 								href={nav.url ?? '/'}
-								className="inline-flex items-center gap-2.5 font-semibold"
+								className="inline-flex items-center gap-2.5 font-medium"
 							>
 								{nav.title}
 							</Link>

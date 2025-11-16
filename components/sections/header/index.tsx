@@ -37,7 +37,7 @@ export const Header = ({
 		<Navbar>
 			<Link
 				href={nav.url ?? '/'}
-				className="inline-flex items-center gap-2.5 font-semibold focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+				className="inline-flex items-center gap-2.5 font-medium focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 			>
 				{nav.title}
 			</Link>

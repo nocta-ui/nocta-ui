@@ -40,7 +40,7 @@ export const FAQ = () => (
 				Frequently Asked Questions
 			</h2>
 
-			<p className="text-left mt-2 max-w-lg text-base text-foreground/70 leading-relaxed">
+			<p className="text-left mt-2 max-w-lg text-base text-foreground/70 leading-relaxed text-balance">
 				We know you’ve got questions — probably the same ones everyone else had.
 				Let’s save you some time.
 			</p>

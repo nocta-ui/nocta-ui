@@ -1760,7 +1760,7 @@ export const AreaChartGraphBase = React.forwardRef<
 			? tooltipRender(tooltip.info as AreaChartTooltipInfo)
 			: tooltip && (
 					<div className="space-y-2">
-						<div className="text-xs font-semibold text-foreground">
+						<div className="text-xs font-medium text-foreground">
 							{tooltip.info.formattedX}
 						</div>
 						<div className="space-y-1">

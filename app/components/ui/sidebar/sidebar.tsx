@@ -7,13 +7,6 @@ import { CommandK, type CommandKItem } from '@/app/components/ui/command-k';
 import { Icons } from '@/app/components/ui/icons/icons';
 import { Separator } from '@/app/components/ui/separator';
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-	type TooltipContentProps,
-	type TooltipProps,
-} from '@/app/components/ui/tooltip/tooltip';
-import {
 	Sheet,
 	SheetContent,
 	SheetDescription,
@@ -21,6 +14,13 @@ import {
 	SheetSurface,
 	SheetTitle,
 } from '@/app/components/ui/sheet';
+import {
+	Tooltip,
+	TooltipContent,
+	type TooltipContentProps,
+	type TooltipProps,
+	TooltipTrigger,
+} from '@/app/components/ui/tooltip/tooltip';
 import { cn } from '@/lib/utils';
 
 const SIDEBAR_WIDTH = '18rem';

@@ -78,7 +78,7 @@ export const PieChartDonutDemo: React.FC = () => (
 					<p className="text-xs uppercase tracking-wide text-foreground/45">
 						Total users
 					</p>
-					<p className="text-2xl font-semibold text-foreground">
+					<p className="text-2xl font-medium text-foreground">
 						{planData.reduce((sum, item) => sum + item.users, 0).toLocaleString()}
 					</p>
 				</div>
@@ -93,7 +93,7 @@ export const PieChartWithActionsDemo: React.FC = () => (
 		<PieChart data={campaignData} valueKey="conversions" nameKey="campaign">
 			<PieChartHeader
 				contentClassName="sm:max-w-xs"
-				titleClassName="text-lg font-semibold"
+				titleClassName="text-lg font-medium"
 				actionsClassName="flex-wrap gap-2"
 			>
 				<PieChartTitle>Campaign Conversions</PieChartTitle>

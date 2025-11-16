@@ -97,7 +97,7 @@ export function Header({
 		<Navbar>
 			<Link
 				href={nav.url ?? '/'}
-				className="inline-flex items-center gap-2.5 font-semibold"
+				className="inline-flex items-center gap-2.5 font-medium"
 			>
 				{nav.title}
 			</Link>

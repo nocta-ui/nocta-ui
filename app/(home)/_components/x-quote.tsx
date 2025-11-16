@@ -11,7 +11,7 @@ export const TwitterQuote = () => (
 						Official Cool Now
 					</h2>
 
-					<p className="max-w-xl mx-auto text-base text-foreground/70 leading-relaxed">
+					<p className="max-w-xl mx-auto text-base text-foreground/70 leading-relaxed text-balance">
 						We built our UI library on top of Ariakit — and when its creator
 						noticed it, he had just two words to say.{' '}
 						<span className="italic md:block">
