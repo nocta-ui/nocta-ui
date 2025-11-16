@@ -21,7 +21,7 @@ import {
 	type TooltipContentProps,
 	type TooltipProps,
 	TooltipTrigger,
-} from '@/app/components/ui/tooltip/tooltip';
+} from '@/app/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 
 const SIDEBAR_WIDTH = '18rem';
