@@ -19,7 +19,7 @@ Thanks for helping improve Nocta UI! This guide explains how the library is orga
 ## Project Overview
 
 - **Framework**: Next.js App Router with React 19 and Tailwind CSS v4 presets (`@import "tailwindcss"`).
-- **Documentation site**: Built with [fumadocs](https://fumadocs.vercel.app). MDX sources live under `content/docs`, and components exposed through `mdx-components.tsx` become available inside MDX.
+- **Documentation site**: Built with [fumadocs](https://fumadocs.vercel.app). MDX sources live under `content/docs`.
 - **Component philosophy**: Copy-paste components that wrap accessible headless primitives (`@ariakit/react`).
 - **Distribution**: The Nocta CLI fetches component source code and styling tokens directly from this repository’s `public/registry` directory.
 
@@ -153,10 +153,9 @@ Component docs live in `content/docs`. Each component usually has an MDX file at
 When introducing a new component:
 
 1. Add or update the MDX documentation under `content/docs`. Use the existing pages as references for structure and tone.
-2. Import the component into `mdx-components.tsx` so that Fumadocs can render it inside MDX content. Without this step, the component is not available to writers.
-3. Import your demo components from `app/components/ui/<component>/<component>-demos.tsx`.
-4. Register the documentation page in `content/docs/meta.json` under the appropriate category heading (e.g. `"---Form---"`). This controls sidebar grouping.
-5. Run `pnpm dev` and verify the documentation renders correctly.
+2. Import your demo components from `app/components/ui/<component>/<component>-demos.tsx`.
+3. Register the documentation page in `content/docs/meta.json` under the appropriate category heading (e.g. `"---Form---"`). This controls sidebar grouping.
+4. Run `pnpm dev` and verify the documentation renders correctly.
 
 > Remember to keep `mdx-components.tsx`, `content/docs/meta.json`, and `public/registry/registry.json` aligned so the docs, CLI, and registry all agree on the new component’s name and category.
 
