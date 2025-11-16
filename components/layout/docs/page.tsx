@@ -23,7 +23,7 @@ export function PageTOCTitle(props: ComponentProps<'h2'>) {
 		<h3
 			{...props}
 			className={cn(
-				'inline-flex items-center gap-1.5 font-medium text-sm text-foreground/45',
+				'inline-flex items-center gap-1.5 text-sm text-foreground/45',
 				props.className,
 			)}
 		>
