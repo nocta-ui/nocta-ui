@@ -3,5 +3,9 @@
 
 bash ./scripts/sync-css-tokens.sh
 bash ./scripts/build-components.sh
+bash ./scripts/sync-icons.sh
 
-git add public/registry/components.json public/registry/css/index.css
+git add \
+	public/registry/components.json \
+	public/registry/css/index.css \
+	public/registry/icons/icons.ts
