@@ -14,4 +14,6 @@ export const Icons = {
 	X: RadixIcons.Cross2Icon,
 	SendMessage: RadixIcons.PaperPlaneIcon,
 	Search: RadixIcons.MagnifyingGlassIcon,
+	DotsHorizontal: RadixIcons.DotsHorizontalIcon,
+	ViewVertical: RadixIcons.ViewVerticalIcon,
 };
