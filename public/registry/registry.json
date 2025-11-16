@@ -2,7 +2,7 @@
 	"$schema": "http://nocta-ui.com/registry/registry-schema.json",
 	"name": "nocta-ui",
 	"description": "A collection of modern, accessible React components built with TypeScript and Tailwind CSS",
-	"version": "1.1.0",
+	"version": "1.0.0",
 	"components": {
 		"accordion": {
 			"name": "Accordion",
@@ -180,12 +180,105 @@
 					"xTickCount",
 					"yTickCount",
 					"children",
-					"className",
-					"style"
+					"className"
 				],
 				"AreaChartLegend": ["className"],
 				"AreaChartDataTable": ["children", "className"],
 				"AreaChartDataTableContent": [
+					"className",
+					"rowClassName",
+					"labelClassName",
+					"valueClassName",
+					"deltaClassName",
+					"showDelta",
+					"deltaFormatter",
+					"valueFormatter",
+					"showTotalRow",
+					"averageLabel",
+					"averageFormatter"
+				]
+			}
+		},
+		"line-chart": {
+			"name": "Line Chart",
+			"description": "Track evolving metrics and dynamic changes using clear, continuous line plots",
+			"category": "data-display",
+			"files": [
+				{
+					"name": "line-chart.tsx",
+					"path": "app/components/ui/line-chart/line-chart.tsx",
+					"type": "component"
+				}
+			],
+			"dependencies": {
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0",
+				"clsx": "^2.1.1",
+				"d3-shape": "^3.2.0"
+			},
+			"devDependencies": {
+			  "@types/d3-shape": "^3.1.7"
+			},
+			"exports": [
+				"LineChart",
+				"LineChartHeader",
+				"LineChartTitle",
+				"LineChartDescription",
+				"LineChartActions",
+				"LineChartGraph",
+				"LineChartLegend",
+				"LineChartDataTable",
+				"LineChartDataTableContent"
+			],
+			"props": {
+				"LineChart": [
+					"data",
+					"xKey",
+					"yKey",
+					"nameKey",
+					"color",
+					"seriesLabel",
+					"sortPoints",
+					"xFormatter",
+					"yFormatter",
+					"valueFormatter",
+					"additionalSeries",
+					"children",
+					"className"
+				],
+				"LineChartHeader": [
+					"children",
+					"className",
+					"contentClassName",
+					"titleClassName",
+					"descriptionClassName",
+					"actionsClassName"
+				],
+				"LineChartTitle": ["children", "className", "as"],
+				"LineChartDescription": ["children", "className"],
+				"LineaChartActions": ["children", "className"],
+				"LineChartGraph": [
+					"height",
+					"curve",
+					"showTooltip",
+					"tooltipRender",
+					"showDots",
+					"loading",
+					"loadingState",
+					"emptyState",
+					"error",
+					"ariaLabel",
+					"showGrid",
+					"showXAxisValues",
+					"showYAxisValues",
+					"xTickCount",
+					"yTickCount",
+					"children",
+					"className"
+				],
+				"LineChartLegend": ["className"],
+				"LineChartDataTable": ["children", "className"],
+				"LineChartDataTableContent": [
 					"className",
 					"rowClassName",
 					"labelClassName",
@@ -1949,7 +2042,7 @@
 		"data-display": {
 			"name": "Data Display",
 			"description": "Components for displaying data and content",
-			"components": ["avatar", "badge", "table", "area-chart", "pie-chart"]
+			"components": ["avatar", "badge", "table", "area-chart", "line-chart", "pie-chart"]
 		},
 		"feedback": {
 			"name": "Feedback",

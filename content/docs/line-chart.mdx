@@ -1,25 +1,25 @@
 ---
-title: Area Chart
-description: Visualise continuous trends and cumulative values with smooth area graphs.
+title: Line Chart
+description: Track evolving metrics and dynamic changes using clear, continuous line plots.
 ---
 
 import {
-  AreaChart,
-  AreaChartBasicDemo,
-  AreaChartComparisonDemo,
-  AreaChartWithActionsDemo,
-  AreaChartWithDataTableDemo,
-} from '@/app/components/ui/area-chart';
+  LineChart,
+  LineChartBasicDemo,
+  LineChartComparisonDemo,
+  LineChartWithActionsDemo,
+  LineChartWithDataTableDemo,
+} from '@/app/components/ui/line-chart';
 import { DocsTabs, DocsTab } from '@/components/docs-tab';
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
 <Steps>
 <Step>
-Install the Area Chart component using the nocta-ui CLI:
+Install the Line Chart component using the nocta-ui CLI:
 
 ```bash lineNumbers title="Terminal"
-npx @nocta-ui/cli add area-chart
+npx @nocta-ui/cli add line-chart
 ```
 </Step>
 <Step>
@@ -27,56 +27,55 @@ Import the component:
 
 ```tsx lineNumbers title="Import"
 import {
-  AreaChart,
-  AreaChartHeader,
-  AreaChartTitle,
-  AreaChartDescription,
-  AreaChartActions,
-  AreaChartGraph,
-  AreaChartLegend,
-  AreaChartDataTable,
-  AreaChartDataTableContent,
-} from '@/components/ui/area-chart';
+  LineChart,
+  LineChartHeader,
+  LineChartTitle,
+  LineChartDescription,
+  LineChartActions,
+  LineChartGraph,
+  LineChartLegend,
+  LineChartDataTable,
+  LineChartDataTableContent,
+} from '@/components/ui/line-chart';
 ```
 </Step>
 </Steps>
 
 ## Examples
 
-### Default Area Chart
+### Default Line Chart
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <AreaChartBasicDemo />
+    <LineChartBasicDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Monthly Recurring Revenue"
     const revenueTrend = [
-      { month: 'Jan', revenue: 25000 },
-      { month: 'Feb', revenue: 29325 },
-      { month: 'Mar', revenue: 32277 },
-      { month: 'Apr', revenue: 32918 },
-      { month: 'May', revenue: 31045 },
-      { month: 'Jun', revenue: 27253 },
-      { month: 'Jul', revenue: 22746 },
-      { month: 'Aug', revenue: 18954 },
-      { month: 'Sep', revenue: 17081 },
-      { month: 'Oct', revenue: 17722 },
-      { month: 'Nov', revenue: 20674 },
-      { month: 'Dec', revenue: 24999 },
+      { month: "Jan", revenue: 18500 },
+      { month: "Feb", revenue: 32400 },
+      { month: "Mar", revenue: 27950 },
+      { month: "Apr", revenue: 46820 },
+      { month: "May", revenue: 39210 },
+      { month: "Jun", revenue: 58740 },
+      { month: "Jul", revenue: 31180 },
+      { month: "Aug", revenue: 74220 },
+      { month: "Sep", revenue: 42110 },
+      { month: "Oct", revenue: 91280 },
+      { month: "Nov", revenue: 50640 },
+      { month: "Dec", revenue: 84310 },
     ];
 
-
-    <AreaChart data={revenueTrend} xKey="month" yKey="revenue" sortPoints={false}>
-      <AreaChartHeader>
-        <AreaChartTitle>Monthly Recurring Revenue</AreaChartTitle>
-        <AreaChartDescription>
-          Track consistent growth across the current fiscal year.
-        </AreaChartDescription>
-      </AreaChartHeader>
-      <AreaChartGraph showYAxisValues={false} height={320} ariaLabel="Monthly recurring revenue trend" />
-      <AreaChartLegend />
-    </AreaChart>
+    <LineChart data={revenueTrend} xKey="month" yKey="revenue" sortPoints={false}>
+      <LineChartHeader>
+        <LineChartTitle>Streaming Revenue by Month</LineChartTitle>
+        <LineChartDescription>
+          See how launches, campaigns, and seasonality impact your monthly earnings.
+        </LineChartDescription>
+      </LineChartHeader>
+      <LineChartGraph showYAxisValues={false} height={320} ariaLabel="Monthly streaming revenue pattern" />
+      <LineChartLegend />
+    </LineChart>
     ```
   </DocsTab>
 </DocsTabs>
@@ -85,44 +84,48 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <AreaChartWithActionsDemo />
+    <LineChartWithActionsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Session Duration"
     const sessionDuration = [
-      { day: 'Mon', minutes: 9.8 },
-      { day: 'Tue', minutes: 10.2 },
-      { day: 'Wed', minutes: 9.3 },
-      { day: 'Thu', minutes: 8.2 },
-      { day: 'Fri', minutes: 7.8 },
-      { day: 'Sat', minutes: 8.7 },
-      { day: 'Sun', minutes: 9.8 },
+      { day: "Mon", minutes: 6.3 },
+      { day: "Tue", minutes: 12.8 },
+      { day: "Wed", minutes: 9.1 },
+      { day: "Thu", minutes: 15.7 },
+      { day: "Fri", minutes: 5.4 },
+      { day: "Sat", minutes: 17.2 },
+      { day: "Sun", minutes: 10.6 },
     ];
 
-    <AreaChart data={sessionDuration} xKey="day" yKey="minutes" seriesLabel="Session duration">
-      <AreaChartHeader
+    <LineChart
+      className="md:w-lg"
+      data={sessionDuration}
+      xKey="day"
+      yKey="minutes"
+      seriesLabel="Median session duration"
+    >
+      <LineChartHeader
         contentClassName="sm:max-w-xs"
-        titleClassName="text-lg font-medium"
         actionsClassName="flex-wrap gap-2"
       >
-        <AreaChartTitle>Average Session Length</AreaChartTitle>
-        <AreaChartDescription>
-          Hover to compare behaviour across the week.
-        </AreaChartDescription>
-        <AreaChartActions>
+        <LineChartTitle>Session Depth by Day</LineChartTitle>
+        <LineChartDescription>
+          Hover to compare daily engagement.
+        </LineChartDescription>
+        <LineChartActions>
           <Button size="sm" variant="ghost">
-            Export CSV
+            Download CSV
           </Button>
-          <Button size="sm">View Cohort</Button>
-        </AreaChartActions>
-      </AreaChartHeader>
-      <AreaChartGraph
-        height={300}
+          <Button size="sm">Open cohort view</Button>
+        </LineChartActions>
+      </LineChartHeader>
+      <LineChartGraph
         curve="monotone"
-        ariaLabel="Average session duration"
+        ariaLabel="Median session duration in minutes by weekday"
       />
-      <AreaChartLegend />
-    </AreaChart>
+      <LineChartLegend />
+    </LineChart>
     ```
   </DocsTab>
 </DocsTabs>
@@ -131,43 +134,49 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <AreaChartComparisonDemo />
+    <LineChartComparisonDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Signup Channels"
     const acquisitionChannels = [
-      { month: 'Jan', organic: 600, paid: 300 },
-      { month: 'Feb', organic: 708, paid: 354 },
-      { month: 'Mar', organic: 781, paid: 390 },
-      { month: 'Apr', organic: 797, paid: 398 },
-      { month: 'May', organic: 751, paid: 375 },
-      { month: 'Jun', organic: 656, paid: 328 },
-      { month: 'Jul', organic: 543, paid: 271 },
-      { month: 'Aug', organic: 448, paid: 224 },
-      { month: 'Sep', organic: 402, paid: 201 },
-      { month: 'Oct', organic: 418, paid: 209 },
-      { month: 'Nov', organic: 491, paid: 245 },
-      { month: 'Dec', organic: 600, paid: 300 },
+      { month: 'Jan', organic: 320, paid: 540 },
+      { month: 'Feb', organic: 710, paid: 210 },
+      { month: 'Mar', organic: 460, paid: 780 },
+      { month: 'Apr', organic: 915, paid: 355 },
+      { month: 'May', organic: 388, paid: 602 },
+      { month: 'Jun', organic: 1040, paid: 274 },
+      { month: 'Jul', organic: 575, paid: 910 },
+      { month: 'Aug', organic: 301, paid: 438 },
+      { month: 'Sep', organic: 812, paid: 193 },
+      { month: 'Oct', organic: 427, paid: 689 },
+      { month: 'Nov', organic: 1190, paid: 322 },
+      { month: 'Dec', organic: 533, paid: 887 },
     ];
 
-    <AreaChart
+    <LineChart
+      className="md:w-lg"
       data={acquisitionChannels}
       xKey="month"
       yKey="organic"
       seriesLabel="Organic signups"
       additionalSeries={[
-        { id: 'paid-signups', yKey: 'paid', seriesLabel: 'Paid signups' },
+        {
+          id: "paid-signups",
+          yKey: "paid",
+          seriesLabel: "Paid signups",
+        },
       ]}
     >
-      <AreaChartHeader>
-        <AreaChartTitle>Signup Channels</AreaChartTitle>
-        <AreaChartDescription>
-          Track organic and paid conversions side by side.
-        </AreaChartDescription>
-      </AreaChartHeader>
-      <AreaChartGraph ariaLabel="Organic and paid signups over time" />
-      <AreaChartLegend />
-    </AreaChart>
+      <LineChartHeader>
+        <LineChartTitle>Signup Mix by Channel</LineChartTitle>
+        <LineChartDescription>
+          Compare volatile shifts between organic growth and paid acquisition over
+          the year.
+        </LineChartDescription>
+      </LineChartHeader>
+      <LineChartGraph ariaLabel="Organic and paid signups over time" />
+      <LineChartLegend />
+    </LineChart>
     ```
   </DocsTab>
 </DocsTabs>
@@ -176,47 +185,54 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <AreaChartWithDataTableDemo />
+    <LineChartWithDataTableDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Support Volume"
     const supportTickets = [
-      { week: 'Week 1', tickets: 75 },
-      { week: 'Week 2', tickets: 84 },
-      { week: 'Week 3', tickets: 106 },
-      { week: 'Week 4', tickets: 123 },
-      { week: 'Week 5', tickets: 123 },
-      { week: 'Week 6', tickets: 106 },
-      { week: 'Week 7', tickets: 84 },
-      { week: 'Week 8', tickets: 75 },
+      { week: "Week 1", tickets: 48 },
+      { week: "Week 2", tickets: 132 },
+      { week: "Week 3", tickets: 76 },
+      { week: "Week 4", tickets: 204 },
+      { week: "Week 5", tickets: 97 },
+      { week: "Week 6", tickets: 261 },
+      { week: "Week 7", tickets: 63 },
+      { week: "Week 8", tickets: 189 },
     ];
 
-    <AreaChart data={supportTickets} xKey="week" yKey="tickets" sortPoints={false}>
-      <AreaChartHeader descriptionClassName="text-foreground/60">
-        <AreaChartTitle>Support Volume</AreaChartTitle>
-        <AreaChartDescription>
-          Monitor ticket inflow and spot surges that may require staffing changes.
-        </AreaChartDescription>
-      </AreaChartHeader>
-      <AreaChartGraph height={300} ariaLabel="Support tickets created per week" />
-      <AreaChartDataTable>
-        <AreaChartDataTableContent
-          averageLabel="Average tickets"
+    <LineChart
+      className="md:w-lg"
+      data={supportTickets}
+      xKey="week"
+      yKey="tickets"
+      sortPoints={false}
+    >
+      <LineChartHeader>
+        <LineChartTitle>Weekly Support Queue</LineChartTitle>
+        <LineChartDescription>
+          Track incoming ticket spikes so you can rebalance agents before queues
+          explode.
+        </LineChartDescription>
+      </LineChartHeader>
+      <LineChartGraph showGrid ariaLabel="Support tickets created per week" />
+      <LineChartDataTable>
+        <LineChartDataTableContent
+          averageLabel="Average weekly tickets"
           averageFormatter={(average) =>
             Math.round(average).toLocaleString(undefined, {
               maximumFractionDigits: 0,
             })
           }
         />
-      </AreaChartDataTable>
-    </AreaChart>
+      </LineChartDataTable>
+    </LineChart>
     ```
   </DocsTab>
 </DocsTabs>
 
 ## API Reference
 
-### AreaChart
+### LineChart
 
 <TypeTable
   type={{
@@ -257,22 +273,22 @@ import {
     },
     xFormatter: {
       description: 'Custom formatter for x-axis labels and tooltips.',
-      type: '(point: AreaChartPoint<TData>) => React.ReactNode',
+      type: '(point: LineChartPoint<TData>) => React.ReactNode',
       default: 'point.label',
     },
     yFormatter: {
       description: 'Formatter for values shown in tooltips and tables.',
-      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      type: '(point: LineChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
       default: 'point.value.toLocaleString()',
     },
     valueFormatter: {
       description: 'Overrides the numeric formatter when rendering values.',
-      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      type: '(point: LineChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
       default: 'point.value.toLocaleString()',
     },
     additionalSeries: {
       description: 'Render extra series alongside the primary dataset.',
-      type: 'AreaChartAdditionalSeries<TData>[]',
+      type: 'LineChartAdditionalSeries<TData>[]',
       default: '[]',
     },
     children: {
@@ -283,7 +299,7 @@ import {
   }}
 />
 
-### AreaChartGraph
+### LineChartGraph
 
 <TypeTable
   type={{
@@ -293,7 +309,7 @@ import {
       default: '220px',
     },
     curve: {
-      description: 'Spline used to draw the area and line.',
+      description: 'Spline used to draw the line.',
       type:  '"linear" | "monotone" | "natural" | "step"',
       default: '"monotone"',
     },
@@ -304,7 +320,7 @@ import {
     },
     tooltipRender: {
       description: 'Custom tooltip renderer with access to the computed series.',
-      type: '(info: AreaChartTooltipInfo<TData>) => React.ReactNode',
+      type: '(info: LineChartTooltipInfo<TData>) => React.ReactNode',
       default: 'Default tooltip UI',
     },
     showDots: {
@@ -335,7 +351,7 @@ import {
     ariaLabel: {
       description: 'Accessible label announced by screen readers.',
       type: 'string',
-      default: '"Area chart visualization"',
+      default: '"Line chart visualization"',
     },
     showGrid: {
       description: 'Draw horizontal grid lines.',
@@ -370,12 +386,12 @@ import {
   }}
 />
 
-### AreaChartHeader
+### LineChartHeader
 
 <TypeTable
   type={{
     children: {
-      description: 'Header content. Typically `AreaChartTitle`, `AreaChartDescription`, and `AreaChartActions`.',
+      description: 'Header content. Typically `LineChartTitle`, `LineChartDescription`, and `LineChartActions`.',
       type: 'React.ReactNode',
       default: 'undefined',
     },
@@ -390,24 +406,24 @@ import {
       default: 'undefined',
     },
     titleClassName: {
-      description: 'Classes merged into any direct `AreaChartTitle` children.',
+      description: 'Classes merged into any direct `LineChartTitle` children.',
       type: 'string',
       default: 'undefined',
     },
     descriptionClassName: {
-      description: 'Classes merged into any direct `AreaChartDescription` children.',
+      description: 'Classes merged into any direct `LineChartDescription` children.',
       type: 'string',
       default: 'undefined',
     },
     actionsClassName: {
-      description: 'Classes merged into any direct `AreaChartActions` children.',
+      description: 'Classes merged into any direct `LineChartActions` children.',
       type: 'string',
       default: 'undefined',
     },
   }}
 />
 
-### AreaChartTitle
+### LineChartTitle
 
 <TypeTable
   type={{
@@ -429,7 +445,7 @@ import {
   }}
 />
 
-### AreaChartDescription
+### LineChartDescription
 
 <TypeTable
   type={{
@@ -446,7 +462,7 @@ import {
   }}
 />
 
-### AreaChartActions
+### LineChartActions
 
 <TypeTable
   type={{
@@ -463,7 +479,7 @@ import {
   }}
 />
 
-### AreaChartLegend
+### LineChartLegend
 
 <TypeTable
   type={{
@@ -475,7 +491,7 @@ import {
   }}
 />
 
-### AreaChartDataTable
+### LineChartDataTable
 
 <TypeTable
   type={{
@@ -492,7 +508,7 @@ import {
   }}
 />
 
-### AreaChartDataTableContent
+### LineChartDataTableContent
 
 <TypeTable
   type={{
@@ -528,12 +544,12 @@ import {
     },
     deltaFormatter: {
       description: 'Custom formatter for the change column. Receives the current and previous points.',
-      type: '(current: AreaChartPoint<TData>, previous: AreaChartPoint<TData> | null) => React.ReactNode',
+      type: '(current: LineChartPoint<TData>, previous: LineChartPoint<TData> | null) => React.ReactNode',
       default: 'Percentage change with +/− prefix',
     },
     valueFormatter: {
       description: 'Override how each value cell is rendered.',
-      type: '(point: AreaChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
+      type: '(point: LineChartPoint<TData>, meta: { total: number; domain: [number, number] }) => React.ReactNode',
       default: 'Chart value formatter',
     },
     showTotalRow: {
