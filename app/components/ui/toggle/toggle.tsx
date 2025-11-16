@@ -11,6 +11,7 @@ const toggleVariants = cva(
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
 		'border text-sm font-medium',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:outline-none',
+		'transition-[background-color,box-shadow] ease-out-quad duration-100',
 		'disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	],
 	{

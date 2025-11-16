@@ -23,12 +23,13 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 			className={cn(
 				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium sm:text-sm',
 				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border data-active-item:shadow-card!',
+				'transition-[background-color,color] ease-out-quad duration-100'
 			)}
 		>
 			{icon && (
 				<span
 					className={cn(
-						'transition-colors',
+						'transition-[color] ease-out-quad duration-100',
 						isActive
 							? 'text-foreground'
 							: 'text-foreground/60 group-hover:text-foreground',

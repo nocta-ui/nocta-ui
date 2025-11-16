@@ -26,7 +26,7 @@ const themes = [
 ];
 
 const itemVariants = cva(
-	'relative cursor-pointer size-7 rounded-full p-1.5 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50',
+	'relative cursor-pointer size-7 rounded-full p-1.5 hover:text-foreground transition-[color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50',
 	{
 		variants: {
 			active: {

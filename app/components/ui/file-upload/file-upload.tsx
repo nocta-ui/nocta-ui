@@ -10,11 +10,11 @@ import { cn } from '@/lib/utils';
 
 const fileUploadVariants = cva(
 	[
-		'relative border',
+		'relative border rounded-lg',
 		'focus-within:ring-1 focus-within:ring-offset-1 focus-within:outline-none',
 		'focus-within:ring-offset-ring-offset/50',
 		'focus-within:ring-ring/50',
-		'rounded-lg',
+		'transition-[box-shadow] duration-100 ease-out-quad',
 	],
 	{
 		variants: {
@@ -28,8 +28,8 @@ const fileUploadVariants = cva(
 			},
 			state: {
 				idle: '',
-				dragover: ['border-background-subtle', 'bg-card', 'scale-[1.02]'],
-				error: ['border-destructive/40', 'bg-red-50 dark:bg-red-900/20'],
+				dragover: ['border-background/60 scale-[1.02]'],
+				error: ['border-destructive/40'],
 			},
 		},
 		defaultVariants: {
@@ -195,7 +195,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 	return (
 		<div className={cn('h-2 w-full rounded-full bg-card-muted', className)}>
 			<div
-				className="h-2 rounded-full bg-foreground transition-[width] duration-100 ease-basic"
+				className="h-2 rounded-full bg-foreground transition-[width] duration-100 ease-out-quad"
 				style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 				role="progressbar"
 				aria-valuenow={progress}

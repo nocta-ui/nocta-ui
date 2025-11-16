@@ -8,7 +8,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-	`not-prose relative flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm shadow-card placeholder:text-foreground/45 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`not-prose relative flex w-fit cursor-pointer items-center justify-between rounded-md bg-card text-foreground border shadow-sm shadow-card placeholder:text-foreground/45 hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {

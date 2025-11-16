@@ -21,7 +21,7 @@ const navigationMenuVariants = cva(
 );
 
 const navigationMenuTriggerVariants = cva(
-	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground focus-visible:bg-card-muted focus-visible:ring-1 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
+	'inline-flex h-9 items-center gap-2 rounded-md px-4 text-sm font-medium text-foreground transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:bg-card-muted focus-visible:ring-1 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 data-[expanded=true]:bg-card-muted cursor-pointer',
 	{
 		variants: {
 			size: {
@@ -52,7 +52,7 @@ const navigationMenuContentLayoutClass =
 	'flex flex-col gap-3 [&:has([role=group])]:grid [&:has([role=group])]:gap-2 [&:has([role=group])]:grid-cols-1 md:[&:has([role=group])]:grid-cols-2';
 
 const navigationMenuLinkVariants = cva(
-	'relative flex md:last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm outline-none hover:bg-popover-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-popover-muted [a&]:cursor-pointer overflow-clip',
+	'relative flex md:last:h-full flex-col items-start gap-1 rounded-md p-2 text-left text-sm outline-none hover:bg-popover-muted transition-[background-color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none data-[focus-visible]:outline-none data-[focus-visible]:bg-popover-muted [a&]:cursor-pointer overflow-clip',
 );
 
 const navigationMenuGroupVariants = cva('flex flex-col gap-2 items-stretch');
@@ -656,7 +656,7 @@ export const NavigationMenuItem = React.forwardRef<
 				{!!children && (
 					<Icons.ChevronDown
 						className={cn(
-							'ml-1 size-4 transition-transform duration-100 ease-basic',
+							'ml-1 size-4 transition-transform ease-out-quad duration-100 ',
 							open && 'rotate-180',
 						)}
 					/>

@@ -110,14 +110,14 @@ const FrameworkSelector = () => {
 					<Link
 						href={`/docs/${framework.id}`}
 						key={framework.id}
-						className="no-underline not-prose"
+						className="no-underline not-prose rounded-md focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 					>
 						<button
 							type="button"
 							key={framework.id}
-							className="relative h-full w-full cursor-pointer  group "
+							className="relative h-full w-full cursor-pointer group rounded-md focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						>
-							<div className="relative flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card hover:bg-card-muted p-8 shadow-sm shadow-card">
+							<div className="relative flex h-full w-full flex-col items-center justify-center gap-4 rounded-md border border-fd-border bg-card hover:bg-card-muted transition-[background-color,box-shadow] ease-out-quad duration-100 p-8 shadow-sm shadow-card">
 								{framework.logo}
 								<div className="mt-3 text-center">
 									<span className="block text-lg font-medium text-foreground/70">

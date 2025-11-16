@@ -25,6 +25,7 @@ const dayButtonVariants = cva(
 	[
 		'text-center',
 		'rounded-sm',
+		'transition-[background-color,color,box-shadow] ease-out-quad duration-100',
 		'not-prose focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 		'w-8',
 		'h-8',
@@ -306,7 +307,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToPreviousMonth}
 					disabled={disabled}
 					className={cn(
-						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
 				>
@@ -328,7 +329,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 						onClick={goToToday}
 						disabled={disabled}
 						className={cn(
-							'not-prose cursor-pointer rounded-sm bg-card text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+							'not-prose cursor-pointer rounded-sm bg-card text-foreground/70 hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 							'px-2 py-1 text-xs',
 						)}
 					>
@@ -342,7 +343,7 @@ export const Calendar: React.FC<CalendarProps> = ({
 					onClick={goToNextMonth}
 					disabled={disabled}
 					className={cn(
-						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+						'not-prose cursor-pointer rounded-sm text-foreground/70 hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 						'p-1.5',
 					)}
 				>

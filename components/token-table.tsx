@@ -224,10 +224,10 @@ export const radiusTokens = [
 
 export const motionTokens = [
 	{
-		token: '--ease-basic',
+		token: '--ease-out-quad',
 		description:
 			'Global motion curve used for short animations',
-		value: 'cubic-bezier(0, 0, 0.2, 1)',
+		value: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 	},
 	{
 		token: '--ease-smooth',

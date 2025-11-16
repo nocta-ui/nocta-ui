@@ -8,6 +8,7 @@ const wrapperVariants = cva(
 		'bg-card text-foreground',
 		'focus-within:ring-1 focus-within:ring-offset-1',
 		'focus-within:ring-offset-ring-offset/50',
+		'transition-shadow duration-100 ease-out-quad',
 		'has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50',
 		'not-prose shadow-sm shadow-card',
 	],

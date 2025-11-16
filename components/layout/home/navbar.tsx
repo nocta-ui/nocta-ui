@@ -21,7 +21,7 @@ import { buttonVariants } from '../../ui/button';
 import { BaseLinkItem } from '../shared/index';
 
 const navItemVariants = cva(
-	'inline-flex items-center gap-1 p-2 font-medium text-foreground/70 hover:text-foreground data-[active=true]:text-foreground [&_svg]:size-4',
+	'inline-flex items-center gap-1 p-2 font-medium text-foreground/70 hover:text-foreground data-[active=true]:text-foreground transition-[color,box-shadow] ease-out-quad duration-100 [&_svg]:size-4 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 );
 
 export function Navbar(props: ComponentProps<'div'>) {

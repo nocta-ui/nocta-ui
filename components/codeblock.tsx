@@ -169,8 +169,9 @@ function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
 		<button
 			type="button"
 			className={cn(
-				'inline-flex items-center justify-center text-foreground/70 rounded-md p-2 text-sm font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
+				'inline-flex items-center justify-center text-foreground/70 rounded-sm p-2 text-sm font-medium focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
 				'hover:bg-card-muted hover:text-foreground',
+				'transition-[background-color,color,box-shadow] ease-out-quad duration-100',
 				'[&_svg]:size-3.5 cursor-pointer',
 				!checked && '[@media(hover:hover)]:opacity-100',
 				className,
@@ -179,9 +180,9 @@ function CopyButton({ className, onCopy, ...props }: CopyButtonProps) {
 			onClick={onClick}
 			{...props}
 		>
-			<Check className={cn('transition-transform', !checked && 'scale-0')} />
+			<Check className={cn('transition-transform ease-out-quad duration-100', !checked && 'scale-0')} />
 			<Copy
-				className={cn('absolute transition-transform', checked && 'scale-0')}
+				className={cn('absolute transition-transform ease-out-quad duration-100', checked && 'scale-0')}
 			/>
 		</button>
 	);

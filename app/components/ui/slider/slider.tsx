@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const sliderVariants = cva(
-	'not-prose relative cursor-pointer touch-none rounded-full select-none transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+	'not-prose relative cursor-pointer touch-none rounded-full select-none transition-shadow ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 	{
 		variants: {
 			orientation: {
@@ -98,36 +98,33 @@ const fillVariants = cva('absolute rounded-full', {
 	},
 });
 
-const thumbVariants = cva(
-	'absolute origin-center rounded-full shadow-md hover:shadow-sm',
-	{
-		variants: {
-			variant: {
-				default: 'border-border/60 border bg-foreground',
-				secondary: 'border border-border bg-card',
-			},
-			size: {
-				sm: 'h-4 w-4',
-				md: 'h-5 w-5',
-				lg: 'h-6 w-6',
-			},
-			orientation: {
-				horizontal: 'top-1/2 -translate-y-1/2',
-				vertical: 'left-1/2 -translate-x-1/2',
-			},
-			disabled: {
-				true: 'cursor-not-allowed opacity-50',
-				false: 'cursor-grab active:cursor-grabbing',
-			},
+const thumbVariants = cva('absolute origin-center rounded-full shadow-md', {
+	variants: {
+		variant: {
+			default: 'border-border/60 border bg-foreground',
+			secondary: 'border border-border bg-card',
 		},
-		defaultVariants: {
-			variant: 'default',
-			size: 'md',
-			orientation: 'horizontal',
-			disabled: false,
+		size: {
+			sm: 'h-4 w-4',
+			md: 'h-5 w-5',
+			lg: 'h-6 w-6',
+		},
+		orientation: {
+			horizontal: 'top-1/2 -translate-y-1/2',
+			vertical: 'left-1/2 -translate-x-1/2',
+		},
+		disabled: {
+			true: 'cursor-not-allowed opacity-50',
+			false: 'cursor-grab active:cursor-grabbing',
 		},
 	},
-);
+	defaultVariants: {
+		variant: 'default',
+		size: 'md',
+		orientation: 'horizontal',
+		disabled: false,
+	},
+});
 
 export interface SliderProps
 	extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>,

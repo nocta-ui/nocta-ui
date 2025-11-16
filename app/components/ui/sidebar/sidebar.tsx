@@ -673,7 +673,7 @@ function SidebarGroupAction({
 	...props
 }: React.ComponentProps<'button'> & { asChild?: boolean }) {
 	const classes = cn(
-		'absolute top-1/2 -translate-y-1/2 right-2 flex size-6 cursor-pointer items-center justify-center rounded-sm text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+		'absolute top-1/2 -translate-y-1/2 right-2 flex size-6 cursor-pointer items-center justify-center rounded-sm text-foreground/70 hover:bg-popover-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none transition-[background-color,color,box-shadow] ease-out-quad duration-100',
 		className,
 	);
 
@@ -775,9 +775,9 @@ function SidebarMenuItem({
 }
 
 const sidebarNavButtonBaseClasses =
-	"cursor-pointer flex w-full items-center bg-transparent border border-transparent justify-start gap-3 rounded-md h-9 px-4 py-2 gap-2 has-[svg:not([data-slot=sidebar-menu-indicator])]:px-3 text-sm text-left [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-5 shrink-0 [&_svg]:shrink-0 font-medium text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none";
+	"cursor-pointer flex w-full items-center bg-transparent border border-transparent justify-start gap-3 rounded-md h-9 px-4 py-2 gap-2 has-[svg:not([data-slot=sidebar-menu-indicator])]:px-3 text-sm text-left [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-5 shrink-0 [&_svg]:shrink-0 font-medium text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none transition-[box-shadow] ease-out-quad duration-100";
 const sidebarNavSubButtonBaseClasses =
-	"cursor-pointer flex w-full items-center justify-start gap-3 bg-transparent border border-transparent rounded-md first:mt-1 h-8 px-3 py-1.5 px-3 gap-1.5 has-[svg]:px-2.5 text-sm text-left [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-5 shrink-0 [&_svg]:shrink-0 font-medium text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none";
+	"cursor-pointer flex w-full items-center justify-start gap-3 bg-transparent border border-transparent rounded-md first:mt-1 h-8 px-3 py-1.5 px-3 gap-1.5 has-[svg]:px-2.5 text-sm text-left [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-5 shrink-0 [&_svg]:shrink-0 font-medium text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none transition-[box-shadow] ease-out-quad duration-100";
 
 const sidebarNavButtonStateClasses =
 	'relative hover:bg-popover-muted hover:text-foreground data-[active=true]:bg-popover-muted data-[active=true]:text-foreground data-[active=true]:shadow-card dark:data-[active=true]:border-border';

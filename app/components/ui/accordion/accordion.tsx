@@ -18,25 +18,28 @@ const accordionVariants = cva('not-prose w-full', {
 	},
 });
 
-const accordionItemVariants = cva('not-prose', {
-	variants: {
-		variant: {
-			default: 'border-b border-border/60 last:border-b-0',
-			card: 'rounded-lg [&:has(:focus-visible)]:ring-1 [&:has(:focus-visible)]:ring-ring/50 [&:has(:focus-visible)]:ring-offset-1 [&:has(:focus-visible)]:ring-offset-ring-offset/50 [&:has(:focus-visible)]:outline-none',
+const accordionItemVariants = cva(
+	'not-prose transition-[box-shadow] ease-out-quad duration-100',
+	{
+		variants: {
+			variant: {
+				default: 'border-b border-border/60 last:border-b-0',
+				card: 'rounded-lg [&:has(:focus-visible)]:ring-1 [&:has(:focus-visible)]:ring-ring/50 [&:has(:focus-visible)]:ring-offset-1 [&:has(:focus-visible)]:ring-offset-ring-offset/50 [&:has(:focus-visible)]:outline-none',
+			},
+			isOpen: {
+				true: '',
+				false: '',
+			},
 		},
-		isOpen: {
-			true: '',
-			false: '',
+		defaultVariants: {
+			variant: 'default',
+			isOpen: false,
 		},
 	},
-	defaultVariants: {
-		variant: 'default',
-		isOpen: false,
-	},
-});
+);
 
 const accordionTriggerVariants = cva(
-	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70',
+	'not-prose flex w-full items-center justify-between rounded-lg text-left text-foreground hover:text-foreground/70 transition-[color,box-shadow] ease-out-quad duration-100',
 	{
 		variants: {
 			variant: {

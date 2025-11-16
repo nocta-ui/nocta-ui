@@ -139,7 +139,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
 			className="h-fit focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 		>
 			<span className="sr-only">Link to tweet</span>
-			<Twitter className="size-5 items-start text-foreground transition-all ease-basic hover:scale-105" />
+			<Twitter className="size-5 items-start text-foreground transition-all ease-out-quad duration-100 hover:scale-105" />
 		</a>
 	</div>
 );

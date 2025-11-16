@@ -6,7 +6,7 @@ import type { FC, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 const menubarVariants = cva(
-	'not-prose relative inline-flex items-center gap-1 rounded-md border border-border bg-card p-1 shadow-sm shadow-card',
+	'not-prose relative inline-flex items-center rounded-md border border-border bg-card p-1 shadow-sm shadow-card',
 	{
 		variants: {
 			size: {
@@ -20,7 +20,7 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 outline-none hover:bg-card-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+	'inline-flex select-none items-center gap-2 rounded-sm h-7.5 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm font-medium text-foreground/70 outline-none hover:bg-card-muted hover:text-foreground transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
 	{
 		variants: {
 			size: {

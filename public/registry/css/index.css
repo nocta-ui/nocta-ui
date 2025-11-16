@@ -73,7 +73,7 @@
 
 	--radius-base: 0.175rem;
 
-	--ease-basic: cubic-bezier(0, 0, 0.2, 1);
+	--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	--ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
@@ -189,8 +189,8 @@
 	--radius-3xl: calc(var(--radius-base) * 12);
 	--radius-4xl: calc(var(--radius-base) * 16);
 	--radius-full: 9999px;
-	--ease-basic: var(--ease-basic);
 	--ease-smooth: var(--ease-smooth);
+	--ease-out-quad: var(--ease-out-quad);
 }
 
 @keyframes navigation-menu-enter-from-start {

@@ -9,6 +9,7 @@ const checkboxCardVariants = cva(
 	[
 		'not-prose group relative flex w-full flex-col gap-3 rounded-lg border border-border bg-card px-4 py-3 text-left shadow-md shadow-card',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-ring/50 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:outline-none',
+		'transition-[box-shadow] duration-100 ease-out-quad',
 	],
 	{
 		variants: {
@@ -29,7 +30,7 @@ const checkboxCardVariants = cva(
 );
 
 const indicatorVariants = cva(
-	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card',
+	'flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-border bg-card transition-[opacity,border-color] duration-100 ease-out-quad',
 	{
 		variants: {
 			checked: {
@@ -164,7 +165,7 @@ export const CheckboxCard = React.forwardRef<
 									<span
 										aria-hidden="true"
 										className={cn(
-											'h-2 w-2 rounded-full bg-foreground transition-[scale,opacity] duration-100 ease-basic transform',
+											'h-2 w-2 rounded-full bg-foreground transition-[scale,opacity] duration-100 ease-out-quad',
 											isChecked ? 'scale-100 opacity-100' : 'scale-0 opacity-0',
 											disabled ? 'opacity-60' : '',
 										)}

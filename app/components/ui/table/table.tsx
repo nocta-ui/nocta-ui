@@ -61,8 +61,8 @@ const tableVariants = cva(
 
 const headerCellVariants = cva(
 	[
-		'flex items-center rounded-lg p-4 text-xs font-medium tracking-wide uppercase',
-		'text-foreground/70',
+		'flex items-center rounded-lg p-4 text-foreground/70 text-xs font-medium tracking-wide uppercase',
+		'transition-shadow duration-100 ease-out-quad',
 		'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 		'not-prose focus-visible:ring-ring/50 focus-visible:ring-offset-ring-offset/50',
 	],
@@ -113,7 +113,7 @@ const rowVariants = cva(
 				false: '',
 			},
 			active: {
-				true: 'z-10 focus-visible:z-10 focus-visible:rounded-lg focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
+				true: 'z-10 transition-shadow duration-100 ease-out-quad focus-visible:z-10 focus-visible:rounded-lg focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 				false: '',
 			},
 		},
@@ -479,7 +479,7 @@ export function Table<TData>({
 				role="grid"
 				aria-rowcount={rows.length}
 				aria-colcount={visibleColumns.length}
-				className="rounded-lg focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
+				className="rounded-lg transition-shadow duration-100 ease-out-quad focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 			>
 				{rows.length === 0 && (
 					<div className="px-6 py-10 text-center text-foreground/70">

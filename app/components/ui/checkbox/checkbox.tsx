@@ -9,9 +9,9 @@ import { cn } from '@/lib/utils';
 const checkboxVariants = cva(
 	[
 		'relative inline-flex items-center justify-center rounded border border-transparent cursor-pointer',
-		'transition-[background-color] duration-100 ease-basic',
+		'transition-[background-color,border-color,box-shadow] duration-100 ease-out-quad',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',
-		'has-[:focus-visible]:ring-offset-ring-offset/50',
+		'has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:ring-ring/50',
 		'not-prose shadow-sm shadow-card',
 	],
 	{
@@ -33,11 +33,11 @@ const checkboxVariants = cva(
 		compoundVariants: [
 			{
 				checked: true,
-				class: 'bg-foreground has-[:focus-visible]:ring-ring/50',
+				class: 'bg-foreground border-transparent',
 			},
 			{
 				checked: false,
-				class: 'bg-card border-border has-[:focus-visible]:ring-ring/50',
+				class: 'bg-card border-border',
 			},
 		],
 		defaultVariants: {
@@ -49,7 +49,7 @@ const checkboxVariants = cva(
 );
 
 const iconVariants = cva(
-	['text-card transition-opacity duration-100 ease-basic'],
+	['text-card transition-opacity ease-out-quad duration-100 '],
 	{
 		variants: {
 			size: {

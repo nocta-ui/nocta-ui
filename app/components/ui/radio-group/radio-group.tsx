@@ -95,17 +95,20 @@ const useRadioGroupContext = () => {
 	return context;
 };
 
-const dotVariants = cva('rounded-full bg-foreground', {
-	variants: {
-		checked: {
-			true: 'scale-100 opacity-100',
-			false: 'scale-0 opacity-0',
+const dotVariants = cva(
+	'rounded-full bg-foreground transition-[scale,opacity] duration-100 ease-out-quad',
+	{
+		variants: {
+			checked: {
+				true: 'scale-100 opacity-100',
+				false: 'scale-0 opacity-0',
+			},
+		},
+		defaultVariants: {
+			checked: false,
 		},
 	},
-	defaultVariants: {
-		checked: false,
-	},
-});
+);
 
 export interface RadioGroupItemProps
 	extends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Radio>, 'store'> {
@@ -134,6 +137,7 @@ export const RadioGroupItem = React.forwardRef<
 			className={cn(
 				'group relative flex items-start gap-2 cursor-pointer select-none rounded-md',
 				'data-focus-visible:ring-1 data-focus-visible:ring-ring/50 data-focus-visible:ring-offset-1 data-focus-visible:ring-offset-ring-offset/50',
+				'transition-shadow duration-100 ease-out-quad',
 				isDisabled && 'cursor-not-allowed opacity-50',
 				className,
 			)}
