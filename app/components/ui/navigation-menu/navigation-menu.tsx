@@ -35,7 +35,7 @@ const navigationMenuTriggerVariants = cva(
 );
 
 const navigationMenuPanelVariants = cva(
-	'relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-popover text-foreground/70 opacity-0 scale-95 shadow-2xl shadow-card data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:scale-95 data-[leave]:-translate-y-2 data-[leave]:opacity-0 -translate-y-2 transition-[translate,opacity,scale]l duration-300 ease-smooth',
+	'relative z-50 w-[min(32rem,calc(100vw-4rem))] rounded-lg border border-border bg-popover text-foreground/70 opacity-0 scale-95 shadow-2xl card-highlight data-[enter]:translate-y-0 data-[enter]:scale-100 data-[enter]:opacity-100 data-[leave]:scale-95 data-[leave]:-translate-y-2 data-[leave]:opacity-0 -translate-y-2 transition-[translate,opacity,scale]l duration-300 ease-smooth',
 	{
 		variants: {
 			size: {
@@ -810,9 +810,7 @@ function NavigationMenuArrow({ className }: NavigationMenuArrowProps) {
 
 	return (
 		<Ariakit.MenuArrow
-			style={
-				shouldTintArrow ? { stroke: 'var(--shadow-highlight)' } : undefined
-			}
+			style={shouldTintArrow ? { stroke: 'var(--arrow-highlight)' } : undefined}
 			className={className}
 		/>
 	);

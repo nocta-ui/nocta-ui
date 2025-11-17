@@ -52,7 +52,7 @@ const mergeRefs = <T,>(
 };
 
 const tooltipContentVariants = cva(
-	`pointer-events-auto z-50 origin-top -translate-y-2 scale-95 rounded-md border px-3 py-2 text-sm opacity-0 shadow-md shadow-card transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
+	`pointer-events-auto z-50 origin-top -translate-y-2 scale-95 rounded-md border px-3 py-2 text-sm opacity-0 shadow-md card-highlight transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0`,
 	{
 		variants: {
 			variant: {
@@ -217,7 +217,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	);
 	const shouldTintArrow = currentPlacement?.startsWith('bottom');
 	const arrowStyle = shouldTintArrow
-		? { stroke: 'var(--shadow-highlight)' }
+		? { stroke: 'var(--arrow-highlight)' }
 		: undefined;
 
 	return (

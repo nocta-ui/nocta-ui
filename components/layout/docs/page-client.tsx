@@ -319,7 +319,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
 		<Link
 			href={item.url}
 			className={cn(
-				'relative group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm shadow-card p-4 text-sm hover:bg-card-muted @max-lg:col-span-full',
+				'relative group flex flex-col lg:mt-16 gap-2 rounded-lg border border-fd-border bg-card shadow-sm card-highlight p-4 text-sm hover:bg-card-muted @max-lg:col-span-full',
 				'transition-[background-color,box-shadow] ease-out-quad duration-100',
 				'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-none',
 				'focus-visible:ring-offset-ring-offset/50',

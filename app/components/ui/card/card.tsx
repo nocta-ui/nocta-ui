@@ -44,7 +44,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 			<div
 				ref={ref}
 				className={cn(
-					'relative rounded-lg border border-border bg-card shadow-md shadow-card',
+					'relative rounded-lg border border-border bg-card shadow-md card-highlight',
 					className,
 				)}
 				{...props}

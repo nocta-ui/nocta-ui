@@ -22,7 +22,7 @@ const DocsTab = ({ title, value, isActive = false }: DocsTabProps) => {
 			value={value}
 			className={cn(
 				'group relative flex items-center gap-2 rounded-sm px-2 py-1 text-xs font-medium sm:text-sm',
-				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border data-active-item:shadow-card!',
+				'bg-transparent border border-transparent text-foreground/70! hover:text-foreground! data-active-item:bg-card-muted! dark:data-active-item:bg-card-muted! data-active-item:text-foreground! data-active-item:shadow-none! data-active-item:border-fd-border data-active-item:card-highlight!',
 				'transition-[background-color,color] ease-out-quad duration-100'
 			)}
 		>
@@ -79,7 +79,7 @@ const DocsTabs = ({
 	};
 
 	return (
-		<div className="not-prose relative z-0 mb-16 text-sm outline-none border border-border shadow-card rounded-lg shadow-sm">
+		<div className="not-prose relative z-0 mb-16 text-sm outline-none border border-border card-highlight rounded-lg shadow-sm">
 			<Tabs
 				value={activeTab}
 				onValueChange={handleTabChange}

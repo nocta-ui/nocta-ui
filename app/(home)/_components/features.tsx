@@ -168,7 +168,7 @@ function CommandLine({ children }: { children: string }) {
 			/>
 			<div
 				ref={areaRef}
-				className="relative block rounded-md border border-border bg-card px-4 py-3 pr-10 text-left shadow-sm shadow-card font-mono text-[13px] leading-relaxed text-sm"
+				className="relative block rounded-md border border-border bg-card px-4 py-3 pr-10 text-left shadow-sm card-highlight font-mono text-[13px] leading-relaxed text-sm"
 			>
 				<span className="text-[#6F42C1] dark:text-[#B392F0]">{first}</span>{' '}
 				<span className="text-[#032F62] dark:text-[#9ECBFF]">{rest}</span>
@@ -200,7 +200,7 @@ function FeatureList() {
 		<div className="grid gap-6">
 			{featureHighlights.map(({ title, description, icon: Icon }) => (
 				<div key={title} className="flex items-start gap-4">
-					<span className="relative flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground shadow-sm shadow-card">
+					<span className="relative flex size-10 shrink-0 items-center justify-center rounded-md border border-border bg-card text-foreground shadow-sm card-highlight">
 						<Icon className="h-5 w-5" aria-hidden />
 					</span>
 

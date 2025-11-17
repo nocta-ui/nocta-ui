@@ -110,8 +110,8 @@
 	--shadow-xs: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.05);
 
 	--shadow-sm:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.05), 0px 3px 3px -1.5px
-		rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.025);
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025), 0px 3px 3px -1.5px
+		rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05);
 
 	--shadow-md:
 		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
@@ -145,7 +145,7 @@
 		inset 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 2px
 		rgba(0, 0, 0, 0.025);
 
-	--shadow-highlight: var(--color-border);
+	--arrow-highlight: var(--color-border);
 
 	--radius-base: 0.175rem;
 
@@ -182,45 +182,8 @@
 	--color-chart-5: oklch(
 		0.52 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3))
 	);
-	--shadow-xs: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.05),;
 
-	--shadow-sm:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.05), 0px 3px 3px -1.5px
-		rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.025);
-
-	--shadow-md:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 12px 12px -6px rgba(0, 0, 0, 0.05),
-		0px 24px 24px -12px rgba(0, 0, 0, 0.05);
-
-	--shadow-lg:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 16px 16px -8px rgba(0, 0, 0, 0.05),
-		0px 32px 32px -16px rgba(0, 0, 0, 0.05);
-
-	--shadow-xl:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 20px 20px -10px rgba(0, 0, 0, 0.05),
-		0px 40px 40px -20px rgba(0, 0, 0, 0.05);
-
-	--shadow-2xl:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 24px 24px -12px rgba(0, 0, 0, 0.05),
-		0px 48px 48px -24px rgba(0, 0, 0, 0.05);
-
-	--shadow-inner:
-		inset 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 2px
-		rgba(0, 0, 0, 0.025);
-
-	--shadow-highlight: rgb(255 255 255 / 0.22);
+	--arrow-highlight: rgb(255 255 255 / 0.22);
 
 	--radius-base: 0.175rem;
 }
@@ -255,7 +218,7 @@
 	--shadow-xl: var(--shadow-xl);
 	--shadow-2xl: var(--shadow-2xl);
 	--shadow-inner: var(--shadow-inner);
-	--shadow-highlight: var(--shadow-highlight);
+	--arrow-highlight: var(--arrow-highlight);
 	--radius-xs: calc(var(--radius-base) * 1);
 	--radius-sm: calc(var(--radius-base) * 2);
 	--radius-md: calc(var(--radius-base) * 3);
@@ -313,7 +276,7 @@
 	}
 }
 
-@utility shadow-card {
+@utility card-highlight {
 	isolation: isolate;
 
 	&::before {
@@ -338,7 +301,7 @@
    ================================*/
 
 :root {
-	font-feature-settings: "ss06", "ss04", "ss05";
+	font-feature-settings: "ss06", "ss04", "ss05", "ss07";
 }
 
 @layer base {

@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const calendarVariants = cva(
-	'relative rounded-lg bg-card border border-border shadow-md shadow-card text-xs w-fit max-w-sm',
+	'relative rounded-lg bg-card border border-border shadow-md card-highlight text-xs w-fit max-w-sm',
 	{
 		variants: {
 			disabled: {

@@ -152,7 +152,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 									'h-9 min-w-9 px-0 py-0 font-medium',
 									animOff && 'transition-none duration-0',
 									isActive &&
-										'bg-card text-foreground shadow-sm border border-border shadow-card pointer-events-none disabled:opacity-100',
+										'bg-card text-foreground shadow-sm border border-border card-highlight pointer-events-none disabled:opacity-100',
 								)}
 								aria-current={isActive ? 'page' : undefined}
 								onClick={() => handlePageChange(pageNumber)}

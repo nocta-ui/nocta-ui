@@ -6,7 +6,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const indicatorVariants = cva(
-	'relative flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border shadow-sm shadow-card',
+	'relative flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border border-border shadow-sm card-highlight',
 	{
 		variants: {
 			checked: {

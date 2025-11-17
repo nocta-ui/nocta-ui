@@ -16,7 +16,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 
 const comboboxVariants = cva(
-	`relative inline-flex w-fit cursor-pointer items-center justify-between bg-card text-foreground rounded-md border shadow-sm shadow-card hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
+	`relative inline-flex w-fit cursor-pointer items-center justify-between bg-card text-foreground rounded-md border shadow-sm card-highlight hover:bg-card-muted transition-[background-color,color,box-shadow] ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
 	{
 		variants: {
 			variant: {
@@ -192,7 +192,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						portal={portal}
 						sameWidth
 						className={cn(
-							'absolute z-999 my-1 rounded-md border border-border bg-popover shadow-md shadow-card',
+							'absolute z-999 my-1 rounded-md border border-border bg-popover shadow-md card-highlight',
 							'origin-top -translate-y-2 scale-95 opacity-0 transition-[scale,translate,opacity] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
 							popoverClassName,
 						)}

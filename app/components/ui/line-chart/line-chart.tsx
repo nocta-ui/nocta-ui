@@ -745,7 +745,7 @@ function LineChartRootInner<TData extends ChartDatum>(
 			<div
 				ref={ref}
 				className={cn(
-					'relative flex flex-col rounded-lg border border-border bg-card shadow-md shadow-card',
+					'relative flex flex-col rounded-lg border border-border bg-card shadow-md card-highlight',
 					className,
 				)}
 				{...rest}
@@ -2035,7 +2035,7 @@ export const LineChartGraphBase = React.forwardRef<
 							willChange: 'transform, opacity',
 						}}
 					>
-						<div className="relative min-w-32 max-w-xs rounded-md border border-border bg-popover p-2 text-xs text-foreground shadow-md shadow-card">
+						<div className="relative min-w-32 max-w-xs rounded-md border border-border bg-popover p-2 text-xs text-foreground shadow-md card-highlight">
 							{renderTooltip}
 						</div>
 					</div>

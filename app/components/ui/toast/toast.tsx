@@ -155,7 +155,7 @@ class ToasterInstanceManager {
 const toasterInstanceManager = new ToasterInstanceManager();
 
 const toastContainerVariants = cva(
-	'pointer-events-auto fixed rounded-lg border shadow-2xl shadow-card will-change-transform border-border bg-popover',
+	'pointer-events-auto fixed rounded-lg border shadow-2xl card-highlight will-change-transform border-border bg-popover',
 	{
 		variants: {
 			position: {

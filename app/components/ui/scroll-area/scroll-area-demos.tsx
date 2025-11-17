@@ -66,7 +66,7 @@ export const ScrollAreaBasicDemo: React.FC = () => {
 				{notifications.map((notification) => (
 					<div
 						key={notification.id}
-						className="relative rounded-lg border border-border bg-card px-4 py-3 shadow-md shadow-card"
+						className="relative rounded-lg border border-border bg-card px-4 py-3 shadow-md card-highlight"
 					>
 						<div className="flex items-center justify-between text-sm font-medium text-foreground">
 							<span className="leading-none">{notification.title}</span>
@@ -91,7 +91,7 @@ export const ScrollAreaHorizontalDemo: React.FC = () => {
 				{frameworks.map((framework) => (
 					<div
 						key={framework}
-						className="relative rounded-full border border-border bg-card px-2 py-0.5 shadow-sm shadow-card"
+						className="relative rounded-full border border-border bg-card px-2 py-0.5 shadow-sm card-highlight"
 					>
 						{framework}
 					</div>

@@ -10,7 +10,7 @@ const wrapperVariants = cva(
 		'focus-within:ring-offset-ring-offset/50',
 		'transition-shadow duration-100 ease-out-quad',
 		'has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50',
-		'shadow-sm shadow-card',
+		'shadow-sm card-highlight',
 	],
 	{
 		variants: {

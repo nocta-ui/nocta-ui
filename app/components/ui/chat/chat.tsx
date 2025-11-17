@@ -9,7 +9,7 @@ import { Textarea } from '@/app/components/ui/textarea/textarea';
 import { cn } from '@/lib/utils';
 
 const chatVariants = cva(
-	'relative border rounded-lg shadow-md shadow-card not-prose',
+	'relative border rounded-lg shadow-md card-highlight not-prose',
 	{
 		variants: {
 			variant: {

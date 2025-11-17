@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const dialogContentVariants = cva(
-	`relative max-h-[70vh] rounded-lg border border-border bg-popover shadow-card shadow-2xl`,
+	`relative max-h-[70vh] rounded-lg border border-border bg-popover card-highlight shadow-2xl`,
 	{
 		variants: {
 			size: {

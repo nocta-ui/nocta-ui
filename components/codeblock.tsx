@@ -135,7 +135,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
 					ref={areaRef}
 					{...viewportProps}
 					className={cn(
-						'relative rounded-lg border border-fd-border bg-card shadow-card shadow-sm',
+						'relative rounded-lg border border-fd-border bg-card card-highlight shadow-sm',
 						props['data-line-numbers'] && '[&_.line]:pl-3',
 						viewportProps?.className,
 					)}

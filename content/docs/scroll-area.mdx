@@ -49,7 +49,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
         {notifications.map((notification) => (
           <div
             key={notification.title}
-            className="relative rounded-lg border border-border/60 bg-card-muted/40 p-4 shadow-xs shadow-card"
+            className="relative rounded-lg border border-border/60 bg-card-muted/40 p-4 shadow-xs card-highlight"
           >
             <div className="flex items-center justify-between text-sm font-medium text-foreground">
               <span>{notification.title}</span>
@@ -81,7 +81,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
         {frameworks.map((framework) => (
           <span
             key={framework}
-            className="relative rounded-full border border-border/60 bg-card px-4 py-2 shadow-xs shadow-card"
+            className="relative rounded-full border border-border/60 bg-card px-4 py-2 shadow-xs card-highlight"
           >
             {framework}
           </span>

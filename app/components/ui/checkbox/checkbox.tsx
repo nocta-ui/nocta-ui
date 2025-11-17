@@ -12,7 +12,7 @@ const checkboxVariants = cva(
 		'transition-[background-color,border-color,box-shadow] duration-100 ease-out-quad',
 		'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',
 		'has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:ring-ring/50',
-		'shadow-sm shadow-card',
+		'shadow-sm card-highlight',
 	],
 	{
 		variants: {

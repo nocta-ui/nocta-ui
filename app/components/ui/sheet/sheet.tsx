@@ -7,7 +7,7 @@ import { Icons } from '@/app/components/ui/icons/icons';
 import { cn } from '@/lib/utils';
 
 const sheetContentVariants = cva(
-	'fixed flex flex-col border border-border bg-popover shadow-2xl shadow-card transition-transform duration-300 ease-smooth',
+	'fixed flex flex-col border border-border bg-popover shadow-2xl card-highlight transition-transform duration-300 ease-smooth',
 	{
 		variants: {
 			side: {

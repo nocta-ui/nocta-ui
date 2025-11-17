@@ -402,7 +402,7 @@ function SidebarDesktopView({
 		side === 'left' ? 'left-0' : 'right-0',
 	);
 	const floatingClasses = isFloating
-		? 'top-2 bottom-2 rounded-lg shadow-card'
+		? 'top-2 bottom-2 rounded-lg card-highlight'
 		: 'inset-y-0 h-full';
 	const sidePositionClasses =
 		side === 'left'
@@ -489,7 +489,7 @@ function SidebarTrigger({
 			variant="icon"
 			data-slot="sidebar-trigger"
 			className={cn(
-				'group/sidebar-trigger cursor-pointer bg-popover text-foreground/70 hover:bg-popover-muted hover:text-foreground border border-border shadow-card',
+				'group/sidebar-trigger cursor-pointer bg-popover text-foreground/70 hover:bg-popover-muted hover:text-foreground border border-border card-highlight',
 				floating &&
 					'absolute top-4.5 left-4.5 z-20 h-10 w-10 rounded-md shadow-lg',
 				className,
@@ -566,7 +566,7 @@ function SidebarInput({
 			>
 				<Icons.Search className="size-5 text-foreground/45" />
 				<span className="flex-1 truncate text-left">{placeholder}</span>
-				<kbd className="relative pointer-events-none select-none rounded-sm border border-border bg-card-muted shadow-sm shadow-card px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground/70">
+				<kbd className="relative pointer-events-none select-none rounded-sm border border-border bg-card-muted shadow-sm card-highlight px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground/70">
 					⌘K
 				</kbd>
 			</Button>
@@ -780,7 +780,7 @@ const sidebarNavSubButtonBaseClasses =
 	"cursor-pointer flex w-full items-center justify-start gap-3 bg-transparent border border-transparent rounded-md first:mt-1 h-8 px-3 py-1.5 px-3 gap-1.5 has-[svg]:px-2.5 text-sm text-left [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-5 shrink-0 [&_svg]:shrink-0 font-medium text-foreground/70 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none transition-[box-shadow] ease-out-quad duration-100";
 
 const sidebarNavButtonStateClasses =
-	'relative hover:bg-popover-muted hover:text-foreground data-[active=true]:bg-popover-muted data-[active=true]:text-foreground data-[active=true]:shadow-card dark:data-[active=true]:border-border';
+	'relative hover:bg-popover-muted hover:text-foreground data-[active=true]:bg-popover-muted data-[active=true]:text-foreground data-[active=true]:card-highlight dark:data-[active=true]:border-border';
 const sidebarMenuButtonBaseClasses = `group/menu-button peer/menu-button ${sidebarNavButtonBaseClasses}`;
 
 type SidebarMenuButtonTooltipProps = {

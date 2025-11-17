@@ -16,7 +16,7 @@ const Wrap = (Tag: any, className: string) => (props: any) => (
 
 function CustomTable({ children, ...props }: any) {
   return (
-    <div className="relative border border-border shadow-sm h-fit shadow-card rounded-lg">
+    <div className="relative border border-border shadow-sm h-fit card-highlight rounded-lg">
       <table {...props} className="border-none mb-0 mt-0">
         {children}
       </table>

@@ -79,7 +79,7 @@ const kbdClass = cva(
 		'h-5 min-w-[2.2rem] rounded-sm border px-1.5',
 		'text-[10px] leading-none font-medium',
 		'border-border',
-		'bg-popover-muted shadow-sm shadow-card',
+		'bg-popover-muted shadow-sm card-highlight',
 		'text-foreground/70 shadow-sm',
 	].join(' '),
 );
