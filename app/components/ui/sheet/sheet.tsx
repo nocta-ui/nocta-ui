@@ -387,7 +387,6 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 	React.useEffect(() => {
 		if (!open) {
 			endResize();
-			setCustomSize(null);
 			baseSizeRef.current = 0;
 			return;
 		}
