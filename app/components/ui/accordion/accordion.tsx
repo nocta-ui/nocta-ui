@@ -402,7 +402,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = React.memo(
 						)}
 						{...props}
 					>
-						<div className="relative rounded-lg border border-border bg-card shadow-sm card-highlight">
+						<div className="relative rounded-lg border border-border bg-card shadow-md card-highlight">
 							{children}
 						</div>
 					</div>
@@ -471,7 +471,7 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = React.memo(
 					<Icons.ChevronDown
 						aria-hidden="true"
 						className={cn(
-							'ml-2 shrink-0 text-foreground/45 transition-[rotate] duration-300 ease-smooth will-change-transform',
+							'ml-2 shrink-0 text-foreground/70 transition-[rotate] duration-300 ease-smooth will-change-transform',
 							isOpen ? 'rotate-180' : 'rotate-0',
 						)}
 						style={{ width: iconSize, height: iconSize }}
