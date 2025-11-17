@@ -158,7 +158,7 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
 							href={entity.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm font-normal text-foreground/30"
+							className="text-sm font-normal text-foreground/45"
 						>
 							<span>{entity.text}</span>
 						</a>
@@ -167,7 +167,7 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
 					return (
 						<span
 							key={idx}
-							className="text-sm font-normal"
+							className="text-base font-normal"
 							dangerouslySetInnerHTML={{ __html: entity.text }}
 						/>
 					);

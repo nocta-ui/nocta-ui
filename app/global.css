@@ -337,6 +337,10 @@
    NOCTA CSS THEME VARIABLES END
    ================================*/
 
+:root {
+	font-feature-settings: "ss06", "ss04", "ss05";
+}
+
 @layer base {
 	body {
 		@apply bg-fd-background;
