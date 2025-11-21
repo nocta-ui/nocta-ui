@@ -3,11 +3,11 @@
 :root {
 	--base-hue: 248;
 	--chart-hue-step: 4;
-	--color-background: oklch(0.99 0.004 var(--base-hue));
+	--color-background: oklch(0.9851 0.002 var(--base-hue));
 	--color-card: oklch(1 0 0);
-	--color-card-muted: oklch(0.96 0.005 var(--base-hue));
+	--color-card-muted: oklch(0.96 0.0035 var(--base-hue));
 	--color-popover: oklch(1 0 0);
-	--color-popover-muted: oklch(0.96 0.005 var(--base-hue));
+	--color-popover-muted: oklch(0.96 0.0035 var(--base-hue));
 	--color-foreground: oklch(0.1408 0.0044 var(--base-hue));
 	--color-border: oklch(0.8925 0.0014 var(--base-hue));
 	--color-ring: oklch(0.55 0.012 var(--base-hue));
@@ -31,40 +31,33 @@
 	--color-chart-5: oklch(
 		0.47 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3))
 	);
-	--shadow-xs: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.05);
 
+	--shadow-xs: 0px 1px 1px -0.5px rgba(0, 0, 0, 0.15);
 	--shadow-sm:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025), 0px 3px 3px -1.5px
-		rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05);
-
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px
+		rgba(0, 0, 0, 0.05);
 	--shadow-md:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.15),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.05);
+	--shadow-lg:
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.15),
+		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
+		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
+		0px 12px 12px -6px rgba(0, 0, 0, 0.05);
+	--shadow-xl:
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.15),
 		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
 		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
 		0px 12px 12px -6px rgba(0, 0, 0, 0.05),
 		0px 24px 24px -12px rgba(0, 0, 0, 0.05);
-
-	--shadow-lg:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 16px 16px -8px rgba(0, 0, 0, 0.05),
-		0px 32px 32px -16px rgba(0, 0, 0, 0.05);
-
-	--shadow-xl:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
-		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
-		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
-		0px 20px 20px -10px rgba(0, 0, 0, 0.05),
-		0px 40px 40px -20px rgba(0, 0, 0, 0.05);
-
 	--shadow-2xl:
-		0px 1px 1px -0.5px rgba(0, 0, 0, 0.025),
+		0px 1px 1px -0.5px rgba(0, 0, 0, 0.15),
 		0px 3px 3px -1.5px rgba(0, 0, 0, 0.05),
 		0px 6px 6px -3px rgba(0, 0, 0, 0.05),
+		0px 12px 12px -6px rgba(0, 0, 0, 0.05),
 		0px 24px 24px -12px rgba(0, 0, 0, 0.05),
 		0px 48px 48px -24px rgba(0, 0, 0, 0.05);
-
 	--shadow-inner:
 		inset 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 2px
 		rgba(0, 0, 0, 0.025);

@@ -26,7 +26,7 @@ export const colorTokens = [
 	{
 		token: '--color-background',
 		description: 'Base background',
-		light: 'oklch(0.99 0.004 var(--base-hue))',
+		light: 'oklch(0.9851 0.002 var(--base-hue))',
 		dark: 'oklch(0.1408 0.0044 var(--base-hue))',
 	},
 	{
@@ -34,6 +34,12 @@ export const colorTokens = [
 		description: 'Surface for cards',
 		light: 'oklch(1 0 0)',
 		dark: 'oklch(0.1703 0.006 var(--base-hue))',
+	},
+	{
+		token: '--color-card-muted',
+		description: 'Muted card surface',
+		light: 'oklch(0.96 0.0035 var(--base-hue))',
+		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
 	},
 	{
 		token: '--color-popover',
@@ -44,14 +50,8 @@ export const colorTokens = [
 	{
 		token: '--color-popover-muted',
 		description: 'Muted popover surface',
-		light: 'oklch(0.96 0.005 var(--base-hue))',
+		light: 'oklch(0.96 0.0035 var(--base-hue))',
 		dark: 'oklch(0.2502 0.0095 var(--base-hue))',
-	},
-	{
-		token: '--color-card-muted',
-		description: 'Muted card surface',
-		light: 'oklch(0.96 0.005 var(--base-hue))',
-		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
 	},
 	{
 		token: '--color-foreground',
@@ -149,22 +149,40 @@ export const shadowTokens = [
 	{
 		token: '--shadow-xs',
 		description: 'Micro elevation',
-		value: '0px 1px 1px -0.5px rgba(0, 0, 0, 0.05)',
+		value: '0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
 	},
 	{
 		token: '--shadow-sm',
 		description: 'Light elevation',
 		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.025)',
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.015)',
 			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
-			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
 		],
 	},
 	{
 		token: '--shadow-md',
 		description: 'Medium elevation',
 		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.025)',
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
+			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
+			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
+		],
+	},
+	{
+		token: '--shadow-lg',
+		description: 'Elevated card',
+		value: [
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
+			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
+			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
+			'0px 12px 12px -6px rgba(0, 0, 0, 0.05)',
+		],
+	},
+	{
+		token: '--shadow-xl',
+		description: 'Popover / modal level',
+		value: [
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
 			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
 			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
 			'0px 12px 12px -6px rgba(0, 0, 0, 0.05)',
@@ -172,34 +190,13 @@ export const shadowTokens = [
 		],
 	},
 	{
-		token: '--shadow-lg',
-		description: 'Elevated card',
-		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.025)',
-			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
-			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
-			'0px 16px 16px -8px rgba(0, 0, 0, 0.05)',
-			'0px 32px 32px -16px rgba(0, 0, 0, 0.05)',
-		],
-	},
-	{
-		token: '--shadow-xl',
-		description: 'Popover / modal level',
-		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.025)',
-			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
-			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
-			'0px 20px 20px -10px rgba(0, 0, 0, 0.05)',
-			'0px 40px 40px -20px rgba(0, 0, 0, 0.05)',
-		],
-	},
-	{
 		token: '--shadow-2xl',
 		description: 'Highest elevation',
 		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.025)',
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.015)',
 			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
 			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
+			'0px 12px 12px -6px rgba(0, 0, 0, 0.05)',
 			'0px 24px 24px -12px rgba(0, 0, 0, 0.05)',
 			'0px 48px 48px -24px rgba(0, 0, 0, 0.05)',
 		],
