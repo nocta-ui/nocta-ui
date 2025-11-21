@@ -64,7 +64,7 @@ const messageVariants = cva('mt-1.5 text-sm', {
 		type: {
 			error: 'text-destructive/90',
 			success: 'text-success/90',
-			helper: 'text-foreground/45',
+			helper: 'text-foreground/70',
 		},
 	},
 });
@@ -115,7 +115,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 			{label && (
 				<label
 					htmlFor={textareaId}
-					className="mb-1.5 block text-sm font-medium text-foreground/70"
+					className="mb-1.5 block text-sm font-medium text-foreground"
 				>
 					{label}
 				</label>

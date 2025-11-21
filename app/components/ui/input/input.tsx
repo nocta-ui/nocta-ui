@@ -93,28 +93,25 @@ const iconVariants = cva(
 	},
 );
 
-const labelVariants = cva(
-	'mb-1.5 block text-sm font-medium text-foreground/70',
-	{
-		variants: {
-			variant: {
-				default: '',
-				error: '',
-				success: '',
-			},
-		},
-		defaultVariants: {
-			variant: 'default',
+const labelVariants = cva('mb-1.5 block text-sm font-medium text-foreground', {
+	variants: {
+		variant: {
+			default: '',
+			error: '',
+			success: '',
 		},
 	},
-);
+	defaultVariants: {
+		variant: 'default',
+	},
+});
 
 const messageVariants = cva('mt-1.5 text-sm', {
 	variants: {
 		type: {
 			error: 'text-destructive/90',
 			success: 'text-success/90',
-			helper: 'text-foreground/45',
+			helper: 'text-foreground/70',
 		},
 	},
 });
