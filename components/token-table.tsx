@@ -99,19 +99,19 @@ export const colorTokens = [
 		token: '--color-destructive',
 		description: 'Destructive state',
 		light: 'oklch(0.62 0.21 25)',
-		dark: 'oklch(0.58 0.22 25)',
+		dark: 'oklch(0.72 0.27 25)',
 	},
 	{
 		token: '--color-warning',
 		description: 'Warning state',
 		light: 'oklch(0.8 0.2 75)',
-		dark: 'oklch(0.75 0.18 75)',
+		dark: 'oklch(0.82 0.24 85)',
 	},
 	{
 		token: '--color-success',
 		description: 'Success state',
 		light: 'oklch(0.7 0.18 155)',
-		dark: 'oklch(0.68 0.19 155)',
+		dark: 'oklch(0.78 0.25 155)',
 	},
 	{
 		token: '--color-chart-1',

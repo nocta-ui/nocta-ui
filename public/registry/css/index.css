@@ -83,9 +83,9 @@
 	--color-overlay: oklch(0.12 0.004 var(--base-hue) / 0.65);
 	--color-gradient-from: oklch(0.3203 0.012 var(--base-hue));
 	--color-gradient-to: oklch(0.2517 0.012 var(--base-hue));
-	--color-destructive: oklch(0.58 0.22 25);
-	--color-warning: oklch(0.75 0.18 75);
-	--color-success: oklch(0.68 0.19 155);
+	--color-destructive: oklch(0.72 0.27 25);
+	--color-warning: oklch(0.82 0.24 85);
+	--color-success: oklch(0.78 0.25 155);
 	--color-chart-1: oklch(
 		0.84 0.13 calc(var(--base-hue) - var(--chart-hue-step))
 	);
