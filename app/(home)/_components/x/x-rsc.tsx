@@ -167,7 +167,7 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
 					return (
 						<span
 							key={idx}
-							className="text-base font-normal"
+							className="text-base font-normal italic"
 							dangerouslySetInnerHTML={{ __html: entity.text }}
 						/>
 					);

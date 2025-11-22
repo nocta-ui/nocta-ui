@@ -5,21 +5,25 @@ import localFont from 'next/font/local';
 import type { ReactNode } from 'react';
 import SearchDialog from '@/components/search';
 
-const diatype = localFont({
+const instrumentSans = localFont({
 	src: [
 		{
-			path: './assets/fonts/ABCDiatypeVariable.woff2',
+			path: './assets/fonts/InstrumentSans-VariableFont_wdth,wght.ttf',
 			style: 'normal',
 		},
+		{
+			path: './assets/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf',
+			style: 'italic',
+		},
 	],
-	variable: '--font-diatype',
+	variable: '--font-instrumentsans',
 	display: 'swap',
 });
 
-const diatypeMono = localFont({
+const monaspaceNeon = localFont({
 	src: [
 		{
-			path: './assets/fonts/ABCDiatypeMono-Regular.woff2',
+			path: './assets/fonts/Monaspace Neon Var.woff2',
 			style: 'normal',
 		},
 	],
@@ -121,7 +125,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en"
-			className={`${diatype.className} ${diatypeMono.variable}`}
+			className={`${instrumentSans.className} ${monaspaceNeon.variable}`}
 			suppressHydrationWarning
 		>
 			<body
