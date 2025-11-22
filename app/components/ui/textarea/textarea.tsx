@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import type React from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 const wrapperVariants = cva(
@@ -82,9 +82,6 @@ export interface TextareaProps
 	variant?: 'default' | 'error' | 'success';
 }
 
-let textareaIdCounter = 0;
-const generateTextareaId = () => `textarea-${++textareaIdCounter}`;
-
 export const Textarea: React.FC<TextareaProps> = ({
 	variant = 'default',
 	size = 'md',
@@ -103,7 +100,8 @@ export const Textarea: React.FC<TextareaProps> = ({
 }) => {
 	const displayErrorMessage = variant === 'error' && errorMessage;
 	const displaySuccessMessage = variant === 'success' && successMessage;
-	const textareaId = id ?? generateTextareaId();
+	const autoId = React.useId();
+	const textareaId = id ?? autoId;
 	const helperId = helperText ? `${textareaId}-helper` : undefined;
 	const errorId = displayErrorMessage ? `${textareaId}-error` : undefined;
 	const successId = displaySuccessMessage ? `${textareaId}-success` : undefined;
