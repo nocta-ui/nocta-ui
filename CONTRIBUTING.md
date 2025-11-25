@@ -56,13 +56,13 @@ All commands are declared in `package.json`.
 | `pnpm lint` | Run Biome (`biome check .`) to lint and format the codebase. |
 | `pnpm lint:fix` | Apply Biome auto-fixes. |
 | `pnpm typecheck` | Type-check the Next.js app (`tsconfig.json`). |
-| `pnpm typecheck:ui` | Strict type-check the UI components (`tsconfig.ui.json`). |
 | `pnpm prepare` | Installs Husky Git hooks (executed automatically by package managers that honour the `prepare` script). |
 
 Useful helper scripts:
 
 - `scripts/sync-css-tokens.sh`: Copies design tokens from `app/global.css` into `public/registry/css/index.css` for CLI consumption.
-- `scripts/build-components.sh`: Regenerates `public/registry/components.json` by Base64-encoding source components. Automatically fixes icon import paths before encoding.
+- `scripts/sync-icons.sh`: Synchronizes `registry/ui/nocta-icons.tsx` with `public/registry/icons/icons.ts` for CLI consumption.
+- `scripts/build-components.sh`: Regenerates `public/registry/components.json` by Base64-encoding source components. Automatically fixes import paths before encoding.
 
 Both scripts run automatically before every commit (see below), but you can execute them manually whenever you need to refresh the registry outputs.
 
@@ -74,7 +74,8 @@ We use Husky to keep the registry in sync:
 .husky/pre-commit
 └── bash ./scripts/sync-css-tokens.sh
     bash ./scripts/build-components.sh
-    git add public/registry/components.json public/registry/css/index.css
+    bash ./scripts/sync-icons.sh
+    git add public/registry/components.json public/registry/css/index.css public/registry/icons/icons.ts
 ```
 
 - **Never bypass the hook** unless you know exactly what you are doing—registry files must stay aligned with the source.
@@ -82,21 +83,13 @@ We use Husky to keep the registry in sync:
 
 ## Component Architecture
 
-All distributable components live in `app/components/ui`. A typical component folder looks like this:
-
-```
-button/
-├── button.tsx         // main component implementation
-├── button-demos.tsx   // small interactive snippets used in docs
-└── index.ts           // re-export surface
-```
+All distributable components live in `registry/ui` with component demos in `demos/`
 
 Key conventions:
 
 - **Client components**: Most UI elements opt into the React Client Component model (`'use client';`) because they rely on interactivity or hooks from `@ariakit/react`.
 - **Accessible primitives**: Wrap primitives from `@ariakit/react` (dialogs, tooltips, tabs, etc.). Follow their accessibility contract and expose ergonomic props on top.
 - **Variants & styling**: Use `class-variance-authority` (`cva`) alongside the `cn` helper (`lib/utils.ts`) to express visual variants. Token-aware Tailwind utility classes (`bg-card`, `text-foreground`, `shadow-lg`, etc.) ensure consistent styling.
-- **Exports**: `index.ts` should export every symbol that CLI consumers need, including demos that power documentation.
 - **Demos**: Keep `*-demos.tsx` small and focused. They render within documentation pages and help both design and a11y reviews.
 
 When adding or refactoring components:
@@ -132,8 +125,8 @@ The Nocta CLI fetches everything it needs from `public/registry`:
 
 `scripts/build-components.sh` controls the JSON artefact:
 
-1. Collects every `.tsx` file under `app/components/ui/**` (excluding `*-demos.tsx`).
-2. Applies a Perl-based fix so icon imports (`@/app/components/ui/icons/icons`) are rewritten to the flat components structure that CLI writtes in.
+1. Collects every `.tsx` file under `registry/ui/**`.
+2. Applies a Perl-based fix so imports (`@/registry/ui/[componentName]`) are rewritten to (`@/components/ui/[componentName]`)n.
 3. Base64-encodes the content and writes the map.
 
 Whenever you add, rename, or delete components, run this script (or rely on the pre-commit hook) so the CLI stays in sync.
@@ -153,11 +146,11 @@ Component docs live in `content/docs`. Each component usually has an MDX file at
 When introducing a new component:
 
 1. Add or update the MDX documentation under `content/docs`. Use the existing pages as references for structure and tone.
-2. Import your demo components from `app/components/ui/<component>/<component>-demos.tsx`.
+2. Import your demo components from `demos/`.
 3. Register the documentation page in `content/docs/meta.json` under the appropriate category heading (e.g. `"---Form---"`). This controls sidebar grouping.
 4. Run `pnpm dev` and verify the documentation renders correctly.
 
-> Remember to keep `mdx-components.tsx`, `content/docs/meta.json`, and `public/registry/registry.json` aligned so the docs, CLI, and registry all agree on the new component’s name and category.
+> Remember to keep `content/docs/meta.json`, and `public/registry/registry.json` aligned so the CLI, and registry all agree on the new component’s name and category.
 
 ## Accessibility (a11y) Expectations
 
@@ -176,8 +169,8 @@ Accessibility is a core value of the library. Follow these practices:
 Before opening a PR, please:
 
 1. Run `pnpm lint` and ensure Biome passes.
-2. Run `pnpm typecheck` and `pnpm typecheck:ui`.
-3. Run (or rely on pre-commit to run) `scripts/sync-css-tokens.sh` and `scripts/build-components.sh` if you touched tokens or components.
+2. Run `pnpm typecheck``.
+3. Run (or rely on pre-commit to run) `scripts/sync-css-tokens.sh`, `scripts/sync-css-icons.sh` `scripts/build-components.sh` if you touched tokens, icons or components.
 4. Manually verify a11y-critical interactions in the docs site (keyboard + screen reader spot checks).
 5. Update or add MDX docs and demos where relevant.
 6. Include screenshots or GIFs in the PR description when visual changes are significant.

@@ -1,25 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+components_dir="$repo_root/registry/ui"
+
+if [ ! -d "$components_dir" ]; then
+  echo "[build-components] Components directory not found: $components_dir" >&2
+  exit 1
+fi
+
 echo "[1/4] Preparing output file..."
-mkdir -p public/registry
-output_file="public/registry/components.json"
+mkdir -p "$repo_root/public/registry"
+output_file="$repo_root/public/registry/components.json"
 echo "{" > "$output_file"
 first=true
 
-echo "[2/4] Preparing regex fixes..."
-
-fix_icons_script="$(mktemp -t fixicons.XXXXXX.pl)"
-cat > "$fix_icons_script" <<'PERL'
-s#import\s+\{[^}]*\bIcons\b[^}]*\}\s+from\s+(["'])@/app/components/ui/icons/icons\1#import { Icons } from \1@/app/components/ui/icons\1#g;
+echo "[2/4] Preparing import rewrites..."
+rewrite_script="$(mktemp -t rewrite.XXXXXX.pl)"
+cat > "$rewrite_script" <<'PERL'
+s#@/registry/ui/#@/components/ui/#g;
 PERL
 
 echo "[3/4] Encoding TSX components to Base64 JSON..."
-find app/components/ui -type f -name '*.tsx' \
-  ! -name '*-demos*' | while read -r file; do
+find "$components_dir" -maxdepth 1 -type f -name '*.tsx' \
+  ! -name '*-demos*' | sort | while read -r file; do
     filename=$(basename "$file")
 
-    fixed_content=$(perl -p "$fix_icons_script" "$file")
+    fixed_content=$(perl -0p "$rewrite_script" "$file")
 
     encoded=$(printf "%s" "$fixed_content" | base64 | tr -d '\n')
 
@@ -34,6 +41,6 @@ done
 echo "" >> "$output_file"
 echo "}" >> "$output_file"
 
-rm -f "$fix_icons_script"
+rm -f "$rewrite_script"
 
 echo "[4/4] Done! Components registry written to $output_file"

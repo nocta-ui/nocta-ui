@@ -3,20 +3,18 @@ title: Skeleton
 description: Loading skeleton component with variants, shapes, and animations for creating content placeholders during loading states
 ---
 
-import { Skeleton } from '@/app/components/ui/skeleton';
 import {
   BasicSkeletonDemo,
   ShimmerSkeletonDemo,
   WaveSkeletonDemo,
-  VariantsDemo,
-  SizesDemo,
+  SkeletonSizesDemo,
   ShapesDemo,
   TextLinesDemo,
   CustomSizeDemo,
   CardSkeletonDemo,
   ArticleSkeletonDemo,
   TableSkeletonDemo
-} from '@/app/components/ui/skeleton/skeleton-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -74,7 +72,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <SkeletonSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Skeleton Sizes"

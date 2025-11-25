@@ -3,20 +3,19 @@ title: Textarea
 description: A versatile textarea component with multiple variants, sizes, resize options, and dark mode support
 ---
 
-import { Textarea } from '@/app/components/ui/textarea';
 import {
   DefaultTextareaDemo,
   TextareaWithLabelDemo,
   TextareaWithHelperTextDemo,
-  VariantsDemo,
-  SizesDemo,
+  TextareaVariantsDemo,
+  TextareaSizesDemo,
   ResizeOptionsDemo,
   RowsDemo,
-  DisabledStateDemo,
-  ReadOnlyStateDemo,
+  TextareaDisabledStateDemo,
+  TextareaReadOnlyStateDemo,
   MaxLengthDemo,
-  CustomContainerDemo
-} from '@/app/components/ui/textarea/textarea-demos';
+  TextareaCustomContainerDemo
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -93,7 +92,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <TextareaVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Textarea Variants"
@@ -124,7 +123,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <TextareaSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Textarea Sizes"
@@ -220,7 +219,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <DisabledStateDemo />
+    <TextareaDisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled Textarea State"
@@ -244,7 +243,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <ReadOnlyStateDemo />
+    <TextareaReadOnlyStateDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx

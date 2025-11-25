@@ -5,11 +5,11 @@ description: A vertically stacked set of interactive headings that each reveal a
 
 import { DocsTabs, DocsTab } from "@/components/docs-tab";
 import {
-  BasicAccordionDemo,
+  DefaultAccordionDemo,
   CardAccordionDemo,
   MultipleAccordionDemo,
   SizeAccordionDemo,
-} from '@/app/components/ui/accordion';
+} from '@/demos';
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
@@ -43,7 +43,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <BasicAccordionDemo />
+    <DefaultAccordionDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Accordion"

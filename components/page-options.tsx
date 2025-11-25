@@ -10,12 +10,12 @@ import { cva } from 'class-variance-authority';
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
 import { useMemo, useState } from 'react';
 
-import { Button, buttonVariants } from '@/app/components/ui/button';
+import { Button, buttonVariants } from '@/registry/ui/button';
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-} from '@/app/components/ui/popover';
+} from '@/registry/ui/popover';
 import { cn } from '@/lib/utils';
 
 const cache = new Map<string, string>();

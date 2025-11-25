@@ -3,15 +3,11 @@ title: Dialog
 description: A modal dialog component for displaying content over the main interface with backdrop, keyboard navigation and accessibility features
 ---
 
-import { Dialog, DialogTrigger, DialogSurface, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogActions, DialogClose } from '@/app/components/ui/dialog';
-import { Button } from '@/app/components/ui/button';
-import { Input } from '@/app/components/ui/input';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
 import {
   SimpleDialogDemo,
   DialogWithActionsDemo,
-  SizesDemo
-} from '@/app/components/ui/dialog/dialog-demos';
+  DialogSizesDemo
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -118,7 +114,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <DialogSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Dialog Sizes"

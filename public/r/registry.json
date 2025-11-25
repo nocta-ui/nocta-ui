@@ -1,0 +1,913 @@
+{
+	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"name": "nocta-ui",
+	"homepage": "https://nocta-ui.com",
+	"items": [
+		{
+			"name": "nocta-tokens",
+			"type": "registry:style",
+			"cssVars": {
+				"theme": {
+					"base-hue": "248",
+					"chart-hue-step": "4",
+					"shadow-xs": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)",
+					"shadow-sm": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)",
+					"shadow-md": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05)",
+					"shadow-lg": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05), 0px 12px 12px -6px rgba(0, 0, 0, 0.05)",
+					"shadow-xl": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05), 0px 12px 12px -6px rgba(0, 0, 0, 0.05), 0px 24px 24px -12px rgba(0, 0, 0, 0.05)",
+					"shadow-2xl": "0px 1px 1px -0.5px rgba(0, 0, 0, 0.15), 0px 3px 3px -1.5px rgba(0, 0, 0, 0.05), 0px 6px 6px -3px rgba(0, 0, 0, 0.05), 0px 12px 12px -6px rgba(0, 0, 0, 0.05), 0px 24px 24px -12px rgba(0, 0, 0, 0.05), 0px 48px 48px -24px rgba(0, 0, 0, 0.05)",
+					"shadow-inner": "inset 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 2px rgba(0, 0, 0, 0.025)",
+					"radius-base": "0.175rem",
+					"ease-out-quad": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+					"ease-smooth": "cubic-bezier(0.32, 0.72, 0, 1)"
+				},
+				"light": {
+					"background": "oklch(0.9851 0.002 var(--base-hue))",
+					"card": "oklch(1 0 0)",
+					"card-muted": "oklch(0.96 0.0035 var(--base-hue))",
+					"popover": "oklch(1 0 0)",
+					"popover-muted": "oklch(0.96 0.0035 var(--base-hue))",
+					"foreground": "oklch(0.1408 0.0044 var(--base-hue))",
+					"border": "oklch(0.8925 0.0014 var(--base-hue))",
+					"ring": "oklch(0.55 0.012 var(--base-hue))",
+					"ring-offset": "oklch(0.96 0.002 var(--base-hue))",
+					"overlay": "oklch(0.92 0.003 var(--base-hue) / 0.65)",
+					"gradient-from": "oklch(0.3603 0.0181 var(--base-hue))",
+					"gradient-to": "oklch(0.2517 0.02 var(--base-hue))",
+					"destructive": "oklch(0.62 0.21 25)",
+					"warning": "oklch(0.8 0.2 75)",
+					"success": "oklch(0.7 0.18 155)",
+					"chart-1": "oklch(0.8 0.13 calc(var(--base-hue) - var(--chart-hue-step)))",
+					"chart-2": "oklch(0.68 0.2 var(--base-hue))",
+					"chart-3": "oklch(0.6 0.23 calc(var(--base-hue) + var(--chart-hue-step)))",
+					"chart-4": "oklch(0.53 0.23 calc(var(--base-hue) + (var(--chart-hue-step) * 2)))",
+					"chart-5": "oklch(0.47 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3)))",
+					"arrow-highlight": "var(--color-border)"
+				},
+				"dark": {
+					"background": "oklch(0.1408 0.0044 var(--base-hue))",
+					"card": "oklch(0.1703 0.006 var(--base-hue))",
+					"card-muted": "oklch(0.2139 0.0085 var(--base-hue))",
+					"popover": "oklch(0.2139 0.0085 var(--base-hue))",
+					"popover-muted": "oklch(0.2502 0.0095 var(--base-hue))",
+					"foreground": "oklch(0.9824 0.0013 var(--base-hue))",
+					"border": "oklch(0.278 0.006 var(--base-hue))",
+					"ring": "oklch(0.58 0.012 var(--base-hue))",
+					"ring-offset": "oklch(0.15 0.005 var(--base-hue))",
+					"overlay": "oklch(0.12 0.004 var(--base-hue) / 0.65)",
+					"gradient-from": "oklch(0.3203 0.012 var(--base-hue))",
+					"gradient-to": "oklch(0.2517 0.012 var(--base-hue))",
+					"destructive": "oklch(0.72 0.27 25)",
+					"warning": "oklch(0.82 0.24 85)",
+					"success": "oklch(0.78 0.25 155)",
+					"chart-1": "oklch(0.84 0.13 calc(var(--base-hue) - var(--chart-hue-step)))",
+					"chart-2": "oklch(0.74 0.2 var(--base-hue))",
+					"chart-3": "oklch(0.66 0.23 calc(var(--base-hue) + var(--chart-hue-step)))",
+					"chart-4": "oklch(0.58 0.23 calc(var(--base-hue) + (var(--chart-hue-step) * 2)))",
+					"chart-5": "oklch(0.52 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3)))",
+					"arrow-highlight": "rgb(255 255 255 / 0.22)"
+				}
+			},
+			"css": {
+				"@theme": {
+					"--color-background": "var(--background)",
+					"--color-card": "var(--card)",
+					"--color-card-muted": "var(--card-muted)",
+					"--color-popover": "var(--popover)",
+					"--color-popover-muted": "var(--popover-muted)",
+					"--color-foreground": "var(--foreground)",
+					"--color-border": "var(--border)",
+					"--color-ring": "var(--ring)",
+					"--color-ring-offset": "var(--ring-offset)",
+					"--color-overlay": "var(--overlay)",
+					"--color-gradient-from": "var(--gradient-from)",
+					"--color-gradient-to": "var(--gradient-to)",
+					"--color-destructive": "var(--destructive)",
+					"--color-warning": "var(--warning)",
+					"--color-success": "var(--success)",
+					"--color-chart-1": "var(--chart-1)",
+					"--color-chart-2": "var(--chart-2)",
+					"--color-chart-3": "var(--chart-3)",
+					"--color-chart-4": "var(--chart-4)",
+					"--color-chart-5": "var(--chart-5)",
+					"--shadow-xs": "var(--shadow-xs)",
+					"--shadow-sm": "var(--shadow-sm)",
+					"--shadow-md": "var(--shadow-md)",
+					"--shadow-lg": "var(--shadow-lg)",
+					"--shadow-xl": "var(--shadow-xl)",
+					"--shadow-2xl": "var(--shadow-2xl)",
+					"--shadow-inner": "var(--shadow-inner)",
+					"--arrow-highlight": "var(--arrow-highlight)",
+					"--radius-xs": "calc(var(--radius-base) * 1)",
+					"--radius-sm": "calc(var(--radius-base) * 2)",
+					"--radius-md": "calc(var(--radius-base) * 3)",
+					"--radius-lg": "calc(var(--radius-base) * 4)",
+					"--radius-xl": "calc(var(--radius-base) * 6)",
+					"--radius-2xl": "calc(var(--radius-base) * 8)",
+					"--radius-3xl": "calc(var(--radius-base) * 12)",
+					"--radius-4xl": "calc(var(--radius-base) * 16)",
+					"--radius-full": "9999px",
+					"--ease-smooth": "var(--ease-smooth)",
+					"--ease-out-quad": "var(--ease-out-quad)"
+				}
+			}
+		},
+		{
+			"name": "nocta-icons",
+			"type": "registry:component",
+			"title": "nocta-icons",
+			"description": "File mapping all icons used by Nocta UI",
+			"dependencies": ["@radix-ui/react-icons"],
+			"files": [
+				{
+					"path": "registry/ui/nocta-icons.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "accordion",
+			"type": "registry:component",
+			"title": "Accordion",
+			"description": "A vertically stacked set of interactive headings that each reveal a section of content",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/accordion.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "alert",
+			"type": "registry:component",
+			"title": "Alert",
+			"description": "Alert component with different variants and nested components",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/alert.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "area-chart",
+			"type": "registry:component",
+			"title": "Area Chart",
+			"description": "Interactive area chart with multi-series support, tooltips, legend, and data table helpers",
+			"dependencies": ["clsx", "d3-shape", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/area-chart.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "avatar",
+			"type": "registry:component",
+			"title": "Avatar",
+			"description": "Avatar component with image fallback, status indicator, and multiple sizes",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/avatar.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "badge",
+			"type": "registry:component",
+			"title": "Badge",
+			"description": "Badge component for displaying status, counts, or labels",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/badge.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "breadcrumb",
+			"type": "registry:component",
+			"title": "Breadcrumb",
+			"description": "Navigation breadcrumb component showing hierarchical location with customizable separators and styling",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/breadcrumb.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "button",
+			"type": "registry:component",
+			"title": "Button",
+			"description": "Button component with multiple variants and sizes",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/button.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "calendar",
+			"type": "registry:component",
+			"title": "Calendar",
+			"description": "A fully featured date picker with keyboard navigation, accessibility support, and customizable styling",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/calendar.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "card",
+			"type": "registry:component",
+			"title": "Card",
+			"description": "Card component with composable layout sections",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/card.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "chat",
+			"type": "registry:component",
+			"title": "Chat",
+			"description": "Complete chat interface component with messages, input, avatars, timestamps, and real-time features",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/chat.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["button", "input", "nocta-icons"]
+		},
+		{
+			"name": "checkbox",
+			"type": "registry:component",
+			"title": "Checkbox",
+			"description": "Form input component for toggling options with checked and unchecked states",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/checkbox.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "checkbox-card",
+			"type": "registry:component",
+			"title": "CheckboxCard",
+			"description": "A selectable card that pairs rich summaries with checkbox behaviour for multi-select interfaces",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/checkbox-card.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "combobox",
+			"type": "registry:component",
+			"title": "Combobox",
+			"description": "Searchable combobox component with filtering, keyboard navigation, and accessibility",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/combobox.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["scroll-area", "nocta-icons"]
+		},
+		{
+			"name": "command-k",
+			"type": "registry:component",
+			"title": "CommandK",
+			"description": "Command palette modal (Cmd/Ctrl+K) for quick search, navigation and actions with full keyboard support",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/command-k.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["dialog", "input", "nocta-icons"]
+		},
+		{
+			"name": "context-menu",
+			"type": "registry:component",
+			"title": "Context Menu",
+			"description": "A context menu component that appears on right-click with full keyboard navigation and submenu support",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/context-menu.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "dialog",
+			"type": "registry:component",
+			"title": "Dialog",
+			"description": "Modal dialog component with overlay and animations",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/dialog.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "dropdown-menu",
+			"type": "registry:component",
+			"title": "Dropdown Menu",
+			"description": "A dropdown menu component triggered on click with keyboard navigation and submenu support",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/dropdown-menu.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "file-upload",
+			"type": "registry:component",
+			"title": "File Upload",
+			"description": "Advanced file upload component with drag & drop, progress tracking, validation, and preview support",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/file-upload.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["nocta-icons", "button", "spinner"]
+		},
+		{
+			"name": "form",
+			"type": "registry:component",
+			"title": "Form",
+			"description": "Composable Ariakit-based form with fields, labels, validation, and actions",
+			"dependencies": ["@ariakit/react", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/form.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "hovercard",
+			"type": "registry:component",
+			"title": "Hovercard",
+			"description": "Contextual hovercard for lightweight previews with hover intent handling and smart positioning",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/hovercard.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "input",
+			"type": "registry:component",
+			"title": "Input",
+			"description": "Input component with variants, icons, and helper text",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/input.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "line-chart",
+			"type": "registry:component",
+			"title": "Line Chart",
+			"description": "Track evolving metrics and dynamic changes using clear, continuous line plots",
+			"dependencies": ["clsx", "d3-shape", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/line-chart.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "menubar",
+			"type": "registry:component",
+			"title": "Menubar",
+			"description": "An application menubar with multi-level menus, groups, and keyboard navigation",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/menubar.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "navigation-menu",
+			"type": "registry:component",
+			"title": "Navigation Menu",
+			"description": "Hover-driven navigation bar with floating panels for grouped links and quick actions",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/navigation-menu.tsx",
+					"type": "registry:component"
+				}
+			],
+			"css": {
+				"@keyframes navigation-menu-enter-from-start": {
+					"from": {
+						"opacity": "0",
+						"transform": "translateX(calc(-1 * var(--navigation-menu-motion-distance)))"
+					},
+					"to": {
+						"opacity": "1",
+						"transform": "translateX(0)"
+					}
+				},
+				"@keyframes navigation-menu-enter-from-end": {
+					"from": {
+						"opacity": "0",
+						"transform": "translateX(var(--navigation-menu-motion-distance))"
+					},
+					"to": {
+						"opacity": "1",
+						"transform": "translateX(0)"
+					}
+				},
+				"@keyframes navigation-menu-exit-to-start": {
+					"from": {
+						"opacity": "1",
+						"transform": "translateX(0)"
+					},
+					"to": {
+						"opacity": "0",
+						"transform": "translateX(calc(-1 * var(--navigation-menu-motion-distance)))"
+					}
+				},
+				"@keyframes navigation-menu-exit-to-end": {
+					"from": {
+						"opacity": "1",
+						"transform": "translateX(0)"
+					},
+					"to": {
+						"opacity": "0",
+						"transform": "translateX(var(--navigation-menu-motion-distance))"
+					}
+				}
+			}
+		},
+		{
+			"name": "pagination",
+			"type": "registry:component",
+			"title": "Pagination",
+			"description": "Pagination component for navigating between pages of content",
+			"dependencies": ["clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/pagination.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["nocta-icons", "button"]
+		},
+		{
+			"name": "pie-chart",
+			"type": "registry:component",
+			"title": "Pie Chart",
+			"description": "Interactive pie chart with tooltips, legend, and data table helpers",
+			"dependencies": ["clsx", "d3-shape", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/pie-chart.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "popover",
+			"type": "registry:component",
+			"title": "Popover",
+			"description": "Advanced popover component with positioning, collision detection, and animations",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/popover.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "progress",
+			"type": "registry:component",
+			"title": "Progress",
+			"description": "A progress indicator component with multiple variants, sizes, and animation support",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/progress.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "radio-group",
+			"type": "registry:component",
+			"title": "RadioGroup",
+			"description": "Grouped radio buttons with custom styling, orientation control, and descriptions",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/radio-group.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "scroll-area",
+			"type": "registry:component",
+			"title": "Scroll Area",
+			"description": "A stylized scroll container with composable viewport, custom indicators, and hover or scroll-driven visibility",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/scroll-area.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "select",
+			"type": "registry:component",
+			"title": "Select",
+			"description": "Custom select component with dropdown and animations",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/select.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["nocta-icons", "scroll-area"]
+		},
+		{
+			"name": "separator",
+			"type": "registry:component",
+			"title": "separator",
+			"description": "A lightweight divider for grouping content sections horizontally or vertically",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/separator.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sheet",
+			"type": "registry:component",
+			"title": "Sheet",
+			"description": "Slide-out panel component that can be triggered from any side of the screen",
+			"registryDependencies": ["nocta-icons"],
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/sheet.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "sidebar",
+			"type": "registry:component",
+			"title": "Sidebar",
+			"description": "Collapsible workspace sidebar with hover peek, mobile sheet mode, and grouped navigation",
+			"dependencies": ["@ariakit/react", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/sidebar.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": [
+				"nocta-icons",
+				"button",
+				"command-k",
+				"scroll-area",
+				"separator",
+				"sheet",
+				"tooltip"
+			]
+		},
+		{
+			"name": "skeleton",
+			"type": "registry:component",
+			"title": "Skeleton",
+			"description": "Loading skeleton component with variants, shapes, and animations for content placeholders",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/skeleton.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "slider",
+			"type": "registry:component",
+			"title": "Slider",
+			"description": "A customizable range slider component with variants, orientations, and accessibility support",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/slider.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "spinner",
+			"type": "registry:component",
+			"title": "Spinner",
+			"description": "Loading spinner component with variants, sizes and smooth animations",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/spinner.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "switch",
+			"type": "registry:component",
+			"title": "Switch",
+			"description": "Switch component with smooth animations for enabling or disabling options",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/switch.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "table",
+			"type": "registry:component",
+			"title": "Table",
+			"description": "Data table with TanStack Table integration, row selection, keyboard navigation, and customizable presentation",
+			"dependencies": [
+				"@ariakit/react",
+				"@tanstack/react-table",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/table.tsx",
+					"type": "registry:component"
+				}
+			],
+			"registryDependencies": ["nocta-icons", "checkbox"]
+		},
+		{
+			"name": "tabs",
+			"type": "registry:component",
+			"title": "Tabs",
+			"description": "Accessible tabs component with multiple variants, orientations, and keyboard navigation",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/tabs.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "textarea",
+			"type": "registry:component",
+			"title": "Textarea",
+			"description": "Textarea component with variants, labels, and helper text",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/textarea.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "toast",
+			"type": "registry:component",
+			"title": "Toast",
+			"description": "Advanced toast notification system with observer pattern, CSS transition animations, positioning, and stacking",
+			"dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+			"files": [
+				{
+					"path": "registry/ui/toast.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "toggle",
+			"type": "registry:component",
+			"title": "Toggle",
+			"description": "Single toggle button component supporting pressed state, variants, and sizes",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/toggle.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "toggle-group",
+			"type": "registry:component",
+			"title": "ToggleGroup",
+			"description": "Grouped toggle buttons for single or multiple selection with shared styling",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/toggle-group.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "tooltip",
+			"type": "registry:component",
+			"title": "Tooltip",
+			"description": "Tooltip component with positioning and animations",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/tooltip.tsx",
+					"type": "registry:component"
+				}
+			]
+		},
+		{
+			"name": "wheel-picker",
+			"type": "registry:component",
+			"title": "WheelPicker",
+			"description": "iOS-style wheel picker built on Ariakit Composite with smooth scroll-snapping and keyboard navigation",
+			"dependencies": [
+				"@ariakit/react",
+				"class-variance-authority",
+				"clsx",
+				"tailwind-merge"
+			],
+			"files": [
+				{
+					"path": "registry/ui/wheel-picker.tsx",
+					"type": "registry:component"
+				}
+			]
+		}
+	]
+}

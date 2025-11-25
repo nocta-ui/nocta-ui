@@ -10,7 +10,7 @@
 		"lint": "biome check .",
 		"lint:fix": "biome check --apply .",
 		"typecheck": "tsc -p tsconfig.json",
-		"typecheck:ui": "tsc -p tsconfig.ui.json",
+		"registry:build": "shadcn build",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -37,6 +37,7 @@
 		"react-dom": "^19.2.0",
 		"react-tweet": "^3.2.2",
 		"scroll-into-view-if-needed": "^3.1.0",
+		"shadcn": "^3.5.0",
 		"tailwind-merge": "^3.3.1"
 	},
 	"devDependencies": {

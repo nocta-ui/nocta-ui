@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:component",
+  "title": "Spinner",
+  "description": "Loading spinner component with variants, sizes and smooth animations",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/spinner.tsx",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority';\nimport type React from 'react';\nimport { cn } from '@/lib/utils';\n\nconst spinnerVariants = cva(['inline-block animate-spin text-current'], {\n\tvariants: {\n\t\tvariant: {\n\t\t\tdefault: 'text-foreground/70',\n\t\t},\n\t\tsize: {\n\t\t\tsm: 'size-4',\n\t\t\tmd: 'size-6',\n\t\t\tlg: 'size-8',\n\t\t},\n\t},\n\tdefaultVariants: {\n\t\tvariant: 'default',\n\t\tsize: 'md',\n\t},\n});\n\nexport interface SpinnerProps\n\textends React.HTMLAttributes<HTMLDivElement>,\n\t\tVariantProps<typeof spinnerVariants> {\n\tclassName?: string;\n}\n\nexport const Spinner: React.FC<SpinnerProps> = ({\n\tsize = 'md',\n\tvariant = 'default',\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t/* biome-ignore lint/a11y/useSemanticElements: spinner intentionally uses a div with role=\"status\" for accessibility */\n\t\t<div\n\t\t\trole=\"status\"\n\t\t\taria-live=\"polite\"\n\t\t\taria-busy=\"true\"\n\t\t\tclassName={cn(spinnerVariants({ variant, size }), className)}\n\t\t\t{...props}\n\t\t>\n\t\t\t<svg\n\t\t\t\taria-hidden=\"true\"\n\t\t\t\tviewBox=\"0 0 24 24\"\n\t\t\t\tfill=\"none\"\n\t\t\t\txmlns=\"http://www.w3.org/2000/svg\"\n\t\t\t\tclassName=\"w-full h-full\"\n\t\t\t>\n\t\t\t\t<path\n\t\t\t\t\tfillRule=\"evenodd\"\n\t\t\t\t\tclipRule=\"evenodd\"\n\t\t\t\t\td=\"M12 0C13.0265 0 14.0227 0.129607 14.9736 0.37207L19 9V2.25586C22.0271 4.43433 24 7.98574 24 12C24 18.6274 18.6274 24 12 24C10.9731 24 9.97671 23.8696 9.02539 23.627L5 15V21.7432C1.97313 19.5647 0 16.0141 0 12C0 5.37258 5.37258 0 12 0ZM12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5Z\"\n\t\t\t\t\tfill=\"currentColor\"\n\t\t\t\t/>\n\t\t\t</svg>\n\t\t\t<span className=\"sr-only\">Loading...</span>\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -3,17 +3,15 @@ title: Avatar
 description: A versatile avatar component for displaying user profile images, initials, and status indicators with dark mode support
 ---
 
-import { Avatar } from '@/app/components/ui/avatar';
 import {
   BasicAvatarDemo,
-  SizesDemo,
-  VariantsDemo,
+  AvatarSizesDemo,
+  AvatarVariantsDemo,
   StatusDemo,
   FallbackDemo,
   GroupDemo,
-  CustomStylingDemo,
   ClickHandlersDemo,
-} from '@/app/components/ui/avatar/avatar-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -65,7 +63,7 @@ import { Avatar } from '@/components/ui/avatar';
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
-      <SizesDemo />
+      <AvatarSizesDemo />
     </div>
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
@@ -85,7 +83,7 @@ import { Avatar } from '@/components/ui/avatar';
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
-      <VariantsDemo />
+      <AvatarVariantsDemo />
     </div>
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">

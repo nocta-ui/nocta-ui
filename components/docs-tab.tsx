@@ -3,7 +3,7 @@
 import { CodeIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { cn } from 'fumadocs-ui/utils/cn';
 import React, { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/registry/ui/tabs';
 
 interface DocsTabProps {
 	children?: React.ReactNode;

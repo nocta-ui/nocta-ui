@@ -3,14 +3,13 @@ title: Tabs
 description: Accessible tabs component with multiple variants, orientations, and keyboard navigation for organizing content
 ---
 
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/app/components/ui/tabs';
 import {
   BasicTabsDemo,
-  VariantsDemo,
-  SizesDemo,
+  TabsVariantsDemo,
+  TabsSizesDemo,
   VerticalTabsDemo,
   DisabledTabsDemo
-} from '@/app/components/ui/tabs/tabs-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -104,7 +103,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <TabsVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Tabs Variants"
@@ -148,7 +147,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <TabsSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Tabs Sizes"

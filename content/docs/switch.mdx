@@ -3,11 +3,10 @@ title: Switch
 description: A toggle switch component for binary choices with multiple variants, sizes and dark mode support
 ---
 
-import { Switch } from '@/app/components/ui/switch';
 import {
   BasicSwitchDemo,
-  SizesDemo,
-} from '@/app/components/ui/switch/switch-demos';
+  SwitchSizesDemo,
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -59,7 +58,7 @@ import { Switch } from '@/components/ui/switch';
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
     <div className="my-6">
-      <SizesDemo />
+      <SwitchSizesDemo />
     </div>
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">

@@ -3,15 +3,14 @@ title: Button
 description: A versatile button component with multiple variants, sizes and dark mode support
 ---
 
-import { Button } from '@/app/components/ui/button';
 import {
   PrimaryButtonDemo,
   SecondaryButtonDemo,
   GhostButtonDemo,
   IconButtonDemo,
-  SizesDemo,
+  ButtonSizesDemo,
   AsChildDemo,
-} from '@/app/components/ui/button/button-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -101,7 +100,7 @@ import { Button } from '@/components/ui/button';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <ButtonSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Button Sizes"

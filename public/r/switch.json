@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:component",
+  "title": "Switch",
+  "description": "Switch component with smooth animations for enabling or disabling options",
+  "dependencies": [
+    "@ariakit/react",
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/switch.tsx",
+      "content": "'use client';\n\nimport * as Ariakit from '@ariakit/react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\n\nconst switchVariants = cva(\n\t[\n\t\t'relative inline-flex items-center rounded-full border-2 border-transparent',\n\t\t'cursor-pointer transition-[background-color,box-shadow] ease-out-quad duration-100',\n\t\t'peer-focus-visible:ring-1 peer-focus-visible:outline-none',\n\t\t'peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ring-offset/50',\n\t],\n\t{\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\tsm: 'h-5 w-9',\n\t\t\t\tmd: 'h-6 w-11',\n\t\t\t\tlg: 'h-7 w-13',\n\t\t\t},\n\t\t\tchecked: {\n\t\t\t\ttrue: '',\n\t\t\t\tfalse: '',\n\t\t\t},\n\t\t\tdisabled: {\n\t\t\t\ttrue: 'cursor-not-allowed opacity-50',\n\t\t\t\tfalse: '',\n\t\t\t},\n\t\t},\n\t\tcompoundVariants: [\n\t\t\t{\n\t\t\t\tchecked: true,\n\t\t\t\tclass: 'bg-foreground/30 peer-focus-visible:ring-ring/50',\n\t\t\t},\n\t\t\t{\n\t\t\t\tchecked: false,\n\t\t\t\tclass: 'bg-foreground/15 peer-focus-visible:ring-ring/50',\n\t\t\t},\n\t\t],\n\t\tdefaultVariants: {\n\t\t\tsize: 'md',\n\t\t\tchecked: false,\n\t\t\tdisabled: false,\n\t\t},\n\t},\n);\n\nconst thumbVariants = cva(\n\t[\n\t\t'inline-block rounded-full bg-card dark:bg-foreground',\n\t\t'shadow-sm transition-transform duration-100 ease-out-quad',\n\t],\n\t{\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\tsm: 'size-4',\n\t\t\t\tmd: 'size-5',\n\t\t\t\tlg: 'size-6',\n\t\t\t},\n\t\t\tchecked: {\n\t\t\t\ttrue: '',\n\t\t\t\tfalse: '',\n\t\t\t},\n\t\t},\n\t\tcompoundVariants: [\n\t\t\t{ size: 'sm', checked: true, class: 'translate-x-4' },\n\t\t\t{ size: 'sm', checked: false, class: 'translate-x-0' },\n\t\t\t{ size: 'md', checked: true, class: 'translate-x-5' },\n\t\t\t{ size: 'md', checked: false, class: 'translate-x-0' },\n\t\t\t{ size: 'lg', checked: true, class: 'translate-x-6' },\n\t\t\t{ size: 'lg', checked: false, class: 'translate-x-0' },\n\t\t],\n\t\tdefaultVariants: {\n\t\t\tsize: 'md',\n\t\t\tchecked: false,\n\t\t},\n\t},\n);\n\nexport interface SwitchProps\n\textends Omit<React.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>, 'size'>,\n\t\tOmit<VariantProps<typeof switchVariants>, 'checked' | 'disabled'> {\n\tsize?: 'sm' | 'md' | 'lg';\n\tdisabled?: boolean;\n\tclassName?: string;\n\tonCheckedChange?: (checked: boolean) => void;\n}\n\nexport const Switch: React.FC<SwitchProps> = ({\n\tsize = 'md',\n\tdisabled = false,\n\tclassName,\n\tonCheckedChange,\n\tchecked,\n\tdefaultChecked,\n\t...props\n}) => {\n\tconst id = React.useId();\n\tconst store = Ariakit.useCheckboxStore(\n\t\tchecked !== undefined\n\t\t\t? onCheckedChange\n\t\t\t\t? {\n\t\t\t\t\t\tvalue: checked,\n\t\t\t\t\t\tsetValue: (val) => {\n\t\t\t\t\t\t\tconst next = Array.isArray(val)\n\t\t\t\t\t\t\t\t? val.some(Boolean)\n\t\t\t\t\t\t\t\t: val === true;\n\t\t\t\t\t\t\tonCheckedChange(next);\n\t\t\t\t\t\t},\n\t\t\t\t\t}\n\t\t\t\t: { value: checked }\n\t\t\t: { defaultValue: defaultChecked ?? false },\n\t);\n\tconst value = Ariakit.useStoreState(store, 'value');\n\tconst isChecked = value === true;\n\n\treturn (\n\t\t<>\n\t\t\t<Ariakit.Checkbox\n\t\t\t\tid={id}\n\t\t\t\tstore={store}\n\t\t\t\trole=\"switch\"\n\t\t\t\tdisabled={disabled}\n\t\t\t\tclassName=\"peer sr-only\"\n\t\t\t\t{...props}\n\t\t\t/>\n\t\t\t<label\n\t\t\t\thtmlFor={id}\n\t\t\t\tclassName={cn(\n\t\t\t\t\tswitchVariants({ size, checked: isChecked, disabled }),\n\t\t\t\t\tclassName,\n\t\t\t\t)}\n\t\t\t>\n\t\t\t\t<span className={thumbVariants({ size, checked: isChecked })} />\n\t\t\t</label>\n\t\t</>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ]
+}

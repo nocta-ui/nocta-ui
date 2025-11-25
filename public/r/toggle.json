@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:component",
+  "title": "Toggle",
+  "description": "Single toggle button component supporting pressed state, variants, and sizes",
+  "dependencies": [
+    "@ariakit/react",
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/toggle.tsx",
+      "content": "'use client';\n\nimport * as Ariakit from '@ariakit/react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\n\nconst toggleVariants = cva(\n\t[\n\t\t'relative inline-flex items-center justify-center gap-2 rounded-md shadow-sm card-highlight',\n\t\t\"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0\",\n\t\t'border text-sm font-medium',\n\t\t'focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:ring-ring/50 focus-visible:outline-none',\n\t\t'transition-[background-color,box-shadow] ease-out-quad duration-100',\n\t\t'disabled:pointer-events-none disabled:opacity-50 cursor-pointer',\n\t],\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault:\n\t\t\t\t\t'bg-card hover:bg-card-muted data-[state=on]:bg-card-muted border-border text-foreground',\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tsm: 'h-8 px-3 py-1.5 px-3 gap-1.5 has-[>svg]:px-2.5 text-sm',\n\t\t\t\tmd: 'h-9 px-4 py-2 gap-2 has-[>svg]:px-3 text-sm',\n\t\t\t\tlg: 'h-10 px-6 gap-2 has-[>svg]:px-4 text-base',\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: 'default',\n\t\t\tsize: 'md',\n\t\t},\n\t},\n);\n\nexport interface ToggleProps\n\textends Omit<\n\t\t\tReact.ComponentPropsWithoutRef<typeof Ariakit.Checkbox>,\n\t\t\t'checked' | 'defaultChecked' | 'onChange' | 'size'\n\t\t>,\n\t\tVariantProps<typeof toggleVariants> {\n\tpressed?: boolean;\n\tdefaultPressed?: boolean;\n\tonPressedChange?: (pressed: boolean) => void;\n\tchildren?: React.ReactNode;\n}\n\nexport const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(\n\t(\n\t\t{\n\t\t\tvariant = 'default',\n\t\t\tsize = 'md',\n\t\t\tclassName,\n\t\t\tpressed,\n\t\t\tdefaultPressed = false,\n\t\t\tonPressedChange,\n\t\t\tdisabled,\n\t\t\tchildren,\n\t\t\t...props\n\t\t},\n\t\tref,\n\t) => {\n\t\tconst checkbox = Ariakit.useCheckboxStore({\n\t\t\tvalue: pressed ?? defaultPressed,\n\t\t\tsetValue: (value) => onPressedChange?.(!!value),\n\t\t});\n\n\t\tconst [internalPressed, setInternalPressed] =\n\t\t\tReact.useState(defaultPressed);\n\t\tconst isControlled = pressed !== undefined;\n\t\tconst isPressed = isControlled ? pressed : internalPressed;\n\n\t\tconst handleChange = (checked: boolean) => {\n\t\t\tif (!isControlled) setInternalPressed(checked);\n\t\t\tonPressedChange?.(checked);\n\t\t};\n\n\t\tconst isDisabled = Boolean(disabled);\n\n\t\treturn (\n\t\t\t<Ariakit.Checkbox\n\t\t\t\tstore={checkbox}\n\t\t\t\trender={<button type=\"button\" ref={ref} disabled={isDisabled} />}\n\t\t\t\tchecked={isPressed}\n\t\t\t\tonChange={(event: React.ChangeEvent<HTMLInputElement>) =>\n\t\t\t\t\thandleChange(event.currentTarget.checked)\n\t\t\t\t}\n\t\t\t\tdata-state={isPressed ? 'on' : 'off'}\n\t\t\t\tclassName={cn(toggleVariants({ variant, size }), className)}\n\t\t\t\tdisabled={isDisabled}\n\t\t\t\t{...props}\n\t\t\t>\n\t\t\t\t{children}\n\t\t\t</Ariakit.Checkbox>\n\t\t);\n\t},\n);\n\nToggle.displayName = 'Toggle';\n\nexport { toggleVariants };\n",
+      "type": "registry:component"
+    }
+  ]
+}

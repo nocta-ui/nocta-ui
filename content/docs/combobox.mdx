@@ -3,17 +3,16 @@ title: Combobox
 description: Searchable combobox component with filtering, keyboard navigation, and accessibility for advanced option selection
 ---
 
-import { Combobox } from '@/app/components/ui/combobox';
 import {
   BasicComboboxDemo,
-  VariantsDemo,
-  SizesDemo,
+  ComboboxVariantsDemo,
+  ComboboxSizesDemo,
   ClearableDemo,
   DisabledOptionsDemo,
   DisabledComboboxDemo,
   CustomMessagesDemo,
   ControlledDemo
-} from '@/app/components/ui/combobox/combobox-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -71,7 +70,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <ComboboxVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Combobox Variants"
@@ -100,7 +99,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <ComboboxSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Combobox Sizes"

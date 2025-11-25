@@ -1,8 +1,8 @@
 import { cn } from 'fumadocs-ui/utils/cn';
 import Image from 'next/image';
-import { Badge } from '@/app/components/ui/badge';
-import { Button } from '@/app/components/ui/button';
-import { Card } from '@/app/components/ui/card';
+import { Badge } from '@/registry/ui/badge';
+import { Button } from '@/registry/ui/button';
+import { Card } from '@/registry/ui/card';
 
 export type TemplateShowcaseItem = {
 	badge: string;

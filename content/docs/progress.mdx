@@ -3,16 +3,15 @@ title: Progress
 description: A progress indicator component with multiple variants, sizes, and animation support
 ---
 
-import { Progress } from '@/app/components/ui/progress';
 import {
   BasicProgressDemo,
-  VariantsDemo,
-  SizesDemo,
+  ProgressVariantsDemo,
+  ProgressSizesDemo,
   IndeterminateDemo,
   AnimatedDemo,
   CustomMaxDemo,
   WithoutLabelDemo,
-} from '@/app/components/ui/progress/progress-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -56,7 +55,7 @@ import { Progress } from '@/components/ui/progress';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <ProgressVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Progress Variants"
@@ -72,7 +71,7 @@ import { Progress } from '@/components/ui/progress';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <ProgressSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Progress Sizes"

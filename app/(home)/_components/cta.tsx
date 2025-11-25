@@ -1,7 +1,7 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import type React from 'react';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/registry/ui/button';
 
 export default function CTA(): React.ReactElement {
 	return (

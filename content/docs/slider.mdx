@@ -3,18 +3,16 @@ title: Slider
 description: A customizable range slider component with variants, orientations, and accessibility support for value selection
 ---
 
-import { Slider } from '@/app/components/ui/slider';
 import {
   BasicSliderDemo,
   SecondarySliderDemo,
-  SizesDemo,
+  SliderSizesDemo,
   WithValueDemo,
   CustomRangeDemo,
   DisabledDemo,
   StepDemo,
   VerticalDemo,
-  PriceRangeDemo
-} from '@/app/components/ui/slider/slider-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -81,7 +79,7 @@ import { Slider } from '@/components/ui/slider';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <SliderSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Slider Sizes"

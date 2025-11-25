@@ -3,12 +3,11 @@ title: Select
 description: A flexible select component for choosing from a list of options with multiple sizes and dark mode support
 ---
 
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/app/components/ui/select';
 import {
   DefaultSelectDemo,
-  VariantsDemo,
-  SizesDemo,
-} from '@/app/components/ui/select/select-demos';
+  SelectVariantsDemo,
+  SelectSizesDemo,
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -69,7 +68,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <SelectVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Select Variants"
@@ -113,7 +112,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <SelectSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Select Sizes"

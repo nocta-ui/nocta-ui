@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Badge } from '@/app/components/ui/badge';
-import { Button } from '@/app/components/ui/button';
+import { Badge } from '@/registry/ui/badge';
+import { Button } from '@/registry/ui/button';
 import { GithubStarsButton } from './github-stars-button';
 
 export default function Hero() {

@@ -4,7 +4,7 @@ import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-} from '@/app/components/ui/popover';
+} from '@/registry/ui/popover';
 import { Pre, CodeBlock as CustomCodeBlock } from '@/components/codeblock';
 import { DocsTabs } from '@/components/docs-tab';
 import { TokenTable } from '@/components/token-table';

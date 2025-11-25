@@ -3,15 +3,14 @@ title: Spinner
 description: Loading spinner component with variants, sizes and smooth animations for indicating loading states
 ---
 
-import { Spinner } from '@/app/components/ui/spinner';
 import {
   BasicSpinnerDemo,
-  SizesDemo,
+  SpinnerSizesDemo,
   LoadingButtonDemo,
   InlineSpinnerDemo,
   CenteredSpinnerDemo,
   CustomColorDemo
-} from '@/app/components/ui/spinner/spinner-demos';
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 
@@ -55,7 +54,7 @@ import { Spinner } from '@/components/ui/spinner';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <SpinnerSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Spinner Sizes"

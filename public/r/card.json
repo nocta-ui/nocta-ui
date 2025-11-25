@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:component",
+  "title": "Card",
+  "description": "Card component with composable layout sections",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/card.tsx",
+      "content": "import React from 'react';\nimport { cn } from '@/lib/utils';\n\nexport interface CardProps extends React.HTMLAttributes<HTMLDivElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport interface CardTitleProps {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n\tas?: React.ElementType;\n}\n\nexport interface CardDescriptionProps\n\textends React.HTMLAttributes<HTMLParagraphElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport const Card = React.forwardRef<HTMLDivElement, CardProps>(\n\t({ children, className = '', ...props }, ref) => {\n\t\treturn (\n\t\t\t<div\n\t\t\t\tref={ref}\n\t\t\t\tclassName={cn(\n\t\t\t\t\t'relative rounded-lg border border-border bg-card shadow-md card-highlight',\n\t\t\t\t\tclassName,\n\t\t\t\t)}\n\t\t\t\t{...props}\n\t\t\t>\n\t\t\t\t{children}\n\t\t\t</div>\n\t\t);\n\t},\n);\n\nCard.displayName = 'Card';\n\nexport const CardHeader: React.FC<CardHeaderProps> = ({\n\tchildren,\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<div className={cn('px-4 pt-4', className)} {...props}>\n\t\t\t{children}\n\t\t</div>\n\t);\n};\n\nexport const CardTitle: React.FC<CardTitleProps> = ({\n\tchildren,\n\tclassName = '',\n\tas: Component = 'h3',\n\t...props\n}) => {\n\treturn React.createElement(\n\t\tComponent,\n\t\t{\n\t\t\tclassName: cn(\n\t\t\t\t'text-base leading-none font-medium text-foreground',\n\t\t\t\tclassName,\n\t\t\t),\n\t\t\t...props,\n\t\t},\n\t\tchildren,\n\t);\n};\n\nexport const CardDescription: React.FC<CardDescriptionProps> = ({\n\tchildren,\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<p\n\t\t\tclassName={cn(\n\t\t\t\t'mt-1 text-sm leading-snug text-foreground/45 text-balance',\n\t\t\t\tclassName,\n\t\t\t)}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children}\n\t\t</p>\n\t);\n};\n\nexport const CardContent: React.FC<CardContentProps> = ({\n\tchildren,\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn('text-sm p-4 text-foreground/70 leading-snug', className)}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children}\n\t\t</div>\n\t);\n};\n\nexport const CardFooter: React.FC<CardFooterProps> = ({\n\tchildren,\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<div\n\t\t\tclassName={cn(\n\t\t\t\t'flex items-center justify-end rounded-b-lg border-t border-border/60 bg-card-muted/30 p-4',\n\t\t\t\tclassName,\n\t\t\t)}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children}\n\t\t</div>\n\t);\n};\n\nexport const CardActions: React.FC<CardActionsProps> = ({\n\tchildren,\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<div className={cn('flex items-center gap-2', className)} {...props}>\n\t\t\t{children}\n\t\t</div>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ]
+}

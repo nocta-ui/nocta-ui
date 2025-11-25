@@ -4,12 +4,11 @@ description: Compare parts-to-whole relationships with classic and donut layouts
 ---
 
 import {
-  PieChart,
   PieChartBasicDemo,
   PieChartDonutDemo,
   PieChartWithActionsDemo,
   PieChartWithDataTableDemo,
-} from '@/app/components/ui/pie-chart';
+} from '@/demos';
 import { DocsTabs, DocsTab } from '@/components/docs-tab';
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -125,7 +124,7 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Campaign Conversions"
-    // Requires Button from '@/app/components/ui/button'
+    // Requires Button from '@/registry/ui/button'
     const campaignData = [
       { campaign: 'Email', conversions: 420 },
       { campaign: 'Paid Ads', conversions: 310 },

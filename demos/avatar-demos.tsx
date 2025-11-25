@@ -1,0 +1,137 @@
+'use client';
+
+import type React from 'react';
+import { Avatar } from '@/registry/ui/avatar';
+
+export const BasicAvatarDemo: React.FC = () => {
+	return (
+		<div className="flex items-center gap-4">
+			<Avatar
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar fallback="JD" />
+			<Avatar />
+		</div>
+	);
+};
+
+export const AvatarSizesDemo: React.FC = () => {
+	return (
+		<div className="flex items-center gap-4">
+			<Avatar
+				size="xs"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				size="sm"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				size="md"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				size="lg"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				size="xl"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				size="2xl"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+		</div>
+	);
+};
+
+export const AvatarVariantsDemo: React.FC = () => {
+	return (
+		<div className="flex items-center gap-4">
+			<Avatar
+				variant="circle"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar
+				variant="square"
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar variant="circle" fallback="JD" />
+			<Avatar variant="square" fallback="JD" />
+		</div>
+	);
+};
+
+export const StatusDemo: React.FC = () => {
+	return (
+		<div className="flex items-center gap-4">
+			<Avatar
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+				status="online"
+			/>
+			<Avatar
+				src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+				alt="Jane Smith"
+				status="away"
+			/>
+			<Avatar
+				src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+				alt="Mike Johnson"
+				status="busy"
+			/>
+			<Avatar fallback="AB" status="offline" />
+		</div>
+	);
+};
+
+export const FallbackDemo: React.FC = () => {
+	return (
+		<div className="flex items-center gap-4">
+			<Avatar
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+			/>
+			<Avatar src="https://invalid-url.jpg" fallback="JD" alt="John Doe" />
+			<Avatar fallback="Sarah Connor" />
+			<Avatar fallback="AB" />
+			<Avatar />
+		</div>
+	);
+};
+
+export const GroupDemo: React.FC = () => {
+	return (
+		<div className="flex items-center">
+			<Avatar
+				src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp2/user-02_mlqqqt.png"
+				alt="John Doe"
+				className="ring-1 ring-ring-offset"
+			/>
+			<Avatar
+				src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+				alt="Jane Smith"
+				className="-ml-2 ring-1 ring-ring-offset"
+			/>
+			<Avatar
+				src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+				alt="Mike Johnson"
+				className="-ml-2 ring-1 ring-ring-offset"
+			/>
+			<Avatar fallback="AB" className="-ml-2 ring-1 ring-ring-offset" />
+			<div className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full bg-card text-xs font-medium text-foreground/70 ring-1 ring-ring-offset">
+				+5
+			</div>
+		</div>
+	);
+};

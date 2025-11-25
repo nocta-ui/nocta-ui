@@ -1,6 +1,6 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { Button } from '@/app/components/ui/button';
+import { Button } from '@/registry/ui/button';
 import { fetchGitHubStars } from '@/lib/github';
 
 const GITHUB_REPO_URL = 'https://github.com/nocta-ui/nocta-ui';

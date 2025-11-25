@@ -3,19 +3,17 @@ title: Input
 description: A versatile input component with multiple variants, sizes, icons, and dark mode support
 ---
 
-import { Input } from '@/app/components/ui/input';
 import {
   DefaultInputDemo,
   InputWithLabelDemo,
   InputWithHelperTextDemo,
-  VariantsDemo,
-  SizesDemo,
+  InputVariantsDemo,
+  InputSizesDemo,
   LeftIconDemo,
   RightIconDemo,
-  DisabledStateDemo,
-  ReadOnlyStateDemo,
-  CustomContainerDemo
-} from '@/app/components/ui/input/input-demos';
+  InputDisabledStateDemo,
+  InputReadOnlyStateDemo,
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from "fumadocs-ui/components/steps"
@@ -92,7 +90,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <InputVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input Variants"
@@ -123,7 +121,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <InputSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Input Sizes"
@@ -194,7 +192,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <DisabledStateDemo />
+    <InputDisabledStateDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled Input"
@@ -218,7 +216,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <ReadOnlyStateDemo />
+    <InputReadOnlyStateDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Read Only Input"

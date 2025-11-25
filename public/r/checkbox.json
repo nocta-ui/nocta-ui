@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:component",
+  "title": "Checkbox",
+  "description": "Form input component for toggling options with checked and unchecked states",
+  "dependencies": [
+    "@ariakit/react",
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "nocta-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/checkbox.tsx",
+      "content": "'use client';\n\nimport * as Ariakit from '@ariakit/react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport type React from 'react';\nimport { cn } from '@/lib/utils';\nimport { Icons } from '@/registry/ui/nocta-icons';\n\nconst checkboxVariants = cva(\n\t[\n\t\t'relative inline-flex items-center justify-center rounded border border-transparent cursor-pointer',\n\t\t'transition-[background-color,border-color,box-shadow] duration-100 ease-out-quad',\n\t\t'has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-offset-1 has-[:focus-visible]:outline-none',\n\t\t'has-[:focus-visible]:ring-offset-ring-offset/50 has-[:focus-visible]:ring-ring/50',\n\t\t'shadow-sm card-highlight',\n\t],\n\t{\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\tsm: 'h-4 w-4',\n\t\t\t\tmd: 'h-5 w-5',\n\t\t\t\tlg: 'h-6 w-6',\n\t\t\t},\n\t\t\tchecked: {\n\t\t\t\ttrue: '',\n\t\t\t\tfalse: '',\n\t\t\t},\n\t\t\tdisabled: {\n\t\t\t\ttrue: 'cursor-not-allowed opacity-50',\n\t\t\t\tfalse: '',\n\t\t\t},\n\t\t},\n\t\tcompoundVariants: [\n\t\t\t{\n\t\t\t\tchecked: true,\n\t\t\t\tclass: 'bg-foreground border-transparent',\n\t\t\t},\n\t\t\t{\n\t\t\t\tchecked: false,\n\t\t\t\tclass: 'bg-card border-border',\n\t\t\t},\n\t\t],\n\t\tdefaultVariants: {\n\t\t\tsize: 'md',\n\t\t\tchecked: false,\n\t\t\tdisabled: false,\n\t\t},\n\t},\n);\n\nconst iconVariants = cva(\n\t['text-card transition-opacity ease-out-quad duration-100 '],\n\t{\n\t\tvariants: {\n\t\t\tsize: {\n\t\t\t\tsm: 'h-3 w-3',\n\t\t\t\tmd: 'h-4 w-4',\n\t\t\t\tlg: 'h-4.5 w-4.5',\n\t\t\t},\n\t\t\tchecked: {\n\t\t\t\ttrue: 'opacity-100',\n\t\t\t\tfalse: 'opacity-0',\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tsize: 'md',\n\t\t\tchecked: false,\n\t\t},\n\t},\n);\n\nexport interface CheckboxProps\n\textends Omit<\n\t\t\tReact.InputHTMLAttributes<HTMLInputElement>,\n\t\t\t'size' | 'disabled'\n\t\t>,\n\t\tOmit<VariantProps<typeof checkboxVariants>, 'checked'> {\n\tchecked?: boolean;\n\tonCheckedChange?: (checked: boolean) => void;\n\tdisabled?: boolean;\n\tclassName?: string;\n\tid?: string;\n\tdefaultChecked?: boolean;\n}\n\nexport const Checkbox: React.FC<CheckboxProps> = ({\n\tchecked,\n\tonCheckedChange,\n\tdefaultChecked,\n\tsize = 'md',\n\tdisabled = false,\n\tclassName = '',\n\tid,\n\t...props\n}) => {\n\tlet propsForStore: Parameters<typeof Ariakit.useCheckboxStore<boolean>>[0];\n\tif (typeof checked !== 'undefined') {\n\t\tif (onCheckedChange) {\n\t\t\tpropsForStore = {\n\t\t\t\tvalue: checked,\n\t\t\t\tsetValue: (value) => {\n\t\t\t\t\tconst bool = Array.isArray(value) ? value.length > 0 : Boolean(value);\n\t\t\t\t\tonCheckedChange(bool);\n\t\t\t\t},\n\t\t\t};\n\t\t} else {\n\t\t\tpropsForStore = { value: checked };\n\t\t}\n\t} else {\n\t\tpropsForStore = { defaultValue: Boolean(defaultChecked) };\n\t}\n\tconst store = Ariakit.useCheckboxStore<boolean>(propsForStore);\n\n\tconst isChecked = Ariakit.useStoreState(store, 'value');\n\tconst { name, autoFocus, ...restProps } = props;\n\tconst checkboxProps = {\n\t\t...restProps,\n\t\t...(typeof name === 'undefined' ? {} : { name }),\n\t\t...(typeof autoFocus === 'undefined' ? {} : { autoFocus }),\n\t};\n\n\treturn (\n\t\t<label\n\t\t\tclassName={cn(\n\t\t\t\tcheckboxVariants({ size, checked: isChecked, disabled }),\n\t\t\t\tclassName,\n\t\t\t)}\n\t\t\thtmlFor={id}\n\t\t>\n\t\t\t<Ariakit.Checkbox\n\t\t\t\tstore={store}\n\t\t\t\tclassName=\"sr-only\"\n\t\t\t\tdisabled={disabled}\n\t\t\t\tid={id}\n\t\t\t\t{...checkboxProps}\n\t\t\t/>\n\t\t\t<Icons.Check\n\t\t\t\taria-hidden=\"true\"\n\t\t\t\tclassName={iconVariants({ size, checked: isChecked })}\n\t\t\t/>\n\t\t</label>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ]
+}

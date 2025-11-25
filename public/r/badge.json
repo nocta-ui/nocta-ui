@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:component",
+  "title": "Badge",
+  "description": "Badge component for displaying status, counts, or labels",
+  "dependencies": [
+    "class-variance-authority",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/badge.tsx",
+      "content": "'use client';\n\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport type React from 'react';\nimport { cn } from '@/lib/utils';\n\nconst badgeVariants = cva(\n\t[\n\t\t'relative inline-flex items-center justify-center rounded-full font-medium',\n\t\t'shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none',\n\t\t'whitespace-nowrap shadow-sm card-highlight',\n\t\t'not-prose',\n\t],\n\t{\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: [\n\t\t\t\t\t'bg-foreground/90',\n\t\t\t\t\t'text-background',\n\t\t\t\t\t'hover:bg-foreground/75',\n\t\t\t\t],\n\t\t\t\tsecondary: [\n\t\t\t\t\t'bg-card',\n\t\t\t\t\t'text-foreground',\n\t\t\t\t\t'hover:bg-card-muted',\n\t\t\t\t\t'border border-border',\n\t\t\t\t],\n\t\t\t\tdestructive: [\n\t\t\t\t\t'bg-destructive/10',\n\t\t\t\t\t'text-destructive/90',\n\t\t\t\t\t'hover:bg-destructive/25',\n\t\t\t\t\t'border border-destructive/40',\n\t\t\t\t],\n\t\t\t\tsuccess: [\n\t\t\t\t\t'bg-success/10',\n\t\t\t\t\t'text-success/90',\n\t\t\t\t\t'hover:bg-success/25',\n\t\t\t\t\t'border border-success/40',\n\t\t\t\t],\n\t\t\t\twarning: [\n\t\t\t\t\t'bg-warning/10',\n\t\t\t\t\t'text-warning/90',\n\t\t\t\t\t'hover:bg-warning/25',\n\t\t\t\t\t'border border-warning/40',\n\t\t\t\t],\n\t\t\t},\n\t\t\tsize: {\n\t\t\t\tsm: 'px-1.5 py-0.25 text-xs',\n\t\t\t\tmd: 'px-2 py-0.5 text-xs',\n\t\t\t\tlg: 'px-2.5 py-1 text-sm',\n\t\t\t},\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: 'default',\n\t\t\tsize: 'md',\n\t\t},\n\t},\n);\n\nexport interface BadgeProps\n\textends React.HTMLAttributes<HTMLSpanElement>,\n\t\tVariantProps<typeof badgeVariants> {\n\tchildren: React.ReactNode;\n\tclassName?: string;\n}\n\nexport const Badge: React.FC<BadgeProps> = ({\n\tchildren,\n\tvariant = 'default',\n\tsize = 'md',\n\tclassName = '',\n\t...props\n}) => {\n\treturn (\n\t\t<span\n\t\t\tclassName={cn(badgeVariants({ variant, size }), className)}\n\t\t\t{...props}\n\t\t>\n\t\t\t{children}\n\t\t</span>\n\t);\n};\n",
+      "type": "registry:component"
+    }
+  ]
+}

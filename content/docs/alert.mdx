@@ -3,13 +3,11 @@ title: Alert
 description: A flexible alert component for displaying important messages with multiple variants and dark mode support
 ---
 
-import { Alert, AlertTitle, AlertDescription } from '@/app/components/ui/alert';
 import {
   DefaultAlertDemo,
   SimpleAlertDemo,
-  VariantsDemo,
-  AlertWithoutIconsDemo,
-} from '@/app/components/ui/alert/alert-demos';
+  AlertVariantsDemo,
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -56,7 +54,7 @@ import {
   </DocsTab>
 </DocsTabs>
 
-### Default Alert
+### Simple Alert
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
@@ -77,7 +75,7 @@ import {
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <AlertVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Alert Variants"

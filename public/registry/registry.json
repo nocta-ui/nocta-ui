@@ -797,6 +797,7 @@
 		"combobox": {
 			"category": "form",
 			"dependencies": {
+			  "@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"react": "^19.2.0",
@@ -1208,7 +1209,9 @@
 			"category": "form",
 			"dependencies": {
 				"@ariakit/react": "^0.4.19",
-				"react": "^19.2.0"
+				"clsx": "^2.1.1",
+				"react": "^19.2.0",
+				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Composable Ariakit-based form with fields, labels, validation, and actions",
 			"exports": [

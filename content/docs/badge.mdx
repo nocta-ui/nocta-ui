@@ -3,14 +3,12 @@ title: Badge
 description: A versatile badge component for labels, status indicators, and tags with multiple variants, sizes and dark mode support
 ---
 
-import { Badge } from '@/app/components/ui/badge';
 import {
   DefaultBadgeDemo,
-  SecondaryBadgeDemo,
-  VariantsDemo,
-  SizesDemo,
-  CustomStylingDemo
-} from '@/app/components/ui/badge/badge-demos';
+  BadgeVariantsDemo,
+  BadgeSizesDemo,
+  BadgeCustomStylingDemo
+} from '@/demos';
 import { DocsTabs, DocsTab } from "@/components/docs-tab"
 import { TypeTable } from '@/components/type-table';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
@@ -48,24 +46,11 @@ import { Badge } from '@/components/ui/badge';
   </DocsTab>
 </DocsTabs>
 
-### Secondary Badge
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SecondaryBadgeDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Secondary Badge"
-    <Badge variant="secondary">Secondary</Badge>
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ### Variants
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <VariantsDemo />
+    <BadgeVariantsDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Badge Variants"
@@ -82,7 +67,7 @@ import { Badge } from '@/components/ui/badge';
 
 <DocsTabs defaultValue="preview">
   <DocsTab value="preview" lineNumbers title="Preview">
-    <SizesDemo />
+    <BadgeSizesDemo />
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Badge Sizes"
