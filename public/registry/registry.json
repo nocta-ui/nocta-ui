@@ -1,5 +1,5 @@
 {
-	"$schema": "http://nocta-ui.com/registry/registry-schema.json",
+	"$schema": "http://nocta-ui.com/registry/schema/registry-schema.json",
 	"categories": {
 		"communication": {
 			"components": [

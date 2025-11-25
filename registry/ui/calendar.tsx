@@ -4,7 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { useCallback, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const calendarVariants = cva(
 	'relative rounded-lg bg-card border border-border shadow-md card-highlight text-xs w-fit max-w-sm',

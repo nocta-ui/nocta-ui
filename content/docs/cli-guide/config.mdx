@@ -22,7 +22,7 @@ The application workspace keeps its own Tailwind entry point but delegates compo
 
 ```json title="apps/web/nocta.config.json"
 {
-  "$schema": "https://nocta-ui.com/registry/config-schema.json",
+  "$schema": "https://nocta-ui.com/registry/schema/config-schema.json",
   "style": "default",
   "tailwind": {
     "css": "app/globals.css"
@@ -61,7 +61,7 @@ Shared UI packages usually own component source files, run Tailwind in build pip
 
 ```json title="packages/ui/nocta.config.json"
 {
-  "$schema": "https://nocta-ui.com/registry/config-schema.json",
+  "$schema": "https://nocta-ui.com/registry/schema/config-schema.json",
   "style": "default",
   "tailwind": {
     "css": "src/styles.css"

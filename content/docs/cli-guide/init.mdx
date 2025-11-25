@@ -44,7 +44,7 @@ You can also point the CLI at a custom registry with `--registry-url` or `NOCTA_
 6. **Dependency handling** - Reads the registry requirements (React, Tailwind helpers, Ariakit, and more) and only installs them when the current workspace manages its own dependencies. Application workspaces linked to a shared UI package skip these installs because the shared package already owns them.
 7. **Helper assets** - When the current workspace manages its own components, the CLI writes:
    - `lib/utils.ts` with the canonical `cn()` helper.
-   - `components/ui/icons.ts` with the base icon map.
+   - `lib/icons.ts` with the base icon map.
    Linked Application workspaces reuse the helpers from the shared UI package and therefore skip these files.
 8. **Design tokens** - Adds Nocta semantic color tokens to the configured Tailwind CSS file when the workspace manages its own components. Linked applications skip this step because the shared UI package already owns the tokens.
 9. **Workspace manifest** - Creates or updates `nocta.workspace.json` at the repo root so other workspaces can discover this configuration. Package manager detection (npm, pnpm, yarn, bun) is stored here as well.
@@ -54,7 +54,7 @@ You can also point the CLI at a custom registry with `--registry-url` or `NOCTA_
 - `nocta.config.json` - Main project configuration (always written unless `--dry-run`).
 - `nocta.workspace.json` - Repository manifest (created or updated once per repo).
 - `lib/utils.ts` - Shared utility helper (skipped in linked application workspaces).
-- `components/ui/icons.ts` - Base icons module (skipped in linked application workspaces).
+- `lib/icons.ts` - Base icons module (skipped in linked application workspaces).
 - Tailwind CSS entry file - Updated with Nocta design tokens.
 
 All generated paths are made relative to the current workspace. Failures during execution trigger a rollback that deletes any newly created files.

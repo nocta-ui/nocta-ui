@@ -61,7 +61,7 @@ All commands are declared in `package.json`.
 Useful helper scripts:
 
 - `scripts/sync-css-tokens.sh`: Copies design tokens from `app/global.css` into `public/registry/css/index.css` for CLI consumption.
-- `scripts/sync-icons.sh`: Synchronizes `registry/ui/nocta-icons.tsx` with `public/registry/icons/icons.ts` for CLI consumption.
+- `scripts/sync-icons.sh`: Synchronizes `registry/lib/icons.ts` with `public/registry/lib/icons.ts` for CLI consumption.
 - `scripts/build-components.sh`: Regenerates `public/registry/components.json` by Base64-encoding source components. Automatically fixes import paths before encoding.
 
 Both scripts run automatically before every commit (see below), but you can execute them manually whenever you need to refresh the registry outputs.
@@ -75,7 +75,7 @@ We use Husky to keep the registry in sync:
 └── bash ./scripts/sync-css-tokens.sh
     bash ./scripts/build-components.sh
     bash ./scripts/sync-icons.sh
-    git add public/registry/components.json public/registry/css/index.css public/registry/icons/icons.ts
+    git add public/registry/components.json public/registry/css/index.css public/registry/lib/icons.ts
 ```
 
 - **Never bypass the hook** unless you know exactly what you are doing—registry files must stay aligned with the source.
@@ -135,7 +135,7 @@ For `registry.json` updates:
 
 1. Create or update the component entry inside the top-level `components` map. Populate fields such as `name`, `description`, `category`, `files`, `dependencies`, `exports`, `props`, and any `variants`/`sizes`. Use existing entries as references.
 2. Add the component slug to the correct category array in the `categories` section (at the bottom of the file). The CLI relies on both the component object and the category list.
-3. Validate your structure against `public/registry/registry-schema.json` (your editor may support JSON Schema validation automatically).
+3. Validate your structure against `public/registry/schema/registry-schema.json` (your editor may support JSON Schema validation automatically).
 
 > The CLI reads `registry.json` to know what it can scaffold. Missing or malformed entries will prevent the new component from appearing in `npx @nocta-ui/cli add` and `npx @nocta-ui/cli list`.
 

@@ -10,7 +10,7 @@ import React, {
 	useState,
 } from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const POSITION_CONFIGS = {
 	'top-left': {

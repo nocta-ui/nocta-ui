@@ -8,4 +8,4 @@ bash ./scripts/sync-icons.sh
 git add \
 	public/registry/components.json \
 	public/registry/css/index.css \
-	public/registry/icons/icons.ts
+	public/registry/lib/icons.ts

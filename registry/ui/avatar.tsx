@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const avatarVariants = cva(
 	[

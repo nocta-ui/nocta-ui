@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const alertVariants = cva(
 	'relative flex w-fit items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-md card-highlight',

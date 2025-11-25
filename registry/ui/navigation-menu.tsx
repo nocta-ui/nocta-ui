@@ -4,7 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const navigationMenuVariants = cva(
 	'inline-flex h-11 items-center gap-1 px-2 text-sm text-foreground/70',

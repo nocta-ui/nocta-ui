@@ -35,7 +35,7 @@ npx @nocta-ui/cli list
 npx @nocta-ui/cli init
 npx @nocta-ui/cli add button card badge
 ```
-`init` analyses the current project, writes `nocta.config.json`, updates `nocta.workspace.json`, and drops helpers (`lib/utils.ts`, `components/ui/icons.ts`) when the workspace owns them. `add` copies registry components into the configured `aliases.components` path and installs any missing dependencies.
+`init` analyses the current project, writes `nocta.config.json`, updates `nocta.workspace.json`, and drops helpers (`lib/utils.ts`, `lib/icons.ts`) when the workspace owns them. `add` copies registry components into the configured `aliases.components` path and installs any missing dependencies.
 
 **Monorepo linking (shared UI + application)**
 ```bash
@@ -53,7 +53,7 @@ npx @nocta-ui/cli add button card     # component source flows into packages/ui
 ## `init` Command Reference
 - Detects the repo root, framework, package manager, and Tailwind v4.
 - Builds a tailored `nocta.config.json` with component and utility aliases.
-- Writes shared helpers (`lib/utils.ts`, `components/ui/icons.ts`) when needed.
+- Writes shared helpers (`lib/utils.ts`, `components/lib/icons.ts`) when needed.
 - Injects Nocta design tokens into your Tailwind entry file for managed workspaces.
 - Updates or creates `nocta.workspace.json` so other workspaces can discover this setup.
 

@@ -4,7 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const accordionVariants = cva('w-full', {
 	variants: {

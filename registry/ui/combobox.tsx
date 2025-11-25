@@ -12,7 +12,7 @@ import {
 	useState,
 } from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 import { ScrollArea } from '@/registry/ui/scroll-area';
 
 const comboboxVariants = cva(

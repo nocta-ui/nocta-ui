@@ -12,7 +12,7 @@ import {
 } from 'react';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent, DialogSurface } from '@/registry/ui/dialog';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 import { Input } from '@/registry/ui/input';
 
 export type CommandKItem = {

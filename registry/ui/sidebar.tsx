@@ -5,7 +5,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/registry/ui/button';
 import { CommandK, type CommandKItem } from '@/registry/ui/command-k';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 import { ScrollArea } from '@/registry/ui/scroll-area';
 import { Separator } from '@/registry/ui/separator';
 import {

@@ -4,7 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const sheetContentVariants = cva(
 	'fixed flex flex-col border border-border bg-popover shadow-2xl card-highlight transition-transform duration-300 ease-smooth',

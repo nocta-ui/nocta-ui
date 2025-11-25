@@ -3,8 +3,8 @@ set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-src_icons="$repo_root/registry/ui/nocta-icons.tsx"
-dest_icons="$repo_root/public/registry/icons/icons.ts"
+src_icons="$repo_root/registry/lib/icons.ts"
+dest_icons="$repo_root/public/registry/lib/icons.ts"
 
 if [ ! -f "$src_icons" ]; then
   echo "[sync-icons] Source file not found: $src_icons" >&2

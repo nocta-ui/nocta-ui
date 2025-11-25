@@ -4,7 +4,7 @@ import * as Ariakit from '@ariakit/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/registry/ui/nocta-icons';
+import { Icons } from '@/registry/lib/icons';
 
 const dialogContentVariants = cva(
 	`relative max-h-[70vh] rounded-lg border border-border bg-popover card-highlight shadow-2xl`,
