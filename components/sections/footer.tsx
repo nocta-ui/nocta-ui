@@ -5,7 +5,7 @@ export function Footer() {
 	return (
 		<footer
 			className={cn(
-				'container flex flex-col items-center justify-end gap-4 max-w-5xl',
+				'container flex flex-col items-center justify-end gap-4 max-w-5xl h-fit',
 				'p-6',
 				'md:flex-row md:gap-16',
 			)}

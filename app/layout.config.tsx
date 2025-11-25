@@ -1,8 +1,8 @@
 import {
 	CodeIcon,
+	FrameIcon,
 	GlobeIcon,
 	LightningBoltIcon,
-	MixerHorizontalIcon,
 	ReaderIcon,
 	ShuffleIcon,
 	StackIcon,
@@ -130,9 +130,9 @@ export const linkItems: LinkItemType[] = [
 		],
 	},
 	{
-		text: 'Design Tokens',
-		url: '/docs/design-tokens',
+		text: 'Templates',
+		url: '/templates',
 		active: 'url',
-		icon: <MixerHorizontalIcon aria-hidden="true" className="size-4" />,
+		icon: <FrameIcon aria-hidden="true" className="size-4" />,
 	},
 ];
