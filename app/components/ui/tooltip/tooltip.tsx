@@ -138,7 +138,9 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 		return (
 			<Ariakit.TooltipAnchor
 				render={(anchorProps) => {
-					const childElement = children as React.ReactElement & {
+					const childElement = children as React.ReactElement<
+						Record<string, unknown>
+					> & {
 						ref?: React.Ref<unknown>;
 					};
 					const childProps = (childElement.props ?? {}) as Record<
@@ -150,7 +152,9 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 						className: anchorClassName,
 						...restAnchorProps
 					} = anchorProps;
-					const mergedProps: Record<string, unknown> = { ...childProps };
+					const mergedProps: Record<string, unknown> & {
+						className?: string;
+					} = { ...childProps };
 
 					Object.entries(restAnchorProps as Record<string, unknown>).forEach(
 						([key, value]) => {
@@ -165,14 +169,14 @@ export const TooltipTrigger: React.FC<TooltipTriggerProps> = ({
 						},
 					);
 
-					mergedProps['className'] = cn(
+					mergedProps.className = cn(
 						'inline-flex items-center',
 						className,
 						anchorClassName as string | undefined,
 						childProps.className,
 					);
 
-					return React.cloneElement(childElement as React.ReactElement<any>, {
+					return React.cloneElement(childElement, {
 						...mergedProps,
 						ref: mergeRefs(childElement.ref, anchorRef as React.Ref<unknown>),
 					});

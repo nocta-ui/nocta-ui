@@ -272,6 +272,7 @@ export const WheelPicker: React.FC<WheelPickerProps> = ({
 				wheelItemsRef.current.style.transform = transform;
 				wheelItemsRef.current.childNodes.forEach((node) => {
 					const li = node as HTMLLIElement;
+					// biome-ignore lint/complexity/useLiteralKeys: DOMStringMap only exposes bracket accessors
 					const rawIndex = li.dataset?.['index'];
 					if (rawIndex === undefined) return;
 					const distance = Math.abs(Number(rawIndex) - normalizedScroll);
