@@ -19,6 +19,8 @@ echo "[2/4] Preparing import rewrites..."
 rewrite_script="$(mktemp -t rewrite.XXXXXX.pl)"
 cat > "$rewrite_script" <<'PERL'
 s#@/registry/ui/#@/components/ui/#g;
+s#import { Icons } from '@/registry/lib/icons';#import { Icons } from '@/lib/icons';#g;
+s#import { Icons } from "@/registry/lib/icons";#import { Icons } from "@/lib/icons";#g;
 PERL
 
 echo "[3/4] Encoding TSX components to Base64 JSON..."
