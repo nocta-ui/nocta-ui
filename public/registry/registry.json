@@ -97,7 +97,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A vertically stacked set of interactive headings that each reveal a section of content",
@@ -157,7 +156,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Alert component with different variants and nested components",
@@ -212,7 +210,6 @@
 			"dependencies": {
 				"clsx": "^2.1.1",
 				"d3-shape": "^3.2.0",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Interactive area chart with multi-series support, tooltips, legend, and data table helpers",
@@ -321,7 +318,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Avatar component with image fallback, status indicator, and multiple sizes",
@@ -365,7 +361,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Badge component for displaying status, counts, or labels",
@@ -406,7 +401,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Navigation breadcrumb component showing hierarchical location with customizable separators and styling",
@@ -480,7 +474,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Button component with multiple variants and sizes",
@@ -523,7 +516,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A fully featured date picker with keyboard navigation, accessibility support, and customizable styling",
@@ -572,7 +564,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Card component with composable layout sections",
@@ -630,7 +621,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Complete chat interface component with messages, input, avatars, timestamps, and real-time features",
@@ -726,7 +716,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Form input component for toggling options with checked and unchecked states",
@@ -764,7 +753,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A selectable card that pairs rich summaries with checkbox behaviour for multi-select interfaces",
@@ -800,7 +788,6 @@
 			  "@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Searchable combobox component with filtering, keyboard navigation, and accessibility",
@@ -857,7 +844,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Command palette modal (Cmd/Ctrl+K) for quick search, navigation and actions with full keyboard support",
@@ -907,7 +893,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A context menu component that appears on right-click with full keyboard navigation and submenu support",
@@ -979,7 +964,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Modal dialog component with overlay and animations",
@@ -1065,7 +1049,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A dropdown menu component triggered on click with keyboard navigation and submenu support",
@@ -1136,7 +1119,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Advanced file upload component with drag & drop, progress tracking, validation, and preview support",
@@ -1210,7 +1192,6 @@
 			"dependencies": {
 				"@ariakit/react": "^0.4.19",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Composable Ariakit-based form with fields, labels, validation, and actions",
@@ -1287,7 +1268,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Contextual hovercard for lightweight previews with hover intent handling and smart positioning",
@@ -1361,7 +1341,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Input component with variants, icons, and helper text",
@@ -1408,7 +1387,6 @@
 			"dependencies": {
 				"clsx": "^2.1.1",
 				"d3-shape": "^3.2.0",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Track evolving metrics and dynamic changes using clear, continuous line plots",
@@ -1518,7 +1496,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "An application menubar with multi-level menus, groups, and keyboard navigation",
@@ -1598,7 +1575,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Hover-driven navigation bar with floating panels for grouped links and quick actions",
@@ -1657,7 +1633,6 @@
 			"category": "navigation",
 			"dependencies": {
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Pagination component for navigating between pages of content",
@@ -1691,7 +1666,6 @@
 			"dependencies": {
 				"clsx": "^2.1.1",
 				"d3-shape": "^3.2.0",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Interactive pie chart with tooltips, legend, and data table helpers",
@@ -1795,7 +1769,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Advanced popover component with positioning, collision detection, and animations",
@@ -1862,7 +1835,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A progress indicator component with multiple variants, sizes, and animation support",
@@ -1907,7 +1879,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Grouped radio buttons with custom styling, orientation control, and descriptions",
@@ -1955,7 +1926,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A stylized scroll container with composable viewport, custom indicators, and hover or scroll-driven visibility",
@@ -1990,7 +1960,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Custom select component with dropdown and animations",
@@ -2061,7 +2030,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A lightweight divider for grouping content sections horizontally or vertically",
@@ -2096,7 +2064,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Slide-out panel component that can be triggered from any side of the screen",
@@ -2179,7 +2146,6 @@
 			"dependencies": {
 				"@ariakit/react": "^0.4.19",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Collapsible workspace sidebar with hover peek, mobile sheet mode, and grouped navigation",
@@ -2350,7 +2316,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Loading skeleton component with variants, shapes, and animations for content placeholders",
@@ -2391,7 +2356,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "A customizable range slider component with variants, orientations, and accessibility support",
@@ -2443,7 +2407,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Loading spinner component with variants, sizes and smooth animations",
@@ -2480,7 +2443,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Switch component with smooth animations for enabling or disabling options",
@@ -2519,7 +2481,6 @@
 				"@tanstack/react-table": "^8.21.3",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Data table with TanStack Table integration, row selection, keyboard navigation, and customizable presentation",
@@ -2569,7 +2530,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Accessible tabs component with multiple variants, orientations, and keyboard navigation",
@@ -2631,7 +2591,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Textarea component with variants, labels, and helper text",
@@ -2678,7 +2637,6 @@
 			"dependencies": {
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Advanced toast notification system with observer pattern, CSS transition animations, positioning, and stacking",
@@ -2722,7 +2680,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Single toggle button component supporting pressed state, variants, and sizes",
@@ -2764,7 +2721,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Grouped toggle buttons for single or multiple selection with shared styling",
@@ -2813,7 +2769,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "Tooltip component with positioning and animations",
@@ -2858,7 +2813,6 @@
 				"@ariakit/react": "^0.4.19",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
-				"react": "^19.2.0",
 				"tailwind-merge": "^3.4.0"
 			},
 			"description": "iOS-style wheel picker built on Ariakit Composite with smooth scroll-snapping and keyboard navigation",
