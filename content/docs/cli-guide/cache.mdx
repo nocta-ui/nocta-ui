@@ -1,0 +1,33 @@
+---
+title: Manage CLI Cache
+description: Inspect and clear the registry and asset cache used by the Nocta CLI.
+---
+
+`cache` reveals where the CLI keeps its on-disk cache and lets you wipe stale registry data. Use it to confirm that environment overrides are picked up or to force the CLI to download fresh manifests before running other commands.
+
+```bash
+npx @nocta-ui/cli cache
+# Remove cached registry data
+npx @nocta-ui/cli cache clear --force
+```
+
+## What It Does
+- Prints the fully resolved cache directory for the current user so you can inspect or script against it.
+- Shows whether cached registry metadata and component assets are present before you run network-heavy commands.
+- Keeps the filesystem untouched unless you explicitly run `cache clear --force`.
+
+## Cache Contents and Expiration
+- The CLI caches registry manifests plus downloaded assets to avoid repeated network calls.
+- Default locations follow the platform conventions (`~/.cache/nocta-ui` on Linux, `~/Library/Caches/nocta-ui` on macOS, `%LOCALAPPDATA%\\Nocta UI\\Cache` on Windows). Override the directory with `NOCTA_CACHE_DIR`.
+- Registry metadata expires after 10 minutes and assets after 24 hours. Override the time-to-live with `NOCTA_CACHE_TTL_MS` and `NOCTA_ASSET_CACHE_TTL_MS` (values in milliseconds).
+- If a request fails, the CLI can serve the most recent cached data (up to 30 days old) so you can keep working offline.
+
+## Clearing Cached Data
+- Run `npx @nocta-ui/cli cache clear --force` to delete every cached manifest and asset. This is useful when switching to a different registry or when you suspect the cached files are corrupted.
+- The `--force` flag prevents accidental deletion; without it the command remains read-only.
+- After clearing the cache, the next CLI command will download fresh manifests and assets automatically.
+
+## When to Use It
+- Validate that `NOCTA_CACHE_DIR` or TTL overrides are configured correctly.
+- Confirm the CLI sees cached files before boarding long flights or working offline.
+- Force a refresh after testing against staging or local registry endpoints.

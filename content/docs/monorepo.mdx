@@ -1,27 +1,40 @@
 ---
-title: Bun Monorepo Example
-description: Step-by-step Bun workspace with a Next.js app and shared Nocta UI package.
+title: Monorepo Setup
+description: Link a shared Nocta UI workspace to an application using Bun workspaces.
 ---
 
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
-## Prerequisites
+Nocta UI treats shared UI workspaces as the source of truth for component files. In a monorepo you can run CLI commands from an application workspace while the actual React source lives inside a sibling package. This guide recreates the Bun + Next.js example step by step so you can adapt it to your own tooling.
 
+## Prerequisites
 - Bun 1.1 or newer
-- Node.js with npx (for occasional tools)
-- Git (optional but recommended)
+- Node.js (for occasional `npx` utilities)
+- Git (recommended for tracking generated files)
+
+## Repository Layout
+
+```
+nocta-bun-monorepo
+├── apps/
+│   └── web     (Next.js application)
+└── packages/
+    └── ui      (shared Nocta UI workspace)
+```
+
+## Step-by-step
 
 <Steps>
   <Step>
-    ### Initialise the repository root
+    ### 1. Initialise the repo root
 
-    ```bash lineNumbers title="Terminal"
+   ```bash lineNumbers title="Terminal"
     mkdir nocta-bun-monorepo
     cd nocta-bun-monorepo
     bun init --yes
     ```
 
-    Update your `package.json` with a followind workspaces section:
+    Update `package.json` so Bun knows where workspaces live:
 
     ```json lineNumbers title="package.json"
     {
@@ -40,7 +53,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     ```
   </Step>
   <Step>
-    ### Scaffold the shared UI workspace (`packages/ui`)
+    ### 2. Scaffold the shared UI workspace (`packages/ui`)
 
     ```bash lineNumbers title="Terminal"
     mkdir -p packages/ui
@@ -49,7 +62,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     bun add -D tsc-alias rimraf concurrently tailwindcss
     ```
 
-    Configure TypeScript with alias support:
+    Configure TypeScript with alias support so registry files that import from `@/...` compile cleanly:
 
     ```json lineNumbers title="tsconfig.json"
     {
@@ -82,9 +95,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     }
     ```
 
-    The combination of `baseUrl` and `paths` lets you author source files with `@/...` imports; `tsc-alias` rewrites them for the compiled output.
-
-    Update your `packages/ui/package.json` with build scripts that emit assets to `dist/`:
+    Add build scripts so the package emits compiled artefacts to `dist/`:
 
     ```json lineNumbers title="package.json"
     {
@@ -125,18 +136,20 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
       }   // [!code highlight]
     }
     ```
+
+    `tsc-alias` rewrites the `@/...` imports in the compiled output so downstream apps can resolve files without custom TS paths.
   </Step>
   <Step>
-    ### Set up the Next.js app (`apps/web`)
+    ### 3. Set up the Next.js app (`apps/web`)
 
-    ```bash lineNumbers title="Terminal"
+   ```bash lineNumbers title="Terminal"
     cd ../../
     mkdir -p apps/web
     cd apps/web
     bun create next-app@latest . --yes
     ```
 
-    Add the shared UI package via workspaces:
+    Point the app at the shared workspace via Bun workspaces:
 
     ```json lineNumbers title="package.json"
     {
@@ -168,45 +181,57 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
     }
     ```
 
-    Import the compiled UI styles once in `app/layout.tsx` (or your chosen root file):
+    Import the compiled UI stylesheet once inside `app/layout.tsx` (or your preferred root file):
 
     ```tsx lineNumbers title="app/layout.tsx"
     import "ui/dist/styles.css";
     ```
   </Step>
   <Step>
-    ### Initialise the Nocta CLI
+    ### 4. Initialise the Nocta CLI
 
-    Run the CLI inside the shared UI workspace to generate configuration, helpers, and Tailwind tokens. When prompted for the workspace type choose **Shared UI**:
+    Run `init` inside each workspace so the CLI records relationships and writes helpers.
 
     ```bash lineNumbers title="Terminal"
     cd packages/ui
-    npx @nocta-ui/cli init
+    npx @nocta-ui/cli init                # choose Shared UI
+
+    cd ../../apps/web
+    npx @nocta-ui/cli init                # choose Application and link "ui"
     ```
 
-    Next, initialise the application workspace so it links to the shared UI package. Select **Application** when prompted and choose the existing `ui` workspace from the CLI's linked workspace picker:
+    - The shared UI workspace receives `nocta.config.json`, helper utilities, Tailwind tokens, and an entry inside `nocta.workspace.json`.
+    - The application workspace stores a link to `ui`, so future `nocta-ui add` runs from `apps/web` copy React source into `packages/ui`.
+  </Step>
+  <Step>
+    ### 5. Install components and rebuild the shared package
+
+    From `apps/web` install components like normal:
 
     ```bash lineNumbers title="Terminal"
-    cd ../apps/web
-    npx @nocta-ui/cli init
+    npx @nocta-ui/cli add button card
     ```
 
-    After both workspaces are registered you can run commands such as `npx @nocta-ui/cli add` inside `apps/web` and the CLI will automatically install components into `packages/ui`.
+    The CLI writes component source files into `packages/ui/src/...`, updates export barrels, and scopes dependency installs to the owning workspace. Rebuild or watch the shared package after each run so the compiled artefacts remain fresh:
+
+    ```bash lineNumbers title="Terminal"
+    bun run --filter ui build
+    # or keep everything hot
+    bun run --filter ui dev
+    ```
   </Step>
 </Steps>
 
-Once the CLI copies components into `packages/ui`, rebuild the shared UI package so the compiled output stays in sync:
+## Using the Components
 
-```bash title="Terminal"
-bun run --filter ui build
-# or keep everything hot-reloading in watch mode
-bun run --filter ui dev
-```
+After rebuilding, import components from the shared package inside your application:
 
-Back in your application workspace, consume the freshly published exports as normal:
-
-```tsx title="Example usage"
+```tsx lineNumbers title="apps/web/app/page.tsx"
 import { Button } from "ui";
+
+export default function Page() {
+  return <Button>Ready for launch</Button>;
+}
 ```
 
-You now have a Bun-managed monorepo where the shared UI package outputs build artefacts that the Next.js application can consume directly. Adjust scripts or tooling versions to match your team standards, then commit the scaffold baseline.
+You now have a monorepo-aware workflow where shared UI code lives in `packages/ui`, applications call CLI commands from their own directory, and Bun handles dependencies for the entire workspace.

@@ -16,6 +16,35 @@ Created by `nocta-ui init`, this file describes how the CLI should scaffold comp
 - `exports.components` (optional) keeps a barrel file up to date when you install components.
 - `workspace` stores metadata that lets the CLI coordinate monorepos and link additional workspaces.
 
+### Example: Single workspace inside a repo root
+
+This configuration lives at the repository root and represents a lone application (for example a Next.js project) without separate packages. The CLI writes files relative to the current directory and scopes dependency installs there as well.
+
+```json title="nocta.config.json"
+{
+  "$schema": "https://nocta-ui.com/registry/schema/config-schema.json",
+  "style": "default",
+  "tailwind": {
+    "css": "app/globals.css"
+  },
+  "aliases": {
+    "components": "components/ui",
+    "utils": "lib/utils"
+  },
+  "aliasPrefixes": {
+    "components": "@",
+    "utils": "@"
+  },
+  "workspace": {
+    "kind": "app",
+    "root": "."
+  }
+}
+```
+
+- No `packageName` is required when the workspace matches the repo root; the CLI simply runs package-manager commands from `.`.
+- Omitting `linkedWorkspaces` keeps the configuration focused on this single workspace—add entries later if you split shared UI code into a separate package.
+
 ### Example: Application linking a shared UI package
 
 The application workspace keeps its own Tailwind entry point but delegates component installs to a shared UI package. The CLI will sync helpers, exports, and dependencies with the linked workspace.
