@@ -225,6 +225,15 @@
 	--ease-out-quad: var(--ease-out-quad);
 }
 
+@keyframes shimmer {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
 @keyframes navigation-menu-enter-from-start {
 	from {
 		opacity: 0;

@@ -2,7 +2,7 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { cn } from '@/lib/utils';
 
 const skeletonVariants = cva('bg-card-muted', {
@@ -108,15 +108,6 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 	className = '',
 	...props
 }) => {
-	useEffect(() => {
-		if (variant !== 'shimmer') return;
-		if (!document.getElementById('shimmer-keyframes')) {
-			const style = document.createElement('style');
-			style.id = 'shimmer-keyframes';
-			style.innerHTML = `@keyframes shimmer {\n  0% {\n    transform: translateX(-100%);\n  }\n  100% {\n    transform: translateX(100%);\n  }\n}`;
-			document.head.appendChild(style);
-		}
-	}, [variant]);
 
 	const lineKeys = useMemo(
 		() =>
