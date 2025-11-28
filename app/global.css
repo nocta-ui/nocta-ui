@@ -89,8 +89,8 @@
 	--color-ring: oklch(0.55 0.012 var(--base-hue));
 	--color-ring-offset: oklch(0.96 0.002 var(--base-hue));
 	--color-overlay: oklch(0.92 0.003 var(--base-hue) / 0.65);
-	--color-gradient-from: oklch(0.3603 0.0181 var(--base-hue));
-	--color-gradient-to: oklch(0.2517 0.02 var(--base-hue));
+	--color-gradient-from: oklch(0.3603 0.0044 var(--base-hue));
+	--color-gradient-to: oklch(0.2517 0.0044 var(--base-hue));
 	--color-destructive: oklch(0.62 0.21 25);
 	--color-warning: oklch(0.8 0.2 75);
 	--color-success: oklch(0.7 0.18 155);

@@ -86,14 +86,14 @@ export const colorTokens = [
 	{
 		token: '--color-gradient-from',
 		description: 'Gradient start',
-		light: 'oklch(0.3603 0.0181 var(--base-hue))',
-		dark: 'oklch(0.3203 0.009 var(--base-hue))',
+		light: 'oklch(0.3603 0.0044 var(--base-hue))',
+		dark: 'oklch(0.3203 0.0012 var(--base-hue))',
 	},
 	{
 		token: '--color-gradient-to',
 		description: 'Gradient end',
-		light: 'oklch(0.2517 0.02 var(--base-hue))',
-		dark: 'oklch(0.2517 0.01 var(--base-hue))',
+		light: 'oklch(0.2517 0.0044 var(--base-hue))',
+		dark: 'oklch(0.2517 0.012 var(--base-hue))',
 	},
 	{
 		token: '--color-destructive',
