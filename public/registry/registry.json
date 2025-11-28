@@ -94,7 +94,7 @@
 		"accordion": {
 			"category": "layout",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -153,7 +153,7 @@
 		"alert": {
 			"category": "feedback",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -471,7 +471,7 @@
 		"button": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -513,7 +513,7 @@
 		"calendar": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -713,7 +713,7 @@
 		"checkbox": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -750,7 +750,7 @@
 		"checkbox-card": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -785,7 +785,7 @@
 		"combobox": {
 			"category": "form",
 			"dependencies": {
-			  "@ariakit/react": "^0.4.19",
+			  "@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -890,7 +890,7 @@
 		"context-menu": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -961,7 +961,7 @@
 		"dialog": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1046,7 +1046,7 @@
 		"dropdown-menu": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1190,7 +1190,7 @@
 		"form": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
 			},
@@ -1265,7 +1265,7 @@
 		"hovercard": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1493,7 +1493,7 @@
 		"menubar": {
 			"category": "navigation",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1572,7 +1572,7 @@
 		"navigation-menu": {
 			"category": "navigation",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1766,7 +1766,7 @@
 		"popover": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -1876,7 +1876,7 @@
 		"radio-group": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2144,7 +2144,7 @@
 		"sidebar": {
 			"category": "navigation",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
 			},
@@ -2440,7 +2440,7 @@
 		"switch": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2477,7 +2477,7 @@
 		"table": {
 			"category": "data-display",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"@tanstack/react-table": "^8.21.3",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
@@ -2527,7 +2527,7 @@
 		"tabs": {
 			"category": "navigation",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2677,7 +2677,7 @@
 		"toggle": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2718,7 +2718,7 @@
 		"toggle-group": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2766,7 +2766,7 @@
 		"tooltip": {
 			"category": "overlay",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
@@ -2810,7 +2810,7 @@
 		"wheel-picker": {
 			"category": "form",
 			"dependencies": {
-				"@ariakit/react": "^0.4.19",
+				"@ariakit/react": "^0.4.20",
 				"class-variance-authority": "^0.7.1",
 				"clsx": "^2.1.1",
 				"tailwind-merge": "^3.4.0"
