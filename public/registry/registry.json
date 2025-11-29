@@ -1382,6 +1382,42 @@
 				"success"
 			]
 		},
+		"kbd": {
+			"category": "data-display",
+			"dependencies": {
+				"class-variance-authority": "^0.7.1",
+				"clsx": "^2.1.1",
+				"tailwind-merge": "^3.4.0"
+			},
+			"description": "Display keyboard shortcuts and key hints with consistent styling that adapts to themes and variants",
+			"exports": [
+				"Kbd"
+			],
+			"files": [
+				{
+					"name": "kbd.tsx",
+					"path": "kbd.tsx",
+					"type": "component"
+				}
+			],
+			"name": "Kbd",
+			"props": {
+				"Kbd": [
+					"children",
+					"size",
+					"variant",
+					"className"
+				]
+			},
+			"sizes": [
+				"lg",
+				"md",
+				"sm"
+			],
+			"variants": [
+				"default"
+			]
+		},
 		"line-chart": {
 			"category": "data-display",
 			"dependencies": {

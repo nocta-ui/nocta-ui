@@ -19,6 +19,7 @@ export * from './file-upload-demos';
 export * from './form-demos';
 export * from './hovercard-demos';
 export * from './input-demos';
+export * from './kbd-demos';
 export * from './line-chart-demos';
 export * from './menubar-demos';
 export * from './navigation-menu-demos';

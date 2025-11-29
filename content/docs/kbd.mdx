@@ -1,0 +1,94 @@
+---
+title: Kbd
+description: Display keyboard shortcuts and key hints with consistent styling that adapts to themes and variants.
+---
+
+import {
+  KbdDefaultDemo,
+  KbdVariantsDemo,
+  KbdSizesDemo,
+} from '@/demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+<Steps>
+<Step>
+Install the Kbd component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add kbd
+```
+</Step>
+<Step>
+Then import the component:
+
+```tsx lineNumbers title="Import"
+import { Kbd } from '@/components/ui/kbd';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Shortcut
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <KbdDefaultDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Default Shortcut"
+    <div className="inline-flex flex-wrap items-center gap-2">
+      <span>Press</span>
+      <Kbd>Ctrl</Kbd>
+      <span>+</span>
+      <Kbd>K</Kbd>
+      <span>to open search</span>
+    </div>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Sizes
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <KbdSizesDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Sizes"
+    <Kbd size="sm">Tab</Kbd>
+    <Kbd size="md">Shift</Kbd>
+    <Kbd size="lg">Space</Kbd>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Content rendered inside the keyboard badge.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Controls the height and padding of the key cap.',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    variant: {
+      description: 'Visual treatment for the key background.',
+      type: '"default"',
+      default: '"default"',
+    },
+    className: {
+      description: 'Additional classes merged with the base styles.',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
