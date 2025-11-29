@@ -77,13 +77,13 @@
    NOCTA CSS THEME VARIABLES START
    ================================*/
 :root {
-	--base-hue: 248;
+	--base-hue: 265;
 	--chart-hue-step: 4;
 	--color-background: oklch(0.9851 0.002 var(--base-hue));
 	--color-card: oklch(1 0 0);
-	--color-card-muted: oklch(0.96 0.0035 var(--base-hue));
+	--color-card-muted: oklch(0.96 0.002 var(--base-hue));
 	--color-popover: oklch(1 0 0);
-	--color-popover-muted: oklch(0.96 0.0035 var(--base-hue));
+	--color-popover-muted: oklch(0.96 0.002 var(--base-hue));
 	--color-foreground: oklch(0.1408 0.0044 var(--base-hue));
 	--color-border: oklch(0.8925 0.0014 var(--base-hue));
 	--color-ring: oklch(0.55 0.012 var(--base-hue));
@@ -138,7 +138,8 @@
 		inset 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 2px
 		rgba(0, 0, 0, 0.025);
 
-	--arrow-highlight: var(--color-border);
+	--card-highlight: oklch(0.9838 0.0014 var(--base-hue) / 0.42);
+	--arrow-highlight: oklch(0.8438 0.0014 var(--base-hue) / 0.42);
 
 	--radius-base: 0.175rem;
 
@@ -148,17 +149,17 @@
 
 .dark {
 	--color-background: oklch(0.1408 0.0044 var(--base-hue));
-	--color-card: oklch(0.1703 0.006 var(--base-hue));
-	--color-card-muted: oklch(0.2139 0.0085 var(--base-hue));
-	--color-popover: oklch(0.2139 0.0085 var(--base-hue));
-	--color-popover-muted: oklch(0.2502 0.0095 var(--base-hue));
+	--color-card: oklch(0.1703 0.0085 var(--base-hue));
+	--color-card-muted: oklch(0.2139 0.0101 var(--base-hue));
+	--color-popover: oklch(0.2139 0.0101  var(--base-hue));
+	--color-popover-muted: oklch(0.2502 0.016 var(--base-hue));
 	--color-foreground: oklch(0.9824 0.0013 var(--base-hue));
-	--color-border: oklch(0.278 0.006 var(--base-hue));
+	--color-border: oklch(0.278 0.015 var(--base-hue));
 	--color-ring: oklch(0.58 0.012 var(--base-hue));
 	--color-ring-offset: oklch(0.15 0.005 var(--base-hue));
 	--color-overlay: oklch(0.12 0.004 var(--base-hue) / 0.65);
-	--color-gradient-from: oklch(0.3203 0.012 var(--base-hue));
-	--color-gradient-to: oklch(0.2517 0.012 var(--base-hue));
+	--color-gradient-from: oklch(0.3203 0.016 var(--base-hue));
+	--color-gradient-to: oklch(0.2517 0.016 var(--base-hue));
 	--color-destructive: oklch(0.72 0.27 25);
 	--color-warning: oklch(0.82 0.24 85);
 	--color-success: oklch(0.78 0.25 155);
@@ -176,7 +177,8 @@
 		0.52 0.2 calc(var(--base-hue) + (var(--chart-hue-step) * 3))
 	);
 
-	--arrow-highlight: rgb(255 255 255 / 0.22);
+	--card-highlight: oklch(0.378 0.015 var(--base-hue));
+	--arrow-highlight:oklch(0.9838 0.015 var(--base-hue) / 0.22);
 
 	--radius-base: 0.175rem;
 }
@@ -211,6 +213,7 @@
 	--shadow-xl: var(--shadow-xl);
 	--shadow-2xl: var(--shadow-2xl);
 	--shadow-inner: var(--shadow-inner);
+	--card-highlight: var(--card-highlight);
 	--arrow-highlight: var(--arrow-highlight);
 	--radius-xs: calc(var(--radius-base) * 1);
 	--radius-sm: calc(var(--radius-base) * 2);
@@ -288,12 +291,12 @@
 		border-radius: inherit;
 		pointer-events: none;
 		z-index: -1;
-		box-shadow: inset 0 1px 0 0 rgb(249 249 255 / 0.32);
+		box-shadow: inset 0 1px 0 0 var(--card-highlight);
 	}
 
 	@variant dark {
 		&::before {
-			box-shadow: inset 0 1px 0 0 rgb(249 249 255 / 0.12);
+			box-shadow: inset 0 1px 0 0 var(--card-highlight);
 		}
 	}
 }
