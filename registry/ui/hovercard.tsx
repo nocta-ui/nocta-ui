@@ -200,7 +200,7 @@ export const HovercardContent: React.FC<HovercardContentProps> = ({
 	const currentPlacement = Ariakit.useStoreState(store, 'currentPlacement');
 	const shouldTintArrow = currentPlacement?.startsWith('bottom');
 	const arrowStyle = shouldTintArrow
-		? { stroke: 'var(--arrow-highlight)' }
+		? { stroke: 'var(--card-highlight)' }
 		: undefined;
 
 	return (

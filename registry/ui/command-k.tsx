@@ -70,17 +70,6 @@ const listItemClass = cva(
 	},
 );
 
-const kbdClass = cva(
-	[
-		'relative flex items-center justify-center font-mono',
-		'h-5 min-w-[2.2rem] rounded-sm border px-1.5',
-		'text-[10px] leading-none font-medium',
-		'border-border',
-		'bg-popover-muted shadow-sm card-highlight',
-		'text-foreground/70 shadow-sm',
-	].join(' '),
-);
-
 const usePlatformMeta = () => {
 	const [isMac, setIsMac] = useState(false);
 	useEffect(() => {
@@ -315,19 +304,28 @@ export const CommandK: React.FC<CommandKProps> = ({
 		}
 	};
 
-	const shortcutHint = useMemo(() => {
+	const { label: shortcutHint, segments: shortcutSegments } = useMemo(() => {
 		const key = hotkey.key.toUpperCase();
 		const requiresMeta = hotkey.metaKey === true;
 		const requiresCtrl = hotkey.ctrlKey === true;
-		if (!requiresMeta && !requiresCtrl) {
-			return isMac ? `⌘${key}` : `Ctrl+${key}`;
-		}
+		const segments: string[] = [];
+
 		if (requiresMeta && requiresCtrl) {
-			return isMac ? `⌘${key}` : `Ctrl+${key}`;
+			segments.push(isMac ? '⌘' : 'Ctrl');
+		} else if (!requiresMeta && !requiresCtrl) {
+			segments.push(isMac ? '⌘' : 'Ctrl');
+		} else {
+			if (requiresMeta) segments.push('⌘');
+			if (requiresCtrl) segments.push('Ctrl');
 		}
-		if (requiresMeta) return `⌘${key}`;
-		if (requiresCtrl) return `Ctrl+${key}`;
-		return key;
+
+		segments.push(key);
+		const joiner = segments[0] === '⌘' ? '' : '+';
+
+		return {
+			label: segments.join(joiner),
+			segments,
+		};
 	}, [hotkey, isMac]);
 
 	return (
@@ -365,10 +363,16 @@ export const CommandK: React.FC<CommandKProps> = ({
 									/>
 								}
 							/>
-							<div className="pointer-events-none absolute top-1/2 right-3 h-fit -translate-y-1/2">
-								<Kbd size="md" className='bg-popover-muted'>
-								  {shortcutHint}
-								</Kbd>
+							<div className="pointer-events-none absolute top-1/2 right-3 flex h-fit -translate-y-1/2 gap-1">
+								{shortcutSegments.map((segment, index) => (
+									<Kbd
+										key={`${segment}-${index}`}
+										size="md"
+										className="bg-popover-muted"
+									>
+										{segment}
+									</Kbd>
+								))}
 								<span className="sr-only">Shortcut: {shortcutHint}</span>
 							</div>
 						</div>
