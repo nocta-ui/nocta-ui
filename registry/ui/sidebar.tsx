@@ -5,6 +5,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/registry/ui/button';
 import { CommandK, type CommandKItem } from '@/registry/ui/command-k';
+import { Kbd } from '@/registry/ui/kbd';
 import { Icons } from '@/registry/lib/icons';
 import { ScrollArea } from '@/registry/ui/scroll-area';
 import { Separator } from '@/registry/ui/separator';
@@ -566,9 +567,7 @@ function SidebarInput({
 			>
 				<Icons.Search className="size-5 text-foreground/45" />
 				<span className="flex-1 truncate text-left">{placeholder}</span>
-				<kbd className="relative pointer-events-none select-none rounded-sm border border-border bg-card-muted shadow-sm card-highlight px-1.5 py-0.5 text-[10px] font-mono font-medium text-foreground/70">
-					⌘K
-				</kbd>
+				<Kbd size="sm" className='bg-card-muted'>⌘K</Kbd>
 			</Button>
 
 			<CommandK items={items} open={open} onOpenChange={setOpen} />

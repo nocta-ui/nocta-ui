@@ -2220,6 +2220,7 @@
 			"internalDependencies": [
 				"button",
 				"command-k",
+				"kbd",
 				"scroll-area",
 				"separator",
 				"sheet",
