@@ -228,7 +228,7 @@ export function SidebarFooter(props: ComponentProps<'div'>) {
 		<div
 			{...props}
 			className={cn(
-				'mx-2 flex flex-col border-t border-fd-border p-4 pt-2',
+				'flex flex-col border-t border-fd-border p-4 pt-2',
 				props.className,
 			)}
 		>

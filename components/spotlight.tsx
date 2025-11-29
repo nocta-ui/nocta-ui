@@ -24,20 +24,20 @@ type SpotlightProps = {
 
 const DEFAULT_LIGHT: Gradients = {
 	first:
-		'radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(248, 70%, 85%, .22) 0, hsla(248, 80%, 93%, .06) 50%, hsla(248, 90%, 98%, 0) 80%)',
+		'radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(240, 70%, 85%, .22) 0, hsla(240, 80%, 93%, .06) 50%, hsla(240, 90%, 98%, 0) 80%)',
 	second:
-		'radial-gradient(50% 50% at 50% 50%, hsla(248, 70%, 88%, .16) 0, hsla(248, 80%, 95%, .05) 80%, transparent 100%)',
+		'radial-gradient(50% 50% at 50% 50%, hsla(240, 70%, 88%, .16) 0, hsla(240, 80%, 95%, .05) 80%, transparent 100%)',
 	third:
-		'radial-gradient(50% 50% at 50% 50%, hsla(248, 65%, 86%, .12) 0, hsla(248, 75%, 94%, .04) 80%, transparent 100%)',
+		'radial-gradient(50% 50% at 50% 50%, hsla(240, 65%, 86%, .12) 0, hsla(240, 75%, 94%, .04) 80%, transparent 100%)',
 };
 
 const DEFAULT_DARK: Gradients = {
 	first:
-		'radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(248, 14%, 85%, .08) 0, hsla(248, 12%, 55%, .02) 50%, hsla(248, 10%, 45%, 0) 80%)',
+		'radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(240, 44%, 85%, .08) 0, hsla(240, 42%, 55%, .02) 50%, hsla(240, 40%, 45%, 0) 80%)',
 	second:
-		'radial-gradient(50% 50% at 50% 50%, hsla(248, 14%, 85%, .06) 0, hsla(248, 12%, 55%, .02) 80%, transparent 100%)',
+		'radial-gradient(50% 50% at 50% 50%, hsla(240, 44%, 85%, .06) 0, hsla(240, 42%, 55%, .02) 80%, transparent 100%)',
 	third:
-		'radial-gradient(50% 50% at 50% 50%, hsla(248, 12%, 85%, .04) 0, hsla(248, 10%, 45%, .02) 80%, transparent 100%)',
+		'radial-gradient(50% 50% at 50% 50%, hsla(240, 42%, 85%, .04) 0, hsla(240, 40%, 45%, .02) 80%, transparent 100%)',
 };
 
 export const Spotlight = ({
