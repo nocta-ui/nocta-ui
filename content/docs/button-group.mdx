@@ -1,0 +1,162 @@
+---
+title: Button Group
+description: Arrange multiple buttons together with shared styling, spacing, and alignment controls.
+---
+
+import {
+  BasicButtonGroupDemo,
+  ButtonGroupSizesDemo,
+} from '@/demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab";
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+## Installation
+
+<Steps>
+<Step>
+Install the Button Group component using the nocta-ui CLI:
+
+```bash lineNumbers title="Terminal"
+npx @nocta-ui/cli add button-group
+```
+</Step>
+<Step>
+Import the components:
+
+```tsx lineNumbers title="Import"
+import {
+  ButtonGroup,
+  ButtonGroupItem
+} from '@/components/ui/button-group';
+```
+</Step>
+</Steps>
+
+## Examples
+
+### Default Button Group
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <BasicButtonGroupDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Basic Button Group"
+    <DropdownMenu>
+      <ButtonGroup>
+        <ButtonGroupItem>Overview</ButtonGroupItem>
+        <ButtonGroupItem>Analytics</ButtonGroupItem>
+        <ButtonGroupItem asChild>
+          <DropdownMenuTrigger className="flex items-center justify-center gap-1.5">
+            <CaretDownIcon className="size-4" aria-hidden="true" />
+          </DropdownMenuTrigger>
+        </ButtonGroupItem>
+      </ButtonGroup>
+
+      <DropdownMenuContent>
+        <DropdownMenuItem>Monthly report</DropdownMenuItem>
+        <DropdownMenuItem>Quarterly breakdown</DropdownMenuItem>
+        <DropdownMenuItem>Custom export…</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+### Sizes
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <div className="my-6">
+      <ButtonGroupSizesDemo />
+    </div>
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+    ```tsx lineNumbers title="Button Group Sizes"
+    <ButtonGroup size="sm">
+      <ButtonGroupItem>Daily</ButtonGroupItem>
+      <ButtonGroupItem>Weekly</ButtonGroupItem>
+      <ButtonGroupItem>Monthly</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup size="md">
+      <ButtonGroupItem>Daily</ButtonGroupItem>
+      <ButtonGroupItem>Weekly</ButtonGroupItem>
+      <ButtonGroupItem>Monthly</ButtonGroupItem>
+    </ButtonGroup>
+    <ButtonGroup size="lg">
+      <ButtonGroupItem>Daily</ButtonGroupItem>
+      <ButtonGroupItem>Weekly</ButtonGroupItem>
+      <ButtonGroupItem>Monthly</ButtonGroupItem>
+    </ButtonGroup>
+    ```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+### ButtonGroup
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Buttons rendered inside the group.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    size: {
+      description: 'Controls the height and padding for every button.',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    disabled: {
+      description: 'Disable all nested buttons.',
+      type: 'boolean',
+      default: 'false',
+    },
+    className: {
+      description: 'Additional classes for the container.',
+      type: 'string',
+      default: '""',
+    },
+  }}
+/>
+
+### ButtonGroupItem
+
+<TypeTable
+  type={{
+    children: {
+      description: 'Content rendered inside the button.',
+      type: 'React.ReactNode',
+      default: 'undefined',
+    },
+    active: {
+      description: 'Applies the active background styling, useful for controlled states.',
+      type: 'boolean',
+      default: 'false',
+    },
+    asChild: {
+      description: 'Render styles on the provided child element.',
+      type: 'boolean',
+      default: 'false',
+    },
+    disabled: {
+      description: 'Disables the specific button.',
+      type: 'boolean',
+      default: 'inherits group state',
+    },
+    className: {
+      description: 'Additional classes for the button.',
+      type: 'string',
+      default: '""',
+    },
+    onClick: {
+      description: 'Click handler',
+      type: '() => void',
+      default: 'undefined',
+    },
+  }}
+/>

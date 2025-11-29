@@ -13,7 +13,7 @@ const toggleGroupVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: 'bg-card text-foreground border-border ',
+				default: 'bg-card text-foreground border-border',
 			},
 			size: {
 				sm: 'text-xs',

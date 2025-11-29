@@ -4,6 +4,7 @@ export * from './area-chart-demos';
 export * from './avatar-demos';
 export * from './badge-demos';
 export * from './breadcrumb-demos';
+export * from './button-group-demos';
 export * from './button-demos';
 export * from './calendar-demos';
 export * from './card-demos';
