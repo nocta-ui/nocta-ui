@@ -675,7 +675,7 @@ export const SheetFooter: React.FC<SheetFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-popover-muted/30 p-4',
+				'mt-auto flex items-center justify-end gap-3 border-t border-border/60 bg-[color-mix(in_oklch,var(--color-popover)_70%,var(--color-popover-muted)_30%)] p-4',
 				className,
 			)}
 			{...props}

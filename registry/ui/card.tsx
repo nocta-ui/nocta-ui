@@ -129,7 +129,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({
 	return (
 		<div
 			className={cn(
-				'flex items-center justify-end rounded-b-lg border-t border-border/60 bg-card-muted/30 p-4',
+				'flex items-center justify-end rounded-b-lg border-t border-border/60 bg-[color-mix(in_oklch,var(--color-card)_70%,var(--color-card-muted)_30%)] p-4',
 				className,
 			)}
 			{...props}
