@@ -12,8 +12,8 @@ export const colorTokens = [
 	{
 		token: '--base-hue',
 		description: 'Hue anchor for the entire palette',
-		light: '248',
-		dark: '248',
+		light: '265',
+		dark: '265',
 		showSwatch: false,
 	},
 	{
@@ -33,25 +33,25 @@ export const colorTokens = [
 		token: '--color-card',
 		description: 'Surface for cards',
 		light: 'oklch(1 0 0)',
-		dark: 'oklch(0.1703 0.006 var(--base-hue))',
+		dark: 'oklch(0.1703 0.0085 var(--base-hue))',
 	},
 	{
 		token: '--color-card-muted',
 		description: 'Muted card surface',
-		light: 'oklch(0.96 0.0035 var(--base-hue))',
-		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
+		light: 'oklch(0.96 0.002 var(--base-hue))',
+		dark: 'oklch(0.2139 0.0101 var(--base-hue))',
 	},
 	{
 		token: '--color-popover',
 		description: 'Surface for popovers',
 		light: 'oklch(1 0 0)',
-		dark: 'oklch(0.2139 0.0085 var(--base-hue))',
+		dark: 'oklch(0.2139 0.0101 var(--base-hue))',
 	},
 	{
 		token: '--color-popover-muted',
 		description: 'Muted popover surface',
-		light: 'oklch(0.96 0.0035 var(--base-hue))',
-		dark: 'oklch(0.2502 0.0095 var(--base-hue))',
+		light: 'oklch(0.96 0.002 var(--base-hue))',
+		dark: 'oklch(0.2502 0.016 var(--base-hue))',
 	},
 	{
 		token: '--color-foreground',
@@ -63,7 +63,7 @@ export const colorTokens = [
 		token: '--color-border',
 		description: 'Neutral border',
 		light: 'oklch(0.8925 0.0014 var(--base-hue))',
-		dark: 'oklch(0.278 0.006 var(--base-hue))',
+		dark: 'oklch(0.278 0.015 var(--base-hue))',
 	},
 	{
 		token: '--color-ring',
@@ -87,13 +87,13 @@ export const colorTokens = [
 		token: '--color-gradient-from',
 		description: 'Gradient start',
 		light: 'oklch(0.3603 0.0044 var(--base-hue))',
-		dark: 'oklch(0.3203 0.0012 var(--base-hue))',
+		dark: 'oklch(0.3203 0.016 var(--base-hue))',
 	},
 	{
 		token: '--color-gradient-to',
 		description: 'Gradient end',
 		light: 'oklch(0.2517 0.0044 var(--base-hue))',
-		dark: 'oklch(0.2517 0.012 var(--base-hue))',
+		dark: 'oklch(0.2517 0.016 var(--base-hue))',
 	},
 	{
 		token: '--color-destructive',
@@ -155,7 +155,7 @@ export const shadowTokens = [
 		token: '--shadow-sm',
 		description: 'Light elevation',
 		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.015)',
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
 			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
 		],
 	},
@@ -193,7 +193,7 @@ export const shadowTokens = [
 		token: '--shadow-2xl',
 		description: 'Highest elevation',
 		value: [
-			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.015)',
+			'0px 1px 1px -0.5px rgba(0, 0, 0, 0.15)',
 			'0px 3px 3px -1.5px rgba(0, 0, 0, 0.05)',
 			'0px 6px 6px -3px rgba(0, 0, 0, 0.05)',
 			'0px 12px 12px -6px rgba(0, 0, 0, 0.05)',
