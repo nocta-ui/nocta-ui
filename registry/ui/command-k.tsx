@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { Dialog, DialogContent, DialogSurface } from '@/registry/ui/dialog';
 import { Icons } from '@/registry/lib/icons';
 import { Input } from '@/registry/ui/input';
+import { Kbd } from '@/registry/ui/kbd';
 
 export type CommandKItem = {
 	id?: string;
@@ -365,9 +366,9 @@ export const CommandK: React.FC<CommandKProps> = ({
 								}
 							/>
 							<div className="pointer-events-none absolute top-1/2 right-3 h-fit -translate-y-1/2">
-								<span aria-hidden="true" className={kbdClass()}>
-									{shortcutHint}
-								</span>
+								<Kbd size="md" className='bg-popover-muted'>
+								  {shortcutHint}
+								</Kbd>
 								<span className="sr-only">Shortcut: {shortcutHint}</span>
 							</div>
 						</div>
@@ -468,9 +469,9 @@ export const CommandK: React.FC<CommandKProps> = ({
 																		...letters,
 																	];
 																	return tokens.map((tok) => (
-																		<span key={`${tok}`} className={kbdClass()}>
-																			{tok}
-																		</span>
+																		<Kbd key={`${tok}`} size="md" className='bg-popover-muted'>
+																		  {tok}
+                       							</Kbd>
 																	));
 																})()}
 															</div>
@@ -488,15 +489,21 @@ export const CommandK: React.FC<CommandKProps> = ({
 						<div className="flex items-center gap-2">
 							<span className="hidden sm:inline">Navigate</span>
 							<div className="flex items-center gap-1" aria-hidden="true">
-								<span className={kbdClass()}>↑</span>
-								<span className={kbdClass()}>↓</span>
+								<Kbd size="md" className='bg-popover-muted'>
+						      ↑
+								</Kbd>
+								<Kbd size="md" className='bg-popover-muted'>
+						      ↓
+								</Kbd>
 							</div>
 							<span className="sr-only">Navigate with arrow keys</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<span className="hidden sm:inline">Select</span>
 							<div className="flex items-center gap-1" aria-hidden="true">
-								<span className={kbdClass()}>Enter</span>
+  							<Kbd size="md" className='bg-popover-muted'>
+  					      Enter
+  							</Kbd>
 							</div>
 							<span className="sr-only">Select with Enter key</span>
 						</div>

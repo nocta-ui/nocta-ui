@@ -13,6 +13,7 @@
 				"area-chart",
 				"avatar",
 				"badge",
+				"kbd",
 				"line-chart",
 				"pie-chart",
 				"table"
@@ -859,7 +860,8 @@
 			],
 			"internalDependencies": [
 				"dialog",
-				"input"
+				"input",
+				"kbd"
 			],
 			"name": "CommandK",
 			"props": {

@@ -14,9 +14,9 @@ const kbdVariants = cva(
 	{
 		variants: {
 			size: {
-				sm: 'h-5 min-w-[2rem] px-1 text-[10px]',
-				md: 'h-6 min-w-[2.2rem] px-1.5 text-[11px]',
-				lg: 'h-7 min-w-[2.5rem] px-2 text-xs',
+				sm: 'h-4 min-w-[2rem] px-1 text-[9px]',
+				md: 'h-5 min-w-[2.2rem] px-1.5 text-[10px]',
+				lg: 'h-6 min-w-[2.5rem] px-2 text-[11px]',
 			},
 			variant: {
 				default: 'bg-card',
