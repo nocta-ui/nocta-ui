@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { useI18n } from 'fumadocs-ui/contexts/i18n';
 import { useSearchContext } from 'fumadocs-ui/contexts/search';
 import type { ComponentProps } from 'react';
+import { Kbd } from '@/registry/ui/kbd';
 
 import { cn } from '../lib/cn';
 import { type ButtonProps, buttonVariants } from './ui/button';
@@ -72,12 +73,15 @@ export function LargeSearchToggle({
 			<MagnifyingGlassIcon aria-hidden="true" className="size-5" />
 			{text.search}
 			<div className="ms-auto inline-flex gap-0.5">
-				{hotKey.map((k, i) => (
-					<kbd key={i} className="relative rounded border border-border bg-card shadow-sm card-highlight px-1.5">
-						{k.display}
-					</kbd>
-				))}
-			</div>
+        <Kbd className='bg-card'>
+          {hotKey.map((k, i) => (
+            <span key={i} className="inline-flex items-center">
+              {i > 0 && <span className="mx-0.5"> </span>}
+              {k.display}
+            </span>
+          ))}
+        </Kbd>
+      </div>
 		</button>
 	);
 }
