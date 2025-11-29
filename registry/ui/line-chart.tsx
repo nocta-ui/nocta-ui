@@ -1071,7 +1071,7 @@ function LineChartState({
 	description?: React.ReactNode;
 }) {
 	return (
-		<div className="flex h-full w-full items-center justify-center rounded-md border border-dashed border-border/60 bg-card-muted/30 px-4 py-10 text-center">
+		<div className="flex h-full w-full items-center justify-center rounded-md border border-dashed border-border/60 bg-[color-mix(in_oklch,var(--color-card)_70%,var(--color-card-muted)_30%)] px-4 py-10 text-center">
 			<div className="space-y-2">
 				<p className="text-sm leading-none font-medium text-foreground">
 					{label}
