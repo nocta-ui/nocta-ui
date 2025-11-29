@@ -543,7 +543,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-popover-muted transition-shadow focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						/>
 						<div className="z-10 pointer-events-none flex h-8 w-2 flex-col items-center justify-center rounded-[2px] bg-border/60">
-						  <Icons.DragHandle className='size-3'/>
+							<Icons.DragHandle className="size-3" />
 						</div>
 					</div>
 				)}
@@ -570,7 +570,7 @@ export const SheetSurface: React.FC<SheetSurfaceProps> = ({
 							className="absolute inset-0 m-0 h-full w-full rounded-[2px] border border-border bg-popover-muted transition-shadow ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 						/>
 						<div className="z-10 pointer-events-none flex h-2 w-8 items-center justify-center rounded-[2px] bg-border/60">
-				      <Icons.DragHandle className='size-3 rotate-90'/>
+							<Icons.DragHandle className="size-3 rotate-90" />
 						</div>
 					</div>
 				)}

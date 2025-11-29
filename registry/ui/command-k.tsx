@@ -11,8 +11,8 @@ import {
 	useState,
 } from 'react';
 import { cn } from '@/lib/utils';
-import { Dialog, DialogContent, DialogSurface } from '@/registry/ui/dialog';
 import { Icons } from '@/registry/lib/icons';
+import { Dialog, DialogContent, DialogSurface } from '@/registry/ui/dialog';
 import { Input } from '@/registry/ui/input';
 import { Kbd } from '@/registry/ui/kbd';
 
@@ -304,28 +304,19 @@ export const CommandK: React.FC<CommandKProps> = ({
 		}
 	};
 
-	const { label: shortcutHint, segments: shortcutSegments } = useMemo(() => {
+	const shortcutHint = useMemo(() => {
 		const key = hotkey.key.toUpperCase();
 		const requiresMeta = hotkey.metaKey === true;
 		const requiresCtrl = hotkey.ctrlKey === true;
-		const segments: string[] = [];
-
-		if (requiresMeta && requiresCtrl) {
-			segments.push(isMac ? '⌘' : 'Ctrl');
-		} else if (!requiresMeta && !requiresCtrl) {
-			segments.push(isMac ? '⌘' : 'Ctrl');
-		} else {
-			if (requiresMeta) segments.push('⌘');
-			if (requiresCtrl) segments.push('Ctrl');
+		if (!requiresMeta && !requiresCtrl) {
+			return isMac ? `⌘ ${key}` : `Ctrl+${key}`;
 		}
-
-		segments.push(key);
-		const joiner = segments[0] === '⌘' ? '' : '+';
-
-		return {
-			label: segments.join(joiner),
-			segments,
-		};
+		if (requiresMeta && requiresCtrl) {
+			return isMac ? `⌘${key}` : `Ctrl+${key}`;
+		}
+		if (requiresMeta) return `⌘ ${key}`;
+		if (requiresCtrl) return `Ctrl+${key}`;
+		return key;
 	}, [hotkey, isMac]);
 
 	return (
@@ -364,15 +355,9 @@ export const CommandK: React.FC<CommandKProps> = ({
 								}
 							/>
 							<div className="pointer-events-none absolute top-1/2 right-3 flex h-fit -translate-y-1/2 gap-1">
-								{shortcutSegments.map((segment, index) => (
-									<Kbd
-										key={`${segment}-${index}`}
-										size="md"
-										className="bg-popover-muted"
-									>
-										{segment}
-									</Kbd>
-								))}
+								<Kbd size="md" className="bg-popover-muted">
+									{shortcutHint}
+								</Kbd>
 								<span className="sr-only">Shortcut: {shortcutHint}</span>
 							</div>
 						</div>
@@ -473,9 +458,13 @@ export const CommandK: React.FC<CommandKProps> = ({
 																		...letters,
 																	];
 																	return tokens.map((tok) => (
-																		<Kbd key={`${tok}`} size="md" className='bg-popover-muted'>
-																		  {tok}
-                       							</Kbd>
+																		<Kbd
+																			key={`${tok}`}
+																			size="md"
+																			className="bg-popover-muted"
+																		>
+																			{tok}
+																		</Kbd>
 																	));
 																})()}
 															</div>
@@ -493,11 +482,11 @@ export const CommandK: React.FC<CommandKProps> = ({
 						<div className="flex items-center gap-2">
 							<span className="hidden sm:inline">Navigate</span>
 							<div className="flex items-center gap-1" aria-hidden="true">
-								<Kbd size="md" className='bg-popover-muted'>
-						      ↑
+								<Kbd size="md" className="bg-popover-muted">
+									↑
 								</Kbd>
-								<Kbd size="md" className='bg-popover-muted'>
-						      ↓
+								<Kbd size="md" className="bg-popover-muted">
+									↓
 								</Kbd>
 							</div>
 							<span className="sr-only">Navigate with arrow keys</span>
@@ -505,9 +494,9 @@ export const CommandK: React.FC<CommandKProps> = ({
 						<div className="flex items-center gap-2">
 							<span className="hidden sm:inline">Select</span>
 							<div className="flex items-center gap-1" aria-hidden="true">
-  							<Kbd size="md" className='bg-popover-muted'>
-  					      Enter
-  							</Kbd>
+								<Kbd size="md" className="bg-popover-muted">
+									Enter
+								</Kbd>
 							</div>
 							<span className="sr-only">Select with Enter key</span>
 						</div>

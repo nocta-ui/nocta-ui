@@ -162,7 +162,8 @@ export const Combobox: React.FC<ComboboxProps> = ({
 						</span>
 						<div className="ml-2 flex items-center gap-1">
 							{clearable && selectedOption && !disabled && (
-								<span
+								<button
+									type="button"
 									onMouseDown={handleClear}
 									onClick={handleClear}
 									onKeyDown={(e) => {
@@ -171,7 +172,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
 											handleClear(e);
 										}
 									}}
-									role="button"
 									tabIndex={0}
 									className="cursor-pointer rounded p-0.5 text-foreground/70 hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none"
 								>
@@ -179,7 +179,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 									<Ariakit.VisuallyHidden>
 										Clear Selection
 									</Ariakit.VisuallyHidden>
-								</span>
+								</button>
 							)}
 							<Icons.CaretSort
 								aria-hidden="true"

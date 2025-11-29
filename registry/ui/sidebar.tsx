@@ -3,10 +3,10 @@
 import { Role } from '@ariakit/react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Icons } from '@/registry/lib/icons';
 import { Button } from '@/registry/ui/button';
 import { CommandK, type CommandKItem } from '@/registry/ui/command-k';
 import { Kbd } from '@/registry/ui/kbd';
-import { Icons } from '@/registry/lib/icons';
 import { ScrollArea } from '@/registry/ui/scroll-area';
 import { Separator } from '@/registry/ui/separator';
 import {
@@ -567,7 +567,11 @@ function SidebarInput({
 			>
 				<Icons.Search className="size-5 text-foreground/45" />
 				<span className="flex-1 truncate text-left">{placeholder}</span>
-				<Kbd size="sm" className='bg-card-muted'>⌘K</Kbd>
+				<div className="flex gap-1 items-center">
+					<Kbd size="md" className="bg-card-muted">
+						⌘ K
+					</Kbd>
+				</div>
 			</Button>
 
 			<CommandK items={items} open={open} onOpenChange={setOpen} />
@@ -607,7 +611,7 @@ function SidebarSeparator({
 }: React.ComponentProps<typeof Separator>) {
 	return (
 		<Separator
-		  variant="muted"
+			variant="muted"
 			data-slot="sidebar-separator"
 			className={cn('my-2', className)}
 			{...props}

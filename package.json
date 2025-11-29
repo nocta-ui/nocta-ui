@@ -10,7 +10,6 @@
 		"lint": "biome check .",
 		"lint:fix": "biome check --apply .",
 		"typecheck": "tsc -p tsconfig.json",
-		"registry:build": "shadcn build",
 		"prepare": "husky"
 	},
 	"dependencies": {

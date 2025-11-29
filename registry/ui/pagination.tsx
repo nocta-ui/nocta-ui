@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/registry/ui/button';
 import { Icons } from '@/registry/lib/icons';
+import { Button } from '@/registry/ui/button';
 
 const DOTS = 'dots';
 

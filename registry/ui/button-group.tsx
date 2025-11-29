@@ -50,14 +50,18 @@ const ButtonGroupItemVariants = cva(
 	},
 );
 
-type ButtonGroupSize = NonNullable<VariantProps<typeof buttonGroupVariants>['size']>;
+type ButtonGroupSize = NonNullable<
+	VariantProps<typeof buttonGroupVariants>['size']
+>;
 
 interface ButtonGroupContextValue {
 	size: ButtonGroupSize;
 	disabled: boolean;
 }
 
-const ButtonGroupContext = React.createContext<ButtonGroupContextValue | null>(null);
+const ButtonGroupContext = React.createContext<ButtonGroupContextValue | null>(
+	null,
+);
 
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 	size?: ButtonGroupSize;
@@ -78,7 +82,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
 			<ButtonGroupContext.Provider value={contextValue}>
 				<div
 					ref={ref}
-					role="group"
+					role="toolbar"
 					aria-disabled={disabled || undefined}
 					className={cn(buttonGroupVariants({ size }), className)}
 					{...props}
@@ -102,54 +106,66 @@ export interface ButtonGroupItemProps
 export const ButtonGroupItem = React.forwardRef<
 	HTMLButtonElement,
 	ButtonGroupItemProps
->(({ children, className, asChild = false, active = false, disabled, ...props }, ref) => {
-	const context = React.useContext(ButtonGroupContext);
-	if (!context) {
-		throw new Error('ButtonGroupItem must be used within a <ButtonGroup>.');
-	}
+>(
+	(
+		{
+			children,
+			className,
+			asChild = false,
+			active = false,
+			disabled,
+			...props
+		},
+		ref,
+	) => {
+		const context = React.useContext(ButtonGroupContext);
+		if (!context) {
+			throw new Error('ButtonGroupItem must be used within a <ButtonGroup>.');
+		}
 
-	const isDisabled = disabled ?? context.disabled;
-	const buttonType = props.type ?? (asChild ? undefined : 'button');
-	const classes = cn(
-		ButtonGroupItemVariants({
-			size: context.size,
-			active,
-		}),
-		className,
-	);
+		const isDisabled = disabled ?? context.disabled;
+		const buttonType = props.type ?? (asChild ? undefined : 'button');
+		const classes = cn(
+			ButtonGroupItemVariants({
+				size: context.size,
+				active,
+			}),
+			className,
+		);
 
-	if (asChild && React.isValidElement(children)) {
-		const child = children as React.ReactElement<{
-			className?: string;
-			'data-button-group-item'?: string;
-		}>;
-		const mergedChild = React.cloneElement(child, {
-			className: cn(child.props.className, classes),
-			'data-button-group-item': child.props['data-button-group-item'] ?? '',
-		});
+		if (asChild && React.isValidElement(children)) {
+			const child = children as React.ReactElement<{
+				className?: string;
+				'data-button-group-item'?: string;
+			}>;
+			const mergedChild = React.cloneElement(child, {
+				className: cn(child.props.className, classes),
+				'data-button-group-item': child.props['data-button-group-item'] ?? '',
+			});
+
+			return (
+				<Ariakit.Button
+					render={mergedChild}
+					type={buttonType}
+					ref={ref}
+					disabled={isDisabled}
+					{...props}
+				/>
+			);
+		}
 
 		return (
 			<Ariakit.Button
-				render={mergedChild}
-				type={buttonType}
 				ref={ref}
+				className={classes}
+				type={buttonType}
 				disabled={isDisabled}
+				data-button-group-item=""
 				{...props}
-			/>
+			>
+				{children}
+			</Ariakit.Button>
 		);
-	}
-
-	return (
-		<Ariakit.Button
-			ref={ref}
-			className={classes}
-			type={buttonType}
-			disabled={isDisabled}
-			data-button-group-item=""
-			{...props}
-		>
-			{children}
-		</Ariakit.Button>
-	);
-});
+	},
+);
 ButtonGroupItem.displayName = 'ButtonGroupItem';

@@ -108,7 +108,6 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 	className = '',
 	...props
 }) => {
-
 	const lineKeys = useMemo(
 		() =>
 			Array.from({ length: lines }, () =>

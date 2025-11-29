@@ -150,7 +150,7 @@
 	--color-background: oklch(0.1408 0.0044 var(--base-hue));
 	--color-card: oklch(0.1703 0.0085 var(--base-hue));
 	--color-card-muted: oklch(0.2139 0.0101 var(--base-hue));
-	--color-popover: oklch(0.2139 0.0101  var(--base-hue));
+	--color-popover: oklch(0.2139 0.0101 var(--base-hue));
 	--color-popover-muted: oklch(0.2502 0.016 var(--base-hue));
 	--color-foreground: oklch(0.9824 0.0013 var(--base-hue));
 	--color-border: oklch(0.278 0.015 var(--base-hue));

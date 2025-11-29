@@ -4,8 +4,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/registry/ui/button';
 import { Icons } from '@/registry/lib/icons';
+import { Button } from '@/registry/ui/button';
 import { Textarea } from '@/registry/ui/textarea';
 
 const chatVariants = cva(

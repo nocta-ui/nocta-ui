@@ -3,8 +3,8 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { useCallback, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/registry/ui/button';
 import { Icons } from '@/registry/lib/icons';
+import { Button } from '@/registry/ui/button';
 import { Spinner } from '@/registry/ui/spinner';
 
 const fileUploadVariants = cva(
