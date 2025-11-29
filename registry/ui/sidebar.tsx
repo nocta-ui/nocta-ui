@@ -556,7 +556,7 @@ function SidebarInput({
 				}}
 				className={cn(
 					'group/sidebar-input h-9 px-3 py-2 w-full justify-start gap-2 rounded-md bg-card hover:bg-card hover:text-foreground/70 text-sm text-foreground/45',
-					'border border-border/60 dark:border-none',
+					'border border-border dark:border-none ring-2 ring-card-muted',
 					"relative before:content-[''] before:absolute before:inset-0 before:rounded-md before:pointer-events-none",
 					'dark:before:shadow-[inset_0_1px_0_rgb(0_0_0/0.1),inset_0_-1px_0_rgb(249_249_255/0.1)]',
 					isDisabled && 'opacity-50',
@@ -608,6 +608,7 @@ function SidebarSeparator({
 }: React.ComponentProps<typeof Separator>) {
 	return (
 		<Separator
+		  variant="muted"
 			data-slot="sidebar-separator"
 			className={cn('my-2', className)}
 			{...props}
