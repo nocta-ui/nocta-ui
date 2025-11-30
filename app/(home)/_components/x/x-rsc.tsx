@@ -167,7 +167,7 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
 					return (
 						<span
 							key={idx}
-							className="text-base font-normal italic"
+							className="text-sm font-normal"
 							dangerouslySetInnerHTML={{ __html: entity.text }}
 						/>
 					);
@@ -187,7 +187,7 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
 					loop
 					muted
 					playsInline
-					className="rounded-xl border shadow-sm"
+					className="rounded-lg border shadow-sm"
 				>
 					<source src={tweet.video.variants[0].src} type="video/mp4" />
 					Your browser does not support the video tag.

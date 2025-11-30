@@ -478,7 +478,7 @@ export const CommandK: React.FC<CommandKProps> = ({
 						)}
 					</div>
 
-					<div className="flex items-center justify-between gap-2 border-t border-border/60 bg-card-muted/30 px-3 py-2 text-xs text-foreground/70">
+					<div className="flex items-center justify-between rounded-b-lg gap-2 border-t border-border/60 bg-[color-mix(in_oklch,var(--color-popover)_70%,var(--color-popover-muted)_30%)] px-3 py-2 text-xs text-foreground/70">
 						<div className="flex items-center gap-2">
 							<span className="hidden sm:inline">Navigate</span>
 							<div className="flex items-center gap-1" aria-hidden="true">
