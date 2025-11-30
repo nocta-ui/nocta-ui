@@ -83,6 +83,7 @@ function TemplateRow({ template, isReversed }: TemplateRowProps) {
 					alt={template.image.alt}
 					width={1200}
 					height={800}
+					preload={true}
 					className="w-full object-cover rounded-lg"
 					sizes="(min-width: 1024px) 600px, (min-width: 768px) 80vw, 100vw"
 				/>
