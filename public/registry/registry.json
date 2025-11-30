@@ -43,6 +43,7 @@
         "file-upload",
         "form",
         "input",
+        "otp-input",
         "radio-group",
         "select",
         "slider",
@@ -1711,6 +1712,59 @@
       },
       "sizes": [
         "md"
+      ]
+    },
+    "otp-input": {
+      "category": "form",
+      "dependencies": {
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.4.0"
+      },
+      "description": "Secure multi-digit input for one-time passwords with paste support, validation states, and keyboard control",
+      "exports": [
+        "OTPInput"
+      ],
+      "files": [
+        {
+          "name": "otp-input.tsx",
+          "path": "otp-input.tsx",
+          "type": "component"
+        }
+      ],
+      "name": "OTP Input",
+      "props": {
+        "OTPInput": [
+          "autoFocus",
+          "cellClassName",
+          "cellWrapperClassName",
+          "className",
+          "containerClassName",
+          "defaultValue",
+          "disabled",
+          "errorMessage",
+          "helperText",
+          "label",
+          "length",
+          "name",
+          "onChange",
+          "onComplete",
+          "readOnly",
+          "size",
+          "successMessage",
+          "value",
+          "variant"
+        ]
+      },
+      "sizes": [
+        "lg",
+        "md",
+        "sm"
+      ],
+      "variants": [
+        "default",
+        "error",
+        "success"
       ]
     },
     "pagination": {

@@ -100,6 +100,21 @@ return (
       description: 'Helper text displayed below the field.',
       type: 'string',
     },
+    disabled: {
+      description: 'Disables all cells when true.',
+      type: 'boolean',
+      default: 'false',
+    },
+    readOnly: {
+      description: 'Prevents editing while keeping the inputs focusable.',
+      type: 'boolean',
+      default: 'false',
+    },
+    autoFocus: {
+      description: 'Automatically focuses the first cell on mount.',
+      type: 'boolean',
+      default: 'false',
+    },
     errorMessage: {
       description: 'Error text shown when `variant="error"`.',
       type: 'string',
@@ -112,8 +127,16 @@ return (
       description: 'Class name applied to the outer wrapper.',
       type: 'string',
     },
+    className: {
+      description: 'Class name applied to the OTP cell group container.',
+      type: 'string',
+    },
     cellClassName: {
       description: 'Class name applied to each OTP cell.',
+      type: 'string',
+    },
+    cellWrapperClassName: {
+      description: 'Class name applied to the wrapper around each OTP cell.',
       type: 'string',
     },
     name: {

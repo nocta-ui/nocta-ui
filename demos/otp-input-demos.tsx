@@ -36,7 +36,6 @@ export const OTPInputDemo: React.FC = () => {
 					status === 'success' ? 'Code captured successfully.' : undefined
 				}
 				autoComplete="one-time-code"
-				autoFocus
 			/>
 		</div>
 	);
