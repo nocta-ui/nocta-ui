@@ -810,7 +810,7 @@ function NavigationMenuArrow({ className }: NavigationMenuArrowProps) {
 
 	return (
 		<Ariakit.MenuArrow
-			style={shouldTintArrow ? { stroke: 'var(--card-highlight)' } : undefined}
+			style={shouldTintArrow ? { stroke: 'var(--arrow-highlight)' } : undefined}
 			className={className}
 		/>
 	);

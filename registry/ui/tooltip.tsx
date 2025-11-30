@@ -221,7 +221,7 @@ export const TooltipContent: React.FC<TooltipContentProps> = ({
 	);
 	const shouldTintArrow = currentPlacement?.startsWith('bottom');
 	const arrowStyle = shouldTintArrow
-		? { stroke: 'var(--card-highlight)' }
+		? { stroke: 'var(--arrow-highlight)' }
 		: undefined;
 
 	return (
