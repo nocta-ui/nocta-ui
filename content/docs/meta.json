@@ -25,6 +25,7 @@
 		"file-upload",
 		"form",
 		"input",
+		"otp-input",
 		"radio-group",
 		"select",
 		"slider",

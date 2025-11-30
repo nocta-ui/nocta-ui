@@ -28,6 +28,7 @@ export * from './pagination-demos';
 export * from './pie-chart-demos';
 export * from './popover-demos';
 export * from './progress-demos';
+export * from './otp-input-demos';
 export * from './radio-group-demos';
 export * from './scroll-area-demos';
 export * from './select-demos';

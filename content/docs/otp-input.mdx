@@ -1,0 +1,125 @@
+---
+title: OTP Input
+description: Secure multi-digit input for one-time passwords with paste support, validation states, and full keyboard control.
+---
+
+import { OTPInputDemo } from '@/demos';
+import { DocsTabs, DocsTab } from "@/components/docs-tab"
+import { TypeTable } from '@/components/type-table';
+import { Step, Steps } from "fumadocs-ui/components/steps"
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the OTP Input component using the nocta-ui CLI:
+
+    ```bash lineNumbers title="Terminal"
+    npx @nocta-ui/cli add otp-input
+    ```
+  </Step>
+  <Step>
+    Import the component:
+
+    ```tsx lineNumbers title="Import"
+    import { OTPInput } from '@/components/ui/otp-input';
+    ```
+  </Step>
+</Steps>
+
+## Examples
+
+### Default OTP Input
+
+<DocsTabs defaultValue="preview">
+  <DocsTab value="preview" lineNumbers title="Preview">
+    <OTPInputDemo />
+  </DocsTab>
+  <DocsTab value="code" lineNumbers title="Code">
+```tsx lineNumbers title="OTP verification flow"
+const [code, setCode] = useState('');
+const isComplete = code.length === 6;
+
+return (
+  <OTPInput
+    length={6}
+    value={code}
+    onChange={setCode}
+    variant={isComplete ? 'success' : 'default'}
+    label="One-time password"
+    helperText="Enter the 6-digit code sent to your phone."
+    successMessage={isComplete ? 'Code captured successfully.' : undefined}
+    autoComplete="one-time-code"
+  />
+);
+```
+  </DocsTab>
+</DocsTabs>
+
+## API Reference
+
+<TypeTable
+  type={{
+    length: {
+      description: 'Total number of OTP cells to display.',
+      type: 'number',
+      default: '6',
+    },
+    value: {
+      description: 'Controlled value for the OTP input.',
+      type: 'string',
+    },
+    defaultValue: {
+      description: 'Initial value for uncontrolled usage.',
+      type: 'string',
+      default: "''",
+    },
+    onChange: {
+      description: 'Called whenever the OTP value changes.',
+      type: '(value: string) => void',
+    },
+    onComplete: {
+      description: 'Fires when all cells are filled.',
+      type: '(value: string) => void',
+    },
+    variant: {
+      description: 'Visual style used for the cells.',
+      type: '"default" | "success" | "error"',
+      default: '"default"',
+    },
+    size: {
+      description: 'Controls the cell size and spacing.',
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    label: {
+      description: 'Optional label rendered above the field.',
+      type: 'string',
+    },
+    helperText: {
+      description: 'Helper text displayed below the field.',
+      type: 'string',
+    },
+    errorMessage: {
+      description: 'Error text shown when `variant="error"`.',
+      type: 'string',
+    },
+    successMessage: {
+      description: 'Success text shown when `variant="success"`.',
+      type: 'string',
+    },
+    containerClassName: {
+      description: 'Class name applied to the outer wrapper.',
+      type: 'string',
+    },
+    cellClassName: {
+      description: 'Class name applied to each OTP cell.',
+      type: 'string',
+    },
+    name: {
+      description:
+        'When provided, the component renders a hidden input so values submit with forms.',
+      type: 'string',
+    },
+  }}
+/>
