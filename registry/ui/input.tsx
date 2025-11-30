@@ -16,14 +16,8 @@ const wrapperVariants = cva(
 		variants: {
 			variant: {
 				default: ['border-border', 'focus-within:ring-ring/50'],
-				error: [
-					'border-destructive/40',
-					'focus-within:ring-destructive/50 dark:focus-within:ring-destructive/50',
-				],
-				success: [
-					'border-success/40',
-					'focus-within:ring-success/50 dark:focus-within:ring-success/50',
-				],
+				error: ['border-destructive/40', 'focus-within:ring-destructive/50'],
+				success: ['border-success/40', 'focus-within:ring-success/50'],
 			},
 			size: {
 				sm: 'h-8',
