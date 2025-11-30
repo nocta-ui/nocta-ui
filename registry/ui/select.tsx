@@ -187,7 +187,6 @@ export const SelectContent: React.FC<SelectContentProps> = ({
 				'absolute z-999 my-1 rounded-md border border-border bg-popover shadow-md card-highlight',
 				'focus-visible:ring-none focus-visible:outline-none',
 				'origin-top -translate-y-2 scale-95 opacity-0 transition-[translate,opacity,scale] duration-300 ease-smooth data-enter:translate-y-0 data-enter:scale-100 data-enter:opacity-100 data-leave:-translate-y-2 data-leave:scale-95 data-leave:opacity-0',
-				'not-prose',
 				className,
 			)}
 		>

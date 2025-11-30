@@ -109,7 +109,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 		[helperId, errorId, successId].filter(Boolean).join(' ') || undefined;
 
 	return (
-		<div className={cn('not-prose', containerClassName)}>
+		<div className={containerClassName}>
 			{label && (
 				<label
 					htmlFor={textareaId}

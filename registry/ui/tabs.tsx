@@ -161,11 +161,7 @@ export function Tabs({
 		<TabsStyleContext.Provider value={{ variant, size, orientation, disabled }}>
 			<Ariakit.TabProvider store={store}>
 				<div
-					className={cn(
-						'not-prose',
-						orientation === 'vertical' && 'flex gap-4',
-						className,
-					)}
+					className={cn(orientation === 'vertical' && 'flex gap-4', className)}
 					data-orientation={orientation}
 					data-variant={variant}
 					data-size={size}

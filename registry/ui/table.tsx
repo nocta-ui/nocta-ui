@@ -44,7 +44,6 @@ const tableVariants = cva(
 	[
 		'relative border border-border bg-card',
 		'rounded-lg shadow-md card-highlight',
-		'not-prose',
 	],
 	{
 		variants: {

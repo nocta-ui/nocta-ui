@@ -70,7 +70,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 
 	return (
 		<Ariakit.MenuProvider store={menu}>
-			<div className={cn('not-prose', className)}>{children}</div>
+			<div className={className}>{children}</div>
 		</Ariakit.MenuProvider>
 	);
 };

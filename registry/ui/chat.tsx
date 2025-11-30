@@ -23,11 +23,7 @@ const chatVariants = cva(
 );
 
 const messageVariants = cva(
-	[
-		'w-fit max-w-[80%] rounded-lg px-3 py-2 text-sm',
-		'not-prose',
-		'overflow-hidden',
-	],
+	['w-fit max-w-[80%] rounded-lg px-3 py-2 text-sm', 'overflow-hidden'],
 	{
 		variants: {
 			variant: {

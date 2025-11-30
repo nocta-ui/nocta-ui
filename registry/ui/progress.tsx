@@ -6,7 +6,6 @@ const progressVariants = cva(
 	[
 		'relative w-full overflow-hidden rounded-full',
 		'border border-border/60 bg-card-muted shadow-inner',
-		'not-prose',
 	],
 	{
 		variants: {
