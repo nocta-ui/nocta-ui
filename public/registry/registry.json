@@ -1000,7 +1000,8 @@
         "ContextMenuTrigger": [
           "children",
           "className",
-          "disabled"
+          "disabled",
+          "...props"
         ]
       }
     },
@@ -1156,7 +1157,8 @@
         "DropdownMenuTrigger": [
           "children",
           "className",
-          "disabled"
+          "disabled",
+          "...props"
         ]
       }
     },

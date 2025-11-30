@@ -246,6 +246,12 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
       type: 'string',
       default: 'undefined',
     },
+    otherProps: {
+      description:
+        'Supports all other Ariakit.MenuButton props (except `store` and `children`)',
+      type: 'Omit<React.ComponentPropsWithoutRef<typeof Ariakit.MenuButton>, "store" | "children">',
+      default: 'undefined',
+    },
   }}
 />
 

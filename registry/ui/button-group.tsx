@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 const buttonGroupVariants = cva(
 	[
 		'w-fit relative inline-flex rounded-md border text-sm font-medium bg-card shadow-sm card-highlight select-none',
-		'disabled:pointer-events-none disabled:opacity-50 flex overflow-hidden text-foreground border-border',
+		'disabled:pointer-events-none disabled:opacity-50 flex text-foreground border-border',
 		'[&>[data-button-group-item]:first-of-type]:rounded-l-md [&>[data-button-group-item]:last-of-type]:rounded-r-md',
 	],
 	{
@@ -30,7 +30,7 @@ const ButtonGroupItemVariants = cva(
 		'flex-1 flex items-center justify-center cursor-pointer hover:bg-card-muted',
 		"[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0",
 		'transition-[background-color,box-shadow] ease-out-quad duration-100',
-		'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none focus-visible:rounded-md',
+		'focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none',
 		'border-l border-border first:border-l-0',
 	],
 	{

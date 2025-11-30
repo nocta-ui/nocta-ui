@@ -75,48 +75,65 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 	);
 };
 
-export interface ContextMenuTriggerProps {
+type MenuButtonElementProps = React.ComponentPropsWithoutRef<
+	typeof Ariakit.MenuButton
+>;
+
+export interface ContextMenuTriggerProps
+	extends Omit<MenuButtonElementProps, 'store' | 'children'> {
 	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
 }
 
 export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
 	children,
 	className,
 	disabled,
+	onContextMenu,
+	onKeyDown,
+	toggleOnClick = false,
+	...props
 }) => {
 	const menu = Ariakit.useMenuContext();
+	if (!menu) {
+		throw new Error('ContextMenuTrigger must be used within a ContextMenu.');
+	}
 
 	return (
-		<button
-			type="button"
+		<Ariakit.MenuButton
+			store={menu}
 			disabled={disabled}
-			onContextMenu={(e) => {
-				if (!disabled) {
-					e.preventDefault();
-					menu?.setAnchorElement(e.currentTarget);
-					menu?.show();
-				}
-			}}
-			onKeyDown={(e) => {
-				if (disabled) return;
-				const isContextKey = e.key === 'ContextMenu';
-				const isShiftF10 = e.key === 'F10' && e.shiftKey;
-				if (isContextKey || isShiftF10) {
-					e.preventDefault();
-					menu?.setAnchorElement(e.currentTarget);
-					menu?.show();
-				}
-			}}
+			toggleOnClick={toggleOnClick}
 			className={cn(
 				'appearance-none bg-transparent p-0 text-left',
 				className,
 				disabled && 'opacity-50',
 			)}
+			onContextMenu={(event: React.MouseEvent<HTMLButtonElement & HTMLDivElement>) => {
+				onContextMenu?.(event);
+				if (event.defaultPrevented) return;
+				if (disabled) return;
+				event.preventDefault();
+				menu.setDisclosureElement(event.currentTarget);
+				menu.setAnchorElement(event.currentTarget);
+				menu.show();
+			}}
+			onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement & HTMLDivElement>) => {
+				onKeyDown?.(event);
+				if (event.defaultPrevented) return;
+				if (disabled) return;
+				const isContextKey = event.key === 'ContextMenu';
+				const isShiftF10 = event.key === 'F10' && event.shiftKey;
+				if (isContextKey || isShiftF10) {
+					event.preventDefault();
+					menu.setDisclosureElement(event.currentTarget);
+					menu.setAnchorElement(event.currentTarget);
+					menu.show();
+				}
+			}}
+			{...props}
 		>
 			{children}
-		</button>
+		</Ariakit.MenuButton>
 	);
 };
 

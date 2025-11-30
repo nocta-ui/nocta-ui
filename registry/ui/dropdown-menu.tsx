@@ -75,16 +75,20 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 	);
 };
 
-export interface DropdownMenuTriggerProps {
+type MenuButtonElementProps = React.ComponentPropsWithoutRef<
+	typeof Ariakit.MenuButton
+>;
+
+export interface DropdownMenuTriggerProps
+	extends Omit<MenuButtonElementProps, 'store' | 'children'> {
 	children: React.ReactNode;
-	className?: string;
-	disabled?: boolean;
 }
 
 export const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({
 	children,
 	className,
 	disabled,
+	...props
 }) => {
 	const menu = Ariakit.useMenuContext();
 	if (!menu) {
@@ -100,6 +104,7 @@ export const DropdownMenuTrigger: React.FC<DropdownMenuTriggerProps> = ({
 				className,
 				disabled && 'opacity-50',
 			)}
+			{...props}
 		>
 			{children}
 		</Ariakit.MenuButton>
