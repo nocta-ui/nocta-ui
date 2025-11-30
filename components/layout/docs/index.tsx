@@ -213,7 +213,7 @@ export function DocsLayout({
 									buttonVariants({
 										color: 'ghost',
 										className:
-											'mb-auto text-foreground/70 p-1.5 [&_svg]:size-4.5 cursor-pointer',
+											'mb-auto text-foreground/70 p-1.5 [&_svg]:size-4.5 cursor-pointer rounded-sm',
 									}),
 								)}
 							>

@@ -70,13 +70,13 @@ export function CollapsibleControl() {
 					buttonVariants({
 						color: 'ghost',
 						size: 'icon-sm',
-						className: 'rounded-sm hover:bg-popover-muted',
+						className: 'rounded-sm hover:bg-popover-muted cursor-pointer',
 					}),
 				)}
 			>
 				<ViewVerticalIcon aria-hidden="true" />
 			</SidebarCollapseTrigger>
-			<SearchToggle className="rounded-sm hover:bg-popover-muted" hideIfDisabled />
+			<SearchToggle className="rounded-sm hover:bg-popover-muted cursor-pointer" hideIfDisabled />
 		</div>
 	);
 }
