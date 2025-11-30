@@ -84,6 +84,18 @@ export const colorTokens = [
 		dark: 'oklch(0.12 0.004 var(--base-hue) / 0.65)',
 	},
 	{
+		token: '--card-highlight',
+		description: 'Card border highlight accent',
+		light: 'oklch(0.9225 0.0014 var(--base-hue) / 0.15)',
+		dark: 'oklch(0.778 0.015 var(--base-hue) / 0.15)',
+	},
+	{
+		token: '--arrow-highlight',
+		description: 'Arrow border highlight accent',
+		light: 'oklch(0.8925 0.0014 var(--base-hue))',
+		dark: 'oklch(0.378 0.015 var(--base-hue))',
+	},
+	{
 		token: '--color-gradient-from',
 		description: 'Gradient start',
 		light: 'oklch(0.3603 0.0044 var(--base-hue))',
