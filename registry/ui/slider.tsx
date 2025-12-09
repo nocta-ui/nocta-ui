@@ -405,9 +405,9 @@ export const Slider: React.FC<SliderProps> = ({
 			{...props}
 		>
 			{(showLabel || showValue) && (
-				<div className="flex gap-2 items-center justify-between w-fit">
+				<div className="flex gap-2 items-center justify-between w-full">
 					{showLabel && (
-						<span className="text-sm font-medium text-foreground/70">
+						<span className="text-sm font-medium text-foreground/70 mr-auto">
 							{headerLabel}
 						</span>
 					)}
