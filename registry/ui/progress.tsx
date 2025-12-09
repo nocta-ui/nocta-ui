@@ -5,20 +5,18 @@ import { cn } from '@/lib/utils';
 const progressVariants = cva(
 	[
 		'relative w-full overflow-hidden rounded-full',
-		'border border-border/60 bg-card-muted shadow-inner',
+		'bg-card-muted shadow-inner',
 	],
 	{
 		variants: {
 			variant: {
-				default: '[&>div]:bg-foreground dark:[&>div]:bg-foreground/50',
+				default: '[&>div]:bg-foreground dark:[&>div]:bg-foreground/45',
 				success: '[&>div]:bg-success/80 dark:[&>div]:bg-success/40',
 				warning: '[&>div]:bg-warning/80 dark:[&>div]:bg-warning/40',
 				destructive: '[&>div]:bg-destructive/80 dark:[&>div]:bg-destructive/40',
 			},
 			size: {
-				sm: 'h-2',
-				md: 'h-3',
-				lg: 'h-4',
+				md: 'h-1',
 			},
 		},
 		defaultVariants: {
@@ -74,7 +72,7 @@ export const Progress: React.FC<ProgressProps> = ({
 			>
 				<div
 					className={cn(
-						'progress-fill h-full rounded-full transition-[width] duration-500 ease-smooth',
+						'progress-fill h-full transition-[width] duration-500 ease-smooth',
 					)}
 					style={{ width: `${percentage}%` }}
 				/>

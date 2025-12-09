@@ -6,7 +6,6 @@ description: A progress indicator component with multiple variants, sizes, and a
 import {
   BasicProgressDemo,
   ProgressVariantsDemo,
-  ProgressSizesDemo,
   IndeterminateDemo,
   AnimatedDemo,
   CustomMaxDemo,
@@ -63,21 +62,6 @@ import { Progress } from '@/components/ui/progress';
     <Progress value={75} variant="success" showLabel />
     <Progress value={45} variant="warning" showLabel />
     <Progress value={30} variant="destructive" showLabel />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Sizes
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <ProgressSizesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Progress Sizes"
-    <Progress value={50} size="sm" />
-    <Progress value={65} size="md" />
-    <Progress value={80} size="lg" />
     ```
   </DocsTab>
 </DocsTabs>
@@ -140,7 +124,7 @@ import { Progress } from '@/components/ui/progress';
     },
     size: {
       description: 'Progress bar height',
-      type: '"sm" | "md" | "lg"',
+      type: '"md"',
       default: '"md"',
     },
     showLabel: {

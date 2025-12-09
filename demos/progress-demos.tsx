@@ -43,25 +43,6 @@ export const ProgressVariantsDemo: React.FC = () => {
 	);
 };
 
-export const ProgressSizesDemo: React.FC = () => {
-	return (
-		<div className="my-6 w-64 space-y-4">
-			<div>
-				<span className="mb-2 block text-sm text-foreground/70">Small</span>
-				<Progress value={50} size="sm" />
-			</div>
-			<div>
-				<span className="mb-2 block text-sm text-foreground/70">Medium</span>
-				<Progress value={65} size="md" />
-			</div>
-			<div>
-				<span className="mb-2 block text-sm text-foreground/70">Large</span>
-				<Progress value={80} size="lg" />
-			</div>
-		</div>
-	);
-};
-
 export const AnimatedDemo: React.FC = () => {
 	const [progress, setProgress] = useState(0);
 

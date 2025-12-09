@@ -5,6 +5,18 @@ import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
+const wrapperVariants = cva('relative cursor-pointer flex gap-2', {
+	variants: {
+		orientation: {
+			horizontal: 'flex-col justify-center items-start',
+			vertical: 'flex-col-reverse justify-center items-center',
+		},
+	},
+	defaultVariants: {
+		orientation: 'horizontal',
+	},
+});
+
 const sliderVariants = cva(
 	'relative cursor-pointer touch-none rounded-full select-none transition-shadow ease-out-quad duration-100 focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:ring-offset-1 focus-visible:ring-offset-ring-offset/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50',
 	{
@@ -21,13 +33,11 @@ const sliderVariants = cva(
 );
 
 const trackVariants = cva(
-	'relative overflow-hidden rounded-full border border-border/60 bg-card-muted shadow-inner',
+	'relative overflow-hidden rounded-full bg-card-muted shadow-inner',
 	{
 		variants: {
 			size: {
-				sm: 'h-1 w-full',
-				md: 'h-2 w-full',
-				lg: 'h-3 w-full',
+				md: 'h-1 w-full',
 			},
 			orientation: {
 				horizontal: '',
@@ -36,19 +46,9 @@ const trackVariants = cva(
 		},
 		compoundVariants: [
 			{
-				size: 'sm',
-				orientation: 'vertical',
-				class: 'h-full w-1',
-			},
-			{
 				size: 'md',
 				orientation: 'vertical',
-				class: 'h-full w-2',
-			},
-			{
-				size: 'lg',
-				orientation: 'vertical',
-				class: 'h-full w-3',
+				class: 'h-full w-1',
 			},
 		],
 		defaultVariants: {
@@ -58,16 +58,13 @@ const trackVariants = cva(
 	},
 );
 
-const fillVariants = cva('absolute rounded-full', {
+const fillVariants = cva('absolute', {
 	variants: {
 		variant: {
-			default: 'bg-foreground/30',
-			secondary: 'bg-foreground/15',
+			default: 'bg-foreground dark:bg-foreground/50',
 		},
 		size: {
-			sm: 'h-1',
-			md: 'h-2',
-			lg: 'h-3',
+			md: 'h-1',
 		},
 		orientation: {
 			horizontal: 'top-0 left-0',
@@ -76,19 +73,9 @@ const fillVariants = cva('absolute rounded-full', {
 	},
 	compoundVariants: [
 		{
-			size: 'sm',
-			orientation: 'vertical',
-			class: 'w-1',
-		},
-		{
 			size: 'md',
 			orientation: 'vertical',
-			class: 'w-2',
-		},
-		{
-			size: 'lg',
-			orientation: 'vertical',
-			class: 'w-3',
+			class: 'w-1',
 		},
 	],
 	defaultVariants: {
@@ -101,13 +88,10 @@ const fillVariants = cva('absolute rounded-full', {
 const thumbVariants = cva('absolute origin-center rounded-full shadow-md', {
 	variants: {
 		variant: {
-			default: 'border-border/60 border bg-foreground',
-			secondary: 'border border-border bg-card',
+			default: 'border-border border bg-card dark:bg-foreground',
 		},
 		size: {
-			sm: 'h-4 w-4',
-			md: 'h-5 w-5',
-			lg: 'h-6 w-6',
+			md: 'size-4',
 		},
 		orientation: {
 			horizontal: 'top-1/2 -translate-y-1/2',
@@ -135,8 +119,10 @@ export interface SliderProps
 	max?: number;
 	step?: number;
 	disabled?: boolean;
-	size?: 'sm' | 'md' | 'lg';
-	variant?: 'default' | 'secondary';
+	size?: 'md';
+	variant?: 'default';
+	label?: string;
+	showLabel?: boolean;
 	showValue?: boolean;
 	formatValue?: (value: number) => string;
 	getValueText?: (value: number) => string;
@@ -159,6 +145,8 @@ export const Slider: React.FC<SliderProps> = ({
 	size = 'md',
 	variant = 'default',
 	orientation = 'horizontal',
+	label,
+	showLabel = false,
 	showValue = false,
 	formatValue = (value) => value.toString(),
 	getValueText,
@@ -178,6 +166,8 @@ export const Slider: React.FC<SliderProps> = ({
 
 	const isControlled = controlledValue !== undefined;
 	const currentValue = isControlled ? controlledValue : internalValue;
+
+	const headerLabel = label ?? ariaLabel ?? 'Value';
 
 	const clampValue = useCallback(
 		(val: number) => {
@@ -409,19 +399,23 @@ export const Slider: React.FC<SliderProps> = ({
 	return (
 		<div
 			className={cn(
-				sliderVariants({ orientation: currentOrientation }),
+				wrapperVariants({ orientation: currentOrientation }),
 				className,
 			)}
 			{...props}
 		>
-			{showValue && (
-				<div
-					className={cn(
-						'mb-2 text-sm text-foreground/70',
-						currentOrientation === 'vertical' ? 'mr-2 mb-0' : '',
+			{(showLabel || showValue) && (
+				<div className="flex gap-2 items-center justify-between w-fit">
+					{showLabel && (
+						<span className="text-sm font-medium text-foreground/70">
+							{headerLabel}
+						</span>
 					)}
-				>
-					{formatValue(currentValue)}
+					{showValue && (
+						<span className="text-sm text-foreground/45">
+							{formatValue(currentValue)}
+						</span>
+					)}
 				</div>
 			)}
 
@@ -477,7 +471,7 @@ export const Slider: React.FC<SliderProps> = ({
 							orientation: currentOrientation,
 							disabled: disabled,
 						}),
-						isDragging && 'ring-2 ring-ring/10',
+						isDragging && 'ring-2 ring-ring/50',
 						thumbClassName,
 					)}
 					style={thumbStyle}

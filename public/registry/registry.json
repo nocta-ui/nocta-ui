@@ -2000,9 +2000,7 @@
         ]
       },
       "sizes": [
-        "lg",
-        "md",
-        "sm"
+        "md"
       ],
       "variants": [
         "default",
@@ -2522,6 +2520,8 @@
           "onChange",
           "onValueCommit",
           "orientation",
+          "label",
+          "showLabel",
           "showValue",
           "size",
           "step",
@@ -2532,13 +2532,10 @@
         ]
       },
       "sizes": [
-        "lg",
-        "md",
-        "sm"
+        "md"
       ],
       "variants": [
-        "default",
-        "secondary"
+        "default"
       ]
     },
     "spinner": {

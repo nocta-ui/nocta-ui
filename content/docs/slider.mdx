@@ -5,8 +5,6 @@ description: A customizable range slider component with variants, orientations, 
 
 import {
   BasicSliderDemo,
-  SecondarySliderDemo,
-  SliderSizesDemo,
   WithValueDemo,
   CustomRangeDemo,
   DisabledDemo,
@@ -58,38 +56,6 @@ import { Slider } from '@/components/ui/slider';
   </DocsTab>
 </DocsTabs>
 
-### Secondary Slider
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SecondarySliderDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Secondary Slider"
-    <Slider
-      variant="secondary"
-      value={value}
-      onChange={setValue}
-    />
-    ```
-  </DocsTab>
-</DocsTabs>
-
-### Sizes
-
-<DocsTabs defaultValue="preview">
-  <DocsTab value="preview" lineNumbers title="Preview">
-    <SliderSizesDemo />
-  </DocsTab>
-  <DocsTab value="code" lineNumbers title="Code">
-    ```tsx lineNumbers title="Slider Sizes"
-    <Slider size="sm" value={value} onChange={setValue} />
-    <Slider size="md" value={value} onChange={setValue} />
-    <Slider size="lg" value={value} onChange={setValue} />
-    ```
-  </DocsTab>
-</DocsTabs>
-
 ### Show Value
 
 <DocsTabs defaultValue="preview">
@@ -133,7 +99,6 @@ import { Slider } from '@/components/ui/slider';
       value={volume}
       onChange={setVolume}
       showValue
-      variant="secondary"
     />
     ```
   </DocsTab>
@@ -231,12 +196,12 @@ import { Slider } from '@/components/ui/slider';
     },
     size: {
       description: 'Slider size',
-      type: '"sm" | "md" | "lg"',
+      type: '"md"',
       default: '"md"',
     },
     variant: {
       description: 'Slider style variant',
-      type: '"default" | "secondary"',
+      type: '"default"',
       default: '"default"',
     },
     orientation: {
@@ -244,10 +209,18 @@ import { Slider } from '@/components/ui/slider';
       type: '"horizontal" | "vertical"',
       default: '"horizontal"',
     },
+    label: { 
+      description: 'Text label displayed near the slider',
+      type: 'string', default: 'undefined'
+    },
+    showLabel: { 
+      description: 'Whether to show the label',
+      type: 'boolean', default: 'false'
+    },
     showValue: {
-      description: 'Show current value',
+      description: 'Displays the current numeric value',
       type: 'boolean',
-      default: 'false',
+      default: 'false'
     },
     formatValue: {
       description: 'Custom value formatter',
