@@ -6,6 +6,6 @@ bash ./scripts/build-components.sh
 bash ./scripts/sync-icons.sh
 
 git add \
-	public/registry/components.json \
-	public/registry/css/index.css \
-	public/registry/lib/icons.ts
+	apps/web/public/registry/components.json \
+	apps/web/public/registry/css/index.css \
+	apps/web/public/registry/lib/icons.ts

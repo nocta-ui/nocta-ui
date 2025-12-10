@@ -13,17 +13,20 @@
 	"files": {
 		"ignoreUnknown": false,
 		"includes": [
-			"**",
+			"apps/web/**",
+			"packages/registry/**",
 			"!**/*-demos.tsx",
-			"!.next",
-			"!.source",
+			"!apps/web/.next",
+			"!apps/web/.source",
 			"!node_modules",
-			"!public",
-			"!components/**/*",
-			"!next-env.d.ts",
-			"!app/api/**/*",
-			"!app/(home)/**/*",
-			"!mdx-components.tsx"
+			"!apps/web/node_modules",
+			"!packages/registry/node_modules",
+			"!apps/web/public",
+			"!apps/web/components/**/*",
+			"!apps/web/next-env.d.ts",
+			"!apps/web/app/api/**/*",
+			"!apps/web/app/(home)/**/*",
+			"!apps/web/mdx-components.tsx"
 		]
 	},
 	"formatter": {
@@ -53,17 +56,5 @@
 				"organizeImports": "on"
 			}
 		}
-	},
-	"overrides": [
-		{
-			"includes": ["app/components/ui/combobox/combobox.tsx"],
-			"linter": {
-				"rules": {
-					"a11y": {
-						"useSemanticElements": "off"
-					}
-				}
-			}
-		}
-	]
+	}
 }

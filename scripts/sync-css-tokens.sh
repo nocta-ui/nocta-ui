@@ -3,8 +3,8 @@ set -euo pipefail
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-src_css="$repo_root/app/global.css"
-dest_css="$repo_root/public/registry/css/index.css"
+src_css="$repo_root/apps/web/app/global.css"
+dest_css="$repo_root/apps/web/public/registry/css/index.css"
 
 if [ ! -f "$src_css" ]; then
   echo "[sync-css-tokens] Source file not found: $src_css" >&2
@@ -33,4 +33,3 @@ fi
 } > "$dest_css"
 
 echo "[sync-css-tokens] Updated $dest_css from $src_css"
-

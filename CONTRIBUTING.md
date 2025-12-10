@@ -126,7 +126,7 @@ The Nocta CLI fetches everything it needs from `public/registry`:
 `scripts/build-components.sh` controls the JSON artefact:
 
 1. Collects every `.tsx` file under `registry/ui/**`.
-2. Applies a Perl-based fix so imports (`@/registry/ui/[componentName]`) are rewritten to (`@/components/ui/[componentName]`)n.
+2. Applies a Perl-based fix so imports (`/ui/[componentName]`) are rewritten to (`@/components/ui/[componentName]`)n.
 3. Base64-encodes the content and writes the map.
 
 Whenever you add, rename, or delete components, run this script (or rely on the pre-commit hook) so the CLI stays in sync.

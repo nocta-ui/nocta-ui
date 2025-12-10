@@ -7,10 +7,19 @@ settings:
 importers:
 
   .:
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 2.3.2
+        version: 2.3.2
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+
+  apps/web:
     dependencies:
-      '@ariakit/react':
-        specifier: ^0.4.20
-        version: 0.4.20(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@nocta/registry':
+        specifier: workspace:*
+        version: link:../../packages/registry
       '@radix-ui/react-collapsible':
         specifier: ^1.1.12
         version: 1.1.12(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -32,9 +41,6 @@ importers:
       '@radix-ui/react-scroll-area':
         specifier: ^1.2.10
         version: 1.2.10(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@tanstack/react-table':
-        specifier: ^8.21.3
-        version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@types/three':
         specifier: ^0.180.0
         version: 0.180.0
@@ -44,9 +50,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      d3-shape:
-        specifier: ^3.2.0
-        version: 3.2.0
       fumadocs-core:
         specifier: 16.0.2
         version: 16.0.2(@types/react@19.2.2)(next@16.0.7(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -84,18 +87,12 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
     devDependencies:
-      '@biomejs/biome':
-        specifier: 2.3.2
-        version: 2.3.2
       '@eslint/eslintrc':
         specifier: ^3.3.1
         version: 3.3.1
       '@tailwindcss/postcss':
         specifier: ^4.1.16
         version: 4.1.16
-      '@types/d3-shape':
-        specifier: ^3.1.7
-        version: 3.1.7
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
@@ -108,15 +105,55 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
       tailwindcss:
         specifier: ^4.1.16
         version: 4.1.16
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/registry:
+    dependencies:
+      '@ariakit/react':
+        specifier: ^0.4.20
+        version: 0.4.20(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@radix-ui/react-icons':
+        specifier: ^1.3.2
+        version: 1.3.2(react@19.2.0)
+      '@tanstack/react-table':
+        specifier: ^8.21.3
+        version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      d3-shape:
+        specifier: ^3.2.0
+        version: 3.2.0
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
+    devDependencies:
+      '@types/d3-shape':
+        specifier: ^3.1.7
+        version: 3.1.7
+      '@types/react':
+        specifier: ^19.2.2
+        version: 19.2.2
+      '@types/react-dom':
+        specifier: ^19.2.2
+        version: 19.2.2(@types/react@19.2.2)
+      react:
+        specifier: ^19.2.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.2.0
+        version: 19.2.0(react@19.2.0)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
