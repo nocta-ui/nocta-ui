@@ -140,7 +140,7 @@ export function DocsLayout({
 							className={cn(i === list.length - 1 && 'mb-4')}
 						/>
 					))}
-				<SidebarPageTree components={components} />
+				<SidebarPageTree {...(components ? { components } : {})} />
 			</SidebarViewport>
 		);
 
@@ -174,7 +174,9 @@ export function DocsLayout({
 						) : null}
 						{themeSwitch.enabled !== false &&
 							(themeSwitch.component ?? (
-								<ThemeToggle mode={themeSwitch.mode} />
+								<ThemeToggle
+									{...(themeSwitch.mode ? { mode: themeSwitch.mode } : {})}
+								/>
 							))}
 						<SidebarTrigger
 							className={cn(
@@ -251,7 +253,10 @@ export function DocsLayout({
 						))}
 						{themeSwitch.enabled !== false &&
 							(themeSwitch.component ?? (
-								<ThemeToggle className="ms-auto" mode={themeSwitch.mode} />
+								<ThemeToggle
+									className="ms-auto"
+									{...(themeSwitch.mode ? { mode: themeSwitch.mode } : {})}
+								/>
 							))}
 					</div>
 					{footer}
@@ -261,8 +266,8 @@ export function DocsLayout({
 
 		return (
 			<Sidebar
-				defaultOpenLevel={defaultOpenLevel}
-				prefetch={prefetch}
+				{...(defaultOpenLevel !== undefined ? { defaultOpenLevel } : {})}
+				{...(prefetch !== undefined ? { prefetch } : {})}
 				Mobile={mobile}
 				Content={
 					<>
@@ -276,7 +281,9 @@ export function DocsLayout({
 
 	return (
 		<TreeContextProvider tree={props.tree}>
-			<NavProvider transparentMode={transparentMode}>
+			<NavProvider
+				{...(transparentMode ? { transparentMode } : {})}
+			>
 				{nav.enabled !== false &&
 					(nav.component ?? (
 						<Navbar className="h-(--fd-nav-height) md:hidden on-root:[--fd-nav-height:56px] md:on-root:[--fd-nav-height:0px]">
@@ -333,7 +340,10 @@ function SidebarLinkItem({
 		return (
 			<SidebarFolder {...props}>
 				{item.url ? (
-					<SidebarFolderLink href={item.url} external={item.external}>
+								<SidebarFolderLink
+									href={item.url}
+									external={item.external ?? false}
+								>
 						{item.icon}
 						{item.text}
 					</SidebarFolderLink>
@@ -357,7 +367,7 @@ function SidebarLinkItem({
 		<SidebarItem
 			href={item.url}
 			icon={item.icon}
-			external={item.external}
+			external={item.external ?? false}
 			{...props}
 		>
 			{item.text}

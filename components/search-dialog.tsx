@@ -220,9 +220,8 @@ export function SearchDialogList({
 	...props
 }: SearchListProps) {
 	const ref = useRef<HTMLDivElement>(null);
-	const [active, setActive] = useState<string | null>(
-		items && items.length > 0 ? items[0].id : null,
-	);
+	const firstItem = items?.[0] ?? null;
+	const [active, setActive] = useState<string | null>(firstItem?.id ?? null);
 	const { onOpenChange } = useSearch();
 	const router = useRouter();
 
@@ -275,7 +274,8 @@ export function SearchDialogList({
 	}, []);
 
 	useOnChange(items, () => {
-		if (items && items.length > 0) setActive(items[0].id);
+		const next = items?.[0] ?? null;
+		setActive(next?.id ?? null);
 	});
 
 	return (

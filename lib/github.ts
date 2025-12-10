@@ -3,14 +3,21 @@ const CACHE_SECONDS = 60 * 60; // 1 hour
 
 export const githubCacheSeconds = CACHE_SECONDS;
 
+type GitHubHeaders = {
+	Accept: string;
+	'User-Agent': string;
+	Authorization?: string;
+};
+
 export const fetchGitHubStars = async (): Promise<number | null> => {
-	const headers: Record<string, string> = {
+	const headers: GitHubHeaders = {
 		Accept: 'application/vnd.github+json',
 		'User-Agent': 'nocta-ui-app',
 	};
 
-	if (process.env.GITHUB_TOKEN) {
-		headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+	const token = process.env.GITHUB_TOKEN;
+	if (token) {
+		headers.Authorization = `Bearer ${token}`;
 	}
 
 	const response = await fetch(GITHUB_REPO_URL, {

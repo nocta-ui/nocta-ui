@@ -33,13 +33,16 @@ export default function ClerkTOCItems({
 				h = 0;
 			const d: string[] = [];
 			for (let i = 0; i < items.length; i++) {
+				const currentItem = items[i];
+				if (!currentItem) continue;
+
 				const element: HTMLElement | null = container.querySelector(
-					`a[href="#${items[i].url.slice(1)}"]`,
+					`a[href="#${currentItem.url.slice(1)}"]`,
 				);
 				if (!element) continue;
 
 				const styles = getComputedStyle(element);
-				const offset = getLineOffset(items[i].depth) + 1,
+				const offset = getLineOffset(currentItem.depth) + 1,
 					top = element.offsetTop + parseFloat(styles.paddingTop),
 					bottom =
 						element.offsetTop +
@@ -103,14 +106,19 @@ export default function ClerkTOCItems({
 				className={cn('flex flex-col', className)}
 				{...props}
 			>
-				{items.map((item, i) => (
-					<TOCItem
-						key={item.url}
-						item={item}
-						upper={items[i - 1]?.depth}
-						lower={items[i + 1]?.depth}
-					/>
-				))}
+				{items.map((item, i) => {
+					const previous = items[i - 1];
+					const next = items[i + 1];
+
+					return (
+						<TOCItem
+							key={item.url}
+							item={item}
+							{...(previous ? { upper: previous.depth } : {})}
+							{...(next ? { lower: next.depth } : {})}
+						/>
+					);
+				})}
 			</div>
 		</>
 	);

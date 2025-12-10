@@ -12,9 +12,9 @@ export const OTPInputDemo: React.FC = () => {
 		status === 'error' ? 'error' : status === 'success' ? 'success' : 'default';
 
 	const helperText =
-		status === 'idle'
-			? 'Enter the 6-digit code.'
-			: undefined;
+		status === 'idle' ? 'Enter the 6-digit code.' : undefined;
+	const successMessage =
+		status === 'success' ? 'Code captured successfully.' : undefined;
 
 	return (
 		<div className="my-6 max-w-md space-y-4">
@@ -31,10 +31,8 @@ export const OTPInputDemo: React.FC = () => {
 				}}
 				variant={variant}
 				label="One-time password"
-				helperText={helperText}
-				successMessage={
-					status === 'success' ? 'Code captured successfully.' : undefined
-				}
+				{...(helperText ? { helperText } : {})}
+				{...(successMessage ? { successMessage } : {})}
 				autoComplete="one-time-code"
 			/>
 		</div>

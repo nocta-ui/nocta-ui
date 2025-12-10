@@ -40,9 +40,9 @@ export function HomeLayout(
 ) {
 	const {
 		nav = {},
-		links,
+		links = [],
 		githubUrl,
-		i18n,
+		i18n = false,
 		disableThemeSwitch = false,
 		themeSwitch = { enabled: !disableThemeSwitch },
 		searchToggle,
@@ -50,7 +50,11 @@ export function HomeLayout(
 	} = props;
 
 	return (
-		<NavProvider transparentMode={nav?.transparentMode}>
+		<NavProvider
+			{...(nav?.transparentMode
+				? { transparentMode: nav.transparentMode }
+				: {})}
+		>
 			<main
 				id="nd-home-layout"
 				{...rest}
@@ -62,9 +66,13 @@ export function HomeLayout(
 							links={links}
 							nav={nav}
 							themeSwitch={themeSwitch}
-							searchToggle={searchToggle}
+							{...(searchToggle
+								? {
+										searchToggle,
+								  }
+								: {})}
 							i18n={i18n}
-							githubUrl={githubUrl}
+							{...(githubUrl !== undefined ? { githubUrl } : {})}
 						/>
 					))}
 				{props.children}
@@ -118,7 +126,11 @@ export function Header({
 						/>
 					))}
 				{themeSwitch.enabled !== false &&
-					(themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
+					(themeSwitch.component ?? (
+						<ThemeToggle
+							{...(themeSwitch?.mode ? { mode: themeSwitch.mode } : {})}
+						/>
+					))}
 				{i18n ? (
 					<LanguageToggle>
 						<GlobeIcon aria-hidden="true" className="size-5" />
@@ -145,7 +157,7 @@ export function Header({
 								className: 'group',
 							}),
 						)}
-						enableHover={nav.enableHoverToOpen}
+						enableHover={nav.enableHoverToOpen ?? false}
 					>
 						<ChevronDownIcon
 							aria-hidden="true"
@@ -175,7 +187,9 @@ export function Header({
 							) : null}
 							{themeSwitch.enabled !== false &&
 								(themeSwitch.component ?? (
-									<ThemeToggle mode={themeSwitch?.mode} />
+									<ThemeToggle
+										{...(themeSwitch?.mode ? { mode: themeSwitch.mode } : {})}
+									/>
 								))}
 						</div>
 					</MenuContent>
@@ -209,12 +223,12 @@ function NavbarLinkItem({
 			} = child.menu ?? {};
 
 			return (
-				<NavbarMenuLink
-					key={j}
-					href={child.url}
-					external={child.external}
-					{...rest}
-				>
+					<NavbarMenuLink
+						key={j}
+						href={child.url}
+						external={child.external ?? false}
+						{...rest}
+					>
 					{rest.children ?? (
 						<>
 							{banner}
@@ -231,13 +245,13 @@ function NavbarLinkItem({
 		return (
 			<NavbarMenu>
 				<NavbarMenuTrigger {...props}>
-					{item.url ? (
-						<Link href={item.url} external={item.external}>
-							{item.text}
-						</Link>
-					) : (
-						item.text
-					)}
+						{item.url ? (
+							<Link href={item.url} external={item.external ?? false}>
+								{item.text}
+							</Link>
+						) : (
+							item.text
+						)}
 				</NavbarMenuTrigger>
 				<NavbarMenuContent>{children}</NavbarMenuContent>
 			</NavbarMenu>

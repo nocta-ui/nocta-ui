@@ -507,16 +507,16 @@ export function SidebarPageTree(props: {
 				}
 
 				if (Item) return <Item key={item.url} item={item} />;
-				return (
-					<SidebarItem
-						key={item.url}
-						href={item.url}
-						external={item.external}
-						icon={item.icon}
-					>
-						{item.name}
-					</SidebarItem>
-				);
+					return (
+						<SidebarItem
+							key={item.url}
+							href={item.url}
+							external={item.external ?? false}
+							icon={item.icon}
+						>
+							{item.name}
+						</SidebarItem>
+					);
 			});
 		}
 
@@ -542,12 +542,12 @@ function PageTreeFolder({
 				(item.defaultOpen ?? defaultOpenLevel >= level) || path.includes(item)
 			}
 		>
-			{item.index ? (
-				<SidebarFolderLink
-					href={item.index.url}
-					external={item.index.external}
-					{...props}
-				>
+				{item.index ? (
+					<SidebarFolderLink
+						href={item.index.url}
+						external={item.index.external ?? false}
+						{...props}
+					>
 					{item.icon}
 					{item.name}
 				</SidebarFolderLink>

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/registry/ui/button';
 import { Spinner } from '@/registry/ui/spinner';
 
 export const BasicSpinnerDemo: React.FC = () => {

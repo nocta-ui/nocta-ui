@@ -428,6 +428,7 @@ export const OTPInput: React.FC<OTPInputProps> = ({
 				<div className={cn(otpGroupVariants({ size }), className)}>
 					{Array.from({ length: inputLength }).map((_, index) => {
 						const inputId = `${baseId}-${index}`;
+						const cellValue = valueArray[index] ?? '';
 						return (
 							<div
 								key={inputId}
@@ -446,7 +447,7 @@ export const OTPInput: React.FC<OTPInputProps> = ({
 									pattern={pattern}
 									autoComplete={autoComplete}
 									maxLength={1}
-									value={valueArray[index]}
+									value={cellValue}
 									onChange={(event) => handleInputChange(index, event)}
 									onKeyDown={(event) => handleKeyDown(index, event)}
 									onPaste={(event) => handlePaste(index, event)}
@@ -459,7 +460,7 @@ export const OTPInput: React.FC<OTPInputProps> = ({
 									className={cn(
 										otpCellVariants({
 											size,
-											isFilled: valueArray[index].length > 0,
+											isFilled: cellValue.length > 0,
 										}),
 										cellClassName,
 									)}

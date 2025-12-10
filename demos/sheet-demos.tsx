@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Badge } from '@/registry/ui/badge';
 import { Button } from '@/registry/ui/button';
-import { Input } from '@/registry/ui/input';
 import {
 	Sheet,
 	SheetClose,

@@ -362,8 +362,8 @@ export function PageBreadcrumb({
 	const items = useMemo(() => {
 		return getBreadcrumbItemsFromPath(root, path, {
 			includePage,
-			includeSeparator,
 			includeRoot,
+			...(includeSeparator !== undefined ? { includeSeparator } : {}),
 		});
 	}, [includePage, includeRoot, includeSeparator, path, root]);
 

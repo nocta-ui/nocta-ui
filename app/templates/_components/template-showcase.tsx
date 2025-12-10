@@ -64,12 +64,12 @@ function TemplateRow({ template, isReversed }: TemplateRowProps) {
 					label="Preview"
 					href={template.previewUrl}
 					variant="default"
-					disabled={template.isDisabled}
+					disabled={template.isDisabled ?? false}
 				/>
 				<TemplateActionButton
 					label="Source Code"
 					href={template.sourceUrl}
-					disabled={template.isDisabled}
+					disabled={template.isDisabled ?? false}
 				/>
 			</div>
 		</div>

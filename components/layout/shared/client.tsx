@@ -20,7 +20,7 @@ export function BaseLinkItem({
 		<Link
 			ref={ref}
 			href={item.url}
-			external={item.external}
+			external={item.external ?? false}
 			{...props}
 			data-active={active}
 		>

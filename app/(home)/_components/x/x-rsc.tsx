@@ -172,31 +172,56 @@ export const TweetBody = ({ tweet }: { tweet: EnrichedTweet }) => (
 						/>
 					);
 			}
+
+			return null;
 		})}
 	</div>
 );
 
+type EnrichedTweetWithCard = EnrichedTweet & {
+	card?: {
+		binding_values?: {
+			thumbnail_image_large?: {
+				image_value?: {
+					url?: string;
+				};
+			};
+		};
+	};
+};
+
 export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
-	if (!tweet.video && !tweet.photos) return null;
+	const video = tweet.video;
+	const photos = tweet.photos;
+	const thumbnail =
+		(tweet as EnrichedTweetWithCard).card?.binding_values
+			?.thumbnail_image_large?.image_value?.url;
+
+	if (!video && !photos && !thumbnail) {
+		return null;
+	}
+
 	return (
 		<div className="flex flex-1 items-center justify-center">
-			{tweet.video && (
+			{video && (
 				<video
-					poster={tweet.video.poster}
+					poster={video.poster}
 					autoPlay
 					loop
 					muted
 					playsInline
 					className="rounded-lg border shadow-sm"
 				>
-					<source src={tweet.video.variants[0].src} type="video/mp4" />
+					{video.variants[0]?.src ? (
+						<source src={video.variants[0]?.src} type="video/mp4" />
+					) : null}
 					Your browser does not support the video tag.
 				</video>
 			)}
-			{tweet.photos && (
+			{photos && (
 				<div className="relative flex transform-gpu snap-x snap-mandatory gap-4 overflow-x-auto">
 					<div className="shrink-0 snap-center sm:w-2" />
-					{tweet.photos.map((photo) => (
+					{photos.map((photo) => (
 						<img
 							key={photo.url}
 							src={photo.url}
@@ -210,19 +235,13 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
 					<div className="shrink-0 snap-center sm:w-2" />
 				</div>
 			)}
-			{!tweet.video &&
-				!tweet.photos &&
-				// @ts-expect-error package doesn't have type definitions
-				tweet?.card?.binding_values?.thumbnail_image_large?.image_value.url && (
-					<img
-						src={
-							// @ts-expect-error package doesn't have type definitions
-							tweet.card.binding_values.thumbnail_image_large.image_value.url
-						}
-						className="h-64 rounded-xl border object-cover shadow-sm"
-						alt={tweet.text}
-					/>
-				)}
+			{!video && !photos && thumbnail && (
+				<img
+					src={thumbnail}
+					className="h-64 rounded-xl border object-cover shadow-sm"
+					alt={tweet.text}
+				/>
+			)}
 		</div>
 	);
 };

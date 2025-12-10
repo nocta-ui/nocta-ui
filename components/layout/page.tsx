@@ -147,16 +147,19 @@ export function DocsPage({
 		tocPopoverOptions.header !== undefined ||
 		tocPopoverOptions.footer !== undefined;
 
+	const tocProps =
+		tocEnabled || tocPopoverEnabled
+			? {
+					toc,
+					...(tocOptions.single !== undefined
+						? { single: tocOptions.single }
+						: {}),
+				}
+			: false;
+
 	return (
 		<PageRoot
-			toc={
-				tocEnabled || tocPopoverEnabled
-					? {
-							toc,
-							single: tocOptions.single,
-						}
-					: false
-			}
+			toc={tocProps}
 			{...container}
 			className={cn(
 				!tocEnabled && '[--fd-toc-width:0px]',
@@ -169,7 +172,11 @@ export function DocsPage({
 						<PageTOCPopoverTrigger />
 						<PageTOCPopoverContent>
 							{tocPopoverOptions.header}
-							<PageTOCPopoverItems variant={tocPopoverOptions.style} />
+							<PageTOCPopoverItems
+								{...(tocPopoverOptions.style
+									? { variant: tocPopoverOptions.style }
+									: {})}
+							/>
 							{tocPopoverOptions.footer}
 						</PageTOCPopoverContent>
 					</PageTOCPopover>
@@ -187,14 +194,20 @@ export function DocsPage({
 					{lastUpdate && <PageLastUpdate date={new Date(lastUpdate)} />}
 				</div>
 				{footer.enabled !== false &&
-					(footer.component ?? <PageFooter items={footer.items} />)}
+					(footer.component ?? (
+						<PageFooter
+							{...(footer.items ? { items: footer.items } : {})}
+						/>
+					))}
 			</PageArticle>
 			{tocEnabled &&
 				(tocReplace ?? (
 					<PageTOC>
 						{tocOptions.header}
 						<PageTOCTitle />
-						<PageTOCItems variant={tocOptions.style} />
+						<PageTOCItems
+							{...(tocOptions.style ? { variant: tocOptions.style } : {})}
+						/>
 						{tocOptions.footer}
 					</PageTOC>
 				))}

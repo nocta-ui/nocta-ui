@@ -38,17 +38,29 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
   <DocsTab value="code" lineNumbers title="Code">
 ```tsx lineNumbers title="OTP verification flow"
 const [code, setCode] = useState('');
-const isComplete = code.length === 6;
+const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+const helperText =
+  status === 'idle' ? 'Enter the 6-digit code sent to your phone.' : undefined;
+const successMessage =
+  status === 'success' ? 'Code captured successfully.' : undefined;
 
 return (
   <OTPInput
     length={6}
     value={code}
-    onChange={setCode}
-    variant={isComplete ? 'success' : 'default'}
+    onChange={(nextValue) => {
+      setCode(nextValue);
+      if (nextValue.length === 6) {
+        setStatus('success');
+      } else if (status !== 'idle') {
+        setStatus('idle');
+      }
+    }}
+    variant={status === 'error' ? 'error' : status === 'success' ? 'success' : 'default'}
     label="One-time password"
-    helperText="Enter the 6-digit code sent to your phone."
-    successMessage={isComplete ? 'Code captured successfully.' : undefined}
+    helperText={helperText}
+    successMessage={successMessage}
     autoComplete="one-time-code"
   />
 );

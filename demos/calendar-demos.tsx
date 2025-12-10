@@ -6,23 +6,25 @@ import { Calendar } from '@/registry/ui/calendar';
 
 export const BasicCalendarDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	return (
 		<div className="my-6">
-			<Calendar value={selectedDate} onChange={setSelectedDate} />
+			<Calendar {...calendarValueProps} onChange={setSelectedDate} />
 		</div>
 	);
 };
 
 export const WeekStartsOnMondayDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
 				<Calendar
 					weekStartsOn={1}
-					value={selectedDate}
+					{...calendarValueProps}
 					onChange={setSelectedDate}
 				/>
 			</div>
@@ -32,13 +34,14 @@ export const WeekStartsOnMondayDemo: React.FC = () => {
 
 export const WithWeekNumbersDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
 				<Calendar
 					showWeekNumbers
-					value={selectedDate}
+					{...calendarValueProps}
 					onChange={setSelectedDate}
 				/>
 			</div>
@@ -48,6 +51,7 @@ export const WithWeekNumbersDemo: React.FC = () => {
 
 export const DisabledDatesDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	const isWeekend = (date: Date) => {
 		const day = date.getDay();
@@ -59,7 +63,7 @@ export const DisabledDatesDemo: React.FC = () => {
 			<div className="flex flex-col space-y-2">
 				<Calendar
 					disabledDates={isWeekend}
-					value={selectedDate}
+					{...calendarValueProps}
 					onChange={setSelectedDate}
 				/>
 			</div>
@@ -69,6 +73,7 @@ export const DisabledDatesDemo: React.FC = () => {
 
 export const DateRangeDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	const today = new Date();
 	const minDate = new Date(
@@ -88,7 +93,7 @@ export const DateRangeDemo: React.FC = () => {
 				<Calendar
 					minDate={minDate}
 					maxDate={maxDate}
-					value={selectedDate}
+					{...calendarValueProps}
 					onChange={setSelectedDate}
 				/>
 			</div>
@@ -98,6 +103,7 @@ export const DateRangeDemo: React.FC = () => {
 
 export const CustomFormattingDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	const formatMonth = (date: Date) => {
 		const month = date.toLocaleDateString('en-US', { month: 'long' });
@@ -115,7 +121,7 @@ export const CustomFormattingDemo: React.FC = () => {
 				<Calendar
 					formatMonth={formatMonth}
 					formatWeekday={formatWeekday}
-					value={selectedDate}
+					{...calendarValueProps}
 					onChange={setSelectedDate}
 				/>
 			</div>
@@ -127,11 +133,12 @@ export const DisabledCalendarDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>(
 		new Date(),
 	);
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	return (
 		<div className="my-6">
 			<div className="flex flex-col space-y-2">
-				<Calendar disabled value={selectedDate} onChange={setSelectedDate} />
+				<Calendar disabled {...calendarValueProps} onChange={setSelectedDate} />
 			</div>
 		</div>
 	);
@@ -139,6 +146,7 @@ export const DisabledCalendarDemo: React.FC = () => {
 
 export const EventCalendarDemo: React.FC = () => {
 	const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+	const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
 	const handleDateSelect = (date: Date | undefined) => {
 		setSelectedDate(date);
@@ -151,7 +159,7 @@ export const EventCalendarDemo: React.FC = () => {
 		<div className="my-6">
 			<div className="space-y-4">
 				<div className="flex flex-col space-y-2">
-					<Calendar value={selectedDate} onChange={handleDateSelect} />
+					<Calendar {...calendarValueProps} onChange={handleDateSelect} />
 				</div>
 				{selectedDate && (
 					<div className="rounded-lg bg-card p-3">

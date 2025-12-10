@@ -54,7 +54,7 @@ export function MenuLinkItem({
 				<p className="mb-1 text-sm text-foreground/70">
 					{item.url ? (
 						<NavigationMenuLink asChild>
-							<Link href={item.url} external={item.external}>
+							<Link href={item.url} external={item.external ?? false}>
 								{header}
 							</Link>
 						</NavigationMenuLink>

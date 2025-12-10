@@ -16,7 +16,6 @@ import {
   SidebarInset,
   SidebarInput,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -223,7 +222,6 @@ export function SidebarWorkspaceDemo() {
                 <SidebarMenu>
                   {workspaceNavigation.map((item) => {
                     const hasChildren = Boolean(item.children?.length);
-                    const showMenuAction = item.id === 'components';
                     const collapsibleProps = hasChildren
                       ? {
                           open: Boolean(openSections[item.id]),

@@ -1,7 +1,6 @@
 'use client';
 
 import {
-	ArchiveIcon,
 	BookmarkIcon,
 	ClipboardIcon,
 	CopyIcon,

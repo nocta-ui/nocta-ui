@@ -72,20 +72,24 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Sizes"
     const numbers = Array.from({ length: 16 }, (_, i) => (i + 1).toString());
+    const fallbackNumber = numbers[0] ?? '1';
+    const smallDefault = numbers[5] ?? fallbackNumber;
+    const mediumDefault = numbers[7] ?? fallbackNumber;
+    const largeDefault = numbers[9] ?? fallbackNumber;
 
-    <WheelPicker size="sm" defaultValue={numbers[5]}>
+    <WheelPicker size="sm" defaultValue={smallDefault}>
       {numbers.map((n) => (
         <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
       ))}
     </WheelPicker>
 
-    <WheelPicker size="md" defaultValue={numbers[7]}>
+    <WheelPicker size="md" defaultValue={mediumDefault}>
       {numbers.map((n) => (
         <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
       ))}
     </WheelPicker>
 
-    <WheelPicker size="lg" defaultValue={numbers[9]}>
+    <WheelPicker size="lg" defaultValue={largeDefault}>
       {numbers.map((n) => (
         <WheelPickerItem key={n} value={n}>{n}</WheelPickerItem>
       ))}
@@ -132,9 +136,12 @@ import {
     ];
     const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
     const years = Array.from({ length: 11 }, (_, i) => (2020 + i).toString());
-    const [month, setMonth] = React.useState(months[5]);
-    const [day, setDay] = React.useState(days[9]);
-    const [year, setYear] = React.useState(years[4]);
+    const fallbackMonth = months[0] ?? 'January';
+    const fallbackDay = days[0] ?? '01';
+    const fallbackYear = years[0] ?? '2020';
+    const [month, setMonth] = React.useState(months[5] ?? fallbackMonth);
+    const [day, setDay] = React.useState(days[9] ?? fallbackDay);
+    const [year, setYear] = React.useState(years[4] ?? fallbackYear);
 
     <WheelPickerGroup>
       <WheelPicker className="w-28" value={month} onValueChange={setMonth} aria-label="Month">

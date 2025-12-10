@@ -87,7 +87,7 @@ export interface ContextMenuTriggerProps
 export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
 	children,
 	className,
-	disabled,
+	disabled = false,
 	onContextMenu,
 	onKeyDown,
 	toggleOnClick = false,
@@ -108,7 +108,9 @@ export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
 				className,
 				disabled && 'opacity-50',
 			)}
-			onContextMenu={(event: React.MouseEvent<HTMLButtonElement & HTMLDivElement>) => {
+			onContextMenu={(
+				event: React.MouseEvent<HTMLButtonElement & HTMLDivElement>,
+			) => {
 				onContextMenu?.(event);
 				if (event.defaultPrevented) return;
 				if (disabled) return;
@@ -117,7 +119,9 @@ export const ContextMenuTrigger: React.FC<ContextMenuTriggerProps> = ({
 				menu.setAnchorElement(event.currentTarget);
 				menu.show();
 			}}
-			onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement & HTMLDivElement>) => {
+			onKeyDown={(
+				event: React.KeyboardEvent<HTMLButtonElement & HTMLDivElement>,
+			) => {
 				onKeyDown?.(event);
 				if (event.defaultPrevented) return;
 				if (disabled) return;

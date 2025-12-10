@@ -48,12 +48,10 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Basic Calendar"
-      const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
-      <Calendar
-        value={selectedDate}
-        onChange={setSelectedDate}
-      />
+    <Calendar {...calendarValueProps} onChange={setSelectedDate} />
     ```
   </DocsTab>
 </DocsTabs>
@@ -66,8 +64,14 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Week Configuration"
-    // Week starts on Monday
-    <Calendar weekStartsOn={1} />
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
+    <Calendar
+      weekStartsOn={1}
+      {...calendarValueProps}
+      onChange={setSelectedDate}
+    />
     ```
   </DocsTab>
 </DocsTabs>
@@ -80,7 +84,14 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Week Numbers"
-    <Calendar showWeekNumbers />
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
+    <Calendar
+      showWeekNumbers
+      {...calendarValueProps}
+      onChange={setSelectedDate}
+    />
     ```
   </DocsTab>
 </DocsTabs>
@@ -99,7 +110,14 @@ import {
       return day === 0 || day === 6;
     };
 
-    <Calendar disabledDates={isWeekend} />
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
+    <Calendar
+      disabledDates={isWeekend}
+      {...calendarValueProps}
+      onChange={setSelectedDate}
+    />
     ```
   </DocsTab>
 </DocsTabs>
@@ -116,9 +134,14 @@ import {
     const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
 
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
     <Calendar
       minDate={minDate}
       maxDate={maxDate}
+      {...calendarValueProps}
+      onChange={setSelectedDate}
     />
     ```
   </DocsTab>
@@ -142,9 +165,14 @@ import {
       return date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
     };
 
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
     <Calendar
       formatMonth={formatMonth}
       formatWeekday={formatWeekday}
+      {...calendarValueProps}
+      onChange={setSelectedDate}
     />
     ```
   </DocsTab>
@@ -158,7 +186,10 @@ import {
   </DocsTab>
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx lineNumbers title="Disabled Calendar"
-    <Calendar disabled />
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
+
+    <Calendar disabled {...calendarValueProps} onChange={setSelectedDate} />
     ```
   </DocsTab>
 </DocsTabs>
@@ -172,6 +203,7 @@ import {
   <DocsTab value="code" lineNumbers title="Code">
     ```tsx
     const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+    const calendarValueProps = selectedDate ? { value: selectedDate } : {};
 
     const handleDateSelect = (date: Date | undefined) => {
       setSelectedDate(date);
@@ -180,14 +212,10 @@ import {
       }
     };
 
-    <Calendar
-      variant="compact"
-      value={selectedDate}
-      onChange={handleDateSelect}
-    />
+    <Calendar {...calendarValueProps} onChange={handleDateSelect} />
     {selectedDate && (
-      <div className="mt-4 p-3 bg-card rounded-lg">
-        <p className="text-sm">
+      <div className="rounded-lg bg-card p-3">
+        <p className="text-sm text-foreground/70">
           Selected: <span className="font-medium">{selectedDate.toLocaleDateString()}</span>
         </p>
       </div>

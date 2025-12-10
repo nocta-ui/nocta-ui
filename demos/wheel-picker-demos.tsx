@@ -36,13 +36,17 @@ export const DefaultWheelPickerDemo: React.FC = () => {
 
 export const SizesWheelPickerDemo: React.FC = () => {
 	const numbers = Array.from({ length: 16 }, (_, i) => (i + 1).toString());
+	const fallbackNumber = numbers[0] ?? '1';
+	const smallDefault = numbers[5] ?? fallbackNumber;
+	const mediumDefault = numbers[7] ?? fallbackNumber;
+	const largeDefault = numbers[9] ?? fallbackNumber;
 	return (
 		<div className="my-6 grid grid-cols-3 gap-6 max-sm:grid-cols-1">
 			<div>
 				<p className="mb-2 text-sm font-medium text-foreground/70">Small</p>
 				<WheelPicker
 					size="sm"
-					defaultValue={numbers[5]}
+					defaultValue={smallDefault}
 					aria-label="Small size"
 				>
 					{numbers.map((n) => (
@@ -57,7 +61,7 @@ export const SizesWheelPickerDemo: React.FC = () => {
 				<p className="mb-2 text-sm font-medium text-foreground/70">Medium</p>
 				<WheelPicker
 					size="md"
-					defaultValue={numbers[7]}
+					defaultValue={mediumDefault}
 					aria-label="Medium size"
 				>
 					{numbers.map((n) => (
@@ -72,7 +76,7 @@ export const SizesWheelPickerDemo: React.FC = () => {
 				<p className="mb-2 text-sm font-medium text-foreground/70">Large</p>
 				<WheelPicker
 					size="lg"
-					defaultValue={numbers[9]}
+					defaultValue={largeDefault}
 					aria-label="Large size"
 				>
 					{numbers.map((n) => (
@@ -134,13 +138,16 @@ export const GroupedWheelPickerDemo: React.FC = () => {
 		(i + 1).toString().padStart(2, '0'),
 	);
 	const years = Array.from({ length: 11 }, (_, i) => (2020 + i).toString());
-	const [month, setMonth] = React.useState<string>(
-		months[new Date().getMonth()],
-	);
+	const fallbackMonth = months[0] ?? 'January';
+	const fallbackYear = years[0] ?? '2020';
+	const fallbackDay = days[0] ?? '01';
+	const initialMonth = months[new Date().getMonth()] ?? fallbackMonth;
+	const initialYear = years[4] ?? fallbackYear;
+	const [month, setMonth] = React.useState<string>(initialMonth);
 	const [day, setDay] = React.useState<string>(
-		days[new Date().getDate() - 1] ?? days[0],
+		days[new Date().getDate() - 1] ?? fallbackDay,
 	);
-	const [year, setYear] = React.useState<string>(years[4]);
+	const [year, setYear] = React.useState<string>(initialYear);
 
 	return (
 		<div className="my-6 flex max-w-[420px] flex-col items-center gap-4">

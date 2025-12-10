@@ -22,10 +22,10 @@ export default function DefaultSearchDialog({
 	children,
 	...rest
 }: DefaultSearchDialogProps) {
-	const { locale } = useI18n();
+	const { locale: activeLocale } = useI18n();
 	const { search, setSearch, query } = useDocsSearch({
 		type: 'fetch',
-		locale,
+		locale: activeLocale ?? 'en',
 	});
 
 	return (
@@ -44,7 +44,11 @@ export default function DefaultSearchDialog({
 					<SearchDialogInput />
 					<SearchDialogClose />
 				</SearchDialogHeader>
-				<SearchDialogList items={query.data !== 'empty' ? query.data : null} />
+				<SearchDialogList
+					items={
+						query.data && query.data !== 'empty' ? query.data : null
+					}
+				/>
 			</SearchDialogContent>
 		</SearchDialog>
 	);
